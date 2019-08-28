@@ -1,0 +1,44 @@
+{
+    "pcd8544":
+    {
+        "options":
+        {
+            "no_bits_in_name": true,
+            "config_func": "_configureSpiDisplayCmdModeOnly",
+            "args_in_cmd_mode": true,
+            "row_div": 8,
+            "reset_duration": 20,
+            "reset_delay": 0
+        },
+        "interfaces":
+        {
+            "spi":
+            {
+                "frequency": 4000000
+            }
+        },
+        "bits":
+        {
+            "1":
+            {
+                "84x48":
+                {
+                    "init":
+                    [
+                        "#ifdef SDL_EMULATION",
+                        "    SDL_LCD_PCD8544, 0x00,",
+                        "    0x00, 0x00,",
+                        "#endif",
+                        "    0x20 | 0x01, 0x00, // switch to extented commands",
+                        "    0x80 | 0x16, 0x00, // Set vop contrast",
+                        "    0x04, 0x00,        // set temp",
+                        "    0x10 | 0x04, 0x00, // Set bias mode",
+                        "    0x20, 0x00,        // switch to basic commands",
+                        "    0x08 | 0x04, 0x00, // Normal display"
+                    ]
+                }
+            }
+        }
+    }
+}
+

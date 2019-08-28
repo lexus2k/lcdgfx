@@ -1,0 +1,4 @@
+    if ( m_dc >= 0 )
+    {
+        lcd_gpioWrite( m_dc, mode ? LCD_HIGH : LCD_LOW );
+    }

@@ -1,0 +1,11 @@
+    this->start();
+    spiDataMode(0);
+    this->send( 0x21 );
+    this->send(x1);
+    this->send(y1);
+    this->send(x2);
+    this->send(y2);
+    this->send( (color & 0xF800) >> 10 );
+    this->send( (color & 0x07E0) >> 5 );
+    this->send( (color & 0x001F) << 1 );
+    this->stop();

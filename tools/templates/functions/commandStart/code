@@ -1,0 +1,5 @@
+    this->start();
+    if (m_dc >= 0)
+        spiDataMode(0);
+    else
+        this->send(0x00);

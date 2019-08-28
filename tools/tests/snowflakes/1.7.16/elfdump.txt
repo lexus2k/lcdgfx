@@ -1,0 +1,85 @@
+0000030e T NanoCanvasOps<(unsigned char)1>::drawBitmap1(int, int, unsigned int, unsigned int, unsigned char const*)
+00000190 B snowFlakes
+00000128 W NanoCanvasOps<(unsigned char)1>::printChar(unsigned char)
+000000de W NanoFixedSprite<NanoEngine<NanoCanvas1, (unsigned char)16, (unsigned char)16, (unsigned char)4>, engine>::refresh()
+000000de t ssd1306_setBlock
+000000ce t _GLOBAL__sub_I_engine
+000000c4 W NanoEngineTiler<NanoCanvas1, 16u, 16u, (unsigned char)4>::displayBuffer()
+000000ae T moveSnowFlakes()
+00000090 T addSnowFlake()
+00000084 T ssd1306_128x64_init
+00000068 T ssd1306_drawBufferFast
+00000064 T loop()
+00000058 T digitalWrite
+00000056 T NanoEngineCore::nextFrame()
+00000054 T onDraw()
+0000004e T NanoCanvasOps<(unsigned char)1>::begin(int, int, unsigned char*)
+00000048 T ssd1306_unicode16FromUtf8
+00000048 T ssd1306_i2cInit_Twi
+00000044 T __udivmodsi4
+00000040 V NanoEngineTiler<NanoCanvas1, 16u, 16u, (unsigned char)4>::m_refreshFlags
+00000040 t snowFlakeImage
+00000030 T setup()
+0000002e W NanoCanvasOps<(unsigned char)1>::write(unsigned char)
+0000002e T NanoCanvasOps<(unsigned char)1>::clear()
+0000002e t ssd1306_send_buffer_generic
+0000002c t ssd1306_twi_send
+00000028 T __udivmodhi4
+00000028 t ssd1306_i2cSendByte_Twi
+00000028 t ssd1306_i2cSendBytes_Twi
+00000028 T __divmodhi4
+00000024 T NanoCanvas1::blt()
+00000024 T ssd1306_sendCommand
+00000024 T ssd1306_commandStart
+00000020 V NanoEngineTiler<NanoCanvas1, 16u, 16u, (unsigned char)4>::m_buffer
+00000020 T NanoCanvas1::blt(int, int)
+00000020 t ssd1306_twi_start
+00000020 T ssd1306_spiDataMode
+0000001e T __umulhisi3
+0000001a T NanoEngineCore::setFrameRate(unsigned char)
+0000001a T ssd1306_i2cConfigure_Twi
+00000019 t s_oled128x64_initData
+00000018 t ssd1306_i2cStart_Twi
+00000018 T __cmpdi2_s8
+00000018 T __adddi3_s8
+00000017 V NanoEngineTiler<NanoCanvas1, 16u, 16u, (unsigned char)4>::canvas
+00000016 T __muluhisi3
+00000016 T __do_global_ctors
+00000016 T __do_copy_data
+00000014 B ssd1306_lcd
+00000012 T NanoEngineCore::begin()
+00000010 T __do_clear_bss
+0000000e T memset
+0000000c V vtable for NanoCanvas1
+0000000c T __tablejump2__
+0000000c T ssd1306_i2cInit
+0000000b D ssd1306_intf
+0000000b B s_fixedFont
+0000000a T ssd1306_getCharBitmap
+0000000a T ssd1306_displayWidth
+0000000a T ssd1306_displayHeight
+0000000a T __mulohisi3
+0000000a T main
+00000008 V guard variable for NanoEngineTiler<NanoCanvas1, 16u, 16u, (unsigned char)4>::canvas
+00000008 t ssd1306_i2cStop_Twi
+00000008 T ssd1306_128x64_i2c_init
+00000006 V vtable for NanoCanvasOps<(unsigned char)1>
+00000006 T __mulshisi3
+00000004 V NanoEngineTiler<NanoCanvas1, 16u, 16u, (unsigned char)4>::offset
+00000004 B NanoEngineCore::m_lastFrameTs
+00000002 V NanoEngineTiler<NanoCanvas1, 16u, 16u, (unsigned char)4>::m_onDraw
+00000002 B NanoEngineCore::m_loop
+00000002 T NanoCanvas1_16::blt(_NanoRect const&)
+00000002 T NanoCanvas1_8::blt(_NanoRect const&)
+00000002 T NanoCanvas1::blt(_NanoRect const&)
+00000002 b unicode.3072
+00000002 b s_ssd1306_getCharBitmap
+00000002 t ssd1306_setMode_int
+00000002 t ssd1306_nextPage
+00000002 t ssd1306_i2cClose_Twi
+00000001 B NanoEngineCore::m_cpuLoad
+00000001 D NanoEngineCore::m_fps
+00000001 D NanoEngineCore::m_frameDurationMs
+00000001 d globalTimer
+00000001 D s_ssd1306_dc
+00000001 d s_sa

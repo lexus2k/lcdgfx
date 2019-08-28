@@ -1,0 +1,6 @@
+    /**
+     * Switches to the start of next RAM page for the block, specified by
+     * startBlock().
+     * For ~CONTROLLER~ it does nothing, while for sh1106 the function moves cursor to
+     * next page.
+     */

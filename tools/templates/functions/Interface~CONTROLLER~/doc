@@ -1,0 +1,7 @@
+    /**
+     * Creates instance of interface to LCD display.
+     *
+     * @param base Reference to base class, which represents Display
+     * @param dc Data/command control pin number, for i2c communication should be -1
+     * @param data variable argument list, accepted by platform interface (PlatformI2c, PlatformSpi)
+     */

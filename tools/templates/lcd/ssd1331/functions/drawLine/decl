@@ -1,0 +1,6 @@
+void
+lcdint_t x1
+lcdint_t y1
+lcdint_t x2
+lcdint_t y2
+uint16_t color

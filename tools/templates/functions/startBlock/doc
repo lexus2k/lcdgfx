@@ -1,0 +1,15 @@
+    /**
+     * @brief Sets block in RAM of lcd display controller to write data to.
+     *
+     * Sets block in RAM of lcd display controller to write data to.
+     * For ~CONTROLLER~ it uses horizontal addressing mode, while for
+     * sh1106 the function uses page addressing mode.
+     * Width can be specified as 0, thus the library will set the right boundary to
+     * region of RAM block to the right column of the display.
+     * @param x - column (left region)
+     * @param y - row (top region)
+     * @param w - width of the block in pixels to control
+     *
+     * @warning - this function initiates session (i2c or spi) and does not close it.
+     *            To close session, please, call endBlock().
+     */

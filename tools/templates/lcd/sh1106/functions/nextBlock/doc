@@ -1,0 +1,7 @@
+    /**
+     * Switches to the start of next RAM page for the block, specified by
+     * startBlock().
+     * For SSD1306 it does nothing, while for SH1106 the function moves cursor to
+     * next page.
+     */
+

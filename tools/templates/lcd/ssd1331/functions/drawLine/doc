@@ -1,0 +1,9 @@
+    /**
+     * Draws line using hardware accelerator capabilities
+     *
+     * @param x1 x position of first point
+     * @param y1 y position of first point
+     * @param x2 x position of second point
+     * @param y2 y position of second point
+     * @param color color to draw line with (refere RGB_COLOR16 macro)
+     */

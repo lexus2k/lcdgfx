@@ -1,0 +1,3642 @@
+
+../bld/demos/ssd1306_demo.out:     file format elf32-avr
+
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 67 03 	jmp	0x6ce	; 0x6ce <__ctors_end>
+       4:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+       8:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+       c:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      10:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      14:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      18:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      1c:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      20:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      24:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      28:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      2c:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      30:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      34:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      38:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      3c:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      40:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      44:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      48:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      4c:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      50:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      54:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      58:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      5c:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      60:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+      64:	0c 94 84 03 	jmp	0x708	; 0x708 <__bad_interrupt>
+
+00000068 <Sova>:
+	...
+      bc:	00 00 c0 80 00 00 00 00 00 00 00 06 0a 05 0d 01     ................
+      cc:	01 03 87 fe fe fc f8 f0 00 00 00 00 00 00 00 00     ................
+	...
+     108:	00 00 00 80 80 80 00 00 00 00 00 00 00 00 00 00     ................
+     118:	00 00 00 00 00 80 c0 c0 00 00 00 00 00 00 00 00     ................
+	...
+     144:	00 00 06 0e 08 0c 0c 0c 0e 0f 0f 07 07 03 03 00     ................
+	...
+     184:	00 80 e0 30 98 de e6 e7 f7 d7 d6 56 56 d7 d7 5f     ...0.......VV.._
+     194:	df 3f 3f 2f 9f d7 df 6f 6b 6b 7f f7 f3 f3 e0 ec     .??/...okk......
+     1a4:	98 30 e0 80 00 00 00 00 00 00 00 00 00 00 80 80     .0..............
+     1b4:	60 70 70 60 40 60 e0 e0 e0 e0 e0 e0 e0 c0 c0 e0     `pp`@`..........
+     1c4:	f0 e0 40 00 00 00 00 00 00 00 00 00 00 00 00 00     ..@.............
+	...
+     204:	00 03 fb e0 df b1 ef 5f b9 b0 a0 e6 6e 2e b6 b9     ......._....n...
+     214:	9f af a0 a7 bf 99 b6 b6 a6 a6 b0 b0 a9 df cf f0     ................
+     224:	7f 77 fd 01 80 80 80 00 00 00 00 08 ee b3 7d be     .w............}.
+     234:	7f c7 87 b7 b7 b7 cd 7d 83 93 fb cd b5 35 a5 87     .......}.....5..
+     244:	ce fe 1c f9 c3 1c 10 00 00 00 00 00 00 00 00 00     ................
+	...
+     280:	00 00 00 0f 1f 3f 3c 73 ef 9e 7e fd fd ed ad fd     .....?<s..~.....
+     290:	dd ff bf ff 5f df ef ff ff ff 6f ff df ef fd dd     ...._.....o.....
+     2a0:	fd bc fe 7e bf ef 7b 3e 1f 0f 07 00 00 0e 1f 3c     ...~..{>.......<
+     2b0:	77 5f 3d 7d fb fb 7a fa fe fe fe fe ff ff 7e fe     w_=}..z.......~.
+     2c0:	bf fd f5 f5 f6 fa fb df 67 78 3c 1c 00 00 00 00     ........gx<.....
+     2d0:	00 00 00 00 80 80 00 00 60 60 00 00 00 00 00 00     ........``......
+	...
+     2e8:	00 00 00 c0 80 00 00 80 80 00 00 00 00 00 00 00     ................
+     2f8:	00 40 00 10 38 80 00 00 80 c0 c0 00 00 00 00 00     .@..8...........
+     308:	00 00 01 00 00 81 83 83 87 e7 ef ef eb ff f7 df     ................
+     318:	fa fe ff eb ee ee e7 67 63 61 60 60 60 e0 e0 e0     .......gca```...
+     328:	60 60 60 60 60 60 70 70 70 70 70 70 70 71 73 7b     ``````pppppppqs{
+     338:	7f 7f 7f 7f 7f 7e 7f 77 76 73 73 71 71 70 71 70     .....~.wvssqqpqp
+     348:	70 70 70 70 f0 f0 f0 f0 f0 f0 f0 f1 f1 f1 e0 e0     pppp............
+     358:	e8 ec ee e7 e2 e4 e8 d0 e0 e0 c0 c0 c0 c0 c0 c0     ................
+     368:	10 10 10 10 1f 13 a1 ad c8 49 47 42 40 c0 dc 78     .........IGB@..x
+     378:	60 60 20 21 31 30 11 1a 1b 0b 0d 0c 04 06 06 06     `` !10..........
+     388:	03 03 03 13 31 71 71 61 81 81 41 20 26 0c 1c 30     ....1qqa..A &..0
+     398:	78 00 00 84 c4 84 84 0c 04 02 02 01 01 07 0e 0e     x...............
+	...
+     3bc:	00 00 60 e0 e0 c0 80 00 00 00 00 00 00 00 00 00     ..`.............
+     3cc:	00 60 e0 c0 c0 00 00 81 81 81 41 41 21 21 13 13     .`........AA!!..
+     3dc:	13 03 0b 0b 0b 0f 0f 07 07 07 07 07 00 00 00 00     ................
+     3ec:	00 00 03 01 01 00 00 06 07 03 03 00 00 00 00 00     ................
+     3fc:	00 00 00 00 00 00 00 08 0c 40 ee 79 35 02 08 08     .........@.y5...
+     40c:	04 04 02 1f 3d 3c 00 00 00 00 00 04 04 24 00 0d     ....=<.......$..
+     41c:	30 31 01 03 00 00 00 00 00 00 00 00 00 00 00 00     01..............
+     42c:	00 00 00 00 00 00 82 c6 c6 36 68 44 b4 a0 52 62     .........6hD..Rb
+     43c:	02 02 02 00 01 03 32 7a 3e 1a 02 02 02 02 02 02     ......2z>.......
+     44c:	02 00 1d 3d 1d 01 01 00 00 00 00 00 00 00 00 00     ...=............
+	...
+
+00000468 <heartImage>:
+     468:	0e 1f 3f 7e 7e 3d 19 0e                             ..?~~=..
+
+00000470 <ssd1306xled_font6x8>:
+     470:	00 06 08 20 00 00 00 00 00 00 00 00 00 2f 00 00     ... ........./..
+     480:	00 00 07 00 07 00 00 14 7f 14 7f 14 00 24 2a 7f     .............$*.
+     490:	2a 12 00 23 13 08 64 62 00 36 49 55 22 50 00 00     *..#..db.6IU"P..
+     4a0:	05 03 00 00 00 00 1c 22 41 00 00 00 41 22 1c 00     ......."A...A"..
+     4b0:	00 14 08 3e 08 14 00 08 08 3e 08 08 00 00 00 a0     ...>.....>......
+     4c0:	60 00 00 08 08 08 08 08 00 00 60 60 00 00 00 20     `.........``... 
+     4d0:	10 08 04 02 00 3e 51 49 45 3e 00 00 42 7f 40 00     .....>QIE>..B.@.
+     4e0:	00 42 61 51 49 46 00 21 41 45 4b 31 00 18 14 12     .BaQIF.!AEK1....
+     4f0:	7f 10 00 27 45 45 45 39 00 3c 4a 49 49 30 00 01     ...'EEE9.<JII0..
+     500:	71 09 05 03 00 36 49 49 49 36 00 06 49 49 29 1e     q....6III6..II).
+     510:	00 00 36 36 00 00 00 00 56 36 00 00 00 08 14 22     ..66....V6....."
+     520:	41 00 00 14 14 14 14 14 00 00 41 22 14 08 00 02     A.........A"....
+     530:	01 51 09 06 00 32 49 59 51 3e 00 7c 12 11 12 7c     .Q...2IYQ>.|...|
+     540:	00 7f 49 49 49 36 00 3e 41 41 41 22 00 7f 41 41     ..III6.>AAA"..AA
+     550:	22 1c 00 7f 49 49 49 41 00 7f 09 09 09 01 00 3e     "...IIIA.......>
+     560:	41 49 49 7a 00 7f 08 08 08 7f 00 00 41 7f 41 00     AIIz........A.A.
+     570:	00 20 40 41 3f 01 00 7f 08 14 22 41 00 7f 40 40     . @A?....."A..@@
+     580:	40 40 00 7f 02 0c 02 7f 00 7f 04 08 10 7f 00 3e     @@.............>
+     590:	41 41 41 3e 00 7f 09 09 09 06 00 3e 41 51 21 5e     AAA>.......>AQ!^
+     5a0:	00 7f 09 19 29 46 00 46 49 49 49 31 00 01 01 7f     ....)F.FIII1....
+     5b0:	01 01 00 3f 40 40 40 3f 00 1f 20 40 20 1f 00 3f     ...?@@@?.. @ ..?
+     5c0:	40 38 40 3f 00 63 14 08 14 63 00 07 08 70 08 07     @8@?.c...c...p..
+     5d0:	00 61 51 49 45 43 00 00 7f 41 41 00 00 55 2a 55     .aQIEC...AA..U*U
+     5e0:	2a 55 00 00 41 41 7f 00 00 04 02 01 02 04 00 40     *U..AA.........@
+     5f0:	40 40 40 40 00 00 01 02 04 00 00 20 54 54 54 78     @@@@....... TTTx
+     600:	00 7f 48 44 44 38 00 38 44 44 44 20 00 38 44 44     ..HDD8.8DDD .8DD
+     610:	48 7f 00 38 54 54 54 18 00 08 7e 09 01 02 00 18     H..8TTT...~.....
+     620:	a4 a4 a4 7c 00 7f 08 04 04 78 00 00 44 7d 40 00     ...|.....x..D}@.
+     630:	00 40 80 84 7d 00 00 7f 10 28 44 00 00 00 41 7f     .@..}....(D...A.
+     640:	40 00 00 7c 04 18 04 78 00 7c 08 04 04 78 00 38     @..|...x.|...x.8
+     650:	44 44 44 38 00 fc 24 24 24 18 00 18 24 24 18 fc     DDD8..$$$...$$..
+     660:	00 7c 08 04 04 08 00 48 54 54 54 20 00 04 3f 44     .|.....HTTT ..?D
+     670:	40 20 00 3c 40 40 20 7c 00 1c 20 40 20 1c 00 3c     @ .<@@ |.. @ ..<
+     680:	40 30 40 3c 00 44 28 10 28 44 00 1c a0 a0 a0 7c     @0@<.D(.(D.....|
+     690:	00 44 64 54 4c 44 00 00 08 77 00 00 00 00 00 7f     .DdTLD...w......
+     6a0:	00 00 00 00 77 08 00 00 00 10 08 10 08 00 14 14     ....w...........
+     6b0:	14 14 14 14 00                                      .....
+
+000006b5 <s_oled128x64_initData>:
+     6b5:	ae 20 00 c8 40 81 7f a1 a6 a8 3f d3 00 d5 80 d9     . ..@.....?.....
+     6c5:	22 da 12 db 20 8d 14 a4 af                          "... ....
+
+000006ce <__ctors_end>:
+     6ce:	11 24       	eor	r1, r1
+     6d0:	1f be       	out	0x3f, r1	; 63
+     6d2:	cf ef       	ldi	r28, 0xFF	; 255
+     6d4:	d8 e0       	ldi	r29, 0x08	; 8
+     6d6:	de bf       	out	0x3e, r29	; 62
+     6d8:	cd bf       	out	0x3d, r28	; 61
+
+000006da <__do_copy_data>:
+     6da:	11 e0       	ldi	r17, 0x01	; 1
+     6dc:	a0 e0       	ldi	r26, 0x00	; 0
+     6de:	b1 e0       	ldi	r27, 0x01	; 1
+     6e0:	ea e1       	ldi	r30, 0x1A	; 26
+     6e2:	f4 e2       	ldi	r31, 0x24	; 36
+     6e4:	02 c0       	rjmp	.+4      	; 0x6ea <__do_copy_data+0x10>
+     6e6:	05 90       	lpm	r0, Z+
+     6e8:	0d 92       	st	X+, r0
+     6ea:	a4 38       	cpi	r26, 0x84	; 132
+     6ec:	b1 07       	cpc	r27, r17
+     6ee:	d9 f7       	brne	.-10     	; 0x6e6 <__do_copy_data+0xc>
+
+000006f0 <__do_clear_bss>:
+     6f0:	21 e0       	ldi	r18, 0x01	; 1
+     6f2:	a4 e8       	ldi	r26, 0x84	; 132
+     6f4:	b1 e0       	ldi	r27, 0x01	; 1
+     6f6:	01 c0       	rjmp	.+2      	; 0x6fa <.do_clear_bss_start>
+
+000006f8 <.do_clear_bss_loop>:
+     6f8:	1d 92       	st	X+, r1
+
+000006fa <.do_clear_bss_start>:
+     6fa:	a0 3b       	cpi	r26, 0xB0	; 176
+     6fc:	b2 07       	cpc	r27, r18
+     6fe:	e1 f7       	brne	.-8      	; 0x6f8 <.do_clear_bss_loop>
+     700:	0e 94 86 03 	call	0x70c	; 0x70c <main>
+     704:	0c 94 0b 12 	jmp	0x2416	; 0x2416 <_exit>
+
+00000708 <__bad_interrupt>:
+     708:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000070c <main>:
+     70c:	0e 94 8b 03 	call	0x716	; 0x716 <setup()>
+     710:	0e 94 9f 03 	call	0x73e	; 0x73e <loop()>
+     714:	fd cf       	rjmp	.-6      	; 0x710 <main+0x4>
+
+00000716 <setup()>:
+     716:	80 e7       	ldi	r24, 0x70	; 112
+     718:	94 e0       	ldi	r25, 0x04	; 4
+     71a:	0e 94 2b 06 	call	0xc56	; 0xc56 <ssd1306_setFixedFont>
+     71e:	0e 94 2a 0f 	call	0x1e54	; 0x1e54 <ssd1306_128x64_i2c_init>
+     722:	80 e0       	ldi	r24, 0x00	; 0
+     724:	0e 94 62 06 	call	0xcc4	; 0xcc4 <ssd1306_fillScreen>
+     728:	45 e0       	ldi	r20, 0x05	; 5
+     72a:	60 e0       	ldi	r22, 0x00	; 0
+     72c:	71 e0       	ldi	r23, 0x01	; 1
+     72e:	84 e8       	ldi	r24, 0x84	; 132
+     730:	91 e0       	ldi	r25, 0x01	; 1
+     732:	0e 94 46 0d 	call	0x1a8c	; 0x1a8c <ssd1306_createMenu>
+     736:	84 e8       	ldi	r24, 0x84	; 132
+     738:	91 e0       	ldi	r25, 0x01	; 1
+     73a:	0c 94 4e 0d 	jmp	0x1a9c	; 0x1a9c <ssd1306_showMenu>
+
+0000073e <loop()>:
+     73e:	ef 92       	push	r14
+     740:	ff 92       	push	r15
+     742:	0f 93       	push	r16
+     744:	1f 93       	push	r17
+     746:	cf 93       	push	r28
+     748:	df 93       	push	r29
+     74a:	cd b7       	in	r28, 0x3d	; 61
+     74c:	de b7       	in	r29, 0x3e	; 62
+     74e:	cf 58       	subi	r28, 0x8F	; 143
+     750:	d1 09       	sbc	r29, r1
+     752:	0f b6       	in	r0, 0x3f	; 63
+     754:	f8 94       	cli
+     756:	de bf       	out	0x3e, r29	; 62
+     758:	0f be       	out	0x3f, r0	; 63
+     75a:	cd bf       	out	0x3d, r28	; 61
+     75c:	68 ee       	ldi	r22, 0xE8	; 232
+     75e:	73 e0       	ldi	r23, 0x03	; 3
+     760:	80 e0       	ldi	r24, 0x00	; 0
+     762:	90 e0       	ldi	r25, 0x00	; 0
+     764:	0e 94 f9 0d 	call	0x1bf2	; 0x1bf2 <delay>
+     768:	84 e8       	ldi	r24, 0x84	; 132
+     76a:	91 e0       	ldi	r25, 0x01	; 1
+     76c:	0e 94 e6 0d 	call	0x1bcc	; 0x1bcc <ssd1306_menuSelection>
+     770:	82 30       	cpi	r24, 0x02	; 2
+     772:	09 f4       	brne	.+2      	; 0x776 <loop()+0x38>
+     774:	6f c0       	rjmp	.+222    	; 0x854 <loop()+0x116>
+     776:	f8 f4       	brcc	.+62     	; 0x7b6 <loop()+0x78>
+     778:	88 23       	and	r24, r24
+     77a:	39 f1       	breq	.+78     	; 0x7ca <loop()+0x8c>
+     77c:	81 30       	cpi	r24, 0x01	; 1
+     77e:	09 f0       	breq	.+2      	; 0x782 <loop()+0x44>
+     780:	5d c1       	rjmp	.+698    	; 0xa3c <__stack+0x13d>
+     782:	0e 94 9a 06 	call	0xd34	; 0xd34 <ssd1306_clearScreen>
+     786:	08 e6       	ldi	r16, 0x68	; 104
+     788:	14 e0       	ldi	r17, 0x04	; 4
+     78a:	28 e0       	ldi	r18, 0x08	; 8
+     78c:	40 e0       	ldi	r20, 0x00	; 0
+     78e:	60 e0       	ldi	r22, 0x00	; 0
+     790:	ce 01       	movw	r24, r28
+     792:	89 57       	subi	r24, 0x79	; 121
+     794:	9f 4f       	sbci	r25, 0xFF	; 255
+     796:	0e 94 f4 0c 	call	0x19e8	; 0x19e8 <ssd1306_createSprite>
+     79a:	89 e0       	ldi	r24, 0x09	; 9
+     79c:	fe 01       	movw	r30, r28
+     79e:	e9 57       	subi	r30, 0x79	; 121
+     7a0:	ff 4f       	sbci	r31, 0xFF	; 255
+     7a2:	de 01       	movw	r26, r28
+     7a4:	11 96       	adiw	r26, 0x01	; 1
+     7a6:	01 90       	ld	r0, Z+
+     7a8:	0d 92       	st	X+, r0
+     7aa:	8a 95       	dec	r24
+     7ac:	e1 f7       	brne	.-8      	; 0x7a6 <loop()+0x68>
+     7ae:	3a ef       	ldi	r19, 0xFA	; 250
+     7b0:	e3 2e       	mov	r14, r19
+     7b2:	f1 2c       	mov	r15, r1
+     7b4:	3c c0       	rjmp	.+120    	; 0x82e <loop()+0xf0>
+     7b6:	83 30       	cpi	r24, 0x03	; 3
+     7b8:	09 f4       	brne	.+2      	; 0x7bc <loop()+0x7e>
+     7ba:	88 c0       	rjmp	.+272    	; 0x8cc <loop()+0x18e>
+     7bc:	84 30       	cpi	r24, 0x04	; 4
+     7be:	09 f0       	breq	.+2      	; 0x7c2 <loop()+0x84>
+     7c0:	3d c1       	rjmp	.+634    	; 0xa3c <__stack+0x13d>
+     7c2:	0e 94 9a 06 	call	0xd34	; 0xd34 <ssd1306_clearScreen>
+     7c6:	10 e0       	ldi	r17, 0x00	; 0
+     7c8:	10 c1       	rjmp	.+544    	; 0x9ea <__stack+0xeb>
+     7ca:	08 e6       	ldi	r16, 0x68	; 104
+     7cc:	10 e0       	ldi	r17, 0x00	; 0
+     7ce:	20 e4       	ldi	r18, 0x40	; 64
+     7d0:	40 e8       	ldi	r20, 0x80	; 128
+     7d2:	60 e0       	ldi	r22, 0x00	; 0
+     7d4:	80 e0       	ldi	r24, 0x00	; 0
+     7d6:	0e 94 5f 0b 	call	0x16be	; 0x16be <ssd1306_drawBitmap>
+     7da:	68 ee       	ldi	r22, 0xE8	; 232
+     7dc:	73 e0       	ldi	r23, 0x03	; 3
+     7de:	80 e0       	ldi	r24, 0x00	; 0
+     7e0:	90 e0       	ldi	r25, 0x00	; 0
+     7e2:	0e 94 f9 0d 	call	0x1bf2	; 0x1bf2 <delay>
+     7e6:	0e 94 e2 0e 	call	0x1dc4	; 0x1dc4 <ssd1306_invertMode>
+     7ea:	60 ed       	ldi	r22, 0xD0	; 208
+     7ec:	77 e0       	ldi	r23, 0x07	; 7
+     7ee:	80 e0       	ldi	r24, 0x00	; 0
+     7f0:	90 e0       	ldi	r25, 0x00	; 0
+     7f2:	0e 94 f9 0d 	call	0x1bf2	; 0x1bf2 <delay>
+     7f6:	0e 94 e5 0e 	call	0x1dca	; 0x1dca <ssd1306_normalMode>
+     7fa:	20 c1       	rjmp	.+576    	; 0xa3c <__stack+0x13d>
+     7fc:	2a 81       	ldd	r18, Y+2	; 0x02
+     7fe:	11 e0       	ldi	r17, 0x01	; 1
+     800:	12 0f       	add	r17, r18
+     802:	1a 83       	std	Y+2, r17	; 0x02
+     804:	0e 94 f8 05 	call	0xbf0	; 0xbf0 <ssd1306_displayHeight>
+     808:	21 2f       	mov	r18, r17
+     80a:	30 e0       	ldi	r19, 0x00	; 0
+     80c:	28 17       	cp	r18, r24
+     80e:	39 07       	cpc	r19, r25
+     810:	08 f0       	brcs	.+2      	; 0x814 <loop()+0xd6>
+     812:	1a 82       	std	Y+2, r1	; 0x02
+     814:	ce 01       	movw	r24, r28
+     816:	01 96       	adiw	r24, 0x01	; 1
+     818:	0e 94 48 11 	call	0x2290	; 0x2290 <SPRITE::eraseTrace()>
+     81c:	ce 01       	movw	r24, r28
+     81e:	01 96       	adiw	r24, 0x01	; 1
+     820:	0e 94 46 11 	call	0x228c	; 0x228c <SPRITE::draw()>
+     824:	81 e0       	ldi	r24, 0x01	; 1
+     826:	e8 1a       	sub	r14, r24
+     828:	f1 08       	sbc	r15, r1
+     82a:	09 f4       	brne	.+2      	; 0x82e <loop()+0xf0>
+     82c:	07 c1       	rjmp	.+526    	; 0xa3c <__stack+0x13d>
+     82e:	6f e0       	ldi	r22, 0x0F	; 15
+     830:	70 e0       	ldi	r23, 0x00	; 0
+     832:	80 e0       	ldi	r24, 0x00	; 0
+     834:	90 e0       	ldi	r25, 0x00	; 0
+     836:	0e 94 f9 0d 	call	0x1bf2	; 0x1bf2 <delay>
+     83a:	29 81       	ldd	r18, Y+1	; 0x01
+     83c:	11 e0       	ldi	r17, 0x01	; 1
+     83e:	12 0f       	add	r17, r18
+     840:	19 83       	std	Y+1, r17	; 0x01
+     842:	0e 94 fd 05 	call	0xbfa	; 0xbfa <ssd1306_displayWidth>
+     846:	21 2f       	mov	r18, r17
+     848:	30 e0       	ldi	r19, 0x00	; 0
+     84a:	28 17       	cp	r18, r24
+     84c:	39 07       	cpc	r19, r25
+     84e:	b0 f2       	brcs	.-84     	; 0x7fc <loop()+0xbe>
+     850:	19 82       	std	Y+1, r1	; 0x01
+     852:	d4 cf       	rjmp	.-88     	; 0x7fc <loop()+0xbe>
+     854:	80 e7       	ldi	r24, 0x70	; 112
+     856:	94 e0       	ldi	r25, 0x04	; 4
+     858:	0e 94 2b 06 	call	0xc56	; 0xc56 <ssd1306_setFixedFont>
+     85c:	0e 94 9a 06 	call	0xd34	; 0xd34 <ssd1306_clearScreen>
+     860:	20 e0       	ldi	r18, 0x00	; 0
+     862:	30 e0       	ldi	r19, 0x00	; 0
+     864:	49 e1       	ldi	r20, 0x19	; 25
+     866:	51 e0       	ldi	r21, 0x01	; 1
+     868:	68 e0       	ldi	r22, 0x08	; 8
+     86a:	80 e0       	ldi	r24, 0x00	; 0
+     86c:	0e 94 ce 06 	call	0xd9c	; 0xd9c <ssd1306_printFixed>
+     870:	21 e0       	ldi	r18, 0x01	; 1
+     872:	30 e0       	ldi	r19, 0x00	; 0
+     874:	45 e2       	ldi	r20, 0x25	; 37
+     876:	51 e0       	ldi	r21, 0x01	; 1
+     878:	60 e1       	ldi	r22, 0x10	; 16
+     87a:	80 e0       	ldi	r24, 0x00	; 0
+     87c:	0e 94 ce 06 	call	0xd9c	; 0xd9c <ssd1306_printFixed>
+     880:	22 e0       	ldi	r18, 0x02	; 2
+     882:	30 e0       	ldi	r19, 0x00	; 0
+     884:	4f e2       	ldi	r20, 0x2F	; 47
+     886:	51 e0       	ldi	r21, 0x01	; 1
+     888:	68 e1       	ldi	r22, 0x18	; 24
+     88a:	80 e0       	ldi	r24, 0x00	; 0
+     88c:	0e 94 ce 06 	call	0xd9c	; 0xd9c <ssd1306_printFixed>
+     890:	0e 94 03 0d 	call	0x1a06	; 0x1a06 <ssd1306_negativeMode>
+     894:	21 e0       	ldi	r18, 0x01	; 1
+     896:	30 e0       	ldi	r19, 0x00	; 0
+     898:	4b e3       	ldi	r20, 0x3B	; 59
+     89a:	51 e0       	ldi	r21, 0x01	; 1
+     89c:	60 e2       	ldi	r22, 0x20	; 32
+     89e:	80 e0       	ldi	r24, 0x00	; 0
+     8a0:	0e 94 ce 06 	call	0xd9c	; 0xd9c <ssd1306_printFixed>
+     8a4:	0e 94 07 0d 	call	0x1a0e	; 0x1a0e <ssd1306_positiveMode>
+     8a8:	68 eb       	ldi	r22, 0xB8	; 184
+     8aa:	7b e0       	ldi	r23, 0x0B	; 11
+     8ac:	80 e0       	ldi	r24, 0x00	; 0
+     8ae:	90 e0       	ldi	r25, 0x00	; 0
+     8b0:	0e 94 f9 0d 	call	0x1bf2	; 0x1bf2 <delay>
+     8b4:	0e 94 9a 06 	call	0xd34	; 0xd34 <ssd1306_clearScreen>
+     8b8:	03 e0       	ldi	r16, 0x03	; 3
+     8ba:	20 e0       	ldi	r18, 0x00	; 0
+     8bc:	30 e0       	ldi	r19, 0x00	; 0
+     8be:	49 e4       	ldi	r20, 0x49	; 73
+     8c0:	51 e0       	ldi	r21, 0x01	; 1
+     8c2:	60 e0       	ldi	r22, 0x00	; 0
+     8c4:	80 e0       	ldi	r24, 0x00	; 0
+     8c6:	0e 94 b9 07 	call	0xf72	; 0xf72 <ssd1306_printFixedN>
+     8ca:	b2 c0       	rjmp	.+356    	; 0xa30 <__stack+0x131>
+     8cc:	90 e4       	ldi	r25, 0x40	; 64
+     8ce:	cf 57       	subi	r28, 0x7F	; 127
+     8d0:	df 4f       	sbci	r29, 0xFF	; 255
+     8d2:	98 83       	st	Y, r25
+     8d4:	c1 58       	subi	r28, 0x81	; 129
+     8d6:	d0 40       	sbci	r29, 0x00	; 0
+     8d8:	90 e1       	ldi	r25, 0x10	; 16
+     8da:	cd 57       	subi	r28, 0x7D	; 125
+     8dc:	df 4f       	sbci	r29, 0xFF	; 255
+     8de:	98 83       	st	Y, r25
+     8e0:	c3 58       	subi	r28, 0x83	; 131
+     8e2:	d0 40       	sbci	r29, 0x00	; 0
+     8e4:	cc 57       	subi	r28, 0x7C	; 124
+     8e6:	df 4f       	sbci	r29, 0xFF	; 255
+     8e8:	18 82       	st	Y, r1
+     8ea:	c4 58       	subi	r28, 0x84	; 132
+     8ec:	d0 40       	sbci	r29, 0x00	; 0
+     8ee:	40 e4       	ldi	r20, 0x40	; 64
+     8f0:	50 e0       	ldi	r21, 0x00	; 0
+     8f2:	61 e0       	ldi	r22, 0x01	; 1
+     8f4:	68 0f       	add	r22, r24
+     8f6:	9a 01       	movw	r18, r20
+     8f8:	06 2e       	mov	r0, r22
+     8fa:	02 c0       	rjmp	.+4      	; 0x900 <__stack+0x1>
+     8fc:	35 95       	asr	r19
+     8fe:	27 95       	ror	r18
+     900:	0a 94       	dec	r0
+     902:	e2 f7       	brpl	.-8      	; 0x8fc <loop()+0x1be>
+     904:	23 2b       	or	r18, r19
+     906:	11 f0       	breq	.+4      	; 0x90c <__stack+0xd>
+     908:	86 2f       	mov	r24, r22
+     90a:	f3 cf       	rjmp	.-26     	; 0x8f2 <loop()+0x1b4>
+     90c:	ce 57       	subi	r28, 0x7E	; 126
+     90e:	df 4f       	sbci	r29, 0xFF	; 255
+     910:	88 83       	st	Y, r24
+     912:	c2 58       	subi	r28, 0x82	; 130
+     914:	d0 40       	sbci	r29, 0x00	; 0
+     916:	ce 01       	movw	r24, r28
+     918:	01 96       	adiw	r24, 0x01	; 1
+     91a:	cb 57       	subi	r28, 0x7B	; 123
+     91c:	df 4f       	sbci	r29, 0xFF	; 255
+     91e:	99 83       	std	Y+1, r25	; 0x01
+     920:	88 83       	st	Y, r24
+     922:	c5 58       	subi	r28, 0x85	; 133
+     924:	d0 40       	sbci	r29, 0x00	; 0
+     926:	80 58       	subi	r24, 0x80	; 128
+     928:	9f 4f       	sbci	r25, 0xFF	; 255
+     92a:	0e 94 ce 0f 	call	0x1f9c	; 0x1f9c <NanoCanvas::clear()>
+     92e:	80 e7       	ldi	r24, 0x70	; 112
+     930:	94 e0       	ldi	r25, 0x04	; 4
+     932:	0e 94 2b 06 	call	0xc56	; 0xc56 <ssd1306_setFixedFont>
+     936:	0e 94 9a 06 	call	0xd34	; 0xd34 <ssd1306_clearScreen>
+     93a:	ce 01       	movw	r24, r28
+     93c:	8f 57       	subi	r24, 0x7F	; 127
+     93e:	9f 4f       	sbci	r25, 0xFF	; 255
+     940:	0e 94 ce 0f 	call	0x1f9c	; 0x1f9c <NanoCanvas::clear()>
+     944:	ee 24       	eor	r14, r14
+     946:	ea 94       	dec	r14
+     948:	05 e0       	ldi	r16, 0x05	; 5
+     94a:	20 e5       	ldi	r18, 0x50	; 80
+     94c:	43 e0       	ldi	r20, 0x03	; 3
+     94e:	6a e0       	ldi	r22, 0x0A	; 10
+     950:	ce 01       	movw	r24, r28
+     952:	8f 57       	subi	r24, 0x7F	; 127
+     954:	9f 4f       	sbci	r25, 0xFF	; 255
+     956:	0e 94 2e 0f 	call	0x1e5c	; 0x1e5c <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)>
+     95a:	0e 94 fd 05 	call	0xbfa	; 0xbfa <ssd1306_displayWidth>
+     95e:	80 54       	subi	r24, 0x40	; 64
+     960:	91 09       	sbc	r25, r1
+     962:	bc 01       	movw	r22, r24
+     964:	76 95       	lsr	r23
+     966:	67 95       	ror	r22
+     968:	41 e0       	ldi	r20, 0x01	; 1
+     96a:	ce 01       	movw	r24, r28
+     96c:	8f 57       	subi	r24, 0x7F	; 127
+     96e:	9f 4f       	sbci	r25, 0xFF	; 255
+     970:	0e 94 38 11 	call	0x2270	; 0x2270 <NanoCanvas::blt(unsigned char, unsigned char)>
+     974:	64 ef       	ldi	r22, 0xF4	; 244
+     976:	71 e0       	ldi	r23, 0x01	; 1
+     978:	80 e0       	ldi	r24, 0x00	; 0
+     97a:	90 e0       	ldi	r25, 0x00	; 0
+     97c:	0e 94 f9 0d 	call	0x1bf2	; 0x1bf2 <delay>
+     980:	0f e0       	ldi	r16, 0x0F	; 15
+     982:	2c e3       	ldi	r18, 0x3C	; 60
+     984:	41 e0       	ldi	r20, 0x01	; 1
+     986:	62 e3       	ldi	r22, 0x32	; 50
+     988:	ce 01       	movw	r24, r28
+     98a:	8f 57       	subi	r24, 0x7F	; 127
+     98c:	9f 4f       	sbci	r25, 0xFF	; 255
+     98e:	0e 94 2e 0f 	call	0x1e5c	; 0x1e5c <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)>
+     992:	0e 94 fd 05 	call	0xbfa	; 0xbfa <ssd1306_displayWidth>
+     996:	80 54       	subi	r24, 0x40	; 64
+     998:	91 09       	sbc	r25, r1
+     99a:	bc 01       	movw	r22, r24
+     99c:	76 95       	lsr	r23
+     99e:	67 95       	ror	r22
+     9a0:	41 e0       	ldi	r20, 0x01	; 1
+     9a2:	ce 01       	movw	r24, r28
+     9a4:	8f 57       	subi	r24, 0x7F	; 127
+     9a6:	9f 4f       	sbci	r25, 0xFF	; 255
+     9a8:	0e 94 38 11 	call	0x2270	; 0x2270 <NanoCanvas::blt(unsigned char, unsigned char)>
+     9ac:	6c ed       	ldi	r22, 0xDC	; 220
+     9ae:	75 e0       	ldi	r23, 0x05	; 5
+     9b0:	80 e0       	ldi	r24, 0x00	; 0
+     9b2:	90 e0       	ldi	r25, 0x00	; 0
+     9b4:	0e 94 f9 0d 	call	0x1bf2	; 0x1bf2 <delay>
+     9b8:	01 e0       	ldi	r16, 0x01	; 1
+     9ba:	10 e0       	ldi	r17, 0x00	; 0
+     9bc:	2c e4       	ldi	r18, 0x4C	; 76
+     9be:	31 e0       	ldi	r19, 0x01	; 1
+     9c0:	41 e0       	ldi	r20, 0x01	; 1
+     9c2:	64 e1       	ldi	r22, 0x14	; 20
+     9c4:	ce 01       	movw	r24, r28
+     9c6:	8f 57       	subi	r24, 0x7F	; 127
+     9c8:	9f 4f       	sbci	r25, 0xFF	; 255
+     9ca:	0e 94 e2 0f 	call	0x1fc4	; 0x1fc4 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)>
+     9ce:	0e 94 fd 05 	call	0xbfa	; 0xbfa <ssd1306_displayWidth>
+     9d2:	80 54       	subi	r24, 0x40	; 64
+     9d4:	91 09       	sbc	r25, r1
+     9d6:	bc 01       	movw	r22, r24
+     9d8:	76 95       	lsr	r23
+     9da:	67 95       	ror	r22
+     9dc:	41 e0       	ldi	r20, 0x01	; 1
+     9de:	ce 01       	movw	r24, r28
+     9e0:	8f 57       	subi	r24, 0x7F	; 127
+     9e2:	9f 4f       	sbci	r25, 0xFF	; 255
+     9e4:	0e 94 38 11 	call	0x2270	; 0x2270 <NanoCanvas::blt(unsigned char, unsigned char)>
+     9e8:	23 c0       	rjmp	.+70     	; 0xa30 <__stack+0x131>
+     9ea:	0e 94 f8 05 	call	0xbf0	; 0xbf0 <ssd1306_displayHeight>
+     9ee:	21 2f       	mov	r18, r17
+     9f0:	30 e0       	ldi	r19, 0x00	; 0
+     9f2:	28 17       	cp	r18, r24
+     9f4:	39 07       	cpc	r19, r25
+     9f6:	58 f4       	brcc	.+22     	; 0xa0e <__stack+0x10f>
+     9f8:	0e 94 fd 05 	call	0xbfa	; 0xbfa <ssd1306_displayWidth>
+     9fc:	4f ef       	ldi	r20, 0xFF	; 255
+     9fe:	48 0f       	add	r20, r24
+     a00:	21 2f       	mov	r18, r17
+     a02:	60 e0       	ldi	r22, 0x00	; 0
+     a04:	80 e0       	ldi	r24, 0x00	; 0
+     a06:	0e 94 d0 09 	call	0x13a0	; 0x13a0 <ssd1306_drawLine>
+     a0a:	18 5f       	subi	r17, 0xF8	; 248
+     a0c:	ee cf       	rjmp	.-36     	; 0x9ea <__stack+0xeb>
+     a0e:	0e 94 fd 05 	call	0xbfa	; 0xbfa <ssd1306_displayWidth>
+     a12:	1f ef       	ldi	r17, 0xFF	; 255
+     a14:	18 0f       	add	r17, r24
+     a16:	18 30       	cpi	r17, 0x08	; 8
+     a18:	58 f0       	brcs	.+22     	; 0xa30 <__stack+0x131>
+     a1a:	0e 94 f8 05 	call	0xbf0	; 0xbf0 <ssd1306_displayHeight>
+     a1e:	2f ef       	ldi	r18, 0xFF	; 255
+     a20:	28 0f       	add	r18, r24
+     a22:	41 2f       	mov	r20, r17
+     a24:	60 e0       	ldi	r22, 0x00	; 0
+     a26:	80 e0       	ldi	r24, 0x00	; 0
+     a28:	0e 94 d0 09 	call	0x13a0	; 0x13a0 <ssd1306_drawLine>
+     a2c:	18 50       	subi	r17, 0x08	; 8
+     a2e:	f3 cf       	rjmp	.-26     	; 0xa16 <__stack+0x117>
+     a30:	68 eb       	ldi	r22, 0xB8	; 184
+     a32:	7b e0       	ldi	r23, 0x0B	; 11
+     a34:	80 e0       	ldi	r24, 0x00	; 0
+     a36:	90 e0       	ldi	r25, 0x00	; 0
+     a38:	0e 94 f9 0d 	call	0x1bf2	; 0x1bf2 <delay>
+     a3c:	80 e0       	ldi	r24, 0x00	; 0
+     a3e:	0e 94 62 06 	call	0xcc4	; 0xcc4 <ssd1306_fillScreen>
+     a42:	84 e8       	ldi	r24, 0x84	; 132
+     a44:	91 e0       	ldi	r25, 0x01	; 1
+     a46:	0e 94 4e 0d 	call	0x1a9c	; 0x1a9c <ssd1306_showMenu>
+     a4a:	64 ef       	ldi	r22, 0xF4	; 244
+     a4c:	71 e0       	ldi	r23, 0x01	; 1
+     a4e:	80 e0       	ldi	r24, 0x00	; 0
+     a50:	90 e0       	ldi	r25, 0x00	; 0
+     a52:	0e 94 f9 0d 	call	0x1bf2	; 0x1bf2 <delay>
+     a56:	84 e8       	ldi	r24, 0x84	; 132
+     a58:	91 e0       	ldi	r25, 0x01	; 1
+     a5a:	0e 94 e9 0d 	call	0x1bd2	; 0x1bd2 <ssd1306_menuDown>
+     a5e:	84 e8       	ldi	r24, 0x84	; 132
+     a60:	91 e0       	ldi	r25, 0x01	; 1
+     a62:	0e 94 af 0d 	call	0x1b5e	; 0x1b5e <ssd1306_updateMenu>
+     a66:	c1 57       	subi	r28, 0x71	; 113
+     a68:	df 4f       	sbci	r29, 0xFF	; 255
+     a6a:	0f b6       	in	r0, 0x3f	; 63
+     a6c:	f8 94       	cli
+     a6e:	de bf       	out	0x3e, r29	; 62
+     a70:	0f be       	out	0x3f, r0	; 63
+     a72:	cd bf       	out	0x3d, r28	; 61
+     a74:	df 91       	pop	r29
+     a76:	cf 91       	pop	r28
+     a78:	1f 91       	pop	r17
+     a7a:	0f 91       	pop	r16
+     a7c:	ff 90       	pop	r15
+     a7e:	ef 90       	pop	r14
+     a80:	08 95       	ret
+
+00000a82 <ssd1306_readUnicodeRecord>:
+     a82:	fb 01       	movw	r30, r22
+     a84:	24 91       	lpm	r18, Z
+     a86:	31 96       	adiw	r30, 0x01	; 1
+     a88:	e4 91       	lpm	r30, Z
+     a8a:	f0 e0       	ldi	r31, 0x00	; 0
+     a8c:	f2 2b       	or	r31, r18
+     a8e:	dc 01       	movw	r26, r24
+     a90:	11 96       	adiw	r26, 0x01	; 1
+     a92:	fc 93       	st	X, r31
+     a94:	ee 93       	st	-X, r30
+     a96:	fb 01       	movw	r30, r22
+     a98:	32 96       	adiw	r30, 0x02	; 2
+     a9a:	e4 91       	lpm	r30, Z
+     a9c:	12 96       	adiw	r26, 0x02	; 2
+     a9e:	ec 93       	st	X, r30
+     aa0:	ee 23       	and	r30, r30
+     aa2:	19 f0       	breq	.+6      	; 0xaaa <ssd1306_readUnicodeRecord+0x28>
+     aa4:	cb 01       	movw	r24, r22
+     aa6:	03 96       	adiw	r24, 0x03	; 3
+     aa8:	08 95       	ret
+     aaa:	80 e0       	ldi	r24, 0x00	; 0
+     aac:	90 e0       	ldi	r25, 0x00	; 0
+     aae:	08 95       	ret
+
+00000ab0 <ssd1306_getCharGlyph>:
+     ab0:	60 91 95 01 	lds	r22, 0x0195	; 0x800195 <s_fixedFont+0x7>
+     ab4:	70 91 96 01 	lds	r23, 0x0196	; 0x800196 <s_fixedFont+0x8>
+     ab8:	28 2f       	mov	r18, r24
+     aba:	88 0f       	add	r24, r24
+     abc:	33 0b       	sbc	r19, r19
+     abe:	80 91 91 01 	lds	r24, 0x0191	; 0x800191 <s_fixedFont+0x3>
+     ac2:	28 1b       	sub	r18, r24
+     ac4:	31 09       	sbc	r19, r1
+     ac6:	80 91 94 01 	lds	r24, 0x0194	; 0x800194 <s_fixedFont+0x6>
+     aca:	82 9f       	mul	r24, r18
+     acc:	a0 01       	movw	r20, r0
+     ace:	83 9f       	mul	r24, r19
+     ad0:	50 0d       	add	r21, r0
+     ad2:	11 24       	eor	r1, r1
+     ad4:	80 91 8e 01 	lds	r24, 0x018E	; 0x80018e <s_fixedFont>
+     ad8:	81 30       	cpi	r24, 0x01	; 1
+     ada:	19 f0       	breq	.+6      	; 0xae2 <ssd1306_getCharGlyph+0x32>
+     adc:	80 e0       	ldi	r24, 0x00	; 0
+     ade:	90 e0       	ldi	r25, 0x00	; 0
+     ae0:	02 c0       	rjmp	.+4      	; 0xae6 <ssd1306_getCharGlyph+0x36>
+     ae2:	83 e0       	ldi	r24, 0x03	; 3
+     ae4:	90 e0       	ldi	r25, 0x00	; 0
+     ae6:	84 0f       	add	r24, r20
+     ae8:	95 1f       	adc	r25, r21
+     aea:	86 0f       	add	r24, r22
+     aec:	97 1f       	adc	r25, r23
+     aee:	08 95       	ret
+
+00000af0 <ssd1306_searchCharGlyph>:
+     af0:	ef 92       	push	r14
+     af2:	ff 92       	push	r15
+     af4:	0f 93       	push	r16
+     af6:	1f 93       	push	r17
+     af8:	cf 93       	push	r28
+     afa:	df 93       	push	r29
+     afc:	00 d0       	rcall	.+0      	; 0xafe <ssd1306_searchCharGlyph+0xe>
+     afe:	1f 92       	push	r1
+     b00:	cd b7       	in	r28, 0x3d	; 61
+     b02:	de b7       	in	r29, 0x3e	; 62
+     b04:	8c 01       	movw	r16, r24
+     b06:	7b 01       	movw	r14, r22
+     b08:	b8 01       	movw	r22, r16
+     b0a:	ce 01       	movw	r24, r28
+     b0c:	01 96       	adiw	r24, 0x01	; 1
+     b0e:	0e 94 41 05 	call	0xa82	; 0xa82 <ssd1306_readUnicodeRecord>
+     b12:	2b 81       	ldd	r18, Y+3	; 0x03
+     b14:	22 23       	and	r18, r18
+     b16:	a1 f0       	breq	.+40     	; 0xb40 <ssd1306_searchCharGlyph+0x50>
+     b18:	0d 5f       	subi	r16, 0xFD	; 253
+     b1a:	1f 4f       	sbci	r17, 0xFF	; 255
+     b1c:	89 81       	ldd	r24, Y+1	; 0x01
+     b1e:	9a 81       	ldd	r25, Y+2	; 0x02
+     b20:	30 91 94 01 	lds	r19, 0x0194	; 0x800194 <s_fixedFont+0x6>
+     b24:	e8 16       	cp	r14, r24
+     b26:	f9 06       	cpc	r15, r25
+     b28:	30 f0       	brcs	.+12     	; 0xb36 <ssd1306_searchCharGlyph+0x46>
+     b2a:	ac 01       	movw	r20, r24
+     b2c:	42 0f       	add	r20, r18
+     b2e:	51 1d       	adc	r21, r1
+     b30:	e4 16       	cp	r14, r20
+     b32:	f5 06       	cpc	r15, r21
+     b34:	40 f0       	brcs	.+16     	; 0xb46 <ssd1306_searchCharGlyph+0x56>
+     b36:	23 9f       	mul	r18, r19
+     b38:	00 0d       	add	r16, r0
+     b3a:	11 1d       	adc	r17, r1
+     b3c:	11 24       	eor	r1, r1
+     b3e:	e4 cf       	rjmp	.-56     	; 0xb08 <ssd1306_searchCharGlyph+0x18>
+     b40:	80 e0       	ldi	r24, 0x00	; 0
+     b42:	90 e0       	ldi	r25, 0x00	; 0
+     b44:	09 c0       	rjmp	.+18     	; 0xb58 <ssd1306_searchCharGlyph+0x68>
+     b46:	e8 1a       	sub	r14, r24
+     b48:	f9 0a       	sbc	r15, r25
+     b4a:	3e 9d       	mul	r19, r14
+     b4c:	c0 01       	movw	r24, r0
+     b4e:	3f 9d       	mul	r19, r15
+     b50:	90 0d       	add	r25, r0
+     b52:	11 24       	eor	r1, r1
+     b54:	80 0f       	add	r24, r16
+     b56:	91 1f       	adc	r25, r17
+     b58:	0f 90       	pop	r0
+     b5a:	0f 90       	pop	r0
+     b5c:	0f 90       	pop	r0
+     b5e:	df 91       	pop	r29
+     b60:	cf 91       	pop	r28
+     b62:	1f 91       	pop	r17
+     b64:	0f 91       	pop	r16
+     b66:	ff 90       	pop	r15
+     b68:	ef 90       	pop	r14
+     b6a:	08 95       	ret
+
+00000b6c <__ssd1306_oldFormatGetBitmap>:
+     b6c:	0f 93       	push	r16
+     b6e:	1f 93       	push	r17
+     b70:	cf 93       	push	r28
+     b72:	df 93       	push	r29
+     b74:	61 15       	cp	r22, r1
+     b76:	71 05       	cpc	r23, r1
+     b78:	b1 f1       	breq	.+108    	; 0xbe6 <__ssd1306_oldFormatGetBitmap+0x7a>
+     b7a:	eb 01       	movw	r28, r22
+     b7c:	8c 01       	movw	r16, r24
+     b7e:	80 91 8f 01 	lds	r24, 0x018F	; 0x80018f <s_fixedFont+0x1>
+     b82:	88 83       	st	Y, r24
+     b84:	80 91 90 01 	lds	r24, 0x0190	; 0x800190 <s_fixedFont+0x2>
+     b88:	89 83       	std	Y+1, r24	; 0x01
+     b8a:	1a 82       	std	Y+2, r1	; 0x02
+     b8c:	80 91 0a 01 	lds	r24, 0x010A	; 0x80010a <g_ssd1306_unicode>
+     b90:	88 23       	and	r24, r24
+     b92:	69 f0       	breq	.+26     	; 0xbae <__ssd1306_oldFormatGetBitmap+0x42>
+     b94:	80 91 95 01 	lds	r24, 0x0195	; 0x800195 <s_fixedFont+0x7>
+     b98:	90 91 96 01 	lds	r25, 0x0196	; 0x800196 <s_fixedFont+0x8>
+     b9c:	00 38       	cpi	r16, 0x80	; 128
+     b9e:	11 05       	cpc	r17, r1
+     ba0:	40 f4       	brcc	.+16     	; 0xbb2 <__ssd1306_oldFormatGetBitmap+0x46>
+     ba2:	20 91 8e 01 	lds	r18, 0x018E	; 0x80018e <s_fixedFont>
+     ba6:	21 11       	cpse	r18, r1
+     ba8:	04 c0       	rjmp	.+8      	; 0xbb2 <__ssd1306_oldFormatGetBitmap+0x46>
+     baa:	00 97       	sbiw	r24, 0x00	; 0
+     bac:	11 f0       	breq	.+4      	; 0xbb2 <__ssd1306_oldFormatGetBitmap+0x46>
+     bae:	80 2f       	mov	r24, r16
+     bb0:	16 c0       	rjmp	.+44     	; 0xbde <__ssd1306_oldFormatGetBitmap+0x72>
+     bb2:	00 97       	sbiw	r24, 0x00	; 0
+     bb4:	39 f4       	brne	.+14     	; 0xbc4 <__ssd1306_oldFormatGetBitmap+0x58>
+     bb6:	80 91 97 01 	lds	r24, 0x0197	; 0x800197 <s_fixedFont+0x9>
+     bba:	90 91 98 01 	lds	r25, 0x0198	; 0x800198 <s_fixedFont+0xa>
+     bbe:	00 97       	sbiw	r24, 0x00	; 0
+     bc0:	39 f4       	brne	.+14     	; 0xbd0 <__ssd1306_oldFormatGetBitmap+0x64>
+     bc2:	0b c0       	rjmp	.+22     	; 0xbda <__ssd1306_oldFormatGetBitmap+0x6e>
+     bc4:	b8 01       	movw	r22, r16
+     bc6:	0e 94 78 05 	call	0xaf0	; 0xaf0 <ssd1306_searchCharGlyph>
+     bca:	00 97       	sbiw	r24, 0x00	; 0
+     bcc:	51 f4       	brne	.+20     	; 0xbe2 <__ssd1306_oldFormatGetBitmap+0x76>
+     bce:	f3 cf       	rjmp	.-26     	; 0xbb6 <__ssd1306_oldFormatGetBitmap+0x4a>
+     bd0:	b8 01       	movw	r22, r16
+     bd2:	0e 94 78 05 	call	0xaf0	; 0xaf0 <ssd1306_searchCharGlyph>
+     bd6:	00 97       	sbiw	r24, 0x00	; 0
+     bd8:	21 f4       	brne	.+8      	; 0xbe2 <__ssd1306_oldFormatGetBitmap+0x76>
+     bda:	80 91 91 01 	lds	r24, 0x0191	; 0x800191 <s_fixedFont+0x3>
+     bde:	0e 94 58 05 	call	0xab0	; 0xab0 <ssd1306_getCharGlyph>
+     be2:	8b 83       	std	Y+3, r24	; 0x03
+     be4:	9c 83       	std	Y+4, r25	; 0x04
+     be6:	df 91       	pop	r29
+     be8:	cf 91       	pop	r28
+     bea:	1f 91       	pop	r17
+     bec:	0f 91       	pop	r16
+     bee:	08 95       	ret
+
+00000bf0 <ssd1306_displayHeight>:
+     bf0:	80 91 a0 01 	lds	r24, 0x01A0	; 0x8001a0 <ssd1306_lcd+0x4>
+     bf4:	90 91 a1 01 	lds	r25, 0x01A1	; 0x8001a1 <ssd1306_lcd+0x5>
+     bf8:	08 95       	ret
+
+00000bfa <ssd1306_displayWidth>:
+     bfa:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+     bfe:	90 91 9f 01 	lds	r25, 0x019F	; 0x80019f <ssd1306_lcd+0x3>
+     c02:	08 95       	ret
+
+00000c04 <ssd1306_getCharBitmap>:
+     c04:	e0 91 8c 01 	lds	r30, 0x018C	; 0x80018c <s_ssd1306_getCharBitmap>
+     c08:	f0 91 8d 01 	lds	r31, 0x018D	; 0x80018d <s_ssd1306_getCharBitmap+0x1>
+     c0c:	09 94       	ijmp
+
+00000c0e <ssd1306_unicode16FromUtf8>:
+     c0e:	20 91 8a 01 	lds	r18, 0x018A	; 0x80018a <unicode.3085>
+     c12:	30 91 8b 01 	lds	r19, 0x018B	; 0x80018b <unicode.3085+0x1>
+     c16:	21 15       	cp	r18, r1
+     c18:	31 05       	cpc	r19, r1
+     c1a:	69 f4       	brne	.+26     	; 0xc36 <ssd1306_unicode16FromUtf8+0x28>
+     c1c:	28 2f       	mov	r18, r24
+     c1e:	30 e0       	ldi	r19, 0x00	; 0
+     c20:	80 3c       	cpi	r24, 0xC0	; 192
+     c22:	38 f0       	brcs	.+14     	; 0xc32 <ssd1306_unicode16FromUtf8+0x24>
+     c24:	30 93 8b 01 	sts	0x018B, r19	; 0x80018b <unicode.3085+0x1>
+     c28:	20 93 8a 01 	sts	0x018A, r18	; 0x80018a <unicode.3085>
+     c2c:	8f ef       	ldi	r24, 0xFF	; 255
+     c2e:	9f ef       	ldi	r25, 0xFF	; 255
+     c30:	08 95       	ret
+     c32:	c9 01       	movw	r24, r18
+     c34:	08 95       	ret
+     c36:	2f 71       	andi	r18, 0x1F	; 31
+     c38:	33 27       	eor	r19, r19
+     c3a:	96 e0       	ldi	r25, 0x06	; 6
+     c3c:	22 0f       	add	r18, r18
+     c3e:	33 1f       	adc	r19, r19
+     c40:	9a 95       	dec	r25
+     c42:	e1 f7       	brne	.-8      	; 0xc3c <ssd1306_unicode16FromUtf8+0x2e>
+     c44:	8f 73       	andi	r24, 0x3F	; 63
+     c46:	10 92 8b 01 	sts	0x018B, r1	; 0x80018b <unicode.3085+0x1>
+     c4a:	10 92 8a 01 	sts	0x018A, r1	; 0x80018a <unicode.3085>
+     c4e:	a9 01       	movw	r20, r18
+     c50:	48 2b       	or	r20, r24
+     c52:	ca 01       	movw	r24, r20
+     c54:	08 95       	ret
+
+00000c56 <ssd1306_setFixedFont>:
+     c56:	9c 01       	movw	r18, r24
+     c58:	fc 01       	movw	r30, r24
+     c5a:	84 91       	lpm	r24, Z
+     c5c:	ae e8       	ldi	r26, 0x8E	; 142
+     c5e:	b1 e0       	ldi	r27, 0x01	; 1
+     c60:	8c 93       	st	X, r24
+     c62:	31 96       	adiw	r30, 0x01	; 1
+     c64:	44 91       	lpm	r20, Z
+     c66:	11 96       	adiw	r26, 0x01	; 1
+     c68:	4c 93       	st	X, r20
+     c6a:	11 97       	sbiw	r26, 0x01	; 1
+     c6c:	31 96       	adiw	r30, 0x01	; 1
+     c6e:	94 91       	lpm	r25, Z
+     c70:	12 96       	adiw	r26, 0x02	; 2
+     c72:	9c 93       	st	X, r25
+     c74:	12 97       	sbiw	r26, 0x02	; 2
+     c76:	31 96       	adiw	r30, 0x01	; 1
+     c78:	e4 91       	lpm	r30, Z
+     c7a:	13 96       	adiw	r26, 0x03	; 3
+     c7c:	ec 93       	st	X, r30
+     c7e:	13 97       	sbiw	r26, 0x03	; 3
+     c80:	2c 5f       	subi	r18, 0xFC	; 252
+     c82:	3f 4f       	sbci	r19, 0xFF	; 255
+     c84:	18 96       	adiw	r26, 0x08	; 8
+     c86:	3c 93       	st	X, r19
+     c88:	2e 93       	st	-X, r18
+     c8a:	17 97       	sbiw	r26, 0x07	; 7
+     c8c:	26 eb       	ldi	r18, 0xB6	; 182
+     c8e:	35 e0       	ldi	r19, 0x05	; 5
+     c90:	30 93 8d 01 	sts	0x018D, r19	; 0x80018d <s_ssd1306_getCharBitmap+0x1>
+     c94:	20 93 8c 01 	sts	0x018C, r18	; 0x80018c <s_ssd1306_getCharBitmap>
+     c98:	89 2f       	mov	r24, r25
+     c9a:	90 e0       	ldi	r25, 0x00	; 0
+     c9c:	07 96       	adiw	r24, 0x07	; 7
+     c9e:	23 e0       	ldi	r18, 0x03	; 3
+     ca0:	95 95       	asr	r25
+     ca2:	87 95       	ror	r24
+     ca4:	2a 95       	dec	r18
+     ca6:	e1 f7       	brne	.-8      	; 0xca0 <ssd1306_setFixedFont+0x4a>
+     ca8:	15 96       	adiw	r26, 0x05	; 5
+     caa:	8c 93       	st	X, r24
+     cac:	15 97       	sbiw	r26, 0x05	; 5
+     cae:	48 9f       	mul	r20, r24
+     cb0:	e0 2d       	mov	r30, r0
+     cb2:	11 24       	eor	r1, r1
+     cb4:	16 96       	adiw	r26, 0x06	; 6
+     cb6:	ec 93       	st	X, r30
+     cb8:	16 97       	sbiw	r26, 0x06	; 6
+     cba:	1a 96       	adiw	r26, 0x0a	; 10
+     cbc:	1c 92       	st	X, r1
+     cbe:	1e 92       	st	-X, r1
+     cc0:	19 97       	sbiw	r26, 0x09	; 9
+     cc2:	08 95       	ret
+
+00000cc4 <ssd1306_fillScreen>:
+     cc4:	1f 93       	push	r17
+     cc6:	cf 93       	push	r28
+     cc8:	df 93       	push	r29
+     cca:	d0 91 9b 01 	lds	r29, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+     cce:	d8 27       	eor	r29, r24
+     cd0:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+     cd4:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+     cd8:	40 e0       	ldi	r20, 0x00	; 0
+     cda:	50 e0       	ldi	r21, 0x00	; 0
+     cdc:	60 e0       	ldi	r22, 0x00	; 0
+     cde:	70 e0       	ldi	r23, 0x00	; 0
+     ce0:	80 e0       	ldi	r24, 0x00	; 0
+     ce2:	90 e0       	ldi	r25, 0x00	; 0
+     ce4:	09 95       	icall
+     ce6:	80 91 a0 01 	lds	r24, 0x01A0	; 0x8001a0 <ssd1306_lcd+0x4>
+     cea:	90 91 a1 01 	lds	r25, 0x01A1	; 0x8001a1 <ssd1306_lcd+0x5>
+     cee:	23 e0       	ldi	r18, 0x03	; 3
+     cf0:	96 95       	lsr	r25
+     cf2:	87 95       	ror	r24
+     cf4:	2a 95       	dec	r18
+     cf6:	e1 f7       	brne	.-8      	; 0xcf0 <ssd1306_fillScreen+0x2c>
+     cf8:	c8 2f       	mov	r28, r24
+     cfa:	cc 23       	and	r28, r28
+     cfc:	99 f0       	breq	.+38     	; 0xd24 <ssd1306_fillScreen+0x60>
+     cfe:	10 91 9e 01 	lds	r17, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+     d02:	11 23       	and	r17, r17
+     d04:	41 f0       	breq	.+16     	; 0xd16 <ssd1306_fillScreen+0x52>
+     d06:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+     d0a:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+     d0e:	8d 2f       	mov	r24, r29
+     d10:	09 95       	icall
+     d12:	11 50       	subi	r17, 0x01	; 1
+     d14:	f6 cf       	rjmp	.-20     	; 0xd02 <ssd1306_fillScreen+0x3e>
+     d16:	e0 91 a4 01 	lds	r30, 0x01A4	; 0x8001a4 <ssd1306_lcd+0x8>
+     d1a:	f0 91 a5 01 	lds	r31, 0x01A5	; 0x8001a5 <ssd1306_lcd+0x9>
+     d1e:	09 95       	icall
+     d20:	c1 50       	subi	r28, 0x01	; 1
+     d22:	eb cf       	rjmp	.-42     	; 0xcfa <ssd1306_fillScreen+0x36>
+     d24:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+     d28:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+     d2c:	df 91       	pop	r29
+     d2e:	cf 91       	pop	r28
+     d30:	1f 91       	pop	r17
+     d32:	09 94       	ijmp
+
+00000d34 <ssd1306_clearScreen>:
+     d34:	cf 93       	push	r28
+     d36:	df 93       	push	r29
+     d38:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+     d3c:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+     d40:	40 e0       	ldi	r20, 0x00	; 0
+     d42:	50 e0       	ldi	r21, 0x00	; 0
+     d44:	60 e0       	ldi	r22, 0x00	; 0
+     d46:	70 e0       	ldi	r23, 0x00	; 0
+     d48:	80 e0       	ldi	r24, 0x00	; 0
+     d4a:	90 e0       	ldi	r25, 0x00	; 0
+     d4c:	09 95       	icall
+     d4e:	80 91 a0 01 	lds	r24, 0x01A0	; 0x8001a0 <ssd1306_lcd+0x4>
+     d52:	90 91 a1 01 	lds	r25, 0x01A1	; 0x8001a1 <ssd1306_lcd+0x5>
+     d56:	23 e0       	ldi	r18, 0x03	; 3
+     d58:	96 95       	lsr	r25
+     d5a:	87 95       	ror	r24
+     d5c:	2a 95       	dec	r18
+     d5e:	e1 f7       	brne	.-8      	; 0xd58 <ssd1306_clearScreen+0x24>
+     d60:	c8 2f       	mov	r28, r24
+     d62:	cc 23       	and	r28, r28
+     d64:	a1 f0       	breq	.+40     	; 0xd8e <ssd1306_clearScreen+0x5a>
+     d66:	d0 91 9e 01 	lds	r29, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+     d6a:	dd 23       	and	r29, r29
+     d6c:	49 f0       	breq	.+18     	; 0xd80 <ssd1306_clearScreen+0x4c>
+     d6e:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+     d72:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+     d76:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+     d7a:	09 95       	icall
+     d7c:	d1 50       	subi	r29, 0x01	; 1
+     d7e:	f5 cf       	rjmp	.-22     	; 0xd6a <ssd1306_clearScreen+0x36>
+     d80:	e0 91 a4 01 	lds	r30, 0x01A4	; 0x8001a4 <ssd1306_lcd+0x8>
+     d84:	f0 91 a5 01 	lds	r31, 0x01A5	; 0x8001a5 <ssd1306_lcd+0x9>
+     d88:	09 95       	icall
+     d8a:	c1 50       	subi	r28, 0x01	; 1
+     d8c:	ea cf       	rjmp	.-44     	; 0xd62 <ssd1306_clearScreen+0x2e>
+     d8e:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+     d92:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+     d96:	df 91       	pop	r29
+     d98:	cf 91       	pop	r28
+     d9a:	09 94       	ijmp
+
+00000d9c <ssd1306_printFixed>:
+     d9c:	4f 92       	push	r4
+     d9e:	5f 92       	push	r5
+     da0:	6f 92       	push	r6
+     da2:	7f 92       	push	r7
+     da4:	8f 92       	push	r8
+     da6:	9f 92       	push	r9
+     da8:	af 92       	push	r10
+     daa:	bf 92       	push	r11
+     dac:	cf 92       	push	r12
+     dae:	df 92       	push	r13
+     db0:	ef 92       	push	r14
+     db2:	ff 92       	push	r15
+     db4:	0f 93       	push	r16
+     db6:	1f 93       	push	r17
+     db8:	cf 93       	push	r28
+     dba:	df 93       	push	r29
+     dbc:	00 d0       	rcall	.+0      	; 0xdbe <ssd1306_printFixed+0x22>
+     dbe:	00 d0       	rcall	.+0      	; 0xdc0 <ssd1306_printFixed+0x24>
+     dc0:	1f 92       	push	r1
+     dc2:	cd b7       	in	r28, 0x3d	; 61
+     dc4:	de b7       	in	r29, 0x3e	; 62
+     dc6:	68 2e       	mov	r6, r24
+     dc8:	6a 01       	movw	r12, r20
+     dca:	59 01       	movw	r10, r18
+     dcc:	06 2f       	mov	r16, r22
+     dce:	06 95       	lsr	r16
+     dd0:	06 95       	lsr	r16
+     dd2:	06 95       	lsr	r16
+     dd4:	e8 2e       	mov	r14, r24
+     dd6:	f1 2c       	mov	r15, r1
+     dd8:	40 91 9e 01 	lds	r20, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+     ddc:	50 91 9f 01 	lds	r21, 0x019F	; 0x80019f <ssd1306_lcd+0x3>
+     de0:	4e 19       	sub	r20, r14
+     de2:	5f 09       	sbc	r21, r15
+     de4:	60 2f       	mov	r22, r16
+     de6:	70 e0       	ldi	r23, 0x00	; 0
+     de8:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+     dec:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+     df0:	c7 01       	movw	r24, r14
+     df2:	09 95       	icall
+     df4:	86 2c       	mov	r8, r6
+     df6:	71 2c       	mov	r7, r1
+     df8:	51 2c       	mov	r5, r1
+     dfa:	10 e0       	ldi	r17, 0x00	; 0
+     dfc:	28 2d       	mov	r18, r8
+     dfe:	30 e0       	ldi	r19, 0x00	; 0
+     e00:	40 91 8f 01 	lds	r20, 0x018F	; 0x80018f <s_fixedFont+0x1>
+     e04:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+     e08:	90 91 9f 01 	lds	r25, 0x019F	; 0x80019f <ssd1306_lcd+0x3>
+     e0c:	84 1b       	sub	r24, r20
+     e0e:	91 09       	sbc	r25, r1
+     e10:	82 17       	cp	r24, r18
+     e12:	93 07       	cpc	r25, r19
+     e14:	30 f0       	brcs	.+12     	; 0xe22 <ssd1306_printFixed+0x86>
+     e16:	f6 01       	movw	r30, r12
+     e18:	e1 0f       	add	r30, r17
+     e1a:	f1 1d       	adc	r31, r1
+     e1c:	80 81       	ld	r24, Z
+     e1e:	81 11       	cpse	r24, r1
+     e20:	33 c0       	rjmp	.+102    	; 0xe88 <ssd1306_printFixed+0xec>
+     e22:	0f 5f       	subi	r16, 0xFF	; 255
+     e24:	80 2e       	mov	r8, r16
+     e26:	91 2c       	mov	r9, r1
+     e28:	80 91 a0 01 	lds	r24, 0x01A0	; 0x8001a0 <ssd1306_lcd+0x4>
+     e2c:	90 91 a1 01 	lds	r25, 0x01A1	; 0x8001a1 <ssd1306_lcd+0x5>
+     e30:	23 e0       	ldi	r18, 0x03	; 3
+     e32:	96 95       	lsr	r25
+     e34:	87 95       	ror	r24
+     e36:	2a 95       	dec	r18
+     e38:	e1 f7       	brne	.-8      	; 0xe32 <ssd1306_printFixed+0x96>
+     e3a:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+     e3e:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+     e42:	88 16       	cp	r8, r24
+     e44:	99 06       	cpc	r9, r25
+     e46:	08 f0       	brcs	.+2      	; 0xe4a <ssd1306_printFixed+0xae>
+     e48:	7c c0       	rjmp	.+248    	; 0xf42 <ssd1306_printFixed+0x1a6>
+     e4a:	73 94       	inc	r7
+     e4c:	80 91 93 01 	lds	r24, 0x0193	; 0x800193 <s_fixedFont+0x5>
+     e50:	78 12       	cpse	r7, r24
+     e52:	09 c0       	rjmp	.+18     	; 0xe66 <ssd1306_printFixed+0xca>
+     e54:	d6 01       	movw	r26, r12
+     e56:	a1 0f       	add	r26, r17
+     e58:	b1 1d       	adc	r27, r1
+     e5a:	8c 91       	ld	r24, X
+     e5c:	88 23       	and	r24, r24
+     e5e:	09 f4       	brne	.+2      	; 0xe62 <ssd1306_printFixed+0xc6>
+     e60:	70 c0       	rjmp	.+224    	; 0xf42 <ssd1306_printFixed+0x1a6>
+     e62:	71 2c       	mov	r7, r1
+     e64:	01 c0       	rjmp	.+2      	; 0xe68 <ssd1306_printFixed+0xcc>
+     e66:	15 2d       	mov	r17, r5
+     e68:	09 95       	icall
+     e6a:	40 91 9e 01 	lds	r20, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+     e6e:	50 91 9f 01 	lds	r21, 0x019F	; 0x80019f <ssd1306_lcd+0x3>
+     e72:	4e 19       	sub	r20, r14
+     e74:	5f 09       	sbc	r21, r15
+     e76:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+     e7a:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+     e7e:	b4 01       	movw	r22, r8
+     e80:	c7 01       	movw	r24, r14
+     e82:	09 95       	icall
+     e84:	86 2c       	mov	r8, r6
+     e86:	51 2e       	mov	r5, r17
+     e88:	f6 01       	movw	r30, r12
+     e8a:	e1 0f       	add	r30, r17
+     e8c:	f1 1d       	adc	r31, r1
+     e8e:	80 81       	ld	r24, Z
+     e90:	0e 94 07 06 	call	0xc0e	; 0xc0e <ssd1306_unicode16FromUtf8>
+     e94:	1f 5f       	subi	r17, 0xFF	; 255
+     e96:	8f 3f       	cpi	r24, 0xFF	; 255
+     e98:	2f ef       	ldi	r18, 0xFF	; 255
+     e9a:	92 07       	cpc	r25, r18
+     e9c:	a9 f3       	breq	.-22     	; 0xe88 <ssd1306_printFixed+0xec>
+     e9e:	be 01       	movw	r22, r28
+     ea0:	6f 5f       	subi	r22, 0xFF	; 255
+     ea2:	7f 4f       	sbci	r23, 0xFF	; 255
+     ea4:	0e 94 02 06 	call	0xc04	; 0xc04 <ssd1306_getCharBitmap>
+     ea8:	99 80       	ldd	r9, Y+1	; 0x01
+     eaa:	8b 81       	ldd	r24, Y+3	; 0x03
+     eac:	89 0d       	add	r24, r9
+     eae:	88 0e       	add	r8, r24
+     eb0:	2a 81       	ldd	r18, Y+2	; 0x02
+     eb2:	30 e0       	ldi	r19, 0x00	; 0
+     eb4:	98 e0       	ldi	r25, 0x08	; 8
+     eb6:	79 9e       	mul	r7, r25
+     eb8:	a0 01       	movw	r20, r0
+     eba:	11 24       	eor	r1, r1
+     ebc:	42 17       	cp	r20, r18
+     ebe:	53 07       	cpc	r21, r19
+     ec0:	8c f5       	brge	.+98     	; 0xf24 <ssd1306_printFixed+0x188>
+     ec2:	8c 81       	ldd	r24, Y+4	; 0x04
+     ec4:	9d 81       	ldd	r25, Y+5	; 0x05
+     ec6:	79 9c       	mul	r7, r9
+     ec8:	80 0d       	add	r24, r0
+     eca:	91 1d       	adc	r25, r1
+     ecc:	11 24       	eor	r1, r1
+     ece:	9d 83       	std	Y+5, r25	; 0x05
+     ed0:	8c 83       	std	Y+4, r24	; 0x04
+     ed2:	41 2c       	mov	r4, r1
+     ed4:	99 20       	and	r9, r9
+     ed6:	39 f1       	breq	.+78     	; 0xf26 <ssd1306_printFixed+0x18a>
+     ed8:	ec 81       	ldd	r30, Y+4	; 0x04
+     eda:	fd 81       	ldd	r31, Y+5	; 0x05
+     edc:	a1 14       	cp	r10, r1
+     ede:	b1 04       	cpc	r11, r1
+     ee0:	11 f4       	brne	.+4      	; 0xee6 <ssd1306_printFixed+0x14a>
+     ee2:	84 91       	lpm	r24, Z
+     ee4:	10 c0       	rjmp	.+32     	; 0xf06 <ssd1306_printFixed+0x16a>
+     ee6:	21 e0       	ldi	r18, 0x01	; 1
+     ee8:	a2 16       	cp	r10, r18
+     eea:	b1 04       	cpc	r11, r1
+     eec:	21 f4       	brne	.+8      	; 0xef6 <ssd1306_printFixed+0x15a>
+     eee:	94 91       	lpm	r25, Z
+     ef0:	84 2d       	mov	r24, r4
+     ef2:	89 2b       	or	r24, r25
+     ef4:	07 c0       	rjmp	.+14     	; 0xf04 <ssd1306_printFixed+0x168>
+     ef6:	31 96       	adiw	r30, 0x01	; 1
+     ef8:	94 91       	lpm	r25, Z
+     efa:	e9 2f       	mov	r30, r25
+     efc:	e0 7f       	andi	r30, 0xF0	; 240
+     efe:	8e 2f       	mov	r24, r30
+     f00:	84 29       	or	r24, r4
+     f02:	9f 70       	andi	r25, 0x0F	; 15
+     f04:	49 2e       	mov	r4, r25
+     f06:	90 91 9b 01 	lds	r25, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+     f0a:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+     f0e:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+     f12:	89 27       	eor	r24, r25
+     f14:	09 95       	icall
+     f16:	8c 81       	ldd	r24, Y+4	; 0x04
+     f18:	9d 81       	ldd	r25, Y+5	; 0x05
+     f1a:	01 96       	adiw	r24, 0x01	; 1
+     f1c:	9d 83       	std	Y+5, r25	; 0x05
+     f1e:	8c 83       	std	Y+4, r24	; 0x04
+     f20:	9a 94       	dec	r9
+     f22:	d8 cf       	rjmp	.-80     	; 0xed4 <ssd1306_printFixed+0x138>
+     f24:	8b 83       	std	Y+3, r24	; 0x03
+     f26:	91 2c       	mov	r9, r1
+     f28:	8b 81       	ldd	r24, Y+3	; 0x03
+     f2a:	98 16       	cp	r9, r24
+     f2c:	08 f0       	brcs	.+2      	; 0xf30 <ssd1306_printFixed+0x194>
+     f2e:	66 cf       	rjmp	.-308    	; 0xdfc <ssd1306_printFixed+0x60>
+     f30:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+     f34:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+     f38:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+     f3c:	09 95       	icall
+     f3e:	93 94       	inc	r9
+     f40:	f3 cf       	rjmp	.-26     	; 0xf28 <ssd1306_printFixed+0x18c>
+     f42:	09 95       	icall
+     f44:	81 2f       	mov	r24, r17
+     f46:	0f 90       	pop	r0
+     f48:	0f 90       	pop	r0
+     f4a:	0f 90       	pop	r0
+     f4c:	0f 90       	pop	r0
+     f4e:	0f 90       	pop	r0
+     f50:	df 91       	pop	r29
+     f52:	cf 91       	pop	r28
+     f54:	1f 91       	pop	r17
+     f56:	0f 91       	pop	r16
+     f58:	ff 90       	pop	r15
+     f5a:	ef 90       	pop	r14
+     f5c:	df 90       	pop	r13
+     f5e:	cf 90       	pop	r12
+     f60:	bf 90       	pop	r11
+     f62:	af 90       	pop	r10
+     f64:	9f 90       	pop	r9
+     f66:	8f 90       	pop	r8
+     f68:	7f 90       	pop	r7
+     f6a:	6f 90       	pop	r6
+     f6c:	5f 90       	pop	r5
+     f6e:	4f 90       	pop	r4
+     f70:	08 95       	ret
+
+00000f72 <ssd1306_printFixedN>:
+     f72:	2f 92       	push	r2
+     f74:	3f 92       	push	r3
+     f76:	4f 92       	push	r4
+     f78:	5f 92       	push	r5
+     f7a:	6f 92       	push	r6
+     f7c:	7f 92       	push	r7
+     f7e:	8f 92       	push	r8
+     f80:	9f 92       	push	r9
+     f82:	af 92       	push	r10
+     f84:	bf 92       	push	r11
+     f86:	cf 92       	push	r12
+     f88:	df 92       	push	r13
+     f8a:	ef 92       	push	r14
+     f8c:	ff 92       	push	r15
+     f8e:	0f 93       	push	r16
+     f90:	1f 93       	push	r17
+     f92:	cf 93       	push	r28
+     f94:	df 93       	push	r29
+     f96:	cd b7       	in	r28, 0x3d	; 61
+     f98:	de b7       	in	r29, 0x3e	; 62
+     f9a:	63 97       	sbiw	r28, 0x13	; 19
+     f9c:	0f b6       	in	r0, 0x3f	; 63
+     f9e:	f8 94       	cli
+     fa0:	de bf       	out	0x3e, r29	; 62
+     fa2:	0f be       	out	0x3f, r0	; 63
+     fa4:	cd bf       	out	0x3d, r28	; 61
+     fa6:	8e 83       	std	Y+6, r24	; 0x06
+     fa8:	4a 01       	movw	r8, r20
+     faa:	3b 87       	std	Y+11, r19	; 0x0b
+     fac:	2a 87       	std	Y+10, r18	; 0x0a
+     fae:	f6 2e       	mov	r15, r22
+     fb0:	f6 94       	lsr	r15
+     fb2:	f6 94       	lsr	r15
+     fb4:	f6 94       	lsr	r15
+     fb6:	a8 2e       	mov	r10, r24
+     fb8:	b1 2c       	mov	r11, r1
+     fba:	40 91 9e 01 	lds	r20, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+     fbe:	50 91 9f 01 	lds	r21, 0x019F	; 0x80019f <ssd1306_lcd+0x3>
+     fc2:	4a 19       	sub	r20, r10
+     fc4:	5b 09       	sbc	r21, r11
+     fc6:	6f 2d       	mov	r22, r15
+     fc8:	70 e0       	ldi	r23, 0x00	; 0
+     fca:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+     fce:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+     fd2:	c5 01       	movw	r24, r10
+     fd4:	09 95       	icall
+     fd6:	60 2e       	mov	r6, r16
+     fd8:	71 2c       	mov	r7, r1
+     fda:	21 e0       	ldi	r18, 0x01	; 1
+     fdc:	30 e0       	ldi	r19, 0x00	; 0
+     fde:	19 01       	movw	r2, r18
+     fe0:	00 2e       	mov	r0, r16
+     fe2:	02 c0       	rjmp	.+4      	; 0xfe8 <ssd1306_printFixedN+0x76>
+     fe4:	22 0c       	add	r2, r2
+     fe6:	33 1c       	adc	r3, r3
+     fe8:	0a 94       	dec	r0
+     fea:	e2 f7       	brpl	.-8      	; 0xfe4 <ssd1306_printFixedN+0x72>
+     fec:	8f ef       	ldi	r24, 0xFF	; 255
+     fee:	90 e0       	ldi	r25, 0x00	; 0
+     ff0:	02 2c       	mov	r0, r2
+     ff2:	01 c0       	rjmp	.+2      	; 0xff6 <ssd1306_printFixedN+0x84>
+     ff4:	88 0f       	add	r24, r24
+     ff6:	0a 94       	dec	r0
+     ff8:	ea f7       	brpl	.-6      	; 0xff4 <ssd1306_printFixedN+0x82>
+     ffa:	80 95       	com	r24
+     ffc:	a1 01       	movw	r20, r2
+     ffe:	41 50       	subi	r20, 0x01	; 1
+    1000:	51 09       	sbc	r21, r1
+    1002:	5d 87       	std	Y+13, r21	; 0x0d
+    1004:	4c 87       	std	Y+12, r20	; 0x0c
+    1006:	43 e0       	ldi	r20, 0x03	; 3
+    1008:	50 e0       	ldi	r21, 0x00	; 0
+    100a:	ba 01       	movw	r22, r20
+    100c:	66 19       	sub	r22, r6
+    100e:	77 09       	sbc	r23, r7
+    1010:	79 87       	std	Y+9, r23	; 0x09
+    1012:	68 87       	std	Y+8, r22	; 0x08
+    1014:	a9 01       	movw	r20, r18
+    1016:	08 84       	ldd	r0, Y+8	; 0x08
+    1018:	02 c0       	rjmp	.+4      	; 0x101e <ssd1306_printFixedN+0xac>
+    101a:	44 0f       	add	r20, r20
+    101c:	55 1f       	adc	r21, r21
+    101e:	0a 94       	dec	r0
+    1020:	e2 f7       	brpl	.-8      	; 0x101a <ssd1306_printFixedN+0xa8>
+    1022:	59 8b       	std	Y+17, r21	; 0x11
+    1024:	48 8b       	std	Y+16, r20	; 0x10
+    1026:	ce 80       	ldd	r12, Y+6	; 0x06
+    1028:	e1 2c       	mov	r14, r1
+    102a:	1f 82       	std	Y+7, r1	; 0x07
+    102c:	10 e0       	ldi	r17, 0x00	; 0
+    102e:	68 2f       	mov	r22, r24
+    1030:	70 e0       	ldi	r23, 0x00	; 0
+    1032:	7b 8b       	std	Y+19, r23	; 0x13
+    1034:	6a 8b       	std	Y+18, r22	; 0x12
+    1036:	2c 2d       	mov	r18, r12
+    1038:	30 e0       	ldi	r19, 0x00	; 0
+    103a:	80 91 8f 01 	lds	r24, 0x018F	; 0x80018f <s_fixedFont+0x1>
+    103e:	90 e0       	ldi	r25, 0x00	; 0
+    1040:	06 2c       	mov	r0, r6
+    1042:	02 c0       	rjmp	.+4      	; 0x1048 <ssd1306_printFixedN+0xd6>
+    1044:	88 0f       	add	r24, r24
+    1046:	99 1f       	adc	r25, r25
+    1048:	0a 94       	dec	r0
+    104a:	e2 f7       	brpl	.-8      	; 0x1044 <ssd1306_printFixedN+0xd2>
+    104c:	40 91 9e 01 	lds	r20, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+    1050:	50 91 9f 01 	lds	r21, 0x019F	; 0x80019f <ssd1306_lcd+0x3>
+    1054:	ba 01       	movw	r22, r20
+    1056:	68 1b       	sub	r22, r24
+    1058:	79 0b       	sbc	r23, r25
+    105a:	62 17       	cp	r22, r18
+    105c:	73 07       	cpc	r23, r19
+    105e:	30 f0       	brcs	.+12     	; 0x106c <ssd1306_printFixedN+0xfa>
+    1060:	f4 01       	movw	r30, r8
+    1062:	e1 0f       	add	r30, r17
+    1064:	f1 1d       	adc	r31, r1
+    1066:	80 81       	ld	r24, Z
+    1068:	81 11       	cpse	r24, r1
+    106a:	3d c0       	rjmp	.+122    	; 0x10e6 <ssd1306_printFixedN+0x174>
+    106c:	f3 94       	inc	r15
+    106e:	cf 2c       	mov	r12, r15
+    1070:	d1 2c       	mov	r13, r1
+    1072:	80 91 a0 01 	lds	r24, 0x01A0	; 0x8001a0 <ssd1306_lcd+0x4>
+    1076:	90 91 a1 01 	lds	r25, 0x01A1	; 0x8001a1 <ssd1306_lcd+0x5>
+    107a:	23 e0       	ldi	r18, 0x03	; 3
+    107c:	96 95       	lsr	r25
+    107e:	87 95       	ror	r24
+    1080:	2a 95       	dec	r18
+    1082:	e1 f7       	brne	.-8      	; 0x107c <ssd1306_printFixedN+0x10a>
+    1084:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    1088:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    108c:	c8 16       	cp	r12, r24
+    108e:	d9 06       	cpc	r13, r25
+    1090:	08 f0       	brcs	.+2      	; 0x1094 <ssd1306_printFixedN+0x122>
+    1092:	ed c0       	rjmp	.+474    	; 0x126e <ssd1306_printFixedN+0x2fc>
+    1094:	e3 94       	inc	r14
+    1096:	2e 2d       	mov	r18, r14
+    1098:	30 e0       	ldi	r19, 0x00	; 0
+    109a:	80 91 93 01 	lds	r24, 0x0193	; 0x800193 <s_fixedFont+0x5>
+    109e:	90 e0       	ldi	r25, 0x00	; 0
+    10a0:	06 2c       	mov	r0, r6
+    10a2:	02 c0       	rjmp	.+4      	; 0x10a8 <ssd1306_printFixedN+0x136>
+    10a4:	88 0f       	add	r24, r24
+    10a6:	99 1f       	adc	r25, r25
+    10a8:	0a 94       	dec	r0
+    10aa:	e2 f7       	brpl	.-8      	; 0x10a4 <ssd1306_printFixedN+0x132>
+    10ac:	28 17       	cp	r18, r24
+    10ae:	39 07       	cpc	r19, r25
+    10b0:	49 f4       	brne	.+18     	; 0x10c4 <ssd1306_printFixedN+0x152>
+    10b2:	d4 01       	movw	r26, r8
+    10b4:	a1 0f       	add	r26, r17
+    10b6:	b1 1d       	adc	r27, r1
+    10b8:	8c 91       	ld	r24, X
+    10ba:	88 23       	and	r24, r24
+    10bc:	09 f4       	brne	.+2      	; 0x10c0 <ssd1306_printFixedN+0x14e>
+    10be:	d7 c0       	rjmp	.+430    	; 0x126e <ssd1306_printFixedN+0x2fc>
+    10c0:	e1 2c       	mov	r14, r1
+    10c2:	01 c0       	rjmp	.+2      	; 0x10c6 <ssd1306_printFixedN+0x154>
+    10c4:	1f 81       	ldd	r17, Y+7	; 0x07
+    10c6:	09 95       	icall
+    10c8:	40 91 9e 01 	lds	r20, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+    10cc:	50 91 9f 01 	lds	r21, 0x019F	; 0x80019f <ssd1306_lcd+0x3>
+    10d0:	4a 19       	sub	r20, r10
+    10d2:	5b 09       	sbc	r21, r11
+    10d4:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+    10d8:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+    10dc:	b6 01       	movw	r22, r12
+    10de:	c5 01       	movw	r24, r10
+    10e0:	09 95       	icall
+    10e2:	ce 80       	ldd	r12, Y+6	; 0x06
+    10e4:	1f 83       	std	Y+7, r17	; 0x07
+    10e6:	f4 01       	movw	r30, r8
+    10e8:	e1 0f       	add	r30, r17
+    10ea:	f1 1d       	adc	r31, r1
+    10ec:	80 81       	ld	r24, Z
+    10ee:	0e 94 07 06 	call	0xc0e	; 0xc0e <ssd1306_unicode16FromUtf8>
+    10f2:	1f 5f       	subi	r17, 0xFF	; 255
+    10f4:	8f 3f       	cpi	r24, 0xFF	; 255
+    10f6:	7f ef       	ldi	r23, 0xFF	; 255
+    10f8:	97 07       	cpc	r25, r23
+    10fa:	a9 f3       	breq	.-22     	; 0x10e6 <ssd1306_printFixedN+0x174>
+    10fc:	be 01       	movw	r22, r28
+    10fe:	6f 5f       	subi	r22, 0xFF	; 255
+    1100:	7f 4f       	sbci	r23, 0xFF	; 255
+    1102:	0e 94 02 06 	call	0xc04	; 0xc04 <ssd1306_getCharBitmap>
+    1106:	d9 80       	ldd	r13, Y+1	; 0x01
+    1108:	6d 2d       	mov	r22, r13
+    110a:	70 e0       	ldi	r23, 0x00	; 0
+    110c:	ab 81       	ldd	r26, Y+3	; 0x03
+    110e:	cb 01       	movw	r24, r22
+    1110:	8a 0f       	add	r24, r26
+    1112:	91 1d       	adc	r25, r1
+    1114:	06 2c       	mov	r0, r6
+    1116:	01 c0       	rjmp	.+2      	; 0x111a <ssd1306_printFixedN+0x1a8>
+    1118:	88 0f       	add	r24, r24
+    111a:	0a 94       	dec	r0
+    111c:	ea f7       	brpl	.-6      	; 0x1118 <ssd1306_printFixedN+0x1a6>
+    111e:	c8 0e       	add	r12, r24
+    1120:	8e 2d       	mov	r24, r14
+    1122:	90 e0       	ldi	r25, 0x00	; 0
+    1124:	ac 01       	movw	r20, r24
+    1126:	06 2c       	mov	r0, r6
+    1128:	02 c0       	rjmp	.+4      	; 0x112e <ssd1306_printFixedN+0x1bc>
+    112a:	55 95       	asr	r21
+    112c:	47 95       	ror	r20
+    112e:	0a 94       	dec	r0
+    1130:	e2 f7       	brpl	.-8      	; 0x112a <ssd1306_printFixedN+0x1b8>
+    1132:	2a 81       	ldd	r18, Y+2	; 0x02
+    1134:	30 e0       	ldi	r19, 0x00	; 0
+    1136:	fa 01       	movw	r30, r20
+    1138:	b3 e0       	ldi	r27, 0x03	; 3
+    113a:	ee 0f       	add	r30, r30
+    113c:	ff 1f       	adc	r31, r31
+    113e:	ba 95       	dec	r27
+    1140:	e1 f7       	brne	.-8      	; 0x113a <ssd1306_printFixedN+0x1c8>
+    1142:	e2 17       	cp	r30, r18
+    1144:	f3 07       	cpc	r31, r19
+    1146:	0c f0       	brlt	.+2      	; 0x114a <ssd1306_printFixedN+0x1d8>
+    1148:	78 c0       	rjmp	.+240    	; 0x123a <ssd1306_printFixedN+0x2c8>
+    114a:	64 9f       	mul	r22, r20
+    114c:	90 01       	movw	r18, r0
+    114e:	65 9f       	mul	r22, r21
+    1150:	30 0d       	add	r19, r0
+    1152:	74 9f       	mul	r23, r20
+    1154:	30 0d       	add	r19, r0
+    1156:	11 24       	eor	r1, r1
+    1158:	4c 81       	ldd	r20, Y+4	; 0x04
+    115a:	5d 81       	ldd	r21, Y+5	; 0x05
+    115c:	24 0f       	add	r18, r20
+    115e:	35 1f       	adc	r19, r21
+    1160:	3d 83       	std	Y+5, r19	; 0x05
+    1162:	2c 83       	std	Y+4, r18	; 0x04
+    1164:	2c 85       	ldd	r18, Y+12	; 0x0c
+    1166:	3d 85       	ldd	r19, Y+13	; 0x0d
+    1168:	82 23       	and	r24, r18
+    116a:	93 23       	and	r25, r19
+    116c:	ac 01       	movw	r20, r24
+    116e:	08 84       	ldd	r0, Y+8	; 0x08
+    1170:	02 c0       	rjmp	.+4      	; 0x1176 <ssd1306_printFixedN+0x204>
+    1172:	44 0f       	add	r20, r20
+    1174:	55 1f       	adc	r21, r21
+    1176:	0a 94       	dec	r0
+    1178:	e2 f7       	brpl	.-8      	; 0x1172 <ssd1306_printFixedN+0x200>
+    117a:	5f 87       	std	Y+15, r21	; 0x0f
+    117c:	4e 87       	std	Y+14, r20	; 0x0e
+    117e:	41 2c       	mov	r4, r1
+    1180:	dd 20       	and	r13, r13
+    1182:	09 f4       	brne	.+2      	; 0x1186 <ssd1306_printFixedN+0x214>
+    1184:	5c c0       	rjmp	.+184    	; 0x123e <ssd1306_printFixedN+0x2cc>
+    1186:	ec 81       	ldd	r30, Y+4	; 0x04
+    1188:	fd 81       	ldd	r31, Y+5	; 0x05
+    118a:	6a 85       	ldd	r22, Y+10	; 0x0a
+    118c:	7b 85       	ldd	r23, Y+11	; 0x0b
+    118e:	67 2b       	or	r22, r23
+    1190:	11 f4       	brne	.+4      	; 0x1196 <ssd1306_printFixedN+0x224>
+    1192:	54 90       	lpm	r5, Z
+    1194:	11 c0       	rjmp	.+34     	; 0x11b8 <ssd1306_printFixedN+0x246>
+    1196:	8a 85       	ldd	r24, Y+10	; 0x0a
+    1198:	9b 85       	ldd	r25, Y+11	; 0x0b
+    119a:	01 97       	sbiw	r24, 0x01	; 1
+    119c:	29 f4       	brne	.+10     	; 0x11a8 <ssd1306_printFixedN+0x236>
+    119e:	e4 91       	lpm	r30, Z
+    11a0:	54 2c       	mov	r5, r4
+    11a2:	5e 2a       	or	r5, r30
+    11a4:	4e 2e       	mov	r4, r30
+    11a6:	08 c0       	rjmp	.+16     	; 0x11b8 <ssd1306_printFixedN+0x246>
+    11a8:	31 96       	adiw	r30, 0x01	; 1
+    11aa:	84 91       	lpm	r24, Z
+    11ac:	e8 2f       	mov	r30, r24
+    11ae:	e0 7f       	andi	r30, 0xF0	; 240
+    11b0:	5e 2e       	mov	r5, r30
+    11b2:	54 28       	or	r5, r4
+    11b4:	8f 70       	andi	r24, 0x0F	; 15
+    11b6:	48 2e       	mov	r4, r24
+    11b8:	00 23       	and	r16, r16
+    11ba:	59 f1       	breq	.+86     	; 0x1212 <ssd1306_printFixedN+0x2a0>
+    11bc:	e5 2d       	mov	r30, r5
+    11be:	f0 e0       	ldi	r31, 0x00	; 0
+    11c0:	0e 84       	ldd	r0, Y+14	; 0x0e
+    11c2:	02 c0       	rjmp	.+4      	; 0x11c8 <ssd1306_printFixedN+0x256>
+    11c4:	f5 95       	asr	r31
+    11c6:	e7 95       	ror	r30
+    11c8:	0a 94       	dec	r0
+    11ca:	e2 f7       	brpl	.-8      	; 0x11c4 <ssd1306_printFixedN+0x252>
+    11cc:	20 e0       	ldi	r18, 0x00	; 0
+    11ce:	51 2c       	mov	r5, r1
+    11d0:	ff 27       	eor	r31, r31
+    11d2:	82 2f       	mov	r24, r18
+    11d4:	90 e0       	ldi	r25, 0x00	; 0
+    11d6:	48 89       	ldd	r20, Y+16	; 0x10
+    11d8:	59 89       	ldd	r21, Y+17	; 0x11
+    11da:	84 17       	cp	r24, r20
+    11dc:	95 07       	cpc	r25, r21
+    11de:	cc f4       	brge	.+50     	; 0x1212 <ssd1306_printFixedN+0x2a0>
+    11e0:	af 01       	movw	r20, r30
+    11e2:	02 2e       	mov	r0, r18
+    11e4:	02 c0       	rjmp	.+4      	; 0x11ea <ssd1306_printFixedN+0x278>
+    11e6:	55 95       	asr	r21
+    11e8:	47 95       	ror	r20
+    11ea:	0a 94       	dec	r0
+    11ec:	e2 f7       	brpl	.-8      	; 0x11e6 <ssd1306_printFixedN+0x274>
+    11ee:	40 ff       	sbrs	r20, 0
+    11f0:	0c c0       	rjmp	.+24     	; 0x120a <ssd1306_printFixedN+0x298>
+    11f2:	06 2c       	mov	r0, r6
+    11f4:	01 c0       	rjmp	.+2      	; 0x11f8 <ssd1306_printFixedN+0x286>
+    11f6:	88 0f       	add	r24, r24
+    11f8:	0a 94       	dec	r0
+    11fa:	ea f7       	brpl	.-6      	; 0x11f6 <ssd1306_printFixedN+0x284>
+    11fc:	3a 89       	ldd	r19, Y+18	; 0x12
+    11fe:	01 c0       	rjmp	.+2      	; 0x1202 <ssd1306_printFixedN+0x290>
+    1200:	33 0f       	add	r19, r19
+    1202:	8a 95       	dec	r24
+    1204:	ea f7       	brpl	.-6      	; 0x1200 <ssd1306_printFixedN+0x28e>
+    1206:	83 2f       	mov	r24, r19
+    1208:	01 c0       	rjmp	.+2      	; 0x120c <ssd1306_printFixedN+0x29a>
+    120a:	80 e0       	ldi	r24, 0x00	; 0
+    120c:	58 2a       	or	r5, r24
+    120e:	2f 5f       	subi	r18, 0xFF	; 255
+    1210:	e0 cf       	rjmp	.-64     	; 0x11d2 <ssd1306_printFixedN+0x260>
+    1212:	32 2c       	mov	r3, r2
+    1214:	33 20       	and	r3, r3
+    1216:	51 f0       	breq	.+20     	; 0x122c <ssd1306_printFixedN+0x2ba>
+    1218:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    121c:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    1220:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    1224:	85 25       	eor	r24, r5
+    1226:	09 95       	icall
+    1228:	3a 94       	dec	r3
+    122a:	f4 cf       	rjmp	.-24     	; 0x1214 <ssd1306_printFixedN+0x2a2>
+    122c:	8c 81       	ldd	r24, Y+4	; 0x04
+    122e:	9d 81       	ldd	r25, Y+5	; 0x05
+    1230:	01 96       	adiw	r24, 0x01	; 1
+    1232:	9d 83       	std	Y+5, r25	; 0x05
+    1234:	8c 83       	std	Y+4, r24	; 0x04
+    1236:	da 94       	dec	r13
+    1238:	a3 cf       	rjmp	.-186    	; 0x1180 <ssd1306_printFixedN+0x20e>
+    123a:	da 0e       	add	r13, r26
+    123c:	db 82       	std	Y+3, r13	; 0x03
+    123e:	d1 2c       	mov	r13, r1
+    1240:	2d 2d       	mov	r18, r13
+    1242:	30 e0       	ldi	r19, 0x00	; 0
+    1244:	8b 81       	ldd	r24, Y+3	; 0x03
+    1246:	90 e0       	ldi	r25, 0x00	; 0
+    1248:	06 2c       	mov	r0, r6
+    124a:	02 c0       	rjmp	.+4      	; 0x1250 <ssd1306_printFixedN+0x2de>
+    124c:	88 0f       	add	r24, r24
+    124e:	99 1f       	adc	r25, r25
+    1250:	0a 94       	dec	r0
+    1252:	e2 f7       	brpl	.-8      	; 0x124c <ssd1306_printFixedN+0x2da>
+    1254:	28 17       	cp	r18, r24
+    1256:	39 07       	cpc	r19, r25
+    1258:	0c f0       	brlt	.+2      	; 0x125c <ssd1306_printFixedN+0x2ea>
+    125a:	ed ce       	rjmp	.-550    	; 0x1036 <ssd1306_printFixedN+0xc4>
+    125c:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    1260:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    1264:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    1268:	09 95       	icall
+    126a:	d3 94       	inc	r13
+    126c:	e9 cf       	rjmp	.-46     	; 0x1240 <ssd1306_printFixedN+0x2ce>
+    126e:	09 95       	icall
+    1270:	81 2f       	mov	r24, r17
+    1272:	63 96       	adiw	r28, 0x13	; 19
+    1274:	0f b6       	in	r0, 0x3f	; 63
+    1276:	f8 94       	cli
+    1278:	de bf       	out	0x3e, r29	; 62
+    127a:	0f be       	out	0x3f, r0	; 63
+    127c:	cd bf       	out	0x3d, r28	; 61
+    127e:	df 91       	pop	r29
+    1280:	cf 91       	pop	r28
+    1282:	1f 91       	pop	r17
+    1284:	0f 91       	pop	r16
+    1286:	ff 90       	pop	r15
+    1288:	ef 90       	pop	r14
+    128a:	df 90       	pop	r13
+    128c:	cf 90       	pop	r12
+    128e:	bf 90       	pop	r11
+    1290:	af 90       	pop	r10
+    1292:	9f 90       	pop	r9
+    1294:	8f 90       	pop	r8
+    1296:	7f 90       	pop	r7
+    1298:	6f 90       	pop	r6
+    129a:	5f 90       	pop	r5
+    129c:	4f 90       	pop	r4
+    129e:	3f 90       	pop	r3
+    12a0:	2f 90       	pop	r2
+    12a2:	08 95       	ret
+
+000012a4 <ssd1306_putPixel>:
+    12a4:	0f 93       	push	r16
+    12a6:	1f 93       	push	r17
+    12a8:	cf 93       	push	r28
+    12aa:	c6 2f       	mov	r28, r22
+    12ac:	66 95       	lsr	r22
+    12ae:	66 95       	lsr	r22
+    12b0:	66 95       	lsr	r22
+    12b2:	70 e0       	ldi	r23, 0x00	; 0
+    12b4:	0c e9       	ldi	r16, 0x9C	; 156
+    12b6:	11 e0       	ldi	r17, 0x01	; 1
+    12b8:	d8 01       	movw	r26, r16
+    12ba:	16 96       	adiw	r26, 0x06	; 6
+    12bc:	ed 91       	ld	r30, X+
+    12be:	fc 91       	ld	r31, X
+    12c0:	17 97       	sbiw	r26, 0x07	; 7
+    12c2:	41 e0       	ldi	r20, 0x01	; 1
+    12c4:	50 e0       	ldi	r21, 0x00	; 0
+    12c6:	90 e0       	ldi	r25, 0x00	; 0
+    12c8:	09 95       	icall
+    12ca:	c7 70       	andi	r28, 0x07	; 7
+    12cc:	81 e0       	ldi	r24, 0x01	; 1
+    12ce:	90 e0       	ldi	r25, 0x00	; 0
+    12d0:	01 c0       	rjmp	.+2      	; 0x12d4 <ssd1306_putPixel+0x30>
+    12d2:	88 0f       	add	r24, r24
+    12d4:	ca 95       	dec	r28
+    12d6:	ea f7       	brpl	.-6      	; 0x12d2 <ssd1306_putPixel+0x2e>
+    12d8:	90 91 9b 01 	lds	r25, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    12dc:	d8 01       	movw	r26, r16
+    12de:	1a 96       	adiw	r26, 0x0a	; 10
+    12e0:	ed 91       	ld	r30, X+
+    12e2:	fc 91       	ld	r31, X
+    12e4:	1b 97       	sbiw	r26, 0x0b	; 11
+    12e6:	89 27       	eor	r24, r25
+    12e8:	09 95       	icall
+    12ea:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    12ee:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    12f2:	cf 91       	pop	r28
+    12f4:	1f 91       	pop	r17
+    12f6:	0f 91       	pop	r16
+    12f8:	09 94       	ijmp
+
+000012fa <ssd1306_putPixels>:
+    12fa:	1f 93       	push	r17
+    12fc:	cf 93       	push	r28
+    12fe:	df 93       	push	r29
+    1300:	14 2f       	mov	r17, r20
+    1302:	66 95       	lsr	r22
+    1304:	66 95       	lsr	r22
+    1306:	66 95       	lsr	r22
+    1308:	70 e0       	ldi	r23, 0x00	; 0
+    130a:	cc e9       	ldi	r28, 0x9C	; 156
+    130c:	d1 e0       	ldi	r29, 0x01	; 1
+    130e:	ee 81       	ldd	r30, Y+6	; 0x06
+    1310:	ff 81       	ldd	r31, Y+7	; 0x07
+    1312:	41 e0       	ldi	r20, 0x01	; 1
+    1314:	50 e0       	ldi	r21, 0x00	; 0
+    1316:	90 e0       	ldi	r25, 0x00	; 0
+    1318:	09 95       	icall
+    131a:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    131e:	ea 85       	ldd	r30, Y+10	; 0x0a
+    1320:	fb 85       	ldd	r31, Y+11	; 0x0b
+    1322:	81 27       	eor	r24, r17
+    1324:	09 95       	icall
+    1326:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    132a:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    132e:	df 91       	pop	r29
+    1330:	cf 91       	pop	r28
+    1332:	1f 91       	pop	r17
+    1334:	09 94       	ijmp
+
+00001336 <ssd1306_putPixel_delayed>:
+    1336:	1f 93       	push	r17
+    1338:	cf 93       	push	r28
+    133a:	df 93       	push	r29
+    133c:	18 2f       	mov	r17, r24
+    133e:	c6 2f       	mov	r28, r22
+    1340:	d4 2f       	mov	r29, r20
+    1342:	80 91 9a 01 	lds	r24, 0x019A	; 0x80019a <lx.3335>
+    1346:	60 91 0b 01 	lds	r22, 0x010B	; 0x80010b <ly.3336>
+    134a:	81 13       	cpse	r24, r17
+    134c:	18 c0       	rjmp	.+48     	; 0x137e <ssd1306_putPixel_delayed+0x48>
+    134e:	9c 2f       	mov	r25, r28
+    1350:	96 27       	eor	r25, r22
+    1352:	98 7f       	andi	r25, 0xF8	; 248
+    1354:	a1 f4       	brne	.+40     	; 0x137e <ssd1306_putPixel_delayed+0x48>
+    1356:	41 11       	cpse	r20, r1
+    1358:	12 c0       	rjmp	.+36     	; 0x137e <ssd1306_putPixel_delayed+0x48>
+    135a:	2c 2f       	mov	r18, r28
+    135c:	27 70       	andi	r18, 0x07	; 7
+    135e:	81 e0       	ldi	r24, 0x01	; 1
+    1360:	90 e0       	ldi	r25, 0x00	; 0
+    1362:	01 c0       	rjmp	.+2      	; 0x1366 <ssd1306_putPixel_delayed+0x30>
+    1364:	88 0f       	add	r24, r24
+    1366:	2a 95       	dec	r18
+    1368:	ea f7       	brpl	.-6      	; 0x1364 <ssd1306_putPixel_delayed+0x2e>
+    136a:	90 91 99 01 	lds	r25, 0x0199	; 0x800199 <pixels.3337>
+    136e:	89 2b       	or	r24, r25
+    1370:	80 93 99 01 	sts	0x0199, r24	; 0x800199 <pixels.3337>
+    1374:	10 93 9a 01 	sts	0x019A, r17	; 0x80019a <lx.3335>
+    1378:	c0 93 0b 01 	sts	0x010B, r28	; 0x80010b <ly.3336>
+    137c:	0d c0       	rjmp	.+26     	; 0x1398 <ssd1306_putPixel_delayed+0x62>
+    137e:	6f 3f       	cpi	r22, 0xFF	; 255
+    1380:	21 f0       	breq	.+8      	; 0x138a <ssd1306_putPixel_delayed+0x54>
+    1382:	40 91 99 01 	lds	r20, 0x0199	; 0x800199 <pixels.3337>
+    1386:	0e 94 7d 09 	call	0x12fa	; 0x12fa <ssd1306_putPixels>
+    138a:	10 92 99 01 	sts	0x0199, r1	; 0x800199 <pixels.3337>
+    138e:	8f ef       	ldi	r24, 0xFF	; 255
+    1390:	80 93 0b 01 	sts	0x010B, r24	; 0x80010b <ly.3336>
+    1394:	dd 23       	and	r29, r29
+    1396:	09 f3       	breq	.-62     	; 0x135a <ssd1306_putPixel_delayed+0x24>
+    1398:	df 91       	pop	r29
+    139a:	cf 91       	pop	r28
+    139c:	1f 91       	pop	r17
+    139e:	08 95       	ret
+
+000013a0 <ssd1306_drawLine>:
+    13a0:	af 92       	push	r10
+    13a2:	bf 92       	push	r11
+    13a4:	cf 92       	push	r12
+    13a6:	df 92       	push	r13
+    13a8:	ef 92       	push	r14
+    13aa:	ff 92       	push	r15
+    13ac:	0f 93       	push	r16
+    13ae:	1f 93       	push	r17
+    13b0:	cf 93       	push	r28
+    13b2:	df 93       	push	r29
+    13b4:	c8 2f       	mov	r28, r24
+    13b6:	d6 2f       	mov	r29, r22
+    13b8:	14 2f       	mov	r17, r20
+    13ba:	02 2f       	mov	r16, r18
+    13bc:	90 e0       	ldi	r25, 0x00	; 0
+    13be:	e4 2e       	mov	r14, r20
+    13c0:	f1 2c       	mov	r15, r1
+    13c2:	48 17       	cp	r20, r24
+    13c4:	28 f4       	brcc	.+10     	; 0x13d0 <ssd1306_drawLine+0x30>
+    13c6:	9c 01       	movw	r18, r24
+    13c8:	2e 19       	sub	r18, r14
+    13ca:	3f 09       	sbc	r19, r15
+    13cc:	79 01       	movw	r14, r18
+    13ce:	02 c0       	rjmp	.+4      	; 0x13d4 <ssd1306_drawLine+0x34>
+    13d0:	e8 1a       	sub	r14, r24
+    13d2:	f9 0a       	sbc	r15, r25
+    13d4:	8d 2f       	mov	r24, r29
+    13d6:	90 e0       	ldi	r25, 0x00	; 0
+    13d8:	c0 2e       	mov	r12, r16
+    13da:	d1 2c       	mov	r13, r1
+    13dc:	0d 17       	cp	r16, r29
+    13de:	28 f4       	brcc	.+10     	; 0x13ea <ssd1306_drawLine+0x4a>
+    13e0:	9c 01       	movw	r18, r24
+    13e2:	2c 19       	sub	r18, r12
+    13e4:	3d 09       	sbc	r19, r13
+    13e6:	69 01       	movw	r12, r18
+    13e8:	02 c0       	rjmp	.+4      	; 0x13ee <ssd1306_drawLine+0x4e>
+    13ea:	c8 1a       	sub	r12, r24
+    13ec:	d9 0a       	sbc	r13, r25
+    13ee:	ec 14       	cp	r14, r12
+    13f0:	fd 04       	cpc	r15, r13
+    13f2:	70 f5       	brcc	.+92     	; 0x1450 <ssd1306_drawLine+0xb0>
+    13f4:	0d 17       	cp	r16, r29
+    13f6:	30 f4       	brcc	.+12     	; 0x1404 <ssd1306_drawLine+0x64>
+    13f8:	8d 2f       	mov	r24, r29
+    13fa:	d0 2f       	mov	r29, r16
+    13fc:	08 2f       	mov	r16, r24
+    13fe:	8c 2f       	mov	r24, r28
+    1400:	c1 2f       	mov	r28, r17
+    1402:	18 2f       	mov	r17, r24
+    1404:	a1 2c       	mov	r10, r1
+    1406:	b1 2c       	mov	r11, r1
+    1408:	0d 17       	cp	r16, r29
+    140a:	98 f0       	brcs	.+38     	; 0x1432 <ssd1306_drawLine+0x92>
+    140c:	ae 0c       	add	r10, r14
+    140e:	bf 1c       	adc	r11, r15
+    1410:	ac 14       	cp	r10, r12
+    1412:	bd 04       	cpc	r11, r13
+    1414:	38 f0       	brcs	.+14     	; 0x1424 <ssd1306_drawLine+0x84>
+    1416:	ac 18       	sub	r10, r12
+    1418:	bd 08       	sbc	r11, r13
+    141a:	c1 17       	cp	r28, r17
+    141c:	10 f4       	brcc	.+4      	; 0x1422 <ssd1306_drawLine+0x82>
+    141e:	cf 5f       	subi	r28, 0xFF	; 255
+    1420:	01 c0       	rjmp	.+2      	; 0x1424 <ssd1306_drawLine+0x84>
+    1422:	c1 50       	subi	r28, 0x01	; 1
+    1424:	40 e0       	ldi	r20, 0x00	; 0
+    1426:	6d 2f       	mov	r22, r29
+    1428:	8c 2f       	mov	r24, r28
+    142a:	0e 94 9b 09 	call	0x1336	; 0x1336 <ssd1306_putPixel_delayed>
+    142e:	df 5f       	subi	r29, 0xFF	; 255
+    1430:	eb cf       	rjmp	.-42     	; 0x1408 <ssd1306_drawLine+0x68>
+    1432:	41 e0       	ldi	r20, 0x01	; 1
+    1434:	60 e0       	ldi	r22, 0x00	; 0
+    1436:	80 e0       	ldi	r24, 0x00	; 0
+    1438:	df 91       	pop	r29
+    143a:	cf 91       	pop	r28
+    143c:	1f 91       	pop	r17
+    143e:	0f 91       	pop	r16
+    1440:	ff 90       	pop	r15
+    1442:	ef 90       	pop	r14
+    1444:	df 90       	pop	r13
+    1446:	cf 90       	pop	r12
+    1448:	bf 90       	pop	r11
+    144a:	af 90       	pop	r10
+    144c:	0c 94 9b 09 	jmp	0x1336	; 0x1336 <ssd1306_putPixel_delayed>
+    1450:	1c 17       	cp	r17, r28
+    1452:	30 f4       	brcc	.+12     	; 0x1460 <ssd1306_drawLine+0xc0>
+    1454:	8d 2f       	mov	r24, r29
+    1456:	d0 2f       	mov	r29, r16
+    1458:	08 2f       	mov	r16, r24
+    145a:	8c 2f       	mov	r24, r28
+    145c:	c1 2f       	mov	r28, r17
+    145e:	18 2f       	mov	r17, r24
+    1460:	a1 2c       	mov	r10, r1
+    1462:	b1 2c       	mov	r11, r1
+    1464:	1c 17       	cp	r17, r28
+    1466:	90 f0       	brcs	.+36     	; 0x148c <ssd1306_drawLine+0xec>
+    1468:	ac 0c       	add	r10, r12
+    146a:	bd 1c       	adc	r11, r13
+    146c:	ae 14       	cp	r10, r14
+    146e:	bf 04       	cpc	r11, r15
+    1470:	38 f0       	brcs	.+14     	; 0x1480 <ssd1306_drawLine+0xe0>
+    1472:	ae 18       	sub	r10, r14
+    1474:	bf 08       	sbc	r11, r15
+    1476:	d0 17       	cp	r29, r16
+    1478:	10 f4       	brcc	.+4      	; 0x147e <ssd1306_drawLine+0xde>
+    147a:	df 5f       	subi	r29, 0xFF	; 255
+    147c:	01 c0       	rjmp	.+2      	; 0x1480 <ssd1306_drawLine+0xe0>
+    147e:	d1 50       	subi	r29, 0x01	; 1
+    1480:	6d 2f       	mov	r22, r29
+    1482:	8c 2f       	mov	r24, r28
+    1484:	0e 94 52 09 	call	0x12a4	; 0x12a4 <ssd1306_putPixel>
+    1488:	cf 5f       	subi	r28, 0xFF	; 255
+    148a:	ec cf       	rjmp	.-40     	; 0x1464 <ssd1306_drawLine+0xc4>
+    148c:	df 91       	pop	r29
+    148e:	cf 91       	pop	r28
+    1490:	1f 91       	pop	r17
+    1492:	0f 91       	pop	r16
+    1494:	ff 90       	pop	r15
+    1496:	ef 90       	pop	r14
+    1498:	df 90       	pop	r13
+    149a:	cf 90       	pop	r12
+    149c:	bf 90       	pop	r11
+    149e:	af 90       	pop	r10
+    14a0:	08 95       	ret
+
+000014a2 <ssd1306_drawHLine>:
+    14a2:	1f 93       	push	r17
+    14a4:	cf 93       	push	r28
+    14a6:	df 93       	push	r29
+    14a8:	c8 2f       	mov	r28, r24
+    14aa:	d6 2f       	mov	r29, r22
+    14ac:	14 2f       	mov	r17, r20
+    14ae:	50 e0       	ldi	r21, 0x00	; 0
+    14b0:	90 e0       	ldi	r25, 0x00	; 0
+    14b2:	48 1b       	sub	r20, r24
+    14b4:	59 0b       	sbc	r21, r25
+    14b6:	4f 5f       	subi	r20, 0xFF	; 255
+    14b8:	5f 4f       	sbci	r21, 0xFF	; 255
+    14ba:	66 95       	lsr	r22
+    14bc:	66 95       	lsr	r22
+    14be:	66 95       	lsr	r22
+    14c0:	70 e0       	ldi	r23, 0x00	; 0
+    14c2:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+    14c6:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+    14ca:	09 95       	icall
+    14cc:	d7 70       	andi	r29, 0x07	; 7
+    14ce:	81 e0       	ldi	r24, 0x01	; 1
+    14d0:	01 c0       	rjmp	.+2      	; 0x14d4 <ssd1306_drawHLine+0x32>
+    14d2:	88 0f       	add	r24, r24
+    14d4:	da 95       	dec	r29
+    14d6:	ea f7       	brpl	.-6      	; 0x14d2 <ssd1306_drawHLine+0x30>
+    14d8:	d8 2f       	mov	r29, r24
+    14da:	1c 17       	cp	r17, r28
+    14dc:	50 f0       	brcs	.+20     	; 0x14f2 <ssd1306_drawHLine+0x50>
+    14de:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    14e2:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    14e6:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    14ea:	8d 27       	eor	r24, r29
+    14ec:	09 95       	icall
+    14ee:	cf 5f       	subi	r28, 0xFF	; 255
+    14f0:	f4 cf       	rjmp	.-24     	; 0x14da <ssd1306_drawHLine+0x38>
+    14f2:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    14f6:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    14fa:	df 91       	pop	r29
+    14fc:	cf 91       	pop	r28
+    14fe:	1f 91       	pop	r17
+    1500:	09 94       	ijmp
+
+00001502 <ssd1306_drawVLine>:
+    1502:	0f 93       	push	r16
+    1504:	1f 93       	push	r17
+    1506:	cf 93       	push	r28
+    1508:	df 93       	push	r29
+    150a:	16 2f       	mov	r17, r22
+    150c:	c4 2f       	mov	r28, r20
+    150e:	d6 2f       	mov	r29, r22
+    1510:	d6 95       	lsr	r29
+    1512:	d6 95       	lsr	r29
+    1514:	d6 95       	lsr	r29
+    1516:	04 2f       	mov	r16, r20
+    1518:	06 95       	lsr	r16
+    151a:	06 95       	lsr	r16
+    151c:	06 95       	lsr	r16
+    151e:	6d 2f       	mov	r22, r29
+    1520:	70 e0       	ldi	r23, 0x00	; 0
+    1522:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+    1526:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+    152a:	41 e0       	ldi	r20, 0x01	; 1
+    152c:	50 e0       	ldi	r21, 0x00	; 0
+    152e:	90 e0       	ldi	r25, 0x00	; 0
+    1530:	09 95       	icall
+    1532:	91 2f       	mov	r25, r17
+    1534:	97 70       	andi	r25, 0x07	; 7
+    1536:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    153a:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    153e:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    1542:	d0 13       	cpse	r29, r16
+    1544:	14 c0       	rjmp	.+40     	; 0x156e <ssd1306_drawVLine+0x6c>
+    1546:	4c 2f       	mov	r20, r28
+    1548:	41 1b       	sub	r20, r17
+    154a:	27 e0       	ldi	r18, 0x07	; 7
+    154c:	30 e0       	ldi	r19, 0x00	; 0
+    154e:	b9 01       	movw	r22, r18
+    1550:	64 1b       	sub	r22, r20
+    1552:	71 09       	sbc	r23, r1
+    1554:	2f ef       	ldi	r18, 0xFF	; 255
+    1556:	30 e0       	ldi	r19, 0x00	; 0
+    1558:	02 c0       	rjmp	.+4      	; 0x155e <ssd1306_drawVLine+0x5c>
+    155a:	35 95       	asr	r19
+    155c:	27 95       	ror	r18
+    155e:	6a 95       	dec	r22
+    1560:	e2 f7       	brpl	.-8      	; 0x155a <ssd1306_drawVLine+0x58>
+    1562:	01 c0       	rjmp	.+2      	; 0x1566 <ssd1306_drawVLine+0x64>
+    1564:	22 0f       	add	r18, r18
+    1566:	9a 95       	dec	r25
+    1568:	ea f7       	brpl	.-6      	; 0x1564 <ssd1306_drawVLine+0x62>
+    156a:	82 27       	eor	r24, r18
+    156c:	33 c0       	rjmp	.+102    	; 0x15d4 <ssd1306_drawVLine+0xd2>
+    156e:	2f ef       	ldi	r18, 0xFF	; 255
+    1570:	30 e0       	ldi	r19, 0x00	; 0
+    1572:	01 c0       	rjmp	.+2      	; 0x1576 <ssd1306_drawVLine+0x74>
+    1574:	22 0f       	add	r18, r18
+    1576:	9a 95       	dec	r25
+    1578:	ea f7       	brpl	.-6      	; 0x1574 <ssd1306_drawVLine+0x72>
+    157a:	82 27       	eor	r24, r18
+    157c:	09 95       	icall
+    157e:	df 5f       	subi	r29, 0xFF	; 255
+    1580:	10 e0       	ldi	r17, 0x00	; 0
+    1582:	8d 2f       	mov	r24, r29
+    1584:	90 e0       	ldi	r25, 0x00	; 0
+    1586:	e0 91 a4 01 	lds	r30, 0x01A4	; 0x8001a4 <ssd1306_lcd+0x8>
+    158a:	f0 91 a5 01 	lds	r31, 0x01A5	; 0x8001a5 <ssd1306_lcd+0x9>
+    158e:	80 17       	cp	r24, r16
+    1590:	91 07       	cpc	r25, r17
+    1592:	5c f4       	brge	.+22     	; 0x15aa <ssd1306_drawVLine+0xa8>
+    1594:	09 95       	icall
+    1596:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    159a:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    159e:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    15a2:	80 95       	com	r24
+    15a4:	09 95       	icall
+    15a6:	df 5f       	subi	r29, 0xFF	; 255
+    15a8:	ec cf       	rjmp	.-40     	; 0x1582 <ssd1306_drawVLine+0x80>
+    15aa:	09 95       	icall
+    15ac:	4c 2f       	mov	r20, r28
+    15ae:	50 e0       	ldi	r21, 0x00	; 0
+    15b0:	40 95       	com	r20
+    15b2:	50 95       	com	r21
+    15b4:	47 70       	andi	r20, 0x07	; 7
+    15b6:	55 27       	eor	r21, r21
+    15b8:	8f ef       	ldi	r24, 0xFF	; 255
+    15ba:	90 e0       	ldi	r25, 0x00	; 0
+    15bc:	02 c0       	rjmp	.+4      	; 0x15c2 <ssd1306_drawVLine+0xc0>
+    15be:	95 95       	asr	r25
+    15c0:	87 95       	ror	r24
+    15c2:	4a 95       	dec	r20
+    15c4:	e2 f7       	brpl	.-8      	; 0x15be <ssd1306_drawVLine+0xbc>
+    15c6:	90 91 9b 01 	lds	r25, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    15ca:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    15ce:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    15d2:	89 27       	eor	r24, r25
+    15d4:	09 95       	icall
+    15d6:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    15da:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    15de:	df 91       	pop	r29
+    15e0:	cf 91       	pop	r28
+    15e2:	1f 91       	pop	r17
+    15e4:	0f 91       	pop	r16
+    15e6:	09 94       	ijmp
+
+000015e8 <ssd1306_drawRect>:
+    15e8:	ef 92       	push	r14
+    15ea:	ff 92       	push	r15
+    15ec:	0f 93       	push	r16
+    15ee:	1f 93       	push	r17
+    15f0:	cf 93       	push	r28
+    15f2:	df 93       	push	r29
+    15f4:	08 2f       	mov	r16, r24
+    15f6:	c6 2f       	mov	r28, r22
+    15f8:	14 2f       	mov	r17, r20
+    15fa:	d2 2f       	mov	r29, r18
+    15fc:	ee 24       	eor	r14, r14
+    15fe:	ea 94       	dec	r14
+    1600:	e4 0e       	add	r14, r20
+    1602:	ff 24       	eor	r15, r15
+    1604:	f3 94       	inc	r15
+    1606:	f8 0e       	add	r15, r24
+    1608:	4e 2d       	mov	r20, r14
+    160a:	8f 2d       	mov	r24, r15
+    160c:	0e 94 51 0a 	call	0x14a2	; 0x14a2 <ssd1306_drawHLine>
+    1610:	4e 2d       	mov	r20, r14
+    1612:	6d 2f       	mov	r22, r29
+    1614:	8f 2d       	mov	r24, r15
+    1616:	0e 94 51 0a 	call	0x14a2	; 0x14a2 <ssd1306_drawHLine>
+    161a:	4d 2f       	mov	r20, r29
+    161c:	6c 2f       	mov	r22, r28
+    161e:	80 2f       	mov	r24, r16
+    1620:	0e 94 81 0a 	call	0x1502	; 0x1502 <ssd1306_drawVLine>
+    1624:	4d 2f       	mov	r20, r29
+    1626:	6c 2f       	mov	r22, r28
+    1628:	81 2f       	mov	r24, r17
+    162a:	df 91       	pop	r29
+    162c:	cf 91       	pop	r28
+    162e:	1f 91       	pop	r17
+    1630:	0f 91       	pop	r16
+    1632:	ff 90       	pop	r15
+    1634:	ef 90       	pop	r14
+    1636:	0c 94 81 0a 	jmp	0x1502	; 0x1502 <ssd1306_drawVLine>
+
+0000163a <ssd1306_drawBuffer>:
+    163a:	af 92       	push	r10
+    163c:	bf 92       	push	r11
+    163e:	df 92       	push	r13
+    1640:	ef 92       	push	r14
+    1642:	ff 92       	push	r15
+    1644:	0f 93       	push	r16
+    1646:	1f 93       	push	r17
+    1648:	cf 93       	push	r28
+    164a:	df 93       	push	r29
+    164c:	d4 2e       	mov	r13, r20
+    164e:	c2 2f       	mov	r28, r18
+    1650:	e4 2e       	mov	r14, r20
+    1652:	f1 2c       	mov	r15, r1
+    1654:	70 e0       	ldi	r23, 0x00	; 0
+    1656:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+    165a:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+    165e:	a7 01       	movw	r20, r14
+    1660:	90 e0       	ldi	r25, 0x00	; 0
+    1662:	09 95       	icall
+    1664:	c6 95       	lsr	r28
+    1666:	c6 95       	lsr	r28
+    1668:	c6 95       	lsr	r28
+    166a:	cc 23       	and	r28, r28
+    166c:	d1 f0       	breq	.+52     	; 0x16a2 <ssd1306_drawBuffer+0x68>
+    166e:	58 01       	movw	r10, r16
+    1670:	dd 2d       	mov	r29, r13
+    1672:	dd 23       	and	r29, r29
+    1674:	69 f0       	breq	.+26     	; 0x1690 <ssd1306_drawBuffer+0x56>
+    1676:	f5 01       	movw	r30, r10
+    1678:	91 91       	ld	r25, Z+
+    167a:	5f 01       	movw	r10, r30
+    167c:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    1680:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    1684:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    1688:	89 27       	eor	r24, r25
+    168a:	09 95       	icall
+    168c:	d1 50       	subi	r29, 0x01	; 1
+    168e:	f1 cf       	rjmp	.-30     	; 0x1672 <ssd1306_drawBuffer+0x38>
+    1690:	0e 0d       	add	r16, r14
+    1692:	1f 1d       	adc	r17, r15
+    1694:	e0 91 a4 01 	lds	r30, 0x01A4	; 0x8001a4 <ssd1306_lcd+0x8>
+    1698:	f0 91 a5 01 	lds	r31, 0x01A5	; 0x8001a5 <ssd1306_lcd+0x9>
+    169c:	09 95       	icall
+    169e:	c1 50       	subi	r28, 0x01	; 1
+    16a0:	e4 cf       	rjmp	.-56     	; 0x166a <ssd1306_drawBuffer+0x30>
+    16a2:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    16a6:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    16aa:	df 91       	pop	r29
+    16ac:	cf 91       	pop	r28
+    16ae:	1f 91       	pop	r17
+    16b0:	0f 91       	pop	r16
+    16b2:	ff 90       	pop	r15
+    16b4:	ef 90       	pop	r14
+    16b6:	df 90       	pop	r13
+    16b8:	bf 90       	pop	r11
+    16ba:	af 90       	pop	r10
+    16bc:	09 94       	ijmp
+
+000016be <ssd1306_drawBitmap>:
+    16be:	af 92       	push	r10
+    16c0:	bf 92       	push	r11
+    16c2:	df 92       	push	r13
+    16c4:	ef 92       	push	r14
+    16c6:	ff 92       	push	r15
+    16c8:	0f 93       	push	r16
+    16ca:	1f 93       	push	r17
+    16cc:	cf 93       	push	r28
+    16ce:	df 93       	push	r29
+    16d0:	d2 2f       	mov	r29, r18
+    16d2:	e0 91 9e 01 	lds	r30, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+    16d6:	f0 91 9f 01 	lds	r31, 0x019F	; 0x80019f <ssd1306_lcd+0x3>
+    16da:	28 2f       	mov	r18, r24
+    16dc:	30 e0       	ldi	r19, 0x00	; 0
+    16de:	7f 01       	movw	r14, r30
+    16e0:	e2 1a       	sub	r14, r18
+    16e2:	f3 0a       	sbc	r15, r19
+    16e4:	a4 2f       	mov	r26, r20
+    16e6:	b0 e0       	ldi	r27, 0x00	; 0
+    16e8:	ea 16       	cp	r14, r26
+    16ea:	fb 06       	cpc	r15, r27
+    16ec:	20 f4       	brcc	.+8      	; 0x16f6 <ssd1306_drawBitmap+0x38>
+    16ee:	c4 2f       	mov	r28, r20
+    16f0:	ce 1b       	sub	r28, r30
+    16f2:	c8 0f       	add	r28, r24
+    16f4:	01 c0       	rjmp	.+2      	; 0x16f8 <ssd1306_drawBitmap+0x3a>
+    16f6:	c0 e0       	ldi	r28, 0x00	; 0
+    16f8:	d4 2e       	mov	r13, r20
+    16fa:	dc 1a       	sub	r13, r28
+    16fc:	ed 2c       	mov	r14, r13
+    16fe:	f1 2c       	mov	r15, r1
+    1700:	70 e0       	ldi	r23, 0x00	; 0
+    1702:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+    1706:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+    170a:	a7 01       	movw	r20, r14
+    170c:	c9 01       	movw	r24, r18
+    170e:	09 95       	icall
+    1710:	d6 95       	lsr	r29
+    1712:	d6 95       	lsr	r29
+    1714:	d6 95       	lsr	r29
+    1716:	57 01       	movw	r10, r14
+    1718:	ac 0e       	add	r10, r28
+    171a:	b1 1c       	adc	r11, r1
+    171c:	dd 23       	and	r29, r29
+    171e:	e1 f0       	breq	.+56     	; 0x1758 <ssd1306_drawBitmap+0x9a>
+    1720:	78 01       	movw	r14, r16
+    1722:	cd 2d       	mov	r28, r13
+    1724:	cc 23       	and	r28, r28
+    1726:	79 f0       	breq	.+30     	; 0x1746 <ssd1306_drawBitmap+0x88>
+    1728:	f7 01       	movw	r30, r14
+    172a:	94 91       	lpm	r25, Z
+    172c:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    1730:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    1734:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    1738:	89 27       	eor	r24, r25
+    173a:	09 95       	icall
+    173c:	c1 50       	subi	r28, 0x01	; 1
+    173e:	ff ef       	ldi	r31, 0xFF	; 255
+    1740:	ef 1a       	sub	r14, r31
+    1742:	ff 0a       	sbc	r15, r31
+    1744:	ef cf       	rjmp	.-34     	; 0x1724 <ssd1306_drawBitmap+0x66>
+    1746:	0a 0d       	add	r16, r10
+    1748:	1b 1d       	adc	r17, r11
+    174a:	e0 91 a4 01 	lds	r30, 0x01A4	; 0x8001a4 <ssd1306_lcd+0x8>
+    174e:	f0 91 a5 01 	lds	r31, 0x01A5	; 0x8001a5 <ssd1306_lcd+0x9>
+    1752:	09 95       	icall
+    1754:	d1 50       	subi	r29, 0x01	; 1
+    1756:	e2 cf       	rjmp	.-60     	; 0x171c <ssd1306_drawBitmap+0x5e>
+    1758:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    175c:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    1760:	df 91       	pop	r29
+    1762:	cf 91       	pop	r28
+    1764:	1f 91       	pop	r17
+    1766:	0f 91       	pop	r16
+    1768:	ff 90       	pop	r15
+    176a:	ef 90       	pop	r14
+    176c:	df 90       	pop	r13
+    176e:	bf 90       	pop	r11
+    1770:	af 90       	pop	r10
+    1772:	09 94       	ijmp
+
+00001774 <ssd1306_drawSprite>:
+    1774:	ff 92       	push	r15
+    1776:	0f 93       	push	r16
+    1778:	1f 93       	push	r17
+    177a:	cf 93       	push	r28
+    177c:	df 93       	push	r29
+    177e:	ec 01       	movw	r28, r24
+    1780:	69 81       	ldd	r22, Y+1	; 0x01
+    1782:	16 2f       	mov	r17, r22
+    1784:	17 70       	andi	r17, 0x07	; 7
+    1786:	26 2f       	mov	r18, r22
+    1788:	30 e0       	ldi	r19, 0x00	; 0
+    178a:	80 91 a0 01 	lds	r24, 0x01A0	; 0x8001a0 <ssd1306_lcd+0x4>
+    178e:	90 91 a1 01 	lds	r25, 0x01A1	; 0x8001a1 <ssd1306_lcd+0x5>
+    1792:	28 17       	cp	r18, r24
+    1794:	39 07       	cpc	r19, r25
+    1796:	50 f5       	brcc	.+84     	; 0x17ec <ssd1306_drawSprite+0x78>
+    1798:	4a 81       	ldd	r20, Y+2	; 0x02
+    179a:	50 e0       	ldi	r21, 0x00	; 0
+    179c:	66 95       	lsr	r22
+    179e:	66 95       	lsr	r22
+    17a0:	66 95       	lsr	r22
+    17a2:	70 e0       	ldi	r23, 0x00	; 0
+    17a4:	88 81       	ld	r24, Y
+    17a6:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+    17aa:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+    17ae:	90 e0       	ldi	r25, 0x00	; 0
+    17b0:	09 95       	icall
+    17b2:	00 e0       	ldi	r16, 0x00	; 0
+    17b4:	8a 81       	ldd	r24, Y+2	; 0x02
+    17b6:	08 17       	cp	r16, r24
+    17b8:	a0 f4       	brcc	.+40     	; 0x17e2 <ssd1306_drawSprite+0x6e>
+    17ba:	ed 81       	ldd	r30, Y+5	; 0x05
+    17bc:	fe 81       	ldd	r31, Y+6	; 0x06
+    17be:	e0 0f       	add	r30, r16
+    17c0:	f1 1d       	adc	r31, r1
+    17c2:	84 91       	lpm	r24, Z
+    17c4:	01 2e       	mov	r0, r17
+    17c6:	01 c0       	rjmp	.+2      	; 0x17ca <ssd1306_drawSprite+0x56>
+    17c8:	88 0f       	add	r24, r24
+    17ca:	0a 94       	dec	r0
+    17cc:	ea f7       	brpl	.-6      	; 0x17c8 <ssd1306_drawSprite+0x54>
+    17ce:	90 91 9b 01 	lds	r25, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    17d2:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    17d6:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    17da:	89 27       	eor	r24, r25
+    17dc:	09 95       	icall
+    17de:	0f 5f       	subi	r16, 0xFF	; 255
+    17e0:	e9 cf       	rjmp	.-46     	; 0x17b4 <ssd1306_drawSprite+0x40>
+    17e2:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    17e6:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    17ea:	09 95       	icall
+    17ec:	11 23       	and	r17, r17
+    17ee:	09 f4       	brne	.+2      	; 0x17f2 <ssd1306_drawSprite+0x7e>
+    17f0:	3f c0       	rjmp	.+126    	; 0x1870 <ssd1306_drawSprite+0xfc>
+    17f2:	69 81       	ldd	r22, Y+1	; 0x01
+    17f4:	86 2f       	mov	r24, r22
+    17f6:	90 e0       	ldi	r25, 0x00	; 0
+    17f8:	08 96       	adiw	r24, 0x08	; 8
+    17fa:	20 91 a0 01 	lds	r18, 0x01A0	; 0x8001a0 <ssd1306_lcd+0x4>
+    17fe:	30 91 a1 01 	lds	r19, 0x01A1	; 0x8001a1 <ssd1306_lcd+0x5>
+    1802:	82 17       	cp	r24, r18
+    1804:	93 07       	cpc	r25, r19
+    1806:	a0 f5       	brcc	.+104    	; 0x1870 <ssd1306_drawSprite+0xfc>
+    1808:	4a 81       	ldd	r20, Y+2	; 0x02
+    180a:	50 e0       	ldi	r21, 0x00	; 0
+    180c:	66 95       	lsr	r22
+    180e:	66 95       	lsr	r22
+    1810:	66 95       	lsr	r22
+    1812:	70 e0       	ldi	r23, 0x00	; 0
+    1814:	6f 5f       	subi	r22, 0xFF	; 255
+    1816:	7f 4f       	sbci	r23, 0xFF	; 255
+    1818:	88 81       	ld	r24, Y
+    181a:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+    181e:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+    1822:	90 e0       	ldi	r25, 0x00	; 0
+    1824:	09 95       	icall
+    1826:	f1 2c       	mov	r15, r1
+    1828:	88 e0       	ldi	r24, 0x08	; 8
+    182a:	90 e0       	ldi	r25, 0x00	; 0
+    182c:	9c 01       	movw	r18, r24
+    182e:	21 1b       	sub	r18, r17
+    1830:	31 09       	sbc	r19, r1
+    1832:	89 01       	movw	r16, r18
+    1834:	8a 81       	ldd	r24, Y+2	; 0x02
+    1836:	f8 16       	cp	r15, r24
+    1838:	b0 f4       	brcc	.+44     	; 0x1866 <ssd1306_drawSprite+0xf2>
+    183a:	ed 81       	ldd	r30, Y+5	; 0x05
+    183c:	fe 81       	ldd	r31, Y+6	; 0x06
+    183e:	ef 0d       	add	r30, r15
+    1840:	f1 1d       	adc	r31, r1
+    1842:	84 91       	lpm	r24, Z
+    1844:	90 e0       	ldi	r25, 0x00	; 0
+    1846:	00 2e       	mov	r0, r16
+    1848:	02 c0       	rjmp	.+4      	; 0x184e <ssd1306_drawSprite+0xda>
+    184a:	95 95       	asr	r25
+    184c:	87 95       	ror	r24
+    184e:	0a 94       	dec	r0
+    1850:	e2 f7       	brpl	.-8      	; 0x184a <ssd1306_drawSprite+0xd6>
+    1852:	90 91 9b 01 	lds	r25, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    1856:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    185a:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    185e:	89 27       	eor	r24, r25
+    1860:	09 95       	icall
+    1862:	f3 94       	inc	r15
+    1864:	e7 cf       	rjmp	.-50     	; 0x1834 <ssd1306_drawSprite+0xc0>
+    1866:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    186a:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    186e:	09 95       	icall
+    1870:	88 81       	ld	r24, Y
+    1872:	8b 83       	std	Y+3, r24	; 0x03
+    1874:	89 81       	ldd	r24, Y+1	; 0x01
+    1876:	8c 83       	std	Y+4, r24	; 0x04
+    1878:	df 91       	pop	r29
+    187a:	cf 91       	pop	r28
+    187c:	1f 91       	pop	r17
+    187e:	0f 91       	pop	r16
+    1880:	ff 90       	pop	r15
+    1882:	08 95       	ret
+
+00001884 <ssd1306_eraseTrace>:
+    1884:	af 92       	push	r10
+    1886:	bf 92       	push	r11
+    1888:	cf 92       	push	r12
+    188a:	df 92       	push	r13
+    188c:	ef 92       	push	r14
+    188e:	ff 92       	push	r15
+    1890:	0f 93       	push	r16
+    1892:	1f 93       	push	r17
+    1894:	cf 93       	push	r28
+    1896:	df 93       	push	r29
+    1898:	8c 01       	movw	r16, r24
+    189a:	fc 01       	movw	r30, r24
+    189c:	94 81       	ldd	r25, Z+4	; 0x04
+    189e:	c9 2f       	mov	r28, r25
+    18a0:	c6 95       	lsr	r28
+    18a2:	c6 95       	lsr	r28
+    18a4:	c6 95       	lsr	r28
+    18a6:	49 2f       	mov	r20, r25
+    18a8:	50 e0       	ldi	r21, 0x00	; 0
+    18aa:	9a 01       	movw	r18, r20
+    18ac:	29 5f       	subi	r18, 0xF9	; 249
+    18ae:	3f 4f       	sbci	r19, 0xFF	; 255
+    18b0:	63 e0       	ldi	r22, 0x03	; 3
+    18b2:	35 95       	asr	r19
+    18b4:	27 95       	ror	r18
+    18b6:	6a 95       	dec	r22
+    18b8:	e1 f7       	brne	.-8      	; 0x18b2 <ssd1306_eraseTrace+0x2e>
+    18ba:	d2 2f       	mov	r29, r18
+    18bc:	81 81       	ldd	r24, Z+1	; 0x01
+    18be:	98 17       	cp	r25, r24
+    18c0:	40 f4       	brcc	.+16     	; 0x18d2 <ssd1306_eraseTrace+0x4e>
+    18c2:	86 95       	lsr	r24
+    18c4:	86 95       	lsr	r24
+    18c6:	86 95       	lsr	r24
+    18c8:	81 50       	subi	r24, 0x01	; 1
+    18ca:	82 17       	cp	r24, r18
+    18cc:	a8 f4       	brcc	.+42     	; 0x18f8 <ssd1306_eraseTrace+0x74>
+    18ce:	d8 2f       	mov	r29, r24
+    18d0:	13 c0       	rjmp	.+38     	; 0x18f8 <ssd1306_eraseTrace+0x74>
+    18d2:	90 e0       	ldi	r25, 0x00	; 0
+    18d4:	07 96       	adiw	r24, 0x07	; 7
+    18d6:	84 17       	cp	r24, r20
+    18d8:	95 07       	cpc	r25, r21
+    18da:	74 f0       	brlt	.+28     	; 0x18f8 <ssd1306_eraseTrace+0x74>
+    18dc:	8c 2f       	mov	r24, r28
+    18de:	90 e0       	ldi	r25, 0x00	; 0
+    18e0:	82 17       	cp	r24, r18
+    18e2:	93 07       	cpc	r25, r19
+    18e4:	0c f4       	brge	.+2      	; 0x18e8 <ssd1306_eraseTrace+0x64>
+    18e6:	c9 01       	movw	r24, r18
+    18e8:	c8 2f       	mov	r28, r24
+    18ea:	06 c0       	rjmp	.+12     	; 0x18f8 <ssd1306_eraseTrace+0x74>
+    18ec:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    18f0:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    18f4:	09 95       	icall
+    18f6:	cf 5f       	subi	r28, 0xFF	; 255
+    18f8:	f8 01       	movw	r30, r16
+    18fa:	83 81       	ldd	r24, Z+3	; 0x03
+    18fc:	dc 17       	cp	r29, r28
+    18fe:	c0 f0       	brcs	.+48     	; 0x1930 <ssd1306_eraseTrace+0xac>
+    1900:	f8 01       	movw	r30, r16
+    1902:	42 81       	ldd	r20, Z+2	; 0x02
+    1904:	50 e0       	ldi	r21, 0x00	; 0
+    1906:	6c 2f       	mov	r22, r28
+    1908:	70 e0       	ldi	r23, 0x00	; 0
+    190a:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+    190e:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+    1912:	90 e0       	ldi	r25, 0x00	; 0
+    1914:	09 95       	icall
+    1916:	f8 01       	movw	r30, r16
+    1918:	f2 80       	ldd	r15, Z+2	; 0x02
+    191a:	ff 20       	and	r15, r15
+    191c:	39 f3       	breq	.-50     	; 0x18ec <ssd1306_eraseTrace+0x68>
+    191e:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    1922:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    1926:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    192a:	09 95       	icall
+    192c:	fa 94       	dec	r15
+    192e:	f5 cf       	rjmp	.-22     	; 0x191a <ssd1306_eraseTrace+0x96>
+    1930:	d8 2e       	mov	r13, r24
+    1932:	40 81       	ld	r20, Z
+    1934:	84 17       	cp	r24, r20
+    1936:	09 f4       	brne	.+2      	; 0x193a <ssd1306_eraseTrace+0xb6>
+    1938:	4c c0       	rjmp	.+152    	; 0x19d2 <ssd1306_eraseTrace+0x14e>
+    193a:	22 81       	ldd	r18, Z+2	; 0x02
+    193c:	58 2f       	mov	r21, r24
+    193e:	52 0f       	add	r21, r18
+    1940:	51 50       	subi	r21, 0x01	; 1
+    1942:	48 17       	cp	r20, r24
+    1944:	50 f4       	brcc	.+20     	; 0x195a <ssd1306_eraseTrace+0xd6>
+    1946:	30 e0       	ldi	r19, 0x00	; 0
+    1948:	90 e0       	ldi	r25, 0x00	; 0
+    194a:	24 0f       	add	r18, r20
+    194c:	31 1d       	adc	r19, r1
+    194e:	28 17       	cp	r18, r24
+    1950:	39 07       	cpc	r19, r25
+    1952:	0c f4       	brge	.+2      	; 0x1956 <ssd1306_eraseTrace+0xd2>
+    1954:	9c 01       	movw	r18, r24
+    1956:	d2 2e       	mov	r13, r18
+    1958:	04 c0       	rjmp	.+8      	; 0x1962 <ssd1306_eraseTrace+0xde>
+    195a:	41 50       	subi	r20, 0x01	; 1
+    195c:	45 17       	cp	r20, r21
+    195e:	08 f4       	brcc	.+2      	; 0x1962 <ssd1306_eraseTrace+0xde>
+    1960:	54 2f       	mov	r21, r20
+    1962:	f8 01       	movw	r30, r16
+    1964:	b4 80       	ldd	r11, Z+4	; 0x04
+    1966:	b6 94       	lsr	r11
+    1968:	b6 94       	lsr	r11
+    196a:	b6 94       	lsr	r11
+    196c:	c5 2f       	mov	r28, r21
+    196e:	d0 e0       	ldi	r29, 0x00	; 0
+    1970:	ed 2c       	mov	r14, r13
+    1972:	f1 2c       	mov	r15, r1
+    1974:	ce 19       	sub	r28, r14
+    1976:	df 09       	sbc	r29, r15
+    1978:	21 96       	adiw	r28, 0x01	; 1
+    197a:	cc 24       	eor	r12, r12
+    197c:	c3 94       	inc	r12
+    197e:	c5 0e       	add	r12, r21
+    1980:	6b 2d       	mov	r22, r11
+    1982:	70 e0       	ldi	r23, 0x00	; 0
+    1984:	f8 01       	movw	r30, r16
+    1986:	84 81       	ldd	r24, Z+4	; 0x04
+    1988:	90 e0       	ldi	r25, 0x00	; 0
+    198a:	07 96       	adiw	r24, 0x07	; 7
+    198c:	23 e0       	ldi	r18, 0x03	; 3
+    198e:	95 95       	asr	r25
+    1990:	87 95       	ror	r24
+    1992:	2a 95       	dec	r18
+    1994:	e1 f7       	brne	.-8      	; 0x198e <ssd1306_eraseTrace+0x10a>
+    1996:	86 17       	cp	r24, r22
+    1998:	97 07       	cpc	r25, r23
+    199a:	dc f0       	brlt	.+54     	; 0x19d2 <ssd1306_eraseTrace+0x14e>
+    199c:	e0 91 a2 01 	lds	r30, 0x01A2	; 0x8001a2 <ssd1306_lcd+0x6>
+    19a0:	f0 91 a3 01 	lds	r31, 0x01A3	; 0x8001a3 <ssd1306_lcd+0x7>
+    19a4:	ae 01       	movw	r20, r28
+    19a6:	c7 01       	movw	r24, r14
+    19a8:	09 95       	icall
+    19aa:	ac 2c       	mov	r10, r12
+    19ac:	ad 18       	sub	r10, r13
+    19ae:	aa 20       	and	r10, r10
+    19b0:	49 f0       	breq	.+18     	; 0x19c4 <ssd1306_eraseTrace+0x140>
+    19b2:	e0 91 a6 01 	lds	r30, 0x01A6	; 0x8001a6 <ssd1306_lcd+0xa>
+    19b6:	f0 91 a7 01 	lds	r31, 0x01A7	; 0x8001a7 <ssd1306_lcd+0xb>
+    19ba:	80 91 9b 01 	lds	r24, 0x019B	; 0x80019b <s_ssd1306_invertByte>
+    19be:	09 95       	icall
+    19c0:	aa 94       	dec	r10
+    19c2:	f5 cf       	rjmp	.-22     	; 0x19ae <ssd1306_eraseTrace+0x12a>
+    19c4:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    19c8:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    19cc:	09 95       	icall
+    19ce:	b3 94       	inc	r11
+    19d0:	d7 cf       	rjmp	.-82     	; 0x1980 <ssd1306_eraseTrace+0xfc>
+    19d2:	df 91       	pop	r29
+    19d4:	cf 91       	pop	r28
+    19d6:	1f 91       	pop	r17
+    19d8:	0f 91       	pop	r16
+    19da:	ff 90       	pop	r15
+    19dc:	ef 90       	pop	r14
+    19de:	df 90       	pop	r13
+    19e0:	cf 90       	pop	r12
+    19e2:	bf 90       	pop	r11
+    19e4:	af 90       	pop	r10
+    19e6:	08 95       	ret
+
+000019e8 <ssd1306_createSprite>:
+    19e8:	0f 93       	push	r16
+    19ea:	1f 93       	push	r17
+    19ec:	fc 01       	movw	r30, r24
+    19ee:	60 83       	st	Z, r22
+    19f0:	41 83       	std	Z+1, r20	; 0x01
+    19f2:	22 83       	std	Z+2, r18	; 0x02
+    19f4:	63 83       	std	Z+3, r22	; 0x03
+    19f6:	44 83       	std	Z+4, r20	; 0x04
+    19f8:	16 83       	std	Z+6, r17	; 0x06
+    19fa:	05 83       	std	Z+5, r16	; 0x05
+    19fc:	10 86       	std	Z+8, r1	; 0x08
+    19fe:	17 82       	std	Z+7, r1	; 0x07
+    1a00:	1f 91       	pop	r17
+    1a02:	0f 91       	pop	r16
+    1a04:	08 95       	ret
+
+00001a06 <ssd1306_negativeMode>:
+    1a06:	8f ef       	ldi	r24, 0xFF	; 255
+    1a08:	80 93 9b 01 	sts	0x019B, r24	; 0x80019b <s_ssd1306_invertByte>
+    1a0c:	08 95       	ret
+
+00001a0e <ssd1306_positiveMode>:
+    1a0e:	10 92 9b 01 	sts	0x019B, r1	; 0x80019b <s_ssd1306_invertByte>
+    1a12:	08 95       	ret
+
+00001a14 <getMaxScreenItems>:
+    1a14:	0e 94 f8 05 	call	0xbf0	; 0xbf0 <ssd1306_displayHeight>
+    1a18:	60 91 93 01 	lds	r22, 0x0193	; 0x800193 <s_fixedFont+0x5>
+    1a1c:	40 97       	sbiw	r24, 0x10	; 16
+    1a1e:	28 e0       	ldi	r18, 0x08	; 8
+    1a20:	62 9f       	mul	r22, r18
+    1a22:	b0 01       	movw	r22, r0
+    1a24:	11 24       	eor	r1, r1
+    1a26:	0e 94 f0 11 	call	0x23e0	; 0x23e0 <__udivmodhi4>
+    1a2a:	86 2f       	mov	r24, r22
+    1a2c:	08 95       	ret
+
+00001a2e <drawMenuItem>:
+    1a2e:	0f 93       	push	r16
+    1a30:	1f 93       	push	r17
+    1a32:	cf 93       	push	r28
+    1a34:	8c 01       	movw	r16, r24
+    1a36:	c6 2f       	mov	r28, r22
+    1a38:	fc 01       	movw	r30, r24
+    1a3a:	83 81       	ldd	r24, Z+3	; 0x03
+    1a3c:	86 13       	cpse	r24, r22
+    1a3e:	03 c0       	rjmp	.+6      	; 0x1a46 <drawMenuItem+0x18>
+    1a40:	0e 94 03 0d 	call	0x1a06	; 0x1a06 <ssd1306_negativeMode>
+    1a44:	02 c0       	rjmp	.+4      	; 0x1a4a <drawMenuItem+0x1c>
+    1a46:	0e 94 07 0d 	call	0x1a0e	; 0x1a0e <ssd1306_positiveMode>
+    1a4a:	f8 01       	movw	r30, r16
+    1a4c:	90 81       	ld	r25, Z
+    1a4e:	81 81       	ldd	r24, Z+1	; 0x01
+    1a50:	e9 2f       	mov	r30, r25
+    1a52:	f8 2f       	mov	r31, r24
+    1a54:	ec 0f       	add	r30, r28
+    1a56:	f1 1d       	adc	r31, r1
+    1a58:	ec 0f       	add	r30, r28
+    1a5a:	f1 1d       	adc	r31, r1
+    1a5c:	40 81       	ld	r20, Z
+    1a5e:	51 81       	ldd	r21, Z+1	; 0x01
+    1a60:	f8 01       	movw	r30, r16
+    1a62:	85 81       	ldd	r24, Z+5	; 0x05
+    1a64:	c8 1b       	sub	r28, r24
+    1a66:	60 91 93 01 	lds	r22, 0x0193	; 0x800193 <s_fixedFont+0x5>
+    1a6a:	c6 9f       	mul	r28, r22
+    1a6c:	60 2d       	mov	r22, r0
+    1a6e:	11 24       	eor	r1, r1
+    1a70:	6f 5f       	subi	r22, 0xFF	; 255
+    1a72:	66 0f       	add	r22, r22
+    1a74:	66 0f       	add	r22, r22
+    1a76:	66 0f       	add	r22, r22
+    1a78:	20 e0       	ldi	r18, 0x00	; 0
+    1a7a:	30 e0       	ldi	r19, 0x00	; 0
+    1a7c:	88 e0       	ldi	r24, 0x08	; 8
+    1a7e:	0e 94 ce 06 	call	0xd9c	; 0xd9c <ssd1306_printFixed>
+    1a82:	cf 91       	pop	r28
+    1a84:	1f 91       	pop	r17
+    1a86:	0f 91       	pop	r16
+    1a88:	0c 94 07 0d 	jmp	0x1a0e	; 0x1a0e <ssd1306_positiveMode>
+
+00001a8c <ssd1306_createMenu>:
+    1a8c:	fc 01       	movw	r30, r24
+    1a8e:	71 83       	std	Z+1, r23	; 0x01
+    1a90:	60 83       	st	Z, r22
+    1a92:	42 83       	std	Z+2, r20	; 0x02
+    1a94:	13 82       	std	Z+3, r1	; 0x03
+    1a96:	14 82       	std	Z+4, r1	; 0x04
+    1a98:	15 82       	std	Z+5, r1	; 0x05
+    1a9a:	08 95       	ret
+
+00001a9c <ssd1306_showMenu>:
+    1a9c:	af 92       	push	r10
+    1a9e:	bf 92       	push	r11
+    1aa0:	cf 92       	push	r12
+    1aa2:	df 92       	push	r13
+    1aa4:	ef 92       	push	r14
+    1aa6:	ff 92       	push	r15
+    1aa8:	0f 93       	push	r16
+    1aaa:	1f 93       	push	r17
+    1aac:	cf 93       	push	r28
+    1aae:	8c 01       	movw	r16, r24
+    1ab0:	0e 94 f8 05 	call	0xbf0	; 0xbf0 <ssd1306_displayHeight>
+    1ab4:	c8 2f       	mov	r28, r24
+    1ab6:	0e 94 fd 05 	call	0xbfa	; 0xbfa <ssd1306_displayWidth>
+    1aba:	2b ef       	ldi	r18, 0xFB	; 251
+    1abc:	2c 0f       	add	r18, r28
+    1abe:	4b ef       	ldi	r20, 0xFB	; 251
+    1ac0:	48 0f       	add	r20, r24
+    1ac2:	64 e0       	ldi	r22, 0x04	; 4
+    1ac4:	84 e0       	ldi	r24, 0x04	; 4
+    1ac6:	0e 94 f4 0a 	call	0x15e8	; 0x15e8 <ssd1306_drawRect>
+    1aca:	f8 01       	movw	r30, r16
+    1acc:	c3 81       	ldd	r28, Z+3	; 0x03
+    1ace:	85 81       	ldd	r24, Z+5	; 0x05
+    1ad0:	c8 17       	cp	r28, r24
+    1ad2:	90 f0       	brcs	.+36     	; 0x1af8 <ssd1306_showMenu+0x5c>
+    1ad4:	0e 94 0a 0d 	call	0x1a14	; 0x1a14 <getMaxScreenItems>
+    1ad8:	f8 01       	movw	r30, r16
+    1ada:	45 81       	ldd	r20, Z+5	; 0x05
+    1adc:	90 e0       	ldi	r25, 0x00	; 0
+    1ade:	2c 2f       	mov	r18, r28
+    1ae0:	30 e0       	ldi	r19, 0x00	; 0
+    1ae2:	24 1b       	sub	r18, r20
+    1ae4:	31 09       	sbc	r19, r1
+    1ae6:	28 17       	cp	r18, r24
+    1ae8:	39 07       	cpc	r19, r25
+    1aea:	2c f0       	brlt	.+10     	; 0x1af6 <ssd1306_showMenu+0x5a>
+    1aec:	0e 94 0a 0d 	call	0x1a14	; 0x1a14 <getMaxScreenItems>
+    1af0:	cf 5f       	subi	r28, 0xFF	; 255
+    1af2:	c8 1b       	sub	r28, r24
+    1af4:	01 c0       	rjmp	.+2      	; 0x1af8 <ssd1306_showMenu+0x5c>
+    1af6:	c4 2f       	mov	r28, r20
+    1af8:	f8 01       	movw	r30, r16
+    1afa:	c5 83       	std	Z+5, r28	; 0x05
+    1afc:	cc 2e       	mov	r12, r28
+    1afe:	d1 2c       	mov	r13, r1
+    1b00:	f8 01       	movw	r30, r16
+    1b02:	a2 80       	ldd	r10, Z+2	; 0x02
+    1b04:	b1 2c       	mov	r11, r1
+    1b06:	e5 80       	ldd	r14, Z+5	; 0x05
+    1b08:	f1 2c       	mov	r15, r1
+    1b0a:	0e 94 0a 0d 	call	0x1a14	; 0x1a14 <getMaxScreenItems>
+    1b0e:	e8 0e       	add	r14, r24
+    1b10:	f1 1c       	adc	r15, r1
+    1b12:	f8 01       	movw	r30, r16
+    1b14:	ae 14       	cp	r10, r14
+    1b16:	bf 04       	cpc	r11, r15
+    1b18:	1c f4       	brge	.+6      	; 0x1b20 <ssd1306_showMenu+0x84>
+    1b1a:	82 81       	ldd	r24, Z+2	; 0x02
+    1b1c:	90 e0       	ldi	r25, 0x00	; 0
+    1b1e:	09 c0       	rjmp	.+18     	; 0x1b32 <ssd1306_showMenu+0x96>
+    1b20:	85 81       	ldd	r24, Z+5	; 0x05
+    1b22:	e8 2e       	mov	r14, r24
+    1b24:	f1 2c       	mov	r15, r1
+    1b26:	0e 94 0a 0d 	call	0x1a14	; 0x1a14 <getMaxScreenItems>
+    1b2a:	97 01       	movw	r18, r14
+    1b2c:	28 0f       	add	r18, r24
+    1b2e:	31 1d       	adc	r19, r1
+    1b30:	c9 01       	movw	r24, r18
+    1b32:	c8 16       	cp	r12, r24
+    1b34:	d9 06       	cpc	r13, r25
+    1b36:	34 f4       	brge	.+12     	; 0x1b44 <ssd1306_showMenu+0xa8>
+    1b38:	6c 2f       	mov	r22, r28
+    1b3a:	c8 01       	movw	r24, r16
+    1b3c:	0e 94 17 0d 	call	0x1a2e	; 0x1a2e <drawMenuItem>
+    1b40:	cf 5f       	subi	r28, 0xFF	; 255
+    1b42:	dc cf       	rjmp	.-72     	; 0x1afc <ssd1306_showMenu+0x60>
+    1b44:	f8 01       	movw	r30, r16
+    1b46:	83 81       	ldd	r24, Z+3	; 0x03
+    1b48:	84 83       	std	Z+4, r24	; 0x04
+    1b4a:	cf 91       	pop	r28
+    1b4c:	1f 91       	pop	r17
+    1b4e:	0f 91       	pop	r16
+    1b50:	ff 90       	pop	r15
+    1b52:	ef 90       	pop	r14
+    1b54:	df 90       	pop	r13
+    1b56:	cf 90       	pop	r12
+    1b58:	bf 90       	pop	r11
+    1b5a:	af 90       	pop	r10
+    1b5c:	08 95       	ret
+
+00001b5e <ssd1306_updateMenu>:
+    1b5e:	1f 93       	push	r17
+    1b60:	cf 93       	push	r28
+    1b62:	df 93       	push	r29
+    1b64:	ec 01       	movw	r28, r24
+    1b66:	1b 81       	ldd	r17, Y+3	; 0x03
+    1b68:	8c 81       	ldd	r24, Y+4	; 0x04
+    1b6a:	18 17       	cp	r17, r24
+    1b6c:	59 f1       	breq	.+86     	; 0x1bc4 <ssd1306_updateMenu+0x66>
+    1b6e:	8d 81       	ldd	r24, Y+5	; 0x05
+    1b70:	18 17       	cp	r17, r24
+    1b72:	90 f0       	brcs	.+36     	; 0x1b98 <ssd1306_updateMenu+0x3a>
+    1b74:	0e 94 0a 0d 	call	0x1a14	; 0x1a14 <getMaxScreenItems>
+    1b78:	9d 81       	ldd	r25, Y+5	; 0x05
+    1b7a:	48 2f       	mov	r20, r24
+    1b7c:	50 e0       	ldi	r21, 0x00	; 0
+    1b7e:	21 2f       	mov	r18, r17
+    1b80:	30 e0       	ldi	r19, 0x00	; 0
+    1b82:	29 1b       	sub	r18, r25
+    1b84:	31 09       	sbc	r19, r1
+    1b86:	24 17       	cp	r18, r20
+    1b88:	35 07       	cpc	r19, r21
+    1b8a:	3c f0       	brlt	.+14     	; 0x1b9a <ssd1306_updateMenu+0x3c>
+    1b8c:	0e 94 0a 0d 	call	0x1a14	; 0x1a14 <getMaxScreenItems>
+    1b90:	1f 5f       	subi	r17, 0xFF	; 255
+    1b92:	91 2f       	mov	r25, r17
+    1b94:	98 1b       	sub	r25, r24
+    1b96:	01 c0       	rjmp	.+2      	; 0x1b9a <ssd1306_updateMenu+0x3c>
+    1b98:	91 2f       	mov	r25, r17
+    1b9a:	8d 81       	ldd	r24, Y+5	; 0x05
+    1b9c:	89 17       	cp	r24, r25
+    1b9e:	41 f0       	breq	.+16     	; 0x1bb0 <ssd1306_updateMenu+0x52>
+    1ba0:	0e 94 9a 06 	call	0xd34	; 0xd34 <ssd1306_clearScreen>
+    1ba4:	ce 01       	movw	r24, r28
+    1ba6:	df 91       	pop	r29
+    1ba8:	cf 91       	pop	r28
+    1baa:	1f 91       	pop	r17
+    1bac:	0c 94 4e 0d 	jmp	0x1a9c	; 0x1a9c <ssd1306_showMenu>
+    1bb0:	6c 81       	ldd	r22, Y+4	; 0x04
+    1bb2:	ce 01       	movw	r24, r28
+    1bb4:	0e 94 17 0d 	call	0x1a2e	; 0x1a2e <drawMenuItem>
+    1bb8:	6b 81       	ldd	r22, Y+3	; 0x03
+    1bba:	ce 01       	movw	r24, r28
+    1bbc:	0e 94 17 0d 	call	0x1a2e	; 0x1a2e <drawMenuItem>
+    1bc0:	8b 81       	ldd	r24, Y+3	; 0x03
+    1bc2:	8c 83       	std	Y+4, r24	; 0x04
+    1bc4:	df 91       	pop	r29
+    1bc6:	cf 91       	pop	r28
+    1bc8:	1f 91       	pop	r17
+    1bca:	08 95       	ret
+
+00001bcc <ssd1306_menuSelection>:
+    1bcc:	fc 01       	movw	r30, r24
+    1bce:	83 81       	ldd	r24, Z+3	; 0x03
+    1bd0:	08 95       	ret
+
+00001bd2 <ssd1306_menuDown>:
+    1bd2:	fc 01       	movw	r30, r24
+    1bd4:	83 81       	ldd	r24, Z+3	; 0x03
+    1bd6:	48 2f       	mov	r20, r24
+    1bd8:	50 e0       	ldi	r21, 0x00	; 0
+    1bda:	22 81       	ldd	r18, Z+2	; 0x02
+    1bdc:	30 e0       	ldi	r19, 0x00	; 0
+    1bde:	21 50       	subi	r18, 0x01	; 1
+    1be0:	31 09       	sbc	r19, r1
+    1be2:	42 17       	cp	r20, r18
+    1be4:	53 07       	cpc	r21, r19
+    1be6:	1c f4       	brge	.+6      	; 0x1bee <ssd1306_menuDown+0x1c>
+    1be8:	8f 5f       	subi	r24, 0xFF	; 255
+    1bea:	83 83       	std	Z+3, r24	; 0x03
+    1bec:	08 95       	ret
+    1bee:	13 82       	std	Z+3, r1	; 0x03
+    1bf0:	08 95       	ret
+
+00001bf2 <delay>:
+    1bf2:	61 15       	cp	r22, r1
+    1bf4:	71 05       	cpc	r23, r1
+    1bf6:	81 05       	cpc	r24, r1
+    1bf8:	91 05       	cpc	r25, r1
+    1bfa:	59 f0       	breq	.+22     	; 0x1c12 <delay+0x20>
+    1bfc:	ef e9       	ldi	r30, 0x9F	; 159
+    1bfe:	ff e0       	ldi	r31, 0x0F	; 15
+    1c00:	31 97       	sbiw	r30, 0x01	; 1
+    1c02:	f1 f7       	brne	.-4      	; 0x1c00 <delay+0xe>
+    1c04:	00 c0       	rjmp	.+0      	; 0x1c06 <delay+0x14>
+    1c06:	00 00       	nop
+    1c08:	61 50       	subi	r22, 0x01	; 1
+    1c0a:	71 09       	sbc	r23, r1
+    1c0c:	81 09       	sbc	r24, r1
+    1c0e:	91 09       	sbc	r25, r1
+    1c10:	f0 cf       	rjmp	.-32     	; 0x1bf2 <delay>
+    1c12:	08 95       	ret
+
+00001c14 <digitalWrite>:
+    1c14:	ac 01       	movw	r20, r24
+    1c16:	47 70       	andi	r20, 0x07	; 7
+    1c18:	55 27       	eor	r21, r21
+    1c1a:	21 e0       	ldi	r18, 0x01	; 1
+    1c1c:	30 e0       	ldi	r19, 0x00	; 0
+    1c1e:	01 c0       	rjmp	.+2      	; 0x1c22 <digitalWrite+0xe>
+    1c20:	22 0f       	add	r18, r18
+    1c22:	4a 95       	dec	r20
+    1c24:	ea f7       	brpl	.-6      	; 0x1c20 <digitalWrite+0xc>
+    1c26:	88 30       	cpi	r24, 0x08	; 8
+    1c28:	91 05       	cpc	r25, r1
+    1c2a:	54 f4       	brge	.+20     	; 0x1c40 <digitalWrite+0x2c>
+    1c2c:	8b b1       	in	r24, 0x0b	; 11
+    1c2e:	61 30       	cpi	r22, 0x01	; 1
+    1c30:	71 05       	cpc	r23, r1
+    1c32:	11 f4       	brne	.+4      	; 0x1c38 <digitalWrite+0x24>
+    1c34:	28 2b       	or	r18, r24
+    1c36:	02 c0       	rjmp	.+4      	; 0x1c3c <digitalWrite+0x28>
+    1c38:	20 95       	com	r18
+    1c3a:	28 23       	and	r18, r24
+    1c3c:	2b b9       	out	0x0b, r18	; 11
+    1c3e:	08 95       	ret
+    1c40:	40 97       	sbiw	r24, 0x10	; 16
+    1c42:	54 f4       	brge	.+20     	; 0x1c58 <digitalWrite+0x44>
+    1c44:	85 b1       	in	r24, 0x05	; 5
+    1c46:	61 30       	cpi	r22, 0x01	; 1
+    1c48:	71 05       	cpc	r23, r1
+    1c4a:	11 f4       	brne	.+4      	; 0x1c50 <digitalWrite+0x3c>
+    1c4c:	28 2b       	or	r18, r24
+    1c4e:	02 c0       	rjmp	.+4      	; 0x1c54 <digitalWrite+0x40>
+    1c50:	20 95       	com	r18
+    1c52:	28 23       	and	r18, r24
+    1c54:	25 b9       	out	0x05, r18	; 5
+    1c56:	08 95       	ret
+    1c58:	88 b1       	in	r24, 0x08	; 8
+    1c5a:	61 30       	cpi	r22, 0x01	; 1
+    1c5c:	71 05       	cpc	r23, r1
+    1c5e:	11 f4       	brne	.+4      	; 0x1c64 <digitalWrite+0x50>
+    1c60:	28 2b       	or	r18, r24
+    1c62:	02 c0       	rjmp	.+4      	; 0x1c68 <digitalWrite+0x54>
+    1c64:	20 95       	com	r18
+    1c66:	28 23       	and	r18, r24
+    1c68:	28 b9       	out	0x08, r18	; 8
+    1c6a:	08 95       	ret
+
+00001c6c <ssd1306_send_buffer_generic>:
+    1c6c:	0f 93       	push	r16
+    1c6e:	1f 93       	push	r17
+    1c70:	cf 93       	push	r28
+    1c72:	df 93       	push	r29
+    1c74:	ec 01       	movw	r28, r24
+    1c76:	8c 01       	movw	r16, r24
+    1c78:	06 0f       	add	r16, r22
+    1c7a:	17 1f       	adc	r17, r23
+    1c7c:	c0 17       	cp	r28, r16
+    1c7e:	d1 07       	cpc	r29, r17
+    1c80:	39 f0       	breq	.+14     	; 0x1c90 <ssd1306_send_buffer_generic+0x24>
+    1c82:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1c86:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1c8a:	89 91       	ld	r24, Y+
+    1c8c:	09 95       	icall
+    1c8e:	f6 cf       	rjmp	.-20     	; 0x1c7c <ssd1306_send_buffer_generic+0x10>
+    1c90:	df 91       	pop	r29
+    1c92:	cf 91       	pop	r28
+    1c94:	1f 91       	pop	r17
+    1c96:	0f 91       	pop	r16
+    1c98:	08 95       	ret
+
+00001c9a <ssd1306_commandStart>:
+    1c9a:	e0 91 0d 01 	lds	r30, 0x010D	; 0x80010d <ssd1306_intf+0x1>
+    1c9e:	f0 91 0e 01 	lds	r31, 0x010E	; 0x80010e <ssd1306_intf+0x2>
+    1ca2:	09 95       	icall
+    1ca4:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <ssd1306_intf>
+    1ca8:	88 23       	and	r24, r24
+    1caa:	19 f0       	breq	.+6      	; 0x1cb2 <ssd1306_commandStart+0x18>
+    1cac:	80 e0       	ldi	r24, 0x00	; 0
+    1cae:	0c 94 e0 11 	jmp	0x23c0	; 0x23c0 <ssd1306_spiDataMode>
+    1cb2:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1cb6:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1cba:	80 e0       	ldi	r24, 0x00	; 0
+    1cbc:	09 94       	ijmp
+
+00001cbe <ssd1306_sendCommand>:
+    1cbe:	1f 93       	push	r17
+    1cc0:	cf 93       	push	r28
+    1cc2:	df 93       	push	r29
+    1cc4:	18 2f       	mov	r17, r24
+    1cc6:	0e 94 4d 0e 	call	0x1c9a	; 0x1c9a <ssd1306_commandStart>
+    1cca:	cc e0       	ldi	r28, 0x0C	; 12
+    1ccc:	d1 e0       	ldi	r29, 0x01	; 1
+    1cce:	ed 81       	ldd	r30, Y+5	; 0x05
+    1cd0:	fe 81       	ldd	r31, Y+6	; 0x06
+    1cd2:	81 2f       	mov	r24, r17
+    1cd4:	09 95       	icall
+    1cd6:	eb 81       	ldd	r30, Y+3	; 0x03
+    1cd8:	fc 81       	ldd	r31, Y+4	; 0x04
+    1cda:	df 91       	pop	r29
+    1cdc:	cf 91       	pop	r28
+    1cde:	1f 91       	pop	r17
+    1ce0:	09 94       	ijmp
+
+00001ce2 <ssd1306_nextPage>:
+    1ce2:	08 95       	ret
+
+00001ce4 <ssd1306_setMode_int>:
+    1ce4:	08 95       	ret
+
+00001ce6 <ssd1306_setBlock>:
+    1ce6:	0f 93       	push	r16
+    1ce8:	1f 93       	push	r17
+    1cea:	cf 93       	push	r28
+    1cec:	df 93       	push	r29
+    1cee:	c8 2f       	mov	r28, r24
+    1cf0:	d6 2f       	mov	r29, r22
+    1cf2:	8a 01       	movw	r16, r20
+    1cf4:	e0 91 0d 01 	lds	r30, 0x010D	; 0x80010d <ssd1306_intf+0x1>
+    1cf8:	f0 91 0e 01 	lds	r31, 0x010E	; 0x80010e <ssd1306_intf+0x2>
+    1cfc:	09 95       	icall
+    1cfe:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <ssd1306_intf>
+    1d02:	88 23       	and	r24, r24
+    1d04:	21 f0       	breq	.+8      	; 0x1d0e <ssd1306_setBlock+0x28>
+    1d06:	80 e0       	ldi	r24, 0x00	; 0
+    1d08:	0e 94 e0 11 	call	0x23c0	; 0x23c0 <ssd1306_spiDataMode>
+    1d0c:	06 c0       	rjmp	.+12     	; 0x1d1a <ssd1306_setBlock+0x34>
+    1d0e:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1d12:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1d16:	80 e0       	ldi	r24, 0x00	; 0
+    1d18:	09 95       	icall
+    1d1a:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1d1e:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1d22:	81 e2       	ldi	r24, 0x21	; 33
+    1d24:	09 95       	icall
+    1d26:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1d2a:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1d2e:	8c 2f       	mov	r24, r28
+    1d30:	09 95       	icall
+    1d32:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1d36:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1d3a:	01 15       	cp	r16, r1
+    1d3c:	11 05       	cpc	r17, r1
+    1d3e:	21 f0       	breq	.+8      	; 0x1d48 <ssd1306_setBlock+0x62>
+    1d40:	8f ef       	ldi	r24, 0xFF	; 255
+    1d42:	80 0f       	add	r24, r16
+    1d44:	8c 0f       	add	r24, r28
+    1d46:	03 c0       	rjmp	.+6      	; 0x1d4e <ssd1306_setBlock+0x68>
+    1d48:	80 91 9e 01 	lds	r24, 0x019E	; 0x80019e <ssd1306_lcd+0x2>
+    1d4c:	81 50       	subi	r24, 0x01	; 1
+    1d4e:	09 95       	icall
+    1d50:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1d54:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1d58:	82 e2       	ldi	r24, 0x22	; 34
+    1d5a:	09 95       	icall
+    1d5c:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1d60:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1d64:	8d 2f       	mov	r24, r29
+    1d66:	09 95       	icall
+    1d68:	80 91 a0 01 	lds	r24, 0x01A0	; 0x8001a0 <ssd1306_lcd+0x4>
+    1d6c:	90 91 a1 01 	lds	r25, 0x01A1	; 0x8001a1 <ssd1306_lcd+0x5>
+    1d70:	23 e0       	ldi	r18, 0x03	; 3
+    1d72:	96 95       	lsr	r25
+    1d74:	87 95       	ror	r24
+    1d76:	2a 95       	dec	r18
+    1d78:	e1 f7       	brne	.-8      	; 0x1d72 <ssd1306_setBlock+0x8c>
+    1d7a:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1d7e:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1d82:	81 50       	subi	r24, 0x01	; 1
+    1d84:	09 95       	icall
+    1d86:	80 91 0c 01 	lds	r24, 0x010C	; 0x80010c <ssd1306_intf>
+    1d8a:	88 23       	and	r24, r24
+    1d8c:	39 f0       	breq	.+14     	; 0x1d9c <ssd1306_setBlock+0xb6>
+    1d8e:	81 e0       	ldi	r24, 0x01	; 1
+    1d90:	df 91       	pop	r29
+    1d92:	cf 91       	pop	r28
+    1d94:	1f 91       	pop	r17
+    1d96:	0f 91       	pop	r16
+    1d98:	0c 94 e0 11 	jmp	0x23c0	; 0x23c0 <ssd1306_spiDataMode>
+    1d9c:	e0 91 0f 01 	lds	r30, 0x010F	; 0x80010f <ssd1306_intf+0x3>
+    1da0:	f0 91 10 01 	lds	r31, 0x0110	; 0x800110 <ssd1306_intf+0x4>
+    1da4:	09 95       	icall
+    1da6:	e0 91 0d 01 	lds	r30, 0x010D	; 0x80010d <ssd1306_intf+0x1>
+    1daa:	f0 91 0e 01 	lds	r31, 0x010E	; 0x80010e <ssd1306_intf+0x2>
+    1dae:	09 95       	icall
+    1db0:	e0 91 11 01 	lds	r30, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1db4:	f0 91 12 01 	lds	r31, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1db8:	80 e4       	ldi	r24, 0x40	; 64
+    1dba:	df 91       	pop	r29
+    1dbc:	cf 91       	pop	r28
+    1dbe:	1f 91       	pop	r17
+    1dc0:	0f 91       	pop	r16
+    1dc2:	09 94       	ijmp
+
+00001dc4 <ssd1306_invertMode>:
+    1dc4:	87 ea       	ldi	r24, 0xA7	; 167
+    1dc6:	0c 94 5f 0e 	jmp	0x1cbe	; 0x1cbe <ssd1306_sendCommand>
+
+00001dca <ssd1306_normalMode>:
+    1dca:	86 ea       	ldi	r24, 0xA6	; 166
+    1dcc:	0c 94 5f 0e 	jmp	0x1cbe	; 0x1cbe <ssd1306_sendCommand>
+
+00001dd0 <ssd1306_128x64_init>:
+    1dd0:	cf 93       	push	r28
+    1dd2:	df 93       	push	r29
+    1dd4:	10 92 9d 01 	sts	0x019D, r1	; 0x80019d <ssd1306_lcd+0x1>
+    1dd8:	10 92 9c 01 	sts	0x019C, r1	; 0x80019c <ssd1306_lcd>
+    1ddc:	80 e4       	ldi	r24, 0x40	; 64
+    1dde:	90 e0       	ldi	r25, 0x00	; 0
+    1de0:	90 93 a1 01 	sts	0x01A1, r25	; 0x8001a1 <ssd1306_lcd+0x5>
+    1de4:	80 93 a0 01 	sts	0x01A0, r24	; 0x8001a0 <ssd1306_lcd+0x4>
+    1de8:	80 e8       	ldi	r24, 0x80	; 128
+    1dea:	90 e0       	ldi	r25, 0x00	; 0
+    1dec:	90 93 9f 01 	sts	0x019F, r25	; 0x80019f <ssd1306_lcd+0x3>
+    1df0:	80 93 9e 01 	sts	0x019E, r24	; 0x80019e <ssd1306_lcd+0x2>
+    1df4:	83 e7       	ldi	r24, 0x73	; 115
+    1df6:	9e e0       	ldi	r25, 0x0E	; 14
+    1df8:	90 93 a3 01 	sts	0x01A3, r25	; 0x8001a3 <ssd1306_lcd+0x7>
+    1dfc:	80 93 a2 01 	sts	0x01A2, r24	; 0x8001a2 <ssd1306_lcd+0x6>
+    1e00:	81 e7       	ldi	r24, 0x71	; 113
+    1e02:	9e e0       	ldi	r25, 0x0E	; 14
+    1e04:	90 93 a5 01 	sts	0x01A5, r25	; 0x8001a5 <ssd1306_lcd+0x9>
+    1e08:	80 93 a4 01 	sts	0x01A4, r24	; 0x8001a4 <ssd1306_lcd+0x8>
+    1e0c:	80 91 11 01 	lds	r24, 0x0111	; 0x800111 <ssd1306_intf+0x5>
+    1e10:	90 91 12 01 	lds	r25, 0x0112	; 0x800112 <ssd1306_intf+0x6>
+    1e14:	90 93 a7 01 	sts	0x01A7, r25	; 0x8001a7 <ssd1306_lcd+0xb>
+    1e18:	80 93 a6 01 	sts	0x01A6, r24	; 0x8001a6 <ssd1306_lcd+0xa>
+    1e1c:	80 91 13 01 	lds	r24, 0x0113	; 0x800113 <ssd1306_intf+0x7>
+    1e20:	90 91 14 01 	lds	r25, 0x0114	; 0x800114 <ssd1306_intf+0x8>
+    1e24:	90 93 a9 01 	sts	0x01A9, r25	; 0x8001a9 <ssd1306_lcd+0xd>
+    1e28:	80 93 a8 01 	sts	0x01A8, r24	; 0x8001a8 <ssd1306_lcd+0xc>
+    1e2c:	82 e7       	ldi	r24, 0x72	; 114
+    1e2e:	9e e0       	ldi	r25, 0x0E	; 14
+    1e30:	90 93 af 01 	sts	0x01AF, r25	; 0x8001af <ssd1306_lcd+0x13>
+    1e34:	80 93 ae 01 	sts	0x01AE, r24	; 0x8001ae <ssd1306_lcd+0x12>
+    1e38:	c5 eb       	ldi	r28, 0xB5	; 181
+    1e3a:	d6 e0       	ldi	r29, 0x06	; 6
+    1e3c:	fe 01       	movw	r30, r28
+    1e3e:	84 91       	lpm	r24, Z
+    1e40:	0e 94 5f 0e 	call	0x1cbe	; 0x1cbe <ssd1306_sendCommand>
+    1e44:	21 96       	adiw	r28, 0x01	; 1
+    1e46:	f6 e0       	ldi	r31, 0x06	; 6
+    1e48:	ce 3c       	cpi	r28, 0xCE	; 206
+    1e4a:	df 07       	cpc	r29, r31
+    1e4c:	b9 f7       	brne	.-18     	; 0x1e3c <ssd1306_128x64_init+0x6c>
+    1e4e:	df 91       	pop	r29
+    1e50:	cf 91       	pop	r28
+    1e52:	08 95       	ret
+
+00001e54 <ssd1306_128x64_i2c_init>:
+    1e54:	0e 94 4a 11 	call	0x2294	; 0x2294 <ssd1306_i2cInit>
+    1e58:	0c 94 e8 0e 	jmp	0x1dd0	; 0x1dd0 <ssd1306_128x64_init>
+
+00001e5c <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)>:
+    1e5c:	cf 92       	push	r12
+    1e5e:	df 92       	push	r13
+    1e60:	ef 92       	push	r14
+    1e62:	ff 92       	push	r15
+    1e64:	0f 93       	push	r16
+    1e66:	1f 93       	push	r17
+    1e68:	cf 93       	push	r28
+    1e6a:	df 93       	push	r29
+    1e6c:	dc 01       	movw	r26, r24
+    1e6e:	62 17       	cp	r22, r18
+    1e70:	20 f4       	brcc	.+8      	; 0x1e7a <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x1e>
+    1e72:	8c 91       	ld	r24, X
+    1e74:	68 17       	cp	r22, r24
+    1e76:	08 f0       	brcs	.+2      	; 0x1e7a <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x1e>
+    1e78:	88 c0       	rjmp	.+272    	; 0x1f8a <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x12e>
+    1e7a:	12 96       	adiw	r26, 0x02	; 2
+    1e7c:	8c 91       	ld	r24, X
+    1e7e:	12 97       	sbiw	r26, 0x02	; 2
+    1e80:	40 17       	cp	r20, r16
+    1e82:	18 f4       	brcc	.+6      	; 0x1e8a <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x2e>
+    1e84:	48 17       	cp	r20, r24
+    1e86:	08 f0       	brcs	.+2      	; 0x1e8a <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x2e>
+    1e88:	80 c0       	rjmp	.+256    	; 0x1f8a <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x12e>
+    1e8a:	26 17       	cp	r18, r22
+    1e8c:	08 f4       	brcc	.+2      	; 0x1e90 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x34>
+    1e8e:	60 e0       	ldi	r22, 0x00	; 0
+    1e90:	04 17       	cp	r16, r20
+    1e92:	08 f4       	brcc	.+2      	; 0x1e96 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x3a>
+    1e94:	40 e0       	ldi	r20, 0x00	; 0
+    1e96:	9c 91       	ld	r25, X
+    1e98:	29 17       	cp	r18, r25
+    1e9a:	10 f0       	brcs	.+4      	; 0x1ea0 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x44>
+    1e9c:	2f ef       	ldi	r18, 0xFF	; 255
+    1e9e:	29 0f       	add	r18, r25
+    1ea0:	08 17       	cp	r16, r24
+    1ea2:	10 f0       	brcs	.+4      	; 0x1ea8 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x4c>
+    1ea4:	0f ef       	ldi	r16, 0xFF	; 255
+    1ea6:	08 0f       	add	r16, r24
+    1ea8:	13 96       	adiw	r26, 0x03	; 3
+    1eaa:	fc 90       	ld	r15, X
+    1eac:	13 97       	sbiw	r26, 0x03	; 3
+    1eae:	e4 2f       	mov	r30, r20
+    1eb0:	f0 e0       	ldi	r31, 0x00	; 0
+    1eb2:	83 e0       	ldi	r24, 0x03	; 3
+    1eb4:	f5 95       	asr	r31
+    1eb6:	e7 95       	ror	r30
+    1eb8:	8a 95       	dec	r24
+    1eba:	e1 f7       	brne	.-8      	; 0x1eb4 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x58>
+    1ebc:	7e 2f       	mov	r23, r30
+    1ebe:	c0 2f       	mov	r28, r16
+    1ec0:	d0 e0       	ldi	r29, 0x00	; 0
+    1ec2:	30 2f       	mov	r19, r16
+    1ec4:	36 95       	lsr	r19
+    1ec6:	36 95       	lsr	r19
+    1ec8:	36 95       	lsr	r19
+    1eca:	47 70       	andi	r20, 0x07	; 7
+    1ecc:	84 2f       	mov	r24, r20
+    1ece:	90 e0       	ldi	r25, 0x00	; 0
+    1ed0:	07 96       	adiw	r24, 0x07	; 7
+    1ed2:	07 70       	andi	r16, 0x07	; 7
+    1ed4:	6c 01       	movw	r12, r24
+    1ed6:	c0 1a       	sub	r12, r16
+    1ed8:	d1 08       	sbc	r13, r1
+    1eda:	86 01       	movw	r16, r12
+    1edc:	8f ef       	ldi	r24, 0xFF	; 255
+    1ede:	90 e0       	ldi	r25, 0x00	; 0
+    1ee0:	6c 01       	movw	r12, r24
+    1ee2:	02 c0       	rjmp	.+4      	; 0x1ee8 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x8c>
+    1ee4:	d5 94       	asr	r13
+    1ee6:	c7 94       	ror	r12
+    1ee8:	0a 95       	dec	r16
+    1eea:	e2 f7       	brpl	.-8      	; 0x1ee4 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x88>
+    1eec:	fc 2d       	mov	r31, r12
+    1eee:	04 2e       	mov	r0, r20
+    1ef0:	01 c0       	rjmp	.+2      	; 0x1ef4 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x98>
+    1ef2:	ff 0f       	add	r31, r31
+    1ef4:	0a 94       	dec	r0
+    1ef6:	ea f7       	brpl	.-6      	; 0x1ef2 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x96>
+    1ef8:	18 2f       	mov	r17, r24
+    1efa:	01 c0       	rjmp	.+2      	; 0x1efe <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xa2>
+    1efc:	11 0f       	add	r17, r17
+    1efe:	4a 95       	dec	r20
+    1f00:	ea f7       	brpl	.-6      	; 0x1efc <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xa0>
+    1f02:	ae 01       	movw	r20, r28
+    1f04:	40 95       	com	r20
+    1f06:	50 95       	com	r21
+    1f08:	47 70       	andi	r20, 0x07	; 7
+    1f0a:	55 27       	eor	r21, r21
+    1f0c:	02 c0       	rjmp	.+4      	; 0x1f12 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xb6>
+    1f0e:	95 95       	asr	r25
+    1f10:	87 95       	ror	r24
+    1f12:	4a 95       	dec	r20
+    1f14:	e2 f7       	brpl	.-8      	; 0x1f0e <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xb2>
+    1f16:	ef 24       	eor	r14, r15
+    1f18:	3e 17       	cp	r19, r30
+    1f1a:	b8 f1       	brcs	.+110    	; 0x1f8a <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x12e>
+    1f1c:	73 17       	cp	r23, r19
+    1f1e:	31 f0       	breq	.+12     	; 0x1f2c <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xd0>
+    1f20:	e7 17       	cp	r30, r23
+    1f22:	31 f0       	breq	.+12     	; 0x1f30 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xd4>
+    1f24:	e3 17       	cp	r30, r19
+    1f26:	31 f0       	breq	.+12     	; 0x1f34 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xd8>
+    1f28:	9f ef       	ldi	r25, 0xFF	; 255
+    1f2a:	05 c0       	rjmp	.+10     	; 0x1f36 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xda>
+    1f2c:	9f 2f       	mov	r25, r31
+    1f2e:	03 c0       	rjmp	.+6      	; 0x1f36 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xda>
+    1f30:	91 2f       	mov	r25, r17
+    1f32:	01 c0       	rjmp	.+2      	; 0x1f36 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xda>
+    1f34:	98 2f       	mov	r25, r24
+    1f36:	06 2f       	mov	r16, r22
+    1f38:	f9 2e       	mov	r15, r25
+    1f3a:	f0 94       	com	r15
+    1f3c:	9e 21       	and	r25, r14
+    1f3e:	20 17       	cp	r18, r16
+    1f40:	10 f1       	brcs	.+68     	; 0x1f86 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0x12a>
+    1f42:	cc 91       	ld	r28, X
+    1f44:	40 2f       	mov	r20, r16
+    1f46:	50 e0       	ldi	r21, 0x00	; 0
+    1f48:	6a 01       	movw	r12, r20
+    1f4a:	ec 9f       	mul	r30, r28
+    1f4c:	c0 0c       	add	r12, r0
+    1f4e:	d1 1c       	adc	r13, r1
+    1f50:	11 24       	eor	r1, r1
+    1f52:	e6 01       	movw	r28, r12
+    1f54:	14 96       	adiw	r26, 0x04	; 4
+    1f56:	cd 90       	ld	r12, X+
+    1f58:	dc 90       	ld	r13, X
+    1f5a:	15 97       	sbiw	r26, 0x05	; 5
+    1f5c:	cc 0d       	add	r28, r12
+    1f5e:	dd 1d       	adc	r29, r13
+    1f60:	d8 80       	ld	r13, Y
+    1f62:	df 20       	and	r13, r15
+    1f64:	d8 82       	st	Y, r13
+    1f66:	cc 91       	ld	r28, X
+    1f68:	ec 9f       	mul	r30, r28
+    1f6a:	40 0d       	add	r20, r0
+    1f6c:	51 1d       	adc	r21, r1
+    1f6e:	11 24       	eor	r1, r1
+    1f70:	14 96       	adiw	r26, 0x04	; 4
+    1f72:	cd 91       	ld	r28, X+
+    1f74:	dc 91       	ld	r29, X
+    1f76:	15 97       	sbiw	r26, 0x05	; 5
+    1f78:	c4 0f       	add	r28, r20
+    1f7a:	d5 1f       	adc	r29, r21
+    1f7c:	58 81       	ld	r21, Y
+    1f7e:	59 2b       	or	r21, r25
+    1f80:	58 83       	st	Y, r21
+    1f82:	0f 5f       	subi	r16, 0xFF	; 255
+    1f84:	dc cf       	rjmp	.-72     	; 0x1f3e <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xe2>
+    1f86:	ef 5f       	subi	r30, 0xFF	; 255
+    1f88:	c7 cf       	rjmp	.-114    	; 0x1f18 <NanoCanvas::fillRect(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char)+0xbc>
+    1f8a:	df 91       	pop	r29
+    1f8c:	cf 91       	pop	r28
+    1f8e:	1f 91       	pop	r17
+    1f90:	0f 91       	pop	r16
+    1f92:	ff 90       	pop	r15
+    1f94:	ef 90       	pop	r14
+    1f96:	df 90       	pop	r13
+    1f98:	cf 90       	pop	r12
+    1f9a:	08 95       	ret
+
+00001f9c <NanoCanvas::clear()>:
+    1f9c:	fc 01       	movw	r30, r24
+    1f9e:	22 81       	ldd	r18, Z+2	; 0x02
+    1fa0:	30 e0       	ldi	r19, 0x00	; 0
+    1fa2:	83 e0       	ldi	r24, 0x03	; 3
+    1fa4:	35 95       	asr	r19
+    1fa6:	27 95       	ror	r18
+    1fa8:	8a 95       	dec	r24
+    1faa:	e1 f7       	brne	.-8      	; 0x1fa4 <NanoCanvas::clear()+0x8>
+    1fac:	80 81       	ld	r24, Z
+    1fae:	82 9f       	mul	r24, r18
+    1fb0:	a0 01       	movw	r20, r0
+    1fb2:	83 9f       	mul	r24, r19
+    1fb4:	50 0d       	add	r21, r0
+    1fb6:	11 24       	eor	r1, r1
+    1fb8:	63 81       	ldd	r22, Z+3	; 0x03
+    1fba:	70 e0       	ldi	r23, 0x00	; 0
+    1fbc:	84 81       	ldd	r24, Z+4	; 0x04
+    1fbe:	95 81       	ldd	r25, Z+5	; 0x05
+    1fc0:	0c 94 04 12 	jmp	0x2408	; 0x2408 <memset>
+
+00001fc4 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)>:
+    1fc4:	2f 92       	push	r2
+    1fc6:	3f 92       	push	r3
+    1fc8:	4f 92       	push	r4
+    1fca:	5f 92       	push	r5
+    1fcc:	6f 92       	push	r6
+    1fce:	7f 92       	push	r7
+    1fd0:	8f 92       	push	r8
+    1fd2:	9f 92       	push	r9
+    1fd4:	af 92       	push	r10
+    1fd6:	bf 92       	push	r11
+    1fd8:	cf 92       	push	r12
+    1fda:	df 92       	push	r13
+    1fdc:	ef 92       	push	r14
+    1fde:	ff 92       	push	r15
+    1fe0:	0f 93       	push	r16
+    1fe2:	1f 93       	push	r17
+    1fe4:	cf 93       	push	r28
+    1fe6:	df 93       	push	r29
+    1fe8:	cd b7       	in	r28, 0x3d	; 61
+    1fea:	de b7       	in	r29, 0x3e	; 62
+    1fec:	2a 97       	sbiw	r28, 0x0a	; 10
+    1fee:	0f b6       	in	r0, 0x3f	; 63
+    1ff0:	f8 94       	cli
+    1ff2:	de bf       	out	0x3e, r29	; 62
+    1ff4:	0f be       	out	0x3f, r0	; 63
+    1ff6:	cd bf       	out	0x3d, r28	; 61
+    1ff8:	dc 01       	movw	r26, r24
+    1ffa:	49 01       	movw	r8, r18
+    1ffc:	28 01       	movw	r4, r16
+    1ffe:	12 96       	adiw	r26, 0x02	; 2
+    2000:	8c 91       	ld	r24, X
+    2002:	12 97       	sbiw	r26, 0x02	; 2
+    2004:	48 17       	cp	r20, r24
+    2006:	08 f0       	brcs	.+2      	; 0x200a <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x46>
+    2008:	1a c1       	rjmp	.+564    	; 0x223e <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x27a>
+    200a:	28 e0       	ldi	r18, 0x08	; 8
+    200c:	30 e0       	ldi	r19, 0x00	; 0
+    200e:	84 2f       	mov	r24, r20
+    2010:	87 70       	andi	r24, 0x07	; 7
+    2012:	28 1b       	sub	r18, r24
+    2014:	31 09       	sbc	r19, r1
+    2016:	ef ef       	ldi	r30, 0xFF	; 255
+    2018:	f0 e0       	ldi	r31, 0x00	; 0
+    201a:	8f 01       	movw	r16, r30
+    201c:	02 c0       	rjmp	.+4      	; 0x2022 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x5e>
+    201e:	15 95       	asr	r17
+    2020:	07 95       	ror	r16
+    2022:	2a 95       	dec	r18
+    2024:	e2 f7       	brpl	.-8      	; 0x201e <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x5a>
+    2026:	09 83       	std	Y+1, r16	; 0x01
+    2028:	ae 2e       	mov	r10, r30
+    202a:	01 c0       	rjmp	.+2      	; 0x202e <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x6a>
+    202c:	aa 0c       	add	r10, r10
+    202e:	8a 95       	dec	r24
+    2030:	ea f7       	brpl	.-6      	; 0x202c <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x68>
+    2032:	96 2f       	mov	r25, r22
+    2034:	70 e0       	ldi	r23, 0x00	; 0
+    2036:	b1 2c       	mov	r11, r1
+    2038:	80 e0       	ldi	r24, 0x00	; 0
+    203a:	e0 91 8f 01 	lds	r30, 0x018F	; 0x80018f <s_fixedFont+0x1>
+    203e:	ee 2e       	mov	r14, r30
+    2040:	f1 2c       	mov	r15, r1
+    2042:	29 2f       	mov	r18, r25
+    2044:	30 e0       	ldi	r19, 0x00	; 0
+    2046:	3b 83       	std	Y+3, r19	; 0x03
+    2048:	2a 83       	std	Y+2, r18	; 0x02
+    204a:	2c 91       	ld	r18, X
+    204c:	30 e0       	ldi	r19, 0x00	; 0
+    204e:	2e 19       	sub	r18, r14
+    2050:	3f 09       	sbc	r19, r15
+    2052:	ea 81       	ldd	r30, Y+2	; 0x02
+    2054:	fb 81       	ldd	r31, Y+3	; 0x03
+    2056:	2e 17       	cp	r18, r30
+    2058:	3f 07       	cpc	r19, r31
+    205a:	3c f0       	brlt	.+14     	; 0x206a <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0xa6>
+    205c:	84 01       	movw	r16, r8
+    205e:	08 0f       	add	r16, r24
+    2060:	11 1d       	adc	r17, r1
+    2062:	f8 01       	movw	r30, r16
+    2064:	20 81       	ld	r18, Z
+    2066:	21 11       	cpse	r18, r1
+    2068:	20 c0       	rjmp	.+64     	; 0x20aa <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0xe6>
+    206a:	48 5f       	subi	r20, 0xF8	; 248
+    206c:	12 96       	adiw	r26, 0x02	; 2
+    206e:	2c 91       	ld	r18, X
+    2070:	12 97       	sbiw	r26, 0x02	; 2
+    2072:	30 e0       	ldi	r19, 0x00	; 0
+    2074:	27 50       	subi	r18, 0x07	; 7
+    2076:	31 09       	sbc	r19, r1
+    2078:	04 2f       	mov	r16, r20
+    207a:	10 e0       	ldi	r17, 0x00	; 0
+    207c:	02 17       	cp	r16, r18
+    207e:	13 07       	cpc	r17, r19
+    2080:	0c f0       	brlt	.+2      	; 0x2084 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0xc0>
+    2082:	dd c0       	rjmp	.+442    	; 0x223e <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x27a>
+    2084:	7f 5f       	subi	r23, 0xFF	; 255
+    2086:	90 91 93 01 	lds	r25, 0x0193	; 0x800193 <s_fixedFont+0x5>
+    208a:	79 13       	cpse	r23, r25
+    208c:	0c c0       	rjmp	.+24     	; 0x20a6 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0xe2>
+    208e:	84 01       	movw	r16, r8
+    2090:	08 0f       	add	r16, r24
+    2092:	11 1d       	adc	r17, r1
+    2094:	f8 01       	movw	r30, r16
+    2096:	90 81       	ld	r25, Z
+    2098:	99 23       	and	r25, r25
+    209a:	09 f4       	brne	.+2      	; 0x209e <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0xda>
+    209c:	d0 c0       	rjmp	.+416    	; 0x223e <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x27a>
+    209e:	96 2f       	mov	r25, r22
+    20a0:	b8 2e       	mov	r11, r24
+    20a2:	70 e0       	ldi	r23, 0x00	; 0
+    20a4:	02 c0       	rjmp	.+4      	; 0x20aa <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0xe6>
+    20a6:	96 2f       	mov	r25, r22
+    20a8:	8b 2d       	mov	r24, r11
+    20aa:	84 01       	movw	r16, r8
+    20ac:	08 0f       	add	r16, r24
+    20ae:	11 1d       	adc	r17, r1
+    20b0:	f8 01       	movw	r30, r16
+    20b2:	50 81       	ld	r21, Z
+    20b4:	50 52       	subi	r21, 0x20	; 32
+    20b6:	51 3e       	cpi	r21, 0xE1	; 225
+    20b8:	08 f0       	brcs	.+2      	; 0x20bc <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0xf8>
+    20ba:	50 e0       	ldi	r21, 0x00	; 0
+    20bc:	f0 91 93 01 	lds	r31, 0x0193	; 0x800193 <s_fixedFont+0x5>
+    20c0:	27 2f       	mov	r18, r23
+    20c2:	30 e0       	ldi	r19, 0x00	; 0
+    20c4:	5f 9f       	mul	r21, r31
+    20c6:	20 0d       	add	r18, r0
+    20c8:	31 1d       	adc	r19, r1
+    20ca:	11 24       	eor	r1, r1
+    20cc:	2e 9d       	mul	r18, r14
+    20ce:	80 01       	movw	r16, r0
+    20d0:	2f 9d       	mul	r18, r15
+    20d2:	10 0d       	add	r17, r0
+    20d4:	3e 9d       	mul	r19, r14
+    20d6:	10 0d       	add	r17, r0
+    20d8:	11 24       	eor	r1, r1
+    20da:	24 2f       	mov	r18, r20
+    20dc:	30 e0       	ldi	r19, 0x00	; 0
+    20de:	39 01       	movw	r6, r18
+    20e0:	53 e0       	ldi	r21, 0x03	; 3
+    20e2:	75 94       	asr	r7
+    20e4:	67 94       	ror	r6
+    20e6:	5a 95       	dec	r21
+    20e8:	e1 f7       	brne	.-8      	; 0x20e2 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x11e>
+    20ea:	13 01       	movw	r2, r6
+    20ec:	ff ef       	ldi	r31, 0xFF	; 255
+    20ee:	2f 1a       	sub	r2, r31
+    20f0:	3f 0a       	sbc	r3, r31
+    20f2:	59 2f       	mov	r21, r25
+    20f4:	d1 2c       	mov	r13, r1
+    20f6:	e4 2f       	mov	r30, r20
+    20f8:	e7 70       	andi	r30, 0x07	; 7
+    20fa:	ce 2e       	mov	r12, r30
+    20fc:	f9 01       	movw	r30, r18
+    20fe:	38 96       	adiw	r30, 0x08	; 8
+    2100:	fb 83       	std	Y+3, r31	; 0x03
+    2102:	ea 83       	std	Y+2, r30	; 0x02
+    2104:	28 e0       	ldi	r18, 0x08	; 8
+    2106:	30 e0       	ldi	r19, 0x00	; 0
+    2108:	2c 19       	sub	r18, r12
+    210a:	31 09       	sbc	r19, r1
+    210c:	3d 83       	std	Y+5, r19	; 0x05
+    210e:	2c 83       	std	Y+4, r18	; 0x04
+    2110:	30 91 8f 01 	lds	r19, 0x018F	; 0x80018f <s_fixedFont+0x1>
+    2114:	25 2f       	mov	r18, r21
+    2116:	29 1b       	sub	r18, r25
+    2118:	23 17       	cp	r18, r19
+    211a:	08 f0       	brcs	.+2      	; 0x211e <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x15a>
+    211c:	8d c0       	rjmp	.+282    	; 0x2238 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x274>
+    211e:	e0 91 95 01 	lds	r30, 0x0195	; 0x800195 <s_fixedFont+0x7>
+    2122:	f0 91 96 01 	lds	r31, 0x0196	; 0x800196 <s_fixedFont+0x8>
+    2126:	41 14       	cp	r4, r1
+    2128:	51 04       	cpc	r5, r1
+    212a:	29 f4       	brne	.+10     	; 0x2136 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x172>
+    212c:	e0 0f       	add	r30, r16
+    212e:	f1 1f       	adc	r31, r17
+    2130:	34 91       	lpm	r19, Z
+    2132:	38 87       	std	Y+8, r19	; 0x08
+    2134:	16 c0       	rjmp	.+44     	; 0x2162 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x19e>
+    2136:	21 e0       	ldi	r18, 0x01	; 1
+    2138:	42 16       	cp	r4, r18
+    213a:	51 04       	cpc	r5, r1
+    213c:	31 f4       	brne	.+12     	; 0x214a <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x186>
+    213e:	e0 0f       	add	r30, r16
+    2140:	f1 1f       	adc	r31, r17
+    2142:	24 91       	lpm	r18, Z
+    2144:	d2 2a       	or	r13, r18
+    2146:	d8 86       	std	Y+8, r13	; 0x08
+    2148:	0b c0       	rjmp	.+22     	; 0x2160 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x19c>
+    214a:	98 01       	movw	r18, r16
+    214c:	2f 5f       	subi	r18, 0xFF	; 255
+    214e:	3f 4f       	sbci	r19, 0xFF	; 255
+    2150:	e2 0f       	add	r30, r18
+    2152:	f3 1f       	adc	r31, r19
+    2154:	24 91       	lpm	r18, Z
+    2156:	e2 2f       	mov	r30, r18
+    2158:	e0 7f       	andi	r30, 0xF0	; 240
+    215a:	ed 29       	or	r30, r13
+    215c:	e8 87       	std	Y+8, r30	; 0x08
+    215e:	2f 70       	andi	r18, 0x0F	; 15
+    2160:	d2 2e       	mov	r13, r18
+    2162:	e5 2e       	mov	r14, r21
+    2164:	f1 2c       	mov	r15, r1
+    2166:	fc 91       	ld	r31, X
+    2168:	f6 9d       	mul	r31, r6
+    216a:	90 01       	movw	r18, r0
+    216c:	f7 9d       	mul	r31, r7
+    216e:	30 0d       	add	r19, r0
+    2170:	11 24       	eor	r1, r1
+    2172:	2e 0d       	add	r18, r14
+    2174:	3f 1d       	adc	r19, r15
+    2176:	14 96       	adiw	r26, 0x04	; 4
+    2178:	ed 91       	ld	r30, X+
+    217a:	fc 91       	ld	r31, X
+    217c:	15 97       	sbiw	r26, 0x05	; 5
+    217e:	e2 0f       	add	r30, r18
+    2180:	f3 1f       	adc	r31, r19
+    2182:	20 81       	ld	r18, Z
+    2184:	39 81       	ldd	r19, Y+1	; 0x01
+    2186:	23 23       	and	r18, r19
+    2188:	20 83       	st	Z, r18
+    218a:	2c 91       	ld	r18, X
+    218c:	26 9d       	mul	r18, r6
+    218e:	f0 01       	movw	r30, r0
+    2190:	27 9d       	mul	r18, r7
+    2192:	f0 0d       	add	r31, r0
+    2194:	11 24       	eor	r1, r1
+    2196:	ee 0d       	add	r30, r14
+    2198:	ff 1d       	adc	r31, r15
+    219a:	14 96       	adiw	r26, 0x04	; 4
+    219c:	2d 91       	ld	r18, X+
+    219e:	3c 91       	ld	r19, X
+    21a0:	15 97       	sbiw	r26, 0x05	; 5
+    21a2:	e2 0f       	add	r30, r18
+    21a4:	f3 1f       	adc	r31, r19
+    21a6:	38 85       	ldd	r19, Y+8	; 0x08
+    21a8:	23 2f       	mov	r18, r19
+    21aa:	30 e0       	ldi	r19, 0x00	; 0
+    21ac:	3a 87       	std	Y+10, r19	; 0x0a
+    21ae:	29 87       	std	Y+9, r18	; 0x09
+    21b0:	0c 2c       	mov	r0, r12
+    21b2:	01 c0       	rjmp	.+2      	; 0x21b6 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x1f2>
+    21b4:	22 0f       	add	r18, r18
+    21b6:	0a 94       	dec	r0
+    21b8:	ea f7       	brpl	.-6      	; 0x21b4 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x1f0>
+    21ba:	30 81       	ld	r19, Z
+    21bc:	23 2b       	or	r18, r19
+    21be:	20 83       	st	Z, r18
+    21c0:	12 96       	adiw	r26, 0x02	; 2
+    21c2:	2c 91       	ld	r18, X
+    21c4:	12 97       	sbiw	r26, 0x02	; 2
+    21c6:	30 e0       	ldi	r19, 0x00	; 0
+    21c8:	ea 81       	ldd	r30, Y+2	; 0x02
+    21ca:	fb 81       	ldd	r31, Y+3	; 0x03
+    21cc:	e2 17       	cp	r30, r18
+    21ce:	f3 07       	cpc	r31, r19
+    21d0:	7c f5       	brge	.+94     	; 0x2230 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x26c>
+    21d2:	2c 91       	ld	r18, X
+    21d4:	22 9d       	mul	r18, r2
+    21d6:	f0 01       	movw	r30, r0
+    21d8:	23 9d       	mul	r18, r3
+    21da:	f0 0d       	add	r31, r0
+    21dc:	11 24       	eor	r1, r1
+    21de:	ee 0d       	add	r30, r14
+    21e0:	ff 1d       	adc	r31, r15
+    21e2:	14 96       	adiw	r26, 0x04	; 4
+    21e4:	2d 91       	ld	r18, X+
+    21e6:	3c 91       	ld	r19, X
+    21e8:	15 97       	sbiw	r26, 0x05	; 5
+    21ea:	e2 0f       	add	r30, r18
+    21ec:	f3 1f       	adc	r31, r19
+    21ee:	20 81       	ld	r18, Z
+    21f0:	2a 21       	and	r18, r10
+    21f2:	20 83       	st	Z, r18
+    21f4:	fc 91       	ld	r31, X
+    21f6:	f2 9d       	mul	r31, r2
+    21f8:	90 01       	movw	r18, r0
+    21fa:	f3 9d       	mul	r31, r3
+    21fc:	30 0d       	add	r19, r0
+    21fe:	11 24       	eor	r1, r1
+    2200:	2e 0d       	add	r18, r14
+    2202:	3f 1d       	adc	r19, r15
+    2204:	14 96       	adiw	r26, 0x04	; 4
+    2206:	ed 90       	ld	r14, X+
+    2208:	fc 90       	ld	r15, X
+    220a:	15 97       	sbiw	r26, 0x05	; 5
+    220c:	e2 0e       	add	r14, r18
+    220e:	f3 1e       	adc	r15, r19
+    2210:	29 85       	ldd	r18, Y+9	; 0x09
+    2212:	3a 85       	ldd	r19, Y+10	; 0x0a
+    2214:	0c 80       	ldd	r0, Y+4	; 0x04
+    2216:	02 c0       	rjmp	.+4      	; 0x221c <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x258>
+    2218:	35 95       	asr	r19
+    221a:	27 95       	ror	r18
+    221c:	0a 94       	dec	r0
+    221e:	e2 f7       	brpl	.-8      	; 0x2218 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x254>
+    2220:	3a 87       	std	Y+10, r19	; 0x0a
+    2222:	29 87       	std	Y+9, r18	; 0x09
+    2224:	f7 01       	movw	r30, r14
+    2226:	20 81       	ld	r18, Z
+    2228:	f9 85       	ldd	r31, Y+9	; 0x09
+    222a:	2f 2b       	or	r18, r31
+    222c:	f7 01       	movw	r30, r14
+    222e:	20 83       	st	Z, r18
+    2230:	0f 5f       	subi	r16, 0xFF	; 255
+    2232:	1f 4f       	sbci	r17, 0xFF	; 255
+    2234:	5f 5f       	subi	r21, 0xFF	; 255
+    2236:	6c cf       	rjmp	.-296    	; 0x2110 <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x14c>
+    2238:	8f 5f       	subi	r24, 0xFF	; 255
+    223a:	95 2f       	mov	r25, r21
+    223c:	fe ce       	rjmp	.-516    	; 0x203a <NanoCanvas::printFixed(unsigned char, unsigned char, char const*, EFontStyle)+0x76>
+    223e:	2a 96       	adiw	r28, 0x0a	; 10
+    2240:	0f b6       	in	r0, 0x3f	; 63
+    2242:	f8 94       	cli
+    2244:	de bf       	out	0x3e, r29	; 62
+    2246:	0f be       	out	0x3f, r0	; 63
+    2248:	cd bf       	out	0x3d, r28	; 61
+    224a:	df 91       	pop	r29
+    224c:	cf 91       	pop	r28
+    224e:	1f 91       	pop	r17
+    2250:	0f 91       	pop	r16
+    2252:	ff 90       	pop	r15
+    2254:	ef 90       	pop	r14
+    2256:	df 90       	pop	r13
+    2258:	cf 90       	pop	r12
+    225a:	bf 90       	pop	r11
+    225c:	af 90       	pop	r10
+    225e:	9f 90       	pop	r9
+    2260:	8f 90       	pop	r8
+    2262:	7f 90       	pop	r7
+    2264:	6f 90       	pop	r6
+    2266:	5f 90       	pop	r5
+    2268:	4f 90       	pop	r4
+    226a:	3f 90       	pop	r3
+    226c:	2f 90       	pop	r2
+    226e:	08 95       	ret
+
+00002270 <NanoCanvas::blt(unsigned char, unsigned char)>:
+    2270:	0f 93       	push	r16
+    2272:	1f 93       	push	r17
+    2274:	fc 01       	movw	r30, r24
+    2276:	86 2f       	mov	r24, r22
+    2278:	64 2f       	mov	r22, r20
+    227a:	04 81       	ldd	r16, Z+4	; 0x04
+    227c:	15 81       	ldd	r17, Z+5	; 0x05
+    227e:	22 81       	ldd	r18, Z+2	; 0x02
+    2280:	40 81       	ld	r20, Z
+    2282:	0e 94 1d 0b 	call	0x163a	; 0x163a <ssd1306_drawBuffer>
+    2286:	1f 91       	pop	r17
+    2288:	0f 91       	pop	r16
+    228a:	08 95       	ret
+
+0000228c <SPRITE::draw()>:
+    228c:	0c 94 ba 0b 	jmp	0x1774	; 0x1774 <ssd1306_drawSprite>
+
+00002290 <SPRITE::eraseTrace()>:
+    2290:	0c 94 42 0c 	jmp	0x1884	; 0x1884 <ssd1306_eraseTrace>
+
+00002294 <ssd1306_i2cInit>:
+    2294:	80 e0       	ldi	r24, 0x00	; 0
+    2296:	0e 94 af 11 	call	0x235e	; 0x235e <ssd1306_i2cConfigure_Twi>
+    229a:	8c e3       	ldi	r24, 0x3C	; 60
+    229c:	0c 94 bc 11 	jmp	0x2378	; 0x2378 <ssd1306_i2cInit_Twi>
+
+000022a0 <ssd1306_twi_start>:
+    22a0:	84 ea       	ldi	r24, 0xA4	; 164
+    22a2:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+    22a6:	80 91 bc 00 	lds	r24, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+    22aa:	87 ff       	sbrs	r24, 7
+    22ac:	fc cf       	rjmp	.-8      	; 0x22a6 <ssd1306_twi_start+0x6>
+    22ae:	80 91 b9 00 	lds	r24, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+    22b2:	88 7f       	andi	r24, 0xF8	; 248
+    22b4:	88 30       	cpi	r24, 0x08	; 8
+    22b6:	11 f0       	breq	.+4      	; 0x22bc <ssd1306_twi_start+0x1c>
+    22b8:	80 31       	cpi	r24, 0x10	; 16
+    22ba:	09 f4       	brne	.+2      	; 0x22be <ssd1306_twi_start+0x1e>
+    22bc:	80 e0       	ldi	r24, 0x00	; 0
+    22be:	08 95       	ret
+
+000022c0 <ssd1306_twi_send>:
+    22c0:	24 e8       	ldi	r18, 0x84	; 132
+    22c2:	80 93 bb 00 	sts	0x00BB, r24	; 0x8000bb <__TEXT_REGION_LENGTH__+0x7e00bb>
+    22c6:	20 93 bc 00 	sts	0x00BC, r18	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+    22ca:	90 91 bc 00 	lds	r25, 0x00BC	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+    22ce:	97 ff       	sbrs	r25, 7
+    22d0:	fc cf       	rjmp	.-8      	; 0x22ca <ssd1306_twi_send+0xa>
+    22d2:	90 91 b9 00 	lds	r25, 0x00B9	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+    22d6:	98 7f       	andi	r25, 0xF8	; 248
+    22d8:	98 31       	cpi	r25, 0x18	; 24
+    22da:	31 f0       	breq	.+12     	; 0x22e8 <ssd1306_twi_send+0x28>
+    22dc:	98 32       	cpi	r25, 0x28	; 40
+    22de:	21 f0       	breq	.+8      	; 0x22e8 <ssd1306_twi_send+0x28>
+    22e0:	98 33       	cpi	r25, 0x38	; 56
+    22e2:	79 f7       	brne	.-34     	; 0x22c2 <ssd1306_twi_send+0x2>
+    22e4:	88 e3       	ldi	r24, 0x38	; 56
+    22e6:	08 95       	ret
+    22e8:	80 e0       	ldi	r24, 0x00	; 0
+    22ea:	08 95       	ret
+
+000022ec <ssd1306_i2cStart_Twi>:
+    22ec:	0e 94 50 11 	call	0x22a0	; 0x22a0 <ssd1306_twi_start>
+    22f0:	81 11       	cpse	r24, r1
+    22f2:	07 c0       	rjmp	.+14     	; 0x2302 <ssd1306_i2cStart_Twi+0x16>
+    22f4:	80 91 17 01 	lds	r24, 0x0117	; 0x800117 <s_sa>
+    22f8:	88 0f       	add	r24, r24
+    22fa:	0e 94 60 11 	call	0x22c0	; 0x22c0 <ssd1306_twi_send>
+    22fe:	88 33       	cpi	r24, 0x38	; 56
+    2300:	a9 f3       	breq	.-22     	; 0x22ec <ssd1306_i2cStart_Twi>
+    2302:	08 95       	ret
+
+00002304 <ssd1306_i2cStop_Twi>:
+    2304:	84 e9       	ldi	r24, 0x94	; 148
+    2306:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+    230a:	08 95       	ret
+
+0000230c <ssd1306_i2cSendByte_Twi>:
+    230c:	cf 93       	push	r28
+    230e:	c8 2f       	mov	r28, r24
+    2310:	8c 2f       	mov	r24, r28
+    2312:	0e 94 60 11 	call	0x22c0	; 0x22c0 <ssd1306_twi_send>
+    2316:	88 33       	cpi	r24, 0x38	; 56
+    2318:	59 f4       	brne	.+22     	; 0x2330 <ssd1306_i2cSendByte_Twi+0x24>
+    231a:	0e 94 50 11 	call	0x22a0	; 0x22a0 <ssd1306_twi_start>
+    231e:	81 11       	cpse	r24, r1
+    2320:	07 c0       	rjmp	.+14     	; 0x2330 <ssd1306_i2cSendByte_Twi+0x24>
+    2322:	80 91 17 01 	lds	r24, 0x0117	; 0x800117 <s_sa>
+    2326:	88 0f       	add	r24, r24
+    2328:	0e 94 60 11 	call	0x22c0	; 0x22c0 <ssd1306_twi_send>
+    232c:	88 33       	cpi	r24, 0x38	; 56
+    232e:	81 f3       	breq	.-32     	; 0x2310 <ssd1306_i2cSendByte_Twi+0x4>
+    2330:	cf 91       	pop	r28
+    2332:	08 95       	ret
+
+00002334 <ssd1306_i2cSendBytes_Twi>:
+    2334:	0f 93       	push	r16
+    2336:	1f 93       	push	r17
+    2338:	cf 93       	push	r28
+    233a:	df 93       	push	r29
+    233c:	ec 01       	movw	r28, r24
+    233e:	8c 01       	movw	r16, r24
+    2340:	06 0f       	add	r16, r22
+    2342:	17 1f       	adc	r17, r23
+    2344:	c0 17       	cp	r28, r16
+    2346:	d1 07       	cpc	r29, r17
+    2348:	21 f0       	breq	.+8      	; 0x2352 <ssd1306_i2cSendBytes_Twi+0x1e>
+    234a:	89 91       	ld	r24, Y+
+    234c:	0e 94 86 11 	call	0x230c	; 0x230c <ssd1306_i2cSendByte_Twi>
+    2350:	f9 cf       	rjmp	.-14     	; 0x2344 <ssd1306_i2cSendBytes_Twi+0x10>
+    2352:	df 91       	pop	r29
+    2354:	cf 91       	pop	r28
+    2356:	1f 91       	pop	r17
+    2358:	0f 91       	pop	r16
+    235a:	08 95       	ret
+
+0000235c <ssd1306_i2cClose_Twi>:
+    235c:	08 95       	ret
+
+0000235e <ssd1306_i2cConfigure_Twi>:
+    235e:	3c 98       	cbi	0x07, 4	; 7
+    2360:	44 9a       	sbi	0x08, 4	; 8
+    2362:	3d 98       	cbi	0x07, 5	; 7
+    2364:	45 9a       	sbi	0x08, 5	; 8
+    2366:	10 92 b9 00 	sts	0x00B9, r1	; 0x8000b9 <__TEXT_REGION_LENGTH__+0x7e00b9>
+    236a:	8c e0       	ldi	r24, 0x0C	; 12
+    236c:	80 93 b8 00 	sts	0x00B8, r24	; 0x8000b8 <__TEXT_REGION_LENGTH__+0x7e00b8>
+    2370:	84 e4       	ldi	r24, 0x44	; 68
+    2372:	80 93 bc 00 	sts	0x00BC, r24	; 0x8000bc <__TEXT_REGION_LENGTH__+0x7e00bc>
+    2376:	08 95       	ret
+
+00002378 <ssd1306_i2cInit_Twi>:
+    2378:	81 11       	cpse	r24, r1
+    237a:	80 93 17 01 	sts	0x0117, r24	; 0x800117 <s_sa>
+    237e:	10 92 0c 01 	sts	0x010C, r1	; 0x80010c <ssd1306_intf>
+    2382:	86 e7       	ldi	r24, 0x76	; 118
+    2384:	91 e1       	ldi	r25, 0x11	; 17
+    2386:	90 93 0e 01 	sts	0x010E, r25	; 0x80010e <ssd1306_intf+0x2>
+    238a:	80 93 0d 01 	sts	0x010D, r24	; 0x80010d <ssd1306_intf+0x1>
+    238e:	82 e8       	ldi	r24, 0x82	; 130
+    2390:	91 e1       	ldi	r25, 0x11	; 17
+    2392:	90 93 10 01 	sts	0x0110, r25	; 0x800110 <ssd1306_intf+0x4>
+    2396:	80 93 0f 01 	sts	0x010F, r24	; 0x80010f <ssd1306_intf+0x3>
+    239a:	86 e8       	ldi	r24, 0x86	; 134
+    239c:	91 e1       	ldi	r25, 0x11	; 17
+    239e:	90 93 12 01 	sts	0x0112, r25	; 0x800112 <ssd1306_intf+0x6>
+    23a2:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <ssd1306_intf+0x5>
+    23a6:	8a e9       	ldi	r24, 0x9A	; 154
+    23a8:	91 e1       	ldi	r25, 0x11	; 17
+    23aa:	90 93 14 01 	sts	0x0114, r25	; 0x800114 <ssd1306_intf+0x8>
+    23ae:	80 93 13 01 	sts	0x0113, r24	; 0x800113 <ssd1306_intf+0x7>
+    23b2:	8e ea       	ldi	r24, 0xAE	; 174
+    23b4:	91 e1       	ldi	r25, 0x11	; 17
+    23b6:	90 93 16 01 	sts	0x0116, r25	; 0x800116 <ssd1306_intf+0xa>
+    23ba:	80 93 15 01 	sts	0x0115, r24	; 0x800115 <ssd1306_intf+0x9>
+    23be:	08 95       	ret
+
+000023c0 <ssd1306_spiDataMode>:
+    23c0:	90 91 18 01 	lds	r25, 0x0118	; 0x800118 <s_ssd1306_dc>
+    23c4:	99 23       	and	r25, r25
+    23c6:	59 f0       	breq	.+22     	; 0x23de <ssd1306_spiDataMode+0x1e>
+    23c8:	61 e0       	ldi	r22, 0x01	; 1
+    23ca:	70 e0       	ldi	r23, 0x00	; 0
+    23cc:	81 11       	cpse	r24, r1
+    23ce:	02 c0       	rjmp	.+4      	; 0x23d4 <ssd1306_spiDataMode+0x14>
+    23d0:	60 e0       	ldi	r22, 0x00	; 0
+    23d2:	70 e0       	ldi	r23, 0x00	; 0
+    23d4:	89 2f       	mov	r24, r25
+    23d6:	99 0f       	add	r25, r25
+    23d8:	99 0b       	sbc	r25, r25
+    23da:	0c 94 0a 0e 	jmp	0x1c14	; 0x1c14 <digitalWrite>
+    23de:	08 95       	ret
+
+000023e0 <__udivmodhi4>:
+    23e0:	aa 1b       	sub	r26, r26
+    23e2:	bb 1b       	sub	r27, r27
+    23e4:	51 e1       	ldi	r21, 0x11	; 17
+    23e6:	07 c0       	rjmp	.+14     	; 0x23f6 <__udivmodhi4_ep>
+
+000023e8 <__udivmodhi4_loop>:
+    23e8:	aa 1f       	adc	r26, r26
+    23ea:	bb 1f       	adc	r27, r27
+    23ec:	a6 17       	cp	r26, r22
+    23ee:	b7 07       	cpc	r27, r23
+    23f0:	10 f0       	brcs	.+4      	; 0x23f6 <__udivmodhi4_ep>
+    23f2:	a6 1b       	sub	r26, r22
+    23f4:	b7 0b       	sbc	r27, r23
+
+000023f6 <__udivmodhi4_ep>:
+    23f6:	88 1f       	adc	r24, r24
+    23f8:	99 1f       	adc	r25, r25
+    23fa:	5a 95       	dec	r21
+    23fc:	a9 f7       	brne	.-22     	; 0x23e8 <__udivmodhi4_loop>
+    23fe:	80 95       	com	r24
+    2400:	90 95       	com	r25
+    2402:	bc 01       	movw	r22, r24
+    2404:	cd 01       	movw	r24, r26
+    2406:	08 95       	ret
+
+00002408 <memset>:
+    2408:	dc 01       	movw	r26, r24
+    240a:	01 c0       	rjmp	.+2      	; 0x240e <memset+0x6>
+    240c:	6d 93       	st	X+, r22
+    240e:	41 50       	subi	r20, 0x01	; 1
+    2410:	50 40       	sbci	r21, 0x00	; 0
+    2412:	e0 f7       	brcc	.-8      	; 0x240c <memset+0x4>
+    2414:	08 95       	ret
+
+00002416 <_exit>:
+    2416:	f8 94       	cli
+
+00002418 <__stop_program>:
+    2418:	ff cf       	rjmp	.-2      	; 0x2418 <__stop_program>

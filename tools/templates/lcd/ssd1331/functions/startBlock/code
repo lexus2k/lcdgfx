@@ -1,0 +1,10 @@
+    uint8_t rx = w ? (x + w - 1) : (m_base.width() - 1);
+    this->start();
+    spiDataMode(0);
+    this->send((m_rotation & 1) ? 0x75: 0x15);
+    this->send(x);
+    this->send(rx < m_base.width() ? rx : (m_base.width() - 1));
+    this->send((m_rotation & 1) ? 0x15: 0x75);
+    this->send(y);
+    this->send(m_base.height() - 1);
+    spiDataMode(1);

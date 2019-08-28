@@ -1,0 +1,68 @@
+000004ae T loop()
+00000400 T Owl
+0000030c T NanoCanvasOps<(unsigned char)1>::drawBitmap1(int, int, unsigned int, unsigned int, unsigned char const*)
+00000276 W NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >::drawBitmap1(int, int, unsigned int, unsigned int, unsigned char const*)
+00000245 T ssd1306xled_font6x8
+000001f6 W NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >::printFixed(int, int, char const*, EFontStyle)
+000001b6 T NanoCanvasOps<(unsigned char)1>::fillRect(int, int, int, int)
+00000138 W NanoCanvasOps<(unsigned char)1>::printChar(unsigned char)
+0000012c W NanoDisplayOps<NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >, InterfaceSSD1306<PlatformI2c> >::drawLine(int, int, int, int)
+00000128 W NanoDisplayOps<NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >, InterfaceSSD1306<PlatformI2c> >::showMenu(SAppMenu*)
+0000010c t _ssd1306_oldFormatGetBitmap(SFixedFontInfo&, unsigned int, SCharInfo*)
+000000ec W NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >::drawVLine(int, int, int)
+000000ae W InterfaceSSD1306<PlatformI2c>::startBlock(unsigned int, unsigned int, unsigned int)
+00000086 t ssd1306_searchCharGlyph(SFixedFontInfo&, unsigned char const*, unsigned int) [clone .isra.0]
+00000078 t NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >::drawHLine(int, int, int) [clone .isra.20] [clone .constprop.27]
+0000006e W NanoDisplayOps<NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >, InterfaceSSD1306<PlatformI2c> >::drawCanvas(int, int, NanoCanvasOps<(unsigned char)1>&)
+0000006a T NanoFont::loadFixedFont(unsigned char const*)
+0000006a W NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >::clear()
+00000066 t void drawMenuItem<NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >, InterfaceSSD1306<PlatformI2c> >(NanoDisplayOps<NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >, InterfaceSSD1306<PlatformI2c> >&, SAppMenu*, unsigned char) [clone .constprop.25]
+00000060 T ssd1306_resetController2
+0000005e T DisplaySSD1306_128x64_I2C::begin()
+0000005e t _GLOBAL__sub_I_display
+00000058 T pinMode
+00000058 T digitalWrite
+00000056 t NanoDisplayOps1<InterfaceSSD1306<PlatformI2c> >::putPixel(int, int) [clone .isra.19] [clone .constprop.30]
+00000048 T NanoFont::unicode16FromUtf8(unsigned char)
+00000048 T setup()
+00000034 T TwiI2c::sendBuffer(unsigned char const*, unsigned int)
+00000034 W NanoCanvasOps<(unsigned char)1>::printFixed(int, int, char const*, EFontStyle)
+00000032 W NanoCanvasOps<(unsigned char)1>::write(unsigned char)
+00000030 T TwiI2c::send(unsigned char)
+0000002e W InterfaceSSD1306<PlatformI2c>::commandStart()
+0000002e T NanoCanvasOps<(unsigned char)1>::clear()
+0000002e T NanoCanvasOps<(unsigned char)1>::begin(int, int, unsigned char*)
+0000002e t ssd1306_readUnicodeRecord(SUnicodeBlockRecord*, unsigned char const*)
+0000002c t ssd1306_twi_send(unsigned char)
+00000028 T __udivmodhi4
+00000022 T delay
+00000020 T TwiI2c::start()
+00000020 t ssd1306_twi_start()
+0000001b B display
+00000019 t s_ssd1306_oled128x64_initData
+00000016 T __do_global_dtors
+00000016 T __do_global_ctors
+00000016 T __do_copy_data
+00000014 t _GLOBAL__sub_I_g_ssd1306_unicode2
+00000014 t _GLOBAL__sub_D_display
+00000010 T __do_clear_bss
+0000000e T memset
+0000000d B g_ssd1306_font
+0000000c T NanoFont::getCharBitmap(unsigned int, SCharInfo*)
+0000000c T __tablejump2__
+0000000a D menuItems
+0000000a T main
+00000008 V vtable for DisplaySSD1306_128x64_I2C
+00000008 T TwiI2c::stop()
+00000008 t heartImage
+00000006 T TwiI2c::TwiI2c(unsigned char)
+00000006 T TwiI2c::TwiI2c(unsigned char)
+00000006 T DisplaySSD1306_128x64_I2C::end()
+00000006 B menu
+00000002 b NanoFont::unicode16FromUtf8(unsigned char)::unicode
+00000002 T TwiI2c::~TwiI2c()
+00000002 T TwiI2c::~TwiI2c()
+00000002 T TwiI2c::begin()
+00000002 T TwiI2c::end()
+00000001 B s_ssd1306_invertByte
+00000001 D g_ssd1306_unicode2

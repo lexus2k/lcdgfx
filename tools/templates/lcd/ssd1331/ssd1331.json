@@ -1,0 +1,101 @@
+{
+    "ssd1331":
+    {
+        "options":
+        {
+            "no_bits_in_name": false,
+            "config_func": "_configureSpiDisplayCmdModeOnly",
+            "rowcol_bits": 8,
+            "args_in_cmd_mode": true,
+            "col_cmd": "0x15",
+            "column_div": 1,
+            "row_cmd": "0x75",
+            "reset_duration": 10,
+            "reset_delay": 0
+        },
+        "functions":
+        {
+            "interface_list": ["setRotation", "drawLine", "copyBlock"],
+            "setRotation": {},
+            "drawLine": {},
+            "copyBlock": {}
+        },
+        "interfaces":
+        {
+            "spi":
+            {
+                "frequency": 6000000
+            }
+        },
+        "bits":
+        {
+            "8":
+            {
+                "96x64":
+                {
+                    "interface_args": "8, *this, config.dc",
+                    "init":
+                    [
+                        "#ifdef SDL_EMULATION",
+                        "    SDL_LCD_SSD1331_X8, 0x00,",
+                        "    0x00, 0x00,",
+                        "#endif",
+                        "    0xAE, 0x00,          // display off",
+                        "    0xA0, 0x01, 0x00 | 0x20 | 0x10 | 0x02 | 0x00, /* 8-bit rgb color mode */",
+                        "    0xA1, 0x01, 0x00,    // First line to start scanning from",
+                        "    0xA2, 0x01, 0x00,    // Set display offset",
+                        "    0xA4, 0x00,          // Normal display",
+                        "    0xA8, 0x01, 63,      // Reset to default MUX. See datasheet",
+                        "    0xAD, 0x01, 0x8E,    // Set master mode",
+                        "    0xB0, 0x01, 0x0B,    // Disable power-safe mode",
+                        "    0xB1, 0x01, 0x31,    // Precharge Phase 1 and Phase 2 periods",
+                        "    0xB3, 0x01, 0xF0,    // CLOCKDIV 7:4 = Oscillator Frequency, 3:0 = CLK Div Ratio (A[3:0]+1 = 1..16)",
+                        "    0x8A, 0x01, 0x64,    // Precharge A",
+                        "    0x8B, 0x01, 0x78,    // Precharge B",
+                        "    0xBB, 0x01, 0x3A,    // Precharge level",
+                        "    0xBE, 0x01, 0x3E,    // VCOM",
+                        "    0x87, 0x01, 0x09,    // Master current",
+                        "    0x81, 0x01, 0x91,    // RED",
+                        "    0x82, 0x01, 0x50,    // GREEN",
+                        "    0x83, 0x01, 0x7D,    // BLUE",
+                        "    0xAF, 0x00,"
+                    ]
+                }
+            },
+            "16":
+            {
+                "96x64":
+                {
+                    "interface_args": "16, *this, config.dc",
+                    "init":
+                    [
+                        "#ifdef SDL_EMULATION",
+                        "    SDL_LCD_SSD1331_X16, 0x00,",
+                        "    0x00, 0x00,",
+                        "#endif",
+                        "    0xAE, 0x00,          // display off",
+                        "    0xA0, 0x01, 0x40 | 0x20 | 0x10 | 0x02 | 0x00, /* 16-bit rgb color mode */",
+                        "    0xA1, 0x01, 0x00,    // First line to start scanning from",
+                        "    0xA2, 0x01, 0x00,    // Set display offset",
+                        "    0xA4, 0x00,          // Normal display",
+                        "    0xA8, 0x01, 63,      // Reset to default MUX. See datasheet",
+                        "    0xAD, 0x01, 0x8E,    // Set master mode",
+                        "    0xB0, 0x01, 0x0B,    // Disable power-safe mode",
+                        "    0xB1, 0x01, 0x31,    // Phase 1 and Phase 2 periods",
+                        "    0xB3, 0x01, 0xF0,    // 7:4 = Oscillator Frequency, 3:0 = CLK Div Ratio (A[3:0]+1 = 1..16)",
+                        "    0x8A, 0x01, 0x64,    // Precharge A",
+                        "    0x8B, 0x01, 0x78,    // Precharge B",
+                        "    0xBB, 0x01, 0x3A,    // Precharge level",
+                        "    0xBE, 0x01, 0x3E,    // VCOM",
+                        "    0x87, 0x01, 0x09,    // Master current",
+                        "    0x81, 0x01, 0x91,    // RED",
+                        "    0x82, 0x01, 0x50,    // GREEN",
+                        "    0x83, 0x01, 0x7D,    // BLUE",
+                        "    0xAF, 0x00,"
+                    ]
+                }
+            }
+        }
+    }
+}
+

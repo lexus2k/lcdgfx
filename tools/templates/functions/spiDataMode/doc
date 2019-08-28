@@ -1,0 +1,4 @@
+    /**
+     * Enables either data or command mode on SPI bus
+     * @param mode 1 to enable data mode, or 0 to enable command mode
+     */

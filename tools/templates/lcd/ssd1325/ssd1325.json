@@ -1,0 +1,60 @@
+{
+    "ssd1325":
+    {
+        "options":
+        {
+            "no_bits_in_name": true,
+            "config_func": "_configureSpiDisplayCmdModeOnly",
+            "rowcol_bits": 8,
+            "args_in_cmd_mode": true,
+            "col_cmd": "0x15",
+            "column_div": 2,
+            "row_cmd": "0x75",
+            "reset_duration": 10,
+            "reset_delay": 0
+        },
+        "interfaces":
+        {
+            "i2c":
+            {
+                "addr": "0x3C",
+                "frequency": 400000
+            },
+            "spi":
+            {
+                "frequency": 10000000
+            }
+        },
+        "bits":
+        {
+            "4":
+            {
+                "128x64":
+                {
+                    "init":
+                    [
+                        "#ifdef SDL_EMULATION",
+                        "    SDL_LCD_SSD1325, 0x00, ",
+                        "    SDL_LCD_SSD1325_GENERIC, 0x00, ",
+                        "#endif",
+                        "    0xAE, 0x00,        // OFF                         /* display off */",
+                        "    0xB3, 0x01, 0x91,  // CLK",
+                        "    0xA8, 0x01, 0x3F,  // multiplex 64",
+                        "    0xA2, 0x01, 0x00,  // Display offset",
+                        "    0xA1, 0x01, 0x00,  // Start line",
+                        "    0xAD, 0x01, 0x02,  // VCOMH",
+                        "    0xA0, 0x01, 0x40 | 0x10 | 0x00 | (0x02 | 0x01),   // REMAP: horizontal increment mode",
+                        "    0x86, 0x00,        // CURRENT",
+                        "    0x81, 0x01, 0x70,  // CONTRAST",
+                        "    0xB2, 0x01, 0x51,  // FREQ",
+                        "    0xB1, 0x01, 0x55,  // PHASE",
+                        "    0xBC, 0x01, 0x10,  // PRECHARGE",
+                        "    0xBE, 0x01, 0x1C,  // VCOMH voltage",
+                        "    0xA4, 0x00,        // NORMAL"
+                    ]
+                }
+            }
+        }
+    }
+}
+

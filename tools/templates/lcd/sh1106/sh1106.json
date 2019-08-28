@@ -1,0 +1,65 @@
+{
+    "sh1106":
+    {
+        "options":
+        {
+            "no_bits_in_name": true,
+            "config_func": "_configureSpiDisplayCmdModeOnly",
+            "args_in_cmd_mode": true,
+            "row_div": 8,
+            "reset_duration": 10,
+            "reset_delay": 0
+        },
+        "interfaces":
+        {
+            "i2c":
+            {
+                "frequency": 400000,
+                "addr": "0x3C"
+            },
+            "spi":
+            {
+                "frequency": 10000000
+            }
+        },
+        "functions":
+        {
+            "interface_list": ["setStartLine", "getStartLine",
+                               "normalMode", "invertMode", "setContrast",
+                               "displayOff", "displayOn",
+                               "flipHorizontal", "flipVertical" ]
+        },
+        "bits":
+        {
+            "1":
+            {
+                "128x64":
+                {
+                    "init":
+                    [
+                        "#ifdef SDL_EMULATION",
+                        "    SDL_LCD_SH1106, 0x00,",
+                        "    0x00, 0x00,",
+                        "#endif",
+                        "    0xAE, 0x00,        // display off",
+                        "    0xC8, 0x00,        // Scan from 127 to 0 (Reverse scan)",
+                        "    0x40| 0x00, 0x00,  // First line to start scanning from",
+                        "    0x81, 0x01, 0x7F,  // contast value to 0x7F according to datasheet",
+                        "    0xA0| 0x01, 0x00,  // Use reverse mapping. 0x00 - is normal mapping",
+                        "    0xA6, 0x00,        // Normal display",
+                        "    0xA8, 0x01, 63,    // Reset to default MUX. See datasheet",
+                        "    0xD3, 0x01, 0x00,  // no offset",
+                        "    0xD5, 0x01, 0x80,  // set to default ratio/osc frequency",
+                        "    0xD9, 0x01, 0x22,  // switch precharge to 0x22 // 0xF1",
+                        "    0xDA, 0x01, 0x12,  // set divide ratio com pins",
+                        "    0xDB, 0x01, 0x20,  // vcom deselect to 0x20 // 0x40",
+                        "    0x8D, 0x01, 0x14,  // Enable charge pump",
+                        "    0xA4, 0x00,        // Display on resume",
+                        "    0xA5, 0x00,        // Display on"
+                    ]
+                }
+            }
+        }
+    }
+}
+

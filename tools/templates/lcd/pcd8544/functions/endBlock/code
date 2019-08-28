@@ -1,0 +1,4 @@
+    spiDataMode(0);
+    this->send( 0x00 ); // Send NOP command to allow last data byte to pass (bug in PCD8544?)
+                        // ssd1306 E3h is NOP command
+    this->stop();

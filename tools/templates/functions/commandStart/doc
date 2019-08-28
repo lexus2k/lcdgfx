@@ -1,0 +1,4 @@
+    /**
+     * Starts communication with LCD display in command mode.
+     * To stop communication use m_intf.end().
+     */

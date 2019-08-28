@@ -1,0 +1,2 @@
+template <typename... Args>
+uint8_t bits, NanoDisplayBase<Interface~CONTROLLER~<I>> &base, int8_t dc, Args&&... data

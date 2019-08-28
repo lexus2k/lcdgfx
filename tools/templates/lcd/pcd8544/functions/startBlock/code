@@ -1,0 +1,9 @@
+    m_width = w;
+    m_column = x;
+    m_page = y;
+    this->start();
+    spiDataMode(0);
+    if (w == 1) this->send( 0x22 ); else this->send( 0x20 );
+    this->send(0x80 | x);
+    this->send(0x40 | y);
+    spiDataMode(1);

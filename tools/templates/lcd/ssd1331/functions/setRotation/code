@@ -1,0 +1,28 @@
+    uint8_t ram_mode;
+    if ((rotation^m_rotation) & 0x01)
+    {
+        m_base.swapDimensions();
+    }
+    m_rotation = rotation & 0x03;
+    this->start();
+    spiDataMode(0);
+    this->send( 0xA0 );
+    switch (m_rotation)
+    {
+    // NORMAL FULL COLOR MODE
+    case 0:
+        ram_mode = 0b00110010;
+        break;
+    case 1: // 90 degree CW
+        ram_mode = 0b00110001;
+        break;
+    case 2: // 180 degree CW
+        ram_mode = 0b00100000;
+        break;
+    case 3: // 270 degree CW
+    default:
+        ram_mode = 0b00100011;
+        break;
+    }
+    this->send( ram_mode | (m_bits == 16 ? 0x40: 0x00) );
+    this->stop();

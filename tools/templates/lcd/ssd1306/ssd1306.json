@@ -1,0 +1,92 @@
+{
+    "ssd1306":
+    {
+        "options":
+        {
+            "no_bits_in_name": true,
+            "config_func": "_configureSpiDisplayCmdModeOnly",
+            "args_in_cmd_mode": true,
+            "row_div": 8,
+            "reset_duration": 10,
+            "reset_delay": 0
+        },
+        "interfaces":
+        {
+            "i2c":
+            {
+                "frequency": 400000,
+                "addr": "0x3C"
+            },
+            "spi":
+            {
+                "frequency": 10000000
+            }
+        },
+        "functions":
+        {
+            "interface_list": ["setStartLine", "getStartLine",
+                               "normalMode", "invertMode", "setContrast",
+                               "displayOff", "displayOn",
+                               "flipHorizontal", "flipVertical" ]
+        },
+        "bits":
+        {
+            "1":
+            {
+                "128x64":
+                {
+                    "init":
+                    [
+                        "#ifdef SDL_EMULATION",
+                        "    SDL_LCD_SSD1306, 0x00,",
+                        "    0x00, 0x00,",
+                        "#endif",
+                        "    0xAE, 0x00,          // display off",
+                        "    0x20, 0x01, 0x00,    // Page horizontal Addressing mode",
+                        "    0xC8, 0x00,          // Scan from 127 to 0 (Reverse scan)",
+                        "    0x40| 0x00, 0x00,    // First line to start scanning from",
+                        "    0x81, 0x01, 0x7F,    // contast value to 0x7F according to datasheet",
+                        "    0xA0| 0x01, 0x00,    // Use reverse mapping. 0x00 - is normal mapping",
+                        "    0xA6, 0x00,          // Normal display",
+                        "    0xA8, 0x01, 63,      // Reset to default MUX. See datasheet",
+                        "    0xD3, 0x01, 0x00,    // no offset",
+                        "    0xD5, 0x01, 0x80,    // set to default ratio/osc frequency",
+                        "    0xD9, 0x01, 0x22,    // switch precharge to 0x22 // 0xF1",
+                        "    0xDA, 0x01, 0x12,    // set divide ratio",
+                        "    0xDB, 0x01, 0x20,    // vcom deselect to 0x20 // 0x40",
+                        "    0x8D, 0x01, 0x14,    // Enable charge pump",
+                        "    0xA4, 0x00,          // Display resume",
+                        "    0xAF, 0x00,          // Display on"
+                    ]
+                },
+                "128x32":
+                {
+                    "init":
+                    [
+                        "#ifdef SDL_EMULATION",
+                        "    SDL_LCD_SSD1306, 0x00,",
+                        "    0x00, 0x00,",
+                        "#endif",
+                        "    0xAE, 0x00,          // display off",
+                        "    0xD5, 0x01, 0x80,    // Clock div",
+                        "    0xA8, 0x01, 31,      // Set multiplex",
+                        "    0xD3, 0x01, 0x00,    // --no offset",
+                        "    0x40, 0x00,          // Set display offset",
+                        "    0x8D, 0x01, 0x14,    // Set charge pump",
+                        "    0xA0| 0x01, 0x00,    // Reverse mapping",
+                        "    0xC8, 0x00,          // Decrement",
+                        "    0xDA, 0x01, 0x02,    // Set com pins",
+                        "    0x81, 0x01, 0x7F,    // contast value",
+                        "    0xD9, 0x01, 0x22,    // 0x1F Precharge",
+                        "    0xDB, 0x01, 0x40,    // Precharge",
+                        "    0x20, 0x01, 0x00,    // Set horizontal addressing mode",
+                        "    0xA4, 0x00,          // Display resume",
+                        "    0xA6, 0x00,          // Normal display",
+                        "    0xAF, 0x00,          // Display on"
+                    ]
+                }
+            }
+        }
+    }
+}
+

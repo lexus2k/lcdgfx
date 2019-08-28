@@ -1,0 +1,10 @@
+    this->start();
+    spiDataMode(0);
+    this->send(0x23);
+    this->send(left);
+    this->send(top);
+    this->send(right);
+    this->send(bottom);
+    this->send(newLeft);
+    this->send(newTop);
+    this->stop();

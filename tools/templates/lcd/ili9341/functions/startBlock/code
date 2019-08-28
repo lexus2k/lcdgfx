@@ -1,0 +1,20 @@
+    lcduint_t rx = w ? (x + w - 1) : (m_base.width() - 1);
+    rx = rx < m_base.width() ? rx: (m_base.width() -1);
+    this->start();
+    spiDataMode(0);
+    this->send(0x2A);
+    spiDataMode(1);  // According to datasheet all args must be passed in data mode
+    this->send(x >> 8);
+    this->send(x & 0xFF);
+    this->send(rx >> 8);
+    this->send(rx & 0xFF);
+    spiDataMode(0);
+    this->send(0x2B);
+    spiDataMode(1);  // According to datasheet all args must be passed in data mode
+    this->send(y >> 8);
+    this->send(y & 0xFF);
+    this->send((m_base.height() - 1) >> 8);
+    this->send((m_base.height() - 1) & 0xFF);
+    spiDataMode(0);
+    this->send(0x2C);
+    spiDataMode(1);

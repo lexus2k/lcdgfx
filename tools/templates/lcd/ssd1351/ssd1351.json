@@ -1,0 +1,61 @@
+{
+    "ssd1351":
+    {
+        "options":
+        {
+            "no_bits_in_name": false,
+            "rowcol_bits": 8,
+            "args_in_cmd_mode": false,
+            "col_cmd": "0x15",
+            "column_div": 1,
+            "row_cmd": "0x75",
+            "reset_duration": 20,
+            "reset_delay": 0,
+            "exit_cmd_mode_command": "0x5C"
+        },
+        "interfaces":
+        {
+            "spi":
+            {
+                "frequency": 4400000
+            }
+        },
+        "bits":
+        {
+            "16":
+            {
+                "128x128":
+                {
+                    "init":
+                    [
+                        "#ifdef SDL_EMULATION",
+                        "    SDL_LCD_SSD1351, 0x00,",
+                        "    0x00, 0x00,",
+                        "#endif",
+                        "    0xFD, 0x01, 0x12,     // Unlock",
+                        "    0xFD, 0x01, 0xB1,     // Unlock",
+                        "    0xAE, 0x00,           // SLEEP_ON",
+                        "    0xB3, 0x01, 0xF1,     // 7:4 = Oscillator Frequency, 3:0 = CLK Div Ratio (A[3:0]+1 = 1..16)",
+                        "    0xCA, 0x01, 127,      // Reset to default MUX. See datasheet",
+                        "    0xA0, 0x01, 0B00110100,   // 16-bit rgb color mode",
+                        "    0xA1, 0x01, 0x00,     // First line to start scanning from",
+                        "    0xA2, 0x01, 0x00,     // Set display offset",
+                        "    0xB5, 0x01, 0x00,     // GPIO OFF",
+                        "    0xAB, 0x01, 0x01,     // Set function",
+                        "    0xB1, 0x01, 0x32,     // Phase 1 and Phase 2 periods",
+                        "    0xBE, 0x01, 0x05,     // Precharge",
+                        "    0xBB, 0x01, 0x17,     // Precharge level",
+                        "    0xA6, 0x00,           // Normal display",
+                        "    0xC1, 0x03, 0xC8, 0x80, 0xC8, // Contrast RED, GREEN, BLUE",
+                        "    0xC7, 0x01, 0x0F,     // Master current",
+                        "    0xB4, 0x03, 0xA0, 0xB5, 0x55, // External VSL",
+                        "    0xB6, 0x01, 0x01,     // Precharge second",
+                        "    0xAF, 0x01,           // Disable power-safe mode",
+                        "    0xA6, 0x00,           // Normal display"
+                    ]
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,145 @@
+/*
+    MIT License
+
+    Copyright (c) 2018-2019, Alexey Dynda
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+*/
+/**
+ *   Attiny85 PINS
+ *             ____
+ *   RESET   -|_|  |- 3V
+ *   SCL (3) -|    |- (2)
+ *   SDA (4) -|    |- (1)
+ *   GND     -|____|- (0)
+ *
+ *   Atmega328 PINS: connect LCD to A4/A5
+ */
+
+#include "lcdgfx.h"
+
+DisplayST7735_128x160x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
+//DisplaySSD1331_96x64_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
+//DisplayST7735_128x160x16_SPI display(3,{-1, -1, 4, 0, -1, -1}); // FOR ATTINY
+//DisplayST7735_128x160x16_SPI display(-1,{-1, 0, 1, 0, -1, -1); // Use this line for nano pi (RST not used, 0=CE, gpio1=D/C)
+//DisplayST7735_128x160x16_SPI display(24,{-1, 0, 23, 0,-1,-1}); // Use this line for Raspberry  (gpio24=RST, 0=CE, gpio23=D/C)
+//DisplayST7735_128x160x16_SPI display(22,{-1, 5, 21, 0,-1,-1}); // Use this line for ESP32 (VSPI)  (gpio22=RST, gpio5=CE for VSPI, gpio21=D/C)
+
+/*
+ * Heart image below is defined directly in flash memory.
+ * This reduces SRAM consumption.
+ * The image is define from bottom to top (bits), from left to
+ * right (bytes).
+ */
+const PROGMEM uint8_t heartImage[8] =
+{
+    0B00001110,
+    0B00011111,
+    0B00111111,
+    0B01111110,
+    0B01111110,
+    0B00111101,
+    0B00011001,
+    0B00001110
+};
+
+/*
+ * Define sprite width. The width can be of any size.
+ * But sprite height is always assumed to be 8 pixels
+ * (number of bits in single byte).
+ */
+const int spriteWidth = sizeof(heartImage);
+
+/* Lets show 4 hearts on the display */
+const int spritesCount = 4;
+
+/* Declare variable that represents our 4 objects */
+struct
+{
+    NanoPoint pos;
+    NanoPoint speed;
+} objects[ spritesCount ];
+
+/*
+ * Each pixel in rgb16 mode needs 16 bit of the memory. So, full resolution
+ * of 128x128 LCD display will require 128*128*2 = 32768 bytes of SRAM for the buffer.
+ * To let this example to run on Atmega328p devices (they have 2048 byte SRAM), we
+ * will use small canvas buffer: 32x16 (requires 1024 bytes of SRAM).
+ */
+const int canvasWidth = 32; // Width
+const int canvasHeight = 16; // Height
+uint8_t canvasData[canvasWidth*canvasHeight*2];
+/* Create canvas object */
+NanoCanvas16 canvas(canvasWidth, canvasHeight, canvasData);
+
+void setup()
+{
+    display.begin();
+    display.clear();
+
+    /* Create 4 "hearts", and place them at different positions and give different movement direction */
+    for(uint8_t i = 0; i < spritesCount; i++)
+    {
+        objects[i].speed = { .x = (i & 2) ? -1:  1, .y = (i & 1) ? -1:  1 };
+        objects[i].pos = { .x = i*4, .y = i*2 + 2 };
+    }
+    canvas.setMode( CANVAS_MODE_TRANSPARENT );
+}
+
+static uint16_t s_colors[spritesCount] =
+{
+     RGB_COLOR16(255,0,0),
+     RGB_COLOR16(0,255,0),
+     RGB_COLOR16(0,0,255),
+     RGB_COLOR16(255,255,0),
+};
+
+void loop()
+{
+    lcd_delay(40);
+
+    /* Recalculate position and movement direction of all 4 "hearts" */
+    for (uint8_t i = 0; i < spritesCount; i++)
+    {
+        objects[i].pos += objects[i].speed;
+        /* If left or right boundary is reached, reverse X direction */
+        if ((objects[i].pos.x == (canvasWidth - 8)) || (objects[i].pos.x == 0))
+            objects[i].speed.x = -objects[i].speed.x;
+        /* Sprite height is always 8 pixels. Reverse Y direction if bottom or top boundary is reached. */
+        if ((objects[i].pos.y == (canvasHeight - 8)) || (objects[i].pos.y == 0))
+            objects[i].speed.y = -objects[i].speed.y;
+    }
+
+    /* Clear canvas surface */
+    canvas.clear();
+    /* Draw line */
+    canvas.setColor( RGB_COLOR16(128,128,128) );
+    canvas.drawLine( 0, 0, canvasWidth*2 - 1, canvasHeight-1);
+    /* Draw rectangle around our canvas. It will show the range of the canvas on the display */
+    canvas.setColor( RGB_COLOR16(0,255,255) );
+    canvas.drawRect(0, 0, canvasWidth-1, canvasHeight-1);
+    /* Draw all 4 sprites on the canvas */
+    for (uint8_t i = 0; i < spritesCount; i++)
+    {
+        canvas.setColor( s_colors[i] );
+        canvas.drawBitmap1( objects[i].pos.x, objects[i].pos.y, 8, 8, heartImage );
+    }
+    /* Now, draw canvas on the display */
+    display.drawCanvas( 48, 0, canvas );
+}

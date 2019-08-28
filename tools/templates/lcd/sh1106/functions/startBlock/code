@@ -1,0 +1,16 @@
+    m_column = x;
+    m_page = y;
+    commandStart();
+    this->send(0xB0 | y); // set page
+    this->send(((x+2)>>4) | 0x10); // high column
+    this->send(((x+2) & 0x0f) | 0x00); // low column
+    if (m_dc >= 0)
+    {
+        spiDataMode(1);
+    }
+    else
+    {
+        this->stop();
+        this->start();
+        this->send(0x40);
+    }
