@@ -20,6 +20,7 @@ monochrome and RGB oleds and has debug mode, allowing to execute code on PC, usi
 Initially the library was intended to run on very small microcontrollers (with a little of RAM). It was developed to use as
 few resources as possible, but still has powerful capabilities (NanoEngine), allowing to develop nice animation.
 It works on any powerful devices like raspberry pi, esp32; and can be easily ported to new platform.
+This library integrates another library [canvas](https://github.com/lexus2k/canvas)
 
 ## Key Features
 
