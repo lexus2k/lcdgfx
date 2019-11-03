@@ -4,6 +4,7 @@
 
   * [Introduction](#introduction)
   * [Key Features](#key-features)
+  * [Easy to use](#easy-to-use)
   * [Supported displays](#supported-displays)
   * [Supported platforms](#supported-platforms)
   * [Setting up](#setting-up)
@@ -50,6 +51,26 @@ The i2c pins can be changed via API functions. Please, refer to documentation. K
 that the pins, which are allowed for i2c or spi interface, depend on the hardware.
 The default spi SCLK and MOSI pins are defined by SPI library, and DC, RST, CES pins are configurable
 through API.
+
+## Easy to use
+
+Example:
+
+```.cpp
+DisplayST7735_128x160x16_SPI display(3,{-1, 4, 5, 0,-1,-1});
+
+void setup()
+{
+    display.begin();
+    display.clear();
+}
+
+void loop()
+{
+    display.setColor(RGB_COLOR16(255,255,0));
+    display.drawLine(10,30,56,96);
+}
+```
 
 ## Supported displays:
 
