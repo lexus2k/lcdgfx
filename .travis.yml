@@ -28,7 +28,7 @@ jobs:
         - make docs 1> /dev/null
         - make EXTRA_CPPFLAGS="--coverage" SDL_EMULATION=y check
       after_success:
-        - coveralls -b . --exclude docs --exclude unittest --exclude bld --exclude tools --exclude examples --exclude examples_to_do --gcov-options '\-lp'
+        - coveralls -b ./src --exclude docs --exclude unittest --exclude bld --exclude tools --exclude examples --exclude examples_to_do --gcov-options '\-lp'
 #    - stage: Check avr code
 #      script:
 #        - make ARCH=avr
