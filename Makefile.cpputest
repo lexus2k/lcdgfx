@@ -1,0 +1,17 @@
+.PHONY: unittest check clean_unittest
+
+OBJ_UNIT_TEST = \
+        unittest/main.o \
+        unittest/ssd1306_tests.o \
+        unittest/utils/utils.o \
+
+unittest: $(OBJ_UNIT_TEST) linux ssd1306_sdl
+	$(CXX) $(CPPFLAGS) -o $(BLD)/unit_test $(OBJ_UNIT_TEST) -L$(BLD) -lm -pthread -llcdgfx -lssd1306_sdl -lCppUTest -lCppUTestExt $(shell sdl2-config --libs)
+
+check: unittest
+	$(BLD)/unit_test
+
+clean: clean_unittest
+
+clean_unittest:
+	rm -rf $(OBJ_UNIT_TEST) $(OBJ_UNIT_TEST:.o=.gcno) $(OBJ_UNIT_TEST:.o=.gcda)

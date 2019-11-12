@@ -1,0 +1,35 @@
+os:
+  - linux
+#  - windows
+language: cpp
+compiler:
+  - gcc
+#  - clang
+
+addons:
+  apt:
+    packages:
+      - gcc-avr
+      - avr-libc
+      - doxygen
+      - cppcheck
+      - cpputest
+      - graphviz
+      - libsdl2-dev
+before_install:
+  - pip install --user cpp-coveralls
+install: skip
+jobs:
+  allow_failures:
+    - os: windows
+  include:
+    - stage: Check linux code
+      script:
+        - make docs 1> /dev/null
+        - make EXTRA_CPPFLAGS="--coverage" SDL_EMULATION=y check
+      after_success:
+        - coveralls -b . --exclude docs --exclude unittest --exclude bld --exclude tools --exclude examples --exclude examples_to_do --gcov-options '\-lp'
+#    - stage: Check avr code
+#      script:
+#        - make ARCH=avr
+

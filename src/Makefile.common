@@ -73,7 +73,7 @@ INCLUDES += \
         -I./v2 \
 
 CCFLAGS += -MD -g -Os $(INCLUDES) -Wall -Werror -ffunction-sections -fdata-sections \
-	-fno-exceptions
+	-fno-exceptions $(EXTRA_CPPFLAGS)
 
 CXXFLAGS += -fno-rtti
 

@@ -61,6 +61,11 @@ static void register_oled(sdl_oled_info *oled_info)
     *p = oled_info;
 }
 
+static void unregister_oleds(void)
+{
+    memset( p_oled_db, 0, sizeof( p_oled_db ) );
+}
+
 void sdl_core_init(void)
 {
     register_oled( &sdl_ssd1306 );
@@ -136,6 +141,7 @@ void sdl_core_close(void)
 {
     sdl_graphics_close();
     SDL_Quit();
+    unregister_oleds();
 }
 
 //////////////////////////////////////////////////////////////

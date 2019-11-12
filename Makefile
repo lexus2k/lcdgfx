@@ -22,13 +22,23 @@
 #
 #################################################################
 
-.PHONY: docs library help
+default: linux
+
+.PHONY: docs library help linux check cppcheck
+
+SDL_EMULATION ?= y
+CPPFLAGS += -I./src -I./tools/sdl $(EXTRA_CPPFLAGS)
+ifeq ($(SDL_EMULATION),y)
+    CPPFLAGS += -DSDL_EMULATION
+endif
+CPPFLAGS += -std=c++11
+BLD ?= $(shell pwd)/bld
 
 help:
 	@echo "============== SSD1306 library ================"
 	@echo "make docs          generates documentation"
 	@echo "make help          prints this help"
-	@echo "make check         run cppcheck tests"
+	@echo "make cppcheck      run cppcheck tests"
 	@echo ""
 	@echo "to build examples use scripts in tools subdir"
 
@@ -36,7 +46,15 @@ docs:
 	@cd src && doxygen doxygen.cfg 1>/dev/null
 	@echo "[DONE] check docs folder"
 
-check:
+linux:
+	make -C ./src/ -f Makefile.linux SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)"
+
+ssd1306_sdl:
+	$(MAKE) -C ./tools/sdl -f Makefile.linux SDL_EMULATION=$(SDL_EMULATION) EXTRA_CCFLAGS="$(EXTRA_CPPFLAGS)"
+
+include Makefile.cpputest
+
+cppcheck:
 	@cppcheck --force \
 	    --enable=warning,style,performance,portability \
 	    --suppress=information \
