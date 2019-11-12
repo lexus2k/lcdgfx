@@ -30,10 +30,10 @@
 #include "lcdgfx.h"
 #include "sdl_core.h"
 #include "utils/utils.h"
-#include "ssd1306_data.h"
+#include "ssd1331_data.h"
 
 
-TEST_GROUP(SSD1306)
+TEST_GROUP(SSD1331)
 {
     void setup()
     {
@@ -46,30 +46,23 @@ TEST_GROUP(SSD1306)
     }
 };
 
-//DisplaySSD1306_128x64_SPI display(-1,{-1, 0, 1, 0, -1, -1); // Use this line for nano pi (RST not used, 0=CE, gpio1=D/C)
-//DisplaySSD1306_128x64_SPI display(3,{-1, 4, 5, 0,-1,-1});   // Use this line for Atmega328p (3=RST, 4=CE, 5=D/C)
-//DisplaySSD1306_128x64_SPI display(24,{-1, 0, 23, 0,-1,-1}); // Use this line for Raspberry  (gpio24=RST, 0=CE, gpio23=D/C)
-//DisplaySSD1306_128x64_SPI display(22,{-1, 5, 21, 0,-1,-1}); // Use this line for ESP32 (VSPI)  (gpio22=RST, gpio5=CE for VSPI, gpio21=D/C)
-
-
-TEST(SSD1306, monochrome_test)
+TEST(SSD1331, rgb8_test)
 {
-    DisplaySSD1306_128x64_I2C display(-1);
+    DisplaySSD1331_96x64x8_SPI display(-1,{-1, 0, 1, 0, -1, -1});
     display.begin();
     display.clear();
     display.setFixedFont(ssd1306xled_font6x8);
-    display.printFixed (0,  8, "Line 1. Normal text", STYLE_NORMAL);
-    display.printFixed (0, 16, "Line 2. Bold text", STYLE_BOLD);
-    display.printFixed (0, 24, "Line 3. Italic text", STYLE_ITALIC);
-    display.printFixedN (0, 32, "Line 4. Double size", STYLE_BOLD, FONT_SIZE_2X);
+    display.printFixed (0,  8, "Line 1. Normal", STYLE_NORMAL);
+    display.printFixed (0, 16, "Line 2. Bold", STYLE_BOLD);
+    display.printFixed (0, 24, "Line 3. Italic", STYLE_ITALIC);
 
-    std::vector<uint8_t> pixels( sdl_core_get_pixels_len( 1 ), 0 );
-    sdl_core_get_pixels_data( pixels.data(), 1 );
-//    print_buffer_data( pixels.data(), sdl_core_get_pixels_len( 1 ), 1, 128 );
-//    print_screen_content( pixels.data(), sdl_core_get_pixels_len( 1 ), 1, 128 );
+    std::vector<uint8_t> pixels( sdl_core_get_pixels_len( 8 ), 0 );
+    sdl_core_get_pixels_data( pixels.data(), 8 );
+//    print_buffer_data( pixels.data(), sdl_core_get_pixels_len( 8 ), 8, 96 );
+//    print_screen_content( pixels.data(), sdl_core_get_pixels_len( 8 ), 8, 96 );
 
-    CHECK_EQUAL( sizeof(monochrome_test_data), pixels.size() );
-    MEMCMP_EQUAL( monochrome_test_data, pixels.data(), sizeof(monochrome_test_data));
+    CHECK_EQUAL( sizeof(rgb8_test_data), pixels.size() );
+    MEMCMP_EQUAL( rgb8_test_data, pixels.data(), sizeof(rgb8_test_data));
 
     display.end();
 }

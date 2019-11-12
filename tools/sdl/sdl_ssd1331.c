@@ -43,6 +43,7 @@ static uint8_t s_verticalMode = 1;
 static uint8_t s_leftToRight = 0;
 static uint8_t s_topToBottom = 0;
 static uint8_t s_16bitmode = 0;
+static uint8_t detected = 0;
 
 static void copyBlock()
 {
@@ -92,9 +93,13 @@ static void drawLine()
     }
 }
 
+static void sdl_ssd1331_reset(void)
+{
+    detected = 0;
+}
+
 static int sdl_ssd1331_detect_x8(uint8_t data)
 {
-    static uint8_t detected = 0;
     if (detected)
     {
         return 1;
@@ -105,7 +110,6 @@ static int sdl_ssd1331_detect_x8(uint8_t data)
 
 static int sdl_ssd1331_detect_x16(uint8_t data)
 {
-    static uint8_t detected = 0;
     if (detected)
     {
         return 1;
@@ -271,6 +275,7 @@ sdl_oled_info sdl_ssd1331x8 =
     .detect = sdl_ssd1331_detect_x8,
     .run_cmd = sdl_ssd1331_commands,
     .run_data = sdl_ssd1331_data,
+    .reset = sdl_ssd1331_reset,
 };
 
 sdl_oled_info sdl_ssd1331x16 =
@@ -283,5 +288,6 @@ sdl_oled_info sdl_ssd1331x16 =
     .detect = sdl_ssd1331_detect_x16,
     .run_cmd = sdl_ssd1331_commands,
     .run_data = sdl_ssd1331_data,
+    .reset = sdl_ssd1331_reset,
 };
 

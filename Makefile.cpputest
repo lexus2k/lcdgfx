@@ -3,6 +3,7 @@
 OBJ_UNIT_TEST = \
         unittest/main.o \
         unittest/ssd1306_tests.o \
+        unittest/ssd1331_tests.o \
         unittest/utils/utils.o \
 
 unittest: $(OBJ_UNIT_TEST) linux ssd1306_sdl
