@@ -21,8 +21,8 @@
 #    SOFTWARE.
 #
 
-SRCS += \
-	canvas/fonts/fonts.c \
-	canvas/canvas.cpp \
-	canvas/font.cpp \
+OBJS += \
+	canvas/fonts/fonts.o \
+	canvas/canvas.o \
+	canvas/font.o \
 

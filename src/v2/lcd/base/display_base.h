@@ -39,7 +39,14 @@
  * @{
  */
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 extern uint8_t s_ssd1306_invertByte;
+#ifdef __cplusplus
+}
+#endif
 
 /**
  * Class implements basic display operations for the library:

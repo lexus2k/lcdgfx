@@ -39,11 +39,11 @@ CORE ?= cortex-m3
 MCU ?= stm32f4x
 FREQUENCY ?= 16000000
 
-CCFLAGS += -DSTM32F4
-CCFLAGS += -mlittle-endian -mthumb -mthumb-interwork -mcpu=$(CORE) -DF_CPU=$(FREQUENCY)
+CPPFLAGS += -DSTM32F4
+CPPFLAGS += -mlittle-endian -mthumb -mthumb-interwork -mcpu=$(CORE) -DF_CPU=$(FREQUENCY)
 
 ifeq ($(ADAFRUIT),y)
-INCLUDES += -I./lcd_hal/avr/arduino
+    CPPFLAGS += -I./lcd_hal/avr/arduino
 endif
 
 include Makefile.common

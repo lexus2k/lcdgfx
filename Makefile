@@ -62,3 +62,7 @@ cppcheck:
 	    --error-exitcode=1 .
 	@echo "[DONE]"
 
+
+clean:
+	make -C ./src/ -f Makefile.linux clean
+	rm -rf gmon.out

@@ -32,11 +32,9 @@
 # FREQUENCY
 
 CC=gcc
-MKDIR=mkdir
-BACKSLASH=\\
 
 ifeq ($(ADAFRUIT),y)
-INCLUDES += -I./lcd_hal/mingw/arduino
+    CPPFLAGS += -I./lcd_hal/mingw/arduino
 endif
 
 include Makefile.common

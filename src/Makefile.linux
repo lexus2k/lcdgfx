@@ -32,7 +32,7 @@
 # FREQUENCY
 
 ifeq ($(ADAFRUIT),y)
-INCLUDES += -I./lcd_hal/linux/arduino
+    CPPFLAGS += -I./lcd_hal/linux/arduino
 endif
 
 include Makefile.common

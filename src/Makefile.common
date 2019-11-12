@@ -22,63 +22,34 @@
 #
 #################################################################
 # Makefile containing common logic for all systems
-#
-# Accepts the following parameters:
-# CC
-# CXX
-# STRIP
-# AR
 
 default: all
 
 DESTDIR ?=
 BLD ?= ../bld
-BACKSLASH?=/
-MKDIR?=mkdir -p
-convert=$(subst /,$(BACKSLASH),$1)
 
 .SUFFIXES: .c .cpp .ino
 
-$(BLD)/%.o: %.c
-	-$(MKDIR) $(call convert,$(dir $@))
-	$(CC) -std=gnu11 $(CCFLAGS) -c $< -o $@
-
-$(BLD)/%.o: %.ino
-	-$(MKDIR) $(call convert,$(dir $@))
-	$(CXX) -std=c++11 $(CCFLAGS) $(CXXFLAGS) $(CCFLAGS-$(basename $(notdir $@))) -x c++ -c $< -o $@
-
-$(BLD)/%.o: %.cpp
-	-$(MKDIR) $(call convert,$(dir $@))
-	$(CXX) -std=c++11 $(CCFLAGS) $(CXXFLAGS) $(CCFLAGS-$(basename $(notdir $@))) -c $< -o $@
+%.o: %.ino
+	$(CXX) -c $(CXXFLAGS) $(CPPFLAGS) -o $@ $<
 
 ################ OPTIONS ##########################
 
 ifeq ($(ADAFRUIT),y)
-ADAFRUIT_DIR ?= $(shell readlink -f ~)/Arduino/libraries/Adafruit_GFX_Library
-
-INCLUDES += -I$(ADAFRUIT_DIR) \
-
-#	-I$(shell readlink -f ../src)/lcd_hal/linux/arduino
-
-CCFLAGS-Adafruit_GFX= -DARDUINO=100
-
-SRCS += \
-	$(ADAFRUIT_DIR)/Adafruit_GFX.cpp
+    ADAFRUIT_DIR ?= $(shell readlink -f ~)/Arduino/libraries/Adafruit_GFX_Library
+    CPPFLAGS += -I$(ADAFRUIT_DIR) \
+    CPPFLAGS-Adafruit_GFX= -DARDUINO=100
+    OBJS += $(ADAFRUIT_DIR)/Adafruit_GFX.o
 endif
 
 # ************* Common defines ********************
 
-INCLUDES += \
-        -I. \
-        -I./v2 \
-
-CCFLAGS += -MD -g -Os $(INCLUDES) -Wall -Werror -ffunction-sections -fdata-sections \
-	-fno-exceptions $(EXTRA_CPPFLAGS)
-
-CXXFLAGS += -fno-rtti
+CPPFLAGS += -I. -I./v2 
+CPPFLAGS += -MD -g -Os -Wall -Werror -ffunction-sections -fdata-sections $(EXTRA_CPPFLAGS)
+CXXFLAGS += -std=c++11
 
 ifeq ($(SDL_EMULATION),y)
-    CCFLAGS += -DSDL_EMULATION -I../tools/sdl
+    CPPFLAGS += -DSDL_EMULATION -I../tools/sdl
 endif
 
 .PHONY: clean lcdgfx all help
@@ -88,6 +59,7 @@ include Makefile.src
 ####################### Compiling library #########################
 
 $(BLD)/liblcdgfx.a: $(OBJS)
+	mkdir -p $(BLD)
 	$(AR) rcs $@ $(OBJS)
 
 lcdgfx: $(BLD)/liblcdgfx.a
@@ -96,6 +68,10 @@ all: lcdgfx
 
 clean:
 	rm -rf $(BLD)
+	rm -rf $(OBJS)
+	rm -rf $(OBJS:%.o=%.d)
+	rm -rf $(OBJS:.o=.gcno) $(OBJS:.o=.gcda)
+
 
 help:
 	@echo "Makefile accepts the following options:"
