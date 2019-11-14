@@ -27,7 +27,7 @@ default: library
 .PHONY: docs library help check cppcheck
 
 ARCH ?= linux
-SDL_EMULATION ?= y
+SDL_EMULATION ?= n
 CPPFLAGS += -I./src -I./tools/sdl $(EXTRA_CPPFLAGS)
 ifeq ($(SDL_EMULATION),y)
     CPPFLAGS += -DSDL_EMULATION

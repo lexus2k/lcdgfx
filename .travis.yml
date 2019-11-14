@@ -30,14 +30,18 @@ jobs:
         directories:
           - /home/travis/esp
           - /home/travis/.espressif
-    - stage: Check linux code
+    - stage: Check linux code (gcc)
       compiler: gcc
       script:
         - make docs 1> /dev/null
-        - make EXTRA_CPPFLAGS="--coverage" SDL_EMULATION=y check
+        - make ARCH=linux EXTRA_CPPFLAGS="--coverage" SDL_EMULATION=y check
       after_success:
         - coveralls -b ./src --exclude docs --exclude unittest --exclude bld --exclude tools --exclude examples --exclude examples_to_do --gcov-options '\-lp'
-#    - stage: Check avr code
-#      script:
-#        - make ARCH=avr
+    - stage: Check avr code
+      script:
+        - make ARCH=avr SDL_EMULATION=n
+    - stage: Check linux code (clang)
+      compiler: clang
+      script:
+        - make ARCH=linux SDL_EMULATION=y check
 
