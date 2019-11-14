@@ -1,5 +1,9 @@
 # LCDGFX library for display controllers
 
+[![Build Status](https://travis-ci.org/lexus2k/lcdgfx.svg?branch=master)](https://travis-ci.org/lexus2k/lcdgfx)
+[![Coverage Status](https://coveralls.io/repos/github/lexus2k/lcdgfx/badge.svg?branch=master)](https://coveralls.io/github/lexus2k/lcdgfx?branch=master)
+
+
 [tocstart]: # (toc start)
 
   * [Introduction](#introduction)
