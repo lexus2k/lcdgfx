@@ -22,10 +22,11 @@
 #
 #################################################################
 
-default: linux
+default: library
 
-.PHONY: docs library help linux check cppcheck
+.PHONY: docs library help check cppcheck
 
+ARCH ?= linux
 SDL_EMULATION ?= y
 CPPFLAGS += -I./src -I./tools/sdl $(EXTRA_CPPFLAGS)
 ifeq ($(SDL_EMULATION),y)
@@ -41,13 +42,14 @@ help:
 	@echo "make cppcheck      run cppcheck tests"
 	@echo ""
 	@echo "to build examples use scripts in tools subdir"
+	@echo "ARCH=<arch>        specify architecture: avr, linux, esp32"
 
 docs:
 	@cd src && doxygen doxygen.cfg 1>/dev/null
 	@echo "[DONE] check docs folder"
 
-linux:
-	make -C ./src/ -f Makefile.linux SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)"
+library:
+	make -C ./src/ -f Makefile.$(ARCH) SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)"
 
 ssd1306_sdl:
 	$(MAKE) -C ./tools/sdl -f Makefile.linux SDL_EMULATION=$(SDL_EMULATION) EXTRA_CCFLAGS="$(EXTRA_CPPFLAGS)"
@@ -64,5 +66,5 @@ cppcheck:
 
 
 clean:
-	make -C ./src/ -f Makefile.linux clean
+	make -C ./src/ -f Makefile.$(ARCH) clean
 	rm -rf gmon.out

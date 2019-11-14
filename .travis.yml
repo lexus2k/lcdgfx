@@ -2,8 +2,6 @@ os:
   - linux
 #  - windows
 language: cpp
-compiler:
-  - gcc
 #  - clang
 
 addons:
@@ -23,7 +21,17 @@ jobs:
   allow_failures:
     - os: windows
   include:
+    - stage: Check esp code
+      script:
+        - ./.travis/setup_esp_build_env.sh travis
+        - . ~/esp/esp-idf/export.sh
+        - make -C examples -f Makefile.esp32 PROJECT=demos/ssd1306_demo
+      cache:
+        directories:
+          - /home/travis/esp
+          - /home/travis/.espressif
     - stage: Check linux code
+      compiler: gcc
       script:
         - make docs 1> /dev/null
         - make EXTRA_CPPFLAGS="--coverage" SDL_EMULATION=y check
