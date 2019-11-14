@@ -63,4 +63,5 @@ $(BLD)/esp32/main/component.mk:
 all: $(BLD)/esp32/main/component.mk \
      $(BLD)/esp32/components/lcdgfx/component.mk \
      $(BLD)/esp32/components/sketch/main.cpp
+	$(MAKE) -C $(BLD)/esp32 defconfig
 	$(MAKE) -C $(BLD)/esp32

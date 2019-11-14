@@ -49,10 +49,10 @@ docs:
 	@echo "[DONE] check docs folder"
 
 library:
-	make -C ./src/ -f Makefile.$(ARCH) SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)"
+	make -C ./src/ -f Makefile.$(ARCH) SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)" BLD=$(BLD)
 
 ssd1306_sdl:
-	$(MAKE) -C ./tools/sdl -f Makefile.linux SDL_EMULATION=$(SDL_EMULATION) EXTRA_CCFLAGS="$(EXTRA_CPPFLAGS)"
+	$(MAKE) -C ./tools/sdl -f Makefile.linux SDL_EMULATION=$(SDL_EMULATION) EXTRA_CCFLAGS="$(EXTRA_CPPFLAGS)" BLD=$(BLD)
 
 include Makefile.cpputest
 
