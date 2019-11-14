@@ -250,7 +250,7 @@ void NanoDisplayOps4<I>::drawBuffer1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, 
                 pixels |= color & mask;
             else
                 pixels |= blackColor & mask;
-            if ( wx & 0x01 == 0x00 )
+            if ( ( wx & 0x01 ) == 0x00 )
             {
                 this->m_intf.send( pixels );
                 pixels = 0;

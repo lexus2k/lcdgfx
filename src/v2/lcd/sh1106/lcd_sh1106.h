@@ -287,7 +287,7 @@ public:
         : DisplaySH1106_128x64(m_i2c, rstPin)
         , m_i2c( *this, -1,
                  SPlatformI2cConfig{ config.busId,
-                                     config.addr ?: (uint8_t)0x3C,
+                                     static_cast<uint8_t>(config.addr ?: 0x3C),
                                      config.scl,
                                      config.sda,
                                      config.frequency ?: 400000 } ) {}

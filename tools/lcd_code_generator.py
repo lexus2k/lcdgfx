@@ -39,6 +39,9 @@ def print_help_and_exit():
     print "      -r WxH    resolution"
     print "      -j json   Use json data from file"
     print "      -t template path source templates, templates by default"
+    print ""
+    print "exammples:"
+    print "      ./lcd_code_generator.py -c all"
     exit(1)
 
 if len(sys.argv) < 2:
