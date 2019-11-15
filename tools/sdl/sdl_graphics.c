@@ -289,7 +289,7 @@ static uint32_t convert_pixel( uint32_t value, uint8_t target_bpp )
         case 4: pixel = (pixel & 0x000000F0) >> 4; break;
         case 8: pixel = ((pixel & 0xE0000000) >> 24) | ((pixel & 0x00E00000) >> 19) | ((pixel & 0x0000C000) >> 14); break;
         case 16: pixel = ((pixel & 0xF8000000) >> 16) | ((pixel & 0x00FC0000) >> 13) | ((pixel & 0x0000F800) >> 11); break;
-        case 32: pixel = pixel; break;
+        case 32: break;
         default: break;
     }
     return pixel;
