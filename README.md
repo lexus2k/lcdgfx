@@ -94,6 +94,8 @@ void loop()
 
 ## Supported platforms
 
+Compilers: gcc, clang
+
 | **Platforms** | **I2C** | **SPI** | **Comments** |
 | :-------- |:---:|:---:|:---------|
 | **Arduino** |     |     |          |
