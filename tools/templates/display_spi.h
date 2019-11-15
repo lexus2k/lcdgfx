@@ -15,7 +15,7 @@ public:
         : Display~CONTROLLER~_~RESOLUTION~(m_spi, rstPin)
         , m_spi( ~INTERFACE_ARGS~,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: ~FREQUENCY~,
                                      config.scl,

@@ -250,7 +250,7 @@ public:
         : DisplaySH1106_128x64(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,

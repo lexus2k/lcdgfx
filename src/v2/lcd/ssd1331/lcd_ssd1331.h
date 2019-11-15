@@ -227,7 +227,7 @@ public:
         : DisplaySSD1331_96x64x8(m_spi, rstPin)
         , m_spi( 8, *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: 6000000,
                                      config.scl,
@@ -325,7 +325,7 @@ public:
         : DisplaySSD1331_96x64x16(m_spi, rstPin)
         , m_spi( 16, *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: 6000000,
                                      config.scl,

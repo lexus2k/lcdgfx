@@ -188,7 +188,7 @@ public:
         : DisplayPCD8544_84x48(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: 4000000,
                                      config.scl,

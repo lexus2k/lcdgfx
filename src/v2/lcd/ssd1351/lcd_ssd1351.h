@@ -184,7 +184,7 @@ public:
         : DisplaySSD1351_128x128x16(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: 4400000,
                                      config.scl,

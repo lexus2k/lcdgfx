@@ -195,7 +195,7 @@ public:
         : DisplayIL9163_128x128x16(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: 8000000,
                                      config.scl,
@@ -261,7 +261,7 @@ public:
         : DisplayIL9163_128x160x16(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: 8000000,
                                      config.scl,

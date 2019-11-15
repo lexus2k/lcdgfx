@@ -247,7 +247,7 @@ public:
         : DisplaySSD1306_128x32(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,
@@ -349,7 +349,7 @@ public:
         : DisplaySSD1306_128x64(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
-                                     config.cs,
+                                     { config.cs },
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,
