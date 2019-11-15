@@ -45,7 +45,8 @@
 
 #include "sdl_core.h"
 
-SdlI2c::SdlI2c(int8_t scl, int8_t sda, uint8_t sa)
+SdlI2c::SdlI2c(int8_t scl, int8_t sda, uint8_t sa):
+    m_scl( scl ), m_sda( sda )
 {
 }
 
