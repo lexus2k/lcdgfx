@@ -92,8 +92,8 @@ public:
     void setAddr(uint8_t addr) { m_sa = addr; }
 
 private:
-    int8_t m_scl;
-    int8_t m_sda;
+//    int8_t m_scl;
+//    int8_t m_sda;
     uint8_t m_sa;
 };
 
