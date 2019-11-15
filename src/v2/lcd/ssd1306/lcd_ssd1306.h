@@ -243,7 +243,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
      */
-    DisplaySSD1306_128x32_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, -1, -1, 0, -1, -1 } )
+    DisplaySSD1306_128x32_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplaySSD1306_128x32(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
@@ -345,7 +345,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
      */
-    DisplaySSD1306_128x64_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, -1, -1, 0, -1, -1 } )
+    DisplaySSD1306_128x64_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplaySSD1306_128x64(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
