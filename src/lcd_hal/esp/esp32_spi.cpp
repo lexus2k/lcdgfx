@@ -65,7 +65,7 @@ void EspSpi::begin()
     spi_bus_config_t buscfg{};
     // TODO: Do we need really miso pins? We don't use miso line for lcd displays
     buscfg.miso_io_num = m_busId ? 19 : 12;
-    buscfg.mosi_io_num = m_mosi > -1 ? m_mosi ( m_busId ? 23 : 13 );
+    buscfg.mosi_io_num = m_mosi > -1 ? m_mosi : ( m_busId ? 23 : 13 );
     buscfg.sclk_io_num = m_clk > -1 ? m_clk : ( m_busId ? 18 : 14 );
     buscfg.quadwp_io_num = -1;
     buscfg.quadhd_io_num = -1;
