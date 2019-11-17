@@ -44,9 +44,12 @@ public:
      * @param busId number of SPI bus to use: HSPI_HOST, VSPI_HOST
      * @param csPin pin number to use as chip select, can be -1
      * @param dcPin pin to use as data command control pin
+     * @param clk pin to use as clock spi pin
+     * @param mosi pin to use as master output spi pin
      * @param frequency frequency in HZ to run spi bus on
      */
     EspSpi( int8_t busId = -1, int8_t csPin = -1, int8_t dcPin = -1,
+            int8_t clk = -1, int8_t mosi = -1,
             uint32_t frequency = 8000000 );
     ~EspSpi();
 
@@ -90,6 +93,8 @@ private:
     int8_t m_busId;
     int8_t m_cs;
     int8_t m_dc;
+    int8_t m_clk;
+    int8_t m_mosi;
     bool m_first_spi_session;
     uint32_t m_frequency;
     spi_device_handle_t m_spi;

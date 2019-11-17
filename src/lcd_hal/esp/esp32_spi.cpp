@@ -31,10 +31,13 @@
 #include "driver/gpio.h"
 #include "driver/spi_master.h"
 
-EspSpi::EspSpi(int8_t busId, int8_t csPin, int8_t dcPin, uint32_t frequency)
+EspSpi::EspSpi(int8_t busId, int8_t csPin, int8_t dcPin,
+               int8_t clk, int8_t mosi, uint32_t frequency)
    : m_busId( busId )
    , m_cs( csPin )
    , m_dc( dcPin )
+   , m_clk( clk )
+   , m_mosi( mosi )
    , m_first_spi_session( true )
    , m_frequency( frequency )
 {
@@ -50,18 +53,20 @@ void EspSpi::begin()
     if ( m_busId < 0 ) m_busId = 1;
 
     // If cesPin is not provided, select by default
-    if ( m_cs < 0)
-    {
-        m_cs = m_busId ? 5 : 15;
-    }
+    // TODO: Not sure, that we need to set cs pin by default. It should be explicitly specified
+//    if ( m_cs < 0)
+//    {
+//        m_cs = m_busId ? 5 : 15;
+//    }
     if (m_cs >=0) lcd_gpioMode( m_cs, LCD_GPIO_OUTPUT );
     if (m_dc >= 0) lcd_gpioMode( m_dc, LCD_GPIO_OUTPUT );
 
     // init your interface here
     spi_bus_config_t buscfg{};
+    // TODO: Do we need really miso pins? We don't use miso line for lcd displays
     buscfg.miso_io_num = m_busId ? 19 : 12;
-    buscfg.mosi_io_num = m_busId ? 23 : 13;
-    buscfg.sclk_io_num = m_busId ? 18 : 14;
+    buscfg.mosi_io_num = m_mosi > -1 ? m_mosi ( m_busId ? 23 : 13 );
+    buscfg.sclk_io_num = m_clk > -1 ? m_clk : ( m_busId ? 18 : 14 );
     buscfg.quadwp_io_num = -1;
     buscfg.quadhd_io_num = -1;
     buscfg.max_transfer_sz = 32;

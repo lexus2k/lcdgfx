@@ -123,13 +123,13 @@ typedef struct
      * Optional - spi clock pin number. -1 if to use default spi clock pin.
      * This is required for ESP32 platform only.
      */
-    int8_t scl;
+    int8_t scl; // clk
 
     /**
      * Optional - spi data MOSI pin number. -1 if to use default spi MOSI pin.
      * This is required for ESP32 platform only.
      */
-    int8_t sda;
+    int8_t sda; // mosi
 } SPlatformSpiConfig;
 
 /** Describes low level hardware API for C-style code */
