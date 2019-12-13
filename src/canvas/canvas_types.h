@@ -162,5 +162,7 @@ typedef struct
     uint8_t     oldSelection;
     /// position of menu scrolling. Internally updated
     uint8_t     scrollPosition;
+    /// top offset
+    lcdint_t    top;
 } SAppMenu;
 

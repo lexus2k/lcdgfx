@@ -1064,8 +1064,9 @@ public:
      * @param menu pointer to SAppMenu structure
      * @param items array of null-termintated strings (located in SRAM)
      * @param count count of menu items in the array
+     * @param rect screen area to use for menu
      */
-    void createMenu(SAppMenu *menu, const char **items, uint8_t count);
+    void createMenu(SAppMenu *menu, const char **items, uint8_t count, const NanoRect &rect = {});
 
     /**
      * Shows menu items on the display. If menu items cannot fit the display,
