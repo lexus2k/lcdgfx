@@ -164,5 +164,11 @@ typedef struct
     uint8_t     scrollPosition;
     /// top offset
     lcdint_t    top;
+    /// left offset
+    lcdint_t    left;
+    /// width of menu
+    lcduint_t   width;
+    /// height of menu
+    lcduint_t   height;
 } SAppMenu;
 
