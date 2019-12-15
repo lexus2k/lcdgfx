@@ -8,5 +8,5 @@ var searchData=
   ['erase',['erase',['../struct_s_p_r_i_t_e.html#ab08b9b2831224d69a19d992819d100a2',1,'SPRITE']]],
   ['erasetrace',['eraseTrace',['../struct_s_p_r_i_t_e.html#ada52ad2a7aae3bdb62c6dc66ccb8765c',1,'SPRITE']]],
   ['espi2c',['EspI2c',['../class_esp_i2c.html',1,'EspI2c'],['../class_esp_i2c.html#a16a7f1724bb29ec773d25e257fa2c790',1,'EspI2c::EspI2c()']]],
-  ['espspi',['EspSpi',['../class_esp_spi.html',1,'EspSpi'],['../class_esp_spi.html#aa42656e4f89a978d13bc4664028583ea',1,'EspSpi::EspSpi()']]]
+  ['espspi',['EspSpi',['../class_esp_spi.html',1,'EspSpi'],['../class_esp_spi.html#ad1dc06c8a71d99fdb3791abf6b95a182',1,'EspSpi::EspSpi()']]]
 ];

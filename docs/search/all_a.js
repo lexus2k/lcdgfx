@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['lcdgfx_20library_20for_20display_20controllers',['LCDGFX library for display controllers',['../index.html',1,'']]],
   ['lcd_5fadcread',['lcd_adcRead',['../group___s_s_d1306___h_a_l___a_p_i.html#gae6d6325fb501d713208a5fb7ec593b09',1,'io.h']]],
   ['lcd_5fcommon_2eh',['lcd_common.h',['../lcd__common_8h.html',1,'']]],
   ['lcd_5fdelay',['lcd_delay',['../group___s_s_d1306___h_a_l___a_p_i.html#gad82eee450151f8ae58c840ecb9a9b8ac',1,'io.h']]],
@@ -33,7 +34,7 @@ var searchData=
   ['lcdint_5ft',['lcdint_t',['../canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0',1,'lcdint_t():&#160;canvas_types.h'],['../group___s_s_d1306___h_a_l___a_p_i.html#ga609c6ba2ba635102cd316b7b59af8351',1,'lcdint_t():&#160;io.h']]],
   ['lcdint_5ftypes_5fdefined',['LCDINT_TYPES_DEFINED',['../group___s_s_d1306___h_a_l___a_p_i.html#ga57896cfd0f578b584d58e3bef85b0e78',1,'io.h']]],
   ['lcduint_5ft',['lcduint_t',['../canvas__types_8h.html#a3f8da2a8037c095075c26aaa7c7ebd82',1,'lcduint_t():&#160;canvas_types.h'],['../group___s_s_d1306___h_a_l___a_p_i.html#ga3de6a212815ee8499f4042db94992210',1,'lcduint_t():&#160;io.h']]],
-  ['left',['left',['../struct_s_s_d1306___r_e_c_t.html#a596b6b6cce11df484877b63db7d0a5b5',1,'SSD1306_RECT::left()'],['../class_nano_object.html#ae4a4019fa9b7c87f292edb48092580ee',1,'NanoObject::left()']]],
+  ['left',['left',['../struct_s_app_menu.html#a8d20e54441eb7ccb39ad287739947fc4',1,'SAppMenu::left()'],['../struct_s_s_d1306___r_e_c_t.html#a596b6b6cce11df484877b63db7d0a5b5',1,'SSD1306_RECT::left()'],['../class_nano_object.html#ae4a4019fa9b7c87f292edb48092580ee',1,'NanoObject::left()']]],
   ['linuxi2c',['LinuxI2c',['../class_linux_i2c.html',1,'LinuxI2c'],['../class_linux_i2c.html#a6eb86d8e0b11df79979b00e7bd0e2ce7',1,'LinuxI2c::LinuxI2c()']]],
   ['linuxspi',['LinuxSpi',['../class_linux_spi.html',1,'LinuxSpi'],['../class_linux_spi.html#af3e8c2402d5f7ef7d1b63e0c7d7db097',1,'LinuxSpi::LinuxSpi()']]],
   ['loadfixedfont',['loadFixedFont',['../class_nano_font.html#ae97ddc20766f4cd78fddba8e834d9f04',1,'NanoFont']]],

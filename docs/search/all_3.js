@@ -40,7 +40,7 @@ var searchData=
   ['core_2eh',['core.h',['../core_8h.html',1,'']]],
   ['count',['count',['../struct_s_fixed_font_info.html#af15942a32b4cebccdad63b2d81f24abc',1,'SFixedFontInfo::count()'],['../struct_s_app_menu.html#ad750fae199422bd44dc6063123631d62',1,'SAppMenu::count()'],['../struct_s_unicode_block_record.html#a4e9a958ed2e5507c22490818dd2a304d',1,'SUnicodeBlockRecord::count()']]],
   ['courier_5fnew_5ffont11x16_5fdigits',['courier_new_font11x16_digits',['../group___l_c_d___f_o_n_t_s.html#gad0b4c4a1805d2cbc11910dbf2febb516',1,'courier_new_font11x16_digits():&#160;fonts.c'],['../group___l_c_d___f_o_n_t_s.html#gad0b4c4a1805d2cbc11910dbf2febb516',1,'courier_new_font11x16_digits():&#160;fonts.c']]],
-  ['createmenu',['createMenu',['../class_nano_display_ops.html#af89f8729d51fe044c373ffdf7f849b85',1,'NanoDisplayOps']]],
+  ['createmenu',['createMenu',['../class_nano_display_ops.html#a0e5b17e5e4b96560bee1b47223192ff3',1,'NanoDisplayOps']]],
   ['crop',['crop',['../struct___nano_rect.html#ad2830dc65621088cfc9656e3959ff9b0',1,'_NanoRect']]],
   ['config_3a_20ssd1306_20library_20configuration',['CONFIG: ssd1306 library configuration',['../group___s_s_d1306___l_i_b_r_a_r_y___c_o_n_f_i_g.html',1,'']]]
 ];
