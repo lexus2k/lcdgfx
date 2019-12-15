@@ -36,7 +36,7 @@ CPPFLAGS += -std=c++11
 BLD ?= $(shell pwd)/bld
 
 help:
-	@echo "============== SSD1306 library ================"
+	@echo "============== LCDGFX library ================"
 	@echo "make docs          generates documentation"
 	@echo "make help          prints this help"
 	@echo "make cppcheck      run cppcheck tests"
