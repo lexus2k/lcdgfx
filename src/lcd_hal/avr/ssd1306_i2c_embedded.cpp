@@ -120,8 +120,9 @@ static uint8_t oldSREG;
 static uint8_t interruptsOff = 0;
 
 SoftwareI2c::SoftwareI2c(int8_t scl, int8_t sda, uint8_t sa)
-    : m_scl( scl >= 0 ? scl : (1<<SSD1306_SCL) )
-    , m_sda( sda >= 0 ? sda : (1<<SSD1306_SDA) )
+    // m_scl and m_sda here mean bit mask, but not bit number
+    : m_scl( scl >= 0 ? (1<<scl) : (1<<SSD1306_SCL) )
+    , m_sda( sda >= 0 ? (1<<sda) : (1<<SSD1306_SDA) )
     , m_sa ( sa ? : SSD1306_SA )
 {
 }
@@ -137,6 +138,9 @@ void SoftwareI2c::begin()
 void SoftwareI2c::end()
 {
 }
+
+#pragma GCC push_options
+#pragma GCC optimize ("O0")
 
 void SoftwareI2c::start()
 {
@@ -191,6 +195,8 @@ void SoftwareI2c::send(uint8_t data)
     DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);
     ssd1306_delay(I2C_HALF_CLOCK);
 }
+
+#pragma GCC pop_options
 
 void SoftwareI2c::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
