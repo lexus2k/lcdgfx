@@ -26,6 +26,8 @@
 
 #if defined(CONFIG_SOFTWARE_I2C_AVAILABLE) && defined(CONFIG_SOFTWARE_I2C_ENABLE)
 
+#include <util/delay_basic.h>
+
 /**
  * Port registers, containing pins, which SSD1306 display is connected to.
  * For ATtiny controllers it is standard PORTB
@@ -81,9 +83,8 @@
 #endif
 #define CPU_CYCLE_NS   (1000000000/F_CPU)
 
-// each delay loop takes 4 cycles: nop(1), dec(1), jnz(2)
 #define DELAY_LOOP_CYCLES 4
-#define ssd1306_delay(x) for(uint8_t i2=x; i2>0; i2--){__asm__("nop\n\t");}
+#define ssd1306_delay(x) _delay_loop_2(x)
 
 /**
  * Section, which defines I2C timings for SSD1306 display from datasheet
@@ -139,9 +140,6 @@ void SoftwareI2c::end()
 {
 }
 
-#pragma GCC push_options
-#pragma GCC optimize ("O0")
-
 void SoftwareI2c::start()
 {
     oldSREG = SREG;
@@ -195,8 +193,6 @@ void SoftwareI2c::send(uint8_t data)
     DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);
     ssd1306_delay(I2C_HALF_CLOCK);
 }
-
-#pragma GCC pop_options
 
 void SoftwareI2c::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
