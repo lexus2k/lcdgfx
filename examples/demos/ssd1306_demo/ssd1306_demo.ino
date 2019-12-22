@@ -131,7 +131,7 @@ static void textDemo()
     lcd_delay(3000);
 }
 
-#if !defined(__AVR_ATtiny85__)
+#if !defined(__AVR_ATtiny85__) && !defined(__AVR_ATtiny84__)
 static void canvasDemo()
 {
     NanoCanvas<64,16,1> canvas;
@@ -196,7 +196,7 @@ void loop()
             textDemo();
             break;
 
-#if !defined(__AVR_ATtiny85__)
+#if !defined(__AVR_ATtiny85__) && !defined(__AVR_ATtiny84__)
         case 3:
             canvasDemo();
             break;
