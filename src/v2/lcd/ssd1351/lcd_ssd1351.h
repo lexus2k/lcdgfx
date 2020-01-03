@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -178,7 +178,7 @@ public:
      *
      * Inits 128x128x16 lcd display over spi (based on SSD1351 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplaySSD1351_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplaySSD1351_128x128x16(m_spi, rstPin)
@@ -204,6 +204,48 @@ private:
     InterfaceSSD1351<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements SSD1351 128x128x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplaySSD1351_128x128x16_CustomSPI: public DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>
+{
+public:
+    /**
+     * @brief Inits 128x128x16 lcd display over spi (based on SSD1351 controller): 16-bit mode.
+     *
+     * Inits 128x128x16 lcd display over spi (based on SSD1351 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplaySSD1351_128x128x16_CustomSPI( int8_t rstPin, Args&&... data )
+        : DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>(m_spi, rstPin)
+        , m_spi( *this, config.dc,
+                 data... ) {}
+
+    /**
+     * Initializes SSD1351 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceSSD1351<I> m_spi;
+};
 #include "lcd_ssd1351.inl"
 
 /**

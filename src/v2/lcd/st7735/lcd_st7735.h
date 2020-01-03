@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -189,7 +189,7 @@ public:
      *
      * Inits 128x128x16 lcd display over spi (based on ST7735 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplayST7735_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayST7735_128x128x16(m_spi, rstPin)
@@ -215,6 +215,48 @@ private:
     InterfaceST7735<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements ST7735 128x128x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplayST7735_128x128x16_CustomSPI: public DisplayST7735_128x128x16<InterfaceST7735<I>>
+{
+public:
+    /**
+     * @brief Inits 128x128x16 lcd display over spi (based on ST7735 controller): 16-bit mode.
+     *
+     * Inits 128x128x16 lcd display over spi (based on ST7735 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplayST7735_128x128x16_CustomSPI( int8_t rstPin, Args&&... data )
+        : DisplayST7735_128x128x16<InterfaceST7735<I>>(m_spi, rstPin)
+        , m_spi( *this, config.dc,
+                 data... ) {}
+
+    /**
+     * Initializes ST7735 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplayST7735_128x128x16<InterfaceST7735<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplayST7735_128x128x16<InterfaceST7735<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceST7735<I> m_spi;
+};
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */
@@ -255,7 +297,7 @@ public:
      *
      * Inits 128x160x16 lcd display over spi (based on ST7735 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplayST7735_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayST7735_128x160x16(m_spi, rstPin)
@@ -281,6 +323,48 @@ private:
     InterfaceST7735<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements ST7735 128x160x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplayST7735_128x160x16_CustomSPI: public DisplayST7735_128x160x16<InterfaceST7735<I>>
+{
+public:
+    /**
+     * @brief Inits 128x160x16 lcd display over spi (based on ST7735 controller): 16-bit mode.
+     *
+     * Inits 128x160x16 lcd display over spi (based on ST7735 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplayST7735_128x160x16_CustomSPI( int8_t rstPin, Args&&... data )
+        : DisplayST7735_128x160x16<InterfaceST7735<I>>(m_spi, rstPin)
+        , m_spi( *this, config.dc,
+                 data... ) {}
+
+    /**
+     * Initializes ST7735 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplayST7735_128x160x16<InterfaceST7735<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplayST7735_128x160x16<InterfaceST7735<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceST7735<I> m_spi;
+};
 #include "lcd_st7735.inl"
 
 /**

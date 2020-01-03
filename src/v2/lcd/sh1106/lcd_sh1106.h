@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -244,7 +244,7 @@ public:
      *
      * Inits 128x64 lcd display over spi (based on SH1106 controller): 1-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplaySH1106_128x64_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplaySH1106_128x64(m_spi, rstPin)
@@ -270,6 +270,48 @@ private:
     InterfaceSH1106<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements SH1106 128x64 lcd display in 1 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplaySH1106_128x64_CustomSPI: public DisplaySH1106_128x64<InterfaceSH1106<I>>
+{
+public:
+    /**
+     * @brief Inits 128x64 lcd display over spi (based on SH1106 controller): 1-bit mode.
+     *
+     * Inits 128x64 lcd display over spi (based on SH1106 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplaySH1106_128x64_CustomSPI( int8_t rstPin, Args&&... data )
+        : DisplaySH1106_128x64<InterfaceSH1106<I>>(m_spi, rstPin)
+        , m_spi( *this, config.dc,
+                 data... ) {}
+
+    /**
+     * Initializes SH1106 lcd in 1-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplaySH1106_128x64<InterfaceSH1106<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySH1106_128x64<InterfaceSH1106<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceSH1106<I> m_spi;
+};
 /**
  * Class implements SH1106 128x64 lcd display in 1 bit mode over I2C
  */
@@ -305,6 +347,50 @@ public:
 private:
     InterfaceSH1106<PlatformI2c> m_i2c;
 };
+
+/**
+ * Template class implements SH1106 128x64 lcd display in 1 bit mode over custom I2C implementation
+ * (user-defined i2c implementation). I - user custom i2c class
+ */
+template <class I>
+class DisplaySH1106_128x64_CustomI2C: public DisplaySH1106_128x64<InterfaceSH1106<I>>
+{
+public:
+    /**
+     * @brief Inits 128x64 lcd display over i2c (based on SH1106 controller): 1-bit mode.
+     *
+     * Inits 128x64 lcd display over i2c (based on SH1106 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user i2c interface.
+     */
+    template <typename... Args>
+    DisplaySH1106_128x64_CustomI2C( int8_t rstPin, Args&&... data )
+        : DisplaySH1106_128x64<InterfaceSH1106<I>>(m_i2c, rstPin)
+        , m_i2c( *this, -1,
+                 data... ) {}
+
+    /**
+     * Initializes SH1106 lcd in 1-bit mode
+     */
+    void begin() override
+    {
+        m_i2c.begin();
+        DisplaySH1106_128x64<InterfaceSH1106<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySH1106_128x64<InterfaceSH1106<I>>::end();
+        m_i2c.end();
+    }
+
+private:
+    InterfaceSH1106<I> m_i2c;
+};
+
 
 #include "lcd_sh1106.inl"
 

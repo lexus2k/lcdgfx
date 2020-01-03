@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -182,7 +182,7 @@ public:
      *
      * Inits 84x48 lcd display over spi (based on PCD8544 controller): 1-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplayPCD8544_84x48_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayPCD8544_84x48(m_spi, rstPin)
@@ -208,6 +208,48 @@ private:
     InterfacePCD8544<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements PCD8544 84x48 lcd display in 1 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplayPCD8544_84x48_CustomSPI: public DisplayPCD8544_84x48<InterfacePCD8544<I>>
+{
+public:
+    /**
+     * @brief Inits 84x48 lcd display over spi (based on PCD8544 controller): 1-bit mode.
+     *
+     * Inits 84x48 lcd display over spi (based on PCD8544 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplayPCD8544_84x48_CustomSPI( int8_t rstPin, Args&&... data )
+        : DisplayPCD8544_84x48<InterfacePCD8544<I>>(m_spi, rstPin)
+        , m_spi( *this, config.dc,
+                 data... ) {}
+
+    /**
+     * Initializes PCD8544 lcd in 1-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplayPCD8544_84x48<InterfacePCD8544<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplayPCD8544_84x48<InterfacePCD8544<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfacePCD8544<I> m_spi;
+};
 #include "lcd_pcd8544.inl"
 
 /**

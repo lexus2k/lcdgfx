@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -221,7 +221,7 @@ public:
      *
      * Inits 96x64x8 lcd display over spi (based on SSD1331 controller): 8-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplaySSD1331_96x64x8_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplaySSD1331_96x64x8(m_spi, rstPin)
@@ -247,6 +247,48 @@ private:
     InterfaceSSD1331<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements SSD1331 96x64x8 lcd display in 8 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplaySSD1331_96x64x8_CustomSPI: public DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>
+{
+public:
+    /**
+     * @brief Inits 96x64x8 lcd display over spi (based on SSD1331 controller): 8-bit mode.
+     *
+     * Inits 96x64x8 lcd display over spi (based on SSD1331 controller): 8-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplaySSD1331_96x64x8_CustomSPI( int8_t rstPin, Args&&... data )
+        : DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>(m_spi, rstPin)
+        , m_spi( 8, *this, config.dc,
+                 data... ) {}
+
+    /**
+     * Initializes SSD1331 lcd in 8-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceSSD1331<I> m_spi;
+};
 
 /**
  * Class implements basic functions for 16-bit mode of SSD1331-based displays
@@ -319,7 +361,7 @@ public:
      *
      * Inits 96x64x16 lcd display over spi (based on SSD1331 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplaySSD1331_96x64x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplaySSD1331_96x64x16(m_spi, rstPin)
@@ -345,6 +387,48 @@ private:
     InterfaceSSD1331<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements SSD1331 96x64x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplaySSD1331_96x64x16_CustomSPI: public DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>
+{
+public:
+    /**
+     * @brief Inits 96x64x16 lcd display over spi (based on SSD1331 controller): 16-bit mode.
+     *
+     * Inits 96x64x16 lcd display over spi (based on SSD1331 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplaySSD1331_96x64x16_CustomSPI( int8_t rstPin, Args&&... data )
+        : DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>(m_spi, rstPin)
+        , m_spi( 16, *this, config.dc,
+                 data... ) {}
+
+    /**
+     * Initializes SSD1331 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceSSD1331<I> m_spi;
+};
 #include "lcd_ssd1331.inl"
 
 /**

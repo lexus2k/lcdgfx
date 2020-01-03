@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -201,7 +201,7 @@ public:
      *
      * Inits 240x320x16 lcd display over spi (based on ILI9341 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplayILI9341_240x320x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayILI9341_240x320x16(m_spi, rstPin)
@@ -227,6 +227,48 @@ private:
     InterfaceILI9341<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements ILI9341 240x320x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplayILI9341_240x320x16_CustomSPI: public DisplayILI9341_240x320x16<InterfaceILI9341<I>>
+{
+public:
+    /**
+     * @brief Inits 240x320x16 lcd display over spi (based on ILI9341 controller): 16-bit mode.
+     *
+     * Inits 240x320x16 lcd display over spi (based on ILI9341 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplayILI9341_240x320x16_CustomSPI( int8_t rstPin, Args&&... data )
+        : DisplayILI9341_240x320x16<InterfaceILI9341<I>>(m_spi, rstPin)
+        , m_spi( *this, config.dc,
+                 data... ) {}
+
+    /**
+     * Initializes ILI9341 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplayILI9341_240x320x16<InterfaceILI9341<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplayILI9341_240x320x16<InterfaceILI9341<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceILI9341<I> m_spi;
+};
 /**
  * Class implements basic functions for 16-bit mode of ILI9341-based displays
  */
@@ -267,7 +309,7 @@ public:
      *
      * Inits 128x160x16 lcd display over spi (based on ILI9341 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplayILI9341_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayILI9341_128x160x16(m_spi, rstPin)
@@ -293,6 +335,48 @@ private:
     InterfaceILI9341<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements ILI9341 128x160x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplayILI9341_128x160x16_CustomSPI: public DisplayILI9341_128x160x16<InterfaceILI9341<I>>
+{
+public:
+    /**
+     * @brief Inits 128x160x16 lcd display over spi (based on ILI9341 controller): 16-bit mode.
+     *
+     * Inits 128x160x16 lcd display over spi (based on ILI9341 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplayILI9341_128x160x16_CustomSPI( int8_t rstPin, Args&&... data )
+        : DisplayILI9341_128x160x16<InterfaceILI9341<I>>(m_spi, rstPin)
+        , m_spi( *this, config.dc,
+                 data... ) {}
+
+    /**
+     * Initializes ILI9341 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplayILI9341_128x160x16<InterfaceILI9341<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplayILI9341_128x160x16<InterfaceILI9341<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceILI9341<I> m_spi;
+};
 #include "lcd_ili9341.inl"
 
 /**
