@@ -103,8 +103,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6d5db31bbcfc758eebd7dc075615148e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68be668e6a4f59106511a7ffd862b0fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#a68be668e6a4f59106511a7ffd862b0fc">printFixedPgm</a> (<a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> xpos, <a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> y, const char *ch, <a class="el" href="canvas__types_8h.html#a4ceb6be9200d0bb016cbbb87dcf5ed88">EFontStyle</a> style=STYLE_NORMAL) __attribute__((noinline))</td></tr>
 <tr class="separator:a68be668e6a4f59106511a7ffd862b0fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af89f8729d51fe044c373ffdf7f849b85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#af89f8729d51fe044c373ffdf7f849b85">createMenu</a> (<a class="el" href="struct_s_app_menu.html">SAppMenu</a> *menu, const char **items, uint8_t count)</td></tr>
-<tr class="separator:af89f8729d51fe044c373ffdf7f849b85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e5b17e5e4b96560bee1b47223192ff3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#a0e5b17e5e4b96560bee1b47223192ff3">createMenu</a> (<a class="el" href="struct_s_app_menu.html">SAppMenu</a> *menu, const char **items, uint8_t count, const <a class="el" href="group___n_a_n_o___e_n_g_i_n_e___a_p_i___v2.html#ga4a82780f66e02834d957e77e70cc17d7">NanoRect</a> &amp;rect={})</td></tr>
+<tr class="separator:a0e5b17e5e4b96560bee1b47223192ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a614e409ab59fe6f4137c635da83378b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#a614e409ab59fe6f4137c635da83378b8">showMenu</a> (<a class="el" href="struct_s_app_menu.html">SAppMenu</a> *menu)</td></tr>
 <tr class="separator:a614e409ab59fe6f4137c635da83378b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a349f826965571a88a52059c1c23ed038"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#a349f826965571a88a52059c1c23ed038">showMenuSmooth</a> (<a class="el" href="struct_s_app_menu.html">SAppMenu</a> *menu)</td></tr>
@@ -169,8 +169,8 @@ template&lt;class O, class I&gt; </div>
 
 </div>
 </div>
-<a id="af89f8729d51fe044c373ffdf7f849b85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af89f8729d51fe044c373ffdf7f849b85">&#9670;&nbsp;</a></span>createMenu()</h2>
+<a id="a0e5b17e5e4b96560bee1b47223192ff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e5b17e5e4b96560bee1b47223192ff3">&#9670;&nbsp;</a></span>createMenu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +193,13 @@ template&lt;class O , class I &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>count</em>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group___n_a_n_o___e_n_g_i_n_e___a_p_i___v2.html#ga4a82780f66e02834d957e77e70cc17d7">NanoRect</a> &amp;&#160;</td>
+          <td class="paramname"><em>rect</em> = <code>{}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -208,6 +214,7 @@ template&lt;class O , class I &gt; </div>
     <tr><td class="paramname">menu</td><td>pointer to <a class="el" href="struct_s_app_menu.html">SAppMenu</a> structure </td></tr>
     <tr><td class="paramname">items</td><td>array of null-termintated strings (located in SRAM) </td></tr>
     <tr><td class="paramname">count</td><td>count of menu items in the array </td></tr>
+    <tr><td class="paramname">rect</td><td>screen area to use for menu </td></tr>
   </table>
   </dd>
 </dl>
@@ -259,7 +266,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00787">787</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00791">791</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -306,7 +313,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00793">793</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00797">797</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -353,7 +360,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00799">799</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00803">803</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -400,7 +407,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00805">805</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00809">809</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -512,7 +519,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00811">811</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00815">815</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -663,7 +670,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00842">842</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00846">846</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -751,7 +758,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00761">761</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00765">765</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -780,7 +787,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00755">755</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00759">759</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -809,7 +816,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00774">774</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00778">778</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -922,7 +929,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00692">692</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00696">696</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -951,7 +958,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00704">704</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00708">708</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -980,7 +987,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00716">716</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00720">720</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -1009,7 +1016,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00736">736</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00740">740</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>

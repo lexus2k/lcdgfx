@@ -13,6 +13,6 @@ var searchData=
   ['contains',['contains',['../struct___nano_rect.html#a7ccd5d6e48cad54770641f55e2739a08',1,'_NanoRect::contains(const NanoPoint &amp;p) const'],['../struct___nano_rect.html#a1df5f59b49fa645e8c7d7b8e2b9ab590',1,'_NanoRect::contains(const _NanoRect &amp;r) const']]],
   ['containspartof',['containsPartOf',['../struct___nano_rect.html#a1c6eafcf4abb5770114119ff25dfb8ba',1,'_NanoRect']]],
   ['copyblock',['copyBlock',['../class_interface_s_s_d1331.html#a5b426171f00fbb2497bb6346e6cf9c8d',1,'InterfaceSSD1331']]],
-  ['createmenu',['createMenu',['../class_nano_display_ops.html#af89f8729d51fe044c373ffdf7f849b85',1,'NanoDisplayOps']]],
+  ['createmenu',['createMenu',['../class_nano_display_ops.html#a0e5b17e5e4b96560bee1b47223192ff3',1,'NanoDisplayOps']]],
   ['crop',['crop',['../struct___nano_rect.html#ad2830dc65621088cfc9656e3959ff9b0',1,'_NanoRect']]]
 ];

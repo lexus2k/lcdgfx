@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -241,7 +241,7 @@ public:
      *
      * Inits 128x32 lcd display over spi (based on SSD1306 controller): 1-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplaySSD1306_128x32_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplaySSD1306_128x32(m_spi, rstPin)
@@ -267,6 +267,49 @@ private:
     InterfaceSSD1306<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements SSD1306 128x32 lcd display in 1 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplaySSD1306_128x32_CustomSPI: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
+{
+public:
+    /**
+     * @brief Inits 128x32 lcd display over spi (based on SSD1306 controller): 1-bit mode.
+     *
+     * Inits 128x32 lcd display over spi (based on SSD1306 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplaySSD1306_128x32_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+        : DisplaySSD1306_128x32<InterfaceSSD1306<I>>(m_spi, rstPin)
+        , m_spi( *this, dcPin,
+                 data... ) {}
+
+    /**
+     * Initializes SSD1306 lcd in 1-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceSSD1306<I> m_spi;
+};
 /**
  * Class implements SSD1306 128x32 lcd display in 1 bit mode over I2C
  */
@@ -302,6 +345,50 @@ public:
 private:
     InterfaceSSD1306<PlatformI2c> m_i2c;
 };
+
+/**
+ * Template class implements SSD1306 128x32 lcd display in 1 bit mode over custom I2C implementation
+ * (user-defined i2c implementation). I - user custom i2c class
+ */
+template <class I>
+class DisplaySSD1306_128x32_CustomI2C: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
+{
+public:
+    /**
+     * @brief Inits 128x32 lcd display over i2c (based on SSD1306 controller): 1-bit mode.
+     *
+     * Inits 128x32 lcd display over i2c (based on SSD1306 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user i2c interface.
+     */
+    template <typename... Args>
+    DisplaySSD1306_128x32_CustomI2C( int8_t rstPin, Args&&... data )
+        : DisplaySSD1306_128x32<InterfaceSSD1306<I>>(m_i2c, rstPin)
+        , m_i2c( *this, -1,
+                 data... ) {}
+
+    /**
+     * Initializes SSD1306 lcd in 1-bit mode
+     */
+    void begin() override
+    {
+        m_i2c.begin();
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::end();
+        m_i2c.end();
+    }
+
+private:
+    InterfaceSSD1306<I> m_i2c;
+};
+
 
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
@@ -343,7 +430,7 @@ public:
      *
      * Inits 128x64 lcd display over spi (based on SSD1306 controller): 1-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplaySSD1306_128x64_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplaySSD1306_128x64(m_spi, rstPin)
@@ -369,6 +456,49 @@ private:
     InterfaceSSD1306<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements SSD1306 128x64 lcd display in 1 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplaySSD1306_128x64_CustomSPI: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
+{
+public:
+    /**
+     * @brief Inits 128x64 lcd display over spi (based on SSD1306 controller): 1-bit mode.
+     *
+     * Inits 128x64 lcd display over spi (based on SSD1306 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplaySSD1306_128x64_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+        : DisplaySSD1306_128x64<InterfaceSSD1306<I>>(m_spi, rstPin)
+        , m_spi( *this, dcPin,
+                 data... ) {}
+
+    /**
+     * Initializes SSD1306 lcd in 1-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceSSD1306<I> m_spi;
+};
 /**
  * Class implements SSD1306 128x64 lcd display in 1 bit mode over I2C
  */
@@ -404,6 +534,50 @@ public:
 private:
     InterfaceSSD1306<PlatformI2c> m_i2c;
 };
+
+/**
+ * Template class implements SSD1306 128x64 lcd display in 1 bit mode over custom I2C implementation
+ * (user-defined i2c implementation). I - user custom i2c class
+ */
+template <class I>
+class DisplaySSD1306_128x64_CustomI2C: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
+{
+public:
+    /**
+     * @brief Inits 128x64 lcd display over i2c (based on SSD1306 controller): 1-bit mode.
+     *
+     * Inits 128x64 lcd display over i2c (based on SSD1306 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user i2c interface.
+     */
+    template <typename... Args>
+    DisplaySSD1306_128x64_CustomI2C( int8_t rstPin, Args&&... data )
+        : DisplaySSD1306_128x64<InterfaceSSD1306<I>>(m_i2c, rstPin)
+        , m_i2c( *this, -1,
+                 data... ) {}
+
+    /**
+     * Initializes SSD1306 lcd in 1-bit mode
+     */
+    void begin() override
+    {
+        m_i2c.begin();
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::end();
+        m_i2c.end();
+    }
+
+private:
+    InterfaceSSD1306<I> m_i2c;
+};
+
 
 #include "lcd_ssd1306.inl"
 

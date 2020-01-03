@@ -26,6 +26,8 @@
 
 #if defined(CONFIG_SOFTWARE_I2C_AVAILABLE) && defined(CONFIG_SOFTWARE_I2C_ENABLE)
 
+#include <util/delay_basic.h>
+
 /**
  * Port registers, containing pins, which SSD1306 display is connected to.
  * For ATtiny controllers it is standard PORTB
@@ -63,15 +65,18 @@
     // at 8Mhz each command takes ~ 0.125us
     #define DDR_REG      DDRB
     #define PORT_REG     PORTB
+    #define PIN_REG      PINB
 #elif defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)
     // For AttinyX4 controllers
     // at 8Mhz each command takes ~ 0.125us
     #define DDR_REG      DDRA
     #define PORT_REG     PORTA
+    #define PIN_REG      PINA
 #else // For Atmega
     // at 16Mhz each command takes ~ 0.0625us
     #define DDR_REG      DDRC
     #define PORT_REG     PORTC
+    #define PIN_REG      PINC
 #endif
 
 
@@ -81,9 +86,8 @@
 #endif
 #define CPU_CYCLE_NS   (1000000000/F_CPU)
 
-// each delay loop takes 4 cycles: nop(1), dec(1), jnz(2)
 #define DELAY_LOOP_CYCLES 4
-#define ssd1306_delay(x) for(uint8_t i2=x; i2>0; i2--){__asm__("nop\n\t");}
+#define ssd1306_delay(x) _delay_loop_2(x)
 
 /**
  * Section, which defines I2C timings for SSD1306 display from datasheet
@@ -109,19 +113,20 @@
 
 
 /* I2C HIGH = PORT as INPUT(0) and PULL-UP ENABLE (1) */
-//#define DIGITAL_WRITE_HIGH(DREG, PREG, BIT) { DREG &= ~(1 << BIT); PREG |= (1 << BIT); }
 #define DIGITAL_WRITE_HIGH(DREG, PREG, BIT) { DREG &= ~BIT; PREG |= BIT; }
 
 /* I2C LOW  = PORT as OUTPUT(1) and OUTPUT LOW (0) */
-//#define DIGITAL_WRITE_LOW(DREG, PREG, BIT)  { DREG |= (1 << BIT); PREG &= ~(1 << BIT); }
 #define DIGITAL_WRITE_LOW(DREG, PREG, BIT)  { DREG |= BIT; PREG &= ~BIT; }
+
+#define DIGITAL_READ(DREG, IREG, BIT) (IREG & BIT)
 
 static uint8_t oldSREG;
 static uint8_t interruptsOff = 0;
 
 SoftwareI2c::SoftwareI2c(int8_t scl, int8_t sda, uint8_t sa)
-    : m_scl( scl >= 0 ? scl : (1<<SSD1306_SCL) )
-    , m_sda( sda >= 0 ? sda : (1<<SSD1306_SDA) )
+    // m_scl and m_sda here mean bit mask, but not bit number
+    : m_scl( scl >= 0 ? (1<<scl) : (1<<SSD1306_SCL) )
+    , m_sda( sda >= 0 ? (1<<sda) : (1<<SSD1306_SDA) )
     , m_sa ( sa ? : SSD1306_SA )
 {
 }
@@ -147,7 +152,20 @@ void SoftwareI2c::start()
     ssd1306_delay(I2C_START_STOP_DELAY);
     DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);     // Set to LOW
     ssd1306_delay(I2C_HALF_CLOCK);
-    send( (m_sa << 1) | 0 );
+    send( (m_sa << 1) | 0x00 );
+}
+
+void SoftwareI2c::start(uint8_t sa, bool read_op)
+{
+    oldSREG = SREG;
+    cli();
+    interruptsOff = 1;
+    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda);     // Set to LOW
+    ssd1306_delay(I2C_START_STOP_DELAY);
+    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);     // Set to LOW
+    ssd1306_delay(I2C_HALF_CLOCK);
+    uint8_t read_bit = read_op ? 0x01 : 0x00;
+    send( (sa << 1) | read_bit );
 }
 
 void SoftwareI2c::stop()
@@ -183,13 +201,48 @@ void SoftwareI2c::send(uint8_t data)
         DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);
         ssd1306_delay(I2C_HALF_CLOCK);
     }
-    // generating confirmation impulse
+    // Generating confirmation impulse
+    // Releasing SDA line
     DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_sda);
+    ssd1306_delay(I2C_RISE_TIME); // Fall time is the same as rise time
+    // Send clock high/low
+    DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_scl);
+    // TODO: check ACK from slave here
+    ssd1306_delay(I2C_HALF_CLOCK);
+    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);
+    ssd1306_delay(I2C_HALF_CLOCK);
+}
+
+uint8_t SoftwareI2c::receive(bool last)
+{
+    uint8_t data = 0x00;
+    uint8_t i;
+    for(i=8; i>0; i--)
+    {
+
+        DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_scl);
+        ssd1306_delay(I2C_HALF_CLOCK);
+        if ( DIGITAL_READ( DDR_REG, PIN_REG, m_sda ))
+            data |= 0x1;
+        else
+            data |= 0x00;
+        data<<=1;
+        DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);
+        ssd1306_delay(I2C_HALF_CLOCK);
+    }
+    // generating confirmation impulse
+    if ( last )
+        DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_sda)
+    else
+        DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda);
     ssd1306_delay(I2C_RISE_TIME); // Fall time is the same as rise time
     DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_scl);
     ssd1306_delay(I2C_HALF_CLOCK);
     DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);
+    // release SDA line
+    DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_sda);
     ssd1306_delay(I2C_HALF_CLOCK);
+    return data;
 }
 
 void SoftwareI2c::sendBuffer(const uint8_t *buffer, uint16_t size)

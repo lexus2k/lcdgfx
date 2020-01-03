@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -189,7 +189,7 @@ public:
      *
      * Inits 128x128x16 lcd display over spi (based on IL9163 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplayIL9163_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayIL9163_128x128x16(m_spi, rstPin)
@@ -215,6 +215,49 @@ private:
     InterfaceIL9163<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements IL9163 128x128x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplayIL9163_128x128x16_CustomSPI: public DisplayIL9163_128x128x16<InterfaceIL9163<I>>
+{
+public:
+    /**
+     * @brief Inits 128x128x16 lcd display over spi (based on IL9163 controller): 16-bit mode.
+     *
+     * Inits 128x128x16 lcd display over spi (based on IL9163 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplayIL9163_128x128x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+        : DisplayIL9163_128x128x16<InterfaceIL9163<I>>(m_spi, rstPin)
+        , m_spi( *this, dcPin,
+                 data... ) {}
+
+    /**
+     * Initializes IL9163 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplayIL9163_128x128x16<InterfaceIL9163<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplayIL9163_128x128x16<InterfaceIL9163<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceIL9163<I> m_spi;
+};
 /**
  * Class implements basic functions for 16-bit mode of IL9163-based displays
  */
@@ -255,7 +298,7 @@ public:
      *
      * Inits 128x160x16 lcd display over spi (based on IL9163 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplayIL9163_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayIL9163_128x160x16(m_spi, rstPin)
@@ -281,6 +324,49 @@ private:
     InterfaceIL9163<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements IL9163 128x160x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplayIL9163_128x160x16_CustomSPI: public DisplayIL9163_128x160x16<InterfaceIL9163<I>>
+{
+public:
+    /**
+     * @brief Inits 128x160x16 lcd display over spi (based on IL9163 controller): 16-bit mode.
+     *
+     * Inits 128x160x16 lcd display over spi (based on IL9163 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplayIL9163_128x160x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+        : DisplayIL9163_128x160x16<InterfaceIL9163<I>>(m_spi, rstPin)
+        , m_spi( *this, dcPin,
+                 data... ) {}
+
+    /**
+     * Initializes IL9163 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplayIL9163_128x160x16<InterfaceIL9163<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplayIL9163_128x160x16<InterfaceIL9163<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceIL9163<I> m_spi;
+};
 #include "lcd_il9163.inl"
 
 /**

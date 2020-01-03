@@ -30,6 +30,8 @@
 
 #if defined(CONFIG_SOFTWARE_I2C_AVAILABLE) && defined(CONFIG_SOFTWARE_I2C_ENABLE)
 
+#include <stdint.h>
+
 /**
  * Class implements i2c software interface for AVR platform
  */
@@ -58,20 +60,34 @@ public:
     void end();
 
     /**
-     * Starts communication with SSD1306 display.
+     * Starts communication with slave device.
      */
     void start();
 
     /**
-     * Ends communication with SSD1306 display.
+     * Starts communication with slave device.
+     * @param sa slave address (low 7 bits)
+     * @param read_op set it to true, if read operation is requested, otherwise set it to false
+     */
+    void start(uint8_t sa, bool read_op = false);
+
+    /**
+     * Ends communication with slave display.
      */
     void stop();
 
     /**
-     * Sends byte to SSD1306 device
+     * Sends byte to slave device
      * @param data - byte to send
      */
     void send(uint8_t data);
+
+    /**
+     * Receives byte from remote device
+     * @param last set to true, if last byte is requested from i2c slave
+     * @retrun byte read from slave device
+     */
+    uint8_t receive(bool last = false);
 
     /**
      * @brief Sends bytes to SSD1306 device

@@ -34,6 +34,7 @@
                 "96x64":
                 {
                     "interface_args": "8, *this, config.dc",
+                    "custom_interface_args": "8, *this, dcPin",
                     "init":
                     [
                         "#ifdef SDL_EMULATION",
@@ -67,6 +68,7 @@
                 "96x64":
                 {
                     "interface_args": "16, *this, config.dc",
+                    "custom_interface_args": "16, *this, dcPin",
                     "init":
                     [
                         "#ifdef SDL_EMULATION",

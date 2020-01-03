@@ -621,9 +621,9 @@ void NanoDisplayOps<O,I>::printFixedPgm(lcdint_t xpos, lcdint_t y, const char *c
 #endif
 
 template <class O, class I>
-static uint8_t getMaxScreenItems(NanoDisplayOps<O,I> &display)
+static uint8_t getMaxScreenItems(NanoDisplayOps<O,I> &display, SAppMenu *menu)
 {
-    return (display.height() - 16) / display.getFont().getHeader().height;
+    return (menu->height - 16) / display.getFont().getHeader().height;
 }
 
 template <class O, class I>
@@ -633,9 +633,9 @@ static uint8_t calculateScrollPosition(NanoDisplayOps<O,I> &display, SAppMenu *m
     {
         return selection;
     }
-    else if ( selection - menu->scrollPosition > getMaxScreenItems<O,I>(display) - 1)
+    else if ( selection - menu->scrollPosition > getMaxScreenItems<O,I>(display, menu) - 1)
     {
-        return selection - getMaxScreenItems<O,I>(display) + 1;
+        return selection - getMaxScreenItems<O,I>(display, menu) + 1;
     }
     return menu->scrollPosition;
 }
@@ -651,8 +651,8 @@ static void drawMenuItem(NanoDisplayOps<O,I> &display, SAppMenu *menu, uint8_t i
     {
         display.positiveMode();
     }
-    lcdint_t item_top = 8 + (index - menu->scrollPosition)*display.getFont().getHeader().height;
-    display.printFixed(8, item_top,
+    lcdint_t item_top = 8 + menu->top + (index - menu->scrollPosition)*display.getFont().getHeader().height;
+    display.printFixed(menu->left + 8, item_top,
                        menu->items[index], STYLE_NORMAL );
     display.positiveMode();
 }
@@ -668,32 +668,36 @@ static void drawMenuItemSmooth(NanoDisplayOps<O,I> &display, SAppMenu *menu, uin
     {
         display.positiveMode();
     }
-    lcdint_t item_top = 8 + (index - menu->scrollPosition)*display.getFont().getHeader().height;
+    lcdint_t item_top = 8 + menu->top + (index - menu->scrollPosition)*display.getFont().getHeader().height;
     display.setColor( 0x0000 );
-    display.fillRect( 8 + display.getFont().getTextSize(menu->items[index]), item_top,
-                      display.width() - 9, item_top + display.getFont().getHeader().height - 1 );
+    display.fillRect( menu->left + 8 + display.getFont().getTextSize(menu->items[index]), item_top,
+                      menu->width + menu->left - 9, item_top + display.getFont().getHeader().height - 1 );
     display.setColor( 0xFFFF );
-    display.printFixed(8, item_top,
+    display.printFixed(menu->left + 8, item_top,
                        menu->items[index], STYLE_NORMAL );
     display.positiveMode();
 }
 
 template <class O, class I>
-void NanoDisplayOps<O,I>::createMenu(SAppMenu *menu, const char **items, uint8_t count)
+void NanoDisplayOps<O,I>::createMenu(SAppMenu *menu, const char **items, uint8_t count, const NanoRect &rect)
 {
     menu->items = items;
     menu->count = count;
     menu->selection = 0;
     menu->oldSelection = 0;
     menu->scrollPosition = 0;
+    menu->top = rect.p1.y;
+    menu->left = rect.p1.x;
+    menu->width = rect.p2.x ? rect.width() : ( this->width() - menu->left );
+    menu->height = rect.p2.y ? rect.height() : ( this->height() - menu->top );
 }
 
 template <class O, class I>
-void NanoDisplayOps<O,I>::showMenu( SAppMenu *menu)
+void NanoDisplayOps<O,I>::showMenu( SAppMenu *menu )
 {
-    drawRect(4, 4, this->m_w - 5, this->m_h - 5);
+    drawRect(4 + menu->left, 4 + menu->top, menu->width + menu->left - 5, menu->height + menu->top - 5);
     menu->scrollPosition = calculateScrollPosition<O,I>(*this, menu, menu->selection );
-    for (uint8_t i = menu->scrollPosition; i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O,I>( *this ))); i++)
+    for (uint8_t i = menu->scrollPosition; i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O,I>( *this, menu ))); i++)
     {
         drawMenuItem<O,I>(*this, menu, i);
     }
@@ -701,11 +705,11 @@ void NanoDisplayOps<O,I>::showMenu( SAppMenu *menu)
 }
 
 template <class O, class I>
-void NanoDisplayOps<O,I>::showMenuSmooth( SAppMenu *menu)
+void NanoDisplayOps<O,I>::showMenuSmooth( SAppMenu *menu )
 {
-    drawRect(4, 4, this->m_w - 5, this->m_h - 5);
+    drawRect(4 + menu->left, 4 + menu->top, menu->width + menu->left - 5, menu->height + menu->top - 5);
     menu->scrollPosition = calculateScrollPosition<O,I>(*this, menu, menu->selection );
-    for (uint8_t i = menu->scrollPosition; i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O,I>( *this ))); i++)
+    for (uint8_t i = menu->scrollPosition; i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O,I>( *this, menu ))); i++)
     {
         drawMenuItemSmooth<O,I>(*this, menu, i);
     }

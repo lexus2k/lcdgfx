@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -178,7 +178,7 @@ public:
      *
      * Inits 128x128 lcd display over spi (based on SSD1327 controller): 4-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
-     * @param config platform spi configuration. Please refer to SPlatformI2cConfig.
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
     DisplaySSD1327_128x128_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplaySSD1327_128x128(m_spi, rstPin)
@@ -204,6 +204,49 @@ private:
     InterfaceSSD1327<PlatformSpi> m_spi;
 };
 
+/**
+ * Template class implements SSD1327 128x128 lcd display in 4 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplaySSD1327_128x128_CustomSPI: public DisplaySSD1327_128x128<InterfaceSSD1327<I>>
+{
+public:
+    /**
+     * @brief Inits 128x128 lcd display over spi (based on SSD1327 controller): 4-bit mode.
+     *
+     * Inits 128x128 lcd display over spi (based on SSD1327 controller): 4-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplaySSD1327_128x128_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+        : DisplaySSD1327_128x128<InterfaceSSD1327<I>>(m_spi, rstPin)
+        , m_spi( *this, dcPin,
+                 data... ) {}
+
+    /**
+     * Initializes SSD1327 lcd in 4-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplaySSD1327_128x128<InterfaceSSD1327<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1327_128x128<InterfaceSSD1327<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceSSD1327<I> m_spi;
+};
 /**
  * Class implements SSD1327 128x128 lcd display in 4 bit mode over I2C
  */
@@ -239,6 +282,50 @@ public:
 private:
     InterfaceSSD1327<PlatformI2c> m_i2c;
 };
+
+/**
+ * Template class implements SSD1327 128x128 lcd display in 4 bit mode over custom I2C implementation
+ * (user-defined i2c implementation). I - user custom i2c class
+ */
+template <class I>
+class DisplaySSD1327_128x128_CustomI2C: public DisplaySSD1327_128x128<InterfaceSSD1327<I>>
+{
+public:
+    /**
+     * @brief Inits 128x128 lcd display over i2c (based on SSD1327 controller): 4-bit mode.
+     *
+     * Inits 128x128 lcd display over i2c (based on SSD1327 controller): 4-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user i2c interface.
+     */
+    template <typename... Args>
+    DisplaySSD1327_128x128_CustomI2C( int8_t rstPin, Args&&... data )
+        : DisplaySSD1327_128x128<InterfaceSSD1327<I>>(m_i2c, rstPin)
+        , m_i2c( *this, -1,
+                 data... ) {}
+
+    /**
+     * Initializes SSD1327 lcd in 4-bit mode
+     */
+    void begin() override
+    {
+        m_i2c.begin();
+        DisplaySSD1327_128x128<InterfaceSSD1327<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1327_128x128<InterfaceSSD1327<I>>::end();
+        m_i2c.end();
+    }
+
+private:
+    InterfaceSSD1327<I> m_i2c;
+};
+
 
 #include "lcd_ssd1327.inl"
 

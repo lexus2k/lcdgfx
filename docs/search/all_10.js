@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['ssd1306_20library_20introduction',['ssd1306 library introduction',['../index.html',1,'']]],
   ['s_5fssd1306_5fcs',['s_ssd1306_cs',['../group___l_c_d___h_w___i_n_t_e_r_f_a_c_e___a_p_i.html#gafc2040aa9a00f51d7a3302009c32be6a',1,'s_ssd1306_cs():&#160;interface.c'],['../group___l_c_d___h_w___i_n_t_e_r_f_a_c_e___a_p_i.html#gafc2040aa9a00f51d7a3302009c32be6a',1,'s_ssd1306_cs():&#160;interface.c']]],
   ['s_5fssd1306_5fdc',['s_ssd1306_dc',['../group___l_c_d___h_w___i_n_t_e_r_f_a_c_e___a_p_i.html#gaa6c559e035be91c9c57a53120c55e023',1,'s_ssd1306_dc():&#160;interface.c'],['../group___l_c_d___h_w___i_n_t_e_r_f_a_c_e___a_p_i.html#gaa6c559e035be91c9c57a53120c55e023',1,'s_ssd1306_dc():&#160;interface.c']]],
   ['s_5fssd1306_5fspi_5fclock',['s_ssd1306_spi_clock',['../group___l_c_d___h_w___i_n_t_e_r_f_a_c_e___a_p_i.html#gacd2a35f136452e061c82fe446a80701c',1,'s_ssd1306_spi_clock():&#160;interface.c'],['../group___l_c_d___h_w___i_n_t_e_r_f_a_c_e___a_p_i.html#gacd2a35f136452e061c82fe446a80701c',1,'s_ssd1306_spi_clock():&#160;interface.c']]],

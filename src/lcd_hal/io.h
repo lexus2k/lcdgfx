@@ -500,7 +500,7 @@ public:
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
     PlatformSpi(const SPlatformSpiConfig &config)
-        : EspSpi( config.busId, config.cs, config.dc, config.frequency ) {}
+        : EspSpi( config.busId, config.cs, config.dc, config.scl, config.sda, config.frequency ) {}
 };
 
 #elif defined(CONFIG_USI_SPI_AVAILABLE) && defined(CONFIG_USI_SPI_ENABLE)

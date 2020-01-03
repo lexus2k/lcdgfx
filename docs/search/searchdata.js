@@ -10,7 +10,7 @@ var indexSectionsWithContent =
   7: "bcw",
   8: "cgmrs",
   9: "cfghino",
-  10: "dhsu"
+  10: "dhlu"
 };
 
 var indexSectionNames =

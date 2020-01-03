@@ -36,7 +36,7 @@ CPPFLAGS += -std=c++11
 BLD ?= $(shell pwd)/bld
 
 help:
-	@echo "============== SSD1306 library ================"
+	@echo "============== LCDGFX library ================"
 	@echo "make docs          generates documentation"
 	@echo "make help          prints this help"
 	@echo "make cppcheck      run cppcheck tests"
@@ -52,7 +52,7 @@ library:
 	make -C ./src/ -f Makefile.$(ARCH) SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)" BLD=$(BLD)
 
 ssd1306_sdl:
-	$(MAKE) -C ./tools/sdl -f Makefile.linux SDL_EMULATION=$(SDL_EMULATION) EXTRA_CCFLAGS="$(EXTRA_CPPFLAGS)" BLD=$(BLD)
+	$(MAKE) -C ./tools/sdl -f Makefile.linux SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)" BLD=$(BLD)
 
 include Makefile.cpputest
 
@@ -67,4 +67,5 @@ cppcheck:
 
 clean:
 	make -C ./src/ -f Makefile.$(ARCH) clean
+	make -C ./tools/sdl -f Makefile.linux clean
 	rm -rf gmon.out

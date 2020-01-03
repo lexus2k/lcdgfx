@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ssd1306_20library_20introduction',['ssd1306 library introduction',['../index.html',1,'']]]
+  ['lcdgfx_20library_20for_20display_20controllers',['LCDGFX library for display controllers',['../index.html',1,'']]]
 ];

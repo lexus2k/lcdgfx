@@ -81,6 +81,7 @@ void ArduinoI2c::stop()
 
 void ArduinoI2c::send(uint8_t data)
 {
+    if ( s_bytesWritten == 0 ) m_mode = data;
     // Do not write too many bytes for standard Wire.h. It may become broken
 #if defined(ESP32) || defined(ESP31B)
     if (s_bytesWritten >= (I2C_BUFFER_LENGTH >> 4))
@@ -102,7 +103,7 @@ void ArduinoI2c::send(uint8_t data)
     {
         stop();
         start();
-        send(0x40);
+        send( m_mode );
         /* Commands never require many bytes. Thus assume that user tries to send data */
     }
     Wire.write(data);

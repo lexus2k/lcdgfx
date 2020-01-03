@@ -93,6 +93,7 @@ private:
     int8_t m_scl;
     int8_t m_sda;
     uint8_t m_sa;
+    uint8_t m_mode;
 };
 
 #endif
