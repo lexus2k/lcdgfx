@@ -127,6 +127,7 @@ def fill_template(temp):
     temp = temp.replace('~FUNCS_DECL~', get_val_by_path("FUNCS_DECL", ""))
     temp = temp.replace('~FIELDS_DECL~', get_val_by_path("FIELDS_DECL", ""))
     temp = temp.replace('~INTERFACE_ARGS~', get_val_by_path("interface_args", ""))
+    temp = temp.replace('~CUSTOM_INTERFACE_ARGS~', get_val_by_path("custom_interface_args", ""))
     temp = temp.replace('~CONTROLLER~', get_val_by_path("CONTROLLER",""))
     temp = temp.replace('~controller~', get_val_by_path("controller",""))
     temp = temp.replace('~RESOLUTION~', get_val_by_path("resolution",""))
@@ -306,6 +307,8 @@ def generate_controller_data(jsonfile, ctl):
             for intf in g_voc["interfaces"].keys():
                 g_voc["interface_args"] = get_val_by_path("bits/" + _bits + "/" + res + "/interface_args",\
                                           "*this, -1" if intf == "i2c" else "*this, config.dc")
+                g_voc["custom_interface_args"] = get_val_by_path("bits/" + _bits + "/" + res + "/custom_interface_args",\
+                                          "*this, -1" if intf == "i2c" else "*this, dcPin")
                 g_voc["_frequency"] = str(get_val_by_path( "interfaces/" + intf + "/frequency", 4400000 ))
                 header.write( get_file_data('display_' + intf + '.h') )
                 cpp.write( get_file_data('display_' + intf + '.cpp') )

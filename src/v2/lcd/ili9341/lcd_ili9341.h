@@ -240,12 +240,13 @@ public:
      *
      * Inits 240x320x16 lcd display over spi (based on ILI9341 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayILI9341_240x320x16_CustomSPI( int8_t rstPin, Args&&... data )
+    DisplayILI9341_240x320x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
         : DisplayILI9341_240x320x16<InterfaceILI9341<I>>(m_spi, rstPin)
-        , m_spi( *this, config.dc,
+        , m_spi( *this, dcPin,
                  data... ) {}
 
     /**
@@ -348,12 +349,13 @@ public:
      *
      * Inits 128x160x16 lcd display over spi (based on ILI9341 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayILI9341_128x160x16_CustomSPI( int8_t rstPin, Args&&... data )
+    DisplayILI9341_128x160x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
         : DisplayILI9341_128x160x16<InterfaceILI9341<I>>(m_spi, rstPin)
-        , m_spi( *this, config.dc,
+        , m_spi( *this, dcPin,
                  data... ) {}
 
     /**

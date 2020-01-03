@@ -260,12 +260,13 @@ public:
      *
      * Inits 96x64x8 lcd display over spi (based on SSD1331 controller): 8-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1331_96x64x8_CustomSPI( int8_t rstPin, Args&&... data )
+    DisplaySSD1331_96x64x8_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
         : DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>(m_spi, rstPin)
-        , m_spi( 8, *this, config.dc,
+        , m_spi( 8, *this, dcPin,
                  data... ) {}
 
     /**
@@ -400,12 +401,13 @@ public:
      *
      * Inits 96x64x16 lcd display over spi (based on SSD1331 controller): 16-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1331_96x64x16_CustomSPI( int8_t rstPin, Args&&... data )
+    DisplaySSD1331_96x64x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
         : DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>(m_spi, rstPin)
-        , m_spi( 16, *this, config.dc,
+        , m_spi( 16, *this, dcPin,
                  data... ) {}
 
     /**

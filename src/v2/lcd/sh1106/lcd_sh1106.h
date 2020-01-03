@@ -283,12 +283,13 @@ public:
      *
      * Inits 128x64 lcd display over spi (based on SH1106 controller): 1-bit mode
      * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySH1106_128x64_CustomSPI( int8_t rstPin, Args&&... data )
+    DisplaySH1106_128x64_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
         : DisplaySH1106_128x64<InterfaceSH1106<I>>(m_spi, rstPin)
-        , m_spi( *this, config.dc,
+        , m_spi( *this, dcPin,
                  data... ) {}
 
     /**
