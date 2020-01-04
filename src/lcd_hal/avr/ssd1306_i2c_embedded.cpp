@@ -222,11 +222,11 @@ uint8_t SoftwareI2c::receive(bool last)
 
         DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_scl);
         ssd1306_delay(I2C_HALF_CLOCK);
+        data<<=1;
         if ( DIGITAL_READ( DDR_REG, PIN_REG, m_sda ))
             data |= 0x1;
         else
             data |= 0x00;
-        data<<=1;
         DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);
         ssd1306_delay(I2C_HALF_CLOCK);
     }
