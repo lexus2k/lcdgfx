@@ -85,7 +85,7 @@ public:
     /**
      * Receives byte from remote device
      * @param last set to true, if last byte is requested from i2c slave
-     * @retrun byte read from slave device
+     * @return byte read from slave device
      */
     uint8_t receive(bool last = false);
 

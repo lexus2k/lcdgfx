@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['receive',['receive',['../class_software_i2c.html#a8f04879efa09fe514c4fce0d884cc225',1,'SoftwareI2c']]],
   ['rect',['rect',['../class_nano_canvas_ops.html#a3cee5ec0f82606237236231af07502c4',1,'NanoCanvasOps::rect()'],['../class_nano_display_base.html#ab74c9536781ea2b88255c05f910ac38a',1,'NanoDisplayBase::rect()']]],
   ['rect_2eh',['rect.h',['../rect_8h.html',1,'']]],
   ['refresh',['refresh',['../class_nano_object.html#a61fa277a6f942fc5bcf1a77487c95362',1,'NanoObject::refresh()'],['../class_nano_object_list.html#a0b4f658b5adb64fc30172b5937b67062',1,'NanoObjectList::refresh()'],['../class_nano_engine_object.html#a322aaa4cd61aadc313bac9bf7e884e4f',1,'NanoEngineObject::refresh()'],['../class_nano_engine_tiler.html#ad465542210563583e80984107285460b',1,'NanoEngineTiler::refresh()'],['../class_nano_engine_tiler.html#a2d6a05eeedc1343cce5a99581204fc95',1,'NanoEngineTiler::refresh(const NanoRect &amp;rect)'],['../class_nano_engine_tiler.html#addb8fda2b5f4d2aac9f74f1440a6d4f5',1,'NanoEngineTiler::refresh(const NanoPoint &amp;point) __attribute__((noinline))'],['../class_nano_engine_tiler.html#a22c70012177a7306900fad1013478cc6',1,'NanoEngineTiler::refresh(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__((noinline))']]],
