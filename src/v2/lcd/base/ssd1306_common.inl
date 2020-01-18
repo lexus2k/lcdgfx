@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2019, Alexey Dynda
+    Copyright (c) 2016-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "lcd_hal/io.h"
-
-//const uint8_t *s_font6x8 = &ssd1306xled_font6x8[4];
-//extern lcduint_t ssd1306_cursorX;
-//extern lcduint_t ssd1306_cursorY;
+#include <stdio.h>
 
 #if 0
 
@@ -610,6 +607,24 @@ void NanoDisplayOps<O,I>::printFixedPgm(lcdint_t xpos, lcdint_t y, const char *c
         this->write(c);
         ch++;
     }
+}
+
+template <class O, class I>
+void NanoDisplayOps<O,I>::write( const char *str )
+{
+    while (*str)
+    {
+        this->write(*str);
+        str++;
+    }
+}
+
+template <class O, class I>
+void NanoDisplayOps<O,I>::print( int number )
+{
+    char intStr[12];
+    snprintf(intStr, sizeof(intStr), "%i", number );
+    this->write( intStr );
 }
 
 #ifndef min

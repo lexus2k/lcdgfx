@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2019, Alexey Dynda
+    Copyright (c) 2016-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -115,6 +115,60 @@ void NanoDisplayOps1<I>::printFixed(lcdint_t xpos, lcdint_t y, const char *ch, E
             this->m_intf.send(s_ssd1306_invertByte);
     }
     this->m_intf.endBlock();
+}
+
+template <class I>
+uint8_t NanoDisplayOps1<I>::printChar(uint8_t c)
+{
+    uint16_t unicode = this->m_font->unicode16FromUtf8(c);
+    if (unicode == SSD1306_MORE_CHARS_REQUIRED) return 0;
+    SCharInfo char_info;
+    this->m_font->getCharBitmap(unicode, &char_info);
+    uint8_t mode = this->m_textMode;
+    for (uint8_t i = 0; i<(this->m_fontStyle == STYLE_BOLD ? 2: 1); i++)
+    {
+        this->drawBitmap1(this->m_cursorX + i,
+                    this->m_cursorY,
+                    char_info.width,
+                    char_info.height,
+                    char_info.glyph );
+        this->m_textMode |= CANVAS_MODE_TRANSPARENT;
+    }
+    this->m_textMode = mode;
+    this->m_cursorX += (lcdint_t)(char_info.width + char_info.spacing);
+    if ( ( (this->m_textMode & CANVAS_TEXT_WRAP_LOCAL) &&
+           (this->m_cursorX > ((lcdint_t)this->m_w - (lcdint_t)this->m_font->getHeader().width) ) )
+       || ( (this->m_textMode & CANVAS_TEXT_WRAP) &&
+           (this->m_cursorX > ((lcdint_t)this->m_w - (lcdint_t)this->m_font->getHeader().width)) ) )
+    {
+        this->m_cursorY += (lcdint_t)this->m_font->getHeader().height;
+        this->m_cursorX = 0;
+        if ( (this->m_textMode & CANVAS_TEXT_WRAP_LOCAL) &&
+             (this->m_cursorY > ((lcdint_t)this->m_h - (lcdint_t)this->m_font->getHeader().height)) )
+        {
+            this->m_cursorY = 0;
+        }
+    }
+    return 1;
+}
+
+template <class I>
+size_t NanoDisplayOps1<I>::write(uint8_t c)
+{
+    if (c == '\n')
+    {
+        this->m_cursorY += (lcdint_t)this->m_font->getHeader().height;
+        this->m_cursorX = 0;
+    }
+    else if (c == '\r')
+    {
+        // skip non-printed char
+    }
+    else
+    {
+        return printChar( c );
+    }
+    return 1;
 }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

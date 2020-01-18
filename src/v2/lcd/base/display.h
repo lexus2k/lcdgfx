@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -1055,6 +1055,24 @@ public:
      * @note Supports only STYLE_NORMAL and STYLE_BOLD
      */
     void printFixedPgm(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style = STYLE_NORMAL) __attribute__ ((noinline));
+
+    using O::write;
+
+    /**
+     * Prints text at current cursor position.
+     * To specify cursor position using ::setTextCursor() method.
+     *
+     * @param str text to print (null-terminated string)
+     */
+    void write(const char *str);
+
+    /**
+     * Prints number at current cursor position
+     * To specify cursor position using ::setTextCursor() method.
+     *
+     * @param number integer number to print
+     */
+    void print(int number);
 
     /**
      * Creates menu object with the provided list of menu items.

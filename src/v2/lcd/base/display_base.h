@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -209,6 +209,18 @@ public:
             g_canvas_font.loadSecondaryFont( secondaryFont );
         }
         setFont( g_canvas_font );
+    }
+
+    /**
+     * Function sets text cursor position for write() functions
+     *
+     * @param x horizontal position in pixels
+     * @param y vertical position in pixels
+     */
+    void setTextCursor( lcdint_t x, lcdint_t y )
+    {
+        m_cursorX = x;
+        m_cursorY = y;
     }
 
 protected:
