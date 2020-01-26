@@ -35,7 +35,8 @@ void ssd1306_resetController2(int8_t rstPin, uint8_t delayMs)
         lcd_delay(10);
         /* Perform reset operation of LCD display */
         lcd_gpioWrite(rstPin, LCD_LOW);
-        lcd_delay(delayMs);
+        lcd_delay(10);
         lcd_gpioWrite(rstPin, LCD_HIGH);
+        lcd_delay(delayMs);
     }
 }
