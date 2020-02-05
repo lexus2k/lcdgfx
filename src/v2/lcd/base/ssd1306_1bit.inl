@@ -707,9 +707,9 @@ void NanoDisplayOps1<I>::fill(uint16_t color)
 {
     color ^= s_ssd1306_invertByte;
     this->m_intf.startBlock(0, 0, 0);
-    for(uint8_t m=(this->m_h >> 3); m>0; m--)
+    for(lcduint_t m=(this->m_h >> 3); m>0; m--)
     {
-        for(uint8_t n=this->m_w; n>0; n--)
+        for(lcduint_t n=this->m_w; n>0; n--)
         {
             this->m_intf.send(color);
         }
