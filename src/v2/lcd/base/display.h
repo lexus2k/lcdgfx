@@ -1060,7 +1060,7 @@ public:
 
     /**
      * Prints text at current cursor position.
-     * To specify cursor position using ::setTextCursor() method.
+     * To specify cursor position using setTextCursor() method.
      *
      * @param str text to print (null-terminated string)
      */
@@ -1068,7 +1068,7 @@ public:
 
     /**
      * Prints number at current cursor position
-     * To specify cursor position using ::setTextCursor() method.
+     * To specify cursor position using setTextCursor() method.
      *
      * @param number integer number to print
      */

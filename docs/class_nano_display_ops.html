@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LCDGFX LCD display driver
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
    <div id="projectbrief">This library is developed to control SSD1306/SSD1325/SSD1327/SSD1331/SSD1351/IL9163/PCD8554 RGB i2c/spi LED displays</div>
   </td>
@@ -103,6 +103,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6d5db31bbcfc758eebd7dc075615148e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a68be668e6a4f59106511a7ffd862b0fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#a68be668e6a4f59106511a7ffd862b0fc">printFixedPgm</a> (<a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> xpos, <a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> y, const char *ch, <a class="el" href="canvas__types_8h.html#a4ceb6be9200d0bb016cbbb87dcf5ed88">EFontStyle</a> style=STYLE_NORMAL) __attribute__((noinline))</td></tr>
 <tr class="separator:a68be668e6a4f59106511a7ffd862b0fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dd652e3031f38a71a4be6045274860e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#a5dd652e3031f38a71a4be6045274860e">write</a> (const char *str)</td></tr>
+<tr class="separator:a5dd652e3031f38a71a4be6045274860e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6181bafa728532db9837b6a272d3ccb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#ac6181bafa728532db9837b6a272d3ccb">print</a> (int number)</td></tr>
+<tr class="separator:ac6181bafa728532db9837b6a272d3ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e5b17e5e4b96560bee1b47223192ff3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#a0e5b17e5e4b96560bee1b47223192ff3">createMenu</a> (<a class="el" href="struct_s_app_menu.html">SAppMenu</a> *menu, const char **items, uint8_t count, const <a class="el" href="group___n_a_n_o___e_n_g_i_n_e___a_p_i___v2.html#ga4a82780f66e02834d957e77e70cc17d7">NanoRect</a> &amp;rect={})</td></tr>
 <tr class="separator:a0e5b17e5e4b96560bee1b47223192ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a614e409ab59fe6f4137c635da83378b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_ops.html#a614e409ab59fe6f4137c635da83378b8">showMenu</a> (<a class="el" href="struct_s_app_menu.html">SAppMenu</a> *menu)</td></tr>
@@ -219,7 +223,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00682">682</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00697">697</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -266,7 +270,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00791">791</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00806">806</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -313,7 +317,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00797">797</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00812">812</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -360,7 +364,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00803">803</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00818">818</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -407,7 +411,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00809">809</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00824">824</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -461,7 +465,7 @@ template&lt;class O , class I &gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>color can be set via setColor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00545">545</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00542">542</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -490,7 +494,7 @@ template&lt;class O , class I &gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>color can be set via setColor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00589">589</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00586">586</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -519,7 +523,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00815">815</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00830">830</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -573,7 +577,7 @@ template&lt;class O , class I &gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>color can be set via setColor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00530">530</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00527">527</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -602,7 +606,7 @@ template&lt;class O , class I &gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>color can be set via setColor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00539">539</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00536">536</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -670,7 +674,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00846">846</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00861">861</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -729,7 +733,7 @@ template&lt;class O , class I &gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>color can be set via setColor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00595">595</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00592">592</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -758,7 +762,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00765">765</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00780">780</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -787,7 +791,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00759">759</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00774">774</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -816,7 +820,36 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00778">778</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00793">793</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+
+</div>
+</div>
+<a id="ac6181bafa728532db9837b6a272d3ccb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6181bafa728532db9837b6a272d3ccb">&#9670;&nbsp;</a></span>print()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class O , class I &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_nano_display_ops.html">NanoDisplayOps</a>&lt; O, I &gt;::print </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>number</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Prints number at current cursor position To specify cursor position using setTextCursor() method.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">number</td><td>integer number to print </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00623">623</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -871,7 +904,7 @@ template&lt;class O , class I &gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Supports only STYLE_NORMAL and STYLE_BOLD </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00601">601</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00598">598</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -900,7 +933,7 @@ template&lt;class O , class I &gt; </div>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>color can be set via setColor() </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00524">524</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00521">521</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -929,7 +962,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00696">696</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00711">711</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -958,7 +991,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00708">708</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00723">723</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -987,7 +1020,7 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00720">720</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00735">735</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>
@@ -1016,7 +1049,36 @@ template&lt;class O , class I &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00740">740</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00755">755</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
+
+</div>
+</div>
+<a id="a5dd652e3031f38a71a4be6045274860e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5dd652e3031f38a71a4be6045274860e">&#9670;&nbsp;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class O , class I &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_nano_display_ops.html">NanoDisplayOps</a>&lt; O, I &gt;::write </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Prints text at current cursor position. To specify cursor position using setTextCursor() method.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>text to print (null-terminated string) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="ssd1306__common_8inl_source.html#l00613">613</a> of file <a class="el" href="ssd1306__common_8inl_source.html">ssd1306_common.inl</a>.</p>
 
 </div>
 </div>

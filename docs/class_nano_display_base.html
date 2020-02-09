@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LCDGFX LCD display driver
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
    <div id="projectbrief">This library is developed to control SSD1306/SSD1325/SSD1327/SSD1331/SSD1351/IL9163/PCD8554 RGB i2c/spi LED displays</div>
   </td>
@@ -132,6 +132,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a40f3e27d85c327aa05c452858cb3d1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17b8466fc09a1aa758adc7a32ef57958"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#a17b8466fc09a1aa758adc7a32ef57958">setFreeFont</a> (const uint8_t *progmemFont, const uint8_t *secondaryFont=nullptr)</td></tr>
 <tr class="separator:a17b8466fc09a1aa758adc7a32ef57958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3fb35416f4c043f85f7ab5d9a16809d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#ac3fb35416f4c043f85f7ab5d9a16809d">setTextCursor</a> (<a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> x, <a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> y)</td></tr>
+<tr class="separator:ac3fb35416f4c043f85f7ab5d9a16809d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -679,6 +681,54 @@ template&lt;class I&gt; </div>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00071">71</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+
+</div>
+</div>
+<a id="ac3fb35416f4c043f85f7ab5d9a16809d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3fb35416f4c043f85f7ab5d9a16809d">&#9670;&nbsp;</a></span>setTextCursor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class I&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_nano_display_base.html">NanoDisplayBase</a>&lt; I &gt;::setTextCursor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a>&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Function sets text cursor position for write() functions</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>horizontal position in pixels </td></tr>
+    <tr><td class="paramname">y</td><td>vertical position in pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00220">220</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>

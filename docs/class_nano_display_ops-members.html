@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LCDGFX LCD display driver
-   &#160;<span id="projectnumber">1.0.1</span>
+   &#160;<span id="projectnumber">1.0.2</span>
    </div>
    <div id="projectbrief">This library is developed to control SSD1306/SSD1325/SSD1327/SSD1331/SSD1351/IL9163/PCD8554 RGB i2c/spi LED displays</div>
   </td>
@@ -84,12 +84,14 @@ $(function() {
   <tr class="even"><td class="entry"><a class="el" href="class_nano_display_ops.html#ad64e2d708783da23dae8dbb39e5408b8">menuDown</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_nano_display_ops.html#a07a5fa4d02bb6f1b18abb9227dda6d65">menuSelection</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_nano_display_ops.html#a54efb8baffdc68d1f766d0e4304a675d">menuUp</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_nano_display_ops.html#a68be668e6a4f59106511a7ffd862b0fc">printFixedPgm</a>(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style=STYLE_NORMAL) __attribute__((noinline))</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_nano_display_ops.html#a6cfd273d38de868ed192a1f9b0a68fcd">putPixel</a>(const NanoPoint &amp;p)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_nano_display_ops.html#a614e409ab59fe6f4137c635da83378b8">showMenu</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_nano_display_ops.html#a349f826965571a88a52059c1c23ed038">showMenuSmooth</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_nano_display_ops.html#a528fa3b1ce5dc204d0f568a49815a0e2">updateMenu</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_nano_display_ops.html#a61bedb3328ea4bb9db06ea9fef1ef61e">updateMenuSmooth</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_nano_display_ops.html#ac6181bafa728532db9837b6a272d3ccb">print</a>(int number)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_nano_display_ops.html#a68be668e6a4f59106511a7ffd862b0fc">printFixedPgm</a>(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style=STYLE_NORMAL) __attribute__((noinline))</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_nano_display_ops.html#a6cfd273d38de868ed192a1f9b0a68fcd">putPixel</a>(const NanoPoint &amp;p)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_nano_display_ops.html#a614e409ab59fe6f4137c635da83378b8">showMenu</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_nano_display_ops.html#a349f826965571a88a52059c1c23ed038">showMenuSmooth</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_nano_display_ops.html#a528fa3b1ce5dc204d0f568a49815a0e2">updateMenu</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_nano_display_ops.html#a61bedb3328ea4bb9db06ea9fef1ef61e">updateMenuSmooth</a>(SAppMenu *menu)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_nano_display_ops.html#a5dd652e3031f38a71a4be6045274860e">write</a>(const char *str)</td><td class="entry"><a class="el" href="class_nano_display_ops.html">NanoDisplayOps&lt; O, I &gt;</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -18,6 +18,7 @@ var searchData=
   ['setrotation',['setRotation',['../class_interface_i_l9163.html#af7f7edcb169f9fd82beda868d14622c1',1,'InterfaceIL9163::setRotation()'],['../class_interface_i_l_i9341.html#a446255335ee564f54b1d73da28bf0a68',1,'InterfaceILI9341::setRotation()'],['../class_interface_s_s_d1331.html#a3420283508988c74326b9be50f96eb86',1,'InterfaceSSD1331::setRotation()'],['../class_interface_s_t7735.html#aabd17acf246b24e08876f7a1ef10149a',1,'InterfaceST7735::setRotation()']]],
   ['setsize',['setSize',['../class_nano_object.html#a6ab13d68ceedf2defcba210b56fa1e53',1,'NanoObject']]],
   ['setstartline',['setStartLine',['../class_interface_s_h1106.html#a1913f8f98589f3fed8c91e877daf1ea8',1,'InterfaceSH1106::setStartLine()'],['../class_interface_s_s_d1306.html#ae301bb69b4db6dc433bbcac863e5e243',1,'InterfaceSSD1306::setStartLine()']]],
+  ['settextcursor',['setTextCursor',['../class_nano_display_base.html#ac3fb35416f4c043f85f7ab5d9a16809d',1,'NanoDisplayBase']]],
   ['settiler',['setTiler',['../class_nano_engine_object.html#a3bbbc30c00bd403facb9793f3ed14283',1,'NanoEngineObject']]],
   ['showmenu',['showMenu',['../class_nano_display_ops.html#a614e409ab59fe6f4137c635da83378b8',1,'NanoDisplayOps']]],
   ['showmenusmooth',['showMenuSmooth',['../class_nano_display_ops.html#a349f826965571a88a52059c1c23ed038',1,'NanoDisplayOps']]],
