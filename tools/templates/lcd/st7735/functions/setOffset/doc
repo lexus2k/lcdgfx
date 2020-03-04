@@ -1,0 +1,7 @@
+    /**
+     * @brief Sets display offset in GDRAM memory
+     *
+     * Sets GDRAM display offset in pixels
+     * @param ox x-axis offset in pixels
+     * @param oy y-axis offset in pixels
+     */

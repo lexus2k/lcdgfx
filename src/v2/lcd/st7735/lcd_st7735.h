@@ -109,12 +109,24 @@ public:
      */
     void setRotation(uint8_t rotation);
 
+    /**
+     * @brief Sets display offset in GDRAM memory
+     *
+     * Sets GDRAM display offset in pixels
+     * @param ox x-axis offset in pixels
+     * @param oy y-axis offset in pixels
+     */
+    void setOffset(lcdint_t ox, lcdint_t oy);
+
 private:
     const int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceST7735<I>> &m_base; ///< basic lcd display support interface
 
     uint8_t m_rotation = 0x00;
     static const uint8_t m_rgb_bit = 0b00000000;
+
+    lcdint_t m_offset_x = 0x00;
+    lcdint_t m_offset_y = 0x00;
 };
 
 

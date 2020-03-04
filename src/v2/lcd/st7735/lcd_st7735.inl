@@ -40,16 +40,16 @@ void InterfaceST7735<I>::startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
     this->send(0x2A);
     spiDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send(0);
-    this->send(x);
+    this->send(x + m_offset_x);
     this->send(0);
-    this->send( rx < m_base.width() ? rx : (m_base.width() - 1) );
+    this->send( (rx < m_base.width() ? rx : (m_base.width() - 1)) + m_offset_x);
     spiDataMode(0);
     this->send(0x2B);
     spiDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send(0);
-    this->send(y);
+    this->send( y + m_offset_y );
     this->send(0);
-    this->send(m_base.height() - 1);
+    this->send( m_base.height() - 1 + m_offset_y);
     spiDataMode(0);
     this->send(0x2C);
     if (m_dc >= 0)
@@ -128,6 +128,13 @@ void InterfaceST7735<I>::setRotation(uint8_t rotation)
     spiDataMode(0);
     this->send(0x29);
     this->stop();
+}
+
+template <class I>
+void InterfaceST7735<I>::setOffset(lcdint_t ox, lcdint_t oy)
+{
+    m_offset_x = ox;
+    m_offset_y = oy;
 }
 
 

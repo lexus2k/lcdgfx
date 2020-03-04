@@ -4,3 +4,6 @@ private:
 
     uint8_t m_rotation = 0x00;
     static const uint8_t m_rgb_bit = 0b00000000;
+
+    lcdint_t m_offset_x = 0x00;
+    lcdint_t m_offset_y = 0x00;
