@@ -102,8 +102,6 @@ Inheritance diagram for NanoDisplayBase&lt; I &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aad76783b5e2ca5f41c4bdb008e96a6a2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#aad76783b5e2ca5f41c4bdb008e96a6a2">NanoDisplayBase</a> (I &amp;intf)</td></tr>
 <tr class="separator:aad76783b5e2ca5f41c4bdb008e96a6a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a182078088dd5caabbd242d75a7bbe48a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#a182078088dd5caabbd242d75a7bbe48a">setOffset</a> (<a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> ox, <a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> oy)</td></tr>
-<tr class="separator:a182078088dd5caabbd242d75a7bbe48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0d914baaf29f05eaab0823a3b9feed9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group___n_a_n_o___e_n_g_i_n_e___a_p_i___v2.html#ga6bed080ec75d21960ecff045b5b110ff">NanoPoint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#aa0d914baaf29f05eaab0823a3b9feed9">offsetEnd</a> () const</td></tr>
 <tr class="separator:aa0d914baaf29f05eaab0823a3b9feed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab74c9536781ea2b88255c05f910ac38a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="group___n_a_n_o___e_n_g_i_n_e___a_p_i___v2.html#ga4a82780f66e02834d957e77e70cc17d7">NanoRect</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#ab74c9536781ea2b88255c05f910ac38a">rect</a> () const</td></tr>
@@ -244,7 +242,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>Returns reference to <a class="el" href="class_nano_font.html">NanoFont</a> object, currently used by Display </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00149">149</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00151">151</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +272,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>Returns reference to interface communicator. This interface can be used to use display hardware related features. </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00134">134</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00136">136</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -304,7 +302,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>Returns height of the display in pixels. </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00099">99</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00101">101</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -334,7 +332,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>All drawing functions start to work in negative mode. Old picture on the display remains unchanged. </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00121">121</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00123">123</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -364,7 +362,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>Returns right-bottom point of the canvas in offset terms. If offset is (0,0), then <a class="el" href="class_nano_display_base.html#aa0d914baaf29f05eaab0823a3b9feed9">offsetEnd()</a> will return (width-1,height-1). </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00077">77</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00079">79</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -394,7 +392,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>All drawing functions start to work in positive (default) mode. Old picture on the display remains unchanged. </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00127">127</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00129">129</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -424,7 +422,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>Returns rectangle area, covered by canvas in offset terms. If offset is (0,0), then <a class="el" href="class_nano_display_base.html#ab74c9536781ea2b88255c05f910ac38a">rect()</a> will return ((0,0),(width-1,height-1)) </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00086">86</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00088">88</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -460,7 +458,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00115">115</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00117">117</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -498,7 +496,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00160">160</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00162">162</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -547,7 +545,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00184">184</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00186">186</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -584,7 +582,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00144">144</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00146">146</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -633,54 +631,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00204">204</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
-
-</div>
-</div>
-<a id="a182078088dd5caabbd242d75a7bbe48a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a182078088dd5caabbd242d75a7bbe48a">&#9670;&nbsp;</a></span>setOffset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class I&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="class_nano_display_base.html">NanoDisplayBase</a>&lt; I &gt;::setOffset </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a>&#160;</td>
-          <td class="paramname"><em>ox</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a>&#160;</td>
-          <td class="paramname"><em>oy</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Sets offset </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">ox</td><td>- X offset in pixels </td></tr>
-    <tr><td class="paramname">oy</td><td>- Y offset in pixels </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00071">71</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00206">206</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -728,7 +679,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00220">220</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00222">222</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -758,7 +709,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>Swaps width and height dimensions </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00104">104</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00106">106</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -788,7 +739,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>Returns width of the display in pixels. </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00094">94</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00096">96</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>

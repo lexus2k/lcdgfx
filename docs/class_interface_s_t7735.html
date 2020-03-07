@@ -97,6 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aabd17acf246b24e08876f7a1ef10149a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interface_s_t7735.html#aabd17acf246b24e08876f7a1ef10149a">setRotation</a> (uint8_t rotation)</td></tr>
 <tr class="memdesc:aabd17acf246b24e08876f7a1ef10149a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets screen orientation (rotation)  <a href="#aabd17acf246b24e08876f7a1ef10149a">More...</a><br /></td></tr>
 <tr class="separator:aabd17acf246b24e08876f7a1ef10149a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ffc24c8f82c7c53b1685e8214118903"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interface_s_t7735.html#a8ffc24c8f82c7c53b1685e8214118903">setOffset</a> (<a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> ox, <a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a> oy)</td></tr>
+<tr class="memdesc:a8ffc24c8f82c7c53b1685e8214118903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets display offset in GDRAM memory.  <a href="#a8ffc24c8f82c7c53b1685e8214118903">More...</a><br /></td></tr>
+<tr class="separator:a8ffc24c8f82c7c53b1685e8214118903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class I&gt;<br />
@@ -227,6 +230,47 @@ template&lt;class I &gt; </div>
 <p>Switches to the start of next RAM page for the block, specified by <a class="el" href="class_interface_s_t7735.html#ae7006c9ff83862621ec8a26e052d8793" title="Sets block in RAM of lcd display controller to write data to. ">startBlock()</a>. For ST7735 it does nothing, while for sh1106 the function moves cursor to next page. </p>
 
 <p class="definition">Definition at line <a class="el" href="lcd__st7735_8inl_source.html#l00068">68</a> of file <a class="el" href="lcd__st7735_8inl_source.html">lcd_st7735.inl</a>.</p>
+
+</div>
+</div>
+<a id="a8ffc24c8f82c7c53b1685e8214118903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ffc24c8f82c7c53b1685e8214118903">&#9670;&nbsp;</a></span>setOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class I &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_interface_s_t7735.html">InterfaceST7735</a>&lt; I &gt;::setOffset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a>&#160;</td>
+          <td class="paramname"><em>ox</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="canvas__types_8h.html#aa10c7719d488ba1cbb9353b7fe85e9e0">lcdint_t</a>&#160;</td>
+          <td class="paramname"><em>oy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets display offset in GDRAM memory. </p>
+<p>Some lcd displays do not use COM0, ROW0 lines. It depends on display manufacturer. So, in this case you need to use <a class="el" href="class_interface_s_t7735.html#a8ffc24c8f82c7c53b1685e8214118903" title="Sets display offset in GDRAM memory. ">setOffset()</a> method to tell the library about this hardware specific. This method sets GDRAM display offset in pixels </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ox</td><td>x-axis offset in pixels </td></tr>
+    <tr><td class="paramname">oy</td><td>y-axis offset in pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="lcd__st7735_8inl_source.html#l00137">137</a> of file <a class="el" href="lcd__st7735_8inl_source.html">lcd_st7735.inl</a>.</p>
 
 </div>
 </div>
