@@ -69,6 +69,8 @@ void sdl_graphics_init(void)
         SDL_WINDOW_SHOWN
     );
     g_renderer =  SDL_CreateRenderer( g_window, -1, SDL_RENDERER_ACCELERATED );
+    if ( !g_renderer )
+        g_renderer =  SDL_CreateRenderer( g_window, -1, SDL_RENDERER_SOFTWARE );
     // Set render color to black ( background will be rendered in this color )
     SDL_SetRenderDrawColor( g_renderer, 20, 20, 20, 255 );
 
