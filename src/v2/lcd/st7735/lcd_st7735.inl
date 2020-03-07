@@ -102,6 +102,9 @@ void InterfaceST7735<I>::setRotation(uint8_t rotation)
     if ((rotation^m_rotation) & 0x01)
     {
         m_base.swapDimensions();
+        lcduint_t temp = m_offset_x;
+        m_offset_x = m_offset_y;
+        m_offset_y = temp;
     }
     m_rotation = (rotation & 0x03);
     this->start();

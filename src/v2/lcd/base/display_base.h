@@ -63,12 +63,14 @@ public:
      */
     NanoDisplayBase(I& intf): m_intf( intf ) {}
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
     /**
      * Sets offset
      * @param ox - X offset in pixels
      * @param oy - Y offset in pixels
      */
     void setOffset(lcdint_t ox, lcdint_t oy) { };
+#endif
 
     /**
      * Returns right-bottom point of the canvas in offset terms.
