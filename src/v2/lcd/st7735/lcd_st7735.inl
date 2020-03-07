@@ -136,8 +136,16 @@ void InterfaceST7735<I>::setRotation(uint8_t rotation)
 template <class I>
 void InterfaceST7735<I>::setOffset(lcdint_t ox, lcdint_t oy)
 {
-    m_offset_x = ox;
-    m_offset_y = oy;
+    if (m_rotation & 0x01)
+    {
+        m_offset_x = oy;
+        m_offset_y = ox;
+    }
+    else
+    {
+        m_offset_x = ox;
+        m_offset_y = oy;
+    }
 }
 
 
