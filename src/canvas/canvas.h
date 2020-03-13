@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -289,6 +289,15 @@ public:
      * @param font reference to font object (NanoFont)
      */
     void setFont( NanoFont &font ) { m_font = &font; };
+
+    /**
+     * Sets font spacing for currently active font
+     * @param spacing spacing in pixels
+     */
+    void setFontSpacing(uint8_t spacing)
+    {
+        if (m_font) m_font->setSpacing(spacing);
+    }
 
     /**
      * Sets new font to use with print functions.

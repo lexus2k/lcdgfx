@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2017-2019, Alexey Dynda
+    Copyright (c) 2017-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -132,6 +132,7 @@ typedef struct
     uint8_t count; ///< count of characters
     uint8_t pages; ///< height in pages (each page height is 8-pixels)
     uint8_t glyph_size;  ///< glyph size in bytes
+    uint8_t spacing; ///< spacing between two characters
     const uint8_t *primary_table; ///< font chars bits
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
     const uint8_t *secondary_table; ///< font chars bits

@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,7 @@ public:
     /**
      * Creates NanoFont object and loads font of fixed type from flash memory
      */
-    NanoFont(const uint8_t * progmemFont) { loadFixedFont( progmemFont ); }
+    explicit NanoFont(const uint8_t * progmemFont) { loadFixedFont( progmemFont ); }
 
     /**
      * Function allows to set another fixed font for the library.
@@ -135,6 +135,14 @@ public:
      * some useful information on font like width, height, etc.
      */
     const SFontHeaderRecord &getHeader() { return m_fixedFont.h; }
+
+    /**
+     * Sets spacing in pixels between 2 nearest characters
+     *
+     * @param spacing spacing in pixels
+     */
+    void setSpacing(uint8_t spacing) { m_fixedFont.spacing = spacing; }
+
 
     /**
      * Returns how many pages in terms of ssd1306 display are required for

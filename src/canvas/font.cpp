@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -123,7 +123,7 @@ static void _ssd1306_oldFormatGetBitmap(SFixedFontInfo &font, uint16_t unicode, 
     {
         info->width = font.h.width;
         info->height = font.h.height;
-        info->spacing = 0;
+        info->spacing = font.spacing;
         info->glyph = ssd1306_getU16CharGlyph( font, unicode );
     }
 }
@@ -138,6 +138,7 @@ void NanoFont::loadFixedFont(const uint8_t * progmemFont)
     m_getCharBitmap = _ssd1306_oldFormatGetBitmap;
     m_fixedFont.pages = (m_fixedFont.h.height + 7) >> 3;
     m_fixedFont.glyph_size = m_fixedFont.pages * m_fixedFont.h.width;
+    m_fixedFont.spacing = 0;
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
     m_fixedFont.secondary_table = NULL;
 #endif
@@ -192,7 +193,7 @@ static void _ssd1306_newFormatGetBitmap(SFixedFontInfo &font, uint16_t unicode, 
             uint8_t glyph_height = pgm_read_byte(&data[3]);
             info->width = glyph_width;
             info->height = glyph_height;
-            info->spacing = glyph_width ? 1 : (font.h.width >> 1);
+            info->spacing = glyph_width ? font.spacing : (font.h.width >> 1);
             info->glyph = data + (r.count - unicode) * 4 + 2 + offset;
             break;
         }
@@ -214,6 +215,7 @@ void NanoFont::loadFreeFont(const uint8_t * progmemFont)
     m_fixedFont.h.ascii_offset = pgm_read_byte(&progmemFont[3]);
     m_fixedFont.primary_table = progmemFont + 4;
     m_getCharBitmap = _ssd1306_newFormatGetBitmap;
+    m_fixedFont.spacing = 1;
     m_fixedFont.pages = (m_fixedFont.h.height + 7) >> 3;
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
     m_fixedFont.secondary_table = NULL;
@@ -240,6 +242,7 @@ void NanoFont::loadFixedFont_oldStyle(const uint8_t * progmemFont)
     m_fixedFont.primary_table = progmemFont + 4;
     m_fixedFont.pages = (m_fixedFont.h.height + 7) >> 3;
     m_fixedFont.glyph_size = m_fixedFont.pages * m_fixedFont.h.width;
+    m_fixedFont.spacing = 0;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -269,7 +272,7 @@ static void _ssd1306_squixFormatGetBitmap(SFixedFontInfo &font, uint16_t unicode
 //        uint8_t width = pgm_read_byte(&data[3]);
         info->width = glyph_bytes; //(glyph_bytes + font.pages - 1)  / font.pages;
         info->height = font.h.height / 2;
-        info->spacing = 1;
+        info->spacing = font.spacing;
 //        uint8_t index=0;
         info->glyph = bitmap_data;
         if ( offset != 0xFFFF )
@@ -290,6 +293,7 @@ void NanoFont::loadSquixFont(const uint8_t * progmemFont)
     m_getCharBitmap = _ssd1306_squixFormatGetBitmap;
     m_fixedFont.pages = (m_fixedFont.h.height + 7) >> 3;
     m_fixedFont.glyph_size = m_fixedFont.pages * m_fixedFont.h.width;
+    m_fixedFont.spacing = 1;
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
     m_fixedFont.secondary_table = NULL;
 #endif

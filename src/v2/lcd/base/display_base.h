@@ -146,6 +146,17 @@ public:
     void setFont( NanoFont &font ) { m_font = &font; }
 
     /**
+     * Sets spacing for currently active font.
+     * The same can be done via `getFont().setSpacing()`, but this method is
+     * more safe since it checks if font is set.
+     * @param spacing spacing in pixels
+     */
+    void setFontSpacing(uint8_t spacing)
+    {
+        if (m_font) m_font->setSpacing(spacing);
+    }
+
+    /**
      * Returns reference to NanoFont object, currently used by Display
      */
     NanoFont &getFont() { return *m_font; }
