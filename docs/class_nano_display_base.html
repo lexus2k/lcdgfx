@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LCDGFX LCD display driver
-   &#160;<span id="projectnumber">1.0.2</span>
+   &#160;<span id="projectnumber">1.0.3</span>
    </div>
    <div id="projectbrief">This library is developed to control SSD1306/SSD1325/SSD1327/SSD1331/SSD1351/IL9163/PCD8554 RGB i2c/spi LED displays</div>
   </td>
@@ -122,6 +122,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab9ca81b3b537c97b07001a05d68c2558"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01528fd6e3d81f451ac9fa7d6126f81f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#a01528fd6e3d81f451ac9fa7d6126f81f">setFont</a> (<a class="el" href="class_nano_font.html">NanoFont</a> &amp;font)</td></tr>
 <tr class="separator:a01528fd6e3d81f451ac9fa7d6126f81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a538ab6951a19f361651d38337787f5dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#a538ab6951a19f361651d38337787f5dc">setFontSpacing</a> (uint8_t spacing)</td></tr>
+<tr class="separator:a538ab6951a19f361651d38337787f5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a95824cfe5976a05b8c44390a8c72bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_nano_font.html">NanoFont</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#a7a95824cfe5976a05b8c44390a8c72bf">getFont</a> ()</td></tr>
 <tr class="separator:a7a95824cfe5976a05b8c44390a8c72bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a444316a6a9d7e4b9cd6d560b0a3b9dc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_display_base.html#a444316a6a9d7e4b9cd6d560b0a3b9dc4">setFixedFont</a> (const uint8_t *progmemFont)</td></tr>
@@ -242,7 +244,7 @@ template&lt;class I&gt; </div>
 </div><div class="memdoc">
 <p>Returns reference to <a class="el" href="class_nano_font.html">NanoFont</a> object, currently used by Display </p>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00151">151</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00162">162</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -496,7 +498,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00162">162</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00173">173</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -545,7 +547,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00186">186</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00197">197</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -583,6 +585,42 @@ template&lt;class I&gt; </div>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00146">146</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+
+</div>
+</div>
+<a id="a538ab6951a19f361651d38337787f5dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a538ab6951a19f361651d38337787f5dc">&#9670;&nbsp;</a></span>setFontSpacing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class I&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_nano_display_base.html">NanoDisplayBase</a>&lt; I &gt;::setFontSpacing </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>spacing</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets spacing for currently active font. The same can be done via <code><a class="el" href="class_nano_display_base.html#a7a95824cfe5976a05b8c44390a8c72bf">getFont()</a>.setSpacing()</code>, but this method is more safe since it checks if font is set. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">spacing</td><td>spacing in pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00154">154</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -631,7 +669,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00206">206</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00217">217</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>
@@ -679,7 +717,7 @@ template&lt;class I&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00222">222</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="display__base_8h_source.html#l00233">233</a> of file <a class="el" href="display__base_8h_source.html">display_base.h</a>.</p>
 
 </div>
 </div>

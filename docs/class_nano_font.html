@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LCDGFX LCD display driver
-   &#160;<span id="projectnumber">1.0.2</span>
+   &#160;<span id="projectnumber">1.0.3</span>
    </div>
    <div id="projectbrief">This library is developed to control SSD1306/SSD1325/SSD1327/SSD1331/SSD1351/IL9163/PCD8554 RGB i2c/spi LED displays</div>
   </td>
@@ -91,6 +91,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2bf95f6ac87b47a0c5f2aff6a1a03ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a827aff2a9659a43607a6cd09c03ec27d"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="struct_s_font_header_record.html">SFontHeaderRecord</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_font.html#a827aff2a9659a43607a6cd09c03ec27d">getHeader</a> ()</td></tr>
 <tr class="separator:a827aff2a9659a43607a6cd09c03ec27d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae57fda413d55bd094ebafda702a081e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_font.html#ae57fda413d55bd094ebafda702a081e0">setSpacing</a> (uint8_t spacing)</td></tr>
+<tr class="separator:ae57fda413d55bd094ebafda702a081e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a542936751b063b620a8c5fb60906dedd"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_font.html#a542936751b063b620a8c5fb60906dedd">getPages</a> ()</td></tr>
 <tr class="separator:a542936751b063b620a8c5fb60906dedd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -151,7 +153,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -253,7 +255,7 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Returns how many pages in terms of ssd1306 display are required for the font height. </p>
 
-<p class="definition">Definition at line <a class="el" href="font_8h_source.html#l00143">143</a> of file <a class="el" href="font_8h_source.html">font.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="font_8h_source.html#l00151">151</a> of file <a class="el" href="font_8h_source.html">font.h</a>.</p>
 
 </div>
 </div>
@@ -363,6 +365,41 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ae57fda413d55bd094ebafda702a081e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae57fda413d55bd094ebafda702a081e0">&#9670;&nbsp;</a></span>setSpacing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NanoFont::setSpacing </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>spacing</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets spacing in pixels between 2 nearest characters</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">spacing</td><td>spacing in pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="font_8h_source.html#l00144">144</a> of file <a class="el" href="font_8h_source.html">font.h</a>.</p>
 
 </div>
 </div>

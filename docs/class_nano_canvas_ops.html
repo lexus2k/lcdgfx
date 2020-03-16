@@ -22,7 +22,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">LCDGFX LCD display driver
-   &#160;<span id="projectnumber">1.0.2</span>
+   &#160;<span id="projectnumber">1.0.3</span>
    </div>
    <div id="projectbrief">This library is developed to control SSD1306/SSD1325/SSD1327/SSD1331/SSD1351/IL9163/PCD8554 RGB i2c/spi LED displays</div>
   </td>
@@ -150,6 +150,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a64f9b55e8041a118899437935f488f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a100ab150f3a8749fe75a98b81b662c26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_canvas_ops.html#a100ab150f3a8749fe75a98b81b662c26">setFont</a> (<a class="el" href="class_nano_font.html">NanoFont</a> &amp;font)</td></tr>
 <tr class="separator:a100ab150f3a8749fe75a98b81b662c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa94a6179d936aa38766e2b21bf53c03b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_canvas_ops.html#aa94a6179d936aa38766e2b21bf53c03b">setFontSpacing</a> (uint8_t spacing)</td></tr>
+<tr class="separator:aa94a6179d936aa38766e2b21bf53c03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55c37835a5691447bb3b4c94cabd023f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_canvas_ops.html#a55c37835a5691447bb3b4c94cabd023f">setFixedFont</a> (const uint8_t *progmemFont)</td></tr>
 <tr class="separator:a55c37835a5691447bb3b4c94cabd023f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac19e475c216bed1b313155ea89a0852f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_nano_canvas_ops.html#ac19e475c216bed1b313155ea89a0852f">setFreeFont</a> (const uint8_t *progmemFont, const uint8_t *secondaryFont=nullptr)</td></tr>
@@ -843,7 +845,7 @@ template&lt;uint8_t BPP&gt; </div>
 </div><div class="memdoc">
 <p>Return pointer to canvas pixels data </p>
 
-<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00325">325</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00334">334</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
 
 </div>
 </div>
@@ -873,7 +875,7 @@ template&lt;uint8_t BPP&gt; </div>
 </div><div class="memdoc">
 <p>Returns canvas height in pixels </p>
 
-<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00331">331</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00340">340</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
 
 </div>
 </div>
@@ -1205,7 +1207,7 @@ template&lt;uint8_t BPP&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00302">302</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00311">311</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
 
 </div>
 </div>
@@ -1243,6 +1245,42 @@ template&lt;uint8_t BPP&gt; </div>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00291">291</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
+
+</div>
+</div>
+<a id="aa94a6179d936aa38766e2b21bf53c03b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa94a6179d936aa38766e2b21bf53c03b">&#9670;&nbsp;</a></span>setFontSpacing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;uint8_t BPP&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_nano_canvas_ops.html">NanoCanvasOps</a>&lt; BPP &gt;::setFontSpacing </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>spacing</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets font spacing for currently active font </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">spacing</td><td>spacing in pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00297">297</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
 
 </div>
 </div>
@@ -1291,7 +1329,7 @@ template&lt;uint8_t BPP&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00318">318</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00327">327</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
 
 </div>
 </div>
@@ -1406,7 +1444,7 @@ template&lt;uint8_t BPP&gt; </div>
 </div><div class="memdoc">
 <p>Returns canvas width in pixels </p>
 
-<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00328">328</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="canvas_8h_source.html#l00337">337</a> of file <a class="el" href="canvas_8h_source.html">canvas.h</a>.</p>
 
 </div>
 </div>
