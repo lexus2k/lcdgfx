@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2019, Alexey Dynda
+    Copyright (c) 2016-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -88,6 +88,74 @@ void ArduinoSpi::sendBuffer(const uint8_t *buffer, uint16_t size)
     while (size--)
     {
         SPI.transfer(*buffer);
+        buffer++;
+    };
+}
+
+#endif
+
+#if defined(CONFIG_ARDUINO_SPI2_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
+
+SPIClass SPI2(HSPI);
+
+ArduinoSpi2::ArduinoSpi2(int8_t csPin, int8_t dcPin, int8_t clkPin, int8_t mosiPin,
+                         uint32_t freq)
+    : m_cs( csPin )
+    , m_dc( dcPin )
+    , m_clk( clkPin )
+    , m_mosi( mosiPin )
+    , m_frequency( freq )
+{
+}
+
+ArduinoSpi2::~ArduinoSpi2()
+{
+}
+
+void ArduinoSpi2::begin()
+{
+    if ( m_cs >=0) pinMode( m_cs, OUTPUT );
+    if ( m_dc >= 0) pinMode( m_dc, OUTPUT );
+    // sck, miso, mosi, ss
+    SPI2.begin(m_clk, -1, m_mosi, m_cs);
+}
+
+void ArduinoSpi2::end()
+{
+    SPI2.end();
+}
+
+void ArduinoSpi2::start()
+{
+    /* anyway, oled ssd1331 cannot work faster, clock cycle should be > 150ns: *
+     * 1s / 150ns ~ 6.7MHz                                                     */
+    SPI2.beginTransaction(SPISettings(m_frequency, MSBFIRST, SPI_MODE0));
+    if (m_cs >= 0)
+    {
+        lcd_gpioWrite(m_cs,LCD_LOW);
+    }
+}
+
+void ArduinoSpi2::stop()
+{
+    if (m_cs >= 0)
+    {
+        lcd_gpioWrite(m_cs, LCD_HIGH);
+    }
+    SPI2.endTransaction();
+}
+
+void ArduinoSpi2::send(uint8_t data)
+{
+    SPI2.transfer(data);
+}
+
+void ArduinoSpi2::sendBuffer(const uint8_t *buffer, uint16_t size)
+{
+    /* Do not use SPI.transfer(buffer, size)! this method corrupts buffer content */
+    while (size--)
+    {
+        SPI2.transfer(*buffer);
         buffer++;
     };
 }

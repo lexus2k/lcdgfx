@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -89,3 +89,68 @@ private:
 
 #endif
 
+#if defined(CONFIG_ARDUINO_SPI2_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
+/**
+ * Class implements second SPI interface for some Arduino platforms
+ */
+class ArduinoSpi2
+{
+public:
+    /**
+     * Creates instance of spi implementation for Arduino platform.
+     * @param csPin chip select pin to use, -1 if not required
+     * @param dcPin data command pin to use
+     * @param clkPin clock pin number to use, -1 if by default
+     * @param mosiPin MOSI pin to use, -1 by default
+     * @param freq frequency in HZ to run spi bus at
+     */
+    ArduinoSpi2(int8_t csPin = -1, int8_t dcPin = -1, int8_t clkPin = -1, int8_t mosiPin = -1,
+                uint32_t freq = 8000000);
+    ~ArduinoSpi2();
+
+    /**
+     * Initializes spi interface
+     */
+    void begin();
+
+    /**
+     * Closes spi interface
+     */
+    void end();
+
+    /**
+     * Starts communication with SSD1306 display.
+     */
+    void start();
+
+    /**
+     * Ends communication with SSD1306 display.
+     */
+    void stop();
+
+    /**
+     * Sends byte to SSD1306 device
+     * @param data - byte to send
+     */
+    void send(uint8_t data);
+
+    /**
+     * @brief Sends bytes to SSD1306 device
+     *
+     * Sends bytes to SSD1306 device. This functions gives
+     * ~ 30% performance increase than ssd1306_intf.send.
+     *
+     * @param buffer - bytes to send
+     * @param size - number of bytes to send
+     */
+    void sendBuffer(const uint8_t *buffer, uint16_t size);
+
+private:
+    int8_t m_cs;
+    int8_t m_dc;
+    int8_t m_clk;
+    int8_t m_mosi;
+    uint32_t m_frequency;
+};
+
+#endif
