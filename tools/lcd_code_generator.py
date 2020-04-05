@@ -29,19 +29,20 @@ import sys
 import os
 import shutil
 import json
+from collections import OrderedDict
 
 def print_help_and_exit():
-    print "Usage: lcd_code_generator.py [args]"
-    print "args:"
-    print "      -c name   controller name"
-    print "      -b bits   bits per pixel"
-    print "      -B        Do not add bits to screen class name"
-    print "      -r WxH    resolution"
-    print "      -j json   Use json data from file"
-    print "      -t template path source templates, templates by default"
-    print ""
-    print "exammples:"
-    print "      ./lcd_code_generator.py -c all"
+    print("Usage: lcd_code_generator.py [args]")
+    print("args:")
+    print("      -c name   controller name")
+    print("      -b bits   bits per pixel")
+    print("      -B        Do not add bits to screen class name")
+    print("      -r WxH    resolution")
+    print("      -j json   Use json data from file")
+    print("      -t template path source templates, templates by default")
+    print("")
+    print("exammples:")
+    print("      ./lcd_code_generator.py -c all")
     exit(1)
 
 if len(sys.argv) < 2:
@@ -62,6 +63,7 @@ g_voc = {
               "row_cmd": "0x75",
               "use_paging": False,
           },
+          "interfaces": {},
           "bits": {},
           "CONTROLLER": "",
           "controller": "",
@@ -96,7 +98,7 @@ while idx < len(sys.argv):
         for t in g_voc["bits"]:
             t.append( { resolution: {} } )
     else:
-        print "Unknown option: ", opt
+        print("Unknown option: ", opt)
         print_help_and_exit()
     idx += 1
 
@@ -153,12 +155,12 @@ def get_file_data(fname):
 
 def get_json_controller_list(fname):
     with open(templates + 'lcd/' + fname + "/" + fname + ".json") as json_file:
-        data = json.load(json_file)
+        data = json.load(json_file, object_pairs_hook=OrderedDict)
     return data.keys()
 
 def load_data_from_json(fname, ctl):
     with open(templates + 'lcd/' + fname) as json_file:
-        data = json.load(json_file)
+        data = json.load(json_file, object_pairs_hook=OrderedDict)
     g_voc["bits"] = data[ctl]["bits"];
     g_voc["options"] = data[ctl]["options"]
     g_voc["interfaces"] = data[ctl]["interfaces"]
@@ -166,7 +168,7 @@ def load_data_from_json(fname, ctl):
 
 def load_init_data_from_json(fname, ctl, bits, resolution):
     with open(templates + 'lcd/' + fname) as json_file:
-        data = json.load(json_file)
+        data = json.load(json_file, object_pairs_hook=OrderedDict)
     g_voc["init_data"] = "\n".join( data[ctl]["bits"][bits][resolution]["init"] )
 
 templates = templates + "/"

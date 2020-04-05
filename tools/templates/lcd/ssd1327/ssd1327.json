@@ -15,14 +15,14 @@
         },
         "interfaces":
         {
+            "spi":
+            {
+                "frequency": 10000000
+            },
             "i2c":
             {
                 "addr": "0x3C",
                 "frequency": 400000
-            },
-            "spi":
-            {
-                "frequency": 10000000
             }
         },
         "bits":
