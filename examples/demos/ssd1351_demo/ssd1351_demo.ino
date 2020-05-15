@@ -186,9 +186,6 @@ void setup()
 {
     display.begin();
     display.setFixedFont(ssd1306xled_font6x8);
-//    ssd1351_128x128_spi_init(3, 4, 5);
-//    ssd1351_128x128_spi_init(24, 0, 23); // Use this line for Raspberry  (gpio24=RST, 0=CE, gpio23=D/C)
-//    ssd1351_128x128_spi_init(3, -1, 4);  // Use this line for ATTINY
 
     display.fill( 0x0000 );
     display.createMenu( &menu, menuItems, sizeof(menuItems) / sizeof(char *) );
