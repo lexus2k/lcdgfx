@@ -12,6 +12,7 @@
   * [Easy to use](#easy-to-use)
   * [Supported displays](#supported-displays)
   * [Supported platforms](#supported-platforms)
+  * [The goals of lcdgfx library](#the-goals-of-ldcgfx-library)
   * [Setting up](#setting-up)
   * [License](#license)
 
@@ -22,7 +23,7 @@
 
 lcdgfx driver is Arduino style C++ library with unicode support. The library can be compiled for plain Linux
 (for example, raspberry spi), or you can use it with plain avr-gcc compiler without Arduino IDE. It supports
-monochrome and RGB oleds and has debug mode, allowing to execute code on PC, using SDL2.0.
+monochrome and RGB oleds and has debug mode, allowing to execute code on Linux, Windows and macOS, using SDL2.0.
 Initially the library was intended to run on very small microcontrollers (with a little of RAM). It was developed to use as
 few resources as possible, but still has powerful capabilities (NanoEngine), allowing to develop nice animation.
 It works on any powerful devices like raspberry pi, esp32; and can be easily ported to new platform.
@@ -127,6 +128,8 @@ Compilers: gcc, clang
 | **Linux**  |    |     |          |
 | Raspberry Pi |  X  |  X  | i2c-dev, spidev, sys/class/gpio  |
 | [SDL Emulation](https://github.com/lexus2k/lcdgfx/wiki/How-to-run-emulator-mode) |  X  |  X  | demo code can be run without real OLED HW via SDL library |
+| **macOS**  |    |     |          |
+| [SDL Emulation](https://github.com/lexus2k/lcdgfx/wiki/How-to-run-emulator-mode) |  X  |  X  | demo code can be run without real OLED HW via SDL library |
 | **Windows**  |    |     |          |
 | [SDL Emulation](https://github.com/lexus2k/lcdgfx/wiki/How-to-run-emulator-mode) |  X  |  X  | demo code can be run without real OLED HW via MinGW32 + SDL library |
 
@@ -194,5 +197,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-

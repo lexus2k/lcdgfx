@@ -72,7 +72,6 @@ clean:
 	rm -rf $(OBJS:%.o=%.d)
 	rm -rf $(OBJS:.o=.gcno) $(OBJS:.o=.gcda)
 
-
 help:
 	@echo "Makefile accepts the following options:"
 	@echo "    ADAFRUIT=y/n       Enables compilation of Adafruit GFX library"

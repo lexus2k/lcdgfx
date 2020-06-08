@@ -12,6 +12,7 @@
   * [Easy to use](#easy-to-use)
   * [Supported displays](#supported-displays)
   * [Supported platforms](#supported-platforms)
+  * [The goals of lcdgfx library](#the-goals-of-ldcgfx-library)
   * [Setting up](#setting-up)
   * [License](#license)
 
@@ -22,7 +23,7 @@
 
 lcdgfx driver is Arduino style C++ library with unicode support. The library can be compiled for plain Linux
 (for example, raspberry spi), or you can use it with plain avr-gcc compiler without Arduino IDE. It supports
-monochrome and RGB oleds and has debug mode, allowing to execute code on PC, using SDL2.0.
+monochrome and RGB oleds and has debug mode, allowing to execute code on Linux, Windows and macOS, using SDL2.0.
 Initially the library was intended to run on very small microcontrollers (with a little of RAM). It was developed to use as
 few resources as possible, but still has powerful capabilities (NanoEngine), allowing to develop nice animation.
 It works on any powerful devices like raspberry pi, esp32; and can be easily ported to new platform.
@@ -48,15 +49,15 @@ The library provides numerous usage [examples](https://github.com/lexus2k/lcdgfx
  * Includes [graphics engine](https://github.com/lexus2k/lcdgfx/wiki/Using-NanoEngine-for-systems-with-low-resources2) to support
    double buffering on tiny microcontrollers.
  * Can be used for game development (bonus examples):
-   * Arkanoid game ([arkanoid](examples/games/arkanoid) in old style API and [arkanoid8](examples/games/arkanoid8) in new style API)
-   * Simple [Lode runner](examples/games/lode_runner) game.
-   * [Snowflakes](examples/nano_engine/snowflakes)
+   * Arkanoid game ([arkanoid](../examples/games/arkanoid) in old style API and [arkanoid8](../examples/games/arkanoid8) in new style API)
+   * Simple [Lode runner](../examples/games/lode_runner) game.
+   * [Snowflakes](../examples/nano_engine/snowflakes)
 
-![Image of arkanoid intro](imgs/arkanoid.png)
-![Image of lode runner](imgs/lode_runner.gif)
+![Image of arkanoid intro](../imgs/arkanoid.png)
+![Image of lode runner](../imgs/lode_runner.gif)
 
-![Image of menu example](imgs/mainmenu_top.png)
-![Image of color oled](imgs/fonts.png)
+![Image of menu example](../imgs/mainmenu_top.png)
+![Image of color oled](../imgs/fonts.png)
 
 The i2c pins can be changed via API functions. Please, refer to documentation. Keep in mind,
 that the pins, which are allowed for i2c or spi interface, depend on the hardware.
@@ -111,9 +112,9 @@ Compilers: gcc, clang
 | Atmega328p, Atmega168  |  X  |  X  |    |
 | Atmega32u4  |  X  |  X  |    |
 | Atmega2560  |  X  |  X  |    |
-| Digispark, including PRO version  |  X  |  X  |  check [examples compatibility list](examples/Digispark_compatibility.txt)  |
-| ESP8266  |  X  |  X  | check [examples compatibility list](examples/ESP8266_compatibility.txt)   |
-| ESP32  |  X  |  X  | check [examples compatibility list](examples/ESP8266_compatibility.txt)   |
+| Digispark, including PRO version  |  X  |  X  |  check [examples compatibility list](../examples/Digispark_compatibility.txt)  |
+| ESP8266  |  X  |  X  | check [examples compatibility list](../examples/ESP8266_compatibility.txt)   |
+| ESP32  |  X  |  X  | check [examples compatibility list](../examples/ESP8266_compatibility.txt)   |
 | STM32  |  X  |  X  | [stm32duino](https://github.com/stm32duino/wiki/wiki)  |
 | Arduino Zero | X  | X  |    |
 | Nordic nRF5 (nRF51, nRF52) | X | X | via Standard Arduino nRF52 boards. nRF users, enable c++11 in platform.txt `-std=gnu++11` |
@@ -127,6 +128,8 @@ Compilers: gcc, clang
 | **Linux**  |    |     |          |
 | Raspberry Pi |  X  |  X  | i2c-dev, spidev, sys/class/gpio  |
 | [SDL Emulation](https://github.com/lexus2k/lcdgfx/wiki/How-to-run-emulator-mode) |  X  |  X  | demo code can be run without real OLED HW via SDL library |
+| **macOS**  |    |     |          |
+| [SDL Emulation](https://github.com/lexus2k/lcdgfx/wiki/How-to-run-emulator-mode) |  X  |  X  | demo code can be run without real OLED HW via SDL library |
 | **Windows**  |    |     |          |
 | [SDL Emulation](https://github.com/lexus2k/lcdgfx/wiki/How-to-run-emulator-mode) |  X  |  X  | demo code can be run without real OLED HW via MinGW32 + SDL library |
 
@@ -139,7 +142,7 @@ lcdgfx library requires at least c++11 and c99 (by default Digispark package mis
  * To use as few RAM as possible
  * To use as few Flash as possible
  * To be as fast as possible
- * To fit [Arkanoid game example](examples/games/arkanoid) to Attiny85 microcontroller
+ * To fit [Arkanoid game example](../examples/games/arkanoid) to Attiny85 microcontroller
 
 ## Setting up
 
@@ -156,7 +159,7 @@ lcdgfx library requires at least c++11 and c99 (by default Digispark package mis
  * Download source from https://github.com/lexus2k/lcdgfx
  * Build the library (variant 1)
    * cd lcdgfx/src && make -f Makefile.avr MCU=<your_mcu>
-   * Link library to your project (refer to [Makefile.avr](examples/Makefile.avr) in examples folder).
+   * Link library to your project (refer to [Makefile.avr](../examples/Makefile.avr) in examples folder).
  * Build demo code (variant 2)
    * cd lcdgfx/tools && ./build_and_run.sh -p avr -m <your_mcu> ssd1306_demo
 
@@ -175,7 +178,7 @@ The library is free. If this project helps you, you can give me a cup of coffee.
 
 MIT License
 
-Copyright (c) 2016-2019, Alexey Dynda
+Copyright (c) 2016-2020, Alexey Dynda
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -194,5 +197,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-

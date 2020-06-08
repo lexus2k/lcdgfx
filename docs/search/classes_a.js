@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usispi',['UsiSpi',['../class_usi_spi.html',1,'']]]
+  ['usispi_995',['UsiSpi',['../class_usi_spi.html',1,'']]]
 ];
