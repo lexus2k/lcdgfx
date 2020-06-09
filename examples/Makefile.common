@@ -79,11 +79,17 @@ INCLUDES += \
 	-I./$(PROJECT) \
 	-I../src
 
-CXXFLAGS +=  -fno-rtti
+CXXFLAGS += -fno-rtti
 
 CCFLAGS += -MD -g -Os -w -ffreestanding $(INCLUDES) -Wall -Werror \
-	-Wl,--gc-sections -ffunction-sections -fdata-sections \
+	-ffunction-sections -fdata-sections \
 	$(EXTRA_CCFLAGS)
+
+ifeq ($(shell uname -s),Darwin)
+	CCFLAGS += -Wl,-dead_strip
+else
+	CCFLAGS += -Wl,--gc-sections
+endif
 
 .PHONY: clean lcdgfx all help
 

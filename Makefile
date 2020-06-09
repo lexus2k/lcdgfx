@@ -39,6 +39,8 @@ help:
 	@echo "============== LCDGFX library ================"
 	@echo "make docs          generates documentation"
 	@echo "make help          prints this help"
+	@echo "make library       build library"
+	@echo "make ssd1306_sdl   build SDL emulation library"
 	@echo "make cppcheck      run cppcheck tests"
 	@echo ""
 	@echo "to build examples use scripts in tools subdir"
@@ -49,10 +51,12 @@ docs:
 	@echo "[DONE] check docs folder"
 
 library:
+	mkdir -p $(BLD)
 	make -C ./src/ -f Makefile.$(ARCH) SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)" BLD=$(BLD)
 
 ssd1306_sdl:
-	$(MAKE) -C ./tools/sdl -f Makefile.linux SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)" BLD=$(BLD)
+	mkdir -p $(BLD)
+	$(MAKE) -C ./tools/sdl -f Makefile.$(ARCH) SDL_EMULATION=$(SDL_EMULATION) EXTRA_CPPFLAGS="$(EXTRA_CPPFLAGS)" BLD=$(BLD)
 
 include Makefile.cpputest
 
@@ -67,5 +71,5 @@ cppcheck:
 
 clean:
 	make -C ./src/ -f Makefile.$(ARCH) clean
-	make -C ./tools/sdl -f Makefile.linux clean
+	make -C ./tools/sdl -f Makefile.$(ARCH) clean
 	rm -rf gmon.out

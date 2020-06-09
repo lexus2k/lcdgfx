@@ -69,7 +69,7 @@
 #endif
 #elif defined(STM32F1) || defined(STM32F2) || defined(STM32F4)
 #include "stm32/io.h"
-#elif defined(__linux__)
+#elif defined(__linux__) || defined(__APPLE__)
 #include "linux/io.h"
 #ifdef __cplusplus
 #include "linux/linux_i2c.h"
