@@ -54,6 +54,7 @@ OBJS = \
 ####################### Compiling library #########################
 
 $(BLD)/libssd1306_sdl.a: $(OBJS)
+	mkdir -p $(BLD)
 	$(AR) rcs $@ $(OBJS)
 
 ssd1306_sdl: $(BLD)/libssd1306_sdl.a

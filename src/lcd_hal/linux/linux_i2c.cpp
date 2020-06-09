@@ -22,7 +22,7 @@
     SOFTWARE.
 */
 
-#if (defined(__linux__) || defined(__MINGW32__)) && !defined(ARDUINO)
+#if (defined(__linux__) || defined(__APPLE__)) && !defined(ARDUINO)
 
 #include "../io.h"
 
@@ -34,8 +34,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
+#if defined(__linux__)
 #include <linux/i2c-dev.h>
 #include <linux/spi/spidev.h>
+#endif
 
 //////////////////////////////////////////////////////////////////////////////////
 //                        LINUX I2C IMPLEMENTATION

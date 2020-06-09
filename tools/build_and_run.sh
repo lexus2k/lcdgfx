@@ -31,10 +31,10 @@ print_help_and_exit()
 {
     echo "Usage: ./build_and_run.sh [options] example [add_build_opts]"
     echo "options:"
-    echo "        -p      platform to compile for: avr, linux, esp32, stm32"
+    echo "        -p      platform to compile for: avr, linux, mac, esp32, stm32"
     echo "        -m      mcu to compiler for: atmega328p, attiny85, etc.."
-    echo "        -f      flash controller after build or run executable for Linux"
-    echo "        -e      start OLED emulation mode with SDL (Linux only)"
+    echo "        -f      flash controller after build or run executable for Linux/macOS"
+    echo "        -e      start OLED emulation mode with SDL (Linux/macOS)"
     echo "                OLED emulation allows to run simple demo without OLED hardware"
     echo "                OLED emulation mode requires installed libsdl2-dev package"
     echo "add_build_opts: (additional options)"
