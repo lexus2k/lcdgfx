@@ -192,7 +192,7 @@ static const PROGMEM uint8_t s_SH1106_lcd128x64_initData[] =
     0xDB, 0x01, 0x20,  // vcom deselect to 0x20 // 0x40
     0x8D, 0x01, 0x14,  // Enable charge pump
     0xA4, 0x00,        // Display on resume
-    0xA5, 0x00,        // Display on
+    0xAF, 0x00,        // Display on
 };
 
 ////////////////////////////////////////////////////////////////////////////////
