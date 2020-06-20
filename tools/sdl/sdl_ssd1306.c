@@ -36,12 +36,14 @@ static int s_columnEnd = 127;
 static int s_pageStart = 0;
 static int s_pageEnd = 7;
 static uint8_t detected = 0;
+static uint8_t detectedType = 0;
 
 static uint8_t gdram[128][64];
 
 static uint8_t displayRemap = 0;
 static uint8_t displayStartLine = 0;
 static uint8_t displayOffset = 0;
+static uint8_t displayXOffset = 0;
 static uint8_t multiplexRatio = 15;
 static uint8_t displayOn = 0;
 
@@ -93,6 +95,8 @@ static int sdl_ssd1306_detect(uint8_t data)
     {
         return 1;
     }
+    detectedType = data;
+    displayXOffset = data == SDL_LCD_SH1106 ? 2 : 0;
     detected = (data == SDL_LCD_SSD1306) || (data == SDL_LCD_SH1106);
     return 0;
 }
@@ -103,31 +107,45 @@ static void sdl_ssd1306_commands(uint8_t data)
     switch (s_commandId)
     {
         case 0x21:
-            switch (s_cmdArgIndex)
+            if ( detectedType == SDL_LCD_SSD1306 )
             {
-                case 0:
-                     s_columnStart = ( data >= sdl_ssd1306.width ? sdl_ssd1306.width - 1: data );
-                     s_activeColumn = s_columnStart;
-                     break;
-                case 1:
-                     s_columnEnd = ( data >= sdl_ssd1306.width ? sdl_ssd1306.width - 1: data );
-                     s_commandId = SSD_COMMAND_NONE;
-                     break;
-                default: break;
+                switch (s_cmdArgIndex)
+                {
+                    case 0:
+                        s_columnStart = ( data >= sdl_ssd1306.width ? sdl_ssd1306.width - 1: data );
+                        s_activeColumn = s_columnStart;
+                        break;
+                    case 1:
+                        s_columnEnd = ( data >= sdl_ssd1306.width ? sdl_ssd1306.width - 1: data );
+                        s_commandId = SSD_COMMAND_NONE;
+                        break;
+                    default: break;
+                }
+            }
+            else
+            {
+                s_commandId = SSD_COMMAND_NONE;
             }
             break;
         case 0x22:
-            switch (s_cmdArgIndex)
+            if ( detectedType == SDL_LCD_SSD1306 )
             {
-                case 0:
-                     s_pageStart = (data >= SSD1306_MAX_BANKS ? SSD1306_MAX_BANKS - 1 : data);
-                     s_activePage = s_pageStart;
-                     break;
-                case 1:
-                     s_pageEnd = (data >= SSD1306_MAX_BANKS ? SSD1306_MAX_BANKS - 1 : data);
-                     s_commandId = SSD_COMMAND_NONE;
-                     break;
-                default: break;
+                switch (s_cmdArgIndex)
+                {
+                    case 0:
+                        s_pageStart = (data >= SSD1306_MAX_BANKS ? SSD1306_MAX_BANKS - 1 : data);
+                        s_activePage = s_pageStart;
+                        break;
+                    case 1:
+                        s_pageEnd = (data >= SSD1306_MAX_BANKS ? SSD1306_MAX_BANKS - 1 : data);
+                        s_commandId = SSD_COMMAND_NONE;
+                        break;
+                    default: break;
+                }
+            }
+            else
+            {
+                s_commandId = SSD_COMMAND_NONE;
             }
             break;
         case 0xA8:
@@ -193,7 +211,7 @@ void sdl_ssd1306_data(uint8_t data)
     int x = s_activeColumn;
     for (int i=0; i<8; i++)
     {
-        blt_single_pixel( x, (y<<3) + i, data & (1<<i) );
+        blt_single_pixel( x - displayXOffset, (y<<3) + i, data & (1<<i) );
     }
     s_activeColumn++;
     if (s_activeColumn > s_columnEnd)
