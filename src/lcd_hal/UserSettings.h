@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -99,6 +99,12 @@
 
 /** Define this macro if you need to enable ESP32 SPI module for compilation */
 #define CONFIG_ESP32_SPI_ENABLE
+
+/** Define this macro if you need to enable ESP8266 I2C module for compilation */
+#define CONFIG_ESP8266_I2C_ENABLE
+
+/** Define this macro if you need to enable ESP8266 SPI module for compilation */
+#define CONFIG_ESP8266_SPI_ENABLE
 
 /**
  * Defines, whenever ssd1306 library supports unicode.

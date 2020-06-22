@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -66,6 +66,8 @@
 #ifdef __cplusplus
 #include "esp/esp32_i2c.h"
 #include "esp/esp32_spi.h"
+#include "esp/esp8266_i2c.h"
+#include "esp/esp8266_spi.h"
 #endif
 #elif defined(STM32F1) || defined(STM32F2) || defined(STM32F4)
 #include "stm32/io.h"
@@ -398,6 +400,22 @@ public:
         : EspI2c( config.busId, config.addr, config.scl, config.sda, 400000) {}
 };
 
+#elif defined(CONFIG_ESP8266_I2C_AVAILABLE) && defined(CONFIG_ESP8266_I2C_ENABLE)
+
+/**
+ * PlatformI2c implementation for current platform.
+ */
+class PlatformI2c: public EspI2c
+{
+public:
+    /**
+     * Creates instance of i2c implementation for current platform.
+     * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
+     */
+    PlatformI2c(const SPlatformI2cConfig &config)
+        : EspI2c( config.busId, config.addr, config.scl, config.sda, 400000) {}
+};
+
 #elif defined(CONFIG_SOFTWARE_I2C_AVAILABLE) && defined(CONFIG_SOFTWARE_I2C_ENABLE)
 
 /**
@@ -489,6 +507,21 @@ public:
 #endif
 
 #elif defined(CONFIG_ESP32_SPI_AVAILABLE) && defined(CONFIG_ESP32_SPI_ENABLE)
+/**
+ * PlatformSpi implementation for current platform
+ */
+class PlatformSpi: public EspSpi
+{
+public:
+    /**
+     * Creates instance of PlatformSpi implementation for current platform
+     * @param config spi platform configuration. Refer to SPlatformSpiConfig.
+     */
+    PlatformSpi(const SPlatformSpiConfig &config)
+        : EspSpi( config.busId, config.cs, config.dc, config.scl, config.sda, config.frequency ) {}
+};
+
+#elif defined(CONFIG_ESP8266_SPI_AVAILABLE) && defined(CONFIG_ESP8266_SPI_ENABLE)
 /**
  * PlatformSpi implementation for current platform
  */

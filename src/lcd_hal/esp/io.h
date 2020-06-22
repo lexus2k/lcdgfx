@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -35,10 +35,25 @@
 /** Progmem attribute for data, located in Flash */
 #define LCD_PROGMEM
 
+#include <sdkconfig.h>
+
+#if !defined(CONFIG_TARGET_PLATFORM_ESP8266) && \
+    !defined(CONFIG_IDF_TARGET_ESP8266) && \
+    !defined(ESP8266) && !defined( __ESP8266__)
+
 /** The macro is defined when ESP32 i2c implementation is available */
 #define CONFIG_ESP32_I2C_AVAILABLE
 /** The macro is defined when ESP32 spi implementation is available */
 #define CONFIG_ESP32_SPI_AVAILABLE
+
+#else
+
+/** The macro is defined when ESP8266 i2c implementation is available */
+#define CONFIG_ESP8266_I2C_AVAILABLE
+/** The macro is defined when ESP8266 spi implementation is available */
+#define CONFIG_ESP8266_SPI_AVAILABLE
+
+#endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 void ssd1306_registerPinEvent(int pin, void (*on_pin_change)(void *), void *arg);
