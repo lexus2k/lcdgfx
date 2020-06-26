@@ -37,12 +37,12 @@ void InterfaceSSD1351<I>::startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
 {
     lcduint_t rx = w ? (x + w - 1) : (m_base.width() - 1);
     commandStart();
-    this->send(0x15);
+    this->send((m_rotation & 0x01) ? 0x75: 0x15);
     spiDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send(x);
     this->send( rx < m_base.width() ? rx : (m_base.width() - 1) );
     spiDataMode(0);
-    this->send(0x75);
+    this->send((m_rotation & 0x01) ? 0x15: 0x75);
     spiDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send(y);
     this->send(m_base.height() - 1);
@@ -110,31 +110,17 @@ void InterfaceSSD1351<I>::setRotation(uint8_t rotation)
         ram_mode = 0b00110100;
         break;
     case 1: // 90 degree CW
-        ram_mode = 0b00110101;
+        ram_mode = 0b00110111;
         break;
     case 2: // 180 degree CW
-        ram_mode = 0b00100100;
+        ram_mode = 0B00100110;
         break;
     case 3: // 270 degree CW
     default:
-        ram_mode = 0b00100111;
+        ram_mode = 0b00100101;
         break;
     }
-/*    switch (m_rotation)
-    {
-    case 0:
-        ram_mode = 0b00000000;
-        break;
-    case 1: // 90 degree CW
-        ram_mode = 0b01100000;
-        break;
-    case 2: // 180 degree CW
-        ram_mode = 0b11000000;
-        break;
-    default: // 270 degree CW
-        ram_mode = 0b10100000;
-        break;
-    }*/
+    spiDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send( ram_mode );
 //    this->send( ram_mode | m_rgb_bit );
     this->stop();
