@@ -91,6 +91,56 @@ void InterfaceSSD1351<I>::commandStart()
         this->send(0x00);
 }
 
+template <class I>
+void InterfaceSSD1351<I>::setRotation(uint8_t rotation)
+{
+    uint8_t ram_mode;
+    if ((rotation^m_rotation) & 0x01)
+    {
+        m_base.swapDimensions();
+    }
+    m_rotation = (rotation & 0x03);
+    this->start();
+    spiDataMode(0);
+    this->send( 0xA0 );
+    switch (m_rotation)
+    {
+    // NORMAL FULL COLOR MODE
+    case 0:
+        ram_mode = 0b00110100;
+        break;
+    case 1: // 90 degree CW
+        ram_mode = 0b00110101;
+        break;
+    case 2: // 180 degree CW
+        ram_mode = 0b00100100;
+        break;
+    case 3: // 270 degree CW
+    default:
+        ram_mode = 0b00100111;
+        break;
+    }
+/*    switch (m_rotation)
+    {
+    case 0:
+        ram_mode = 0b00000000;
+        break;
+    case 1: // 90 degree CW
+        ram_mode = 0b01100000;
+        break;
+    case 2: // 180 degree CW
+        ram_mode = 0b11000000;
+        break;
+    default: // 270 degree CW
+        ram_mode = 0b10100000;
+        break;
+    }*/
+    this->send( ram_mode );
+//    this->send( ram_mode | m_rgb_bit );
+    this->stop();
+
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //             SSD1351 basic 16-bit implementation

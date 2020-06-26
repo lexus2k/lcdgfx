@@ -13,6 +13,11 @@
             "reset_delay": 0,
             "exit_cmd_mode_command": "0x5C"
         },
+        "functions":
+        {
+            "interface_list": ["setRotation"],
+            "setRotation": {}
+        },
         "interfaces":
         {
             "spi":

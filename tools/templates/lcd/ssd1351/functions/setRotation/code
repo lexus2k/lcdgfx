@@ -6,10 +6,25 @@
     m_rotation = (rotation & 0x03);
     this->start();
     spiDataMode(0);
-    this->send(0x28);
-    this->send(0x36);
-    spiDataMode(1);
+    this->send( 0xA0 );
     switch (m_rotation)
+    {
+    // NORMAL FULL COLOR MODE
+    case 0:
+        ram_mode = 0b00110100;
+        break;
+    case 1: // 90 degree CW
+        ram_mode = 0b00110101;
+        break;
+    case 2: // 180 degree CW
+        ram_mode = 0b00100100;
+        break;
+    case 3: // 270 degree CW
+    default:
+        ram_mode = 0b00100111;
+        break;
+    }
+/*    switch (m_rotation)
     {
     case 0:
         ram_mode = 0b00000000;
@@ -23,8 +38,8 @@
     default: // 270 degree CW
         ram_mode = 0b10100000;
         break;
-    }
-    this->send( ram_mode | m_rgb_bit );
-    spiDataMode(0);
-    this->send(0x29);
+    }*/
+    this->send( ram_mode );
+//    this->send( ram_mode | m_rgb_bit );
     this->stop();
+

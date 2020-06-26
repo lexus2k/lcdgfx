@@ -33,6 +33,9 @@ static int s_columnStart = 0;
 static int s_columnEnd = 127;
 static int s_pageStart = 0;
 static int s_pageEnd = 7;
+static uint8_t s_incrementMode = 0;
+static uint8_t s_topToBottom = 0;
+static uint8_t s_leftToRight = 0;
 static uint8_t detected = 0;
 
 
@@ -46,8 +49,6 @@ static int sdl_ssd1351_detect(uint8_t data)
     return 0;
 }
 
-static uint8_t s_verticalMode = 0;
-
 static void sdl_ssd1351_commands(uint8_t data)
 {
     switch (s_commandId)
@@ -55,7 +56,10 @@ static void sdl_ssd1351_commands(uint8_t data)
         case 0xA0:
             if (s_cmdArgIndex == 0)
             {
-                s_verticalMode = data & 0x01;
+                s_incrementMode = data & 0x01;
+                s_leftToRight = data & 0x02;
+                s_topToBottom = data & 0x10;
+
                 s_commandId = SSD_COMMAND_NONE;
             }
             break;
@@ -106,8 +110,8 @@ static void sdl_ssd1351_commands(uint8_t data)
 
 void sdl_ssd1351_data(uint8_t data)
 {
-    int y = s_activePage;
-    int x = s_activeColumn;
+    int y = s_topToBottom ? s_activePage : (sdl_ssd1351.height - s_activePage - 1);
+    int x = s_leftToRight ? (sdl_ssd1351.width - s_activeColumn - 1) : s_activeColumn;
     static uint8_t firstByte = 1;  /// SSD1351
     static uint8_t dataFirst = 0x00;  /// SSD1351
     if (firstByte)
@@ -119,7 +123,7 @@ void sdl_ssd1351_data(uint8_t data)
     firstByte = 1;
     sdl_put_pixel(x, y, (dataFirst<<8) | data);
 
-    if (s_verticalMode)
+    if (s_incrementMode)
     {
         s_activePage++;
         if (s_activePage > s_pageEnd)

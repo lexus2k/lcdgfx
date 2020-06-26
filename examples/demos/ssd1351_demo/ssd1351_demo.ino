@@ -182,6 +182,8 @@ static void drawLinesDemo()
     lcd_delay(3000);
 }
 
+uint8_t rotation = 0;
+
 void setup()
 {
     display.begin();
@@ -219,6 +221,10 @@ void loop()
 
         default:
             break;
+    }
+    if ((menu.count - 1) == display.menuSelection(&menu))
+    {
+        display.getInterface().setRotation((++rotation) & 0x03);
     }
     display.fill( 0x00 );
     display.setColor(RGB_COLOR16(255,255,255));
