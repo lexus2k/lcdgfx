@@ -94,10 +94,10 @@ void loop()
 | ssd1325 128x64 | X | X |   |   |
 | ssd1327 128x128 | X | X |   |   |
 | ssd1331 96x64 |   | X | X |   |
-| ssd1351 128x128 |   | X |   |   |
-| il9163 128x128 |   | X | X |   |
-| st7735 128x160 |   | X | X |   |
-| ili9341 240x320 |   | X | X |   |
+| ssd1351 128x128 |   | X | X |   |
+| il9163 128x128 |   | X | X | please, don't forget to connect backlight |
+| st7735 128x160 |   | X | X | please, don't forget to connect backlight |
+| ili9341 240x320 |   | X | X | please, don't forget to connect backlight |
 | pcd8544 84x48 |   | X  |   | Nokia 5110 |
 
 ## Supported platforms
