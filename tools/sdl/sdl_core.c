@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -133,7 +133,14 @@ static void sdl_poll_event(void)
 
 void sdl_set_dc_pin(int pin)
 {
+    if ( pin >= 128 ) pin = -1;
     s_dcPin = pin;
+}
+
+int sdl_is_dc_mode()
+{
+    if ( s_dcPin < 0 ) return 0;
+    return s_digitalPins[s_dcPin] ? 1: 0;
 }
 
 void sdl_set_gpio_keys(const uint8_t * pins)
@@ -171,7 +178,6 @@ void sdl_send_init()
 {
     s_active_data_mode = SDM_COMMAND_ARG;
     s_ssdMode = SSD_MODE_NONE;
-//    s_commandId = SSD_COMMAND_NONE;
 }
 
 

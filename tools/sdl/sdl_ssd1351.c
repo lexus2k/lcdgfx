@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,7 @@ static int sdl_ssd1351_detect(uint8_t data)
     return 0;
 }
 
-static void sdl_ssd1351_commands(uint8_t data)
+static void sdl_ssd1351_process_data(uint8_t data)
 {
     switch (s_commandId)
     {
@@ -107,6 +107,15 @@ static void sdl_ssd1351_commands(uint8_t data)
     }
 }
 
+static void sdl_ssd1351_commands(uint8_t data)
+{
+    // SSD1351 display can process command args only in data mode
+    if ( !sdl_is_dc_mode() && s_commandId != data )
+    {
+        s_commandId = SSD_COMMAND_NONE;
+    }
+    sdl_ssd1351_process_data( data );
+}
 
 void sdl_ssd1351_data(uint8_t data)
 {
