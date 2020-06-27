@@ -50,8 +50,8 @@ EspI2c::~EspI2c()
 void EspI2c::begin()
 {
     if ( m_busId < 0) m_busId = I2C_NUM_0;
-    if ( m_sda < 0 ) m_sda = 21;
-    if ( m_scl < 0 ) m_scl = 22;
+    if ( m_sda < 0 ) m_sda = 4;
+    if ( m_scl < 0 ) m_scl = 5;
     i2c_config_t conf{};
     conf.mode = I2C_MODE_MASTER;
     conf.sda_io_num = static_cast<gpio_num_t>(m_sda);
@@ -59,8 +59,8 @@ void EspI2c::begin()
     conf.scl_io_num = static_cast<gpio_num_t>(m_scl);
     conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
 //    conf.master.clk_speed = m_frequency;
-    i2c_param_config( static_cast<i2c_port_t>(m_busId), &conf );
     i2c_driver_install( static_cast<i2c_port_t>(m_busId), conf.mode );
+    i2c_param_config( static_cast<i2c_port_t>(m_busId), &conf );
 }
 
 void EspI2c::end()
