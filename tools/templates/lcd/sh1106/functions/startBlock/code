@@ -6,7 +6,7 @@
     this->send(((x+2) & 0x0f) | 0x00); // low column
     if (m_dc >= 0)
     {
-        spiDataMode(1);
+        setDataMode(1);
     }
     else
     {

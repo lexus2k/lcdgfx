@@ -5,10 +5,10 @@
     }
     m_rotation = (rotation & 0x03);
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send(0x28);
     this->send(0x36);
-    spiDataMode(1);
+    setDataMode(1);
     switch (m_rotation)
     {
     case 0:
@@ -25,6 +25,6 @@
         break;
     }
     this->send( ram_mode | m_rgb_bit );
-    spiDataMode(0);
+    setDataMode(0);
     this->send(0x29);
     this->stop();

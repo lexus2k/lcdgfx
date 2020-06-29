@@ -38,19 +38,19 @@ void InterfaceSSD1351<I>::startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
     lcduint_t rx = w ? (x + w - 1) : (m_base.width() - 1);
     commandStart();
     this->send((m_rotation & 0x01) ? 0x75: 0x15);
-    spiDataMode(1);  // According to datasheet all args must be passed in data mode
+    setDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send(x);
     this->send( rx < m_base.width() ? rx : (m_base.width() - 1) );
-    spiDataMode(0);
+    setDataMode(0);
     this->send((m_rotation & 0x01) ? 0x15: 0x75);
-    spiDataMode(1);  // According to datasheet all args must be passed in data mode
+    setDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send(y);
     this->send(m_base.height() - 1);
-    spiDataMode(0);
+    setDataMode(0);
     this->send(0x5C);
     if (m_dc >= 0)
     {
-        spiDataMode(1);
+        setDataMode(1);
     }
     else
     {
@@ -73,7 +73,7 @@ void InterfaceSSD1351<I>::endBlock()
 }
 
 template <class I>
-void InterfaceSSD1351<I>::spiDataMode(uint8_t mode)
+void InterfaceSSD1351<I>::setDataMode(uint8_t mode)
 {
     if ( m_dc >= 0 )
     {
@@ -86,7 +86,7 @@ void InterfaceSSD1351<I>::commandStart()
 {
     this->start();
     if (m_dc >= 0)
-        spiDataMode(0);
+        setDataMode(0);
     else
         this->send(0x00);
 }
@@ -101,7 +101,7 @@ void InterfaceSSD1351<I>::setRotation(uint8_t rotation)
     }
     m_rotation = (rotation & 0x03);
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send( 0xA0 );
     switch (m_rotation)
     {
@@ -120,7 +120,7 @@ void InterfaceSSD1351<I>::setRotation(uint8_t rotation)
         ram_mode = 0b00100101;
         break;
     }
-    spiDataMode(1);  // According to datasheet all args must be passed in data mode
+    setDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send( ram_mode );
 //    this->send( ram_mode | m_rgb_bit );
     this->stop();

@@ -37,14 +37,14 @@ void InterfaceSSD1331<I>::startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
 {
     uint8_t rx = w ? (x + w - 1) : (m_base.width() - 1);
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send((m_rotation & 1) ? 0x75: 0x15);
     this->send(x);
     this->send(rx < m_base.width() ? rx : (m_base.width() - 1));
     this->send((m_rotation & 1) ? 0x15: 0x75);
     this->send(y);
     this->send(m_base.height() - 1);
-    spiDataMode(1);
+    setDataMode(1);
 }
 
 template <class I>
@@ -60,7 +60,7 @@ void InterfaceSSD1331<I>::endBlock()
 }
 
 template <class I>
-void InterfaceSSD1331<I>::spiDataMode(uint8_t mode)
+void InterfaceSSD1331<I>::setDataMode(uint8_t mode)
 {
     if ( m_dc >= 0 )
     {
@@ -73,7 +73,7 @@ void InterfaceSSD1331<I>::commandStart()
 {
     this->start();
     if (m_dc >= 0)
-        spiDataMode(0);
+        setDataMode(0);
     else
         this->send(0x00);
 }
@@ -88,7 +88,7 @@ void InterfaceSSD1331<I>::setRotation(uint8_t rotation)
     }
     m_rotation = rotation & 0x03;
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send( 0xA0 );
     switch (m_rotation)
     {
@@ -115,7 +115,7 @@ template <class I>
 void InterfaceSSD1331<I>::drawLine(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2, uint16_t color)
 {
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send( 0x21 );
     this->send(x1);
     this->send(y1);
@@ -131,7 +131,7 @@ template <class I>
 void InterfaceSSD1331<I>::copyBlock(uint8_t left, uint8_t top, uint8_t right, uint8_t bottom, uint8_t newLeft, uint8_t newTop)
 {
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send(0x23);
     this->send(left);
     this->send(top);

@@ -7,7 +7,7 @@
     this->send((m_base.height() >> 3) - 1);
     if (m_dc >= 0)
     {
-        spiDataMode(1);
+        setDataMode(1);
     }
     else
     {

@@ -39,11 +39,11 @@ void InterfacePCD8544<I>::startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
     m_column = x;
     m_page = y;
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     if (w == 1) this->send( 0x22 ); else this->send( 0x20 );
     this->send(0x80 | x);
     this->send(0x40 | y);
-    spiDataMode(1);
+    setDataMode(1);
 }
 
 template <class I>
@@ -59,14 +59,14 @@ void InterfacePCD8544<I>::nextBlock()
 template <class I>
 void InterfacePCD8544<I>::endBlock()
 {
-    spiDataMode(0);
+    setDataMode(0);
     this->send( 0x00 ); // Send NOP command to allow last data byte to pass (bug in PCD8544?)
                         // ssd1306 E3h is NOP command
     this->stop();
 }
 
 template <class I>
-void InterfacePCD8544<I>::spiDataMode(uint8_t mode)
+void InterfacePCD8544<I>::setDataMode(uint8_t mode)
 {
     if ( m_dc >= 0 )
     {
@@ -79,7 +79,7 @@ void InterfacePCD8544<I>::commandStart()
 {
     this->start();
     if (m_dc >= 0)
-        spiDataMode(0);
+        setDataMode(0);
     else
         this->send(0x00);
 }

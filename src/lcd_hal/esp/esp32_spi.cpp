@@ -110,16 +110,11 @@ void EspSpi::send(uint8_t data)
     m_data_size++;
     if ( m_data_size == sizeof(m_buffer) )
     {
+        // ... Send byte to spi communication channel
+        // We do not care here about DC line state, because
+        // lcdgfx library has already set DC pin via setDataMode() before call to send().
         forceSpiTransfer();
     }
-    // ... Send byte to spi communication channel
-    // We do not care here about DC line state, because
-    // ssd1306 library already set DC pin via ssd1306_spiDataMode() before call to send().
-//    spi_transaction_t t;
-//    memset(&t, 0, sizeof(t));
-//    t.length = 8;          // 8 bits
-//    t.tx_buffer=&data;
-//    spi_device_transmit(m_spi, &t);  // Transmit!
 }
 
 void EspSpi::forceSpiTransfer()

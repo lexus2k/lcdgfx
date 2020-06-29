@@ -43,7 +43,7 @@ void InterfaceSH1106<I>::startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
     this->send(((x+2) & 0x0f) | 0x00); // low column
     if (m_dc >= 0)
     {
-        spiDataMode(1);
+        setDataMode(1);
     }
     else
     {
@@ -67,7 +67,7 @@ void InterfaceSH1106<I>::endBlock()
 }
 
 template <class I>
-void InterfaceSH1106<I>::spiDataMode(uint8_t mode)
+void InterfaceSH1106<I>::setDataMode(uint8_t mode)
 {
     if ( m_dc >= 0 )
     {
@@ -80,7 +80,7 @@ void InterfaceSH1106<I>::commandStart()
 {
     this->start();
     if (m_dc >= 0)
-        spiDataMode(0);
+        setDataMode(0);
     else
         this->send(0x00);
 }

@@ -45,7 +45,7 @@ void InterfaceSSD1325<I>::startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
     this->send(m_base.height() - 1);
     if (m_dc >= 0)
     {
-        spiDataMode(1);
+        setDataMode(1);
     }
     else
     {
@@ -68,7 +68,7 @@ void InterfaceSSD1325<I>::endBlock()
 }
 
 template <class I>
-void InterfaceSSD1325<I>::spiDataMode(uint8_t mode)
+void InterfaceSSD1325<I>::setDataMode(uint8_t mode)
 {
     if ( m_dc >= 0 )
     {
@@ -81,7 +81,7 @@ void InterfaceSSD1325<I>::commandStart()
 {
     this->start();
     if (m_dc >= 0)
-        spiDataMode(0);
+        setDataMode(0);
     else
         this->send(0x00);
 }

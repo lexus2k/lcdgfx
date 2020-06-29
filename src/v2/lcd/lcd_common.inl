@@ -58,7 +58,7 @@ void _configureSpiDisplay(I& intf, const uint8_t *config, uint8_t configSize)
                 else if ( data > 0 )
                 {
                     args = data;
-                    intf.spiDataMode(1);
+                    intf.setDataMode(1);
                 }
                 else
                 {
@@ -72,7 +72,7 @@ void _configureSpiDisplay(I& intf, const uint8_t *config, uint8_t configSize)
                 if ( !args )
                 {
                     command = 1;
-                    intf.spiDataMode(0);
+                    intf.setDataMode(0);
                 }
             }
         }

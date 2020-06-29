@@ -94,7 +94,7 @@ public:
      * Enables either data or command mode on SPI bus
      * @param mode 1 to enable data mode, or 0 to enable command mode
      */
-    void spiDataMode(uint8_t mode);
+    void setDataMode(uint8_t mode);
 
     /**
      * Starts communication with LCD display in command mode.

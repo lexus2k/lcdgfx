@@ -121,17 +121,6 @@ void EspSpi::end()
 
 void EspSpi::start()
 {
-    // ... Open spi channel for your device with specific s_ssd1306_cs, s_ssd1306_dc
-/*    if (m_first_spi_session)
-    {
-        spi_device_interface_config_t devcfg{};
-        devcfg.clock_speed_hz = m_frequency;
-        devcfg.mode=0;
-        devcfg.spics_io_num = m_cs;
-        devcfg.queue_size=7;
-        spi_bus_add_device( m_spi, &devcfg, &m_spi);
-        m_first_spi_session = false;
-    }*/
 }
 
 void EspSpi::stop()
@@ -148,16 +137,11 @@ void EspSpi::send(uint8_t data)
     m_data_size++;
     if ( m_data_size == sizeof(m_buffer) )
     {
+        // ... Send byte to spi communication channel
+        // We do not care here about DC line state, because
+        // lcdgfx library already set DC pin via setDataMode() before call to send().
         forceSpiTransfer();
     }
-    // ... Send byte to spi communication channel
-    // We do not care here about DC line state, because
-    // ssd1306 library already set DC pin via ssd1306_spiDataMode() before call to send().
-//    spi_transaction_t t;
-//    memset(&t, 0, sizeof(t));
-//    t.length = 8;          // 8 bits
-//    t.tx_buffer=&data;
-//    spi_device_transmit(m_spi, &t);  // Transmit!
 }
 
 void EspSpi::forceSpiTransfer()

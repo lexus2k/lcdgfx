@@ -5,7 +5,7 @@
     }
     m_rotation = (rotation & 0x03);
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send( 0xA0 );
     switch (m_rotation)
     {
@@ -24,7 +24,7 @@
         ram_mode = 0b00100101;
         break;
     }
-    spiDataMode(1);  // According to datasheet all args must be passed in data mode
+    setDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send( ram_mode );
 //    this->send( ram_mode | m_rgb_bit );
     this->stop();

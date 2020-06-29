@@ -1,5 +1,5 @@
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send( 0x21 );
     this->send(x1);
     this->send(y1);

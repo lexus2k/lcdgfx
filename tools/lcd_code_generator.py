@@ -209,7 +209,7 @@ def generate_set_block_content():
              "    commandStart();" ]
     lines.append("    this->send({0});".format(get_val_by_path("options/col_cmd", "0x22")))
     if not get_val_by_path("options/args_in_cmd_mode", False):
-        lines.append("    spiDataMode(1);  // According to datasheet all args must be passed in data mode")
+        lines.append("    setDataMode(1);  // According to datasheet all args must be passed in data mode")
     if get_val_by_path("options/rowcol_bits",8) != 8:
         lines.append("    this->send(0);")
     if get_val_by_path("options/column_div", 1) > 1:
@@ -225,10 +225,10 @@ def generate_set_block_content():
         lines.append( "    this->send( rx < m_base.width() ? rx : (m_base.width() - 1) );" )
 
     if not get_val_by_path("options/args_in_cmd_mode", False):
-        lines.append("    spiDataMode(0);")
+        lines.append("    setDataMode(0);")
     lines.append("    this->send({0});".format(get_val_by_path("options/row_cmd", "0x72")))
     if not get_val_by_path("options/args_in_cmd_mode", False):
-        lines.append("    spiDataMode(1);  // According to datasheet all args must be passed in data mode")
+        lines.append("    setDataMode(1);  // According to datasheet all args must be passed in data mode")
     if get_val_by_path("options/rowcol_bits",8) != 8:
         lines.append("    this->send(0);")
     lines.append("    this->send(y);")
@@ -236,12 +236,12 @@ def generate_set_block_content():
         lines.append("    this->send(0);")
     lines.append("    this->send(m_base.height() - 1);")
     if not get_val_by_path("options/args_in_cmd_mode", False):
-        lines.append("    spiDataMode(0);")
+        lines.append("    setDataMode(0);")
     if get_val_by_path("options/exit_cmd_mode_command", None) is not None:
         lines.append("    this->send({0});".format( get_val_by_path("options/exit_cmd_mode_command", None) ) )
     lines.extend( [ "    if (m_dc >= 0)",
                     "    {",
-                    "        spiDataMode(1);",
+                    "        setDataMode(1);",
                     "    }",
                     "    else",
                     "    {",
@@ -258,7 +258,7 @@ def generate_controller_data(jsonfile, ctl):
 
     if jsonfile is not None:
         load_data_from_json( jsonfile, ctl )
-    func_list = ["Interface~CONTROLLER~", "startBlock", "nextBlock", "endBlock", "spiDataMode", "commandStart"]
+    func_list = ["Interface~CONTROLLER~", "startBlock", "nextBlock", "endBlock", "setDataMode", "commandStart"]
     for f in get_val_by_path( "functions/interface_list",[] ):
         if f not in func_list:
             func_list.append( f )

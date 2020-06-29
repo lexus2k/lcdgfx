@@ -5,7 +5,7 @@
     }
     m_rotation = rotation & 0x03;
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send( 0xA0 );
     switch (m_rotation)
     {

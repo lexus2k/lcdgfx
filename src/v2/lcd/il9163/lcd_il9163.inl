@@ -37,26 +37,26 @@ void InterfaceIL9163<I>::startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
 {
     lcduint_t rx = w ? (x + w - 1) : (m_base.width() - 1);
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send(0x2A);
-    spiDataMode(1);  // According to datasheet all args must be passed in data mode
+    setDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send(0);
     // Take into account bug in il9163 controller
     this->send(x + (m_rotation == 3 ? 32 : 0));
     this->send(0);
     this->send((rx < m_base.width() ? rx : (m_base.width() - 1))
                        + (m_rotation == 3 ? 32 : 0));
-    spiDataMode(0);
+    setDataMode(0);
     this->send(0x2B);
-    spiDataMode(1);  // According to datasheet all args must be passed in data mode
+    setDataMode(1);  // According to datasheet all args must be passed in data mode
     this->send(0);
     // Take into account bug in il9163 controller
     this->send(y + (m_rotation == 2 ? 32: 0));
     this->send(0);
     this->send(m_base.height() - 1 + (m_rotation == 2 ? 32: 0));
-    spiDataMode(0);
+    setDataMode(0);
     this->send(0x2C);
-    spiDataMode(1);
+    setDataMode(1);
 }
 
 template <class I>
@@ -72,7 +72,7 @@ void InterfaceIL9163<I>::endBlock()
 }
 
 template <class I>
-void InterfaceIL9163<I>::spiDataMode(uint8_t mode)
+void InterfaceIL9163<I>::setDataMode(uint8_t mode)
 {
     if ( m_dc >= 0 )
     {
@@ -85,7 +85,7 @@ void InterfaceIL9163<I>::commandStart()
 {
     this->start();
     if (m_dc >= 0)
-        spiDataMode(0);
+        setDataMode(0);
     else
         this->send(0x00);
 }
@@ -100,10 +100,10 @@ void InterfaceIL9163<I>::setRotation(uint8_t rotation)
     }
     m_rotation = (rotation & 0x03);
     this->start();
-    spiDataMode(0);
+    setDataMode(0);
     this->send(0x28);
     this->send(0x36);
-    spiDataMode(1);
+    setDataMode(1);
     switch (m_rotation)
     {
     case 0:
@@ -120,7 +120,7 @@ void InterfaceIL9163<I>::setRotation(uint8_t rotation)
         break;
     }
     this->send( ram_mode | m_rgb_bit );
-    spiDataMode(0);
+    setDataMode(0);
     this->send(0x29);
     this->stop();
 }
