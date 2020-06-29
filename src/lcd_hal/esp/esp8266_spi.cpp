@@ -38,7 +38,6 @@ EspSpi::EspSpi(int8_t busId, int8_t csPin, int8_t dcPin,
    , m_dc( dcPin )
    , m_clk( clk )
    , m_mosi( mosi )
-//   , m_first_spi_session( true )
    , m_frequency( frequency )
 {
 }
@@ -47,7 +46,7 @@ EspSpi::~EspSpi()
 {
 }
 
-/*
+
 static void IRAM_ATTR spi_event_callback(int event, void *arg)
 {
     switch (event) {
@@ -57,12 +56,12 @@ static void IRAM_ATTR spi_event_callback(int event, void *arg)
         break;
 
         case SPI_TRANS_START_EVENT: {
-            gpio_set_level(OLED_DC_GPIO, oled_dc_level);
+            start_bit = 1;
         }
         break;
 
         case SPI_TRANS_DONE_EVENT: {
-
+             start_bit = 0;
         }
         break;
 
@@ -71,21 +70,24 @@ static void IRAM_ATTR spi_event_callback(int event, void *arg)
         break;
     }
 }
-*/
+
 
 void EspSpi::begin()
 {
-    // Use HSPI by default
-    if ( m_busId < 0 ) m_busId = 0;
-    m_spi = m_busId ? CSPI_HOST : HSPI_HOST;
+    // Use HSPI by default, because CSPI is connected to flash
+    if ( m_busId < 0 ) m_busId = 1;
+    m_spi = m_busId ? HSPI_HOST : CSPI_HOST;
     // If cesPin is not provided, select by default
     // TODO: Not sure, that we need to set cs pin by default. It should be explicitly specified
 //    if ( m_cs < 0)
 //    {
-//        m_cs = m_busId ? 5 : 15;
+//        m_cs = m_busId ? 12 : 5;
 //    }
     if (m_cs >=0) lcd_gpioMode( m_cs, LCD_GPIO_OUTPUT );
-    if (m_dc >= 0) lcd_gpioMode( m_dc, LCD_GPIO_OUTPUT );
+    if (m_dc >= 0)
+    {
+        lcd_gpioMode( m_dc, LCD_GPIO_OUTPUT );
+    }
 
     // init your interface here
     spi_config_t buscfg{};
@@ -93,11 +95,20 @@ void EspSpi::begin()
     buscfg.intr_enable.val = SPI_MASTER_DEFAULT_INTR_ENABLE;
     buscfg.interface.cs_en = 0;
     buscfg.interface.miso_en = 0;
-    buscfg.interface.cpol = 1;
-    buscfg.interface.cpha = 1;
+    buscfg.interface.mosi_en = 1;
+    buscfg.interface.cpol = 0;
+    buscfg.interface.cpha = 0;
     buscfg.mode = SPI_MASTER_MODE;
     buscfg.clk_div = SPI_10MHz_DIV;
-//    buscfg.event_cb = spi_event_callback;
+    if ( m_frequency < 4000000 ) buscfg.clk_div = SPI_2MHz_DIV;
+    else if ( m_frequency < 5000000 ) buscfg.clk_div = SPI_4MHz_DIV;
+    else if ( m_frequency < 8000000 ) buscfg.clk_div = SPI_5MHz_DIV;
+    else if ( m_frequency < 10000000 ) buscfg.clk_div = SPI_8MHz_DIV;
+    else if ( m_frequency < 16000000 ) buscfg.clk_div = SPI_10MHz_DIV;
+    else if ( m_frequency < 20000000 ) buscfg.clk_div = SPI_16MHz_DIV;
+    else if ( m_frequency < 40000000 ) buscfg.clk_div = SPI_20MHz_DIV;
+    else if ( m_frequency < 80000000 ) buscfg.clk_div = SPI_40MHz_DIV;
+    buscfg.event_cb = spi_event_callback;
     spi_init( m_spi, &buscfg );
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
     ssd1306_registerPinEvent(m_dc, OnDcChange, this);
@@ -105,12 +116,7 @@ void EspSpi::begin()
 
 void EspSpi::end()
 {
-/*    if ( !m_first_spi_session )
-    {
-        spi_bus_remove_device( m_spi );
-    }*/
     spi_deinit( m_spi );
-//    spi_bus_free( m_spi );
 }
 
 void EspSpi::start()
@@ -135,7 +141,10 @@ void EspSpi::stop()
 
 void EspSpi::send(uint8_t data)
 {
-    m_buffer[m_data_size] = data;
+    // We need to fill array in specific way according to ESP8266
+    // spi features: 16 32-bit registers, transfer starts from MSB,
+    // which corresponds in LE to the 3-rd byte in 4-byte buffer
+    m_buffer[(m_data_size & 0xFC) | (3 - (m_data_size & 0x03))] = data;
     m_data_size++;
     if ( m_data_size == sizeof(m_buffer) )
     {
@@ -160,14 +169,18 @@ void EspSpi::forceSpiTransfer()
     uint8_t *buffer = m_buffer;
     while ( m_data_size )
     {
-        size_t sz = m_data_size > 64 ? 64: m_data_size;
+        // The max size must be divided by 4!!!
+        size_t sz = m_data_size > 32 ? 32: m_data_size;
         spi_trans_t t{};
         t.bits.mosi = 8 * sz;          // 8 bits
         t.mosi = reinterpret_cast<uint32_t *>(buffer);
-        spi_trans( m_spi , t);
+        spi_trans( m_spi , t );
         buffer += sz;
-        m_data_size-=sz;
+        m_data_size -= sz;
     }
+    // Wait until transaction ends
+    while ( start_bit > 0 ) { lcd_delay(0); };
+
     m_data_size = 0;
 }
 

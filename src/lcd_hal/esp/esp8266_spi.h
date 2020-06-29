@@ -95,7 +95,6 @@ private:
     int8_t m_dc;
     int8_t m_clk;
     int8_t m_mosi;
-//    bool m_first_spi_session;
     uint32_t m_frequency;
     spi_host_t m_spi;
     uint8_t m_buffer[64];

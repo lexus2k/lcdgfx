@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -33,6 +33,9 @@
 #include "sova.h"
 
 DisplaySSD1331_96x64x8_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
+//DisplaySSD1331_96x64x8_SPI display(4,{-1, -1, 5, 0,-1,-1});  // Use this line for ESP8266 Arduino style rst=4, CS=-1, DC=5
+                                                             // And ESP8266 RTOS IDF. GPIO4 is D2, GPIO5 is D1 on NodeMCU boards
+
 
 /*
  * Heart image below is defined directly in flash memory.

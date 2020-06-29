@@ -125,6 +125,8 @@ Compilers: gcc, clang
 | Atmega32u4  |  X  |  X  |    |
 | **Plain ESP32** |   |     |          |
 | ESP32 |  X  | X  |  library can be used as IDF component  |
+| **Plain ESP8266** |   |     |          |
+| ESP8266 |  X  | X  |  library can be used as IDF RTOS component  |
 | **Linux**  |    |     |          |
 | Raspberry Pi |  X  |  X  | i2c-dev, spidev, sys/class/gpio  |
 | [SDL Emulation](https://github.com/lexus2k/lcdgfx/wiki/How-to-run-emulator-mode) |  X  |  X  | demo code can be run without real OLED HW via SDL library |

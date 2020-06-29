@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -33,10 +33,12 @@
 #include "sova.h"
 
 DisplaySSD1325_128x64_SPI display(3,{-1, 4, 5, 0,-1,-1});   // Use this line for Atmega328p (3=RST, 4=CE, 5=D/C)
-//DisplaySSD1325_128x64_I2C display(-1);                    // Use this line for i2c display
+//DisplaySSD1325_128x64_I2C display(-1);                    // This line is suitable for most platforms by default
 //DisplaySSD1325_128x64_SPI display(-1,{-1, 0, 1, 0, -1, -1); // Use this line for nano pi (RST not used, 0=CE, gpio1=D/C)
 //DisplaySSD1325_128x64_SPI display(24,{-1, 0, 23, 0,-1,-1}); // Use this line for Raspberry  (gpio24=RST, 0=CE, gpio23=D/C)
 //DisplaySSD1325_128x64_SPI display(22,{-1, 5, 21, 0,-1,-1}); // Use this line for ESP32 (VSPI)  (gpio22=RST, gpio5=CE for VSPI, gpio21=D/C)
+//DisplaySSD1325_128x64_SPI display(4,{-1, -1, 5, 0,-1,-1});  // Use this line for ESP8266 Arduino style rst=4, CS=-1, DC=5
+                                                            // And ESP8266 RTOS IDF. GPIO4 is D2, GPIO5 is D1 on NodeMCU boards
 
 /*
  * Heart image below is defined directly in flash memory.

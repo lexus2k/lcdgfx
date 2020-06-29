@@ -35,6 +35,8 @@
 DisplaySSD1351_128x128x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
 //DisplaySSD1351_128x128x16_SPI display(22,{-1, 5, 21, 0,-1,-1}); // Use this line for ESP32 (VSPI)  (gpio22=RST, gpio5=CE for VSPI, gpio21=D/C
 //DisplaySSD1351_128x128x16_SPI display(24,{-1, 0, 23, 0,-1,-1}); // Use this line for Raspberry Pi
+//DisplaySSD1351_128x128x16_SPI display(4,{-1, -1, 5, 0,-1,-1});  // Use this line for ESP8266 Arduino style rst=4, CS=-1, DC=5
+                                                                // And ESP8266 RTOS IDF. GPIO4 is D2, GPIO5 is D1 on NodeMCU boards
 
 /*
  * Heart image below is defined directly in flash memory.
