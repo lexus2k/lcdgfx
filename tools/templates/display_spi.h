@@ -13,7 +13,7 @@ public:
      */
     Display~CONTROLLER~_~RESOLUTION~_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : Display~CONTROLLER~_~RESOLUTION~(m_spi, rstPin)
-        , m_spi( ~INTERFACE_ARGS~,
+        , m_spi( ~SERIAL_INTERFACE_ARGS~,
                  SPlatformSpiConfig{ config.busId,
                                      { config.cs },
                                      config.dc,
@@ -54,7 +54,7 @@ public:
     template <typename... Args>
     Display~CONTROLLER~_~RESOLUTION~_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
         : Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>(m_spi, rstPin)
-        , m_spi( ~CUSTOM_INTERFACE_ARGS~,
+        , m_spi( ~CUSTOM_SERIAL_INTERFACE_ARGS~,
                  data... ) {}
 
     /**

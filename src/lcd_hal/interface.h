@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2017-2019, Alexey Dynda
+    Copyright (c) 2017-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -31,21 +31,96 @@
 #include <stdint.h>
 
 #ifdef __cplusplus
-extern "C" {
-#endif
 
 /**
- * @defgroup LCD_HW_INTERFACE_API I2C/SPI: physical interface functions
- * @{
- *
- * @brief i2c/spi initialization functions for different platforms
- *
- * @details This group of API functions serves to prepare the library to work via specific hardware
- *          interface. There are a bunch of functions for different platforms. In general display
- *          initialization goes in two steps: hardware interface initialization, and then display
- *          driver initialization. But there are functions, which combine 2 steps in single call:
- *          ssd1306_128x64_i2c_initEx(), ssd1351_128x128_spi_init(), etc.
+ * This is basic class for custom user-defined interfaces
+ * This is template, which accepts maximum number of bytes in interface buffer as template argument
  */
+template <int N>
+class _ICustom
+{
+public:
+    /**
+     * Creates instance of custom basic interface
+     */
+    _ICustom() {}
+    virtual ~_ICustom() {}
+
+    /**
+     * Initializes basic class for custom interface
+     */
+    virtual void begin() {}
+
+    /**
+     * Deinitializes basic class for custom interface
+     */
+    virtual void end() {}
+
+    /**
+     * Starts communication with the display over custom interface.
+     */
+    virtual void start() {}
+
+    /**
+     * Ends communication with the display over custom interface..
+     */
+    virtual void stop() {}
+
+    /**
+     * Sends byte to custom interface
+     * @param data - byte to send
+     */
+    void send(uint8_t data)
+    {
+        m_buffer[m_data_size] = data;
+        m_data_size++;
+        if ( m_data_size == sizeof(m_buffer) )
+        {
+            forceTransfer();
+        }
+    }
+
+    /**
+     * @brief Sends bytes to custom interface
+     *
+     * Sends bytes to custom interface.
+     *
+     * @param buffer - bytes to send
+     * @param size - number of bytes to send
+     */
+    void sendBuffer(const uint8_t *buffer, uint16_t size)
+    {
+        while (size)
+        {
+            send(*buffer);
+            size--;
+            buffer++;
+        }
+    }
+
+protected:
+    /**
+     * This function must implement actual sending of data to hardware interface
+     */
+    virtual void transferToHw(const uint8_t *buffer, uint16_t size) = 0;
+
+    /**
+     * Call this method to transfer data to hardware. This method is called
+     * automatically, when internal interface buffer is overflown.
+     */
+    void forceTransfer()
+    {
+        transferToHw(m_buffer, m_data_size);
+        m_data_size = 0;
+    }
+
+private:
+    uint8_t m_buffer[N];
+    uint16_t m_data_size = 0;
+};
+
+extern "C" {
+#endif
 
 /**
  * Structure describes i2c platform configuration
@@ -139,10 +214,6 @@ void ssd1306_resetController2(int8_t rstPin, uint8_t delayMs);
 #ifdef __cplusplus
 }
 #endif
-
-/**
- * @}
- */
 
 // ----------------------------------------------------------------------------
 #endif

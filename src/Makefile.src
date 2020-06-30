@@ -24,10 +24,10 @@
 
 OBJS += v2/ssd1306_utf8.o \
 	lcd_hal/avr/platform.o \
-	lcd_hal/avr/ssd1306_i2c_twi.o \
-	lcd_hal/avr/ssd1306_spi_avr.o \
-	lcd_hal/avr/ssd1306_i2c_embedded.o \
-	lcd_hal/avr/ssd1306_spi_usi.o \
+	lcd_hal/avr/i2c_twi.o \
+	lcd_hal/avr/spi_avr.o \
+	lcd_hal/avr/i2c_embedded.o \
+	lcd_hal/avr/spi_usi.o \
 	lcd_hal/linux/platform.o \
 	lcd_hal/linux/linux_i2c.o \
 	lcd_hal/linux/linux_spi.o \

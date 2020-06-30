@@ -43,23 +43,27 @@
 
 #if defined(ARDUINO)
 #include "arduino/io.h"
+
 #ifdef __cplusplus
 #include "arduino/arduino_spi.h"
 #include "arduino/arduino_wire.h"
-#include "avr/avr_spi.h"
-#include "avr/avr_twi.h"
-#include "avr/ssd1306_spi_usi.h"
-#include "avr/ssd1306_i2c_embedded.h"
+#include "avr/spi_avr.h"
+#include "avr/i2c_twi.h"
+#include "avr/spi_usi.h"
+#include "avr/i2c_embedded.h"
 #include "esp/esp32_i2c.h"
 #include "esp/esp32_spi.h"
+#include "esp/esp8266_i2c.h"
+#include "esp/esp8266_spi.h"
 #endif
+
 #elif defined(__AVR__) && !defined(ARDUINO)
 #include "avr/io.h"
 #ifdef __cplusplus
-#include "avr/avr_spi.h"
-#include "avr/avr_twi.h"
-#include "avr/ssd1306_spi_usi.h"
-#include "avr/ssd1306_i2c_embedded.h"
+#include "avr/spi_avr.h"
+#include "avr/i2c_twi.h"
+#include "avr/spi_usi.h"
+#include "avr/i2c_embedded.h"
 #endif
 #elif defined(__XTENSA__) && !defined(ARDUINO)
 #include "esp/io.h"
@@ -558,60 +562,6 @@ public:
 
 #endif
 
-
-
-extern "C" {
-#endif // end ifdef __cplusplus
-
-// !!! PLATFORM I2C IMPLEMENTATION OPTIONAL !!!
-
-/**
- * Structure describes i2c pins
- */
-typedef struct
-{
-    int8_t sda; ///< data pin
-    int8_t scl; ///< clock pin
-} ssd1306_platform_i2cConfig_t;
-
-/**
- * @brief Initializes i2c interface for platform being used.
- *
- * Initializes i2c interface for platform being used. i2c implementation
- * depends on platform.
- *
- * @param busId i2c bus number. Some platforms have several i2c buses. so, this
- *        argument identifies bus to use. For several platforms busId is not used.
- *        If you want to use default i2c bus for specific platform, please pass -1.
- * @param addr i2c address of oled driver, connected to i2c bus. If you want to use default
- *        i2c display address, please, pass 0.
- * @param cfg Specify scl and sda for the platform. If you want to use default pin numbers,
- *        please pass -1 for both members.
- */
-void ssd1306_platform_i2cInit(int8_t busId, uint8_t addr, ssd1306_platform_i2cConfig_t * cfg);
-
-// !!! PLATFORM SPI IMPLEMENTATION OPTIONAL !!!
-
-/**
- * @brief Initializes spi interface for platform being used.
- *
- * Initializes spi interface for platform being used. spi implementation
- * depends on platform.
- *
- * @param busId spi bus number if device has several spi buses. For most AVR platforms
- *        busId is not used. If you want to use default spi bus for specific platform, please
- *        pass -1.
- * @param cesPin chip select (chip enable) pin number. If you want to use default pin,
- *        hard coded by ssd1306 library, please, pass -1. For Linux platform cesPin means
- *        second number in spidev device.
- * @param dcPin data/command pin number. For most oled displays this pin number is used to
- *        select data or command mode for the bus. If you want to use default pin number, please
- *        pass -1.
- */
-void ssd1306_platform_spiInit(int8_t busId, int8_t cesPin, int8_t dcPin);
-
-#ifdef __cplusplus
-}
 #endif
 
 /**

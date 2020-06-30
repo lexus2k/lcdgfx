@@ -20,6 +20,10 @@
             {
                 "frequency": 400000,
                 "addr": "0x3C"
+            },
+            "custom":
+            {
+                "frequency": 3000000
             }
         },
         "functions":

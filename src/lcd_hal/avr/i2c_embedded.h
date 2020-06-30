@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2017-2019, Alexey Dynda
+    Copyright (c) 2017-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 */
 
 /**
- * @file ssd1306_i2c_embedded.h embedded LCDGFX AVR i2c communication functions
+ * @file lcd_hal/avr/i2c_embedded.h embedded LCDGFX AVR i2c communication functions
  */
 
 #pragma once
