@@ -46,7 +46,7 @@ public:
     {
         if ( getDc() >= 0 )
         {
-            lcd_registerGpioEvent( getDc(), onDcChange(), this );
+            lcd_registerGpioEvent( getDc(), onDcChange, this );
         }
     }
 
