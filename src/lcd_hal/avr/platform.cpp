@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,10 @@
 #include "../io.h"
 
 #if defined(__AVR__) && !defined(ARDUINO)
+
+static int s_pin = -1;
+static void *s_arg;
+static  void (*s_pinEventCallback)(void *) = nullptr;
 
 void lcd_delay(unsigned long ms)
 {
@@ -61,6 +65,10 @@ void lcd_delay(unsigned long ms)
 void lcd_gpioWrite(int pin, int level)
 {
     uint8_t mask = (1<<(pin & 0x7));
+    if ( pin == s_pin && s_pinEventCallback )
+    {
+        s_pinEventCallback( s_arg );
+    }
     if (pin<8)
     {
         if (level == LCD_HIGH) G0_PORT |= mask; else G0_PORT &= ~mask;
@@ -102,6 +110,18 @@ int  lcd_adcRead(int pin)
 {
     // TODO: Not implemented
     return 0;
+}
+
+void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void * arg)
+{
+    s_pin = pin;
+    s_pinEventCallback = on_pin_change;
+    s_arg = arg;
+}
+
+void lcd_unregisterGpioEvent(int pin)
+{
+    s_pin = -1;
 }
 
 uint32_t lcd_millis()

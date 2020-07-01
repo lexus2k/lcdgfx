@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -72,7 +72,7 @@ void EspSpi::begin()
     buscfg.max_transfer_sz = 32;
     spi_bus_initialize( m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, 0 ); // 0 -no dma
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
-    ssd1306_registerPinEvent(m_dc, OnDcChange, this);
+    if (m_dc >= 0) lcd_registerGpioEvent(m_dc, OnDcChange, this);
 }
 
 void EspSpi::end()
@@ -82,6 +82,7 @@ void EspSpi::end()
         spi_bus_remove_device( m_spi );
     }
     spi_bus_free( m_busId ? VSPI_HOST : HSPI_HOST );
+    if (m_dc >= 0) lcd_unregisterGpioEvent(m_dc);
 }
 
 void EspSpi::start()

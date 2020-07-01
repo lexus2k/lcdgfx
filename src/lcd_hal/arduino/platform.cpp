@@ -24,4 +24,31 @@
 
 #include "../io.h"
 
-// Nothing to implement for this platform
+#if defined(ARDUINO)
+
+static int s_pin = -1;
+static void *s_arg;
+static  void (*s_pinEventCallback)(void *) = nullptr;
+
+void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void * arg)
+{
+    s_pin = pin;
+    s_pinEventCallback = on_pin_change;
+    s_arg = arg;
+}
+
+void lcd_unregisterGpioEvent(int pin)
+{
+    s_pin = -1;
+}
+
+void lcd_gpioWrite(int pin, int level)
+{
+    if ( pin == s_pin && s_pinEventCallback )
+    {
+        s_pinEventCallback( s_arg );
+    }
+    digitalWrite( pin, level );
+}
+
+#endif

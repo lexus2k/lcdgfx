@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -56,7 +56,7 @@ LinuxSpi::LinuxSpi(int busId, int8_t devId, int8_t dcPin, uint32_t frequency)
 
 LinuxSpi::~LinuxSpi()
 {
-    ssd1306_unregisterPinEvent( m_dc );
+    lcd_unregisterGpioEvent( m_dc );
     if (m_spi_fd >= 0)
     {
         close(m_spi_fd);
@@ -99,12 +99,12 @@ void LinuxSpi::begin()
         printf("Failed to set SPI BPW: %s!\n", strerror(errno));
     }
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
-    ssd1306_registerPinEvent(m_dc, OnDcChange, this);
+    lcd_registerGpioEvent(m_dc, OnDcChange, this);
 }
 
 void LinuxSpi::end()
 {
-    ssd1306_unregisterPinEvent( m_dc );
+    lcd_unregisterGpioEvent( m_dc );
     if (m_spi_fd >= 0)
     {
         close(m_spi_fd);

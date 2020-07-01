@@ -29,31 +29,26 @@
 #include <SPI.h>
 
 
-class CustomSpi
+class CustomSpi: public _ICustom<16>
 {
 public:
-    CustomSpi(uint32_t frequency): m_frequency( frequency ) {}
+    CustomSpi( uint32_t frequency, int8_t dc )
+        : _ICustom( dc )
+        , m_frequency( frequency )
+    {
+    }
 
-    void begin() {} // Initialize what you need here (you can place SPI initialization)
-
-    void end() {}
-
-    void start()
+    void start() override
     {
         SPI.beginTransaction(SPISettings(m_frequency, MSBFIRST, SPI_MODE0));
     }
 
-    void stop()
+    void stop() override
     {
         SPI.endTransaction();
     }
 
-    void send(uint8_t data)
-    {
-        SPI.transfer(data);
-    }
-
-    void sendBuffer(const uint8_t *buffer, uint16_t size)
+    void transferToHw(const uint8_t *buffer, uint16_t size) override
     {
         /* Do not use SPI.transfer(buffer, size)! this method corrupts buffer content */
         while (size--)
@@ -67,7 +62,11 @@ private:
     uint32_t m_frequency;
 };
 
-DisplaySSD1306_128x64_Custom<CustomSpi> display(3, 5, 0);   // Use this line for Atmega328p (3=RST, CE is not used, 5=D/C)
+// Use this line for Atmega328p (3=RST, CE is not used, 5=D/C)
+// DC pin is used here twice, first time it is passed as argument for
+// display login, and the last one for our CustomSpi class
+// 0 mean that we use lcd defined frequnecy
+DisplaySSD1306_128x64_Custom<CustomSpi> display(3, 5, 0, 5);
 
 void setup()
 {
@@ -90,11 +89,11 @@ void loop()
     if ( progress > 100 )
     {
         progress = 0;
-        lcd_delay(2000);
+        delay(2000);
     }
     else
     {
-        lcd_delay(50);
+        delay(50);
     }
 }
 

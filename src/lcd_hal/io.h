@@ -124,9 +124,24 @@ typedef unsigned int lcduint_t;
 #define LCD_PROGMEM PROGMEM
 
 #define lcd_gpioRead digitalRead
-#define lcd_gpioWrite digitalWrite
 #define lcd_gpioMode pinMode
 #define lcd_adcRead analogRead
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void *arg);
+void lcd_unregisterGpioEvent(int pin);
+#endif
+
+void lcd_gpioWrite(int pin, int level);
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #define lcd_pgmReadByte pgm_read_byte
 #define lcd_eepromReadWord eeprom_read_word
@@ -180,6 +195,11 @@ int  lcd_gpioRead(int pin);
  * @param level LCD_HIGH or LCD_LOW
  */
 void lcd_gpioWrite(int pin, int level);
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void *arg);
+void lcd_unregisterGpioEvent(int pin);
+#endif
 
 /**
  * Read ADC data
@@ -561,6 +581,8 @@ public:
 #error "Platform not supported"
 
 #endif
+
+#include "custom_interface.h"
 
 #endif
 

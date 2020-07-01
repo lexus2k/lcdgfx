@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -31,8 +31,6 @@
 #include "driver/gpio.h"
 #include <map>
 
-#if 1
-
 typedef struct
 {
     void (*on_pin_change)(void *);
@@ -41,13 +39,13 @@ typedef struct
 
 static std::map<int, SPinEvent> s_events;
 
-void ssd1306_registerPinEvent(int pin, void (*on_pin_change)(void *), void * arg)
+void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void * arg)
 {
     s_events[pin].arg = arg;
     s_events[pin].on_pin_change = on_pin_change;
 }
 
-void ssd1306_unregisterPinEvent(int pin)
+void lcd_unregisterGpioEvent(int pin)
 {
     s_events.erase( pin );
 }
@@ -138,7 +136,5 @@ int lcd_random(int min, int max)
     // TODO: Not implemented
     return 0;
 }
-
-#endif
 
 #endif

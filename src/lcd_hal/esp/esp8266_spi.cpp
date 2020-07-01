@@ -111,12 +111,13 @@ void EspSpi::begin()
     buscfg.event_cb = spi_event_callback;
     spi_init( m_spi, &buscfg );
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
-    ssd1306_registerPinEvent(m_dc, OnDcChange, this);
+    if (m_dc >= 0) lcd_registerGpioEvent(m_dc, OnDcChange, this);
 }
 
 void EspSpi::end()
 {
     spi_deinit( m_spi );
+    if (m_dc >= 0) lcd_unregisterGpioEvent(m_dc);
 }
 
 void EspSpi::start()

@@ -55,8 +55,3 @@
 
 #endif
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-void ssd1306_registerPinEvent(int pin, void (*on_pin_change)(void *), void *arg);
-void ssd1306_unregisterPinEvent(int pin);
-#endif
-

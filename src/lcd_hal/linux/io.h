@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -50,9 +50,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-void ssd1306_registerPinEvent(int pin, void (*on_pin_change)(void *), void *arg);
-void ssd1306_unregisterPinEvent(int pin);
 
 int min(int a, int b);
 int max(int a, int b);
