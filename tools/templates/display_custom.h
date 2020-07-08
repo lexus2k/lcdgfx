@@ -16,7 +16,7 @@ public:
      *
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param dcPin pin to use as data/command control pin (-1 if not used)
-     * @param frequency in HZ, or 0 if to use default display frequency
+     * @param frequency frequency in HZ, or 0 if to use default display frequency
      * @param data variable argument list for custom user interface.
      */
     template <typename... Args>

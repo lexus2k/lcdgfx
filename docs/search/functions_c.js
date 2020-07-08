@@ -1,13 +1,20 @@
 var searchData=
 [
-  ['offsetend_1247',['offsetEnd',['../class_nano_canvas_ops.html#a1bc33d61da017643851937d680aefa36',1,'NanoCanvasOps::offsetEnd()'],['../class_nano_display_base.html#aa0d914baaf29f05eaab0823a3b9feed9',1,'NanoDisplayBase::offsetEnd()']]],
-  ['operator_2b_1248',['operator+',['../struct___nano_point.html#ae43e5976ea297fa19e2c6802979dd907',1,'_NanoPoint::operator+()'],['../struct___nano_rect.html#a5b1bc5b55fca40919a5da5dc3e93fe7f',1,'_NanoRect::operator+()']]],
-  ['operator_2b_3d_1249',['operator+=',['../struct___nano_point.html#a49f5c70f11141579ebcfaee7fb83a7a4',1,'_NanoPoint::operator+=()'],['../struct___nano_rect.html#a504c0982e9e76c09c03b632ff5d9da21',1,'_NanoRect::operator+=()']]],
-  ['operator_2d_1250',['operator-',['../struct___nano_point.html#a2e032b491bbeaa37bc3a58a19cb8e818',1,'_NanoPoint::operator-()'],['../struct___nano_rect.html#a283c63d0a75d36aa776228470859ae56',1,'_NanoRect::operator-()']]],
-  ['operator_2d_3d_1251',['operator-=',['../struct___nano_point.html#a45975195d121d79477d8f81fa0f1c5bb',1,'_NanoPoint']]],
-  ['operator_2f_1252',['operator/',['../struct___nano_point.html#ac3ad2d2f96ee8a71bf5563f7c2b53671',1,'_NanoPoint']]],
-  ['operator_3c_3c_1253',['operator&lt;&lt;',['../struct___nano_point.html#a874ccdf5d2627f0924aadce3b2088dc2',1,'_NanoPoint::operator&lt;&lt;()'],['../struct___nano_rect.html#a411cca3962f94fe90bbbd6af635fd6a7',1,'_NanoRect::operator&lt;&lt;()']]],
-  ['operator_3c_3c_3d_1254',['operator&lt;&lt;=',['../struct___nano_point.html#aade271ab08c395102371413a84bc929b',1,'_NanoPoint']]],
-  ['operator_3e_3e_1255',['operator&gt;&gt;',['../struct___nano_point.html#a7ba51dfc529118a17376ed6002df27fb',1,'_NanoPoint::operator&gt;&gt;()'],['../struct___nano_rect.html#aee53859d064772ec8053c276ad6f1eb0',1,'_NanoRect::operator&gt;&gt;()']]],
-  ['operator_3e_3e_3d_1256',['operator&gt;&gt;=',['../struct___nano_point.html#a67231d2647bf16f59f4d848467e789ab',1,'_NanoPoint']]]
+  ['nanocanvasops',['NanoCanvasOps',['../class_nano_canvas_ops.html#aad8023365b19eeb58fc3e8b488a8c49a',1,'NanoCanvasOps::NanoCanvasOps()'],['../class_nano_canvas_ops.html#a2283695f3e38307581426b4940987484',1,'NanoCanvasOps::NanoCanvasOps(lcdint_t w, lcdint_t h, uint8_t *bytes)']]],
+  ['nanodisplaybase',['NanoDisplayBase',['../class_nano_display_base.html#aad76783b5e2ca5f41c4bdb008e96a6a2',1,'NanoDisplayBase']]],
+  ['nanoengine',['NanoEngine',['../class_nano_engine.html#af3cd2d2e72c11e0907a9a4529000cc93',1,'NanoEngine']]],
+  ['nanoengineinputs',['NanoEngineInputs',['../class_nano_engine_inputs.html#a0235b5b7094b0ca2e75214e0d808e3ba',1,'NanoEngineInputs']]],
+  ['nanoenginetiler',['NanoEngineTiler',['../class_nano_engine_tiler.html#a957ecf4bdb3a257133cbd3a2300beb70',1,'NanoEngineTiler']]],
+  ['nanofixedwidthmenu',['NanoFixedWidthMenu',['../class_nano_fixed_width_menu.html#a41bc3d1aef7c1e07fbdcd04a54177e3c',1,'NanoFixedWidthMenu']]],
+  ['nanofont',['NanoFont',['../class_nano_font.html#a7e96fe14324acf7d2cf9c82eb3fe7f70',1,'NanoFont::NanoFont()'],['../class_nano_font.html#ab20e4d5ef16733ea0a35f7f4f4aa003f',1,'NanoFont::NanoFont(const uint8_t *progmemFont)']]],
+  ['nanomenu',['NanoMenu',['../class_nano_menu.html#acd7f024af3f712528e25521cfe8300fc',1,'NanoMenu::NanoMenu(const NanoPoint &amp;pos)'],['../class_nano_menu.html#a595fe8f7346637004460dddc71c375d1',1,'NanoMenu::NanoMenu()']]],
+  ['nanoobject',['NanoObject',['../class_nano_object.html#ac4eb3c60647e3a4db8159a28030150d6',1,'NanoObject::NanoObject(const NanoPoint &amp;pos)'],['../class_nano_object.html#a38f6c3d1b6f8a736c886e12f2eb79716',1,'NanoObject::NanoObject(const NanoPoint &amp;pos, const NanoPoint &amp;size)']]],
+  ['nanosprite',['NanoSprite',['../class_nano_sprite.html#a916253c16ca33574368f8a4fea18f334',1,'NanoSprite']]],
+  ['nanotextmenuitem',['NanoTextMenuItem',['../class_nano_text_menu_item.html#a6090a2618c59881a22765c0d706895d7',1,'NanoTextMenuItem']]],
+  ['negativemode',['negativeMode',['../class_nano_display_base.html#a8f4ff62537037b2cf904da30275ccc32',1,'NanoDisplayBase']]],
+  ['nextblock',['nextBlock',['../class_interface_i_l9163.html#aeef1dbb185aefa908fa94b03fef15260',1,'InterfaceIL9163::nextBlock()'],['../class_interface_i_l_i9341.html#a9866a4a783d7b940bcc1dcc46b23834c',1,'InterfaceILI9341::nextBlock()'],['../class_interface_p_c_d8544.html#af316c02b2e204e7e0a7e6397f6437f4b',1,'InterfacePCD8544::nextBlock()'],['../class_interface_s_h1106.html#a8f9241722631b8032ec866725da2c8e4',1,'InterfaceSH1106::nextBlock()'],['../class_interface_s_s_d1306.html#a5fcf9b526ef9303e7dbd8a935edd94f2',1,'InterfaceSSD1306::nextBlock()'],['../class_interface_s_s_d1325.html#ad3743b2eaa28b9173d674ec8b3069808',1,'InterfaceSSD1325::nextBlock()'],['../class_interface_s_s_d1327.html#ac241c550a23b4348b8a16533d26c18a7',1,'InterfaceSSD1327::nextBlock()'],['../class_interface_s_s_d1331.html#a89053ddb8a6adb2699c456c427f73e78',1,'InterfaceSSD1331::nextBlock()'],['../class_interface_s_s_d1351.html#af8c2360c8645ff8b77a67ece30549933',1,'InterfaceSSD1351::nextBlock()'],['../class_interface_s_t7735.html#a1109f485e29f801719dd3e66d4aba542',1,'InterfaceST7735::nextBlock()']]],
+  ['nextframe',['nextFrame',['../class_nano_engine_core.html#aaa77980b870fb444ad1bdadd3b16803b',1,'NanoEngineCore']]],
+  ['normalmode',['normalMode',['../class_interface_s_h1106.html#a589173b0c70d363a05635c4d80363ce1',1,'InterfaceSH1106::normalMode()'],['../class_interface_s_s_d1306.html#a7384a1f93a872fd1ad52b4d30cd47b3a',1,'InterfaceSSD1306::normalMode()']]],
+  ['notify',['notify',['../class_nano_engine.html#abeceac62e5f0701c3cf50d8b24867a7a',1,'NanoEngine']]],
+  ['notpressed',['notPressed',['../class_nano_engine_inputs.html#aeaf2995c49b0256b18412ef38dd0891e',1,'NanoEngineInputs']]]
 ];

@@ -392,8 +392,8 @@ private:
 
 /**
  * Template class implements SSD1306 128x32 lcd display in 1 bit mode over custom interface implementation
- * (user-defined interface implementation). I - user custom interface class
- * This class allos to use display over 6800 and 8080 parallel interfaces
+ * (user-defined interface implementation). I - user custom interface class.
+ * This class allows to use display over 6800 and 8080 parallel interfaces
  */
 template <class I>
 class DisplaySSD1306_128x32_Custom: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
@@ -403,8 +403,12 @@ public:
      * @brief Inits 128x32 lcd display over custom interface (based on SSD1306 controller): 1-bit mode.
      *
      * Inits 128x32 lcd display over custom interface (based on SSD1306 controller): 1-bit mode
+     * User-defined interface `I` will receive frequency (uint32_t) as first argument, and user additional args, specified
+     * as data variable argument list.
+     *
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param dcPin pin to use as data/command control pin (-1 if not used)
+     * @param frequency frequency in HZ, or 0 if to use default display frequency
      * @param data variable argument list for custom user interface.
      */
     template <typename... Args>
@@ -625,8 +629,8 @@ private:
 
 /**
  * Template class implements SSD1306 128x64 lcd display in 1 bit mode over custom interface implementation
- * (user-defined interface implementation). I - user custom interface class
- * This class allos to use display over 6800 and 8080 parallel interfaces
+ * (user-defined interface implementation). I - user custom interface class.
+ * This class allows to use display over 6800 and 8080 parallel interfaces
  */
 template <class I>
 class DisplaySSD1306_128x64_Custom: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
@@ -636,8 +640,12 @@ public:
      * @brief Inits 128x64 lcd display over custom interface (based on SSD1306 controller): 1-bit mode.
      *
      * Inits 128x64 lcd display over custom interface (based on SSD1306 controller): 1-bit mode
+     * User-defined interface `I` will receive frequency (uint32_t) as first argument, and user additional args, specified
+     * as data variable argument list.
+     *
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param dcPin pin to use as data/command control pin (-1 if not used)
+     * @param frequency frequency in HZ, or 0 if to use default display frequency
      * @param data variable argument list for custom user interface.
      */
     template <typename... Args>

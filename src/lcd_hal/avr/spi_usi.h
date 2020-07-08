@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@
 */
 
 /**
- * @file lcd_hal/avr/ssd1306_spi_usi.h SSD1306 SPI USI communication functions
+ * @file lcd_hal/avr/spi_usi.h SSD1306 SPI USI communication functions
  */
 
 #pragma once

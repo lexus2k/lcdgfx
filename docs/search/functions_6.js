@@ -1,25 +1,9 @@
 var searchData=
 [
-  ['getbitmap_1163',['getBitmap',['../class_nano_sprite.html#ab718dcdd480315216106838f486e12c9',1,'NanoSprite']]],
-  ['getcanvas_1164',['getCanvas',['../class_nano_engine_tiler.html#a7c55511c0c5927ad1cf519c458bbefbc',1,'NanoEngineTiler']]],
-  ['getcharbitmap_1165',['getCharBitmap',['../class_nano_font.html#a095136e8d46003dcdf893eb261f6bc46',1,'NanoFont']]],
-  ['getcpuload_1166',['getCpuLoad',['../class_nano_engine_core.html#a90fc0b6068986d43a6f0be07d529b891',1,'NanoEngineCore']]],
-  ['getdata_1167',['getData',['../class_nano_canvas_ops.html#ad7685533add6b7245b4b0d06d578607e',1,'NanoCanvasOps']]],
-  ['getdisplay_1168',['getDisplay',['../class_nano_engine_tiler.html#afb19e84dd6c15fed9746bd01c8797370',1,'NanoEngineTiler']]],
-  ['getfont_1169',['getFont',['../class_nano_display_base.html#a7a95824cfe5976a05b8c44390a8c72bf',1,'NanoDisplayBase']]],
-  ['getframerate_1170',['getFrameRate',['../class_nano_engine_core.html#a93709e572fe3b6b155a07ec44e234c1a',1,'NanoEngineCore']]],
-  ['getheader_1171',['getHeader',['../class_nano_font.html#a827aff2a9659a43607a6cd09c03ec27d',1,'NanoFont']]],
-  ['getinterface_1172',['getInterface',['../class_nano_display_base.html#ab9ca81b3b537c97b07001a05d68c2558',1,'NanoDisplayBase']]],
-  ['getlrect_1173',['getLRect',['../struct_s_p_r_i_t_e.html#a6ee73688f564cc3a894ed9516e30c448',1,'SPRITE']]],
-  ['getnext_1174',['getNext',['../class_nano_object_list.html#a7f58c37074c32a2c47bd1cea64088423',1,'NanoObjectList']]],
-  ['getpages_1175',['getPages',['../class_nano_font.html#a542936751b063b620a8c5fb60906dedd',1,'NanoFont']]],
-  ['getposition_1176',['getPosition',['../class_nano_object.html#a646afc246dcac65142cd92c19417f4e2',1,'NanoObject::getPosition()'],['../class_nano_engine_tiler.html#aecc7f4ae1bd6d9983997d3b75c34c948',1,'NanoEngineTiler::getPosition()']]],
-  ['getprev_1177',['getPrev',['../class_nano_object_list.html#af72eab932143cc034d7712fa019618fc',1,'NanoObjectList']]],
-  ['getrect_1178',['getRect',['../struct_s_p_r_i_t_e.html#a9e207e844a61cf781260fef142bc6aa0',1,'SPRITE::getRect()'],['../class_nano_object.html#a27288dc6389706ff2a7f1a17611f7d7f',1,'NanoObject::getRect()']]],
-  ['getselected_1179',['getSelected',['../class_nano_menu.html#aa166032d94c54349a09dec7b7c2b85ff',1,'NanoMenu']]],
-  ['getstartline_1180',['getStartLine',['../class_interface_s_h1106.html#a081746c0f55cc47a8f8ccbcd79079ac6',1,'InterfaceSH1106::getStartLine()'],['../class_interface_s_s_d1306.html#ac3bb8697544fd85fe7951d424297371e',1,'InterfaceSSD1306::getStartLine()']]],
-  ['gettextsize_1181',['getTextSize',['../class_nano_font.html#a2bf95f6ac87b47a0c5f2aff6a1a03ddf',1,'NanoFont']]],
-  ['gettiler_1182',['getTiler',['../class_nano_engine_object.html#a36da38a043d4e4eec91e532c4c15d8ff',1,'NanoEngineObject']]],
-  ['getupdaterect_1183',['getUpdateRect',['../struct_s_p_r_i_t_e.html#a7e3987f9f24d964797a7b0e28a231366',1,'SPRITE']]],
-  ['gfx_5fdrawmonobitmap_1184',['gfx_drawMonoBitmap',['../class_nano_display_ops1.html#a641c504dae7a8dbf379c4908ff8acc16',1,'NanoDisplayOps1']]]
+  ['fill',['fill',['../class_nano_display_ops1.html#aeb54a8622d496caa8679115837556b3d',1,'NanoDisplayOps1::fill()'],['../class_nano_display_ops4.html#a884d0905e178ebade35730c4e946c622',1,'NanoDisplayOps4::fill()'],['../class_nano_display_ops8.html#aae36faf7622669187e90b7c70d80ae95',1,'NanoDisplayOps8::fill()'],['../class_nano_display_ops16.html#abd1ea1cb81ea07226d87b92960fbacb3',1,'NanoDisplayOps16::fill()']]],
+  ['fillrect',['fillRect',['../class_nano_canvas_ops.html#a1f4ac1282e5b26d592867b05547484fc',1,'NanoCanvasOps::fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__((noinline))'],['../class_nano_canvas_ops.html#a3db1c1ee61605a3ed9e7a9b67f988018',1,'NanoCanvasOps::fillRect(const NanoRect &amp;rect)'],['../class_nano_display_ops1.html#a50262a400def3d79d4d0fddf29590c6f',1,'NanoDisplayOps1::fillRect()'],['../class_nano_display_ops4.html#aa879dca3ab76cdc6458c60a0e012e4b9',1,'NanoDisplayOps4::fillRect()'],['../class_nano_display_ops8.html#a8921462b496861cf41ed2bad7db844ee',1,'NanoDisplayOps8::fillRect()'],['../class_nano_display_ops16.html#a614a148d91b0ee6a5a6da4062a941b22',1,'NanoDisplayOps16::fillRect()'],['../class_nano_display_ops.html#a236e640c1118960aa9cc673893127c62',1,'NanoDisplayOps::fillRect()']]],
+  ['fliphorizontal',['flipHorizontal',['../class_interface_s_h1106.html#aaa703ad45a07a4ebaabf87ae3a05f840',1,'InterfaceSH1106::flipHorizontal()'],['../class_interface_s_s_d1306.html#aceb904ec0ca42dfce682a2dac226a404',1,'InterfaceSSD1306::flipHorizontal()']]],
+  ['flipvertical',['flipVertical',['../class_interface_s_h1106.html#ad08dc9a1c1206fb2932a1e850c90758c',1,'InterfaceSH1106::flipVertical()'],['../class_interface_s_s_d1306.html#a13089df17a7aa4907860a145b409279d',1,'InterfaceSSD1306::flipVertical()']]],
+  ['focus',['focus',['../class_nano_engine_object.html#a6a5edbfb2bd4f510328b83ccdfd7d661',1,'NanoEngineObject']]],
+  ['forcetransfer',['forceTransfer',['../class___i_custom.html#a80ae657c4f22dc4379daeb4d2af984d8',1,'_ICustom']]]
 ];
