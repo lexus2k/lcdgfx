@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -93,8 +93,8 @@ private:
     int8_t m_dc;
     uint32_t m_frequency;
     uint16_t m_spi_cached_count;
-    uint8_t m_spi_cache[1024];
-    int m_spi_fd;
+    uint8_t m_spi_cache[1024]{};
+    int m_spi_fd = -1;
 
     void sendCache();
     static void OnDcChange(void *arg);

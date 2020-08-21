@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -221,7 +221,7 @@ protected:
     /** Current cpu load in percents */
     uint8_t   m_cpuLoad = 0;
     /** Last timestamp in milliseconds the frame was updated on oled display */
-    uint32_t  m_lastFrameTs;
+    uint32_t  m_lastFrameTs = 0;
     /** Callback to call before starting oled update */
     TLoopCallback m_loop = nullptr;
 };
@@ -237,7 +237,7 @@ public:
     /**
      * Initializes Nano Engine Base object.
      */
-    NanoEngine(D &display);
+    explicit NanoEngine(D &display);
 
     /**
      * @brief refreshes content on oled display.

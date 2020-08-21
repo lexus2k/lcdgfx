@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -57,7 +57,7 @@ public:
      *
      * @param pos location of the NanoObject being created
      */
-    NanoObject(const NanoPoint &pos)
+    explicit NanoObject(const NanoPoint &pos)
         : m_rect{pos, pos}
     {
     }

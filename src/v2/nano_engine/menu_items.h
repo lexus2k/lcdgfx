@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -78,7 +78,7 @@ public:
      *
      * @param name text of the item to display
      */
-    NanoTextMenuItem(const char *name)
+    explicit NanoTextMenuItem(const char *name)
        : NanoMenuItem<T>( {0, 0} )
        , m_name( name )
     {

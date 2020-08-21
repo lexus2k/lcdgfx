@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -282,7 +282,7 @@ static uint32_t convert_pixel( uint32_t value, uint8_t target_bpp )
     {
         case SDL_PIXELFORMAT_RGB332: pixel = ((value & 0xE0) << 24) | ((value & 0x1C) << 19) | ((value & 0x03) << 14) | ( 0xFF ); break;
         case SDL_PIXELFORMAT_RGB565: pixel = ((value & 0xF800) << 16) | ((value & 0x07E0) << 13) | ((value & 0x001F) << 11) | ( 0xFF ); break;
-        case SDL_PIXELFORMAT_RGBX8888: pixel = value;
+        case SDL_PIXELFORMAT_RGBX8888: pixel = value; break;
         default: pixel = 0; break;
     }
     switch ( target_bpp )

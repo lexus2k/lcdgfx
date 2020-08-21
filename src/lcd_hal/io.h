@@ -356,7 +356,7 @@ public:
      * Creates instance of i2c implementation for current platform.
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
-     PlatformI2c(const SPlatformI2cConfig &config)
+     explicit PlatformI2c(const SPlatformI2cConfig &config)
          : ArduinoI2c(config.scl, config.sda, config.addr) {}
 };
 
@@ -372,7 +372,7 @@ public:
      * Creates instance of i2c implementation for current platform.
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
-    PlatformI2c(const SPlatformI2cConfig &config)
+    explicit PlatformI2c(const SPlatformI2cConfig &config)
         : TwiI2c(config.addr) {}
 };
 
@@ -389,7 +389,7 @@ public:
      * Creates instance of i2c implementation for current platform.
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
-    PlatformI2c(const SPlatformI2cConfig &config)
+    explicit PlatformI2c(const SPlatformI2cConfig &config)
         : SdlI2c(config.scl, config.sda, config.addr) {}
 };
 #else
@@ -403,7 +403,7 @@ public:
      * Creates instance of i2c implementation for current platform.
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
-    PlatformI2c(const SPlatformI2cConfig &config)
+    explicit PlatformI2c(const SPlatformI2cConfig &config)
         : LinuxI2c( config.busId, config.addr ) {}
 };
 #endif
@@ -420,7 +420,7 @@ public:
      * Creates instance of i2c implementation for current platform.
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
-    PlatformI2c(const SPlatformI2cConfig &config)
+    explicit PlatformI2c(const SPlatformI2cConfig &config)
         : EspI2c( config.busId, config.addr, config.scl, config.sda, 400000) {}
 };
 
@@ -436,7 +436,7 @@ public:
      * Creates instance of i2c implementation for current platform.
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
-    PlatformI2c(const SPlatformI2cConfig &config)
+    explicit PlatformI2c(const SPlatformI2cConfig &config)
         : EspI2c( config.busId, config.addr, config.scl, config.sda, 400000) {}
 };
 
@@ -452,7 +452,7 @@ public:
      * Creates instance of i2c implementation for current platform.
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
-     PlatformI2c(const SPlatformI2cConfig &config)
+     explicit PlatformI2c(const SPlatformI2cConfig &config)
          : SoftwareI2c(config.scl, config.sda, config.addr) {}
 };
 
@@ -478,7 +478,7 @@ public:
      * Creates instance of PlatformSpi implementation for current platform
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
-    PlatformSpi(const SPlatformSpiConfig &config)
+    explicit PlatformSpi(const SPlatformSpiConfig &config)
         : AvrSpi( config.cs, config.dc, config.frequency ) {}
 };
 
@@ -494,7 +494,7 @@ public:
      * Creates instance of PlatformSpi implementation for current platform
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
-    PlatformSpi(const SPlatformSpiConfig &config)
+    explicit PlatformSpi(const SPlatformSpiConfig &config)
         : ArduinoSpi(config.cs, config.dc, config.frequency) {}
 };
 
@@ -511,7 +511,7 @@ public:
      * Creates instance of PlatformSpi implementation for current platform
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
-    PlatformSpi(const SPlatformSpiConfig &config)
+    explicit PlatformSpi(const SPlatformSpiConfig &config)
         : SdlSpi(config.dc) {}
 };
 #else
@@ -525,7 +525,7 @@ public:
      * Creates instance of PlatformSpi implementation for current platform
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
-    PlatformSpi(const SPlatformSpiConfig &config)
+    explicit PlatformSpi(const SPlatformSpiConfig &config)
         : LinuxSpi( config.busId, config.devId, config.dc, config.frequency ) {}
 };
 #endif
@@ -541,7 +541,7 @@ public:
      * Creates instance of PlatformSpi implementation for current platform
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
-    PlatformSpi(const SPlatformSpiConfig &config)
+    explicit PlatformSpi(const SPlatformSpiConfig &config)
         : EspSpi( config.busId, config.cs, config.dc, config.scl, config.sda, config.frequency ) {}
 };
 
@@ -556,7 +556,7 @@ public:
      * Creates instance of PlatformSpi implementation for current platform
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
-    PlatformSpi(const SPlatformSpiConfig &config)
+    explicit PlatformSpi(const SPlatformSpiConfig &config)
         : EspSpi( config.busId, config.cs, config.dc, config.scl, config.sda, config.frequency ) {}
 };
 
@@ -572,7 +572,7 @@ public:
      * Creates instance of PlatformSpi implementation for current platform
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
-    PlatformSpi(const SPlatformSpiConfig &config)
+    explicit PlatformSpi(const SPlatformSpiConfig &config)
         : UsiSpi( config.cs, config.dc ) {}
 };
 

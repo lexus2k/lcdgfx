@@ -61,7 +61,7 @@ public:
      * If you this constructor is used, you must call begin() method before
      * working with canvas.
      */
-    NanoDisplayBase(I& intf): m_intf( intf ) {}
+    explicit NanoDisplayBase(I& intf): m_intf( intf ) {}
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     /**
@@ -243,7 +243,7 @@ protected:
     lcdint_t  m_cursorX = 0;  ///< current X cursor position for text output
     lcdint_t  m_cursorY = 0;  ///< current Y cursor position for text output
     uint8_t   m_textMode = 0; ///< Flags for current NanoCanvas mode
-    EFontStyle   m_fontStyle; ///< currently active font style
+    EFontStyle   m_fontStyle = STYLE_NORMAL; ///< currently active font style
     uint16_t  m_color = 0xFFFF;    ///< current color for monochrome operations
     NanoFont *m_font = nullptr; ///< currently set font
 

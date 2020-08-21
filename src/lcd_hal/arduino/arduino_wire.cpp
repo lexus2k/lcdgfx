@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2019, Alexey Dynda
+    Copyright (c) 2016-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -40,6 +40,7 @@ ArduinoI2c::ArduinoI2c(int8_t scl, int8_t sda, uint8_t sa)
     : m_scl( scl )
     , m_sda( sda )
     , m_sa( sa )
+    , m_mode( 0 )
 {
 }
 

@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -90,6 +90,8 @@ public:
     template<class C, class D>
     friend class NanoEngineTiler;
 
+    NanoEngineObject() = default;
+
     /**
      * draw() method is called by NanoEngine, when it needs to refresh
      * object graphics.
@@ -158,7 +160,7 @@ protected:
     void setTiler(T *tiler) { m_tiler = tiler; }
 
 private:
-    bool m_focused;
+    bool m_focused = false;
 };
 
 /**
@@ -175,10 +177,11 @@ class NanoEngineTiler
 {
 protected:
     /** Only child classes can initialize the engine */
-    NanoEngineTiler(D &display):
+    explicit NanoEngineTiler(D &display):
         m_display( display ),
         m_onDraw(nullptr),
-        offset{0, 0}
+        offset{0, 0},
+        m_first( nullptr )
     {
         refresh();
     };
@@ -451,7 +454,7 @@ private:
 
     NanoPoint offset;
 
-    NanoEngineObject<TilerT>  *m_first;
+    NanoEngineObject<TilerT>  *m_first = nullptr;
 
     void draw() __attribute__ ((noinline))
     {

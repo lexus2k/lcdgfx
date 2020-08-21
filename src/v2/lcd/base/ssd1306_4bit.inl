@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -151,7 +151,7 @@ void NanoDisplayOps4<I>::drawBitmap1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, 
         for (wx = xpos; wx < xpos + (lcdint_t)w; wx++)
         {
             uint8_t data = pgm_read_byte( bitmap );
-            uint8_t mask = wx & 0x01 ? 0xF0 : 0x0F;
+            uint8_t mask = (wx & 0x01) ? 0xF0 : 0x0F;
             if ( data & bit )
                 pixels |= color & mask;
             else
@@ -245,7 +245,7 @@ void NanoDisplayOps4<I>::drawBuffer1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, 
         while ( wx-- )
         {
             uint8_t data = *buffer;
-            uint8_t mask = wx & 0x01 ? 0xF0 : 0x0F;
+            uint8_t mask = (wx & 0x01) ? 0xF0 : 0x0F;
             if ( data & bit )
                 pixels |= color & mask;
             else

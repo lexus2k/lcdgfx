@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -48,7 +48,7 @@ static void print_monochrome_buffer(uint8_t *buffer, int len, int width)
 
 static void print_monochrome_screen(uint8_t *buffer, int len, int width)
 {
-    int x = 0;
+    int x;
     fprintf( stderr, "\n" );
     for (int y = 0; y < len / width * 8; y++)
     {
@@ -83,7 +83,7 @@ static void print_rgb8_buffer(uint8_t *buffer, int len, int width)
 
 static void print_rgb8_screen(uint8_t *buffer, int len, int width)
 {
-    int x = 0;
+    int x;
     fprintf( stderr, "\n" );
     for (int y = 0; y < len / width; y++)
     {

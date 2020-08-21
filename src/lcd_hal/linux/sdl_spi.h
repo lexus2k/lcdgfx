@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@ public:
      *
      * @param dcPin pin to use as data/command control pin
      */
-    SdlSpi(int8_t dcPin = -1);
+    explicit SdlSpi(int8_t dcPin = -1);
 
     ~SdlSpi();
 

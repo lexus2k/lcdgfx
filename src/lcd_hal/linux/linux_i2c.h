@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -96,9 +96,9 @@ public:
 private:
     int8_t m_busId;
     uint8_t m_sa;
-    int m_fd;
-    uint16_t m_dataSize;
-    uint8_t m_buffer[1024];
+    int m_fd = -1;
+    uint16_t m_dataSize = 0;
+    uint8_t m_buffer[1024]{};
 };
 
 #endif
