@@ -87,7 +87,7 @@ public:
      *
      * @param intf DisplayInterface object
      */
-    InterfaceAny(DisplayInterface &intf)
+    explicit InterfaceAny(DisplayInterface &intf)
         : m_intf(intf)
     {
     }

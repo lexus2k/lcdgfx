@@ -42,7 +42,7 @@ public:
     /**
      * Creates instance of custom basic interface
      */
-    _ICustom(int8_t dc = -1): m_dc( dc )
+    explicit _ICustom(int8_t dc = -1): m_dc( dc )
     {
         if ( getDc() >= 0 )
         {

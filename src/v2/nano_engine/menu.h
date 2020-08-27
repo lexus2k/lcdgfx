@@ -58,7 +58,7 @@ public:
      *
      * @param pos position of the sprite in global coordinates
      */
-    NanoMenu(const NanoPoint &pos )
+    explicit NanoMenu(const NanoPoint &pos )
          : NanoObjectList<T>( pos )
     {
     }
