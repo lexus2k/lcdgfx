@@ -221,7 +221,7 @@ public:
      * @param width width of custom display in pixels
      * @param height height of custom display in pixels
      */
-    DisplayAny16(lcduint_t width, lcduint_t height);
+    DisplayAny8(lcduint_t width, lcduint_t height);
 
     /**
      * Override this method if you need to do some initialization for custom display
