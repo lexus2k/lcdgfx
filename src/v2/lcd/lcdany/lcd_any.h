@@ -85,12 +85,10 @@ public:
     /**
      * Creates instance of interface to LCD display.
      *
-     * @param base Reference to base class, which represents Display
      * @param intf DisplayInterface object
      */
-    InterfaceAny(NanoDisplayBase<InterfaceAny> &base, DisplayInterface &intf)
-        : m_base(base)
-        , m_intf(intf)
+    InterfaceAny(DisplayInterface &intf)
+        : m_intf(intf)
     {
     }
 
@@ -139,7 +137,6 @@ public:
     }
 
 private:
-    NanoDisplayBase<InterfaceAny> &m_base; ///< basic lcd display support interface
     DisplayInterface &m_intf; ///< basic display communication interface
 };
 

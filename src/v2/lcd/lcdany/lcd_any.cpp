@@ -33,7 +33,7 @@
 DisplayAny1::DisplayAny1(lcduint_t width, lcduint_t height)
     : NanoDisplayOps(m_any)
     , DisplayInterface()
-    , m_any(*this,*this)
+    , m_any(*this)
 {
     this->m_w = width;
     this->m_h = height;
@@ -52,7 +52,7 @@ void DisplayAny1::end()
 DisplayAny4::DisplayAny4(lcduint_t width, lcduint_t height)
     : NanoDisplayOps(m_any)
     , DisplayInterface()
-    , m_any(*this,*this)
+    , m_any(*this)
 {
     this->m_w = width;
     this->m_h = height;
@@ -71,7 +71,7 @@ void DisplayAny4::end()
 DisplayAny8::DisplayAny8(lcduint_t width, lcduint_t height)
     : NanoDisplayOps(m_any)
     , DisplayInterface()
-    , m_any(*this,*this)
+    , m_any(*this)
 {
     this->m_w = width;
     this->m_h = height;
@@ -90,7 +90,7 @@ void DisplayAny8::end()
 DisplayAny16::DisplayAny16(lcduint_t width, lcduint_t height)
     : NanoDisplayOps(m_any)
     , DisplayInterface()
-    , m_any(*this,*this)
+    , m_any(*this)
 {
     this->m_w = width;
     this->m_h = height;
