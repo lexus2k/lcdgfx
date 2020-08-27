@@ -99,6 +99,7 @@ void loop()
 | st7735 128x160 |   | X | X | please, don't forget to connect backlight |
 | ili9341 240x320 |   | X | X | please, don't forget to connect backlight |
 | pcd8544 84x48 |   | X  |   | Nokia 5110 |
+| any other custom |  |  |  | Refer to [custom display example](examples/interfaces/custom_display/custom_display.ino) |
 
 ## Supported platforms
 

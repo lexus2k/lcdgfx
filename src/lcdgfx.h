@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2019, Alexey Dynda
+    Copyright (c) 2016-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -34,6 +34,7 @@
 #include "canvas/canvas.h"
 #include "nano_engine_v2.h"
 
+#include "v2/lcd/lcdany/lcd_any.h"
 #include "v2/lcd/pcd8544/lcd_pcd8544.h"
 #include "v2/lcd/sh1106/lcd_sh1106.h"
 #include "v2/lcd/ssd1306/lcd_ssd1306.h"

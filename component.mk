@@ -7,6 +7,7 @@ COMPONENT_SRCDIRS := ./src \
                      ./src/lcd_hal/esp \
                      ./src/v2 \
                      ./src/v2/lcd \
+                     ./src/v2/lcd/lcdany \
                      ./src/v2/lcd/pcd8544 \
                      ./src/v2/lcd/ssd1306 \
                      ./src/v2/lcd/sh1106 \
