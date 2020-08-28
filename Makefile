@@ -65,6 +65,7 @@ cppcheck:
 	    --enable=warning,style,performance,portability \
 	    --suppress=information \
 	    -q -I ./src \
+	    --report-progress \
 	    --error-exitcode=1 .
 	@echo "[DONE]"
 
