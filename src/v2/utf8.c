@@ -30,7 +30,6 @@
 #include "nano_gfx_types.h"
 #include "lcd_hal/io.h"
 
-uint8_t s_ssd1306_invertByte = 0x00000000;
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
 extern uint8_t g_ssd1306_unicode2;
 #endif

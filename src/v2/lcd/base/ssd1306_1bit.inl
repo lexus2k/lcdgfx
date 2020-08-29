@@ -103,7 +103,7 @@ void NanoDisplayOps1<I>::printFixed(lcdint_t xpos, lcdint_t y, const char *ch, E
                     data = (temp & 0xF0) | ldata;
                     ldata = (temp & 0x0F);
                 }
-                this->m_intf.send(data^s_ssd1306_invertByte);
+                this->m_intf.send( data ^ this->m_bgColor );
                 char_info.glyph++;
             }
         }
@@ -112,7 +112,7 @@ void NanoDisplayOps1<I>::printFixed(lcdint_t xpos, lcdint_t y, const char *ch, E
             char_info.spacing += char_info.width;
         }
         for (i = 0; i < char_info.spacing; i++)
-            this->m_intf.send(s_ssd1306_invertByte);
+            this->m_intf.send( this->m_bgColor );
     }
     this->m_intf.endBlock();
 }
@@ -237,7 +237,7 @@ void NanoDisplayOps1<I>::printFixed_oldStyle(uint8_t xpos, uint8_t y, const char
                 data = (temp & 0xF0) | ldata;
                 ldata = (temp & 0x0F);
             }
-            this->m_intf.send(data^s_ssd1306_invertByte);
+            this->m_intf.send( data ^ this->m_bgColor );
             offset++;
         }
         x += this->m_font->getHeader().width;
@@ -333,7 +333,7 @@ void NanoDisplayOps1<I>::printFixedN(lcdint_t xpos, lcdint_t y, const char *ch, 
                 }
                 for (uint8_t z=(1<<factor); z>0; z--)
                 {
-                    this->m_intf.send(data^s_ssd1306_invertByte);
+                    this->m_intf.send(data ^ this->m_bgColor);
                 }
                 char_info.glyph++;
             }
@@ -343,7 +343,7 @@ void NanoDisplayOps1<I>::printFixedN(lcdint_t xpos, lcdint_t y, const char *ch, 
             char_info.spacing += char_info.width;
         }
         for (i = 0; i < (char_info.spacing << factor); i++)
-            this->m_intf.send(s_ssd1306_invertByte);
+            this->m_intf.send( this->m_bgColor );
     }
     this->m_intf.stop();
 }
@@ -352,7 +352,7 @@ template <class I>
 void NanoDisplayOps1<I>::putPixel(lcdint_t x, lcdint_t y)
 {
     this->m_intf.startBlock(x, y >> 3, 1);
-    this->m_intf.send((1 << (y & 0x07))^s_ssd1306_invertByte);
+    this->m_intf.send((1 << (y & 0x07)) ^ this->m_bgColor);
     this->m_intf.endBlock();
 }
 
@@ -362,7 +362,7 @@ void NanoDisplayOps1<I>::drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t x2)
     this->m_intf.startBlock(x1, y1 >> 3, x2 - x1 + 1);
     for (uint8_t x = x1; x <= x2; x++)
     {
-        this->m_intf.send((1 << (y1 & 0x07))^s_ssd1306_invertByte);
+        this->m_intf.send((1 << (y1 & 0x07))^this->m_bgColor);
     }
     this->m_intf.endBlock();
 }
@@ -377,25 +377,25 @@ void NanoDisplayOps1<I>::drawVLine(lcdint_t x1, lcdint_t y1, lcdint_t y2)
     this->m_intf.startBlock(x1, topPage, 1);
     if (topPage == bottomPage)
     {
-        this->m_intf.send( ((0xFF >> (0x07 - height)) << (y1 & 0x07))^s_ssd1306_invertByte );
+        this->m_intf.send( ((0xFF >> (0x07 - height)) << (y1 & 0x07))^this->m_bgColor );
         this->m_intf.endBlock();
         return;
     }
-    this->m_intf.send( (0xFF << (y1 & 0x07))^s_ssd1306_invertByte );
+    this->m_intf.send( (0xFF << (y1 & 0x07))^this->m_bgColor );
     for ( y = (topPage + 1); y <= (bottomPage - 1); y++)
     {
         this->m_intf.nextBlock();
-        this->m_intf.send( 0xFF^s_ssd1306_invertByte );
+        this->m_intf.send( 0xFF^this->m_bgColor );
     }
     this->m_intf.nextBlock();
-    this->m_intf.send( (0xFF >> (0x07 - (y2 & 0x07)))^s_ssd1306_invertByte );
+    this->m_intf.send( (0xFF >> (0x07 - (y2 & 0x07)))^this->m_bgColor );
     this->m_intf.endBlock();
 }
 
 template <class I>
 void NanoDisplayOps1<I>::fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2)
 {
-    uint8_t templ = this->m_color^s_ssd1306_invertByte;
+    uint8_t templ = this->m_color;
     if (x1 > x2) return;
     if (y1 > y2) return;
     if ((lcduint_t)x2 >= this->m_w) x2 = (lcdint_t)this->m_w -1;
@@ -438,7 +438,7 @@ void NanoDisplayOps1<I>::clear()
     {
         for(uint8_t n=this->m_w; n>0; n--)
         {
-            this->m_intf.send( s_ssd1306_invertByte );
+            this->m_intf.send( this->m_bgColor );
         }
         this->m_intf.nextBlock();
     }
@@ -461,7 +461,7 @@ void NanoDisplayOps1<I>::drawXBitmap(lcdint_t x, lcdint_t y, lcduint_t w, lcduin
             {
                 data |= ( ((pgm_read_byte(&bitmap[k*pitch]) >> bit) & 0x01) << k );
             }
-            this->m_intf.send( s_ssd1306_invertByte^data );
+            this->m_intf.send( this->m_bgColor^data );
             bit++;
             if (bit >= 8)
             {
@@ -528,7 +528,7 @@ void NanoDisplayOps1<I>::drawBitmap1(lcdint_t x, lcdint_t y, lcduint_t w, lcduin
             if ( mainFlag )    data |= ((pgm_read_byte(bitmap) << offset) & color);
             if ( complexFlag ) data |= ((pgm_read_byte(bitmap - origin_width) >> (8 - offset)) & color);
             bitmap++;
-            this->m_intf.send(s_ssd1306_invertByte^data);
+            this->m_intf.send(this->m_bgColor^data);
         }
         bitmap += origin_width - w;
         complexFlag = offset;
@@ -586,7 +586,7 @@ void NanoDisplayOps1<I>::gfx_drawMonoBitmap(lcdint_t x, lcdint_t y, lcduint_t w,
             if ( mainFlag )    data |= ((pgm_read_byte(buf) << offset) & color);
             if ( complexFlag ) data |= ((pgm_read_byte(buf - origin_width) >> (8 - offset)) & color);
             buf++;
-            this->m_intf.send(s_ssd1306_invertByte^data);
+            this->m_intf.send(this->m_bgColor^data);
         }
         buf += origin_width - w;
         complexFlag = offset;
@@ -661,7 +661,7 @@ void NanoDisplayOps1<I>::drawBuffer1(lcdint_t x, lcdint_t y, lcduint_t w, lcduin
             if ( mainFlag )    data |= ((*buffer << offset) & this->m_color);
             if ( complexFlag ) data |= ((*(buffer - origin_width) >> (8 - offset)) & this->m_color);
             buffer++;
-            this->m_intf.send(s_ssd1306_invertByte^data);
+            this->m_intf.send(this->m_bgColor^data);
         }
         buffer += origin_width - w;
         complexFlag = offset;
@@ -705,7 +705,7 @@ void NanoDisplayOps1<I>::drawBuffer16(lcdint_t x, lcdint_t y, lcduint_t w, lcdui
 template <class I>
 void NanoDisplayOps1<I>::fill(uint16_t color)
 {
-    color ^= s_ssd1306_invertByte;
+    color ^= this->m_bgColor;
     this->m_intf.startBlock(0, 0, 0);
     for(lcduint_t m=(this->m_h >> 3); m>0; m--)
     {

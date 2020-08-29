@@ -24,8 +24,6 @@
 
 #include "lcd_hal/io.h"
 
-extern uint8_t s_ssd1306_invertByte;
-
 /////////////////////////////////////////////////////////////////////////////////
 //
 //                            COMMON GRAPHICS
@@ -141,8 +139,8 @@ template <class I>
 void NanoDisplayOps4<I>::drawBitmap1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, lcduint_t h, const uint8_t *bitmap)
 {
     uint8_t bit = 1;
-    uint8_t blackColor = s_ssd1306_invertByte ? (this->m_color | (this->m_color << 4)) : 0x00;
-    uint8_t color = s_ssd1306_invertByte ? 0x00 : (this->m_color | (this->m_color << 4));
+    uint8_t blackColor = this->m_bgColor | (this->m_bgColor << 4);
+    uint8_t color = this->m_color | (this->m_color << 4);
     this->m_intf.startBlock(xpos, ypos, w);
     while (h--)
     {
@@ -235,8 +233,8 @@ template <class I>
 void NanoDisplayOps4<I>::drawBuffer1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, lcduint_t h, const uint8_t *buffer)
 {
     uint8_t bit = 1;
-    uint8_t blackColor = s_ssd1306_invertByte ? (this->m_color | (this->m_color << 4)) : 0x00;
-    uint8_t color = s_ssd1306_invertByte ? 0x00 : (this->m_color | (this->m_color << 4));
+    uint8_t blackColor = this->m_bgColor | (this->m_bgColor << 4);
+    uint8_t color = this->m_color | (this->m_color << 4);
     this->m_intf.startBlock(xpos, ypos, w);
     while (h--)
     {

@@ -111,8 +111,8 @@ public:
     }
 
     /**
-     * Sets color for monochrome operations
-     * @param color - color to set (refer to RGB_COLOR8 definition)
+     * Sets color
+     * @param color - color to set (refer to RGB_COLOR8, RGB_COLOR16 definition)
      */
     void setColor(uint16_t color) { m_color = color; };
 
@@ -122,16 +122,15 @@ public:
     uint16_t getColor() { return m_color; };
 
     /**
-     * All drawing functions start to work in negative mode.
-     * Old picture on the display remains unchanged.
+     * Sets background color.
+     * @param color color to set (refer to RGB_COLOR8, RGB_COLOR16 definition)
      */
-    void negativeMode() { s_ssd1306_invertByte = 0xFF; }
+    void setBackground(uint16_t color) { m_bgColor = color; }
 
     /**
-     * All drawing functions start to work in positive (default) mode.
-     * Old picture on the display remains unchanged.
+     * Changes foreground and background colors
      */
-    void positiveMode() { s_ssd1306_invertByte = 0x00; }
+    void invertColors() { uint16_t color = m_color; m_color = m_bgColor; m_bgColor = color; }
 
     /**
      * Returns reference to interface communicator.
@@ -249,7 +248,8 @@ protected:
     lcdint_t  m_cursorY = 0;  ///< current Y cursor position for text output
     uint8_t   m_textMode = 0; ///< Flags for current NanoCanvas mode
     EFontStyle   m_fontStyle = STYLE_NORMAL; ///< currently active font style
-    uint16_t  m_color = 0xFFFF;    ///< current color for monochrome operations
+    uint16_t  m_color = 0xFFFF;    ///< current foreground color
+    uint16_t  m_bgColor = 0x0000;  ///< current background color
     NanoFont *m_font = nullptr; ///< currently set font
 
     I& m_intf; ///< communication interface with the display

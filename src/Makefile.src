@@ -39,6 +39,7 @@ OBJS += v2/utf8.o \
 	lcd_hal/arduino/arduino_wire.o \
 	lcd_hal/stm32/platform.o \
 	v2/gui/menu.o \
+	v2/gui/button.o \
 	v2/lcd/lcd_common.o \
 	v2/lcd/lcdany/lcd_any.o \
 	v2/lcd/pcd8544/lcd_pcd8544.o \

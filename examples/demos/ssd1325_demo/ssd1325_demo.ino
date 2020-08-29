@@ -155,10 +155,10 @@ static void textDemo()
     display.printFixed(0, 16, "Bold text", STYLE_BOLD);
     display.setColor(GRAY_COLOR4(128));
     display.printFixed(0, 24, "Italic text", STYLE_ITALIC);
-    display.negativeMode();
     display.setColor(GRAY_COLOR4(164));
+    display.invertColors();
     display.printFixed(0, 32, "Inverted bold", STYLE_BOLD);
-    display.positiveMode();
+    display.invertColors();
     delay(3000);
 }
 

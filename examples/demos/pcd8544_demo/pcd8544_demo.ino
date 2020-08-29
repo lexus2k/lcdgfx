@@ -123,9 +123,9 @@ static void textDemo()
     display.printFixed(0,  8, "Normal text", STYLE_NORMAL);
     display.printFixed(0, 16, "Bold text", STYLE_BOLD);
     display.printFixed(0, 24, "Italic text", STYLE_ITALIC);
-    display.negativeMode();
+    display.invertColors();
     display.printFixed(0, 32, "Inverted bold", STYLE_BOLD);
-    display.positiveMode();
+    display.invertColors();
     lcd_delay(3000);
 }
 

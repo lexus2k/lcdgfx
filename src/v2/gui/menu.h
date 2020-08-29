@@ -142,11 +142,7 @@ private:
     {
         if (index == menu.selection)
         {
-            d.negativeMode();
-        }
-        else
-        {
-            d.positiveMode();
+            d.invertColors();
         }
         lcdint_t item_top = 8 + menu.top + (index - menu.scrollPosition)*d.getFont().getHeader().height;
         uint16_t color = d.getColor();
@@ -155,7 +151,10 @@ private:
                     menu.width + menu.left - 9, item_top + d.getFont().getHeader().height - 1 );
         d.setColor( color );
         d.printFixed(menu.left + 8, item_top, menu.items[index], STYLE_NORMAL );
-        d.positiveMode();
+        if (index == menu.selection)
+        {
+            d.invertColors();
+        }
     }
 };
 

@@ -21,15 +21,22 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 */
-/**
- * @file lcdgfx_gui.h LCDGFX main GUI header
- */
 
-#pragma once
+#include "button.h"
 
-#include "v2/gui/menu.h"
-#include "v2/gui/button.h"
+LcdGfxButton::LcdGfxButton(const char *text, const NanoRect &rect)
+    : m_text( text )
+    , m_rect( rect )
+{
+}
 
-/**
- * @}
- */
+void LcdGfxButton::setFocus(bool focus)
+{
+    m_focus = focus;
+}
+
+bool LcdGfxButton::isActive()
+{
+    return m_focus;
+}
+

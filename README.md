@@ -39,15 +39,15 @@ The library provides numerous usage [examples](https://github.com/lexus2k/lcdgfx
 
  * Supports color, monochrome OLED displays
  * The library has modular structure, and some modules can be excluded from compilation at all to reduce flash usage.
- * *Very small footprint* ( Draw text example uses only 5KiB of Flash with I2C code, display code, font!!! and application itself.
+ * **Very small footprint** ( Draw text example uses only 5KiB of Flash with I2C code, display code, font!!! and application itself.
    Examples without fonts start at 2.5KiB of Flash )
- * *Very small RAM consumption* ( Attiny85 with Damellis package needs minimum 30 bytes of RAM to communicate with OLED )
+ * **Very small RAM consumption** ( Attiny85 with Damellis package needs minimum 30 bytes of RAM to communicate with OLED )
  * Fast implementation to provide reasonable speed on slow microcontrollers
  * Supports i2c and spi interfaces:
    * i2c (software implementation, Wire library, AVR Twi, Linux i2c-dev)
    * spi (4-wire spi via Arduino SPI library, AVR Spi, AVR USI module)
  * Primitive graphics functions (lines, rectangles, pixels, bitmaps, drawing canvas)
- * Printing text to display (using fonts of different size, you can use GLCD Font Creator to create new fonts)
+ * Printing text to display (using fonts of different size, [How to add new fonts](https://github.com/lexus2k/lcdgfx/wiki/How-to-create-new-font-for-the-library))
  * Includes [graphics engine](https://github.com/lexus2k/lcdgfx/wiki/Using-NanoEngine-for-systems-with-low-resources2) to support
    double buffering on tiny microcontrollers.
  * Can be used for game development (bonus examples):

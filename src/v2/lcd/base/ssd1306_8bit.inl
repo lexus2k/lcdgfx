@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,6 @@
 */
 
 #include "lcd_hal/io.h"
-
-extern uint8_t s_ssd1306_invertByte;
 
 #if 0
 void    ssd1306_setRgbColor(uint8_t r, uint8_t g, uint8_t b)
@@ -175,8 +173,8 @@ template <class I>
 void NanoDisplayOps8<I>::drawBitmap1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, lcduint_t h, const uint8_t *bitmap)
 {
     uint8_t bit = 1;
-    uint8_t blackColor = s_ssd1306_invertByte ? this->m_color : 0x00;
-    uint8_t color = s_ssd1306_invertByte ? 0x00 : this->m_color;
+    uint8_t blackColor = this->m_bgColor;
+    uint8_t color = this->m_color;
     this->m_intf.startBlock(xpos, ypos, w);
     while (h--)
     {
@@ -232,8 +230,8 @@ template <class I>
 void NanoDisplayOps8<I>::drawBuffer1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, lcduint_t h, const uint8_t *buffer)
 {
     uint8_t bit = 1;
-    uint8_t blackColor = s_ssd1306_invertByte ? this->m_color : 0x00;
-    uint8_t color = s_ssd1306_invertByte ? 0x00 : this->m_color;
+    uint8_t blackColor = this->m_bgColor;
+    uint8_t color = this->m_color;
     this->m_intf.startBlock(xpos, ypos, w);
     while (h--)
     {
