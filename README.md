@@ -39,7 +39,9 @@ The library provides numerous usage [examples](https://github.com/lexus2k/lcdgfx
 
  * Supports color, monochrome OLED displays
  * The library has modular structure, and some modules can be excluded from compilation at all to reduce flash usage.
- * Needs very little RAM (Attiny85 with Damellis package needs minimum 25 bytes of RAM to communicate with OLED)
+ * *Very small footprint* ( Draw text example uses only 5KiB of Flash with I2C code, display code, font!!! and application itself.
+   Examples without fonts start at 2.5KiB of Flash )
+ * *Very small RAM consumption* ( Attiny85 with Damellis package needs minimum 30 bytes of RAM to communicate with OLED )
  * Fast implementation to provide reasonable speed on slow microcontrollers
  * Supports i2c and spi interfaces:
    * i2c (software implementation, Wire library, AVR Twi, Linux i2c-dev)
