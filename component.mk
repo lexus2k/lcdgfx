@@ -6,6 +6,7 @@ COMPONENT_SRCDIRS := ./src \
                      ./src/lcd_hal \
                      ./src/lcd_hal/esp \
                      ./src/v2 \
+                     ./src/v2/gui \
                      ./src/v2/lcd \
                      ./src/v2/lcd/lcdany \
                      ./src/v2/lcd/pcd8544 \

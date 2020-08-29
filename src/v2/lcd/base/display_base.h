@@ -117,6 +117,11 @@ public:
     void setColor(uint16_t color) { m_color = color; };
 
     /**
+     * Returns currently set color
+     */
+    uint16_t getColor() { return m_color; };
+
+    /**
      * All drawing functions start to work in negative mode.
      * Old picture on the display remains unchanged.
      */

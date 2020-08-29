@@ -30,6 +30,7 @@
 /* !!! THIS DEMO RUNS in SSD1306 COMPATIBLE MODE */
 
 #include "lcdgfx.h"
+#include "lcdgfx_gui.h"
 #include "sova.h"
 
 DisplaySSD1325_128x64_SPI display(3,{-1, 4, 5, 0,-1,-1});   // Use this line for Atmega328p (3=RST, 4=CE, 5=D/C)
@@ -77,8 +78,6 @@ const PROGMEM uint8_t heartImage4[4 * 8] =
  */
 const int spriteWidth = sizeof(heartImage);
 
-SAppMenu menu;
-
 const char *menuItems[] =
 {
     "draw bitmap",
@@ -87,6 +86,8 @@ const char *menuItems[] =
     "canvas gfx",
     "draw lines",
 };
+
+LcdGfxMenu menu( menuItems, sizeof(menuItems) / sizeof(char *) );
 
 static void bitmapDemo()
 {
@@ -204,15 +205,14 @@ void setup()
     display.setFixedFont(ssd1306xled_font6x8);
 
     display.clear( );
-    display.createMenu( &menu, menuItems, sizeof(menuItems) / sizeof(char *) );
     display.setColor(GRAY_COLOR4(255));
-    display.showMenu( &menu );
+    menu.show( display );
 }
 
 void loop()
 {
     delay(1000);
-    switch (display.menuSelection(&menu))
+    switch (menu.selection())
     {
         case 0:
             bitmapDemo();
@@ -239,8 +239,8 @@ void loop()
     }
     display.clear( );
     display.setColor(GRAY_COLOR4(255));
-    display.showMenu(&menu);
+    menu.show( display );
     delay(500);
-    display.menuDown(&menu);
-    display.updateMenu(&menu);
+    menu.down();
+    menu.show( display );
 }

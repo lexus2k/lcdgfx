@@ -30,6 +30,7 @@
 /* !!! THIS DEMO RUNS in FULL COLOR MODE */
 
 #include "lcdgfx.h"
+#include "lcdgfx_gui.h"
 #include "owl.h"
 
 DisplaySSD1351_128x128x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
@@ -68,8 +69,6 @@ const PROGMEM uint8_t heartImage8[ 8 * 8 ] =
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-SAppMenu menu;
-
 const char *menuItems[] =
 {
     "draw bitmap",
@@ -78,6 +77,8 @@ const char *menuItems[] =
     "nano canvas",
     "draw lines",
 };
+
+LcdGfxMenu menu( menuItems, sizeof(menuItems) / sizeof(char *) );
 
 static void bitmapDemo()
 {
@@ -193,14 +194,13 @@ void setup()
     display.setFixedFont(ssd1306xled_font6x8);
 
     display.fill( 0x0000 );
-    display.createMenu( &menu, menuItems, sizeof(menuItems) / sizeof(char *) );
-    display.showMenu( &menu );
+    menu.show( display );
 }
 
 void loop()
 {
     lcd_delay(1000);
-    switch (display.menuSelection(&menu))
+    switch ( menu.selection() )
     {
         case 0:
             bitmapDemo();
@@ -225,14 +225,14 @@ void loop()
         default:
             break;
     }
-    if ((menu.count - 1) == display.menuSelection(&menu))
+    if ((menu.size() - 1) == menu.selection())
     {
         display.getInterface().setRotation((++rotation) & 0x03);
     }
     display.fill( 0x00 );
     display.setColor(RGB_COLOR16(255,255,255));
-    display.showMenu(&menu);
+    menu.show( display );
     lcd_delay(500);
-    display.menuDown(&menu);
-    display.updateMenu(&menu);
+    menu.down();
+    menu.show( display );
 }

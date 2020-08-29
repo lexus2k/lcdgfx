@@ -34,6 +34,7 @@
  */
 
 #include "lcdgfx.h"
+#include "lcdgfx_gui.h"
 #include "buttons.h"
 
 #ifndef A0
@@ -61,19 +62,16 @@ const char *menuItems[] =
 };
 
 /* This variable will hold menu state, processed by SSD1306 API functions */
-SAppMenu menu;
+LcdGfxMenu menu( menuItems, sizeof(menuItems) / sizeof(char *), (NanoRect){{8,16},{0,0}} );
 static Key button;
-
 
 void setup()
 {
     display.begin();
-    display.setFixedFont(ssd1306xled_font8x16);
+    display.setFixedFont(ssd1306xled_font6x8);
     display.clear();
-    /* Initialize main menu state */
-    display.createMenu( &menu, menuItems, sizeof(menuItems) / sizeof(char *) );
     /* show menu on the display */
-    display.showMenuSmooth( &menu );
+    menu.show( display );
     button = getPressedButton(BUTTON_PIN);
 }
 
@@ -90,13 +88,13 @@ void loop()
     {
         case Key::BT_UP:
             /* move menu cursor up and refresh menu on the display */
-            display.menuUp( &menu );
-            display.updateMenuSmooth( &menu );
+            menu.up();
+            menu.show( display );
             break;
         case Key::BT_DOWN:
             /* move menu cursor down and refresh menu on the display */
-            display.menuDown( &menu );
-            display.updateMenuSmooth( &menu );
+            menu.down();
+            menu.show( display );
             break;
         case Key::BT_SELECT:
             /* You always can request current position of menu cursor, by calling display.menuSelection() */

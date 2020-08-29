@@ -37,6 +37,7 @@
  */
 
 #include "lcdgfx.h"
+#include "lcdgfx_gui.h"
 #include "owl.h"
 
 DisplaySSD1306_128x64_I2C display(-1); // This line is suitable for most platforms by default
@@ -72,8 +73,6 @@ const PROGMEM uint8_t heartImage[8] =
  */
 const int spriteWidth = sizeof(heartImage);
 
-SAppMenu menu;
-
 const char *menuItems[] =
 {
     "draw bitmap",
@@ -82,6 +81,8 @@ const char *menuItems[] =
     "canvas gfx",
     "draw lines",
 };
+
+LcdGfxMenu menu( menuItems, sizeof(menuItems) / sizeof(char *) );
 
 static void bitmapDemo()
 {
@@ -176,14 +177,13 @@ void setup()
     display.begin();
 
     display.clear();
-    display.createMenu( &menu, menuItems, sizeof(menuItems) / sizeof(char *) );
-    display.showMenu( &menu );
+    menu.show( display );
 }
 
 void loop()
 {
     lcd_delay(1000);
-    switch (display.menuSelection(&menu))
+    switch (menu.selection())
     {
         case 0:
             bitmapDemo();
@@ -211,8 +211,8 @@ void loop()
             break;
     }
     display.clear();
-    display.showMenu(&menu);
+    menu.show( display );
     lcd_delay(500);
-    display.menuDown(&menu);
-    display.updateMenu(&menu);
+    menu.down();
+    menu.show( display );
 }

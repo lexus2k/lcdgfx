@@ -958,6 +958,8 @@ public:
 
     using O::putPixel;
 
+    typedef NanoDisplayOps<O,I> T;
+
     /**
      * Draws pixel on specified position
      * @param p - NanoPoint

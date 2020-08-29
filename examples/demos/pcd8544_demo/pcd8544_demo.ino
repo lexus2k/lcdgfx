@@ -36,6 +36,7 @@
  */
 
 #include "lcdgfx.h"
+#include "lcdgfx_gui.h"
 #include "owl.h"
 
 DisplayPCD8544_84x48_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
@@ -71,8 +72,6 @@ const PROGMEM uint8_t heartImage[8] =
  */
 const int spriteWidth = sizeof(heartImage);
 
-SAppMenu menu;
-
 const char *menuItems[] =
 {
     "draw bitmap",
@@ -81,6 +80,8 @@ const char *menuItems[] =
     "canvas gfx",
     "draw lines",
 };
+
+LcdGfxMenu menu( menuItems, sizeof(menuItems) / sizeof(char *) );
 
 static void bitmapDemo()
 {
@@ -168,14 +169,13 @@ void setup()
     display.setFixedFont(ssd1306xled_font6x8);
 
     display.fill( 0x00 );
-    display.createMenu( &menu, menuItems, sizeof(menuItems) / sizeof(char *) );
-    display.showMenu( &menu );
+    menu.show( display );
 }
 
 void loop()
 {
     lcd_delay(1000);
-    switch (display.menuSelection(&menu))
+    switch (menu.selection())
     {
         case 0:
             bitmapDemo();
@@ -201,8 +201,8 @@ void loop()
             break;
     }
     display.fill( 0x00 );
-    display.showMenu(&menu);
+    menu.show( display );
     lcd_delay(500);
-    display.menuDown(&menu);
-    display.updateMenu(&menu);
+    menu.down();
+    menu.show( display );
 }
