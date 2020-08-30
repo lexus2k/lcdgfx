@@ -283,6 +283,23 @@ public:
     void setColor(uint16_t color) { m_color = color; }
 
     /**
+     * Returns currently set color.
+     */
+    uint16_t getColor() { return m_color; }
+
+    /**
+     * Changes foreground and background colors
+     */
+    void invertColors() { uint16_t color = m_color; m_color = m_bgColor; m_bgColor = color; }
+
+    /**
+     * Sets background color
+     *
+     * @param color Background color
+     */
+    void setBackground(uint16_t color) { m_bgColor = color; }
+
+    /**
      * Sets new font to use with print functions.
      * If multiple canvases are used in single application,
      * this method allows to use different fonts for different
@@ -291,6 +308,11 @@ public:
      * @param font reference to font object (NanoFont)
      */
     void setFont( NanoFont &font ) { m_font = &font; };
+
+    /**
+     * Returns reference to NanoFont object, currently used by Display
+     */
+    NanoFont &getFont() { return *m_font; }
 
     /**
      * Sets font spacing for currently active font
@@ -349,7 +371,8 @@ protected:
     uint8_t   m_textMode; ///< Flags for current NanoCanvas mode
     EFontStyle   m_fontStyle; ///< currently active font style
     uint8_t * m_buf;      ///< Canvas data
-    uint16_t  m_color;    ///< current color for monochrome operations
+    uint16_t  m_color;    ///< current color
+    uint16_t  m_bgColor;  ///< current background color
     NanoFont *m_font = nullptr; ///< current set font to use with NanoCanvas
 };
 

@@ -22,30 +22,25 @@
     SOFTWARE.
 */
 
-#include "button.h"
+#include "yesno.h"
 
-LcdGfxButton::LcdGfxButton(const char *text, const NanoRect &rect)
+LcdGfxYesNo::LcdGfxYesNo(const char *text, const NanoRect &rect)
     : m_text( text )
     , m_rect( rect )
+    , m_yes( "yes", {} )
+    , m_no( "no", {} )
 {
+    swapToYes();
 }
 
-void LcdGfxButton::setFocus(bool focus)
+void LcdGfxYesNo::swapToYes()
 {
-    m_focus = focus;
+    m_no.setFocus( false );
+    m_yes.setFocus( true );
 }
 
-bool LcdGfxButton::isActive()
+void LcdGfxYesNo::swapToNo()
 {
-    return m_focus;
-}
-
-void LcdGfxButton::setRect( const NanoRect &rect )
-{
-    m_rect = rect;
-}
-
-const NanoPoint LcdGfxButton::getSize()
-{
-    return m_rect.size();
+    m_no.setFocus( true );
+    m_yes.setFocus( false );
 }

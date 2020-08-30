@@ -38,7 +38,7 @@
  */
 
 /** Defaut frame rate for all engines */
-#define ENGINE_DEFAULT_FPS  (30)
+#define ENGINE_DEFAULT_FPS  (15)
 
 /** Type of user-specified keyboard callback */
 typedef uint8_t (*TNanoEngineGetButtons)(void);
@@ -73,7 +73,7 @@ protected:
     NanoEngineInputs() {};
 public:
     /**
-     * @brief Returns true if button or specific combination of buttons is not pressed.
+     * @brief Returns true if button or specific combination of buttons is pressed.
      * Returns true if button or specific combination of buttons is pressed.
      * @param buttons - buttons to check
      * @return true or false
@@ -87,6 +87,14 @@ public:
      * @return true of false
      */
     static bool notPressed(uint8_t buttons);
+
+    /**
+     * @brief Returns true if button was clicked and released.
+     * Returns true if button was clicked and released.
+     * @param buttons - buttons to check
+     * @return true or false
+     */
+    static bool clicked(uint8_t buttons);
 
     /**
      * @brief Returns bits of all pressed buttons
@@ -150,6 +158,14 @@ public:
 protected:
     /** Callback to call if buttons state needs to be updated */
     static TNanoEngineGetButtons m_onButtons;
+
+    /** State of last pressed buttons */
+    static uint8_t m_lastButtons;
+
+    /** State of last pressed buttons */
+    static uint8_t m_newButtons;
+
+    static void resetButtonsCache();
 
 private:
     static uint8_t s_zkeypadPin;
@@ -272,6 +288,7 @@ NanoEngine<C,D>::NanoEngine( D & display)
 template<class C, class D>
 void NanoEngine<C,D>::display()
 {
+    resetButtonsCache();
     m_lastFrameTs = lcd_millis();
     NanoEngineTiler<C,D>::displayBuffer();
     m_cpuLoad = ((lcd_millis() - m_lastFrameTs)*100)/m_frameDurationMs;

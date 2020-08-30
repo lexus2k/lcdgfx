@@ -72,14 +72,7 @@ public:
     template<typename D>
     void show(D &d)
     {
-        if ( !menu.width )
-        {
-            menu.width = d.width() - menu.left;
-        }
-        if ( !menu.height )
-        {
-            menu.height = d.height() - menu.top;
-        }
+        updateSize(d);
         d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
         menu.scrollPosition = calculateScrollPosition(d, menu.selection );
         for (uint8_t i = menu.scrollPosition; i < min(menu.count, (menu.scrollPosition + getMaxScreenItems(d))); i++)
@@ -113,6 +106,22 @@ public:
      * Returns total count of menu items in menu.
      */
     uint8_t size();
+
+    /**
+     * Updates size of the object, if it was not set previously
+     */
+    template <typename D>
+    void updateSize(D &d)
+    {
+        if ( !menu.width )
+        {
+            menu.width = d.width() - menu.left;
+        }
+        if ( !menu.height )
+        {
+            menu.height = d.height() - menu.top;
+        }
+    }
 
 private:
     SAppMenu menu;

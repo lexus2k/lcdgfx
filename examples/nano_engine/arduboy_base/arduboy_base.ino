@@ -33,7 +33,7 @@ DisplaySSD1306_128x64_SPI display(6,{-1, 12, 4, 0,-1,-1});
 NanoEngine1<DisplaySSD1306_128x64_SPI> engine(display);
 
 /* Define rect to move on the display */
-NanoRect rect = { {15,12}, {60,35} }; 
+NanoRect rect = { {15,12}, {60,35} };
 
 /*
  * This function is called every time engine needs to refresh display content.

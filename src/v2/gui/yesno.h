@@ -22,13 +22,14 @@
     SOFTWARE.
 */
 /**
- * @file v2/gui/button.h Button object definition
+ * @file v2/gui/yesno.h Yes/No dialog implementation
  */
 
-#ifndef _LCDGFX_BUTTON_H_
-#define _LCDGFX_BUTTON_H_
+#ifndef _LCDGFX_YESNO_H_
+#define _LCDGFX_YESNO_H_
 
 #include "nano_gfx_types.h"
+#include "button.h"
 #include "canvas/point.h"
 #include "canvas/rect.h"
 #include "canvas/font.h"
@@ -39,18 +40,18 @@
  */
 
 /**
- * Class implements button object for lcdgfx library
+ * Class implements YesNo dialog for lcdgfx library
  */
-class LcdGfxButton
+class LcdGfxYesNo
 {
 public:
     /**
-     * Creates button object with the provided text.
+     * Creates yes/no dialog with the provided text.
      *
-     * @param text button text
-     * @param rect screen area to use for button
+     * @param text yes/no dialog text
+     * @param rect screen area to use for button or 0 if to use full screen area
      */
-    LcdGfxButton(const char *text, const NanoRect &rect);
+    LcdGfxYesNo(const char *text, const NanoRect &rect = {});
 
     /**
      * Shows button on the display.
@@ -64,73 +65,57 @@ public:
         d.invertColors();
         d.fillRect( m_rect );
         d.invertColors();
-        if ( m_focus )
-        {
-            d.fillRect( m_rect );
-            d.invertColors();
-        }
-        else
-        {
-            d.drawRect( m_rect );
-        }
-        d.printFixed( m_rect.p1.x + (m_rect.width() - d.getFont().getTextSize(m_text)) / 2,
-                      m_rect.p1.y + (m_rect.height() - d.getFont().getHeader().height) / 2,
+        d.drawRect( m_rect );
+        d.printFixed( m_rect.p1.x + 4,
+                      m_rect.p1.y + 8,
                       m_text );
-        if ( m_focus )
-        {
-            d.invertColors();
-        }
+        m_yes.show(d);
+        m_no.show(d);
     }
 
     /**
-     * Sets or removes focus on button. After this method call show()
-     * to update button state on the display.
-     *
-     * @param focus focus state for the button
+     * Changes selection to Yes.
+     * Redraw element using show() method.
      */
-    void setFocus(bool focus);
+    void swapToYes();
 
     /**
-     * returns true if button in focus
+     * Changes selection to No
+     * Redraw element using show() method.
      */
-    bool isActive();
+    void swapToNo();
 
     /**
-     * Sets new area for the button. Use show() method to update button state on the display.
-     *
-     * @param rect new button area
-     */
-    void setRect( const NanoRect &rect );
-
-    /**
-     * Returns size of button in pixels
-     */
-    const NanoPoint getSize();
-
-    /**
-     * Recturns rectangle area of the button
-     */
-    const NanoRect &getRect() const { return m_rect; }
-
-    /**
-     * Auto updates buttons size if it is not set
+     * Calculates size for GUI component if it was not set before
      */
     template <typename D>
     void updateSize(D &d)
     {
-        if ( !m_rect.p2.x )
+        if (!m_rect.p2.x)
         {
-            lcduint_t width = d.getFont().getTextSize(m_text);
-            lcduint_t height = d.getFont().getHeader().height;
-            m_rect.p2.x = m_rect.p1.x + width - 1 + 8;
-            m_rect.p2.y = m_rect.p1.y + height - 1 + 8;
+            m_rect.p2.x = d.width() - m_rect.p1.x - 1;
+            m_rect.p2.y = d.height() - m_rect.p1.y - 1;
+            locateButtons(d);
         }
     }
 
 private:
-    bool m_focus = false;
     const char *m_text;
+    bool m_focus = false;
     NanoRect m_rect;
+    LcdGfxButton m_yes;
+    LcdGfxButton m_no;
+
+    template <typename D>
+    void locateButtons(D &d)
+    {
+        m_yes.updateSize(d);
+        m_no.updateSize(d);
+        NanoPoint size = m_yes.getSize();
+        m_yes.setRect( { {m_rect.center().x - size.x - 4, m_rect.p2.y - size.y - 8}, {0, 0} } );
+        m_no.setRect( { {m_rect.center().x + 4, m_rect.p2.y - size.y - 8}, {0, 0} } );
+    }
+
 };
 
 

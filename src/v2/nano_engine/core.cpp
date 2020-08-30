@@ -34,6 +34,16 @@
 /** Callback to call if buttons state needs to be updated */
 TNanoEngineGetButtons NanoEngineInputs::m_onButtons = nullptr;
 
+uint8_t NanoEngineInputs::m_lastButtons = 0;
+
+uint8_t NanoEngineInputs::m_newButtons = 0;
+
+void NanoEngineInputs::resetButtonsCache()
+{
+    m_lastButtons = m_newButtons;
+    m_newButtons = m_onButtons ? m_onButtons() : 0;
+}
+
 bool NanoEngineInputs::pressed(uint8_t buttons)
 {
     return (m_onButtons() & buttons) == buttons;
@@ -42,6 +52,11 @@ bool NanoEngineInputs::pressed(uint8_t buttons)
 bool NanoEngineInputs::notPressed(uint8_t buttons)
 {
     return (m_onButtons() & buttons) == 0;
+}
+
+bool NanoEngineInputs::clicked(uint8_t buttons)
+{
+    return ((~m_newButtons & buttons) & (m_lastButtons & buttons)) == buttons;
 }
 
 void NanoEngineInputs::connectCustomKeys(TNanoEngineGetButtons handler)

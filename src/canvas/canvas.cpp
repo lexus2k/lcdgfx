@@ -421,6 +421,7 @@ void NanoCanvasOps<1>::begin(lcdint_t w, lcdint_t h, uint8_t *bytes)
     m_cursorX = 0;
     m_cursorY = 0;
     m_color = WHITE;
+    m_bgColor = 0;
     m_textMode = 0;
     m_buf = bytes;
     clear();
@@ -665,6 +666,7 @@ void NanoCanvasOps<4>::begin(lcdint_t w, lcdint_t h, uint8_t *bytes)
     m_cursorX = 0;
     m_cursorY = 0;
     m_color = 0xFF; // white color by default
+    m_bgColor = 0x00;
     m_textMode = 0;
     m_buf = bytes;
     clear();
@@ -890,6 +892,7 @@ void NanoCanvasOps<8>::begin(lcdint_t w, lcdint_t h, uint8_t *bytes)
     m_cursorX = 0;
     m_cursorY = 0;
     m_color = 0xFF; // white color by default
+    m_bgColor = 0x00;
     m_textMode = 0;
     m_buf = bytes;
     clear();
