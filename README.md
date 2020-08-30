@@ -21,12 +21,12 @@
 
 ## Introduction
 
-lcdgfx driver is Arduino style C++ library with unicode support. The library can be compiled for plain Linux
+lcdgfx driver is C++ library with unicode support. The library can be compiled for plain Linux
 (for example, raspberry spi), or you can use it with plain avr-gcc compiler without Arduino IDE. It supports
 monochrome and RGB oleds and has debug mode, allowing to execute code on Linux, Windows and macOS, using SDL2.0.
-Initially the library was intended to run on very small microcontrollers (with a little of RAM). It was developed to use as
-few resources as possible, but still has powerful capabilities (NanoEngine), allowing to develop nice animation.
-It works on any powerful devices like raspberry pi, esp32; and can be easily ported to new platform.
+The library is intended to run on small microcontrollers. It is developed to use as few resources as possible,
+but still has powerful capabilities (NanoEngine), allowing to develop nice animation.
+It works also on any powerful devices like raspberry pi, esp32; and can be easily ported to new platform.
 This library integrates another library [canvas](https://github.com/lexus2k/canvas)
 
 ## Documentation
@@ -43,7 +43,7 @@ The library provides numerous usage [examples](https://github.com/lexus2k/lcdgfx
    Examples without fonts start at 2.5KiB of Flash )
  * **Very small RAM consumption** ( Attiny85 with Damellis package needs minimum 30 bytes of RAM to communicate with OLED )
  * Fast implementation to provide reasonable speed on slow microcontrollers
- * Supports i2c and spi interfaces:
+ * Supports i2c and spi interfaces, allows to implement custom interfaces:
    * i2c (software implementation, Wire library, AVR Twi, Linux i2c-dev)
    * spi (4-wire spi via Arduino SPI library, AVR Spi, AVR USI module)
  * Primitive graphics functions (lines, rectangles, pixels, bitmaps, drawing canvas)
