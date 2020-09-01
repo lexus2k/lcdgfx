@@ -86,6 +86,11 @@ public:
     void swapToNo();
 
     /**
+     * Returns true if yes button is active
+     */
+    bool isYes();
+
+    /**
      * Calculates size for GUI component if it was not set before
      */
     template <typename D>
@@ -101,7 +106,6 @@ public:
 
 private:
     const char *m_text;
-    bool m_focus = false;
     NanoRect m_rect;
     LcdGfxButton m_yes;
     LcdGfxButton m_no;

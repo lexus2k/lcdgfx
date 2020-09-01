@@ -44,3 +44,8 @@ void LcdGfxYesNo::swapToNo()
     m_no.setFocus( true );
     m_yes.setFocus( false );
 }
+
+bool LcdGfxYesNo::isYes()
+{
+    return m_yes.isActive();
+}
