@@ -595,6 +595,36 @@ void NanoDisplayOps<O,I>::fillRect(const NanoRect &rect)
 }
 
 template <class O, class I>
+void NanoDisplayOps<O,I>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r)
+{
+    lcdint_t d = 3 - 2 * r;
+    lcdint_t x = 0;
+    lcdint_t y = r;
+    putPixel(xc, yc + r);
+    putPixel(xc, yc - r);
+    putPixel(xc + r, yc);
+    putPixel(xc - r, yc);
+    while (y >= x)
+    {
+        x++;
+        if (d > 0)
+        {
+            y--;
+            d += - 4 * y + 4;
+        }
+        d += 4 * x + 6;
+        putPixel(xc+x, yc+y);
+        putPixel(xc-x, yc+y);
+        putPixel(xc+x, yc-y);
+        putPixel(xc-x, yc-y);
+        putPixel(xc+y, yc+x);
+        putPixel(xc-y, yc+x);
+        putPixel(xc+y, yc-x);
+        putPixel(xc-y, yc-x);
+    }
+}
+
+template <class O, class I>
 void NanoDisplayOps<O,I>::printFixedPgm(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style)
 {
     this->m_fontStyle = style;

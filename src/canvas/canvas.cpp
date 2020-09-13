@@ -110,6 +110,43 @@ void NanoCanvasOps<BPP>::fillRect(const NanoRect &rect)
 }
 
 template <uint8_t BPP>
+void NanoCanvasOps<BPP>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r)
+{
+    if ((xc + r < offset.x) || (yc + r < offset.y) ||
+        (xc - r >= (lcdint_t)m_w + offset.x) || (yc - r >= (lcdint_t)m_h - offset.y))
+    {
+        return;
+    }
+    lcdint_t d = 3 - 2 * r;
+    lcdint_t x = 0;
+    lcdint_t y = r;
+
+    putPixel(xc, yc + r);
+    putPixel(xc, yc - r);
+    putPixel(xc + r, yc);
+    putPixel(xc - r, yc);
+    while (y >= x)
+    {
+        x++;
+        if (d > 0)
+        {
+            y--;
+            d += - 4 * y + 4;
+        }
+        d += 4 * x + 6;
+
+        putPixel(xc+x, yc+y);
+        putPixel(xc-x, yc+y);
+        putPixel(xc+x, yc-y);
+        putPixel(xc-x, yc-y);
+        putPixel(xc+y, yc+x);
+        putPixel(xc-y, yc+x);
+        putPixel(xc+y, yc-x);
+        putPixel(xc-y, yc-x);
+    }
+}
+
+template <uint8_t BPP>
 uint8_t NanoCanvasOps<BPP>::printChar(uint8_t c)
 {
     uint16_t unicode = m_font->unicode16FromUtf8(c);

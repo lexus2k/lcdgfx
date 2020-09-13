@@ -1011,6 +1011,14 @@ public:
     void fillRect(const NanoRect &rect);
 
     /**
+     * Draws circle
+     * @param xc horizontal position of circle center in pixels
+     * @param yc vertical position of circle center in pixels
+     * @param r radius of circle in pixels
+     */
+    void drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r);
+
+    /**
      * Draws 1-bit canvas on lcd display
      *
      * @param x x position in pixels
