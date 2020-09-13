@@ -55,6 +55,8 @@ TEST(SSD1331, rgb8_test)
     display.printFixed (0,  8, "Line 1. Normal", STYLE_NORMAL);
     display.printFixed (0, 16, "Line 2. Bold", STYLE_BOLD);
     display.printFixed (0, 24, "Line 3. Italic", STYLE_ITALIC);
+    display.setFreeFont(free_calibri11x12);
+    display.printFixed (0, 40, "Line 4. Free Calibri", STYLE_NORMAL);
 
     std::vector<uint8_t> pixels( sdl_core_get_pixels_len( 8 ), 0 );
     sdl_core_get_pixels_data( pixels.data(), 8 );
