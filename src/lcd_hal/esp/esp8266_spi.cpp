@@ -31,6 +31,8 @@
 #include "driver/gpio.h"
 #include "driver/spi.h"
 
+static uint8_t start_bit = 0;
+
 EspSpi::EspSpi(int8_t busId, int8_t csPin, int8_t dcPin,
                int8_t clk, int8_t mosi, uint32_t frequency)
    : m_busId( busId )
@@ -61,7 +63,7 @@ static void IRAM_ATTR spi_event_callback(int event, void *arg)
         break;
 
         case SPI_TRANS_DONE_EVENT: {
-             start_bit = 0;
+            start_bit = 0;
         }
         break;
 
