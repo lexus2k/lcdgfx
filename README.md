@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/lexus2k/lcdgfx.svg?branch=master)](https://travis-ci.org/lexus2k/lcdgfx)
 [![Coverage Status](https://coveralls.io/repos/github/lexus2k/lcdgfx/badge.svg?branch=master)](https://coveralls.io/github/lexus2k/lcdgfx?branch=master)
+[![Doc Status](.travis/code_documented.svg)](https://codedocs.xyz/lexus2k/lcdgfx)
 
 
 [tocstart]: # (toc start)
@@ -174,7 +175,7 @@ lcdgfx library requires at least c++11 and c99 (by default Digispark package mis
   * Compile your project as described in ESP-IDF build system documentation
 
 For more information about this library, please, visit https://github.com/lexus2k/lcdgfx.
-Doxygen documentation can be found at [github.io site](http://lexus2k.github.io/lcdgfx).
+Doxygen documentation can be found at [Codedocs xyz site](https://codedocs.xyz/lexus2k/lcdgfx).
 If you found any problem or have any idea, please, report to Issues section.
 
 ## License
