@@ -283,7 +283,7 @@ void setup()
     display.setFixedFont(digital_font5x7_AB);
 
     // Commented line is for 90 degree
-//    display.setRotation(1);
+//    display.getInterface().setRotation(1);
     player.setBitmap( playerFlyingImage[MAN_ANIM_FLYING][playerAnimation] );
 
 #ifdef USE_GPIO_BUTTONS
