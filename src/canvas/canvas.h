@@ -358,6 +358,7 @@ public:
      */
     void setFreeFont( const uint8_t *progmemFont, const uint8_t *secondaryFont = nullptr )
     {
+        (void)(secondaryFont);
         g_canvas_font.loadFreeFont( progmemFont );
         setFont( g_canvas_font );
     }

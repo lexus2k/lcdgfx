@@ -39,6 +39,7 @@ void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void * arg)
 
 void lcd_unregisterGpioEvent(int pin)
 {
+    (void)(pin);
     s_pin = -1;
 }
 

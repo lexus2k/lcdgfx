@@ -88,6 +88,7 @@ static void ssd1306_twi_stop(void)
 
 void ssd1306_i2cConfigure_Twi(uint8_t arg)
 {
+    (void)(arg);
 #if defined(__AVR_ATmega328P__)
     /* Enable internal pull-ups */
     DDRC &= ~(1<<PINC4); PORTC |= (1<<PINC4);

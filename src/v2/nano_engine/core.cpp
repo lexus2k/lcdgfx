@@ -129,6 +129,10 @@ uint8_t NanoEngineInputs::gpioButtons()
     return buttons;
 }
 
+uint8_t NanoEngineInputs::s_ky40_clk;
+uint8_t NanoEngineInputs::s_ky40_dt;
+uint8_t NanoEngineInputs::s_ky40_sw;
+
 void NanoEngineInputs::connectKY40encoder(uint8_t pina_clk, uint8_t pinb_dt, int8_t pinc_sw)
 {
     s_ky40_clk = pina_clk;
