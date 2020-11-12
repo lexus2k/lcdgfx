@@ -43,6 +43,7 @@ CFLAGS += -std=c99
 OBJS = \
 	sdl_core.o \
 	sdl_graphics.o \
+	sdl_sh1107.o \
 	sdl_ssd1306.o \
 	sdl_ssd1325.o \
 	sdl_ssd1331.o \

@@ -25,6 +25,7 @@
 #include "sdl_core.h"
 #include "sdl_graphics.h"
 #include "sdl_oled_basic.h"
+#include "sdl_sh1107.h"
 #include "sdl_ssd1306.h"
 #include "sdl_ssd1325.h"
 #include "sdl_ssd1331.h"
@@ -88,6 +89,7 @@ void sdl_core_init(void)
     s_dcPin = -1;
     memset(s_gpioKeys, 0, sizeof(s_gpioKeys));
 
+    register_oled( &sdl_sh1107 );
     register_oled( &sdl_ssd1306 );
     register_oled( &sdl_ssd1325 );
     register_oled( &sdl_ssd1331x8 );
