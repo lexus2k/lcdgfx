@@ -37,6 +37,7 @@
 #include "v2/lcd/lcdany/lcd_any.h"
 #include "v2/lcd/pcd8544/lcd_pcd8544.h"
 #include "v2/lcd/sh1106/lcd_sh1106.h"
+#include "v2/lcd/sh1107/lcd_sh1107.h"
 #include "v2/lcd/ssd1306/lcd_ssd1306.h"
 #include "v2/lcd/ssd1325/lcd_ssd1325.h"
 #include "v2/lcd/ssd1327/lcd_ssd1327.h"
