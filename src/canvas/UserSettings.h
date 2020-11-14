@@ -39,11 +39,15 @@
 
 /**
  * Defines, whenever the library supports unicode.
- * Support of unicode increases RAM and Flasg memory consumption
+ * Support of unicode increases RAM and Flash memory consumption
  */
 #define CONFIG_SSD1306_UNICODE_ENABLE
 
 /**
+ * Disables all fonts except for ssd1306xled_font6x8, saving space
+ */
+//#define CONFIG_ONE_FONT_ONLY
+
+/**
  * @}
  */
-
