@@ -222,16 +222,16 @@ void NanoFont::loadFreeFont(const uint8_t * progmemFont)
 #endif
 }
 
+#ifdef CONFIG_SSD1306_UNICODE_ENABLE
 void NanoFont::loadSecondaryFont(const uint8_t * progmemUnicode)
 {
-#ifdef CONFIG_SSD1306_UNICODE_ENABLE
     m_fixedFont.secondary_table = progmemUnicode;
     if (m_fixedFont.secondary_table != NULL)
     {
         m_fixedFont.secondary_table += sizeof(SFontHeaderRecord);
     }
-#endif
 }
+#endif
 
 void NanoFont::loadFixedFont_oldStyle(const uint8_t * progmemFont)
 {

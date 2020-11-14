@@ -201,10 +201,12 @@ public:
     void setFixedFont( const uint8_t *progmemFont, const uint8_t *secondaryFont )
     {
         g_canvas_font.loadFixedFont( progmemFont );
+#ifdef CONFIG_SSD1306_UNICODE_ENABLE 
         if ( secondaryFont )
         {
             g_canvas_font.loadSecondaryFont( secondaryFont );
         }
+#endif
         setFont( g_canvas_font );
     }
 
@@ -221,10 +223,12 @@ public:
     void setFreeFont( const uint8_t *progmemFont, const uint8_t *secondaryFont = nullptr )
     {
         g_canvas_font.loadFreeFont( progmemFont );
+#ifdef CONFIG_SSD1306_UNICODE_ENABLE
         if ( secondaryFont )
         {
             g_canvas_font.loadSecondaryFont( secondaryFont );
         }
+#endif
         setFont( g_canvas_font );
     }
 

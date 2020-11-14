@@ -80,7 +80,9 @@ public:
      * @param progmemUnicode font containing unicode table (refer to
      *        ssd1306xled_font6x8_German as example).
      */
+#ifdef CONFIG_SSD1306_UNICODE_ENABLE
     void loadSecondaryFont(const uint8_t * progmemUnicode);
+#endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     void loadFixedFont_oldStyle(const uint8_t * progmemFont);
