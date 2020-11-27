@@ -2,8 +2,8 @@
     m_page = y;
     commandStart();
     this->send(0xB0 | y); // set page
-    this->send((x >>4 ) | 0x10); // high column
-    this->send((x & 0x0f) | 0x00); // low column
+    this->send( ((x + m_seg_offset)       & 0x0f ) | 0x00); // low column
+    this->send((((x + m_seg_offset) >> 4) & 0x07 ) | 0x10); // high column
     if (m_dc >= 0)
     {
         setDataMode(1);

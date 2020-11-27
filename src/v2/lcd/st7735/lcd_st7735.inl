@@ -222,6 +222,7 @@ void DisplayST7735_128x128x16<I>::begin()
     _configureSpiDisplay<I>(this->m_intf,
                             s_ST7735_lcd128x128x16_initData,
                             sizeof(s_ST7735_lcd128x128x16_initData));
+
 }
 
 template <class I>
@@ -288,6 +289,7 @@ void DisplayST7735_128x160x16<I>::begin()
     _configureSpiDisplay<I>(this->m_intf,
                             s_ST7735_lcd128x160x16_initData,
                             sizeof(s_ST7735_lcd128x160x16_initData));
+
 }
 
 template <class I>

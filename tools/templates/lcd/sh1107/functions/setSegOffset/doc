@@ -1,0 +1,9 @@
+    /**
+     * Sets segment (column) connection offset.
+     * Some manufactures connect left column of display matrix
+     * to ~CONTROLLER~ starting at non-zero segment output line.
+     * This causes some shift comparing to GDDRAM content.
+     * Use this function to fix that
+     *
+     * @param offset index of the segment corresponding to first column
+     */

@@ -210,6 +210,7 @@ void DisplaySH1106_128x64<I>::begin()
     _configureSpiDisplayCmdModeOnly<I>(this->m_intf,
                             s_SH1106_lcd128x64_initData,
                             sizeof(s_SH1106_lcd128x64_initData));
+
 }
 
 template <class I>

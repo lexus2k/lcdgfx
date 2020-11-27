@@ -19,6 +19,7 @@ void Display~CONTROLLER~_~RESOLUTION~<I>::begin()
     ~CONFIG_FUNC~<I>(this->m_intf,
                             s_~CONTROLLER~_lcd~RESOLUTION~_initData,
                             sizeof(s_~CONTROLLER~_lcd~RESOLUTION~_initData));
+~OPTIONAL_CONFIG~
 }
 
 template <class I>

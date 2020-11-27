@@ -211,6 +211,7 @@ void DisplaySSD1306_128x32<I>::begin()
     _configureSpiDisplayCmdModeOnly<I>(this->m_intf,
                             s_SSD1306_lcd128x32_initData,
                             sizeof(s_SSD1306_lcd128x32_initData));
+
 }
 
 template <class I>
@@ -257,6 +258,7 @@ void DisplaySSD1306_128x64<I>::begin()
     _configureSpiDisplayCmdModeOnly<I>(this->m_intf,
                             s_SSD1306_lcd128x64_initData,
                             sizeof(s_SSD1306_lcd128x64_initData));
+
 }
 
 template <class I>

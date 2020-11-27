@@ -4,3 +4,4 @@ private:
     uint8_t m_startLine = 0;
     uint8_t m_column = 0;
     uint8_t m_page = 0;
+    uint8_t m_seg_offset = 0;

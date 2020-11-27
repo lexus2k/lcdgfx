@@ -164,12 +164,24 @@ public:
      */
     void flipVertical(uint8_t mode);
 
+    /**
+     * Sets segment (column) connection offset.
+     * Some manufactures connect left column of display matrix
+     * to SH1107 starting at non-zero segment output line.
+     * This causes some shift comparing to GDDRAM content.
+     * Use this function to fix that
+     *
+     * @param offset index of the segment corresponding to first column
+     */
+    void setSegOffset(uint8_t offset);
+
 private:
     int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSH1107<I>> &m_base; ///< basic lcd display support interface
     uint8_t m_startLine = 0;
     uint8_t m_column = 0;
     uint8_t m_page = 0;
+    uint8_t m_seg_offset = 0;
 };
 
 
@@ -385,6 +397,195 @@ public:
     void end() override
     {
         DisplaySH1107_128x64<InterfaceSH1107<I>>::end();
+        m_i2c.end();
+    }
+
+private:
+    InterfaceSH1107<I> m_i2c;
+};
+
+
+/**
+ * Class implements basic functions for 1-bit mode of SH1107-based displays
+ */
+template <class I>
+class DisplaySH1107_64x128: public DisplaySH1107<I>
+{
+public:
+    /**
+     * Creates instance of SH1107 64x128 controller class for 1-bit mode
+     *
+     * @param intf interface to use
+     * @param rstPin pin to use as HW reset pin for LCD display
+     */
+    DisplaySH1107_64x128(I &intf, int8_t rstPin)
+        : DisplaySH1107<I>(intf, rstPin) { }
+
+protected:
+
+    /**
+     * Basic SH1107 64x128 initialization
+     */
+    void begin() override;
+
+    /**
+     * Basic SH1107 deinitialization
+     */
+    void end() override;
+};
+
+/**
+ * Class implements SH1107 64x128 lcd display in 1 bit mode over SPI
+ */
+class DisplaySH1107_64x128_SPI: public DisplaySH1107_64x128<InterfaceSH1107<PlatformSpi>>
+{
+public:
+    /**
+     * @brief Inits 64x128 lcd display over spi (based on SH1107 controller): 1-bit mode.
+     *
+     * Inits 64x128 lcd display over spi (based on SH1107 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
+     */
+    DisplaySH1107_64x128_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+        : DisplaySH1107_64x128(m_spi, rstPin)
+        , m_spi( *this, config.dc,
+                 SPlatformSpiConfig{ config.busId,
+                                     { config.cs },
+                                     config.dc,
+                                     config.frequency ?: 10000000,
+                                     config.scl,
+                                     config.sda } ) {}
+
+    /**
+     * Initializes SH1107 lcd in 1-bit mode
+     */
+    void begin() override;
+
+    /**
+     * Closes connection to display
+     */
+    void end() override;
+
+private:
+    InterfaceSH1107<PlatformSpi> m_spi;
+};
+
+/**
+ * Template class implements SH1107 64x128 lcd display in 1 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I>
+class DisplaySH1107_64x128_CustomSPI: public DisplaySH1107_64x128<InterfaceSH1107<I>>
+{
+public:
+    /**
+     * @brief Inits 64x128 lcd display over spi (based on SH1107 controller): 1-bit mode.
+     *
+     * Inits 64x128 lcd display over spi (based on SH1107 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplaySH1107_64x128_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+        : DisplaySH1107_64x128<InterfaceSH1107<I>>(m_spi, rstPin)
+        , m_spi( *this, dcPin,
+                 data... ) {}
+
+    /**
+     * Initializes SH1107 lcd in 1-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplaySH1107_64x128<InterfaceSH1107<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySH1107_64x128<InterfaceSH1107<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceSH1107<I> m_spi;
+};
+/**
+ * Class implements SH1107 64x128 lcd display in 1 bit mode over I2C
+ */
+class DisplaySH1107_64x128_I2C: public DisplaySH1107_64x128<InterfaceSH1107<PlatformI2c>>
+{
+public:
+    /**
+     * @brief Inits 64x128 lcd display over i2c (based on SH1107 controller): 1-bit mode.
+     *
+     * Inits 64x128 lcd display over i2c (based on SH1107 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param config platform i2c configuration. Please refer to SPlatformI2cConfig.
+     */
+    DisplaySH1107_64x128_I2C( int8_t rstPin, const SPlatformI2cConfig &config = { -1, 0x3C, -1, -1, 0 } )
+        : DisplaySH1107_64x128(m_i2c, rstPin)
+        , m_i2c( *this, -1,
+                 SPlatformI2cConfig{ config.busId,
+                                     static_cast<uint8_t>(config.addr ?: 0x3C),
+                                     config.scl,
+                                     config.sda,
+                                     config.frequency ?: 400000 } ) {}
+
+    /**
+     * Initializes SH1107 lcd in 1-bit mode
+     */
+    void begin() override;
+
+    /**
+     * Closes connection to display
+     */
+    void end() override;
+
+private:
+    InterfaceSH1107<PlatformI2c> m_i2c;
+};
+
+/**
+ * Template class implements SH1107 64x128 lcd display in 1 bit mode over custom I2C implementation
+ * (user-defined i2c implementation). I - user custom i2c class
+ */
+template <class I>
+class DisplaySH1107_64x128_CustomI2C: public DisplaySH1107_64x128<InterfaceSH1107<I>>
+{
+public:
+    /**
+     * @brief Inits 64x128 lcd display over i2c (based on SH1107 controller): 1-bit mode.
+     *
+     * Inits 64x128 lcd display over i2c (based on SH1107 controller): 1-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param data variable argument list for custom user i2c interface.
+     */
+    template <typename... Args>
+    DisplaySH1107_64x128_CustomI2C( int8_t rstPin, Args&&... data )
+        : DisplaySH1107_64x128<InterfaceSH1107<I>>(m_i2c, rstPin)
+        , m_i2c( *this, -1,
+                 data... ) {}
+
+    /**
+     * Initializes SH1107 lcd in 1-bit mode
+     */
+    void begin() override
+    {
+        m_i2c.begin();
+        DisplaySH1107_64x128<InterfaceSH1107<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySH1107_64x128<InterfaceSH1107<I>>::end();
         m_i2c.end();
     }
 

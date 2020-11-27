@@ -191,6 +191,7 @@ void DisplayILI9341_240x320x16<I>::begin()
     _configureSpiDisplay<I>(this->m_intf,
                             s_ILI9341_lcd240x320x16_initData,
                             sizeof(s_ILI9341_lcd240x320x16_initData));
+
 }
 
 template <class I>
@@ -257,6 +258,7 @@ void DisplayILI9341_128x160x16<I>::begin()
     _configureSpiDisplay<I>(this->m_intf,
                             s_ILI9341_lcd128x160x16_initData,
                             sizeof(s_ILI9341_lcd128x160x16_initData));
+
 }
 
 template <class I>

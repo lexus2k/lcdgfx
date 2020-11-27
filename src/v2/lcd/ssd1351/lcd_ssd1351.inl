@@ -185,6 +185,7 @@ void DisplaySSD1351_128x128x16<I>::begin()
     _configureSpiDisplay<I>(this->m_intf,
                             s_SSD1351_lcd128x128x16_initData,
                             sizeof(s_SSD1351_lcd128x128x16_initData));
+
 }
 
 template <class I>

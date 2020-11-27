@@ -128,6 +128,7 @@ void DisplayPCD8544_84x48<I>::begin()
     _configureSpiDisplayCmdModeOnly<I>(this->m_intf,
                             s_PCD8544_lcd84x48_initData,
                             sizeof(s_PCD8544_lcd84x48_initData));
+
 }
 
 template <class I>

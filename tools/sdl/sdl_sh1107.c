@@ -39,6 +39,8 @@ static uint8_t detected = 0;
 static uint8_t detectedType = 0;
 
 static uint8_t gdram[128][128];
+static uint8_t connect_com_offset = 0;
+static uint8_t connect_seg_offset = 0;
 static uint8_t pageAddressingMode = 1;
 
 // Reverse condition if display layout is different
@@ -51,9 +53,21 @@ static uint8_t multiplexRatio = 15;
 static uint8_t displayOn = 0;
 static uint8_t displayMode = 0;
 
-static void blt_single_pixel(uint8_t x, uint8_t y, uint8_t color)
+static void scan_pixel(uint8_t x, uint8_t y)
 {
-    gdram[x & 0x7F ][y & 0x7F] = color;
+    uint8_t disable_pixel = 0;
+    uint8_t com = (x + connect_com_offset) & 0x7F;
+    uint8_t seg = (y + connect_seg_offset) & 0x7F;
+
+    uint8_t ram_col = ( !comScanDirection ? (127 - com): com );
+
+    uint8_t row = ( !displayRemap ? (multiplexRatio - seg): seg ) + displayOffset;
+    uint8_t ram_row = row + displayStartLine;
+    if ( row >= sdl_sh1107.height ) row -= sdl_sh1107.height;
+    if ( row >= multiplexRatio ) disable_pixel = 1; // empty
+
+    uint8_t color = gdram[ram_col & 0x7F][ram_row & 0x7F];
+    if ( disable_pixel ) color = 0;
     uint16_t sdl_color = color ? 0xAD59: 0x0000;
     switch (displayMode)
     {
@@ -63,47 +77,22 @@ static void blt_single_pixel(uint8_t x, uint8_t y, uint8_t color)
         case 3:
         default: sdl_color = 0xAD59; break;
     }
-    uint8_t line = (y - displayOffset - displayStartLine) & 0x3F;
-    if ( !displayRemap )
-    {
-        line = multiplexRatio - line;
-    }
-    if ( line < sdl_sh1107.height )
-    {
-        if ( !comScanDirection ) x = 127 - x;
-        sdl_put_pixel(x, line, sdl_color);
-    }
+    sdl_put_pixel( x, y, sdl_color );
+}
+
+static void blt_content();
+static void blt_single_pixel(uint8_t x, uint8_t y, uint8_t color)
+{
+    gdram[x & 0x7F ][y & 0x7F] = color;
 }
 
 static void blt_content()
 {
     for(uint8_t line = 0; line < sdl_sh1107.height; line++)
     {
-        uint8_t row = line;
-        uint8_t ram = line;
-        if ( !displayRemap )
-        {
-            row = multiplexRatio - row;
-            ram = multiplexRatio - ram;
-        }
-        ram = (row + displayOffset + displayStartLine) & 0x3F;
-        row = (row + displayOffset) & 0x3F;
         for(uint8_t column = 0; column < sdl_sh1107.width; column++)
         {
-            uint16_t color;
-            switch (displayMode)
-            {
-               case 0: color = (gdram[column][ram]) ? 0xAD59: 0x0000; break;
-               case 1: color = (gdram[column][ram]) ? 0x0000: 0xAD59; break;
-               case 2:
-               case 3:
-               default: color = 0xAD59; break;
-            }
-            if ( !displayOn ) color = 0x0000;
-            if ( row > (multiplexRatio + displayStartLine) ) color = 0x0000;
-            uint8_t x = column;
-            if ( !comScanDirection ) x = 127 - x;
-            sdl_put_pixel(x, line, color);
+            scan_pixel(column, line);
         }
     }
 }
@@ -117,6 +106,12 @@ static int sdl_sh1107_detect(uint8_t data)
 {
     if (detected)
     {
+        switch (data)
+        {
+            case 0x01: sdl_sh1107.width = 64; sdl_sh1107.height = 128;
+                       connect_com_offset = 96; break;
+            default: break;
+        }
         return 1;
     }
     detectedType = data;
@@ -259,6 +254,7 @@ void sdl_sh1107_data(uint8_t data)
     {
         blt_single_pixel( x, (y<<3) + i, data & (1<<i) );
     }
+    blt_content();
     if ( pageAddressingMode )
     {
         s_activeColumn++;

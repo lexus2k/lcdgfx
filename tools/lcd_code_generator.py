@@ -141,6 +141,7 @@ def fill_template(temp):
     temp = temp.replace('~WIDTH~', get_val_by_path("width",""))
     temp = temp.replace('~HEIGHT~',get_val_by_path("height",""))
     temp = temp.replace('~INIT~', get_val_by_path("init_data",""))
+    temp = temp.replace('~OPTIONAL_CONFIG~', get_val_by_path("optional_config",""))
     temp = temp.replace('~CONFIG_FUNC~', get_val_by_path("options/config_func","_configureSpiDisplay"))
     temp = temp.replace('~SET_BLOCK~', get_val_by_path("_set_block",""))
     temp = temp.replace('~END_BLOCK~', get_val_by_path("_end_block", "    this->stop();"))
@@ -173,6 +174,10 @@ def load_init_data_from_json(fname, ctl, bits, resolution):
     with open(templates + 'lcd/' + fname) as json_file:
         data = json.load(json_file, object_pairs_hook=OrderedDict)
     g_voc["init_data"] = "\n".join( data[ctl]["bits"][bits][resolution]["init"] )
+    if "begin" in data[ctl]["bits"][bits][resolution]:
+        g_voc["optional_config"] = "\n".join( data[ctl]["bits"][bits][resolution]["begin"] )
+    else:
+        g_voc["optional_config"] = ""
 
 templates = templates + "/"
 
