@@ -167,7 +167,7 @@ static void sdl_sh1107_commands(uint8_t data)
             if (s_cmdArgIndex == 0)
             {
                 multiplexRatio = data;
-                sdl_sh1107.height = data + 1;
+                //sdl_sh1107.height = data + 1;
                 sdl_graphics_set_oled_params(sdl_sh1107.width,
                                              sdl_sh1107.height,
                                              sdl_sh1107.bpp,
@@ -221,6 +221,7 @@ static void sdl_sh1107_commands(uint8_t data)
             break;
         case 0xD5: // Clock divide ratio
         case 0xD9: // Discharge period
+        case 0xAD: // Set Charge Pump Enable
         case 0xDB: // VCOM Deselect level
             if ( s_cmdArgIndex == 0 )
             {
