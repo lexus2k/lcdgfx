@@ -105,7 +105,7 @@ public:
     /**
      * Sets start line in gdram to start display content with
      *
-     * @param line start line in range 0 - 63
+     * @param line start line in range 0 - 127
      */
     void setStartLine(uint8_t line);
 
@@ -174,6 +174,13 @@ public:
      * @param offset index of the segment corresponding to first column
      */
     void setSegOffset(uint8_t offset);
+
+    /**
+     * Sets display offset according to datasheet.
+     *
+     * @param display offset in range 0 - 127
+     */
+    void setDisplayOffset(uint8_t offset);
 
 private:
     int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c

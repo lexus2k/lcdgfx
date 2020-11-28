@@ -1,0 +1,5 @@
+    /**
+     * Sets display offset according to datasheet.
+     *
+     * @param display offset in range 0 - 127
+     */

@@ -164,6 +164,15 @@ void InterfaceSH1107<I>::setSegOffset(uint8_t offset)
     m_seg_offset = offset;
 }
 
+template <class I>
+void InterfaceSH1107<I>::setDisplayOffset(uint8_t offset)
+{
+    commandStart();
+    this->send( 0xD3 );
+    this->send( offset & 0x7F ); // start line
+    this->stop();
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //             SH1107 basic 1-bit implementation
@@ -236,12 +245,12 @@ static const PROGMEM uint8_t s_SH1107_lcd64x128_initData[] =
     0xDC, 0x01, 0x00,  // First line to start scanning from
     0x81, 0x01, 0x2F,  // contast value to 0x2F according to datasheet
     0x20, 0x00,        // Set page addressing mode
-    0xA0| 0x00, 0x00,  // Use reverse mapping. 0x00 - is normal mapping
-    0xC0, 0x00,        // Scan from 0 to 127 (Normal scan)
+    0xA0| 0x01, 0x00,  // Use reverse mapping. 0x00 - is normal mapping
+    0xCF, 0x00,        // Scan from 127 to 0 (Reverse scan)
     0xA4, 0x00,        // Display on resume
     0xA6, 0x00,        // Normal display
-    0xA8, 0x01, 63,   // Reset to default MUX. See datasheet
-    0xD3, 0x01, 0x60,  // no offset
+    0xA8, 0x01, 127,   // Reset to default MUX. See datasheet
+    0xD3, 0x01, 0x60,  // offset 0x60 according to datasheet
     0xD5, 0x01, 0x51,  // set to default ratio/osc frequency
     0xD9, 0x01, 0x22,  // switch precharge to 0x22 // 0xF1
     0xDB, 0x01, 0x35,  // vcom deselect to 0x20 // 0x40
@@ -264,7 +273,7 @@ void DisplaySH1107_64x128<I>::begin()
     _configureSpiDisplayCmdModeOnly<I>(this->m_intf,
                             s_SH1107_lcd64x128_initData,
                             sizeof(s_SH1107_lcd64x128_initData));
-    this->m_intf.setSegOffset( 96 );
+    this->m_intf.setSegOffset( 0 );
 }
 
 template <class I>

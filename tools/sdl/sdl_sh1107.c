@@ -209,16 +209,6 @@ static void sdl_sh1107_commands(uint8_t data)
                 s_commandId = SSD_COMMAND_NONE;
             }
             break;
-        case 0xC0: // Scan direction
-            comScanDirection = 0;
-            if ( displayOn ) blt_content();
-            s_commandId = SSD_COMMAND_NONE;
-            break;
-        case 0xC8: // Scan direction
-            comScanDirection = 1;
-            if ( displayOn ) blt_content();
-            s_commandId = SSD_COMMAND_NONE;
-            break;
         case 0xD5: // Clock divide ratio
         case 0xD9: // Discharge period
         case 0xAD: // Set Charge Pump Enable
@@ -229,6 +219,11 @@ static void sdl_sh1107_commands(uint8_t data)
             }
             break;
         default:
+            if ((s_commandId >= 0xc0) && (s_commandId <= 0xcf)) // Set scan direction
+            {
+                comScanDirection = !!(s_commandId & 0x08);
+                if ( displayOn ) blt_content();
+            }
             /* Other ssd1306 commands, many commands are combined with data */
             if ((s_commandId >= 0xb0) && (s_commandId <= 0xbf))
             {
