@@ -109,7 +109,7 @@ static int sdl_sh1107_detect(uint8_t data)
         switch (data)
         {
             case 0x01: sdl_sh1107.width = 64; sdl_sh1107.height = 128;
-                       connect_com_offset = 96; break;
+                       connect_seg_offset = 32; break;
             default: break;
         }
         return 1;
