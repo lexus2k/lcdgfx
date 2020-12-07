@@ -5,7 +5,7 @@
         <define name="BUFFER_LENGTH=64"/>
     </defines>
     <paths>
-        <dir name="."/>
+        <dir name="src"/>
     </paths>
     <libraries>
         <library>avr</library>

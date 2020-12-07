@@ -1,6 +1,6 @@
 #    MIT License
 #
-#    Copyright (c) 2019, Alexey Dynda
+#    Copyright (c) 2019-2020, Alexey Dynda
 #
 #    Permission is hereby granted, free of charge, to any person obtaining a copy
 #    of this software and associated documentation files (the "Software"), to deal
@@ -63,10 +63,10 @@ include Makefile.cpputest
 cppcheck:
 	@cppcheck --force \
 	    --enable=warning,style,performance,portability \
-	    --suppress=information \
-	    -q -I ./src \
-	    --report-progress \
-	    --error-exitcode=1 .
+	    --suppress=information -q \
+	    --error-exitcode=1 \
+	    -I src \
+	    src
 	@echo "[DONE]"
 
 

@@ -44,5 +44,5 @@ jobs:
       compiler: clang
       script:
         - make ARCH=linux SDL_EMULATION=y check
-#        - make cppcheck
+        - make cppcheck
 
