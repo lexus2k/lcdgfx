@@ -89,9 +89,9 @@ static const uint8_t *ssd1306_searchCharGlyph(SFixedFontInfo &font, const uint8_
 static const uint8_t *ssd1306_getU16CharGlyph(SFixedFontInfo &font, uint16_t unicode)
 {
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
-    const uint8_t * glyph = NULL;
     if (g_ssd1306_unicode2)
     {
+        const uint8_t * glyph = NULL;
         if ((unicode < 128) && (font.h.type == 0x00) && (font.primary_table != NULL))
         {
             return ssd1306_getCharGlyph(font, unicode);

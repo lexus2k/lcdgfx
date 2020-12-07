@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2020, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -98,7 +98,7 @@ private:
     bool m_first_spi_session;
     uint32_t m_frequency;
     spi_device_handle_t m_spi;
-    uint8_t m_buffer[64];
+    uint8_t m_buffer[64]{};
     uint16_t m_data_size = 0;
 
     void forceSpiTransfer();

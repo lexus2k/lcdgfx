@@ -133,14 +133,6 @@ uint8_t NanoEngineInputs::s_ky40_clk;
 uint8_t NanoEngineInputs::s_ky40_dt;
 uint8_t NanoEngineInputs::s_ky40_sw;
 
-void NanoEngineInputs::connectKY40encoder(uint8_t pina_clk, uint8_t pinb_dt, int8_t pinc_sw)
-{
-    s_ky40_clk = pina_clk;
-    s_ky40_dt = pinb_dt;
-    s_ky40_sw = pinc_sw;
-    m_onButtons = ky40Buttons;
-}
-
 uint8_t NanoEngineInputs::ky40Buttons()
 {
     static uint8_t last_clk = lcd_gpioRead( s_ky40_clk );
@@ -163,6 +155,14 @@ uint8_t NanoEngineInputs::ky40Buttons()
         buttons |= BUTTON_A;
     }
     return buttons;
+}
+
+void NanoEngineInputs::connectKY40encoder(uint8_t pina_clk, uint8_t pinb_dt, int8_t pinc_sw)
+{
+    s_ky40_clk = pina_clk;
+    s_ky40_dt = pinb_dt;
+    s_ky40_sw = pinc_sw;
+    m_onButtons = NanoEngineInputs::ky40Buttons;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
