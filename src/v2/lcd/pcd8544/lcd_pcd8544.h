@@ -184,7 +184,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    DisplayPCD8544_84x48_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayPCD8544_84x48_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayPCD8544_84x48(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,

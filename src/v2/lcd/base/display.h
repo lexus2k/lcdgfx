@@ -958,6 +958,7 @@ public:
 
     using O::putPixel;
 
+    /** Base type for display operations class */
     typedef NanoDisplayOps<O,I> T;
 
     /**

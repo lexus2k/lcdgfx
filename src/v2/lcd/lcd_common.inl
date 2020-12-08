@@ -28,7 +28,7 @@ template <class I>
 void _configureSpiDisplay(I& intf, const uint8_t *config, uint8_t configSize)
 {
     uint8_t command = 1;
-    int8_t args;
+    int8_t args = -1;
     intf.commandStart();
     for( uint8_t i=0; i<configSize; i++)
     {
@@ -85,7 +85,7 @@ template <class I>
 void _configureSpiDisplayCmdModeOnly(I& intf, const uint8_t *config, uint8_t configSize)
 {
     uint8_t command = 1;
-    int8_t args;
+    int8_t args = -1;
     intf.commandStart();
     for( uint8_t i=0; i<configSize; i++)
     {

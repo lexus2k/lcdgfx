@@ -342,7 +342,7 @@ public:
      * @param rect - rectangle, describing the region to check with the point
      * @returns true if point is inside the rectangle area.
      */
-    bool collision(NanoPoint &p, NanoRect &rect) { return rect.collision( p ); }
+    bool collision(const NanoPoint &p, const NanoRect &rect) { return rect.collision( p ); }
 
     /**
      * Inserts new NanoEngineObject. This object will be displayed during next call

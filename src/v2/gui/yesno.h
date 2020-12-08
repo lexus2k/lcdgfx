@@ -51,7 +51,7 @@ public:
      * @param text yes/no dialog text
      * @param rect screen area to use for button or 0 if to use full screen area
      */
-    LcdGfxYesNo(const char *text, const NanoRect &rect = {});
+    explicit LcdGfxYesNo(const char *text, const NanoRect &rect = {});
 
     /**
      * Shows button on the display.

@@ -58,7 +58,7 @@ static const uint8_t *ssd1306_getCharGlyph(SFixedFontInfo &font, char ch)
 }
 
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
-static const uint8_t *ssd1306_searchCharGlyph(SFixedFontInfo &font, const uint8_t * unicode_table, uint16_t unicode)
+static const uint8_t *ssd1306_searchCharGlyph(const SFixedFontInfo &font, const uint8_t * unicode_table, uint16_t unicode)
 {
     SUnicodeBlockRecord r;
     const uint8_t *data = unicode_table;

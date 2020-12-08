@@ -128,7 +128,6 @@ public:
      */
     static void connectArduboyKeys();
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
     /**
      * @brief Configures NanoEngine to use KY40 Rotary Encoder.
      * Configures NanoEngine to use KY40 Rotary Encoder.
@@ -138,7 +137,6 @@ public:
      * @warning do not use, not tested
      */
     static void connectKY40encoder(uint8_t pina_clk, uint8_t pinb_dt, int8_t pinc_sw = -1);
-#endif
 
     /**
      * @brief Enables engine to use GPIO keys
@@ -165,6 +163,7 @@ protected:
     /** State of last pressed buttons */
     static uint8_t m_newButtons;
 
+    /** resets buttons cache. It is called by display method() */
     static void resetButtonsCache();
 
 private:

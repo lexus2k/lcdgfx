@@ -206,7 +206,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    DisplayST7735_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayST7735_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayST7735_128x128x16(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,
@@ -315,7 +315,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    DisplayST7735_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayST7735_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
         : DisplayST7735_128x160x16(m_spi, rstPin)
         , m_spi( *this, config.dc,
                  SPlatformSpiConfig{ config.busId,

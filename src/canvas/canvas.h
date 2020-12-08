@@ -47,6 +47,7 @@ template <uint8_t BPP>
 class NanoCanvasOps
 {
 public:
+    /** Base type for canvas class specific operations */
     typedef NanoCanvasOps<BPP> T;
 
     /** number of bits per single pixel in buffer */

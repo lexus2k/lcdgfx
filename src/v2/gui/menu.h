@@ -34,10 +34,12 @@
 #include "canvas/font.h"
 
 #ifndef min
+/** Custom min function */
 #define min(x,y) ((x)<(y)?(x):(y))
 #endif
 
 #ifndef max
+/** Custom max function */
 #define max(x,y) ((x)>(y)?(x):(y))
 #endif
 
