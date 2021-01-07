@@ -690,16 +690,15 @@ static void drawMenuItem(NanoDisplayOps<O,I> &display, SAppMenu *menu, uint8_t i
 {
     if (index == menu->selection)
     {
-        display.negativeMode();
-    }
-    else
-    {
-        display.positiveMode();
+        display.invertColors();
     }
     lcdint_t item_top = 8 + menu->top + (index - menu->scrollPosition)*display.getFont().getHeader().height;
     display.printFixed(menu->left + 8, item_top,
                        menu->items[index], STYLE_NORMAL );
-    display.positiveMode();
+    if (index == menu->selection)
+    {
+        display.invertColors();
+    }
 }
 
 template <class O, class I>
@@ -707,11 +706,7 @@ static void drawMenuItemSmooth(NanoDisplayOps<O,I> &display, SAppMenu *menu, uin
 {
     if (index == menu->selection)
     {
-        display.negativeMode();
-    }
-    else
-    {
-        display.positiveMode();
+        display.invertColors();
     }
     lcdint_t item_top = 8 + menu->top + (index - menu->scrollPosition)*display.getFont().getHeader().height;
     display.setColor( 0x0000 );
@@ -720,7 +715,10 @@ static void drawMenuItemSmooth(NanoDisplayOps<O,I> &display, SAppMenu *menu, uin
     display.setColor( 0xFFFF );
     display.printFixed(menu->left + 8, item_top,
                        menu->items[index], STYLE_NORMAL );
-    display.positiveMode();
+    if (index == menu->selection)
+    {
+        display.invertColors();
+    }
 }
 
 template <class O, class I>
