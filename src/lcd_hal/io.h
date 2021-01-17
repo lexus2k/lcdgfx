@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2020, Alexey Dynda
+    Copyright (c) 2018-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -121,6 +121,8 @@ typedef unsigned int lcduint_t;
 #define LCD_HIGH HIGH
 #define LCD_GPIO_INPUT INPUT
 #define LCD_GPIO_OUTPUT OUTPUT
+#define LCD_GPIO_INPUT_PULLUP INPUT_PULLUP
+#define LCD_GPIO_INPUT_PULLDOWN INPUT_PULLDOWN
 #define LCD_PROGMEM PROGMEM
 
 #define lcd_gpioRead digitalRead
@@ -163,8 +165,12 @@ void lcd_gpioWrite(int pin, int level);
 #define LCD_HIGH 1
 /** Constant corresponds to input mode of gpio */
 #define LCD_GPIO_INPUT 0
-/** Consrant corresponds to output mode of gpio */
+/** Constant corresponds to output mode of gpio */
 #define LCD_GPIO_OUTPUT 1
+/** Constant corresponds to input mode of gpio with pullup resistor enabled */
+#define LCD_GPIO_INPUT_PULLUP 2
+/** Constant corresponds to output mode of gpio with pulldown resistor enabled */
+#define LCD_GPIO_INPUT_PULLDOWN 3
 // LCD_PROMEM is platform specific definition
 #ifndef LCD_PROGMEM
 /** LCD_PROGMEM constant is used to specify data stored in flash, platform specific */
@@ -296,6 +302,10 @@ int lcd_random(int min, int max);
 #define INPUT LCD_GPIO_INPUT
 /** @copydoc LCD_GPIO_OUTPUT */
 #define OUTPUT LCD_GPIO_OUTPUT
+/** @copydoc LCD_GPIO_INPUT_PULLUP */
+#define OUTPUT LCD_GPIO_INPUT_PULLUP
+/** @copydoc LCD_GPIO_INPUT_PULLDOWN */
+#define OUTPUT LCD_GPIO_INPUT_PULLDOWN
 #ifndef PROGMEM
 /** @copydoc LCD_PROGMEM */
 #define PROGMEM LCD_PROGMEM

@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -23,6 +23,7 @@
 */
 
 #include "core.h"
+#include "lcd_hal/io.h"
 
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
@@ -128,6 +129,40 @@ uint8_t NanoEngineInputs::gpioButtons()
     if ((s_gpioKeypadPins[5]) && (lcd_gpioRead(s_gpioKeypadPins[5]) == LCD_HIGH)) buttons |= BUTTON_B;
     return buttons;
 }
+
+void NanoEngineInputs::connectWioKeypad()
+{
+#ifdef SDL_EMULATION
+    sdl_set_gpio_keys(gpioKeys);
+    m_onButtons = gpioButtons;
+#else
+    lcd_gpioMode( 31Ul, LCD_GPIO_INPUT_PULLUP );
+    lcd_gpioMode( 32Ul, LCD_GPIO_INPUT_PULLUP );
+    lcd_gpioMode( 33Ul, LCD_GPIO_INPUT_PULLUP );
+    lcd_gpioMode( 34Ul, LCD_GPIO_INPUT_PULLUP );
+    lcd_gpioMode( 35Ul, LCD_GPIO_INPUT_PULLUP );
+    lcd_gpioMode( 28Ul, LCD_GPIO_INPUT_PULLUP );
+    lcd_gpioMode( 29Ul, LCD_GPIO_INPUT_PULLUP );
+    lcd_gpioMode( 30Ul, LCD_GPIO_INPUT_PULLUP );
+    m_onButtons = wioButtons;
+#endif
+}
+
+uint8_t NanoEngineInputs::wioButtons()
+{
+    uint8_t buttons = BUTTON_NONE;
+    if (lcd_gpioRead(34ul) == LCD_LOW) buttons |= BUTTON_DOWN;
+    if (lcd_gpioRead(32ul) == LCD_LOW) buttons |= BUTTON_LEFT;
+    if (lcd_gpioRead(33ul) == LCD_LOW) buttons |= BUTTON_RIGHT;
+    if (lcd_gpioRead(31ul) == LCD_LOW) buttons |= BUTTON_UP;
+    if (lcd_gpioRead(35ul) == LCD_LOW) buttons |= BUTTON_CENTER;
+                     
+    if (lcd_gpioRead(28ul) == LCD_LOW) buttons |= BUTTON_A;
+    if (lcd_gpioRead(29ul) == LCD_LOW) buttons |= BUTTON_B;
+    if (lcd_gpioRead(30ul) == LCD_LOW) buttons |= BUTTON_C;
+    return buttons;
+}
+
 
 uint8_t NanoEngineInputs::s_ky40_clk;
 uint8_t NanoEngineInputs::s_ky40_dt;

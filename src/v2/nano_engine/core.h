@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2020, Alexey Dynda
+    Copyright (c) 2018-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -59,6 +59,8 @@ enum
     BUTTON_UP     = 0B00001000,
     BUTTON_A      = 0B00010000,
     BUTTON_B      = 0B00100000,
+    BUTTON_C      = 0B01000000,
+    BUTTON_CENTER = 0B10000000,
 };
 
 /**
@@ -153,6 +155,13 @@ public:
      */
     static void connectGpioKeypad(const uint8_t *gpioKeys);
 
+    /**
+     * @brief Connects Wio keys to NanoEngine
+     *
+     * Enable engine to use Wio keys
+     */
+    static void connectWioKeypad();
+
 protected:
     /** Callback to call if buttons state needs to be updated */
     static TNanoEngineGetButtons m_onButtons;
@@ -175,6 +184,7 @@ private:
     static uint8_t zkeypadButtons();
     static uint8_t arduboyButtons();
     static uint8_t gpioButtons();
+    static uint8_t wioButtons();
     static uint8_t ky40Buttons();
 };
 

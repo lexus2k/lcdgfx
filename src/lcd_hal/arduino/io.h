@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2020, Alexey Dynda
+    Copyright (c) 2018-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -43,7 +43,7 @@
     #include <avr/sleep.h>
     #include <avr/pgmspace.h>
     #include <avr/interrupt.h>
-    #elif defined(ARDUINO_ARCH_SAMD)
+    #elif defined(ARDUINO_ARCH_SAMD) && !defined(SEEED_WIO_TERMINAL)
     #include <api/deprecated-avr-comp/avr/pgmspace.h>
     #include <api/deprecated-avr-comp/avr/interrupt.h>
     #else

@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2020, Alexey Dynda
+    Copyright (c) 2016-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -34,10 +34,11 @@
 /* STANDARD branch */
 #include <SPI.h>
 
-ArduinoSpi::ArduinoSpi(int8_t csPin, int8_t dcPin, uint32_t frequency)
+ArduinoSpi::ArduinoSpi(int8_t csPin, int8_t dcPin, uint32_t frequency, SPIClass *spi)
     : m_cs( csPin )
     , m_dc( dcPin )
     , m_frequency( frequency )
+    , m_spi( spi )
 {
 }
 
@@ -49,19 +50,19 @@ void ArduinoSpi::begin()
 {
     if ( m_cs >=0) pinMode( m_cs, OUTPUT );
     if ( m_dc >= 0) pinMode( m_dc, OUTPUT );
-    SPI.begin();
+    m_spi->begin();
 }
 
 void ArduinoSpi::end()
 {
-    SPI.end();
+    m_spi->end();
 }
 
 void ArduinoSpi::start()
 {
     /* anyway, oled ssd1331 cannot work faster, clock cycle should be > 150ns: *
      * 1s / 150ns ~ 6.7MHz                                                     */
-    SPI.beginTransaction(SPISettings(m_frequency, MSBFIRST, SPI_MODE0));
+    m_spi->beginTransaction(SPISettings(m_frequency, MSBFIRST, SPI_MODE0));
     if (m_cs >= 0)
     {
         lcd_gpioWrite(m_cs,LCD_LOW);
@@ -74,20 +75,20 @@ void ArduinoSpi::stop()
     {
         lcd_gpioWrite(m_cs, LCD_HIGH);
     }
-    SPI.endTransaction();
+    m_spi->endTransaction();
 }
 
 void ArduinoSpi::send(uint8_t data)
 {
-    SPI.transfer(data);
+    m_spi->transfer(data);
 }
 
 void ArduinoSpi::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
-    /* Do not use SPI.transfer(buffer, size)! this method corrupts buffer content */
+    /* Do not use m_spi->transfer(buffer, size)! this method corrupts buffer content */
     while (size--)
     {
-        SPI.transfer(*buffer);
+        m_spi->transfer(*buffer);
         buffer++;
     };
 }
@@ -152,7 +153,7 @@ void ArduinoSpi2::send(uint8_t data)
 
 void ArduinoSpi2::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
-    /* Do not use SPI.transfer(buffer, size)! this method corrupts buffer content */
+    /* Do not use SPI2.transfer(buffer, size)! this method corrupts buffer content */
     while (size--)
     {
         SPI2.transfer(*buffer);
@@ -161,5 +162,6 @@ void ArduinoSpi2::sendBuffer(const uint8_t *buffer, uint16_t size)
 }
 
 #endif
+
 
 #endif // ARDUINO
