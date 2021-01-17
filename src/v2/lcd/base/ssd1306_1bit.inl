@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2020, Alexey Dynda
+    Copyright (c) 2016-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -362,7 +362,7 @@ void NanoDisplayOps1<I>::drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t x2)
     this->m_intf.startBlock(x1, y1 >> 3, x2 - x1 + 1);
     for (uint8_t x = x1; x <= x2; x++)
     {
-        this->m_intf.send((1 << (y1 & 0x07))^this->m_bgColor);
+        this->m_intf.send( (1 << (y1 & 0x07)) ^ (~this->m_color) );
     }
     this->m_intf.endBlock();
 }
@@ -377,18 +377,18 @@ void NanoDisplayOps1<I>::drawVLine(lcdint_t x1, lcdint_t y1, lcdint_t y2)
     this->m_intf.startBlock(x1, topPage, 1);
     if (topPage == bottomPage)
     {
-        this->m_intf.send( ((0xFF >> (0x07 - height)) << (y1 & 0x07))^this->m_bgColor );
+        this->m_intf.send( ((0xFF >> (0x07 - height)) << (y1 & 0x07))^(~this->m_color) );
         this->m_intf.endBlock();
         return;
     }
-    this->m_intf.send( (0xFF << (y1 & 0x07))^this->m_bgColor );
+    this->m_intf.send( (0xFF << (y1 & 0x07))^(~this->m_color) );
     for ( y = (topPage + 1); y <= (bottomPage - 1); y++)
     {
         this->m_intf.nextBlock();
-        this->m_intf.send( 0xFF^this->m_bgColor );
+        this->m_intf.send( 0xFF^(~this->m_color) );
     }
     this->m_intf.nextBlock();
-    this->m_intf.send( (0xFF >> (0x07 - (y2 & 0x07)))^this->m_bgColor );
+    this->m_intf.send( (0xFF >> (0x07 - (y2 & 0x07)))^(~this->m_color) );
     this->m_intf.endBlock();
 }
 

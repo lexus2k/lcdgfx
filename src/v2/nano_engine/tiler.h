@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2020, Alexey Dynda
+    Copyright (c) 2018-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -501,10 +501,12 @@ void NanoEngineTiler<C,D>::displayBuffer()
 template<class C, class D>
 void NanoEngineTiler<C,D>::displayPopup(const char *msg)
 {
-    NanoRect rect = { {8, (m_display.height()>>1) - 8}, {m_display.width() - 8, (m_display.height()>>1) + 8} };
+    lcduint_t height = 0;
+    lcduint_t width = m_display.getFont().getTextSize( msg, &height );
+    NanoRect rect = { {((m_display.width() - (lcdint_t)width) >> 1) - 8, ((m_display.height() - (lcdint_t)height) >> 1) - 4 },
+                      {((m_display.width() + (lcdint_t)width) >> 1) + 8, ((m_display.height() + (lcdint_t)height) >> 1) + 4} };
     // TODO: It would be nice to calculate message height
-    NanoPoint textPos = { (m_display.width() - (lcdint_t)strlen(msg)*m_display.getFont().getHeader().width) >> 1,
-                                               (m_display.height()>>1) - 4 };
+    NanoPoint textPos = { (m_display.width() - (lcdint_t)width) >> 1, (m_display.height() - height) >> 1 };
     refresh(rect);
     for (lcduint_t y = 0; y < m_display.height(); y = y + canvas.height())
     {

@@ -1,6 +1,6 @@
 #    MIT License
 #
-#    Copyright (c) 2018-2020, Alexey Dynda
+#    Copyright (c) 2018-2021, Alexey Dynda
 #
 #    Permission is hereby granted, free of charge, to any person obtaining a copy
 #    of this software and associated documentation files (the "Software"), to deal
@@ -43,6 +43,7 @@ OBJS += v2/utf8.o \
 	v2/gui/yesno.o \
 	v2/lcd/lcd_common.o \
 	v2/lcd/lcdany/lcd_any.o \
+	v2/lcd/lcdwio/lcd_wio.o \
 	v2/lcd/pcd8544/lcd_pcd8544.o \
 	v2/lcd/sh1106/lcd_sh1106.o \
 	v2/lcd/sh1107/lcd_sh1107.o \

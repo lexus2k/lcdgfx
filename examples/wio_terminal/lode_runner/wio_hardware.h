@@ -28,8 +28,11 @@
 
 #define B_WIDTH  30
 
-// Uncomment the line you need for your display
-typedef DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi> GraphicsDisplay;
+#ifdef __linux__
+typedef DisplayILI9341_240x320x16_SPI GraphicsDisplay;
+#else
+typedef DisplayWioTerminal_320x240x16 GraphicsDisplay;
+#endif
 
 typedef NanoEngine<NanoCanvas<32,16,16>,GraphicsDisplay> GraphicsEngine;
 

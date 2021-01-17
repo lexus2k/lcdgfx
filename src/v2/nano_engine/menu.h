@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019,2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -120,13 +120,19 @@ public:
      */
     void down()
     {
-        m_selected->defocus();
+        if ( m_selected )
+        {
+            m_selected->defocus();
+        }
         m_selected = this->getNext( m_selected );
         if ( !m_selected )
         {
             m_selected = this->getNext();
         }
-        m_selected->focus();
+        if ( m_selected )
+        {
+            m_selected->focus();
+        }
     }
 
     /**
@@ -136,13 +142,19 @@ public:
      */
     void up()
     {
-        m_selected->defocus();
+        if ( m_selected )
+        {
+            m_selected->defocus();
+        }
         m_selected = getPrev( m_selected );
         if ( !m_selected )
         {
             m_selected = this->getPrev();
         }
-        m_selected->focus();
+        if ( m_selected )
+        {
+            m_selected->focus();
+        }
     }
 
 protected:

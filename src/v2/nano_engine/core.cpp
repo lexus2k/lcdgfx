@@ -133,8 +133,8 @@ uint8_t NanoEngineInputs::gpioButtons()
 void NanoEngineInputs::connectWioKeypad()
 {
 #ifdef SDL_EMULATION
-    sdl_set_gpio_keys(gpioKeys);
-    m_onButtons = gpioButtons;
+    static uint8_t keys[] = { 31ul, 32ul, 33ul, 34ul, 35ul, 36ul, 37ul, 0 };
+    connectGpioKeypad( keys );
 #else
     lcd_gpioMode( 31Ul, LCD_GPIO_INPUT_PULLUP );
     lcd_gpioMode( 32Ul, LCD_GPIO_INPUT_PULLUP );
@@ -156,7 +156,6 @@ uint8_t NanoEngineInputs::wioButtons()
     if (lcd_gpioRead(33ul) == LCD_LOW) buttons |= BUTTON_RIGHT;
     if (lcd_gpioRead(31ul) == LCD_LOW) buttons |= BUTTON_UP;
     if (lcd_gpioRead(35ul) == LCD_LOW) buttons |= BUTTON_CENTER;
-                     
     if (lcd_gpioRead(28ul) == LCD_LOW) buttons |= BUTTON_A;
     if (lcd_gpioRead(29ul) == LCD_LOW) buttons |= BUTTON_B;
     if (lcd_gpioRead(30ul) == LCD_LOW) buttons |= BUTTON_C;

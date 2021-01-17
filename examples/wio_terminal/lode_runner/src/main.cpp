@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -84,13 +84,13 @@ void showGameInfo()
     engine.getCanvas().setColor(RGB_COLOR16(255,255,0));
     engine.getCanvas().drawBitmap1(0, 0, 8, 8, coinImage);
 
-    engine.getCanvas().setFixedFont(digital_font5x7_AB);
+    engine.getCanvas().setFixedFont(ssd1306xled_font8x16);
     char score[3] = { player.getCoins() / 10 + '0', player.getCoins() % 10 + '0', 0 };
     engine.getCanvas().setColor(RGB_COLOR16(0,0,0));
     engine.getCanvas().printFixed(9,1,score);
     engine.getCanvas().setColor(RGB_COLOR16(255,255,255));
     engine.getCanvas().printFixed(8,0,score);
-    engine.getCanvas().setFixedFont(digital_font5x7_AB);
+    engine.getCanvas().setFixedFont(ssd1306xled_font8x16);
 }
 
 static bool onDraw()
@@ -161,7 +161,7 @@ static void moveGameScreen()
 
 void lodeRunnerInit()
 {
-    display.setFixedFont(digital_font5x7_AB);
+    display.setFixedFont(ssd1306xled_font8x16);
     display.getInterface().setRotation(1);
     display.clear();
 

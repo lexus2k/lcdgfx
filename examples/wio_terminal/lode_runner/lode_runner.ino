@@ -42,13 +42,20 @@
  */
 
 #include "wio_hardware.h"
+#ifndef __linux__
 #include "lcd_backlight.hpp"
+#endif
 #include "src/main.h"
 
 #define LCD_BACKLIGHT (72Ul) // Control Pin of LCD
+#ifdef __linux__
+GraphicsDisplay display(3,{-1, 4, 5, 0,-1,-1});
+#else
 static LCDBackLight backLight;
-GraphicsDisplay display(71Ul, 70Ul, PIN_SPI3_SS, 70Ul, 20000000, &SPI3);
-GraphicsEngine engine(display); 
+GraphicsDisplay display;
+#endif
+
+GraphicsEngine engine(display);
 
 
 static bool onDrawMain()
@@ -62,8 +69,10 @@ void setup()
     display.getInterface().setRotation(1);
     display.clear();
 
+#ifndef __linux__
     backLight.initialize();
     backLight.setBrightness(150);
+#endif
     digitalWrite( LCD_BACKLIGHT, HIGH );
 
     engine.connectWioKeypad();
