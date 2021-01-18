@@ -31,6 +31,12 @@
 
 from __future__ import print_function
 import sys
+import io
+
+# Tricky way to use UTF-8 on Python2
+if sys.version_info < (3, 0):
+    reload(sys)
+    sys.setdefaultencoding("utf-8")
 
 class Generator:
     source = None
@@ -38,25 +44,28 @@ class Generator:
     def __init__(self, source):
         self.source = source
 
-    def generate_fixed_old(self):
+    def generate_fixed_old(self, demo_array, output_file):
         self.source.expand_chars()
-        print("extern const uint8_t {0}[] PROGMEM;".format(self.source.name))
-        print("const uint8_t {0}[] PROGMEM =".format(self.source.name))
-        print("{")
-        print("#ifdef CONFIG_SSD1306_UNICODE_ENABLE")
-        print("//  type|width|height|first char")
-        print("    0x%02X, 0x%02X, 0x%02X, 0x%02X," % (1, self.source.width, self.source.height, self.source.first_char))
-        print("//  unicode(2B)|count")
-        print("    0x%02X, 0x%02X, 0x%02X, // unicode record" % \
-             ((self.source.first_char >> 8) & 0xFF, self.source.first_char & 0xFF, \
-              len(self.source.get_group_chars()) & 0xFF))
-        print("#else")
-        print("//  type|width|height|first char")
-        print("    0x%02X, 0x%02X, 0x%02X, 0x%02X," % (0, self.source.width, self.source.height, self.source.first_char))
-        print("#endif")
+        output_string = demo_array + [
+            "extern const uint8_t {0}[] PROGMEM;".format(self.source.name),
+            "const uint8_t {0}[] PROGMEM =".format(self.source.name),
+            "{",
+            "#ifdef CONFIG_SSD1306_UNICODE_ENABLE",
+            "//  type|width|height|first char",
+            "    0x%02X, 0x%02X, 0x%02X, 0x%02X," % (1, self.source.width, self.source.height, self.source.first_char),
+            "//  unicode(2B)|count",
+            ("    0x%02X, 0x%02X, 0x%02X, // unicode record" % \
+                 ((self.source.first_char >> 8) & 0xFF, self.source.first_char & 0xFF, \
+                  len(self.source.get_group_chars()) & 0xFF)),
+            "#else",
+            "//  type|width|height|first char",
+            "    0x%02X, 0x%02X, 0x%02X, 0x%02X," % (0, self.source.width, self.source.height, self.source.first_char),
+            "#endif"
+        ]
+        
         char_code = self.source.first_char
         for char in self.source.get_group_chars():
-            print("    ", end='')
+            full_string = "    "
             for row in range(self.source.rows()):
                 for x in range(self.source.width):
                     data = 0
@@ -65,35 +74,61 @@ class Generator:
                         if y >= self.source.height:
                             break
                         data |= (self.source.charBitmap(char)[y][x] << i)
-                    print("0x%02X," % data, end=' ')
+                    full_string += "0x%02X, " % data
             if sys.version_info < (3, 0):
-                print("// char '%s' (0x%04X/%d)" % (char.encode("utf-8"), char_code, char_code))
+                full_string += "// char '%s' (0x%04X/%d)" % (char.encode("utf-8"), char_code, char_code)
             else:
-                print("// char '%s' (0x%04X/%d)" % (char, char_code, char_code))
+                full_string += "// char '%s' (0x%04X/%d)" % (char, char_code, char_code)
             char_code = char_code + 1
-        print("#ifdef CONFIG_SSD1306_UNICODE_ENABLE")
-        print("    0x00, 0x00, 0x00, // end of unicode tables")
-        print("#endif")
-        print("};")
+            
+            output_string.append(full_string)
 
-    def generate_new_format(self):
+        output_string.append("#ifdef CONFIG_SSD1306_UNICODE_ENABLE")
+        output_string.append("    0x00, 0x00, 0x00, // end of unicode tables")
+        output_string.append("#endif")
+        output_string.append("};")
+        
+        if output_file:
+            try:
+                with io.open(output_file, "w", encoding='utf-8') as fOut:
+                    out_str = None
+                    if sys.version_info < (3, 0):
+                        out_str = "\n".join(output_string).decode("utf-8")
+                    else:
+                        out_str = "\n".join(output_string)
+                    fOut.write(out_str)
+            
+                print("The file %s was created sucesfully" % (output_file))
+            except Exception as e:
+                print("There was an error creating the output file: %r" % (e))
+                exit(1)
+            
+        else:
+            if sys.version_info < (3, 0):
+                print("\n".join(output_string).decode("utf-8"))
+            else:
+                sys.stdout.buffer.write("\n".join(output_string).encode("utf-8"))
+
+    def generate_new_format(self, demo_array, output_file):
         total_size = 4
         self.source.expand_chars_top()
-        print("extern const uint8_t %s[] PROGMEM;" % ("free_" + self.source.name))
-        print("const uint8_t %s[] PROGMEM =" % ("free_" + self.source.name))
-        print("{")
-        print("//  type|width|height|first char")
-        print("    0x%02X, 0x%02X, 0x%02X, 0x%02X," % (2, self.source.width, self.source.height, 0x00))
+        output_string = demo_array + [
+            "extern const uint8_t %s[] PROGMEM;" % ("free_" + self.source.name),
+            "const uint8_t %s[] PROGMEM =" % ("free_" + self.source.name),
+            "{",
+            "//  type|width|height|first char",
+            "    0x%02X, 0x%02X, 0x%02X, 0x%02X," % (2, self.source.width, self.source.height, 0x00)
+        ]
         for group in range(self.source.groups_count()):
             chars = self.source.get_group_chars(group)
             total_size += 3
             if sys.version_info < (3, 0):
-                print("// GROUP first '%s' total %d chars" % (chars[0].encode("utf-8"), len(chars)))
+                output_string.append("// GROUP first '%s' total %d chars" % (chars[0].encode("utf-8"), len(chars)))
             else:
                 chars  = list(chars)
-                print("// GROUP first '%s' total %d chars" % (chars[0], len(chars)))
-            print("//  unicode(LSB,MSB)|count")
-            print("    0x%02X, 0x%02X, 0x%02X, // unicode record" % \
+                output_string.append("// GROUP first '%s' total %d chars" % (chars[0], len(chars)))
+            output_string.append("//  unicode(LSB,MSB)|count")
+            output_string.append("    0x%02X, 0x%02X, 0x%02X, // unicode record" % \
                  ((ord(chars[0]) >> 8) & 0xFF, ord(chars[0]) & 0xFF, len(chars) & 0xFF))
             # jump table
             offset = 0
@@ -101,7 +136,7 @@ class Generator:
             sizes = []
             for char in chars:
                 bitmap = self.source.charBitmap(char)
-                print("    ", end = '')
+                full_string = "    "
                 width = len(bitmap[0])
                 height = len(bitmap)
                 while (height > 0) and (sum(bitmap[height -1]) == 0):
@@ -110,19 +145,21 @@ class Generator:
                 size = int((height + 7) / 8) * width
                 sizes.append( size )
                 total_size += 4
-                print("0x%02X, 0x%02X, 0x%02X, 0x%02X," % (offset >> 8, offset & 0xFF, width, height), end = '')
+                full_string += "0x%02X, 0x%02X, 0x%02X, 0x%02X," % (offset >> 8, offset & 0xFF, width, height)
                 if sys.version_info < (3, 0):
-                    print("// char '%s' (0x%04X/%d)" % (char.encode("utf-8"), ord(char), ord(char)))
+                    full_string += "// char '%s' (0x%04X/%d)" % (char.encode("utf-8"), ord(char), ord(char))
                 else:
-                    print("// char '%s' (0x%04X/%d)" % (char, ord(char), ord(char)))
+                    full_string += "// char '%s' (0x%04X/%d)" % (char, ord(char), ord(char))
                 offset += size
+                output_string.append(full_string)
             total_size += 2
-            print("    0x%02X, 0x%02X," % (offset >> 8, offset & 0xFF))
+            output_string.append("    0x%02X, 0x%02X," % (offset >> 8, offset & 0xFF))
             # char data
             for index in range(len(chars)):
+                full_string = ""
                 char = chars[index]
                 bitmap = self.source.charBitmap(char)
-                print ("    ", end='')
+                full_string += "    "
                 size = 0
                 for row in range(int((heights[index] + 7) / 8)):
                     for x in range(len(bitmap[0])):
@@ -134,16 +171,37 @@ class Generator:
                             data |= (self.source.charBitmap(char)[y][x] << i)
                         total_size += 1
                         size += 1
-                        print("0x%02X," % data, end=' ')
+                        full_string += "0x%02X, " % data
                 if sys.version_info < (3, 0):
-                    print("// char '%s' (0x%04X/%d)" % (char.encode("utf-8"), ord(char), ord(char)))
+                    full_string += "// char '%s' (0x%04X/%d)" % (char.encode("utf-8"), ord(char), ord(char))
                 else:
-                    print("// char '%s' (0x%04X/%d)" % (char, ord(char), ord(char)))
+                    full_string += "// char '%s' (0x%04X/%d)" % (char, ord(char), ord(char))
                 if size != sizes[index]:
                     print("ERROR!!!!")
                     exit(1)
+                 
+                output_string.append(full_string)
         total_size += 3
-        print("    0x00, 0x00, 0x00, // end of unicode tables")
-        print("    // FONT REQUIRES %d BYTES" % (total_size))
-        print("};")
-
+        output_string.append("    0x00, 0x00, 0x00, // end of unicode tables")
+        output_string.append("    // FONT REQUIRES %d BYTES" % (total_size))
+        output_string.append("};")
+        if output_file:
+            try:
+                with io.open(output_file, "w", encoding='utf-8') as fOut:
+                    out_str = None
+                    if sys.version_info < (3, 0):
+                        out_str = "\n".join(output_string).decode("utf-8")
+                    else:
+                        out_str = "\n".join(output_string)
+                    fOut.write(out_str)
+            
+                print("The file %s was created sucesfully" % (output_file))
+            except Exception as e:
+                print("There was an error creating the output file: %r" % (e))
+                exit(1)
+            
+        else:
+            if sys.version_info < (3, 0):
+                print("\n".join(output_string).decode("utf-8"))
+            else:
+                sys.stdout.buffer.write("\n".join(output_string).encode("utf-8"))

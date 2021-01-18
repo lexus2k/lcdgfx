@@ -42,20 +42,21 @@ from modules import fontgenerator
 def print_help_and_exit():
     print("Usage: ttf_fonts.py [args] > outputFile")
     print("args:")
-    print("      --ttf S   use ttf name as source")
-    print("      --glcd S  use glcd file as as source")
-    print("      -s <N>    font size (this is not pixels!) ")
-    print("      -SB <N>   limit size in pixels to value (pixels will be cut)")
-    print("      -fh       fixed height")
-    print("      -fw       fixed width")
-    print("      -g <S> <E> add chars group to the font")
-    print("                where <S> - first char hex or binary code, or char symbol")
-    print("                      <E> - chars count minus 1 (integer), or char symbol")
-    print("      -f old    old format 1.7.6 and below")
-    print("      -f new    new format 1.7.8 and above")
-    print("      -d        Print demo text to console")
-    print("      -t text   Use text as demo text")
-    print("      --demo-only Prints demo text to console and exits")
+    print("      --ttf S        use ttf name as source")
+    print("      --glcd S       use glcd file as as source")
+    print("      -s <N>         font size (this is not pixels!) ")
+    print("      -SB <N>        limit size in pixels to value (pixels will be cut)")
+    print("      -fh            fixed height")
+    print("      -fw            fixed width")
+    print("      -g <S> <E>     add chars group to the font")
+    print("                     where <S> - first char hex or binary code, or char symbol")
+    print("                           <E> - chars count minus 1 (integer), or char symbol")
+    print("      -f old         old format 1.7.6 and below")
+    print("      -f new         new format 1.7.8 and above")
+    print("      -d             Print demo text to console")
+    print("      -t text        Use text as demo text")
+    print("      --demo-only    Prints demo text to console and exits")
+    print("      --output-file  Saves the output to a file directly")
     print("Examples:")
     print("   [convert ttf font to old format]")
     print("      ttf_fonts.py --ttf FreeSans.ttf -s 8 -f old > font.h")
@@ -81,6 +82,7 @@ demo_text = False
 demo_text_ = "World!q01"
 generate_font = True
 source = None
+output_file = None
 
 # parse args
 idx = 1
@@ -113,7 +115,10 @@ while idx < len(sys.argv):
         _start_char = sys.argv[idx]
         if re.search(r'0x\d*', _start_char) is not None:
             code = int(_start_char, 16)
-            _start_char = unichr(code)
+            if sys.version_info < (3, 0):
+                _start_char = unichr(code)
+            else:
+                _start_char = chr(code)
         elif _start_char.isdigit() and len(_start_char) > 1:
             if sys.version_info < (3, 0):
                 _start_char = unichr(int(_start_char))
@@ -141,6 +146,9 @@ while idx < len(sys.argv):
     elif opt == "--demo-only":
         generate_font = False
         demo_text = True
+    elif opt == "--output-file":
+        idx += 1
+        output_file = sys.argv[idx]
     else:
         print("Unknown option: {0}".format(opt))
         print_help_and_exit()
@@ -150,7 +158,10 @@ if TTF:
     from modules import ttfsource
     source = ttfsource.TTFSource(fname, fsize)
     if len(fgroups) == 0:
-        fgroups.append((' ', unichr(127)))
+        if sys.version_info < (3, 0):
+            fgroups.append((' ', unichr(127)))
+        else:
+            fgroups.append((' ', chr(127)))
     for g in fgroups:
         source.add_chars(g[0], g[1])
 
@@ -170,19 +181,20 @@ if flimit_bottom > 0:
 font = fontgenerator.Generator( source )
 if fold:
     source.expand_chars()
+    demo_array = []
     if demo_text:
         if sys.version_info < (3, 0):
-            source.printString(demo_text_.decode("utf-8"))
+            demo_array = source.getString(demo_text_.decode("utf-8"))
         else:
-            source.printString(demo_text_)
+            demo_array = source.getString(demo_text_)
     if generate_font:
-        font.generate_fixed_old()
+        font.generate_fixed_old(demo_array, output_file)
 else:
+    demo_array = []
     if demo_text:
         if sys.version_info < (3, 0):
-            source.printString(demo_text_.decode("utf-8"))
+            demo_array = source.getString(demo_text_.decode("utf-8"))
         else:
-            source.printString(demo_text_)
+            demo_array = source.getString(demo_text_)
     if generate_font:
-        font.generate_new_format()
-
+        font.generate_new_format(demo_array, output_file)
