@@ -148,6 +148,7 @@ void NanoEngineInputs::connectWioKeypad()
 #endif
 }
 
+#ifndef SDL_EMULATION
 uint8_t NanoEngineInputs::wioButtons()
 {
     uint8_t buttons = BUTTON_NONE;
@@ -161,7 +162,7 @@ uint8_t NanoEngineInputs::wioButtons()
     if (lcd_gpioRead(30ul) == LCD_LOW) buttons |= BUTTON_C;
     return buttons;
 }
-
+#endif
 
 uint8_t NanoEngineInputs::s_ky40_clk;
 uint8_t NanoEngineInputs::s_ky40_dt;

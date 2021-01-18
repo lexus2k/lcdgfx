@@ -184,7 +184,9 @@ private:
     static uint8_t zkeypadButtons();
     static uint8_t arduboyButtons();
     static uint8_t gpioButtons();
+#ifndef SDL_EMULATION
     static uint8_t wioButtons();
+#endif
     static uint8_t ky40Buttons();
 };
 
