@@ -91,7 +91,12 @@ class Generator:
         if output_file:
             try:
                 with io.open(output_file, "w", encoding='utf-8') as fOut:
-                    fOut.write("\n".join(output_string))
+                    out_str = None
+                    if sys.version_info < (3, 0):
+                        out_str = "\n".join(output_string).decode("utf-8")
+                    else:
+                        out_str = "\n".join(output_string)
+                    fOut.write(out_str)
             
                 print("The file %s was created sucesfully" % (output_file))
             except Exception as e:
