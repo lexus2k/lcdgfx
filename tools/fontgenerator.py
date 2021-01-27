@@ -40,30 +40,30 @@ from modules import glcdsource
 from modules import fontgenerator
 
 def print_help_and_exit():
-    print("Usage: ttf_fonts.py [args] > outputFile")
-    print("args:")
-    print("      --ttf S        use ttf name as source")
-    print("      --glcd S       use glcd file as as source")
-    print("      -s <N>         font size (this is not pixels!) ")
-    print("      -SB <N>        limit size in pixels to value (pixels will be cut)")
-    print("      -fh            fixed height")
-    print("      -fw            fixed width")
-    print("      -g <S> <E>     add chars group to the font")
-    print("                     where <S> - first char hex or binary code, or char symbol")
-    print("                           <E> - chars count minus 1 (integer), or char symbol")
-    print("      -f old         old format 1.7.6 and below")
-    print("      -f new         new format 1.7.8 and above")
-    print("      -d             Print demo text to console")
-    print("      -t text        Use text as demo text")
-    print("      --demo-only    Prints demo text to console and exits")
-    print("      --output-file  Saves the output to a file directly")
-    print("Examples:")
-    print("   [convert ttf font to old format]")
-    print("      ttf_fonts.py --ttf FreeSans.ttf -s 8 -f old > font.h")
-    print("   [convert ttf font to new format with demo text and print to console]")
-    print("      ttf_fonts.py --ttf FreeSans.ttf -d -f new")
-    print("   [convert GLCD font generated file to new format]")
-    print("      ttf_fonts.py --glcd font.c -f new > font.h")
+    sys.stderr.write("Usage: ttf_fonts.py [args] > outputFile\n")
+    sys.stderr.write("args:\n")
+    sys.stderr.write("      --ttf S        use ttf name as source\n")
+    sys.stderr.write("      --glcd S       use glcd file as as source\n")
+    sys.stderr.write("      -s <N>         font size (this is not pixels!) \n")
+    sys.stderr.write("      -SB <N>        limit size in pixels to value (pixels will be cut)\n")
+    sys.stderr.write("      -fh            fixed height\n")
+    sys.stderr.write("      -fw            fixed width\n")
+    sys.stderr.write("      -g <S> <E>     add chars group to the font\n")
+    sys.stderr.write("                     where <S> - first char hex or binary code, or char symbol\n")
+    sys.stderr.write("                           <E> - chars count minus 1 (integer), or char symbol\n")
+    sys.stderr.write("      -f old         old format 1.7.6 and below\n")
+    sys.stderr.write("      -f new         new format 1.7.8 and above\n")
+    sys.stderr.write("      -d             Print demo text to console\n")
+    sys.stderr.write("      -t text        Use text as demo text\n")
+    sys.stderr.write("      --demo-only    Prints demo text to console and exits\n")
+    sys.stderr.write("      --output-file  Saves the output to a file directly\n")
+    sys.stderr.write("Examples:\n")
+    sys.stderr.write("   [convert ttf font to old format]\n")
+    sys.stderr.write("      ttf_fonts.py --ttf FreeSans.ttf -s 8 -f old > font.h\n")
+    sys.stderr.write("   [convert ttf font to new format with demo text and print to console]\n")
+    sys.stderr.write("      ttf_fonts.py --ttf FreeSans.ttf -d -f new\n")
+    sys.stderr.write("   [convert GLCD font generated file to new format]\n")
+    sys.stderr.write("      ttf_fonts.py --glcd font.c -f new > font.h\n")
     exit(1)
 
 if len(sys.argv) < 2:
@@ -130,6 +130,10 @@ while idx < len(sys.argv):
         idx += 1
         _end_char = sys.argv[idx]
         if _end_char.isdigit():
+            char_count = int(_end_char)
+            if char_count > 255:
+                sys.stderr.write("Number of characters in single block cannot be more than 255\n")
+                exit(1)
             if sys.version_info < (3, 0):
                 _end_char = unichr(ord(_start_char) + int(_end_char))
             else:
@@ -137,6 +141,9 @@ while idx < len(sys.argv):
         else:
             if sys.version_info < (3, 0):
                 _end_char = _end_char.decode("utf-8")
+            if ord(_end_char) - ord(_start_char) + 1 > 255:
+                sys.stderr.write("Number of characters in single block cannot be more than 255\n")
+                exit(1)
         fgroups.append( (_start_char, _end_char ) )
     elif opt == "-d":
         demo_text = True
@@ -150,7 +157,7 @@ while idx < len(sys.argv):
         idx += 1
         output_file = sys.argv[idx]
     else:
-        print("Unknown option: {0}".format(opt))
+        sys.stderr.write("Unknown option: {0}".format(opt))
         print_help_and_exit()
     idx += 1
 
