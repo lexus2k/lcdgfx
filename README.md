@@ -96,6 +96,8 @@ void loop()
 | sh1107 64x128 | X | X |   |   |
 | ssd1306 128x64 | X | X |   |   |
 | ssd1306 128x32 | X | X |   |   |
+| ssd1306 64x48 | X | X |   |   |
+| ssd1306 64x32 | X | X |   |   |
 | ssd1325 128x64 | X | X |   |   |
 | ssd1327 128x128 | X | X |   |   |
 | ssd1331 96x64 |   | X | X |   |
@@ -113,6 +115,7 @@ Compilers: gcc, clang
 | **Platforms** | **I2C** | **SPI** | **Comments** |
 | :-------- |:---:|:---:|:---------|
 | **Arduino** |     |     |          |
+| **Wio Terminal** |  X  |  X  | by SeeedStudio     |
 | Attiny85, Attiny45  |  X  |  X  | Refer to [Damellis attiny package](https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json) |
 | Attiny84, Attiny44  |  X  |  X  | Refer to [Damellis attiny package](https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json) |
 | Atmega328p, Atmega168  |  X  |  X  |    |
