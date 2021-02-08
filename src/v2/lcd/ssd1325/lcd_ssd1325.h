@@ -52,7 +52,7 @@ public:
      * @param data variable argument list, accepted by platform interface (PlatformI2c, PlatformSpi)
      */
     template <typename... Args>
-    InterfaceSSD1325(NanoDisplayBase<InterfaceSSD1325<I>> &base, int8_t dc, Args&&... data)
+    InterfaceSSD1325(NanoDisplayBase<InterfaceSSD1325<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
         , m_dc( dc )
         , m_base(base)
@@ -122,7 +122,9 @@ public:
      */
     DisplaySSD1325(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps4<I>, I>(intf)
-        , m_rstPin( rstPin ) { }
+        , m_rstPin( rstPin )
+    {
+    }
 
 protected:
     int8_t m_rstPin; ///< indicates hardware reset pin used, -1 if it is not required
@@ -188,7 +190,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SSD1325 lcd in 4-bit mode
@@ -267,7 +271,9 @@ public:
                                      static_cast<uint8_t>(config.addr ?: 0x3C),
                                      config.scl,
                                      config.sda,
-                                     config.frequency ?: 400000 } ) {}
+                                     config.frequency ?: 400000 } )
+    {
+    }
 
     /**
      * Initializes SSD1325 lcd in 4-bit mode

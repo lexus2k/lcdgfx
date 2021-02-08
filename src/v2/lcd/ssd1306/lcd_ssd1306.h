@@ -52,7 +52,7 @@ public:
      * @param data variable argument list, accepted by platform interface (PlatformI2c, PlatformSpi)
      */
     template <typename... Args>
-    InterfaceSSD1306(NanoDisplayBase<InterfaceSSD1306<I>> &base, int8_t dc, Args&&... data)
+    InterfaceSSD1306(NanoDisplayBase<InterfaceSSD1306<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
         , m_dc( dc )
         , m_base(base)
@@ -185,7 +185,9 @@ public:
      */
     DisplaySSD1306(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps1<I>, I>(intf)
-        , m_rstPin( rstPin ) { }
+        , m_rstPin( rstPin )
+    {
+    }
 
 protected:
     int8_t m_rstPin; ///< indicates hardware reset pin used, -1 if it is not required
@@ -251,7 +253,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -330,7 +334,9 @@ public:
                                      static_cast<uint8_t>(config.addr ?: 0x3C),
                                      config.scl,
                                      config.sda,
-                                     config.frequency ?: 400000 } ) {}
+                                     config.frequency ?: 400000 } )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -415,7 +421,9 @@ public:
     DisplaySSD1306_64x32_Custom( int8_t rstPin, int8_t dcPin, uint32_t frequency, Args&&... data )
         : DisplaySSD1306_64x32<InterfaceSSD1306<I>>(m_custom, rstPin)
         , m_custom( *this, dcPin, frequency= frequency ? : 3000000,
-                 data... ) {}
+                 data... )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -488,7 +496,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -567,7 +577,9 @@ public:
                                      static_cast<uint8_t>(config.addr ?: 0x3C),
                                      config.scl,
                                      config.sda,
-                                     config.frequency ?: 400000 } ) {}
+                                     config.frequency ?: 400000 } )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -652,7 +664,9 @@ public:
     DisplaySSD1306_64x48_Custom( int8_t rstPin, int8_t dcPin, uint32_t frequency, Args&&... data )
         : DisplaySSD1306_64x48<InterfaceSSD1306<I>>(m_custom, rstPin)
         , m_custom( *this, dcPin, frequency= frequency ? : 3000000,
-                 data... ) {}
+                 data... )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -725,7 +739,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -804,7 +820,9 @@ public:
                                      static_cast<uint8_t>(config.addr ?: 0x3C),
                                      config.scl,
                                      config.sda,
-                                     config.frequency ?: 400000 } ) {}
+                                     config.frequency ?: 400000 } )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -889,7 +907,9 @@ public:
     DisplaySSD1306_128x32_Custom( int8_t rstPin, int8_t dcPin, uint32_t frequency, Args&&... data )
         : DisplaySSD1306_128x32<InterfaceSSD1306<I>>(m_custom, rstPin)
         , m_custom( *this, dcPin, frequency= frequency ? : 3000000,
-                 data... ) {}
+                 data... )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -962,7 +982,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -1041,7 +1063,9 @@ public:
                                      static_cast<uint8_t>(config.addr ?: 0x3C),
                                      config.scl,
                                      config.sda,
-                                     config.frequency ?: 400000 } ) {}
+                                     config.frequency ?: 400000 } )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -1126,7 +1150,9 @@ public:
     DisplaySSD1306_128x64_Custom( int8_t rstPin, int8_t dcPin, uint32_t frequency, Args&&... data )
         : DisplaySSD1306_128x64<InterfaceSSD1306<I>>(m_custom, rstPin)
         , m_custom( *this, dcPin, frequency= frequency ? : 3000000,
-                 data... ) {}
+                 data... )
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode

@@ -52,7 +52,7 @@ public:
      * @param data variable argument list, accepted by platform interface (PlatformI2c, PlatformSpi)
      */
     template <typename... Args>
-    InterfaceSSD1351(NanoDisplayBase<InterfaceSSD1351<I>> &base, int8_t dc, Args&&... data)
+    InterfaceSSD1351(NanoDisplayBase<InterfaceSSD1351<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
         , m_dc( dc )
         , m_base(base)
@@ -132,7 +132,9 @@ public:
      */
     DisplaySSD1351x16(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps16<I>, I>(intf)
-        , m_rstPin( rstPin ) { }
+        , m_rstPin( rstPin )
+    {
+    }
 
 protected:
     int8_t m_rstPin; ///< indicates hardware reset pin used, -1 if it is not required
@@ -198,7 +200,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 4400000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SSD1351 lcd in 16-bit mode

@@ -165,7 +165,9 @@ public:
      */
     DisplaySSD1331x8(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps8<I>, I>(intf)
-        , m_rstPin( rstPin ) { }
+        , m_rstPin( rstPin )
+    {
+    }
 
 protected:
     int8_t m_rstPin; ///< indicates hardware reset pin used, -1 if it is not required
@@ -231,7 +233,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 6000000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SSD1331 lcd in 8-bit mode
@@ -306,7 +310,9 @@ public:
      */
     DisplaySSD1331x16(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps16<I>, I>(intf)
-        , m_rstPin( rstPin ) { }
+        , m_rstPin( rstPin )
+    {
+    }
 
 protected:
     int8_t m_rstPin; ///< indicates hardware reset pin used, -1 if it is not required
@@ -372,7 +378,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 6000000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SSD1331 lcd in 16-bit mode

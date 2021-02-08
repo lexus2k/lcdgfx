@@ -18,7 +18,9 @@ public:
                                      static_cast<uint8_t>(config.addr ?: ~I2C_ADDR~),
                                      config.scl,
                                      config.sda,
-                                     config.frequency ?: 400000 } ) {}
+                                     config.frequency ?: 400000 } )
+    {
+    }
 
     /**
      * Initializes ~CONTROLLER~ lcd in ~BITS~-bit mode

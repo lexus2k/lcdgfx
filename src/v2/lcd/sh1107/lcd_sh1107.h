@@ -52,7 +52,7 @@ public:
      * @param data variable argument list, accepted by platform interface (PlatformI2c, PlatformSpi)
      */
     template <typename... Args>
-    InterfaceSH1107(NanoDisplayBase<InterfaceSH1107<I>> &base, int8_t dc, Args&&... data)
+    InterfaceSH1107(NanoDisplayBase<InterfaceSH1107<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
         , m_dc( dc )
         , m_base(base)
@@ -207,7 +207,9 @@ public:
      */
     DisplaySH1107(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps1<I>, I>(intf)
-        , m_rstPin( rstPin ) { }
+        , m_rstPin( rstPin )
+    {
+    }
 
 protected:
     int8_t m_rstPin; ///< indicates hardware reset pin used, -1 if it is not required
@@ -273,7 +275,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SH1107 lcd in 1-bit mode
@@ -352,7 +356,9 @@ public:
                                      static_cast<uint8_t>(config.addr ?: 0x3C),
                                      config.scl,
                                      config.sda,
-                                     config.frequency ?: 400000 } ) {}
+                                     config.frequency ?: 400000 } )
+    {
+    }
 
     /**
      * Initializes SH1107 lcd in 1-bit mode
@@ -462,7 +468,9 @@ public:
                                      config.dc,
                                      config.frequency ?: 10000000,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes SH1107 lcd in 1-bit mode
@@ -541,7 +549,9 @@ public:
                                      static_cast<uint8_t>(config.addr ?: 0x3C),
                                      config.scl,
                                      config.sda,
-                                     config.frequency ?: 400000 } ) {}
+                                     config.frequency ?: 400000 } )
+    {
+    }
 
     /**
      * Initializes SH1107 lcd in 1-bit mode

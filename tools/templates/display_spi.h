@@ -19,7 +19,9 @@ public:
                                      config.dc,
                                      config.frequency ?: ~FREQUENCY~,
                                      config.scl,
-                                     config.sda } ) {}
+                                     config.sda } )
+    {
+    }
 
     /**
      * Initializes ~CONTROLLER~ lcd in ~BITS~-bit mode
