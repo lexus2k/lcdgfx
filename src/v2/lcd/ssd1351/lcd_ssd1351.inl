@@ -132,13 +132,11 @@ void InterfaceSSD1351<I>::setRotation(uint8_t rotation)
 //             SSD1351 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplaySSD1351x16<I>::begin()
+template <class I> void DisplaySSD1351x16<I>::begin()
 {
 }
 
-template <class I>
-void DisplaySSD1351x16<I>::end()
+template <class I> void DisplaySSD1351x16<I>::end()
 {
 }
 

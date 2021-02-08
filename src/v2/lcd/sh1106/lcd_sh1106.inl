@@ -162,13 +162,11 @@ void InterfaceSH1106<I>::flipVertical(uint8_t mode)
 //             SH1106 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplaySH1106<I>::begin()
+template <class I> void DisplaySH1106<I>::begin()
 {
 }
 
-template <class I>
-void DisplaySH1106<I>::end()
+template <class I> void DisplaySH1106<I>::end()
 {
 }
 

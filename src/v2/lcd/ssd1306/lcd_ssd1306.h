@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to SSD1306 displays
  */
-template <class I>
-class InterfaceSSD1306: public I
+template <class I> class InterfaceSSD1306: public I
 {
 public:
     /**
@@ -173,8 +172,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I>
-class DisplaySSD1306: public NanoDisplayOps<NanoDisplayOps1<I>,I>
+template <class I> class DisplaySSD1306: public NanoDisplayOps<NanoDisplayOps1<I>,I>
 {
 public:
     /**
@@ -206,8 +204,7 @@ protected:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I>
-class DisplaySSD1306_64x32: public DisplaySSD1306<I>
+template <class I> class DisplaySSD1306_64x32: public DisplaySSD1306<I>
 {
 public:
     /**
@@ -401,8 +398,7 @@ private:
  * (user-defined interface implementation). I - user custom interface class.
  * This class allows to use display over 6800 and 8080 parallel interfaces
  */
-template <class I>
-class DisplaySSD1306_64x32_Custom: public DisplaySSD1306_64x32<InterfaceSSD1306<I>>
+template <class I> class DisplaySSD1306_64x32_Custom: public DisplaySSD1306_64x32<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -449,8 +445,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I>
-class DisplaySSD1306_64x48: public DisplaySSD1306<I>
+template <class I> class DisplaySSD1306_64x48: public DisplaySSD1306<I>
 {
 public:
     /**
@@ -644,8 +639,7 @@ private:
  * (user-defined interface implementation). I - user custom interface class.
  * This class allows to use display over 6800 and 8080 parallel interfaces
  */
-template <class I>
-class DisplaySSD1306_64x48_Custom: public DisplaySSD1306_64x48<InterfaceSSD1306<I>>
+template <class I> class DisplaySSD1306_64x48_Custom: public DisplaySSD1306_64x48<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -692,8 +686,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I>
-class DisplaySSD1306_128x32: public DisplaySSD1306<I>
+template <class I> class DisplaySSD1306_128x32: public DisplaySSD1306<I>
 {
 public:
     /**
@@ -887,8 +880,7 @@ private:
  * (user-defined interface implementation). I - user custom interface class.
  * This class allows to use display over 6800 and 8080 parallel interfaces
  */
-template <class I>
-class DisplaySSD1306_128x32_Custom: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
+template <class I> class DisplaySSD1306_128x32_Custom: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -935,8 +927,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I>
-class DisplaySSD1306_128x64: public DisplaySSD1306<I>
+template <class I> class DisplaySSD1306_128x64: public DisplaySSD1306<I>
 {
 public:
     /**
@@ -1130,8 +1121,7 @@ private:
  * (user-defined interface implementation). I - user custom interface class.
  * This class allows to use display over 6800 and 8080 parallel interfaces
  */
-template <class I>
-class DisplaySSD1306_128x64_Custom: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
+template <class I> class DisplaySSD1306_128x64_Custom: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
 {
 public:
     /**

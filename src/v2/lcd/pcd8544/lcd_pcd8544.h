@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to PCD8544 displays
  */
-template <class I>
-class InterfacePCD8544: public I
+template <class I> class InterfacePCD8544: public I
 {
 public:
     /**
@@ -114,8 +113,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of PCD8544-based displays
  */
-template <class I>
-class DisplayPCD8544: public NanoDisplayOps<NanoDisplayOps1<I>,I>
+template <class I> class DisplayPCD8544: public NanoDisplayOps<NanoDisplayOps1<I>,I>
 {
 public:
     /**
@@ -147,8 +145,7 @@ protected:
 /**
  * Class implements basic functions for 1-bit mode of PCD8544-based displays
  */
-template <class I>
-class DisplayPCD8544_84x48: public DisplayPCD8544<I>
+template <class I> class DisplayPCD8544_84x48: public DisplayPCD8544<I>
 {
 public:
     /**

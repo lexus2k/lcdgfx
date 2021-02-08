@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to ST7735 displays
  */
-template <class I>
-class InterfaceST7735: public I
+template <class I> class InterfaceST7735: public I
 {
 public:
     /**
@@ -136,8 +135,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */
-template <class I>
-class DisplayST7735x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
+template <class I> class DisplayST7735x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
 {
 public:
     /**
@@ -169,8 +167,7 @@ protected:
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */
-template <class I>
-class DisplayST7735_128x128x16: public DisplayST7735x16<I>
+template <class I> class DisplayST7735_128x128x16: public DisplayST7735x16<I>
 {
 public:
     /**
@@ -280,8 +277,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */
-template <class I>
-class DisplayST7735_128x160x16: public DisplayST7735x16<I>
+template <class I> class DisplayST7735_128x160x16: public DisplayST7735x16<I>
 {
 public:
     /**

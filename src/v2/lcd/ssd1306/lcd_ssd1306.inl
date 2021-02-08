@@ -162,13 +162,11 @@ void InterfaceSSD1306<I>::flipVertical(uint8_t mode)
 //             SSD1306 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplaySSD1306<I>::begin()
+template <class I> void DisplaySSD1306<I>::begin()
 {
 }
 
-template <class I>
-void DisplaySSD1306<I>::end()
+template <class I> void DisplaySSD1306<I>::end()
 {
 }
 

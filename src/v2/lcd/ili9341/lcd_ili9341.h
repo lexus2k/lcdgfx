@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to ILI9341 displays
  */
-template <class I>
-class InterfaceILI9341: public I
+template <class I> class InterfaceILI9341: public I
 {
 public:
     /**
@@ -133,8 +132,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ILI9341-based displays
  */
-template <class I>
-class DisplayILI9341x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
+template <class I> class DisplayILI9341x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
 {
 public:
     /**
@@ -166,8 +164,7 @@ protected:
 /**
  * Class implements basic functions for 16-bit mode of ILI9341-based displays
  */
-template <class I>
-class DisplayILI9341_240x320x16: public DisplayILI9341x16<I>
+template <class I> class DisplayILI9341_240x320x16: public DisplayILI9341x16<I>
 {
 public:
     /**
@@ -277,8 +274,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ILI9341-based displays
  */
-template <class I>
-class DisplayILI9341_128x160x16: public DisplayILI9341x16<I>
+template <class I> class DisplayILI9341_128x160x16: public DisplayILI9341x16<I>
 {
 public:
     /**

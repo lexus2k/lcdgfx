@@ -135,13 +135,11 @@ void InterfaceILI9341<I>::rotateOutput(uint8_t rotate)
 //             ILI9341 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplayILI9341x16<I>::begin()
+template <class I> void DisplayILI9341x16<I>::begin()
 {
 }
 
-template <class I>
-void DisplayILI9341x16<I>::end()
+template <class I> void DisplayILI9341x16<I>::end()
 {
 }
 

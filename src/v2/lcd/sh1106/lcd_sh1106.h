@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to SH1106 displays
  */
-template <class I>
-class InterfaceSH1106: public I
+template <class I> class InterfaceSH1106: public I
 {
 public:
     /**
@@ -176,8 +175,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SH1106-based displays
  */
-template <class I>
-class DisplaySH1106: public NanoDisplayOps<NanoDisplayOps1<I>,I>
+template <class I> class DisplaySH1106: public NanoDisplayOps<NanoDisplayOps1<I>,I>
 {
 public:
     /**
@@ -209,8 +207,7 @@ protected:
 /**
  * Class implements basic functions for 1-bit mode of SH1106-based displays
  */
-template <class I>
-class DisplaySH1106_128x64: public DisplaySH1106<I>
+template <class I> class DisplaySH1106_128x64: public DisplaySH1106<I>
 {
 public:
     /**

@@ -153,13 +153,11 @@ void InterfaceST7735<I>::setOffset(lcdint_t ox, lcdint_t oy)
 //             ST7735 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplayST7735x16<I>::begin()
+template <class I> void DisplayST7735x16<I>::begin()
 {
 }
 
-template <class I>
-void DisplayST7735x16<I>::end()
+template <class I> void DisplayST7735x16<I>::end()
 {
 }
 

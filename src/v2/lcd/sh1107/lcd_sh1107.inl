@@ -178,13 +178,11 @@ void InterfaceSH1107<I>::setDisplayOffset(uint8_t offset)
 //             SH1107 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplaySH1107<I>::begin()
+template <class I> void DisplaySH1107<I>::begin()
 {
 }
 
-template <class I>
-void DisplaySH1107<I>::end()
+template <class I> void DisplaySH1107<I>::end()
 {
 }
 

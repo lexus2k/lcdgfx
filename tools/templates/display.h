@@ -2,8 +2,7 @@
 /**
  * Class implements basic functions for ~BITS~-bit mode of ~CONTROLLER~-based displays
  */
-template <class I>
-class Display~CONTROLLER~~EXBITS~: public NanoDisplayOps<NanoDisplayOps~BITS~<I>,I>
+template <class I> class Display~CONTROLLER~~EXBITS~: public NanoDisplayOps<NanoDisplayOps~BITS~<I>,I>
 {
 public:
     /**

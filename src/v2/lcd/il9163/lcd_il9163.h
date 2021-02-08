@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to IL9163 displays
  */
-template <class I>
-class InterfaceIL9163: public I
+template <class I> class InterfaceIL9163: public I
 {
 public:
     /**
@@ -121,8 +120,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of IL9163-based displays
  */
-template <class I>
-class DisplayIL9163x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
+template <class I> class DisplayIL9163x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
 {
 public:
     /**
@@ -154,8 +152,7 @@ protected:
 /**
  * Class implements basic functions for 16-bit mode of IL9163-based displays
  */
-template <class I>
-class DisplayIL9163_128x128x16: public DisplayIL9163x16<I>
+template <class I> class DisplayIL9163_128x128x16: public DisplayIL9163x16<I>
 {
 public:
     /**
@@ -265,8 +262,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of IL9163-based displays
  */
-template <class I>
-class DisplayIL9163_128x160x16: public DisplayIL9163x16<I>
+template <class I> class DisplayIL9163_128x160x16: public DisplayIL9163x16<I>
 {
 public:
     /**

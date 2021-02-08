@@ -91,13 +91,11 @@ void InterfaceSSD1327<I>::commandStart()
 //             SSD1327 basic 4-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplaySSD1327<I>::begin()
+template <class I> void DisplaySSD1327<I>::begin()
 {
 }
 
-template <class I>
-void DisplaySSD1327<I>::end()
+template <class I> void DisplaySSD1327<I>::end()
 {
 }
 

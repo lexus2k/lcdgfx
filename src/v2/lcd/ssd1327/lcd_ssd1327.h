@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to SSD1327 displays
  */
-template <class I>
-class InterfaceSSD1327: public I
+template <class I> class InterfaceSSD1327: public I
 {
 public:
     /**
@@ -110,8 +109,7 @@ private:
 /**
  * Class implements basic functions for 4-bit mode of SSD1327-based displays
  */
-template <class I>
-class DisplaySSD1327: public NanoDisplayOps<NanoDisplayOps4<I>,I>
+template <class I> class DisplaySSD1327: public NanoDisplayOps<NanoDisplayOps4<I>,I>
 {
 public:
     /**
@@ -143,8 +141,7 @@ protected:
 /**
  * Class implements basic functions for 4-bit mode of SSD1327-based displays
  */
-template <class I>
-class DisplaySSD1327_128x128: public DisplaySSD1327<I>
+template <class I> class DisplaySSD1327_128x128: public DisplaySSD1327<I>
 {
 public:
     /**

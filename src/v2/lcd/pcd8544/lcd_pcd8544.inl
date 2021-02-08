@@ -89,13 +89,11 @@ void InterfacePCD8544<I>::commandStart()
 //             PCD8544 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplayPCD8544<I>::begin()
+template <class I> void DisplayPCD8544<I>::begin()
 {
 }
 
-template <class I>
-void DisplayPCD8544<I>::end()
+template <class I> void DisplayPCD8544<I>::end()
 {
 }
 

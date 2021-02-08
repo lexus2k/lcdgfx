@@ -1,8 +1,7 @@
 /**
  * Class implements basic functions for ~BITS~-bit mode of ~CONTROLLER~-based displays
  */
-template <class I>
-class Display~CONTROLLER~_~RESOLUTION~: public Display~CONTROLLER~~EXBITS~<I>
+template <class I> class Display~CONTROLLER~_~RESOLUTION~: public Display~CONTROLLER~~EXBITS~<I>
 {
 public:
     /**

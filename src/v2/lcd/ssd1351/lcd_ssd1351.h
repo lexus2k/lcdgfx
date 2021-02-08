@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to SSD1351 displays
  */
-template <class I>
-class InterfaceSSD1351: public I
+template <class I> class InterfaceSSD1351: public I
 {
 public:
     /**
@@ -120,8 +119,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
  */
-template <class I>
-class DisplaySSD1351x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
+template <class I> class DisplaySSD1351x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
 {
 public:
     /**
@@ -153,8 +151,7 @@ protected:
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
  */
-template <class I>
-class DisplaySSD1351_128x128x16: public DisplaySSD1351x16<I>
+template <class I> class DisplaySSD1351_128x128x16: public DisplaySSD1351x16<I>
 {
 public:
     /**

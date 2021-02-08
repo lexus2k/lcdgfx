@@ -3,8 +3,7 @@
  * (user-defined interface implementation). I - user custom interface class.
  * This class allows to use display over 6800 and 8080 parallel interfaces
  */
-template <class I>
-class Display~CONTROLLER~_~RESOLUTION~_Custom: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
+template <class I> class Display~CONTROLLER~_~RESOLUTION~_Custom: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
 {
 public:
     /**

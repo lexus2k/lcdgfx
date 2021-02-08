@@ -130,13 +130,11 @@ void InterfaceIL9163<I>::setRotation(uint8_t rotation)
 //             IL9163 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplayIL9163x16<I>::begin()
+template <class I> void DisplayIL9163x16<I>::begin()
 {
 }
 
-template <class I>
-void DisplayIL9163x16<I>::end()
+template <class I> void DisplayIL9163x16<I>::end()
 {
 }
 
