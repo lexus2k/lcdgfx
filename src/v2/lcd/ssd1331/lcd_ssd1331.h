@@ -52,7 +52,7 @@ public:
      * @param data variable argument list, accepted by platform interface (PlatformI2c, PlatformSpi)
      */
     template <typename... Args>
-    InterfaceSSD1331(uint8_t bits, NanoDisplayBase<InterfaceSSD1331<I>> &base, int8_t dc, Args&&... data)
+    InterfaceSSD1331(uint8_t bits, NanoDisplayBase<InterfaceSSD1331<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
         , m_bits(bits)
         , m_dc(dc)
@@ -261,7 +261,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1331_96x64x8_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplaySSD1331_96x64x8_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>(m_spi, rstPin)
         , m_spi(8, *this, dcPin, data...)
     {
@@ -402,7 +402,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1331_96x64x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplaySSD1331_96x64x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>(m_spi, rstPin)
         , m_spi(16, *this, dcPin, data...)
     {

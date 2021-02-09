@@ -222,7 +222,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayPCD8544_84x48_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplayPCD8544_84x48_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplayPCD8544_84x48<InterfacePCD8544<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {

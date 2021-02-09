@@ -228,7 +228,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1351_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplaySSD1351_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {

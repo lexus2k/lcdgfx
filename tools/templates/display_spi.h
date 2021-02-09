@@ -49,7 +49,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    Display~CONTROLLER~_~RESOLUTION~_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    Display~CONTROLLER~_~RESOLUTION~_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>(m_spi, rstPin)
         , m_spi(~CUSTOM_SERIAL_INTERFACE_ARGS~, data...)
     {

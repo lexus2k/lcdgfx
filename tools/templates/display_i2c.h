@@ -15,7 +15,7 @@ public:
         : Display~CONTROLLER~_~RESOLUTION~(m_i2c, rstPin)
         , m_i2c(~SERIAL_INTERFACE_ARGS~,
                 SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: ~I2C_ADDR~), config.scl, config.sda,
-                                   config.frequency ?: 400000 })
+                                   config.frequency ?: 400000})
     {
     }
 
@@ -48,10 +48,9 @@ public:
      * @param data variable argument list for custom user i2c interface.
      */
     template <typename... Args>
-    Display~CONTROLLER~_~RESOLUTION~_CustomI2C(int8_t rstPin, Args&&... data)
+    Display~CONTROLLER~_~RESOLUTION~_CustomI2C(int8_t rstPin, Args &&... data)
         : Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>(m_i2c, rstPin)
-        , m_i2c(~SERIAL_INTERFACE_ARGS~,
-                 data...)
+        , m_i2c(~SERIAL_INTERFACE_ARGS~, data...)
     {
     }
 

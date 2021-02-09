@@ -19,7 +19,7 @@ public:
      * @param data variable argument list for custom user interface.
      */
     template <typename... Args>
-    Display~CONTROLLER~_~RESOLUTION~_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args&&... data)
+    Display~CONTROLLER~_~RESOLUTION~_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args &&... data)
         : Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>(m_custom, rstPin)
         , m_custom( ~CUSTOM_INTERFACE_ARGS~,
                  data... )

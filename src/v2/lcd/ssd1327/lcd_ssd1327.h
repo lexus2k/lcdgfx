@@ -219,7 +219,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1327_128x128_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplaySSD1327_128x128_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1327_128x128<InterfaceSSD1327<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {
@@ -263,7 +263,7 @@ public:
         : DisplaySSD1327_128x128(m_i2c, rstPin)
         , m_i2c(*this, -1,
                 SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
-                                   config.frequency ?: 400000 })
+                                   config.frequency ?: 400000})
     {
     }
 
@@ -296,10 +296,9 @@ public:
      * @param data variable argument list for custom user i2c interface.
      */
     template <typename... Args>
-    DisplaySSD1327_128x128_CustomI2C(int8_t rstPin, Args&&... data)
+    DisplaySSD1327_128x128_CustomI2C(int8_t rstPin, Args &&... data)
         : DisplaySSD1327_128x128<InterfaceSSD1327<I>>(m_i2c, rstPin)
-        , m_i2c(*this, -1,
-                 data...)
+        , m_i2c(*this, -1, data...)
     {
     }
 

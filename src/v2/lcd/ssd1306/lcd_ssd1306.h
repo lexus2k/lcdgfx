@@ -282,7 +282,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1306_64x32_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplaySSD1306_64x32_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1306_64x32<InterfaceSSD1306<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {
@@ -326,7 +326,7 @@ public:
         : DisplaySSD1306_64x32(m_i2c, rstPin)
         , m_i2c(*this, -1,
                 SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
-                                   config.frequency ?: 400000 })
+                                   config.frequency ?: 400000})
     {
     }
 
@@ -359,10 +359,9 @@ public:
      * @param data variable argument list for custom user i2c interface.
      */
     template <typename... Args>
-    DisplaySSD1306_64x32_CustomI2C(int8_t rstPin, Args&&... data)
+    DisplaySSD1306_64x32_CustomI2C(int8_t rstPin, Args &&... data)
         : DisplaySSD1306_64x32<InterfaceSSD1306<I>>(m_i2c, rstPin)
-        , m_i2c(*this, -1,
-                 data...)
+        , m_i2c(*this, -1, data...)
     {
     }
 
@@ -410,7 +409,7 @@ public:
      * @param data variable argument list for custom user interface.
      */
     template <typename... Args>
-    DisplaySSD1306_64x32_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args&&... data)
+    DisplaySSD1306_64x32_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args &&... data)
         : DisplaySSD1306_64x32<InterfaceSSD1306<I>>(m_custom, rstPin)
         , m_custom( *this, dcPin, frequency= frequency ? : 3000000,
                  data... )
@@ -519,7 +518,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1306_64x48_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplaySSD1306_64x48_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1306_64x48<InterfaceSSD1306<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {
@@ -563,7 +562,7 @@ public:
         : DisplaySSD1306_64x48(m_i2c, rstPin)
         , m_i2c(*this, -1,
                 SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
-                                   config.frequency ?: 400000 })
+                                   config.frequency ?: 400000})
     {
     }
 
@@ -596,10 +595,9 @@ public:
      * @param data variable argument list for custom user i2c interface.
      */
     template <typename... Args>
-    DisplaySSD1306_64x48_CustomI2C(int8_t rstPin, Args&&... data)
+    DisplaySSD1306_64x48_CustomI2C(int8_t rstPin, Args &&... data)
         : DisplaySSD1306_64x48<InterfaceSSD1306<I>>(m_i2c, rstPin)
-        , m_i2c(*this, -1,
-                 data...)
+        , m_i2c(*this, -1, data...)
     {
     }
 
@@ -647,7 +645,7 @@ public:
      * @param data variable argument list for custom user interface.
      */
     template <typename... Args>
-    DisplaySSD1306_64x48_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args&&... data)
+    DisplaySSD1306_64x48_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args &&... data)
         : DisplaySSD1306_64x48<InterfaceSSD1306<I>>(m_custom, rstPin)
         , m_custom( *this, dcPin, frequency= frequency ? : 3000000,
                  data... )
@@ -756,7 +754,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1306_128x32_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplaySSD1306_128x32_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1306_128x32<InterfaceSSD1306<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {
@@ -800,7 +798,7 @@ public:
         : DisplaySSD1306_128x32(m_i2c, rstPin)
         , m_i2c(*this, -1,
                 SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
-                                   config.frequency ?: 400000 })
+                                   config.frequency ?: 400000})
     {
     }
 
@@ -833,10 +831,9 @@ public:
      * @param data variable argument list for custom user i2c interface.
      */
     template <typename... Args>
-    DisplaySSD1306_128x32_CustomI2C(int8_t rstPin, Args&&... data)
+    DisplaySSD1306_128x32_CustomI2C(int8_t rstPin, Args &&... data)
         : DisplaySSD1306_128x32<InterfaceSSD1306<I>>(m_i2c, rstPin)
-        , m_i2c(*this, -1,
-                 data...)
+        , m_i2c(*this, -1, data...)
     {
     }
 
@@ -884,7 +881,7 @@ public:
      * @param data variable argument list for custom user interface.
      */
     template <typename... Args>
-    DisplaySSD1306_128x32_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args&&... data)
+    DisplaySSD1306_128x32_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args &&... data)
         : DisplaySSD1306_128x32<InterfaceSSD1306<I>>(m_custom, rstPin)
         , m_custom( *this, dcPin, frequency= frequency ? : 3000000,
                  data... )
@@ -993,7 +990,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1306_128x64_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplaySSD1306_128x64_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1306_128x64<InterfaceSSD1306<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {
@@ -1037,7 +1034,7 @@ public:
         : DisplaySSD1306_128x64(m_i2c, rstPin)
         , m_i2c(*this, -1,
                 SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
-                                   config.frequency ?: 400000 })
+                                   config.frequency ?: 400000})
     {
     }
 
@@ -1070,10 +1067,9 @@ public:
      * @param data variable argument list for custom user i2c interface.
      */
     template <typename... Args>
-    DisplaySSD1306_128x64_CustomI2C(int8_t rstPin, Args&&... data)
+    DisplaySSD1306_128x64_CustomI2C(int8_t rstPin, Args &&... data)
         : DisplaySSD1306_128x64<InterfaceSSD1306<I>>(m_i2c, rstPin)
-        , m_i2c(*this, -1,
-                 data...)
+        , m_i2c(*this, -1, data...)
     {
     }
 
@@ -1121,7 +1117,7 @@ public:
      * @param data variable argument list for custom user interface.
      */
     template <typename... Args>
-    DisplaySSD1306_128x64_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args&&... data)
+    DisplaySSD1306_128x64_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args &&... data)
         : DisplaySSD1306_128x64<InterfaceSSD1306<I>>(m_custom, rstPin)
         , m_custom( *this, dcPin, frequency= frequency ? : 3000000,
                  data... )

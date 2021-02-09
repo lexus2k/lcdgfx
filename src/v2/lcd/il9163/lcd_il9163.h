@@ -229,7 +229,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayIL9163_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplayIL9163_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplayIL9163_128x128x16<InterfaceIL9163<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {
@@ -337,7 +337,7 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayIL9163_128x160x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
+    DisplayIL9163_128x160x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplayIL9163_128x160x16<InterfaceIL9163<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {
