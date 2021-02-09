@@ -151,7 +151,9 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplaySSD1325_128x64(I &intf, int8_t rstPin)
-        : DisplaySSD1325<I>(intf, rstPin) { }
+        : DisplaySSD1325<I>(intf, rstPin)
+    {
+    }
 
 protected:
 
@@ -179,7 +181,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplaySSD1325_128x64_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
+    explicit DisplaySSD1325_128x64_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplaySSD1325_128x64(m_spi, rstPin)
         , m_spi(*this, config.dc,
                 SPlatformSpiConfig{ config.busId,
@@ -221,10 +223,10 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1325_128x64_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplaySSD1325_128x64_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplaySSD1325_128x64<InterfaceSSD1325<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin,
+                data...) {}
 
     /**
      * Initializes SSD1325 lcd in 4-bit mode
@@ -263,11 +265,11 @@ public:
     explicit DisplaySSD1325_128x64_I2C( int8_t rstPin, const SPlatformI2cConfig &config = { -1, 0x3C, -1, -1, 0 } )
         : DisplaySSD1325_128x64(m_i2c, rstPin)
         , m_i2c(*this, -1,
-                SPlatformI2cConfig{ config.busId,
-                                    static_cast<uint8_t>(config.addr ?: 0x3C),
-                                    config.scl,
-                                    config.sda,
-                                    config.frequency ?: 400000 } )
+                SPlatformI2cConfig{config.busId,
+                                   static_cast<uint8_t>(config.addr ?: 0x3C),
+                                   config.scl,
+                                   config.sda,
+                                   config.frequency ?: 400000 })
     {
     }
 

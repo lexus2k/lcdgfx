@@ -161,7 +161,9 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplayIL9163_128x128x16(I &intf, int8_t rstPin)
-        : DisplayIL9163x16<I>(intf, rstPin) { }
+        : DisplayIL9163x16<I>(intf, rstPin)
+    {
+    }
 
 protected:
 
@@ -189,7 +191,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayIL9163_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
+    explicit DisplayIL9163_128x128x16_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplayIL9163_128x128x16(m_spi, rstPin)
         , m_spi(*this, config.dc,
                 SPlatformSpiConfig{ config.busId,
@@ -231,10 +233,10 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayIL9163_128x128x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplayIL9163_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayIL9163_128x128x16<InterfaceIL9163<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin,
+                data...) {}
 
     /**
      * Initializes IL9163 lcd in 16-bit mode
@@ -270,7 +272,9 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplayIL9163_128x160x16(I &intf, int8_t rstPin)
-        : DisplayIL9163x16<I>(intf, rstPin) { }
+        : DisplayIL9163x16<I>(intf, rstPin)
+    {
+    }
 
 protected:
 
@@ -298,7 +302,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayIL9163_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
+    explicit DisplayIL9163_128x160x16_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplayIL9163_128x160x16(m_spi, rstPin)
         , m_spi(*this, config.dc,
                 SPlatformSpiConfig{ config.busId,
@@ -340,10 +344,10 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayIL9163_128x160x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplayIL9163_128x160x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayIL9163_128x160x16<InterfaceIL9163<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin,
+                data...) {}
 
     /**
      * Initializes IL9163 lcd in 16-bit mode

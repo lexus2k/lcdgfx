@@ -154,7 +154,9 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplayPCD8544_84x48(I &intf, int8_t rstPin)
-        : DisplayPCD8544<I>(intf, rstPin) { }
+        : DisplayPCD8544<I>(intf, rstPin)
+    {
+    }
 
 protected:
 
@@ -182,7 +184,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayPCD8544_84x48_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
+    explicit DisplayPCD8544_84x48_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplayPCD8544_84x48(m_spi, rstPin)
         , m_spi(*this, config.dc,
                 SPlatformSpiConfig{ config.busId,
@@ -224,10 +226,10 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayPCD8544_84x48_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplayPCD8544_84x48_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayPCD8544_84x48<InterfacePCD8544<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin,
+                data...) {}
 
     /**
      * Initializes PCD8544 lcd in 1-bit mode

@@ -160,7 +160,9 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplaySSD1351_128x128x16(I &intf, int8_t rstPin)
-        : DisplaySSD1351x16<I>(intf, rstPin) { }
+        : DisplaySSD1351x16<I>(intf, rstPin)
+    {
+    }
 
 protected:
 
@@ -188,7 +190,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplaySSD1351_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
+    explicit DisplaySSD1351_128x128x16_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplaySSD1351_128x128x16(m_spi, rstPin)
         , m_spi(*this, config.dc,
                 SPlatformSpiConfig{ config.busId,
@@ -230,10 +232,10 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1351_128x128x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplaySSD1351_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin,
+                data...) {}
 
     /**
      * Initializes SSD1351 lcd in 16-bit mode

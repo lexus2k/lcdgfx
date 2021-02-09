@@ -173,7 +173,9 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplayILI9341_240x320x16(I &intf, int8_t rstPin)
-        : DisplayILI9341x16<I>(intf, rstPin) { }
+        : DisplayILI9341x16<I>(intf, rstPin)
+    {
+    }
 
 protected:
 
@@ -201,7 +203,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayILI9341_240x320x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
+    explicit DisplayILI9341_240x320x16_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplayILI9341_240x320x16(m_spi, rstPin)
         , m_spi(*this, config.dc,
                 SPlatformSpiConfig{ config.busId,
@@ -243,10 +245,10 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayILI9341_240x320x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplayILI9341_240x320x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayILI9341_240x320x16<InterfaceILI9341<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin,
+                data...) {}
 
     /**
      * Initializes ILI9341 lcd in 16-bit mode
@@ -282,7 +284,9 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplayILI9341_128x160x16(I &intf, int8_t rstPin)
-        : DisplayILI9341x16<I>(intf, rstPin) { }
+        : DisplayILI9341x16<I>(intf, rstPin)
+    {
+    }
 
 protected:
 
@@ -310,7 +314,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayILI9341_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
+    explicit DisplayILI9341_128x160x16_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplayILI9341_128x160x16(m_spi, rstPin)
         , m_spi(*this, config.dc,
                 SPlatformSpiConfig{ config.busId,
@@ -352,10 +356,10 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayILI9341_128x160x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplayILI9341_128x160x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayILI9341_128x160x16<InterfaceILI9341<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin,
+                data...) {}
 
     /**
      * Initializes ILI9341 lcd in 16-bit mode

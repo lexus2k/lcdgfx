@@ -11,7 +11,9 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     Display~CONTROLLER~_~RESOLUTION~(I &intf, int8_t rstPin)
-        : Display~CONTROLLER~~EXBITS~<I>(intf, rstPin) { }
+        : Display~CONTROLLER~~EXBITS~<I>(intf, rstPin)
+    {
+    }
 
 protected:
 

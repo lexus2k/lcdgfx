@@ -10,8 +10,8 @@ public:
      * @brief Inits ~RESOLUTION~ lcd display over custom interface (based on ~CONTROLLER~ controller): ~BITS~-bit mode.
      *
      * Inits ~RESOLUTION~ lcd display over custom interface (based on ~CONTROLLER~ controller): ~BITS~-bit mode
-     * User-defined interface `I` will receive frequency (uint32_t) as first argument, and user additional args, specified
-     * as data variable argument list.
+     * User-defined interface `I` will receive frequency (uint32_t) as first argument, and user additional args,
+     * specified as data variable argument list.
      *
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param dcPin pin to use as data/command control pin (-1 if not used)

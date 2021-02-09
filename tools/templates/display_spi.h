@@ -11,7 +11,7 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit Display~CONTROLLER~_~RESOLUTION~_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
+    explicit Display~CONTROLLER~_~RESOLUTION~_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : Display~CONTROLLER~_~RESOLUTION~(m_spi, rstPin)
         , m_spi(~SERIAL_INTERFACE_ARGS~,
                 SPlatformSpiConfig{ config.busId,
@@ -53,10 +53,10 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    Display~CONTROLLER~_~RESOLUTION~_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    Display~CONTROLLER~_~RESOLUTION~_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>(m_spi, rstPin)
-        , m_spi( ~CUSTOM_SERIAL_INTERFACE_ARGS~,
-                 data... ) {}
+        , m_spi(~CUSTOM_SERIAL_INTERFACE_ARGS~,
+                data...) {}
 
     /**
      * Initializes ~CONTROLLER~ lcd in ~BITS~-bit mode
