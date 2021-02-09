@@ -226,12 +226,8 @@ public:
     explicit DisplaySSD1331_96x64x8_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplaySSD1331_96x64x8(m_spi, rstPin)
         , m_spi(8, *this, config.dc,
-                SPlatformSpiConfig{ config.busId,
-                                    { config.cs },
-                                    config.dc,
-                                    config.frequency ?: 6000000,
-                                    config.scl,
-                                    config.sda } )
+                SPlatformSpiConfig{
+                    config.busId, {config.cs}, config.dc, config.frequency ?: 6000000, config.scl, config.sda})
     {
     }
 
@@ -370,12 +366,8 @@ public:
     explicit DisplaySSD1331_96x64x16_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplaySSD1331_96x64x16(m_spi, rstPin)
         , m_spi(16, *this, config.dc,
-                SPlatformSpiConfig{ config.busId,
-                                    { config.cs },
-                                    config.dc,
-                                    config.frequency ?: 6000000,
-                                    config.scl,
-                                    config.sda } )
+                SPlatformSpiConfig{
+                    config.busId, {config.cs}, config.dc, config.frequency ?: 6000000, config.scl, config.sda})
     {
     }
 

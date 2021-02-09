@@ -187,12 +187,8 @@ public:
     explicit DisplayPCD8544_84x48_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplayPCD8544_84x48(m_spi, rstPin)
         , m_spi(*this, config.dc,
-                SPlatformSpiConfig{ config.busId,
-                                    { config.cs },
-                                    config.dc,
-                                    config.frequency ?: 4000000,
-                                    config.scl,
-                                    config.sda } )
+                SPlatformSpiConfig{
+                    config.busId, {config.cs}, config.dc, config.frequency ?: 4000000, config.scl, config.sda})
     {
     }
 
