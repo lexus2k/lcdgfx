@@ -156,7 +156,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic SSD1325 128x64 initialization
      */
@@ -323,7 +322,6 @@ public:
 private:
     InterfaceSSD1325<I> m_i2c;
 };
-
 
 #include "lcd_ssd1325.inl"
 

@@ -27,8 +27,6 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
-
-
 void DisplayILI9341_240x320x16_SPI::begin()
 {
     m_spi.begin();
@@ -40,7 +38,6 @@ void DisplayILI9341_240x320x16_SPI::end()
     DisplayILI9341_240x320x16::end();
     m_spi.end();
 }
-
 void DisplayILI9341_128x160x16_SPI::begin()
 {
     m_spi.begin();

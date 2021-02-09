@@ -241,7 +241,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic SH1107 128x64 initialization
      */
@@ -409,7 +408,6 @@ private:
     InterfaceSH1107<I> m_i2c;
 };
 
-
 /**
  * Class implements basic functions for 1-bit mode of SH1107-based displays
  */
@@ -428,7 +426,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic SH1107 64x128 initialization
      */
@@ -595,7 +592,6 @@ public:
 private:
     InterfaceSH1107<I> m_i2c;
 };
-
 
 #include "lcd_sh1107.inl"
 

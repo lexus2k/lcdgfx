@@ -27,8 +27,6 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
-
-
 void DisplaySSD1351_128x128x16_SPI::begin()
 {
     m_spi.begin();

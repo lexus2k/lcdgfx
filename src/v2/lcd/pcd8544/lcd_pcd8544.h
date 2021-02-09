@@ -159,7 +159,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic PCD8544 84x48 initialization
      */

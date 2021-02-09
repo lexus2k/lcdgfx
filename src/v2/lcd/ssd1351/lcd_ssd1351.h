@@ -165,7 +165,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic SSD1351 128x128x16 initialization
      */

@@ -16,7 +16,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic ~CONTROLLER~ ~RESOLUTION~ initialization
      */

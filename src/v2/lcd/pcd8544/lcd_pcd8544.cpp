@@ -27,8 +27,6 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
-
-
 void DisplayPCD8544_84x48_SPI::begin()
 {
     m_spi.begin();

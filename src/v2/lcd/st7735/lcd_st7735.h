@@ -180,7 +180,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic ST7735 128x128x16 initialization
      */
@@ -288,7 +287,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic ST7735 128x160x16 initialization
      */

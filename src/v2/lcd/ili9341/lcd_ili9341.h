@@ -178,7 +178,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic ILI9341 240x320x16 initialization
      */
@@ -286,7 +285,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic ILI9341 128x160x16 initialization
      */

@@ -198,7 +198,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic SSD1331 96x64x8 initialization
      */
@@ -339,7 +338,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic SSD1331 96x64x16 initialization
      */

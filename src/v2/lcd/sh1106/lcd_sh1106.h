@@ -222,7 +222,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic SH1106 128x64 initialization
      */
@@ -389,7 +388,6 @@ public:
 private:
     InterfaceSH1106<I> m_i2c;
 };
-
 
 #include "lcd_sh1106.inl"
 

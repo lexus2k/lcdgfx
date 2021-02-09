@@ -27,8 +27,6 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
-
-
 void DisplaySH1107_128x64_SPI::begin()
 {
     m_spi.begin();
@@ -40,7 +38,6 @@ void DisplaySH1107_128x64_SPI::end()
     DisplaySH1107_128x64::end();
     m_spi.end();
 }
-
 void DisplaySH1107_128x64_I2C::begin()
 {
     m_i2c.begin();
@@ -52,7 +49,6 @@ void DisplaySH1107_128x64_I2C::end()
     DisplaySH1107_128x64::end();
     m_i2c.end();
 }
-
 void DisplaySH1107_64x128_SPI::begin()
 {
     m_spi.begin();
@@ -64,7 +60,6 @@ void DisplaySH1107_64x128_SPI::end()
     DisplaySH1107_64x128::end();
     m_spi.end();
 }
-
 void DisplaySH1107_64x128_I2C::begin()
 {
     m_i2c.begin();

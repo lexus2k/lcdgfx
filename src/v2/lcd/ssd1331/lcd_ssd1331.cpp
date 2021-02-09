@@ -27,8 +27,6 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
-
-
 void DisplaySSD1331_96x64x8_SPI::begin()
 {
     m_spi.begin();
@@ -40,7 +38,6 @@ void DisplaySSD1331_96x64x8_SPI::end()
     DisplaySSD1331_96x64x8::end();
     m_spi.end();
 }
-
 void DisplaySSD1331_96x64x16_SPI::begin()
 {
     m_spi.begin();

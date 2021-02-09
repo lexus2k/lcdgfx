@@ -76,4 +76,3 @@ private:
     Interface~CONTROLLER~<I> m_i2c;
 };
 
-

@@ -166,7 +166,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic IL9163 128x128x16 initialization
      */
@@ -274,7 +273,6 @@ public:
     }
 
 protected:
-
     /**
      * Basic IL9163 128x160x16 initialization
      */
