@@ -284,8 +284,9 @@ public:
     template <typename... Args>
     DisplaySSD1306_64x32_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplaySSD1306_64x32<InterfaceSSD1306<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -321,13 +322,10 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform i2c configuration. Please refer to SPlatformI2cConfig.
      */
-    explicit DisplaySSD1306_64x32_I2C(int8_t rstPin, const SPlatformI2cConfig &config = { -1, 0x3C, -1, -1, 0 })
+    explicit DisplaySSD1306_64x32_I2C(int8_t rstPin, const SPlatformI2cConfig &config = {-1, 0x3C, -1, -1, 0})
         : DisplaySSD1306_64x32(m_i2c, rstPin)
         , m_i2c(*this, -1,
-                SPlatformI2cConfig{config.busId,
-                                   static_cast<uint8_t>(config.addr ?: 0x3C),
-                                   config.scl,
-                                   config.sda,
+                SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
                                    config.frequency ?: 400000 })
     {
     }
@@ -523,8 +521,9 @@ public:
     template <typename... Args>
     DisplaySSD1306_64x48_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplaySSD1306_64x48<InterfaceSSD1306<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -560,13 +559,10 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform i2c configuration. Please refer to SPlatformI2cConfig.
      */
-    explicit DisplaySSD1306_64x48_I2C(int8_t rstPin, const SPlatformI2cConfig &config = { -1, 0x3C, -1, -1, 0 })
+    explicit DisplaySSD1306_64x48_I2C(int8_t rstPin, const SPlatformI2cConfig &config = {-1, 0x3C, -1, -1, 0})
         : DisplaySSD1306_64x48(m_i2c, rstPin)
         , m_i2c(*this, -1,
-                SPlatformI2cConfig{config.busId,
-                                   static_cast<uint8_t>(config.addr ?: 0x3C),
-                                   config.scl,
-                                   config.sda,
+                SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
                                    config.frequency ?: 400000 })
     {
     }
@@ -762,8 +758,9 @@ public:
     template <typename... Args>
     DisplaySSD1306_128x32_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplaySSD1306_128x32<InterfaceSSD1306<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -799,13 +796,10 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform i2c configuration. Please refer to SPlatformI2cConfig.
      */
-    explicit DisplaySSD1306_128x32_I2C(int8_t rstPin, const SPlatformI2cConfig &config = { -1, 0x3C, -1, -1, 0 })
+    explicit DisplaySSD1306_128x32_I2C(int8_t rstPin, const SPlatformI2cConfig &config = {-1, 0x3C, -1, -1, 0})
         : DisplaySSD1306_128x32(m_i2c, rstPin)
         , m_i2c(*this, -1,
-                SPlatformI2cConfig{config.busId,
-                                   static_cast<uint8_t>(config.addr ?: 0x3C),
-                                   config.scl,
-                                   config.sda,
+                SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
                                    config.frequency ?: 400000 })
     {
     }
@@ -1001,8 +995,9 @@ public:
     template <typename... Args>
     DisplaySSD1306_128x64_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplaySSD1306_128x64<InterfaceSSD1306<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes SSD1306 lcd in 1-bit mode
@@ -1038,13 +1033,10 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform i2c configuration. Please refer to SPlatformI2cConfig.
      */
-    explicit DisplaySSD1306_128x64_I2C(int8_t rstPin, const SPlatformI2cConfig &config = { -1, 0x3C, -1, -1, 0 })
+    explicit DisplaySSD1306_128x64_I2C(int8_t rstPin, const SPlatformI2cConfig &config = {-1, 0x3C, -1, -1, 0})
         : DisplaySSD1306_128x64(m_i2c, rstPin)
         , m_i2c(*this, -1,
-                SPlatformI2cConfig{config.busId,
-                                   static_cast<uint8_t>(config.addr ?: 0x3C),
-                                   config.scl,
-                                   config.sda,
+                SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
                                    config.frequency ?: 400000 })
     {
     }

@@ -263,8 +263,9 @@ public:
     template <typename... Args>
     DisplaySSD1331_96x64x8_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>(m_spi, rstPin)
-        , m_spi(8, *this, dcPin,
-                data...) {}
+        , m_spi(8, *this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes SSD1331 lcd in 8-bit mode
@@ -403,8 +404,9 @@ public:
     template <typename... Args>
     DisplaySSD1331_96x64x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>(m_spi, rstPin)
-        , m_spi(16, *this, dcPin,
-                data...) {}
+        , m_spi(16, *this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes SSD1331 lcd in 16-bit mode

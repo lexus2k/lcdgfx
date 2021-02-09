@@ -230,8 +230,9 @@ public:
     template <typename... Args>
     DisplaySSD1351_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes SSD1351 lcd in 16-bit mode

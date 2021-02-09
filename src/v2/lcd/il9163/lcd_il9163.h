@@ -231,8 +231,9 @@ public:
     template <typename... Args>
     DisplayIL9163_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayIL9163_128x128x16<InterfaceIL9163<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes IL9163 lcd in 16-bit mode
@@ -338,8 +339,9 @@ public:
     template <typename... Args>
     DisplayIL9163_128x160x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayIL9163_128x160x16<InterfaceIL9163<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes IL9163 lcd in 16-bit mode

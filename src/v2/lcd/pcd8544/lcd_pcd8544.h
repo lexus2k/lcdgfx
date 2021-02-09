@@ -224,8 +224,9 @@ public:
     template <typename... Args>
     DisplayPCD8544_84x48_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayPCD8544_84x48<InterfacePCD8544<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes PCD8544 lcd in 1-bit mode

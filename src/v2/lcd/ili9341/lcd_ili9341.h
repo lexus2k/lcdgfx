@@ -243,8 +243,9 @@ public:
     template <typename... Args>
     DisplayILI9341_240x320x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayILI9341_240x320x16<InterfaceILI9341<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes ILI9341 lcd in 16-bit mode
@@ -350,8 +351,9 @@ public:
     template <typename... Args>
     DisplayILI9341_128x160x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayILI9341_128x160x16<InterfaceILI9341<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes ILI9341 lcd in 16-bit mode

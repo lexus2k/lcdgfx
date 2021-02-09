@@ -51,8 +51,9 @@ public:
     template <typename... Args>
     Display~CONTROLLER~_~RESOLUTION~_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>(m_spi, rstPin)
-        , m_spi(~CUSTOM_SERIAL_INTERFACE_ARGS~,
-                data...) {}
+        , m_spi(~CUSTOM_SERIAL_INTERFACE_ARGS~, data...)
+    {
+    }
 
     /**
      * Initializes ~CONTROLLER~ lcd in ~BITS~-bit mode

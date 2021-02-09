@@ -245,8 +245,9 @@ public:
     template <typename... Args>
     DisplayST7735_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayST7735_128x128x16<InterfaceST7735<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes ST7735 lcd in 16-bit mode
@@ -352,8 +353,9 @@ public:
     template <typename... Args>
     DisplayST7735_128x160x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args&&... data)
         : DisplayST7735_128x160x16<InterfaceST7735<I>>(m_spi, rstPin)
-        , m_spi(*this, dcPin,
-                data...) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes ST7735 lcd in 16-bit mode
