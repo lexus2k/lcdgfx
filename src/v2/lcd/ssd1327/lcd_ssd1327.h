@@ -105,7 +105,6 @@ private:
     NanoDisplayBase<InterfaceSSD1327<I>> &m_base; ///< basic lcd display support interface
 };
 
-
 /**
  * Class implements basic functions for 4-bit mode of SSD1327-based displays
  */

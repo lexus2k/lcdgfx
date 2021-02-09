@@ -147,7 +147,6 @@ private:
     uint8_t m_rotation = 0x00;                         ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
 };
 
-
 /**
  * Class implements basic functions for 8-bit mode of SSD1331-based displays
  */
@@ -287,7 +286,6 @@ public:
 private:
     InterfaceSSD1331<I> m_spi;
 };
-
 /**
  * Class implements basic functions for 16-bit mode of SSD1331-based displays
  */

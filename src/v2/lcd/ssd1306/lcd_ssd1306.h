@@ -168,7 +168,6 @@ private:
     uint8_t m_startLine = 0;
 };
 
-
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
@@ -409,7 +408,7 @@ public:
     template <typename... Args>
     DisplaySSD1306_64x32_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args &&... data)
         : DisplaySSD1306_64x32<InterfaceSSD1306<I>>(m_custom, rstPin)
-        , m_custom(*this, dcPin, frequency= frequency ? : 3000000, data...)
+        , m_custom(*this, dcPin, frequency = frequency ? : 3000000, data...)
     {
     }
 
@@ -642,7 +641,7 @@ public:
     template <typename... Args>
     DisplaySSD1306_64x48_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args &&... data)
         : DisplaySSD1306_64x48<InterfaceSSD1306<I>>(m_custom, rstPin)
-        , m_custom(*this, dcPin, frequency= frequency ? : 3000000, data...)
+        , m_custom(*this, dcPin, frequency = frequency ? : 3000000, data...)
     {
     }
 
@@ -875,7 +874,7 @@ public:
     template <typename... Args>
     DisplaySSD1306_128x32_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args &&... data)
         : DisplaySSD1306_128x32<InterfaceSSD1306<I>>(m_custom, rstPin)
-        , m_custom(*this, dcPin, frequency= frequency ? : 3000000, data...)
+        , m_custom(*this, dcPin, frequency = frequency ? : 3000000, data...)
     {
     }
 
@@ -1108,7 +1107,7 @@ public:
     template <typename... Args>
     DisplaySSD1306_128x64_Custom(int8_t rstPin, int8_t dcPin, uint32_t frequency, Args &&... data)
         : DisplaySSD1306_128x64<InterfaceSSD1306<I>>(m_custom, rstPin)
-        , m_custom(*this, dcPin, frequency= frequency ? : 3000000, data...)
+        , m_custom(*this, dcPin, frequency = frequency ? : 3000000, data...)
     {
     }
 

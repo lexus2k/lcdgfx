@@ -1,4 +1,3 @@
-
 /**
  * Class implements basic functions for ~BITS~-bit mode of ~CONTROLLER~-based displays
  */

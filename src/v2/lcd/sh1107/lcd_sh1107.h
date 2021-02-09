@@ -190,7 +190,6 @@ private:
     uint8_t m_seg_offset = 0;
 };
 
-
 /**
  * Class implements basic functions for 1-bit mode of SH1107-based displays
  */
