@@ -182,7 +182,7 @@ public:
     void setDisplayOffset(uint8_t offset);
 
 private:
-    int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSH1107<I>> &m_base; ///< basic lcd display support interface
     uint8_t m_startLine = 0;
     uint8_t m_column = 0;
@@ -194,7 +194,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SH1107-based displays
  */
-template <class I> class DisplaySH1107: public NanoDisplayOps<NanoDisplayOps1<I>,I>
+template <class I> class DisplaySH1107: public NanoDisplayOps<NanoDisplayOps1<I>, I>
 {
 public:
     /**

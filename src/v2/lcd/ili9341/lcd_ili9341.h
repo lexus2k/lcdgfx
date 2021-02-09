@@ -120,9 +120,8 @@ public:
     void rotateOutput(uint8_t rotate);
 
 private:
-    const int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceILI9341<I>> &m_base; ///< basic lcd display support interface
-
     uint8_t m_rotation = 0x00;
     uint8_t m_rotate_output = 0x00;
     static const uint8_t m_rgb_bit = 0b00001000;
@@ -132,7 +131,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ILI9341-based displays
  */
-template <class I> class DisplayILI9341x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
+template <class I> class DisplayILI9341x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**

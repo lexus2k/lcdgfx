@@ -163,7 +163,7 @@ public:
     void flipVertical(uint8_t mode);
 
 private:
-    int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    int8_t m_dc = -1;                             ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSSD1306<I>> &m_base; ///< basic lcd display support interface
     uint8_t m_startLine = 0;
 };
@@ -172,7 +172,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I> class DisplaySSD1306: public NanoDisplayOps<NanoDisplayOps1<I>,I>
+template <class I> class DisplaySSD1306: public NanoDisplayOps<NanoDisplayOps1<I>, I>
 {
 public:
     /**

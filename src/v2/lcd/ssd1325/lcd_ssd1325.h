@@ -101,7 +101,7 @@ public:
     void commandStart();
 
 private:
-    const int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSSD1325<I>> &m_base; ///< basic lcd display support interface
 };
 
@@ -109,7 +109,7 @@ private:
 /**
  * Class implements basic functions for 4-bit mode of SSD1325-based displays
  */
-template <class I> class DisplaySSD1325: public NanoDisplayOps<NanoDisplayOps4<I>,I>
+template <class I> class DisplaySSD1325: public NanoDisplayOps<NanoDisplayOps4<I>, I>
 {
 public:
     /**

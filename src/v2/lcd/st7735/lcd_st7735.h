@@ -121,12 +121,10 @@ public:
     void setOffset(lcdint_t ox, lcdint_t oy);
 
 private:
-    const int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceST7735<I>> &m_base; ///< basic lcd display support interface
-
     uint8_t m_rotation = 0x00;
     static const uint8_t m_rgb_bit = 0b00000000;
-
     lcdint_t m_offset_x = 0x00;
     lcdint_t m_offset_y = 0x00;
 };
@@ -135,7 +133,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */
-template <class I> class DisplayST7735x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
+template <class I> class DisplayST7735x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**

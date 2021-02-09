@@ -101,9 +101,8 @@ public:
     void commandStart();
 
 private:
-    const int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                       ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfacePCD8544<I>> &m_base; ///< basic lcd display support interface
-
     uint8_t m_width = 0;
     uint8_t m_column = 0;
     uint8_t m_page = 0;
@@ -113,7 +112,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of PCD8544-based displays
  */
-template <class I> class DisplayPCD8544: public NanoDisplayOps<NanoDisplayOps1<I>,I>
+template <class I> class DisplayPCD8544: public NanoDisplayOps<NanoDisplayOps1<I>, I>
 {
 public:
     /**

@@ -109,17 +109,16 @@ public:
     void setRotation(uint8_t rotation);
 
 private:
-    const int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSSD1351<I>> &m_base; ///< basic lcd display support interface
-
-    uint8_t m_rotation = 0x00;  ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
+    uint8_t m_rotation = 0x00;                         ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
 };
 
 
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
  */
-template <class I> class DisplaySSD1351x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
+template <class I> class DisplaySSD1351x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**
