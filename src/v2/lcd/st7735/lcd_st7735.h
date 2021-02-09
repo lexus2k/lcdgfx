@@ -53,7 +53,7 @@ public:
     template <typename... Args>
     InterfaceST7735(NanoDisplayBase<InterfaceST7735<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -144,7 +144,7 @@ public:
      */
     DisplayST7735x16(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps16<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 
@@ -203,15 +203,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayST7735_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayST7735_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplayST7735_128x128x16(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 8000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 8000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -233,8 +233,7 @@ private:
  * Template class implements ST7735 128x128x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplayST7735_128x128x16_CustomSPI: public DisplayST7735_128x128x16<InterfaceST7735<I>>
+template <class I> class DisplayST7735_128x128x16_CustomSPI: public DisplayST7735_128x128x16<InterfaceST7735<I>>
 {
 public:
     /**
@@ -313,15 +312,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayST7735_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayST7735_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplayST7735_128x160x16(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 8000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 8000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -343,8 +342,7 @@ private:
  * Template class implements ST7735 128x160x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplayST7735_128x160x16_CustomSPI: public DisplayST7735_128x160x16<InterfaceST7735<I>>
+template <class I> class DisplayST7735_128x160x16_CustomSPI: public DisplayST7735_128x160x16<InterfaceST7735<I>>
 {
 public:
     /**

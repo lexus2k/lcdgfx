@@ -13,12 +13,12 @@ public:
      */
     explicit Display~CONTROLLER~_~RESOLUTION~_I2C( int8_t rstPin, const SPlatformI2cConfig &config = { -1, ~I2C_ADDR~, -1, -1, 0 } )
         : Display~CONTROLLER~_~RESOLUTION~(m_i2c, rstPin)
-        , m_i2c( ~SERIAL_INTERFACE_ARGS~,
-                 SPlatformI2cConfig{ config.busId,
-                                     static_cast<uint8_t>(config.addr ?: ~I2C_ADDR~),
-                                     config.scl,
-                                     config.sda,
-                                     config.frequency ?: 400000 } )
+        , m_i2c(~SERIAL_INTERFACE_ARGS~,
+                SPlatformI2cConfig{ config.busId,
+                                    static_cast<uint8_t>(config.addr ?: ~I2C_ADDR~),
+                                    config.scl,
+                                    config.sda,
+                                    config.frequency ?: 400000 } )
     {
     }
 
@@ -40,8 +40,7 @@ private:
  * Template class implements ~CONTROLLER~ ~RESOLUTION~ lcd display in ~BITS~ bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I>
-class Display~CONTROLLER~_~RESOLUTION~_CustomI2C: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
+template <class I> class Display~CONTROLLER~_~RESOLUTION~_CustomI2C: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
 {
 public:
     /**

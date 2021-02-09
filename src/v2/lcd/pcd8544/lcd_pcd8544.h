@@ -53,7 +53,7 @@ public:
     template <typename... Args>
     InterfacePCD8544(NanoDisplayBase<InterfacePCD8544<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -123,7 +123,7 @@ public:
      */
     DisplayPCD8544(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps1<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 
@@ -182,15 +182,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayPCD8544_84x48_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayPCD8544_84x48_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplayPCD8544_84x48(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 4000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 4000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -212,8 +212,7 @@ private:
  * Template class implements PCD8544 84x48 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplayPCD8544_84x48_CustomSPI: public DisplayPCD8544_84x48<InterfacePCD8544<I>>
+template <class I> class DisplayPCD8544_84x48_CustomSPI: public DisplayPCD8544_84x48<InterfacePCD8544<I>>
 {
 public:
     /**

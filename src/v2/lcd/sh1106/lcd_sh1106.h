@@ -53,7 +53,7 @@ public:
     template <typename... Args>
     InterfaceSH1106(NanoDisplayBase<InterfaceSH1106<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -186,7 +186,7 @@ public:
      */
     DisplaySH1106(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps1<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 
@@ -245,15 +245,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplaySH1106_128x64_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplaySH1106_128x64_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplaySH1106_128x64(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 10000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 10000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -275,8 +275,7 @@ private:
  * Template class implements SH1106 128x64 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplaySH1106_128x64_CustomSPI: public DisplaySH1106_128x64<InterfaceSH1106<I>>
+template <class I> class DisplaySH1106_128x64_CustomSPI: public DisplaySH1106_128x64<InterfaceSH1106<I>>
 {
 public:
     /**
@@ -329,12 +328,12 @@ public:
      */
     explicit DisplaySH1106_128x64_I2C( int8_t rstPin, const SPlatformI2cConfig &config = { -1, 0x3C, -1, -1, 0 } )
         : DisplaySH1106_128x64(m_i2c, rstPin)
-        , m_i2c( *this, -1,
-                 SPlatformI2cConfig{ config.busId,
-                                     static_cast<uint8_t>(config.addr ?: 0x3C),
-                                     config.scl,
-                                     config.sda,
-                                     config.frequency ?: 400000 } )
+        , m_i2c(*this, -1,
+                SPlatformI2cConfig{ config.busId,
+                                    static_cast<uint8_t>(config.addr ?: 0x3C),
+                                    config.scl,
+                                    config.sda,
+                                    config.frequency ?: 400000 } )
     {
     }
 
@@ -356,8 +355,7 @@ private:
  * Template class implements SH1106 128x64 lcd display in 1 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I>
-class DisplaySH1106_128x64_CustomI2C: public DisplaySH1106_128x64<InterfaceSH1106<I>>
+template <class I> class DisplaySH1106_128x64_CustomI2C: public DisplaySH1106_128x64<InterfaceSH1106<I>>
 {
 public:
     /**

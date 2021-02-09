@@ -13,7 +13,7 @@ public:
      */
     Display~CONTROLLER~~EXBITS~(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps~BITS~<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 

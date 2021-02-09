@@ -53,7 +53,7 @@ public:
     template <typename... Args>
     InterfaceILI9341(NanoDisplayBase<InterfaceILI9341<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -142,7 +142,7 @@ public:
      */
     DisplayILI9341x16(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps16<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 
@@ -201,15 +201,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayILI9341_240x320x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayILI9341_240x320x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplayILI9341_240x320x16(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 10000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 10000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -231,8 +231,7 @@ private:
  * Template class implements ILI9341 240x320x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplayILI9341_240x320x16_CustomSPI: public DisplayILI9341_240x320x16<InterfaceILI9341<I>>
+template <class I> class DisplayILI9341_240x320x16_CustomSPI: public DisplayILI9341_240x320x16<InterfaceILI9341<I>>
 {
 public:
     /**
@@ -311,15 +310,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayILI9341_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayILI9341_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplayILI9341_128x160x16(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 10000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 10000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -341,8 +340,7 @@ private:
  * Template class implements ILI9341 128x160x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplayILI9341_128x160x16_CustomSPI: public DisplayILI9341_128x160x16<InterfaceILI9341<I>>
+template <class I> class DisplayILI9341_128x160x16_CustomSPI: public DisplayILI9341_128x160x16<InterfaceILI9341<I>>
 {
 public:
     /**

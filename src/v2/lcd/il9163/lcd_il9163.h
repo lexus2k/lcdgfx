@@ -53,7 +53,7 @@ public:
     template <typename... Args>
     InterfaceIL9163(NanoDisplayBase<InterfaceIL9163<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -130,7 +130,7 @@ public:
      */
     DisplayIL9163x16(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps16<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 
@@ -189,15 +189,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayIL9163_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayIL9163_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplayIL9163_128x128x16(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 8000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 8000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -219,8 +219,7 @@ private:
  * Template class implements IL9163 128x128x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplayIL9163_128x128x16_CustomSPI: public DisplayIL9163_128x128x16<InterfaceIL9163<I>>
+template <class I> class DisplayIL9163_128x128x16_CustomSPI: public DisplayIL9163_128x128x16<InterfaceIL9163<I>>
 {
 public:
     /**
@@ -299,15 +298,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayIL9163_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayIL9163_128x160x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplayIL9163_128x160x16(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 8000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 8000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -329,8 +328,7 @@ private:
  * Template class implements IL9163 128x160x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplayIL9163_128x160x16_CustomSPI: public DisplayIL9163_128x160x16<InterfaceIL9163<I>>
+template <class I> class DisplayIL9163_128x160x16_CustomSPI: public DisplayIL9163_128x160x16<InterfaceIL9163<I>>
 {
 public:
     /**

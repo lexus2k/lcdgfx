@@ -53,7 +53,7 @@ public:
     template <typename... Args>
     InterfaceSSD1351(NanoDisplayBase<InterfaceSSD1351<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -129,7 +129,7 @@ public:
      */
     DisplaySSD1351x16(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps16<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 
@@ -188,15 +188,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplaySSD1351_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplaySSD1351_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplaySSD1351_128x128x16(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 4400000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 4400000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -218,8 +218,7 @@ private:
  * Template class implements SSD1351 128x128x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplaySSD1351_128x128x16_CustomSPI: public DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>
+template <class I> class DisplaySSD1351_128x128x16_CustomSPI: public DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>
 {
 public:
     /**

@@ -11,15 +11,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit Display~CONTROLLER~_~RESOLUTION~_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit Display~CONTROLLER~_~RESOLUTION~_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : Display~CONTROLLER~_~RESOLUTION~(m_spi, rstPin)
-        , m_spi( ~SERIAL_INTERFACE_ARGS~,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: ~FREQUENCY~,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(~SERIAL_INTERFACE_ARGS~,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: ~FREQUENCY~,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -41,8 +41,7 @@ private:
  * Template class implements ~CONTROLLER~ ~RESOLUTION~ lcd display in ~BITS~ bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class Display~CONTROLLER~_~RESOLUTION~_CustomSPI: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
+template <class I> class Display~CONTROLLER~_~RESOLUTION~_CustomSPI: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
 {
 public:
     /**

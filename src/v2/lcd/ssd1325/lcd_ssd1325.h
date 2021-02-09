@@ -53,7 +53,7 @@ public:
     template <typename... Args>
     InterfaceSSD1325(NanoDisplayBase<InterfaceSSD1325<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -120,7 +120,7 @@ public:
      */
     DisplaySSD1325(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps4<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 
@@ -179,15 +179,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplaySSD1325_128x64_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplaySSD1325_128x64_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplaySSD1325_128x64(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 10000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 10000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -209,8 +209,7 @@ private:
  * Template class implements SSD1325 128x64 lcd display in 4 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplaySSD1325_128x64_CustomSPI: public DisplaySSD1325_128x64<InterfaceSSD1325<I>>
+template <class I> class DisplaySSD1325_128x64_CustomSPI: public DisplaySSD1325_128x64<InterfaceSSD1325<I>>
 {
 public:
     /**
@@ -263,12 +262,12 @@ public:
      */
     explicit DisplaySSD1325_128x64_I2C( int8_t rstPin, const SPlatformI2cConfig &config = { -1, 0x3C, -1, -1, 0 } )
         : DisplaySSD1325_128x64(m_i2c, rstPin)
-        , m_i2c( *this, -1,
-                 SPlatformI2cConfig{ config.busId,
-                                     static_cast<uint8_t>(config.addr ?: 0x3C),
-                                     config.scl,
-                                     config.sda,
-                                     config.frequency ?: 400000 } )
+        , m_i2c(*this, -1,
+                SPlatformI2cConfig{ config.busId,
+                                    static_cast<uint8_t>(config.addr ?: 0x3C),
+                                    config.scl,
+                                    config.sda,
+                                    config.frequency ?: 400000 } )
     {
     }
 
@@ -290,8 +289,7 @@ private:
  * Template class implements SSD1325 128x64 lcd display in 4 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I>
-class DisplaySSD1325_128x64_CustomI2C: public DisplaySSD1325_128x64<InterfaceSSD1325<I>>
+template <class I> class DisplaySSD1325_128x64_CustomI2C: public DisplaySSD1325_128x64<InterfaceSSD1325<I>>
 {
 public:
     /**

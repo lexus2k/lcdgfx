@@ -54,8 +54,8 @@ public:
     template <typename... Args>
     InterfaceSSD1331(uint8_t bits, NanoDisplayBase<InterfaceSSD1331<I>> &base, int8_t dc, Args&&... data)
         : I(data...)
-        , m_bits( bits )
-        , m_dc( dc )
+        , m_bits(bits)
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -162,7 +162,7 @@ public:
      */
     DisplaySSD1331x8(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps8<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 
@@ -221,15 +221,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplaySSD1331_96x64x8_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplaySSD1331_96x64x8_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplaySSD1331_96x64x8(m_spi, rstPin)
-        , m_spi( 8, *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 6000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(8, *this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 6000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -251,8 +251,7 @@ private:
  * Template class implements SSD1331 96x64x8 lcd display in 8 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplaySSD1331_96x64x8_CustomSPI: public DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>
+template <class I> class DisplaySSD1331_96x64x8_CustomSPI: public DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>
 {
 public:
     /**
@@ -305,7 +304,7 @@ public:
      */
     DisplaySSD1331x16(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps16<I>, I>(intf)
-        , m_rstPin( rstPin )
+        , m_rstPin(rstPin)
     {
     }
 
@@ -364,15 +363,15 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplaySSD1331_96x64x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplaySSD1331_96x64x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1} )
         : DisplaySSD1331_96x64x16(m_spi, rstPin)
-        , m_spi( 16, *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 6000000,
-                                     config.scl,
-                                     config.sda } )
+        , m_spi(16, *this, config.dc,
+                SPlatformSpiConfig{ config.busId,
+                                    { config.cs },
+                                    config.dc,
+                                    config.frequency ?: 6000000,
+                                    config.scl,
+                                    config.sda } )
     {
     }
 
@@ -394,8 +393,7 @@ private:
  * Template class implements SSD1331 96x64x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplaySSD1331_96x64x16_CustomSPI: public DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>
+template <class I> class DisplaySSD1331_96x64x16_CustomSPI: public DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>
 {
 public:
     /**
