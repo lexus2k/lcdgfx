@@ -39,7 +39,7 @@ typedef struct
 
 static std::map<int, SPinEvent> s_events;
 
-void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void * arg)
+void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void *arg)
 {
     s_events[pin].arg = arg;
     s_events[pin].on_pin_change = on_pin_change;
@@ -47,28 +47,28 @@ void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void * arg)
 
 void lcd_unregisterGpioEvent(int pin)
 {
-    s_events.erase( pin );
+    s_events.erase(pin);
 }
 
-int  lcd_gpioRead(int pin)
+int lcd_gpioRead(int pin)
 {
     return gpio_get_level(static_cast<gpio_num_t>(pin));
 }
 
 void lcd_gpioWrite(int pin, int level)
 {
-    if (s_events.find(pin) != s_events.end())
+    if ( s_events.find(pin) != s_events.end() )
     {
-        s_events[pin].on_pin_change( s_events[pin].arg );
+        s_events[pin].on_pin_change(s_events[pin].arg);
     }
     gpio_set_level(static_cast<gpio_num_t>(pin), level);
 }
 
 void lcd_gpioMode(int pin, int mode)
 {
-    if (mode == LCD_GPIO_INPUT)
+    if ( mode == LCD_GPIO_INPUT )
         gpio_set_direction(static_cast<gpio_num_t>(pin), GPIO_MODE_INPUT);
-    else if (mode == LCD_GPIO_OUTPUT)
+    else if ( mode == LCD_GPIO_OUTPUT )
         gpio_set_direction(static_cast<gpio_num_t>(pin), GPIO_MODE_OUTPUT);
 }
 
@@ -82,7 +82,7 @@ void lcd_delay(unsigned long ms)
     vTaskDelay(ms / portTICK_PERIOD_MS);
 }
 
-int  lcd_adcRead(int pin)
+int lcd_adcRead(int pin)
 {
     // TODO: Not implemented
     return 0;

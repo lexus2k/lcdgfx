@@ -24,7 +24,6 @@
 
 #include "menu.h"
 
-
 LcdGfxMenu::LcdGfxMenu(const char **items, uint8_t count, const NanoRect &rect)
 {
     menu.items = items;
@@ -34,13 +33,13 @@ LcdGfxMenu::LcdGfxMenu(const char **items, uint8_t count, const NanoRect &rect)
     menu.scrollPosition = 0;
     menu.top = rect.p1.y;
     menu.left = rect.p1.x;
-    menu.width = rect.p2.x ? rect.width(): 0;
-    menu.height = rect.p2.y ? rect.height(): 0;
+    menu.width = rect.p2.x ? rect.width() : 0;
+    menu.height = rect.p2.y ? rect.height() : 0;
 }
 
 void LcdGfxMenu::down()
 {
-    if (menu.selection < menu.count - 1)
+    if ( menu.selection < menu.count - 1 )
     {
         menu.selection++;
     }
@@ -52,7 +51,7 @@ void LcdGfxMenu::down()
 
 void LcdGfxMenu::up()
 {
-    if (menu.selection > 0)
+    if ( menu.selection > 0 )
     {
         menu.selection--;
     }

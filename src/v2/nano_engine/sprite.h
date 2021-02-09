@@ -42,8 +42,7 @@
  * This is template class for user sprites implementations.
  * NanoSprite can work only as part of NanoEngine.
  */
-template<class T>
-class NanoSprite: public NanoObject<T>
+template <class T> class NanoSprite: public NanoObject<T>
 {
 public:
     /**
@@ -54,29 +53,33 @@ public:
      * @param bitmap sprite content (in flash memory)
      */
     NanoSprite(const NanoPoint &pos, const NanoPoint &size, const uint8_t *bitmap)
-         : NanoObject<T>( pos, size )
-         , m_bitmap( bitmap )
+        : NanoObject<T>(pos, size)
+        , m_bitmap(bitmap)
     {
     }
 
     void draw() override
     {
-        this->getTiler().getCanvas().drawBitmap1(
-            this->getRect().p1.x, this->getRect().p1.y,
-            this->getRect().width(), this->getRect().height(),
-            this->getBitmap());
+        this->getTiler().getCanvas().drawBitmap1(this->getRect().p1.x, this->getRect().p1.y, this->getRect().width(),
+                                                 this->getRect().height(), this->getBitmap());
     }
 
     /**
      * Replaces sprite bitmap with new one.
      */
-    void setBitmap(const uint8_t *bitmap) { m_bitmap = bitmap; }
+    void setBitmap(const uint8_t *bitmap)
+    {
+        m_bitmap = bitmap;
+    }
 
     /**
      * Returns pointer to sprite bitmap data.
      * The data are located in the Flash memory.
      */
-    const uint8_t *getBitmap() { return m_bitmap; }
+    const uint8_t *getBitmap()
+    {
+        return m_bitmap;
+    }
 
 private:
     const uint8_t *m_bitmap;
@@ -85,8 +88,7 @@ private:
 /**
  * This is base class for user sprites implementation.
  */
-template<class T>
-class NanoFixedSprite: public NanoSprite<T>
+template <class T> class NanoFixedSprite: public NanoSprite<T>
 {
 public:
     using NanoSprite<T>::NanoSprite;
@@ -97,4 +99,3 @@ public:
  */
 
 #endif
-

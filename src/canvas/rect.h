@@ -62,7 +62,7 @@ typedef struct _NanoRect
     /** returns center point of NanoRect */
     const NanoPoint center() const
     {
-        return {(p2.x + p1.x) / 2,(p2.y + p1.y) / 2};
+        return {(p2.x + p1.x) / 2, (p2.y + p1.y) / 2};
     }
 
     /** returns height of NanoRect */
@@ -78,8 +78,10 @@ typedef struct _NanoRect
      */
     void move(lcdint_t dx, lcdint_t dy)
     {
-        p1.x += dx; p2.x += dx;
-        p1.y += dy; p2.y += dy;
+        p1.x += dx;
+        p2.x += dx;
+        p1.y += dy;
+        p2.y += dy;
     }
 
     /**
@@ -88,7 +90,8 @@ typedef struct _NanoRect
      */
     void addH(lcdint_t dx)
     {
-        p1.x += dx; p2.x += dx;
+        p1.x += dx;
+        p2.x += dx;
     }
 
     /**
@@ -110,8 +113,10 @@ typedef struct _NanoRect
      */
     void setRect(lcdint_t l, lcdint_t t, lcdint_t r, lcdint_t b)
     {
-        p1.x = l; p1.y = t;
-        p2.x = r; p2.y = b;
+        p1.x = l;
+        p1.y = t;
+        p2.x = r;
+        p2.y = b;
     }
 
     /**
@@ -119,12 +124,16 @@ typedef struct _NanoRect
      *
      * @param rect rectangle to crop to
      */
-    void crop(const _NanoRect& rect)
+    void crop(const _NanoRect &rect)
     {
-        if (p1.x < rect.p1.x) p1.x = rect.p1.x;
-        if (p1.y < rect.p1.y) p1.y = rect.p1.y;
-        if (p2.x > rect.p2.x) p2.x = rect.p2.x;
-        if (p2.y > rect.p2.y) p2.y = rect.p2.y;
+        if ( p1.x < rect.p1.x )
+            p1.x = rect.p1.x;
+        if ( p1.y < rect.p1.y )
+            p1.y = rect.p1.y;
+        if ( p2.x > rect.p2.x )
+            p2.x = rect.p2.x;
+        if ( p2.y > rect.p2.y )
+            p2.y = rect.p2.y;
     }
 
     /**
@@ -140,7 +149,10 @@ typedef struct _NanoRect
      * Returns true if specified y position is between left and right borders.
      * @param y - position to check
      */
-    bool collisionY(lcdint_t y) const { return (y >= p1.y) && (y <= p2.y); };
+    bool collisionY(lcdint_t y) const
+    {
+        return (y >= p1.y) && (y <= p2.y);
+    };
 
     /**
      * Returns true if specified point is inside rectangle area.
@@ -185,13 +197,19 @@ typedef struct _NanoRect
      * Returns true if specified point is above rectangle area.
      * @param p - point to check.
      */
-    bool above(const NanoPoint &p) const { return (p.y < p1.y); };
+    bool above(const NanoPoint &p) const
+    {
+        return (p.y < p1.y);
+    };
 
     /**
      * Returns true if specified point is below rectangle area.
      * @param p - point to check.
      */
-    bool below(const NanoPoint &p) const { return (p.y > p2.y); };
+    bool below(const NanoPoint &p) const
+    {
+        return (p.y > p2.y);
+    };
 
     /**
      * Returns true if specified point is above rectangle area.
@@ -199,8 +217,8 @@ typedef struct _NanoRect
      */
     _NanoRect operator-(const _NanoPoint &p)
     {
-        return { {static_cast<lcdint_t>(p1.x - p.x), static_cast<lcdint_t>(p1.y - p.y) },
-                 {static_cast<lcdint_t>(p2.x - p.x), static_cast<lcdint_t>(p2.y - p.y) } };
+        return {{static_cast<lcdint_t>(p1.x - p.x), static_cast<lcdint_t>(p1.y - p.y)},
+                {static_cast<lcdint_t>(p2.x - p.x), static_cast<lcdint_t>(p2.y - p.y)}};
     }
 
     /**
@@ -209,15 +227,15 @@ typedef struct _NanoRect
      */
     _NanoRect operator+(const _NanoPoint &p)
     {
-        return { {static_cast<lcdint_t>(p1.x + p.x), static_cast<lcdint_t>(p1.y + p.y) },
-                 {static_cast<lcdint_t>(p2.x + p.x), static_cast<lcdint_t>(p2.y + p.y) } };
+        return {{static_cast<lcdint_t>(p1.x + p.x), static_cast<lcdint_t>(p1.y + p.y)},
+                {static_cast<lcdint_t>(p2.x + p.x), static_cast<lcdint_t>(p2.y + p.y)}};
     }
 
     /**
      * Subtracts point to all points of rectangle.
      * @param p - point to subtract.
      */
-    _NanoRect& operator+=(const _NanoPoint &p)
+    _NanoRect &operator+=(const _NanoPoint &p)
     {
         p1.x += p.x;
         p1.y += p.y;
@@ -232,7 +250,7 @@ typedef struct _NanoRect
      */
     _NanoRect operator>>(const uint8_t bits) const
     {
-        return { p1 >> bits, p2 >> bits };
+        return {p1 >> bits, p2 >> bits};
     };
 
     /**
@@ -241,17 +259,16 @@ typedef struct _NanoRect
      */
     _NanoRect operator<<(const uint8_t bits) const
     {
-        return { p1 << bits, p2 << bits };
+        return {p1 << bits, p2 << bits};
     };
-
 
 } NanoRect;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-inline NanoRect operator+(const NanoRect& rect, const NanoPoint& p)
+inline NanoRect operator+(const NanoRect &rect, const NanoPoint &p)
 {
-    return { { (lcdint_t)(rect.p1.x + p.x), (lcdint_t)(rect.p1.y + p.y) },
-             { (lcdint_t)(rect.p2.x + p.x), (lcdint_t)(rect.p2.y + p.y) } };
+    return {{(lcdint_t)(rect.p1.x + p.x), (lcdint_t)(rect.p1.y + p.y)},
+            {(lcdint_t)(rect.p2.x + p.x), (lcdint_t)(rect.p2.y + p.y)}};
 }
 #endif
 
@@ -260,4 +277,3 @@ inline NanoRect operator+(const NanoRect& rect, const NanoPoint& p)
  */
 
 #endif
-

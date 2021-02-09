@@ -29,8 +29,7 @@
 #ifndef _SSD1306V2_LINUX_SDL_I2C_H_
 #define _SSD1306V2_LINUX_SDL_I2C_H_
 
-#if defined(CONFIG_LINUX_I2C_AVAILABLE) && defined(CONFIG_LINUX_I2C_ENABLE) && \
-    defined(SDL_EMULATION)
+#if defined(CONFIG_LINUX_I2C_AVAILABLE) && defined(CONFIG_LINUX_I2C_ENABLE) && defined(SDL_EMULATION)
 
 class SdlI2c
 {
@@ -89,15 +88,17 @@ public:
      *
      * @param addr i2c address to set (7 bits)
      */
-    void setAddr(uint8_t addr) { m_sa = addr; }
+    void setAddr(uint8_t addr)
+    {
+        m_sa = addr;
+    }
 
 private:
-//    int8_t m_scl;
-//    int8_t m_sda;
+    //    int8_t m_scl;
+    //    int8_t m_sda;
     uint8_t m_sa;
 };
 
 #endif
 
 #endif
-

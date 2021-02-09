@@ -48,27 +48,28 @@
 #include "v2/lcd/il9163/lcd_il9163.h"
 #include "v2/lcd/ili9341/lcd_ili9341.h"
 
-extern "C" {
+extern "C"
+{
 #endif
 
-/**
- * @defgroup LCD_GENERIC_API Generic API functions, common for all displays and all display modes.
- * @{
- * @brief Generic API functions, common for all displays and all display modes.
- *
- * @details Generic API functions, common for all displays and all display modes.
- */
+    /**
+     * @defgroup LCD_GENERIC_API Generic API functions, common for all displays and all display modes.
+     * @{
+     * @brief Generic API functions, common for all displays and all display modes.
+     *
+     * @details Generic API functions, common for all displays and all display modes.
+     */
 
-/**
- * Enables utf8 support for all text-functions.
- * @note Unicode-16 only supported in text decoding functions.
- */
-void ssd1306_enableUtf8Mode2(void);
+    /**
+     * Enables utf8 support for all text-functions.
+     * @note Unicode-16 only supported in text decoding functions.
+     */
+    void ssd1306_enableUtf8Mode2(void);
 
-/**
- * Enables ascii mode for all text-functions. No any decoding will be performed
- */
-void ssd1306_enableAsciiMode2(void);
+    /**
+     * Enables ascii mode for all text-functions. No any decoding will be performed
+     */
+    void ssd1306_enableAsciiMode2(void);
 
 #ifdef __cplusplus
 }

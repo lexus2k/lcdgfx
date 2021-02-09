@@ -22,7 +22,7 @@
     SOFTWARE.
 */
 
-#if (defined(__linux__) || defined(__APPLE__)) && !defined(ARDUINO)
+#if ( defined(__linux__) || defined(__APPLE__) ) && !defined(ARDUINO)
 
 #include "../io.h"
 
@@ -42,22 +42,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 //                        LINUX SPI IMPLEMENTATION
 //////////////////////////////////////////////////////////////////////////////////
-#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && \
-    !defined(SDL_EMULATION)
+#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && !defined(SDL_EMULATION)
 
 LinuxSpi::LinuxSpi(int busId, int8_t devId, int8_t dcPin, uint32_t frequency)
-    : m_busId( busId )
-    , m_devId( devId )
-    , m_dc( dcPin )
-    , m_frequency( frequency )
-    , m_spi_cached_count( 0 )
+    : m_busId(busId)
+    , m_devId(devId)
+    , m_dc(dcPin)
+    , m_frequency(frequency)
+    , m_spi_cached_count(0)
 {
 }
 
 LinuxSpi::~LinuxSpi()
 {
-    lcd_unregisterGpioEvent( m_dc );
-    if (m_spi_fd >= 0)
+    lcd_unregisterGpioEvent(m_dc);
+    if ( m_spi_fd >= 0 )
     {
         close(m_spi_fd);
         m_spi_fd = -1;
@@ -67,34 +66,33 @@ LinuxSpi::~LinuxSpi()
 void LinuxSpi::begin()
 {
     char filename[20];
-    if (m_busId < 0)
+    if ( m_busId < 0 )
     {
         m_busId = 0; // SPI bus - default 0
     }
-    if (m_devId < 0)
+    if ( m_devId < 0 )
     {
         m_devId = 0; // SPI device - default 0
     }
 
     snprintf(filename, 19, "/dev/spidev%d.%d", m_busId, m_devId);
-    if ((m_spi_fd = open(filename, O_RDWR)) < 0)
+    if ( (m_spi_fd = open(filename, O_RDWR)) < 0 )
     {
-        printf("Failed to initialize SPI: %s%s!\n",
-               strerror(errno), getuid() == 0 ? "": ", need to be root");
+        printf("Failed to initialize SPI: %s%s!\n", strerror(errno), getuid() == 0 ? "" : ", need to be root");
         return;
     }
     unsigned int speed = m_frequency;
-    if (ioctl(m_spi_fd, SPI_IOC_WR_MAX_SPEED_HZ, &speed) < 0)
+    if ( ioctl(m_spi_fd, SPI_IOC_WR_MAX_SPEED_HZ, &speed) < 0 )
     {
         printf("Failed to set speed on SPI line: %s!\n", strerror(errno));
     }
     uint8_t mode = SPI_MODE_0;
-    if (ioctl (m_spi_fd, SPI_IOC_WR_MODE, &mode) < 0)
+    if ( ioctl(m_spi_fd, SPI_IOC_WR_MODE, &mode) < 0 )
     {
         printf("Failed to set SPI mode: %s!\n", strerror(errno));
     }
     uint8_t spi_bpw = 8;
-    if (ioctl (m_spi_fd, SPI_IOC_WR_BITS_PER_WORD, &spi_bpw) < 0)
+    if ( ioctl(m_spi_fd, SPI_IOC_WR_BITS_PER_WORD, &spi_bpw) < 0 )
     {
         printf("Failed to set SPI BPW: %s!\n", strerror(errno));
     }
@@ -104,8 +102,8 @@ void LinuxSpi::begin()
 
 void LinuxSpi::end()
 {
-    lcd_unregisterGpioEvent( m_dc );
-    if (m_spi_fd >= 0)
+    lcd_unregisterGpioEvent(m_dc);
+    if ( m_spi_fd >= 0 )
     {
         close(m_spi_fd);
         m_spi_fd = -1;
@@ -124,7 +122,7 @@ void LinuxSpi::stop()
 
 void LinuxSpi::OnDcChange(void *arg)
 {
-    LinuxSpi *obj = reinterpret_cast<LinuxSpi*>(arg);
+    LinuxSpi *obj = reinterpret_cast<LinuxSpi *>(arg);
     obj->sendCache();
 }
 
@@ -146,9 +144,9 @@ void LinuxSpi::sendCache()
     mesg.speed_hz = 0;
     mesg.bits_per_word = 8;
     mesg.cs_change = 0;
-    if (ioctl(m_spi_fd, SPI_IOC_MESSAGE(1), &mesg) < 1)
+    if ( ioctl(m_spi_fd, SPI_IOC_MESSAGE(1), &mesg) < 1 )
     {
-        fprintf(stderr, "SPI failed to send SPI message: %s\n", strerror (errno)) ;
+        fprintf(stderr, "SPI failed to send SPI message: %s\n", strerror(errno));
     }
     m_spi_cached_count = 0;
 }
@@ -157,7 +155,7 @@ void LinuxSpi::send(uint8_t data)
 {
     m_spi_cache[m_spi_cached_count] = data;
     m_spi_cached_count++;
-    if ( m_spi_cached_count >= sizeof( m_spi_cache ) )
+    if ( m_spi_cached_count >= sizeof(m_spi_cache) )
     {
         sendCache();
     }
@@ -165,7 +163,7 @@ void LinuxSpi::send(uint8_t data)
 
 void LinuxSpi::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
-    while (size--)
+    while ( size-- )
     {
         send(*buffer);
         buffer++;

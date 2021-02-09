@@ -51,4 +51,3 @@
 #define CONFIG_PLATFORM_SPI_AVAILABLE
 
 #endif
-

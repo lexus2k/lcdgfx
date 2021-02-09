@@ -33,14 +33,13 @@
 
 static uint8_t start_bit = 0;
 
-EspSpi::EspSpi(int8_t busId, int8_t csPin, int8_t dcPin,
-               int8_t clk, int8_t mosi, uint32_t frequency)
-   : m_busId( busId )
-   , m_cs( csPin )
-   , m_dc( dcPin )
-   , m_clk( clk )
-   , m_mosi( mosi )
-   , m_frequency( frequency )
+EspSpi::EspSpi(int8_t busId, int8_t csPin, int8_t dcPin, int8_t clk, int8_t mosi, uint32_t frequency)
+    : m_busId(busId)
+    , m_cs(csPin)
+    , m_dc(dcPin)
+    , m_clk(clk)
+    , m_mosi(mosi)
+    , m_frequency(frequency)
 {
 }
 
@@ -48,47 +47,51 @@ EspSpi::~EspSpi()
 {
 }
 
-
 static void IRAM_ATTR spi_event_callback(int event, void *arg)
 {
-    switch (event) {
-        case SPI_INIT_EVENT: {
-
+    switch ( event )
+    {
+        case SPI_INIT_EVENT:
+        {
         }
         break;
 
-        case SPI_TRANS_START_EVENT: {
+        case SPI_TRANS_START_EVENT:
+        {
             start_bit = 1;
         }
         break;
 
-        case SPI_TRANS_DONE_EVENT: {
+        case SPI_TRANS_DONE_EVENT:
+        {
             start_bit = 0;
         }
         break;
 
-        case SPI_DEINIT_EVENT: {
+        case SPI_DEINIT_EVENT:
+        {
         }
         break;
     }
 }
 
-
 void EspSpi::begin()
 {
     // Use HSPI by default, because CSPI is connected to flash
-    if ( m_busId < 0 ) m_busId = 1;
+    if ( m_busId < 0 )
+        m_busId = 1;
     m_spi = m_busId ? HSPI_HOST : CSPI_HOST;
     // If cesPin is not provided, select by default
     // TODO: Not sure, that we need to set cs pin by default. It should be explicitly specified
-//    if ( m_cs < 0)
-//    {
-//        m_cs = m_busId ? 12 : 5;
-//    }
-    if (m_cs >=0) lcd_gpioMode( m_cs, LCD_GPIO_OUTPUT );
-    if (m_dc >= 0)
+    //    if ( m_cs < 0)
+    //    {
+    //        m_cs = m_busId ? 12 : 5;
+    //    }
+    if ( m_cs >= 0 )
+        lcd_gpioMode(m_cs, LCD_GPIO_OUTPUT);
+    if ( m_dc >= 0 )
     {
-        lcd_gpioMode( m_dc, LCD_GPIO_OUTPUT );
+        lcd_gpioMode(m_dc, LCD_GPIO_OUTPUT);
     }
 
     // init your interface here
@@ -102,24 +105,34 @@ void EspSpi::begin()
     buscfg.interface.cpha = 0;
     buscfg.mode = SPI_MASTER_MODE;
     buscfg.clk_div = SPI_10MHz_DIV;
-    if ( m_frequency < 4000000 ) buscfg.clk_div = SPI_2MHz_DIV;
-    else if ( m_frequency < 5000000 ) buscfg.clk_div = SPI_4MHz_DIV;
-    else if ( m_frequency < 8000000 ) buscfg.clk_div = SPI_5MHz_DIV;
-    else if ( m_frequency < 10000000 ) buscfg.clk_div = SPI_8MHz_DIV;
-    else if ( m_frequency < 16000000 ) buscfg.clk_div = SPI_10MHz_DIV;
-    else if ( m_frequency < 20000000 ) buscfg.clk_div = SPI_16MHz_DIV;
-    else if ( m_frequency < 40000000 ) buscfg.clk_div = SPI_20MHz_DIV;
-    else if ( m_frequency < 80000000 ) buscfg.clk_div = SPI_40MHz_DIV;
+    if ( m_frequency < 4000000 )
+        buscfg.clk_div = SPI_2MHz_DIV;
+    else if ( m_frequency < 5000000 )
+        buscfg.clk_div = SPI_4MHz_DIV;
+    else if ( m_frequency < 8000000 )
+        buscfg.clk_div = SPI_5MHz_DIV;
+    else if ( m_frequency < 10000000 )
+        buscfg.clk_div = SPI_8MHz_DIV;
+    else if ( m_frequency < 16000000 )
+        buscfg.clk_div = SPI_10MHz_DIV;
+    else if ( m_frequency < 20000000 )
+        buscfg.clk_div = SPI_16MHz_DIV;
+    else if ( m_frequency < 40000000 )
+        buscfg.clk_div = SPI_20MHz_DIV;
+    else if ( m_frequency < 80000000 )
+        buscfg.clk_div = SPI_40MHz_DIV;
     buscfg.event_cb = spi_event_callback;
-    spi_init( m_spi, &buscfg );
+    spi_init(m_spi, &buscfg);
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
-    if (m_dc >= 0) lcd_registerGpioEvent(m_dc, OnDcChange, this);
+    if ( m_dc >= 0 )
+        lcd_registerGpioEvent(m_dc, OnDcChange, this);
 }
 
 void EspSpi::end()
 {
-    spi_deinit( m_spi );
-    if (m_dc >= 0) lcd_unregisterGpioEvent(m_dc);
+    spi_deinit(m_spi);
+    if ( m_dc >= 0 )
+        lcd_unregisterGpioEvent(m_dc);
 }
 
 void EspSpi::start()
@@ -157,30 +170,33 @@ void EspSpi::forceSpiTransfer()
     while ( m_data_size )
     {
         // The max size must be divided by 4!!!
-        size_t sz = m_data_size > 32 ? 32: m_data_size;
+        size_t sz = m_data_size > 32 ? 32 : m_data_size;
         spi_trans_t t{};
-        t.bits.mosi = 8 * sz;          // 8 bits
+        t.bits.mosi = 8 * sz; // 8 bits
         t.mosi = reinterpret_cast<uint32_t *>(buffer);
-        spi_trans( m_spi , t );
+        spi_trans(m_spi, t);
         buffer += sz;
         m_data_size -= sz;
     }
     // Wait until transaction ends
-    while ( start_bit > 0 ) { lcd_delay(0); };
+    while ( start_bit > 0 )
+    {
+        lcd_delay(0);
+    };
 
     m_data_size = 0;
 }
 
 void EspSpi::OnDcChange(void *arg)
 {
-    EspSpi *obj = reinterpret_cast<EspSpi*>(arg);
+    EspSpi *obj = reinterpret_cast<EspSpi *>(arg);
     obj->forceSpiTransfer();
 }
 
 void EspSpi::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
     // ... Send len bytes to spi communication channel here
-    while (size)
+    while ( size )
     {
         send(*buffer);
         size--;

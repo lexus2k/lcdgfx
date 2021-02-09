@@ -25,8 +25,8 @@
 #include "button.h"
 
 LcdGfxButton::LcdGfxButton(const char *text, const NanoRect &rect)
-    : m_text( text )
-    , m_rect( rect )
+    : m_text(text)
+    , m_rect(rect)
 {
 }
 
@@ -40,7 +40,7 @@ bool LcdGfxButton::isActive()
     return m_focus;
 }
 
-void LcdGfxButton::setRect( const NanoRect &rect )
+void LcdGfxButton::setRect(const NanoRect &rect)
 {
     m_rect = rect;
 }

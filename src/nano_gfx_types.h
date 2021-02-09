@@ -33,12 +33,12 @@
 
 #ifndef min
 /** Macros returning minimum of 2 numbers */
-#define min(a,b) ((a)<(b)?(a):(b))
+#define min(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
 #ifndef max
 /** Macros returning maximum of 2 numbers */
-#define max(a,b) ((a)>(b)?(a):(b))
+#define max(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
 /**
@@ -55,7 +55,6 @@ typedef struct
     /// bottom
     uint8_t bottom;
 } SSD1306_RECT;
-
 
 /**
  * SPRITE structure represents logical graphics object
@@ -74,7 +73,7 @@ typedef struct SPRITE
     /// last draw position Y on the screen
     uint8_t ly;
     /// Pointer to PROGMEM data, representing sprite image
-    const uint8_t * data;
+    const uint8_t *data;
 
 #ifdef __cplusplus
     /**
@@ -107,8 +106,8 @@ typedef struct SPRITE
     inline bool isNearMove() const
     {
         /* We emulate abs function for unsigned vars here */
-        return (((uint8_t)(x-lx)<w) || ((uint8_t)(lx-x)<w)) &&
-               (((uint8_t)(y-ly)<8) || ((uint8_t)(ly-y)<8));
+        return (((uint8_t)(x - lx) < w) || ((uint8_t)(lx - x) < w)) &&
+               (((uint8_t)(y - ly) < 8) || ((uint8_t)(ly - y) < 8));
     };
 
     /**
@@ -121,11 +120,13 @@ typedef struct SPRITE
      */
     inline SSD1306_RECT getRect() const
     {
-        uint8_t right = ((x + w - 1)>>3);
-        uint8_t bottom = ((y + 7)>>3);
-        uint8_t left = x>>3; left = left < right ? left: 0;
-        uint8_t top = y>>3; top = top < bottom ? top: 0;
-        return (SSD1306_RECT){ left, top, right, bottom };
+        uint8_t right = ((x + w - 1) >> 3);
+        uint8_t bottom = ((y + 7) >> 3);
+        uint8_t left = x >> 3;
+        left = left < right ? left : 0;
+        uint8_t top = y >> 3;
+        top = top < bottom ? top : 0;
+        return (SSD1306_RECT){left, top, right, bottom};
     };
 
     /**
@@ -141,9 +142,9 @@ typedef struct SPRITE
         uint8_t top = ly;
         uint8_t right = (uint8_t)(lx + w - 1);
         uint8_t bottom = (uint8_t)(ly + 7);
-        left = left < right ? left: 0;
-        top = top < bottom ? top: 0;
-        return (SSD1306_RECT){ left, top, right, bottom };
+        left = left < right ? left : 0;
+        top = top < bottom ? top : 0;
+        return (SSD1306_RECT){left, top, right, bottom};
     };
 
     /**
@@ -154,21 +155,23 @@ typedef struct SPRITE
      */
     inline SSD1306_RECT getUpdateRect() const
     {
-        uint8_t left = min(x,lx);
-        uint8_t top = min(y,ly);
+        uint8_t left = min(x, lx);
+        uint8_t top = min(y, ly);
         uint8_t right = max((uint8_t)(x + w - 1), (uint8_t)(lx + w - 1));
-        if (((uint8_t)(lx + w - 1) < w) && (right > 2*w))
+        if ( ((uint8_t)(lx + w - 1) < w) && (right > 2 * w) )
         {
             right = (uint8_t)(lx + w - 1);
         }
         uint8_t bottom = max((uint8_t)(y + 7), (uint8_t)(ly + 7));
-        if (((uint8_t)(ly + 7) < 8) && (bottom > 16))
+        if ( ((uint8_t)(ly + 7) < 8) && (bottom > 16) )
         {
             bottom = (uint8_t)(ly + 7);
         }
-        if ( left > right ) left = 0;
-        if ( top > bottom ) top = 0;
-        return (SSD1306_RECT){ left, top, right, bottom };
+        if ( left > right )
+            left = 0;
+        if ( top > bottom )
+            top = 0;
+        return (SSD1306_RECT){left, top, right, bottom};
     };
 #endif
 } SPRITE;

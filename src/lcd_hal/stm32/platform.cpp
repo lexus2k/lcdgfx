@@ -63,15 +63,16 @@ static void platform_i2c_send_buffer(const uint8_t *data, uint16_t len)
 
 void ssd1306_platform_i2cInit(int8_t busId, uint8_t addr, int8_t arg)
 {
-    if (addr) s_i2c_addr = addr;
-    if (HAL_I2C_IsDeviceReady(&hi2c1, s_i2c_addr, 1, 20000) != HAL_OK)
+    if ( addr )
+        s_i2c_addr = addr;
+    if ( HAL_I2C_IsDeviceReady(&hi2c1, s_i2c_addr, 1, 20000) != HAL_OK )
     {
         return;
     }
     ssd1306_intf.spi = 0;
     ssd1306_intf.start = &platform_i2c_start;
-    ssd1306_intf.stop  = &platform_i2c_stop;
-    ssd1306_intf.send  = &platform_i2c_send;
+    ssd1306_intf.stop = &platform_i2c_stop;
+    ssd1306_intf.send = &platform_i2c_send;
     ssd1306_intf.close = &platform_i2c_close;
     ssd1306_intf.send_buffer = &platform_i2c_send_buffer;
     // init your interface here
@@ -108,16 +109,16 @@ static void platform_spi_send_buffer(const uint8_t *data, uint16_t len)
     // ... Send len bytes to spi communication channel here
 }
 
-void ssd1306_platform_spiInit(int8_t busId,
-                              int8_t cesPin,
-                              int8_t dcPin)
+void ssd1306_platform_spiInit(int8_t busId, int8_t cesPin, int8_t dcPin)
 {
-    if (cesPin>=0) s_ssd1306_cs = cesPin;
-    if (dcPin>=0) s_ssd1306_dc = dcPin;
+    if ( cesPin >= 0 )
+        s_ssd1306_cs = cesPin;
+    if ( dcPin >= 0 )
+        s_ssd1306_dc = dcPin;
     ssd1306_intf.spi = 1;
     ssd1306_intf.start = &platform_spi_start;
-    ssd1306_intf.stop  = &platform_spi_stop;
-    ssd1306_intf.send  = &platform_spi_send;
+    ssd1306_intf.stop = &platform_spi_stop;
+    ssd1306_intf.send = &platform_spi_send;
     ssd1306_intf.close = &platform_spi_close;
     ssd1306_intf.send_buffer = &platform_spi_send_buffer;
     // init your interface here
@@ -125,7 +126,7 @@ void ssd1306_platform_spiInit(int8_t busId,
 }
 #endif
 
-int  lcd_gpioRead(int pin)
+int lcd_gpioRead(int pin)
 {
     return LCD_LOW;
 }
@@ -138,7 +139,7 @@ void lcd_gpioMode(int pin, int mode)
 {
 }
 
-int  lcd_adcRead(int pin)
+int lcd_adcRead(int pin)
 {
     return 0;
 }

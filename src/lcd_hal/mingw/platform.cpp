@@ -28,9 +28,18 @@
 
 #include <cstdlib>
 
-int  lcd_gpioRead(int pin) { return sdl_read_digital(pin); };
-void lcd_delay(unsigned long ms) { Sleep(ms);  };
-void lcd_delayUs(unsigned long us) { Sleep((us+500)/1000); };
+int lcd_gpioRead(int pin)
+{
+    return sdl_read_digital(pin);
+};
+void lcd_delay(unsigned long ms)
+{
+    Sleep(ms);
+};
+void lcd_delayUs(unsigned long us)
+{
+    Sleep((us + 500) / 1000);
+};
 uint32_t lcd_millis(void)
 {
     return GetTickCount();
@@ -38,20 +47,32 @@ uint32_t lcd_millis(void)
 
 uint32_t lcd_micros(void)
 {
-    return GetTickCount()*1000;
+    return GetTickCount() * 1000;
 };
 
 #if defined(SDL_EMULATION)
-int  lcd_gpioRead(int pin) { return sdl_read_analog(pin); };
-void lcd_gpioWrite(int pin, int level) {  sdl_write_digital(pin, level); };
-void lcd_gpioMode(int pin, int mode) { };
+int lcd_gpioRead(int pin)
+{
+    return sdl_read_analog(pin);
+};
+void lcd_gpioWrite(int pin, int level)
+{
+    sdl_write_digital(pin, level);
+};
+void lcd_gpioMode(int pin, int mode){};
 #endif
 
-void lcd_randomSeed(int seed) { };
-void attachInterrupt(int pin, void (*interrupt)(void), int level) { };
-uint8_t lcd_pgmReadByte(const void *ptr) { return *((const uint8_t *)ptr); };
-uint16_t lcd_eepromReadWord(const void *ptr) { return 0; };
-void lcd_eepromWriteWord(const void *ptr, uint16_t val) { };
+void lcd_randomSeed(int seed){};
+void attachInterrupt(int pin, void (*interrupt)(void), int level){};
+uint8_t lcd_pgmReadByte(const void *ptr)
+{
+    return *((const uint8_t *)ptr);
+};
+uint16_t lcd_eepromReadWord(const void *ptr)
+{
+    return 0;
+};
+void lcd_eepromWriteWord(const void *ptr, uint16_t val){};
 
 int lcd_random(int v)
 {
@@ -64,4 +85,3 @@ int lcd_random(int min, int max)
 }
 
 #endif
-

@@ -34,7 +34,7 @@
 
 #include "../UserSettings.h"
 
-#if defined(SDL_EMULATION)  // SDL Emulation mode includes
+#if defined(SDL_EMULATION) // SDL Emulation mode includes
 #include "sdl_core.h"
 #endif
 
@@ -48,45 +48,46 @@
 #define LCD_PROGMEM
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-int min(int a, int b);
-int max(int a, int b);
+    int min(int a, int b);
+    int max(int a, int b);
 
-static inline char *utoa(unsigned int num, char *str, int radix)
-{
-    char temp[17];  //an int can only be 16 bits long
-                    //at radix 2 (binary) the string
-                    //is at most 16 + 1 null long.
-    int temp_loc = 0;
-    int str_loc = 0;
+    static inline char *utoa(unsigned int num, char *str, int radix)
+    {
+        char temp[17]; // an int can only be 16 bits long
+                       // at radix 2 (binary) the string
+                       // is at most 16 + 1 null long.
+        int temp_loc = 0;
+        int str_loc = 0;
 
-    //construct a backward string of the number.
-    do {
-        int digit = (unsigned int)num % radix;
-        if (digit < 10)
-            temp[temp_loc++] = digit + '0';
-        else
-            temp[temp_loc++] = digit - 10 + 'A';
-        num = ((unsigned int)num) / radix;
-    } while ((unsigned int)num > 0);
+        // construct a backward string of the number.
+        do
+        {
+            int digit = (unsigned int)num % radix;
+            if ( digit < 10 )
+                temp[temp_loc++] = digit + '0';
+            else
+                temp[temp_loc++] = digit - 10 + 'A';
+            num = ((unsigned int)num) / radix;
+        } while ( (unsigned int)num > 0 );
 
-    temp_loc--;
+        temp_loc--;
 
+        // now reverse the string.
+        while ( temp_loc >= 0 )
+        { // while there are still chars
+            str[str_loc++] = temp[temp_loc--];
+        }
+        str[str_loc] = 0; // add null termination.
 
-    //now reverse the string.
-    while ( temp_loc >=0 ) {// while there are still chars
-        str[str_loc++] = temp[temp_loc--];
+        return str;
     }
-    str[str_loc] = 0; // add null termination.
-
-    return str;
-}
 
 #ifdef __cplusplus
 }
 #endif
 
 #endif
-

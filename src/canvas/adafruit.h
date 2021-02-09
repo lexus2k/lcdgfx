@@ -64,8 +64,7 @@
  * compatible with native NanoCanvas implementation of the
  * library
  */
-template <uint8_t BPP>
-class AdafruitCanvasOps: public Adafruit_GFX
+template <uint8_t BPP> class AdafruitCanvasOps: public Adafruit_GFX
 {
 public:
     /** Fixed offset for all operation of NanoCanvasOps in pixels. */
@@ -104,7 +103,11 @@ public:
      * @param ox - X offset in pixels
      * @param oy - Y offset in pixels
      */
-    void setOffset(lcdint_t ox, lcdint_t oy) { offset.x = ox; offset.y = oy; };
+    void setOffset(lcdint_t ox, lcdint_t oy)
+    {
+        offset.x = ox;
+        offset.y = oy;
+    };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
     // We need to override Adafruit GFX implementation of fillScreen, because
@@ -116,36 +119,34 @@ public:
 #endif
 
 protected:
-
     /** pixels buffer */
     uint8_t *m_buffer;
 
 private:
     inline void rotatePosition(int16_t &x, int16_t &y)
     {
-        switch (getRotation()) {
-        case 1:
-            canvas_swap_data(x, y, int16_t);
-            x = WIDTH - x - 1;
-            break;
-        case 2:
-            x = WIDTH - x - 1;
-            y = HEIGHT - y - 1;
-            break;
-        case 3:
-            canvas_swap_data(x, y, int16_t);
-            y = HEIGHT - y - 1;
-            break;
+        switch ( getRotation() )
+        {
+            case 1:
+                canvas_swap_data(x, y, int16_t);
+                x = WIDTH - x - 1;
+                break;
+            case 2:
+                x = WIDTH - x - 1;
+                y = HEIGHT - y - 1;
+                break;
+            case 3:
+                canvas_swap_data(x, y, int16_t);
+                y = HEIGHT - y - 1;
+                break;
         }
-
     }
 };
 
 /**
  * Base class for all AdafruitCanvas childs
  */
-template <uint8_t BPP>
-class AdafruitCanvasBase: public AdafruitCanvasOps<BPP>
+template <uint8_t BPP> class AdafruitCanvasBase: public AdafruitCanvasOps<BPP>
 {
 public:
     using AdafruitCanvasOps<BPP>::AdafruitCanvasOps;
@@ -173,29 +174,28 @@ public:
  * AdafruitCanvas1 represents objects for drawing in memory buffer
  * AdafruitCanvas1 represents each pixel as single bit: 0/1
  */
-class AdafruitCanvas1 : public AdafruitCanvasBase<1>
+class AdafruitCanvas1: public AdafruitCanvasBase<1>
 {
 public:
     using AdafruitCanvasBase::AdafruitCanvasBase;
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-template <>
-void AdafruitCanvasOps<1>::drawPixel(int16_t x, int16_t y, uint16_t color)
+template <> void AdafruitCanvasOps<1>::drawPixel(int16_t x, int16_t y, uint16_t color)
 {
     x -= offset.x;
     y -= offset.y;
-    if ((x < 0) || (x >= width()) || (y < 0) || (y >= height()))
+    if ( (x < 0) || (x >= width()) || (y < 0) || (y >= height()) )
     {
         return;
     }
     rotatePosition(x, y);
 
-    switch (color)
+    switch ( color )
     {
-        case 1:   m_buffer[x+ (y/8)*WIDTH] |=  (1 << (y&7)); break;
-        case 0:   m_buffer[x+ (y/8)*WIDTH] &= ~(1 << (y&7)); break;
-        case 2:   m_buffer[x+ (y/8)*WIDTH] ^=  (1 << (y&7)); break;
+        case 1: m_buffer[x + (y / 8) * WIDTH] |= (1 << (y & 7)); break;
+        case 0: m_buffer[x + (y / 8) * WIDTH] &= ~(1 << (y & 7)); break;
+        case 2: m_buffer[x + (y / 8) * WIDTH] ^= (1 << (y & 7)); break;
     }
 }
 #endif // DOXYGEN_SHOULD_SKIP_THIS
@@ -211,25 +211,24 @@ void AdafruitCanvasOps<1>::drawPixel(int16_t x, int16_t y, uint16_t color)
  * AdafruitCanvas8 represents each pixel as single byte with RGB bits: RRRGGGBB
  * For details refer to SSD1331 datasheet.
  */
-class AdafruitCanvas8 : public AdafruitCanvasBase<8>
+class AdafruitCanvas8: public AdafruitCanvasBase<8>
 {
 public:
     using AdafruitCanvasBase::AdafruitCanvasBase;
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-template <>
-void AdafruitCanvasOps<8>::drawPixel(int16_t x, int16_t y, uint16_t color)
+template <> void AdafruitCanvasOps<8>::drawPixel(int16_t x, int16_t y, uint16_t color)
 {
     x -= offset.x;
     y -= offset.y;
-    if ((x < 0) || (x >= width()) || (y < 0) || (y >= height()))
+    if ( (x < 0) || (x >= width()) || (y < 0) || (y >= height()) )
     {
         return;
     }
     rotatePosition(x, y);
 
-    m_buffer[x+y*WIDTH] = color;
+    m_buffer[x + y * WIDTH] = color;
 }
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
@@ -245,26 +244,25 @@ void AdafruitCanvasOps<8>::drawPixel(int16_t x, int16_t y, uint16_t color)
  * RRRRRGGG GGGBBBBB.
  * For details refer to SSD1351 datasheet.
  */
-class AdafruitCanvas16 : public AdafruitCanvasBase<16>
+class AdafruitCanvas16: public AdafruitCanvasBase<16>
 {
 public:
     using AdafruitCanvasBase::AdafruitCanvasBase;
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-template <>
-void AdafruitCanvasOps<16>::drawPixel(int16_t x, int16_t y, uint16_t color)
+template <> void AdafruitCanvasOps<16>::drawPixel(int16_t x, int16_t y, uint16_t color)
 {
     x -= offset.x;
     y -= offset.y;
-    if ((x < 0) || (x >= width()) || (y < 0) || (y >= height()))
+    if ( (x < 0) || (x >= width()) || (y < 0) || (y >= height()) )
     {
         return;
     }
     rotatePosition(x, y);
 
-    m_buffer[(x+y*WIDTH) * 2 + 0] = color;
-    m_buffer[(x+y*WIDTH) * 2 + 1] = color >> 8;
+    m_buffer[(x + y * WIDTH) * 2 + 0] = color;
+    m_buffer[(x + y * WIDTH) * 2 + 1] = color >> 8;
 }
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
@@ -273,4 +271,3 @@ void AdafruitCanvasOps<16>::drawPixel(int16_t x, int16_t y, uint16_t color)
  */
 
 #endif // CONFIG_ADAFRUIT_GFX_ENABLE
-

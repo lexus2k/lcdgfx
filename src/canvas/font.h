@@ -36,7 +36,7 @@
  */
 
 /** Flag means that more chars are required to decode utf-8 */
-#define SSD1306_MORE_CHARS_REQUIRED  0xffff
+#define SSD1306_MORE_CHARS_REQUIRED 0xffff
 
 /**
  * NanoFont class implements work with fonts provided by
@@ -50,12 +50,17 @@ public:
      * loadFreeFont(), loadSecondaryFont() functions after creating
      * the object.
      */
-    NanoFont() {}
+    NanoFont()
+    {
+    }
 
     /**
      * Creates NanoFont object and loads font of fixed type from flash memory
      */
-    explicit NanoFont(const uint8_t * progmemFont) { loadFixedFont( progmemFont ); }
+    explicit NanoFont(const uint8_t *progmemFont)
+    {
+        loadFixedFont(progmemFont);
+    }
 
     /**
      * Function allows to set another fixed font for the library.
@@ -63,7 +68,7 @@ public:
      * Please refer to github wiki on how to generate new fonts.
      * @param progmemFont - font to setup located in Flash area
      */
-    void loadFixedFont(const uint8_t * progmemFont);
+    void loadFixedFont(const uint8_t *progmemFont);
 
     /**
      * Function allows to set another free font for the library.
@@ -71,7 +76,7 @@ public:
      * Please refer to github wiki on how to generate new fonts.
      * @param progmemFont - font to setup located in Flash area
      */
-    void loadFreeFont(const uint8_t * progmemFont);
+    void loadFreeFont(const uint8_t *progmemFont);
 
     /**
      * Function allows sets secondary font for specific language.
@@ -80,10 +85,10 @@ public:
      * @param progmemUnicode font containing unicode table (refer to
      *        ssd1306xled_font6x8_German as example).
      */
-    void loadSecondaryFont(const uint8_t * progmemUnicode);
+    void loadSecondaryFont(const uint8_t *progmemUnicode);
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    void loadFixedFont_oldStyle(const uint8_t * progmemFont);
+    void loadFixedFont_oldStyle(const uint8_t *progmemFont);
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -92,7 +97,7 @@ public:
      * @param progmemFont - font to setup located in Flash area
      * @warning Squix fonts are not fully supported, use them at your own risk
      */
-    void loadSquixFont(const uint8_t * progmemFont);
+    void loadSquixFont(const uint8_t *progmemFont);
 #endif
 
     /**
@@ -134,30 +139,41 @@ public:
      * Returns reference to SFontHeaderRecord. This record contains
      * some useful information on font like width, height, etc.
      */
-    const SFontHeaderRecord &getHeader() { return m_fixedFont.h; }
+    const SFontHeaderRecord &getHeader()
+    {
+        return m_fixedFont.h;
+    }
 
     /**
      * Sets spacing in pixels between 2 nearest characters
      *
      * @param spacing spacing in pixels
      */
-    void setSpacing(uint8_t spacing) { m_fixedFont.spacing = spacing; }
-
+    void setSpacing(uint8_t spacing)
+    {
+        m_fixedFont.spacing = spacing;
+    }
 
     /**
      * Returns how many pages in terms of ssd1306 display are required for
      * the font height.
      */
-    uint8_t getPages() { return m_fixedFont.pages; }
+    uint8_t getPages()
+    {
+        return m_fixedFont.pages;
+    }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    const uint8_t *getPrimaryTable() { return m_fixedFont.primary_table; }
+    const uint8_t *getPrimaryTable()
+    {
+        return m_fixedFont.primary_table;
+    }
 #endif
 
 private:
     SFixedFontInfo m_fixedFont{};
 
-    void (*m_getCharBitmap)(SFixedFontInfo &font,uint16_t unicode, SCharInfo *info) = nullptr;
+    void (*m_getCharBitmap)(SFixedFontInfo &font, uint16_t unicode, SCharInfo *info) = nullptr;
 };
 
 extern NanoFont g_canvas_font;
@@ -167,4 +183,3 @@ extern NanoFont g_canvas_font;
  */
 
 #endif
-
