@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    name: Linux gcc, clang, AVR
+      # Linux gcc, clang, AVR
     docker:
       - image: ubuntu-2004:202101-01
     steps:
@@ -42,8 +42,7 @@ jobs:
             make clean
             make ARCH=avr SDL_EMULATION=n
 
-  build:
-    name: ESP32
+  esp32:
     docker:
       - image: ubuntu-2004:202101-01
     steps:
