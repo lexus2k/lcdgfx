@@ -657,6 +657,14 @@ void NanoDisplayOps<O,I>::print( int number )
     this->write( intStr );
 }
 
+template <class O, class I>
+void NanoDisplayOps<O,I>::print( float number )
+{
+    char intStr[16];
+    snprintf(intStr, sizeof(intStr), "%f", number );
+    this->write( intStr );
+}
+
 #ifndef min
 #define min(x,y) ((x)<(y)?(x):(y))
 #endif
