@@ -1,0 +1,70 @@
+version: 2
+jobs:
+  linux_gcc_clang:
+    docker:
+      - image: ubuntu-2004:202101-01
+    steps:
+      # install dependencies
+      - run:
+          name: Install apt dependencies
+          command: |
+            sudo apt install -y gcc g++ sudo apt install clang clang-format libsdl2-dev
+            sudo apt install -y cppcheck cpputest doxygen avr-libc gcc-avr graphviz
+            pip install --user cpp-coveralls
+      # code checkout
+#      - checkout
+#      - run:
+#          name: Pull Submodules
+#          command: git submodule init && git submodule update --remote
+      # Building
+      - run:
+          name: Building documentation
+          command: make docs 1> /dev/null
+      - run:
+          name: Building via gcc and running unit tests
+          command: make ARCH=linux EXTRA_CPPFLAGS="--coverage" SDL_EMULATION=y check
+      - run:
+          name: Upload coverage statistics
+          command: coveralls -b ./src --exclude docs --exclude unittest --exclude bld --exclude tools --exclude examples --exclude examples_to_do --gcov-options '\-lp'
+#      - store_artifacts:
+#          path: embedded/target/bin.elf
+#          destination: binary.elf
+      - run:
+          name: Building via clang
+          command: |
+            make clean
+            CC=clang CXX=clang++ LD=clang++ make ARCH=linux SDL_EMULATION=y check
+            make cppcheck
+      - run:
+          name: Building for AVR
+          command: |
+            make clean
+            make ARCH=avr SDL_EMULATION=n
+
+  esp32:
+    docker:
+      - image: ubuntu-2004:202101-01
+    steps:
+      # install dependencies
+#      - run:
+#          name: Install apt dependencies
+#          command: |
+#            sudo apt install -y gcc g++ sudo apt install clang clang-format libsdl2-dev
+#            sudo apt install -y cppcheck cpputest doxygen avr-libc gcc-avr graphviz
+#            pip install --user cpp-coveralls
+      # Install esp32 SDK
+      - restore_cache:
+          key: ESP32_SDK
+      - run:
+          name: Install ESP32 SDK
+          command: |
+            ./.travis/setup_esp_build_env.sh travis
+            . ~/esp/esp-idf/export.sh
+      - run:
+          name: Building ESP32 code
+          command: make -C examples -f Makefile.esp32 PROJECT=demos/ssd1306_demo
+      - save_cache:
+          key: ESP32_SDK
+          paths:
+            - /home/travis/esp
+            - /home/travis/.espressif
