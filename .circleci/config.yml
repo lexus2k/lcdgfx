@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
       # Linux gcc, clang, AVR
-    docker:
+    machine:
       - image: ubuntu-2004:202101-01
     steps:
       # install dependencies
@@ -43,7 +43,7 @@ jobs:
             make ARCH=avr SDL_EMULATION=n
 
   esp32:
-    docker:
+    machine:
       - image: ubuntu-2004:202101-01
     steps:
       # install dependencies
