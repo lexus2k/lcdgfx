@@ -14,7 +14,7 @@ jobs:
             sudo apt install -y cppcheck cpputest doxygen avr-libc gcc-avr graphviz
             pip install --user cpp-coveralls
       # code checkout
-#      - checkout
+      - checkout
 #      - run:
 #          name: Pull Submodules
 #          command: git submodule init && git submodule update --remote
@@ -57,6 +57,7 @@ jobs:
       # Install esp32 SDK
       - restore_cache:
           key: ESP32_SDK
+      - checkout
       - run:
           name: Install ESP32 SDK
           command: |
