@@ -9,7 +9,8 @@ jobs:
       - run:
           name: Install apt dependencies
           command: |
-            sudo apt install -y gcc g++ sudo apt install clang clang-format libsdl2-dev
+            sudo apt update
+            sudo apt install -y gcc g++ clang clang-format libsdl2-dev
             sudo apt install -y cppcheck cpputest doxygen avr-libc gcc-avr graphviz
             pip install --user cpp-coveralls
       # code checkout
