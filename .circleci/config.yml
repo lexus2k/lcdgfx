@@ -1,9 +1,9 @@
 version: 2
 jobs:
   build:
-      # Linux gcc, clang, AVR
+    # Linux gcc, clang, AVR
     machine:
-      - image: ubuntu-2004:202101-01
+      image: ubuntu-2004:202101-01
     steps:
       # install dependencies
       - run:
@@ -44,7 +44,7 @@ jobs:
 
   esp32:
     machine:
-      - image: ubuntu-2004:202101-01
+      image: ubuntu-2004:202101-01
     steps:
       # install dependencies
 #      - run:
