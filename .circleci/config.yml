@@ -12,7 +12,7 @@ jobs:
             sudo apt update
             sudo apt install -y gcc g++ clang clang-format libsdl2-dev
             sudo apt install -y cppcheck cpputest doxygen avr-libc gcc-avr graphviz
-            pip install --user cpp-coveralls
+            pip3 install --user cpp-coveralls
       # code checkout
       - checkout
 #      - run:
