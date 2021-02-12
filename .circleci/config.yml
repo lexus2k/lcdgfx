@@ -38,10 +38,11 @@ jobs:
 #          path: embedded/target/bin.elf
 #          destination: binary.elf
       - run:
+          # CPPFLAGS="-I/usr/include/SDL2" is the workaround for known Ubuntu 20.04 issue
           name: Building via clang
           command: |
             make clean
-            CC=clang CXX=clang++ LD=clang++ make ARCH=linux SDL_EMULATION=y check
+            CC=clang CXX=clang++ LD=clang++ make ARCH=linux SDL_EMULATION=y CPPFLAGS="-I/usr/include/SDL2" check
             make cppcheck
       - run:
           name: Building for AVR
