@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
 jobs:
   build:
     # Linux gcc, clang, AVR
@@ -12,6 +14,7 @@ jobs:
             sudo apt update
             sudo apt install -y gcc g++ clang clang-format libsdl2-dev
             sudo apt install -y cppcheck cpputest doxygen avr-libc gcc-avr graphviz
+            sudo pip3 install cpp-coveralls
             pip3 install --user cpp-coveralls
       # code checkout
       - checkout
@@ -25,9 +28,12 @@ jobs:
       - run:
           name: Building via gcc and running unit tests
           command: make ARCH=linux EXTRA_CPPFLAGS="--coverage" SDL_EMULATION=y check
+#      - coveralls/upload
       - run:
           name: Upload coverage statistics
-          command: coveralls -b ./src --exclude docs --exclude unittest --exclude bld --exclude tools --exclude examples --exclude examples_to_do --gcov-options '\-lp'
+          command: |
+             sudo find / -name coveralls
+             coveralls -b ./src --exclude docs --exclude unittest --exclude bld --exclude tools --exclude examples --exclude examples_to_do --gcov-options '\-lp'
 #      - store_artifacts:
 #          path: embedded/target/bin.elf
 #          destination: binary.elf
