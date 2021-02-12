@@ -50,7 +50,7 @@ static const uint8_t * ssd1306_readUnicodeRecord(SUnicodeBlockRecord *r, const u
 /// OLD FORMAT: 1.7.6 and below
 /// OLD FORMAT is supported by old and latest versions of ssd1306 library
 
-static const uint8_t *ssd1306_getCharGlyph(SFixedFontInfo &font, char ch)
+static const uint8_t *ssd1306_getCharGlyph(const SFixedFontInfo &font, char ch)
 {
      return &font.primary_table[ (ch - font.h.ascii_offset) *
                                        font.glyph_size +
@@ -86,7 +86,7 @@ static const uint8_t *ssd1306_searchCharGlyph(const SFixedFontInfo &font, const 
 }
 #endif
 
-static const uint8_t *ssd1306_getU16CharGlyph(SFixedFontInfo &font, uint16_t unicode)
+static const uint8_t *ssd1306_getU16CharGlyph(const SFixedFontInfo &font, uint16_t unicode)
 {
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
     if (g_ssd1306_unicode2)
@@ -117,7 +117,7 @@ static const uint8_t *ssd1306_getU16CharGlyph(SFixedFontInfo &font, uint16_t uni
     }
 }
 
-static void _ssd1306_oldFormatGetBitmap(SFixedFontInfo &font, uint16_t unicode, SCharInfo *info)
+static void _ssd1306_oldFormatGetBitmap(const SFixedFontInfo &font, uint16_t unicode, SCharInfo *info)
 {
     if (info)
     {
