@@ -72,17 +72,7 @@ public:
      * @param d display object
      */
     template<typename D>
-    void show(D &d)
-    {
-        updateSize(d);
-        d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
-        menu.scrollPosition = this->calculateScrollPosition(d, menu.selection );
-        for (uint8_t i = menu.scrollPosition; i < min(menu.count, (menu.scrollPosition + getMaxScreenItems(d))); i++)
-        {
-            drawMenuItem(d, i);
-        }
-        menu.oldSelection = menu.selection;
-    }
+    void show(D &d);
 
     /**
      * Moves selection pointer down by 1 item. If there are no items below,
@@ -169,6 +159,17 @@ private:
     }
 };
 
+template<typename D> void LcdGfxMenu::show(D &d)
+{
+    updateSize(d);
+    d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
+    menu.scrollPosition = this->calculateScrollPosition(d, menu.selection );
+    for (uint8_t i = menu.scrollPosition; i < min(menu.count, (menu.scrollPosition + getMaxScreenItems(d))); i++)
+    {
+        this->drawMenuItem(d, i);
+    }
+    menu.oldSelection = menu.selection;
+}
 
 /**
  * @}
