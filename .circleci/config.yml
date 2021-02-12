@@ -42,7 +42,7 @@ jobs:
           name: Building via clang
           command: |
             make clean
-            CC=clang CXX=clang++ LD=clang++ make ARCH=linux SDL_EMULATION=y CPPFLAGS="-I/usr/include/SDL2" check
+            CPPFLAGS="-I/usr/include/SDL2" CC=clang CXX=clang++ LD=clang++ make ARCH=linux SDL_EMULATION=y check
             make cppcheck
       - run:
           name: Building for AVR

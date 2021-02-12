@@ -32,7 +32,7 @@ CPPFLAGS += -I./src -I./tools/sdl $(EXTRA_CPPFLAGS)
 ifeq ($(SDL_EMULATION),y)
     CPPFLAGS += -DSDL_EMULATION
 endif
-CPPFLAGS += -std=c++11
+CXXFLAGS += -std=c++11
 BLD ?= $(shell pwd)/bld
 
 help:
