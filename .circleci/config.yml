@@ -33,7 +33,7 @@ jobs:
           name: Upload coverage statistics
           command: |
              sudo find / -name coveralls
-             coveralls -b ./src --exclude docs --exclude unittest --exclude bld --exclude tools --exclude examples --exclude examples_to_do --gcov-options '\-lp'
+             COVERALLS_REPO_TOKEN=KxXPskywURsRPcsDEgK5eq4sdNncpk6yB coveralls -b ./src --exclude docs --exclude unittest --exclude bld --exclude tools --exclude examples --exclude examples_to_do --gcov-options '\-lp'
 #      - store_artifacts:
 #          path: embedded/target/bin.elf
 #          destination: binary.elf
