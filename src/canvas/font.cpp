@@ -148,7 +148,7 @@ void NanoFont::loadFixedFont(const uint8_t * progmemFont)
 /// NEW FORMAT: 1.7.8 and later
 /// NEW FORMAT is supported only by latest versions of ssd1306 library
 
-static void _ssd1306_newFormatGetBitmap(SFixedFontInfo &font, uint16_t unicode, SCharInfo *info)
+static void _ssd1306_newFormatGetBitmap(const SFixedFontInfo &font, uint16_t unicode, SCharInfo *info)
 {
     if (info)
     {
@@ -249,7 +249,7 @@ void NanoFont::loadFixedFont_oldStyle(const uint8_t * progmemFont)
 /// SQUIX FORMAT: 1.7.8 and later
 /// SQUIX FORMAT is not fully supported. Use it at your own risk
 
-static void _ssd1306_squixFormatGetBitmap(SFixedFontInfo &font, uint16_t unicode, SCharInfo *info)
+static void _ssd1306_squixFormatGetBitmap(const SFixedFontInfo &font, uint16_t unicode, SCharInfo *info)
 {
     if (info)
     {
