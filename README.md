@@ -182,7 +182,7 @@ lcdgfx library requires at least c++11 and c99 (by default Digispark package mis
 ## Projects using lcdgfx
 
  * [GUIslice](https://github.com/ImpulseAdventure/GUIslice) - nice platform independent GUI library for embedded systems
- * [Tension Meter](https://www.hackster.io/tangielsky/tension-meter-for-saw-blades-on-band-saws-with-arduino-3d3298
+ * [Tension Meter](https://www.hackster.io/tangielsky/tension-meter-for-saw-blades-on-band-saws-with-arduino-3d3298)
  * [ESP32-CAM with Capacitive Touch Buttons and OLED](https://robotzero.one/esp32-cam-oled-capacitive-touch-buttons)
 
 ## The goals of lcdgfx library
