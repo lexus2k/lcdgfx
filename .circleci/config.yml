@@ -92,7 +92,7 @@ workflows:
 #          requires:
 #            - build
       - build:
-          context: github
+#          context: github
           filters:
             branches:
               only: master
