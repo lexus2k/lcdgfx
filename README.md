@@ -1,6 +1,7 @@
 # LCDGFX library for display controllers
 
 [![Build Status](https://travis-ci.com/lexus2k/lcdgfx.svg?branch=master)](https://travis-ci.com/lexus2k/lcdgfx)
+[![Build Status](https://circleci.com/gh/lexus2k/lcdgfx.svg?style=svg)](https://circleci.com/gh/lexus2k/lcdgfx)
 [![Coverage Status](https://coveralls.io/repos/github/lexus2k/lcdgfx/badge.svg?branch=master)](https://coveralls.io/github/lexus2k/lcdgfx?branch=master)
 [![Doc Status](.travis/code_documented.svg)](https://codedocs.xyz/lexus2k/lcdgfx)
 
