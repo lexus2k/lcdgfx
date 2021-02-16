@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 orbs:
   coveralls: coveralls/coveralls@1.0.6
 jobs:
@@ -50,7 +50,6 @@ jobs:
             make clean
             make ARCH=avr SDL_EMULATION=n
 
-
 # Free plan doesn't have concurrent jobs
 #  esp32:
 #    machine:
@@ -83,7 +82,7 @@ jobs:
 
 # Orchestrate our job run sequence
 workflows:
-  version: 2
+  version: 2.1
   host_and_esp32:
     jobs:
       - build
