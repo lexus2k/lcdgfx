@@ -71,14 +71,16 @@ jobs:
           command: |
             ./.travis/setup_esp_build_env.sh travis
             . ~/esp/esp-idf/export.sh
-      - run:
-          name: Building ESP32 code
-          command: make -C examples -f Makefile.esp32 PROJECT=demos/ssd1306_demo
       - save_cache:
           key: ESP32_SDK
           paths:
             - /home/travis/esp
             - /home/travis/.espressif
+      - run:
+          name: Building ESP32 code
+          command: |
+            . ~/esp/esp-idf/export.sh
+            make -C examples -f Makefile.esp32 PROJECT=demos/ssd1306_demo
 
 # Orchestrate our job run sequence
 workflows:
