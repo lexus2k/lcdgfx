@@ -85,11 +85,12 @@ workflows:
   version: 2.1
   host_and_esp32:
     jobs:
-      - build:
+      - build
 #      - esp32:
 #          requires:
 #            - build
-          context: github
-          filters:
-            branches:
-              only: master
+#      - build:
+#          context: github
+#          filters:
+#            branches:
+#              only: master
