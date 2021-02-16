@@ -50,10 +50,12 @@ jobs:
             make clean
             make ARCH=avr SDL_EMULATION=n
 
-  esp32:
-    machine:
-      image: ubuntu-2004:202101-01
-    steps:
+
+# Free plan doesn't have concurrent jobs
+#  esp32:
+#    machine:
+#      image: ubuntu-2004:202101-01
+#    steps:
       # install dependencies
 #      - run:
 #          name: Install apt dependencies
@@ -85,9 +87,9 @@ workflows:
   host_and_esp32:
     jobs:
       - build
-      - esp32:
-          requires:
-            - build
+#      - esp32:
+#          requires:
+#            - build
           filters:
             branches:
               only: master
