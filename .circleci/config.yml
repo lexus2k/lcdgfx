@@ -78,3 +78,12 @@ jobs:
           paths:
             - /home/travis/esp
             - /home/travis/.espressif
+
+# Orchestrate our job run sequence
+workflows:
+  host_and_esp32:
+    jobs:
+      - build
+      - esp32:
+          requires:
+            - build
