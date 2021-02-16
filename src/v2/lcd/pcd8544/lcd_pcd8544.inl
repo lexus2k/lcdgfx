@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -89,13 +89,11 @@ void InterfacePCD8544<I>::commandStart()
 //             PCD8544 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplayPCD8544<I>::begin()
+template <class I> void DisplayPCD8544<I>::begin()
 {
 }
 
-template <class I>
-void DisplayPCD8544<I>::end()
+template <class I> void DisplayPCD8544<I>::end()
 {
 }
 

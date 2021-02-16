@@ -44,7 +44,9 @@ class Print
 {
 public:
     /** Constructor to create Print class object */
-    Print() {}
+    Print()
+    {
+    }
 
     /**
      * abstract function to be defined in inherited classes
@@ -58,10 +60,10 @@ public:
      * @param str string to print
      * @return returns number of printed symbols
      */
-    size_t print(const char* str)
+    size_t print(const char *str)
     {
         size_t n = 0;
-        while (*str)
+        while ( *str )
         {
             n += write(*str);
             str++;
@@ -78,7 +80,7 @@ public:
     {
         char a[10];
         snprintf(a, sizeof(a), "%i", n);
-        return print( a );
+        return print(a);
     }
 
     /**
@@ -86,7 +88,7 @@ public:
      * @param str string to print
      * @return returns number of printed symbols
      */
-    size_t println(const char* str)
+    size_t println(const char *str)
     {
         size_t n = print(str);
         n += write('\n');

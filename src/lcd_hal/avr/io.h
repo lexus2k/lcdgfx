@@ -41,39 +41,38 @@
 #include <stdlib.h>
 #include <string.h>
 
-#if defined(__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__) || \
+#if defined(__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__) ||                             \
     defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)
-    /** The macro is defined when software i2c implementation is available */
-    #define CONFIG_SOFTWARE_I2C_AVAILABLE
-    /** The macro is defined when USI module is available for use */
-    #define CONFIG_USI_SPI_AVAILABLE
-    /* Define lcdint as smallest types to reduce memo usage on tiny controllers. *
-     * Remember, that this can cause issues with large lcd displays, i.e. 320x240*/
-    #define LCDINT_TYPES_DEFINED
-    typedef int8_t lcdint_t;
-    typedef uint8_t lcduint_t;
-    /** The macro is defined when micro controller doesn't support multiplication operation */
-    #define CONFIG_MULTIPLICATION_NOT_SUPPORTED
+/** The macro is defined when software i2c implementation is available */
+#define CONFIG_SOFTWARE_I2C_AVAILABLE
+/** The macro is defined when USI module is available for use */
+#define CONFIG_USI_SPI_AVAILABLE
+/* Define lcdint as smallest types to reduce memo usage on tiny controllers. *
+ * Remember, that this can cause issues with large lcd displays, i.e. 320x240*/
+#define LCDINT_TYPES_DEFINED
+typedef int8_t lcdint_t;
+typedef uint8_t lcduint_t;
+/** The macro is defined when micro controller doesn't support multiplication operation */
+#define CONFIG_MULTIPLICATION_NOT_SUPPORTED
 
 #elif defined(__AVR_ATmega328P__)
-    /** The macro is defined when software i2c implementation is available */
-    #define CONFIG_SOFTWARE_I2C_AVAILABLE
-    /** The macro is defined when TWI module is available */
-    #define CONFIG_TWI_I2C_AVAILABLE
-    /** The macro is defined when SPI module is available */
-    #define CONFIG_AVR_SPI_AVAILABLE
-    /** The macro is defined when UART module is available */
-    #define CONFIG_AVR_UART_AVAILABLE
-    /** The macro is defined when VGA monitor control is available directly from controller */
-    #define CONFIG_VGA_AVAILABLE
+/** The macro is defined when software i2c implementation is available */
+#define CONFIG_SOFTWARE_I2C_AVAILABLE
+/** The macro is defined when TWI module is available */
+#define CONFIG_TWI_I2C_AVAILABLE
+/** The macro is defined when SPI module is available */
+#define CONFIG_AVR_SPI_AVAILABLE
+/** The macro is defined when UART module is available */
+#define CONFIG_AVR_UART_AVAILABLE
+/** The macro is defined when VGA monitor control is available directly from controller */
+#define CONFIG_VGA_AVAILABLE
 
 #else
-    /** The macro is defined when software i2c implementation is available */
-    #define CONFIG_SOFTWARE_I2C_AVAILABLE
-    /** The macro is defined when TWI module is available */
-    #define CONFIG_TWI_I2C_AVAILABLE
-    /** The macro is defined when SPI module is available */
-    #define CONFIG_AVR_SPI_AVAILABLE
+/** The macro is defined when software i2c implementation is available */
+#define CONFIG_SOFTWARE_I2C_AVAILABLE
+/** The macro is defined when TWI module is available */
+#define CONFIG_TWI_I2C_AVAILABLE
+/** The macro is defined when SPI module is available */
+#define CONFIG_AVR_SPI_AVAILABLE
 
 #endif
-

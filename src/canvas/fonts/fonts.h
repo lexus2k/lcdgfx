@@ -30,68 +30,67 @@
 #include "canvas/canvas_types.h"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-/**
- * @defgroup LCD_FONTS FONTS: Supported LCD fonts
- * @{
- */
+    /**
+     * @defgroup LCD_FONTS FONTS: Supported LCD fonts
+     * @{
+     */
 
-/** Standard ASCII 6x8 font */
-extern const PROGMEM uint8_t ssd1306xled_font6x8 [];
+    /** Standard ASCII 6x8 font */
+    extern const PROGMEM uint8_t ssd1306xled_font6x8[];
 
-/** Standard ASCII 8x16 font */
-extern const PROGMEM uint8_t ssd1306xled_font8x16[];
+    /** Standard ASCII 8x16 font */
+    extern const PROGMEM uint8_t ssd1306xled_font8x16[];
 
-/** German chars for standard ASCII 6x8 font */
-extern const PROGMEM uint8_t ssd1306xled_font6x8_German [];
+    /** German chars for standard ASCII 6x8 font */
+    extern const PROGMEM uint8_t ssd1306xled_font6x8_German[];
 
-/** Standard ASCII 6x8 AB font with only capital letters */
-extern const PROGMEM uint8_t ssd1306xled_font6x8_AB [];
+    /** Standard ASCII 6x8 AB font with only capital letters */
+    extern const PROGMEM uint8_t ssd1306xled_font6x8_AB[];
 
-/** Standard ASCII 5x7 font */
-extern const PROGMEM uint8_t ssd1306xled_font5x7 [];
+    /** Standard ASCII 5x7 font */
+    extern const PROGMEM uint8_t ssd1306xled_font5x7[];
 
-/** Standard ASCII 5x7 font with only capital letters */
-extern const PROGMEM uint8_t ssd1306xled_font5x7_AB [];
+    /** Standard ASCII 5x7 font with only capital letters */
+    extern const PROGMEM uint8_t ssd1306xled_font5x7_AB[];
 
-/** Digital ASCII 5x7 font with only digits and operation signs */
-extern const PROGMEM uint8_t digital_font5x7_123[];
+    /** Digital ASCII 5x7 font with only digits and operation signs */
+    extern const PROGMEM uint8_t digital_font5x7_123[];
 
-/** Digital ASCII 5x7 font with only capital letters */
-extern const PROGMEM uint8_t digital_font5x7_AB[];
+    /** Digital ASCII 5x7 font with only capital letters */
+    extern const PROGMEM uint8_t digital_font5x7_AB[];
 
-/** Digital ASCII 5x7 font */
-extern const PROGMEM uint8_t digital_font5x7[];
+    /** Digital ASCII 5x7 font */
+    extern const PROGMEM uint8_t digital_font5x7[];
 
-/** Calibri ASCII 11x12 font */
-extern const PROGMEM uint8_t free_calibri11x12[];
+    /** Calibri ASCII 11x12 font */
+    extern const PROGMEM uint8_t free_calibri11x12[];
 
-/** Calibri ASCII 11x12 font cyrillic */
-extern const PROGMEM uint8_t free_calibri11x12_cyrillic[];
+    /** Calibri ASCII 11x12 font cyrillic */
+    extern const PROGMEM uint8_t free_calibri11x12_cyrillic[];
 
-/** Calibri ASCII 11x12 font basic latin */
-extern const PROGMEM uint8_t free_calibri11x12_latin[];
+    /** Calibri ASCII 11x12 font basic latin */
+    extern const PROGMEM uint8_t free_calibri11x12_latin[];
 
+    /**
+     * Standard ASCII font 11x16 with digits only (Ascii codes 32 - 64).
+     * @warning can be used only with ssd1306_printFixed() and ssd1306_setFixedFont() functions.
+     */
+    extern const PROGMEM uint8_t courier_new_font11x16_digits[];
 
-/**
- * Standard ASCII font 11x16 with digits only (Ascii codes 32 - 64).
- * @warning can be used only with ssd1306_printFixed() and ssd1306_setFixedFont() functions.
- */
-extern const PROGMEM uint8_t courier_new_font11x16_digits [];
+    /**
+     * Comic Sans ASCII font 24x32 with digits only (Ascii codes 32 - 64).
+     * @warning can be used only with ssd1306_printFixed() and ssd1306_setFixedFont() functions.
+     */
+    extern const PROGMEM uint8_t comic_sans_font24x32_123[];
 
-/**
- * Comic Sans ASCII font 24x32 with digits only (Ascii codes 32 - 64).
- * @warning can be used only with ssd1306_printFixed() and ssd1306_setFixedFont() functions.
- */
-extern const PROGMEM uint8_t comic_sans_font24x32_123 [];
-
-/**
- * @}
- */
+    /**
+     * @}
+     */
 
 #ifdef __cplusplus
 }
 #endif
-

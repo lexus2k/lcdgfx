@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 #    MIT License
 #
-#    Copyright (c) 2018-2020, Alexey Dynda
+#    Copyright (c) 2018-2021, Alexey Dynda
 #
 #    Permission is hereby granted, free of charge, to any person obtaining a copy
 #    of this software and associated documentation files (the "Software"), to deal
@@ -38,6 +38,23 @@ if sys.version_info < (3, 0):
     reload(sys)
     sys.setdefaultencoding("utf-8")
 
+def valid_char(char):
+    '''
+       Removes non-printable chars according to https://www.ascii-code.com/
+    '''
+    code = ord(char)
+    if code < 32:
+        return '.'
+    if code == 129 or \
+       code == 141 or \
+       code == 143 or \
+       code == 144 or \
+       code == 157 or \
+       code == 160 or \
+       code == 173:
+        return '.'
+    return char
+
 class Generator:
     source = None
 
@@ -62,7 +79,7 @@ class Generator:
             "    0x%02X, 0x%02X, 0x%02X, 0x%02X," % (0, self.source.width, self.source.height, self.source.first_char),
             "#endif"
         ]
-        
+
         char_code = self.source.first_char
         for char in self.source.get_group_chars():
             full_string = "    "
@@ -76,18 +93,18 @@ class Generator:
                         data |= (self.source.charBitmap(char)[y][x] << i)
                     full_string += "0x%02X, " % data
             if sys.version_info < (3, 0):
-                full_string += "// char '%s' (0x%04X/%d)" % (char.encode("utf-8"), char_code, char_code)
+                full_string += "// char '%s' (0x%04X/%d)" % (valid_char(char).encode("utf-8"), char_code, char_code)
             else:
-                full_string += "// char '%s' (0x%04X/%d)" % (char, char_code, char_code)
+                full_string += "// char '%s' (0x%04X/%d)" % (valid_char(char), char_code, char_code)
             char_code = char_code + 1
-            
+
             output_string.append(full_string)
 
         output_string.append("#ifdef CONFIG_SSD1306_UNICODE_ENABLE")
         output_string.append("    0x00, 0x00, 0x00, // end of unicode tables")
         output_string.append("#endif")
         output_string.append("};")
-        
+
         if output_file:
             try:
                 with io.open(output_file, "w", encoding='utf-8') as fOut:
@@ -97,12 +114,12 @@ class Generator:
                     else:
                         out_str = "\n".join(output_string)
                     fOut.write(out_str)
-            
+
                 print("The file %s was created sucesfully" % (output_file))
             except Exception as e:
                 print("There was an error creating the output file: %r" % (e))
                 exit(1)
-            
+
         else:
             if sys.version_info < (3, 0):
                 print("\n".join(output_string).decode("utf-8"))
@@ -147,9 +164,9 @@ class Generator:
                 total_size += 4
                 full_string += "0x%02X, 0x%02X, 0x%02X, 0x%02X," % (offset >> 8, offset & 0xFF, width, height)
                 if sys.version_info < (3, 0):
-                    full_string += "// char '%s' (0x%04X/%d)" % (char.encode("utf-8"), ord(char), ord(char))
+                    full_string += "// char '%s' (0x%04X/%d)" % (valid_char(char).encode("utf-8"), ord(char), ord(char))
                 else:
-                    full_string += "// char '%s' (0x%04X/%d)" % (char, ord(char), ord(char))
+                    full_string += "// char '%s' (0x%04X/%d)" % (valid_char(char), ord(char), ord(char))
                 offset += size
                 output_string.append(full_string)
             total_size += 2
@@ -173,13 +190,13 @@ class Generator:
                         size += 1
                         full_string += "0x%02X, " % data
                 if sys.version_info < (3, 0):
-                    full_string += "// char '%s' (0x%04X/%d)" % (char.encode("utf-8"), ord(char), ord(char))
+                    full_string += "// char '%s' (0x%04X/%d)" % (valid_char(char).encode("utf-8"), ord(char), ord(char))
                 else:
-                    full_string += "// char '%s' (0x%04X/%d)" % (char, ord(char), ord(char))
+                    full_string += "// char '%s' (0x%04X/%d)" % (valid_char(char), ord(char), ord(char))
                 if size != sizes[index]:
                     print("ERROR!!!!")
                     exit(1)
-                 
+
                 output_string.append(full_string)
         total_size += 3
         output_string.append("    0x00, 0x00, 0x00, // end of unicode tables")
@@ -194,12 +211,12 @@ class Generator:
                     else:
                         out_str = "\n".join(output_string)
                     fOut.write(out_str)
-            
+
                 print("The file %s was created sucesfully" % (output_file))
             except Exception as e:
                 print("There was an error creating the output file: %r" % (e))
                 exit(1)
-            
+
         else:
             if sys.version_info < (3, 0):
                 print("\n".join(output_string).decode("utf-8"))

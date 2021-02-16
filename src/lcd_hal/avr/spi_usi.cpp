@@ -29,15 +29,15 @@
 #include <stdlib.h>
 #include <util/atomic.h>
 
-#define PORT_SPI    PORTB
-#define DDR_SPI     DDRB
-#define DD_DI       DDB0
-#define DD_DO       DDB1
-#define DD_SCK      DDB2
+#define PORT_SPI PORTB
+#define DDR_SPI DDRB
+#define DD_DI DDB0
+#define DD_DO DDB1
+#define DD_SCK DDB2
 
 UsiSpi::UsiSpi(int8_t csPin, int8_t dcPin)
-   : m_cs( csPin )
-   , m_dc( dcPin )
+    : m_cs(csPin)
+    , m_dc(dcPin)
 {
 }
 
@@ -47,17 +47,18 @@ UsiSpi::~UsiSpi()
 
 void UsiSpi::begin()
 {
-    if ( m_cs >=0 )
+    if ( m_cs >= 0 )
     {
-        lcd_gpioMode( m_cs, LCD_GPIO_OUTPUT );
-        lcd_gpioWrite( m_cs, LCD_HIGH );
+        lcd_gpioMode(m_cs, LCD_GPIO_OUTPUT);
+        lcd_gpioWrite(m_cs, LCD_HIGH);
     }
-    if ( m_dc >= 0) lcd_gpioMode( m_dc, LCD_GPIO_OUTPUT );
-    DDR_SPI |= (1<<DD_DO); // as output (DO) - data out
-    DDR_SPI |= (1<<DD_SCK); // as output (USISCK) - clock
+    if ( m_dc >= 0 )
+        lcd_gpioMode(m_dc, LCD_GPIO_OUTPUT);
+    DDR_SPI |= (1 << DD_DO);  // as output (DO) - data out
+    DDR_SPI |= (1 << DD_SCK); // as output (USISCK) - clock
     /* DI pin is still used by USI, although ssd1306 library doesn't need it */
-//    DDR_SPI &= ~(1<<DD_DI); // as input (DI) - data in
-//    PORT_SPI|= (1<<DD_DI); // pullup on (DI)
+    //    DDR_SPI &= ~(1<<DD_DI); // as input (DI) - data in
+    //    PORT_SPI|= (1<<DD_DI); // pullup on (DI)
 }
 
 void UsiSpi::end()
@@ -66,48 +67,47 @@ void UsiSpi::end()
 
 void UsiSpi::start()
 {
-    if ( m_cs >= 0)
+    if ( m_cs >= 0 )
     {
-        lcd_gpioWrite( m_cs, LCD_LOW );
+        lcd_gpioWrite(m_cs, LCD_LOW);
     }
-    USICR = (0<<USIWM1) | (1<<USIWM0) |
-            (1<<USICS1) | (0<<USICS0) | (1<<USICLK);
+    USICR = (0 << USIWM1) | (1 << USIWM0) | (1 << USICS1) | (0 << USICS0) | (1 << USICLK);
 }
 
 void UsiSpi::stop()
 {
-    if ( m_cs >= 0)
+    if ( m_cs >= 0 )
     {
-        lcd_gpioWrite( m_cs, LCD_HIGH);
+        lcd_gpioWrite(m_cs, LCD_HIGH);
     }
-//    NOT TODO:
-//    USICR &= ~((1<<USIWM1) | (1<<USIWM0));
+    //    NOT TODO:
+    //    USICR &= ~((1<<USIWM1) | (1<<USIWM0));
 }
 
 void UsiSpi::send(uint8_t data)
 {
     USIDR = data;
-    USISR = (1<<USIOIF);
+    USISR = (1 << USIOIF);
     ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
     {
-        while ( (USISR & (1<<USIOIF)) == 0 )
+        while ( (USISR & (1 << USIOIF)) == 0 )
         {
-            USICR |= (1<<USITC);
+            USICR |= (1 << USITC);
         }
     }
 }
 
 void UsiSpi::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
-    while (size--)
+    while ( size-- )
     {
         USIDR = *buffer;
-        USISR = (1<<USIOIF);
+        USISR = (1 << USIOIF);
         ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
         {
-            while ( (USISR & (1<<USIOIF)) == 0 )
+            while ( (USISR & (1 << USIOIF)) == 0 )
             {
-                USICR |= (1<<USITC);
+                USICR |= (1 << USITC);
             }
         }
         buffer++;
@@ -115,5 +115,3 @@ void UsiSpi::sendBuffer(const uint8_t *buffer, uint16_t size)
 }
 
 #endif
-
-

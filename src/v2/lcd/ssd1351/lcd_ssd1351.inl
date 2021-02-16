@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -132,13 +132,11 @@ void InterfaceSSD1351<I>::setRotation(uint8_t rotation)
 //             SSD1351 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplaySSD1351x16<I>::begin()
+template <class I> void DisplaySSD1351x16<I>::begin()
 {
 }
 
-template <class I>
-void DisplaySSD1351x16<I>::end()
+template <class I> void DisplaySSD1351x16<I>::end()
 {
 }
 

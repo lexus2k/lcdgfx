@@ -30,8 +30,8 @@
 #include <util/twi.h>
 
 /* Max i2c frequency, supported by OLED controllers */
-#define SSD1306_TWI_FREQ  400000
-#define MAX_RETRIES       64
+#define SSD1306_TWI_FREQ 400000
+#define MAX_RETRIES 64
 
 static uint8_t ssd1306_twi_start(void)
 {
@@ -39,15 +39,16 @@ static uint8_t ssd1306_twi_start(void)
     uint8_t iters = MAX_RETRIES;
     do
     {
-        TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
-        while ( (TWCR & (1<<TWINT)) == 0 );
+        TWCR = (1 << TWINT) | (1 << TWSTA) | (1 << TWEN);
+        while ( (TWCR & (1 << TWINT)) == 0 )
+            ;
         twst = TWSR & 0xF8;
-        if (!--iters)
+        if ( !--iters )
         {
             break;
         }
-    } while (twst == TW_MT_ARB_LOST);
-    if ((twst != TW_START) && (twst != TW_REP_START))
+    } while ( twst == TW_MT_ARB_LOST );
+    if ( (twst != TW_START) && (twst != TW_REP_START) )
     {
         return twst;
     }
@@ -61,29 +62,30 @@ static uint8_t ssd1306_twi_send(uint8_t data)
     do
     {
         TWDR = data;
-        TWCR = (1<<TWINT) | (1<<TWEN);
-        while ( (TWCR & (1<<TWINT)) == 0 );
+        TWCR = (1 << TWINT) | (1 << TWEN);
+        while ( (TWCR & (1 << TWINT)) == 0 )
+            ;
         twsr = TWSR & 0xF8;
-        if ((twsr == TW_MT_SLA_ACK) || (twsr == TW_MT_DATA_ACK))
+        if ( (twsr == TW_MT_SLA_ACK) || (twsr == TW_MT_DATA_ACK) )
         {
             return 0;
         }
-        if (twsr == TW_MT_ARB_LOST)
+        if ( twsr == TW_MT_ARB_LOST )
         {
             return twsr;
         }
         iters++;
-        if (!--iters)
+        if ( !--iters )
         {
             break;
         }
-    } while (twsr != TW_MT_ARB_LOST);
+    } while ( twsr != TW_MT_ARB_LOST );
     return twsr;
 }
 
 static void ssd1306_twi_stop(void)
 {
-    TWCR = (1<<TWEN) | (1<<TWSTO) | (1<<TWINT);
+    TWCR = (1 << TWEN) | (1 << TWSTO) | (1 << TWINT);
 }
 
 void ssd1306_i2cConfigure_Twi(uint8_t arg)
@@ -91,8 +93,10 @@ void ssd1306_i2cConfigure_Twi(uint8_t arg)
     (void)(arg);
 #if defined(__AVR_ATmega328P__)
     /* Enable internal pull-ups */
-    DDRC &= ~(1<<PINC4); PORTC |= (1<<PINC4);
-    DDRC &= ~(1<<PINC5); PORTC |= (1<<PINC5);
+    DDRC &= ~(1 << PINC4);
+    PORTC |= (1 << PINC4);
+    DDRC &= ~(1 << PINC5);
+    PORTC |= (1 << PINC5);
 #endif
 #if defined(TWPS0)
     TWSR = 0;
@@ -101,9 +105,8 @@ void ssd1306_i2cConfigure_Twi(uint8_t arg)
     TWCR = (1 << TWEN) | (1 << TWEA);
 }
 
-
 TwiI2c::TwiI2c(uint8_t sa)
-   : m_sa( sa )
+    : m_sa(sa)
 {
 }
 
@@ -123,12 +126,12 @@ void TwiI2c::start()
 {
     do
     {
-        if (ssd1306_twi_start() != 0)
+        if ( ssd1306_twi_start() != 0 )
         {
             /* Some serious error happened, but we don't care. Our API functions have void type */
             return;
         }
-    } while (ssd1306_twi_send(m_sa << 1) == TW_MT_ARB_LOST);
+    } while ( ssd1306_twi_send(m_sa << 1) == TW_MT_ARB_LOST );
 }
 
 void TwiI2c::stop()
@@ -138,18 +141,18 @@ void TwiI2c::stop()
 
 void TwiI2c::send(uint8_t data)
 {
-    for(;;)
+    for ( ;; )
     {
-        if (ssd1306_twi_send(data) != TW_MT_ARB_LOST)
+        if ( ssd1306_twi_send(data) != TW_MT_ARB_LOST )
         {
             break;
         }
-        if (ssd1306_twi_start() != 0)
+        if ( ssd1306_twi_start() != 0 )
         {
             /* Some serious error happened, but we don't care. Our API functions have void type */
             break;
         }
-        if (ssd1306_twi_send(m_sa << 1) != TW_MT_ARB_LOST)
+        if ( ssd1306_twi_send(m_sa << 1) != TW_MT_ARB_LOST )
         {
             /* Some serious error happened, but we don't care. Our API functions have void type */
             break;
@@ -159,7 +162,7 @@ void TwiI2c::send(uint8_t data)
 
 void TwiI2c::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
-    while (size--)
+    while ( size-- )
     {
         send(*buffer);
         buffer++;

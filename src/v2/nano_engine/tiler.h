@@ -38,7 +38,7 @@
  */
 
 #ifndef NE_MAX_TILE_ROWS
-#define NE_MAX_TILE_ROWS 20      ///< Maximum tile rows supported. Can be defined outside the library
+#define NE_MAX_TILE_ROWS 20 ///< Maximum tile rows supported. Can be defined outside the library
 #endif
 
 /**
@@ -49,46 +49,42 @@
 /* The table below defines arguments for NanoEngineTiler.          *
  *                            canvas                    bits   */
 // Tiles for monochrome displays
-#define TILE_128x64_MONO      NanoCanvas<128,64,1>           ///< Full-screen 1-bit tile for SSD1306
-#define TILE_8x8_MONO         NanoCanvas<8,8,1>              ///< Standard 1-bit tile 8x8 for monochrome mode
-#define TILE_16x16_MONO       NanoCanvas<16,16,1>            ///< Standard 1-bit tile 16x16 for monochrome mode
-#define TILE_32x32_MONO       NanoCanvas<32,32,1>            ///< Standard 1-bit tile 32x32 for monochrome mode
+#define TILE_128x64_MONO NanoCanvas<128, 64, 1> ///< Full-screen 1-bit tile for SSD1306
+#define TILE_8x8_MONO NanoCanvas<8, 8, 1>       ///< Standard 1-bit tile 8x8 for monochrome mode
+#define TILE_16x16_MONO NanoCanvas<16, 16, 1>   ///< Standard 1-bit tile 16x16 for monochrome mode
+#define TILE_32x32_MONO NanoCanvas<32, 32, 1>   ///< Standard 1-bit tile 32x32 for monochrome mode
 // Tiles for 4-bit displays
-#define TILE_16x16_GRAY4      NanoCanvas<16,16,4>            ///< Standard 4-bit tile 16x16 for gray-color displays
+#define TILE_16x16_GRAY4 NanoCanvas<16, 16, 4> ///< Standard 4-bit tile 16x16 for gray-color displays
 // Tiles for 8-bit displays
-#define TILE_8x8_RGB8         NanoCanvas<8,8,8>              ///< Standard 8-bit RGB tile 8x8
-#define TILE_16x16_RGB8       NanoCanvas<16,16,8>            ///< Standard 8-bit RGB tile 16x16
-#define TILE_32x32_RGB8       NanoCanvas<32,32,8>            ///< Standard 8-bit RGB tile 32x32
-#define TILE_8x8_MONO_8       NanoCanvas<8,8,1>              ///< Standard 1-bit tile 8x8 for RGB mode
-#define TILE_16x16_MONO_8     NanoCanvas<16,16,1>            ///< Standard 1-bit tile 16x16 for RGB mode
+#define TILE_8x8_RGB8 NanoCanvas<8, 8, 8>       ///< Standard 8-bit RGB tile 8x8
+#define TILE_16x16_RGB8 NanoCanvas<16, 16, 8>   ///< Standard 8-bit RGB tile 16x16
+#define TILE_32x32_RGB8 NanoCanvas<32, 32, 8>   ///< Standard 8-bit RGB tile 32x32
+#define TILE_8x8_MONO_8 NanoCanvas<8, 8, 1>     ///< Standard 1-bit tile 8x8 for RGB mode
+#define TILE_16x16_MONO_8 NanoCanvas<16, 16, 1> ///< Standard 1-bit tile 16x16 for RGB mode
 // Tiles for 16-bit displays
-#define TILE_8x8_RGB16        NanoCanvas<8,8,16>             ///< Standard 16-bit RGB tile 8x8
-#define TILE_16x16_RGB16      NanoCanvas<16,16,16>           ///< Standard 16-bit RGB tile 16x16
+#define TILE_8x8_RGB16 NanoCanvas<8, 8, 16>     ///< Standard 16-bit RGB tile 8x8
+#define TILE_16x16_RGB16 NanoCanvas<16, 16, 16> ///< Standard 16-bit RGB tile 16x16
 // Adafruit tiles
-#define ADATILE_8x8_MONO      AdafruitCanvas1,  8,  8,      3    ///< Use Adafruit GFX implementation as NanoEngine canvas
-#define ADATILE_8x8_RGB8      AdafruitCanvas8,  8,  8,      3    ///< Use Adafruit GFX implementation as NanoEngine canvas
-#define ADATILE_8x8_RGB16     AdafruitCanvas16, 8,  8,      3    ///< Use Adafruit GFX implementation as NanoEngine canvas
+#define ADATILE_8x8_MONO AdafruitCanvas1, 8, 8, 3   ///< Use Adafruit GFX implementation as NanoEngine canvas
+#define ADATILE_8x8_RGB8 AdafruitCanvas8, 8, 8, 3   ///< Use Adafruit GFX implementation as NanoEngine canvas
+#define ADATILE_8x8_RGB16 AdafruitCanvas16, 8, 8, 3 ///< Use Adafruit GFX implementation as NanoEngine canvas
 
 /**
  * Type of user-specified draw callback.
  */
 typedef bool (*TNanoEngineOnDraw)(void);
 
-template<class C, class D>
-class NanoEngine;
+template <class C, class D> class NanoEngine;
 
-template<class C, class D>
-class NanoEngineTiler;
+template <class C, class D> class NanoEngineTiler;
 
 /**
  * Template class for all NanoEngine objects
  */
-template<class T>
-class NanoEngineObject
+template <class T> class NanoEngineObject
 {
 public:
-    template<class C, class D>
-    friend class NanoEngineTiler;
+    template <class C, class D> friend class NanoEngineTiler;
 
     NanoEngineObject() = default;
 
@@ -140,24 +136,33 @@ public:
     /**
      * Returns true if NanoEngineObject is bound to NanoEngine instance
      */
-    bool hasTiler() { return m_tiler != nullptr; }
+    bool hasTiler()
+    {
+        return m_tiler != nullptr;
+    }
 
     /**
      * Returns reference to NanoEngine. Before call to this function,
      * please check that NanoEngine is valid via hasTiler() function.
      */
-    T &getTiler() { return *(static_cast<T *>(m_tiler)); }
+    T &getTiler()
+    {
+        return *(static_cast<T *>(m_tiler));
+    }
 
 protected:
-    T *m_tiler = nullptr; ///< Active tiler, assigned to the NanoEngineObject
-    NanoEngineObject<T>  *m_next = nullptr; ///< Next NanoEngineObject in the list
+    T *m_tiler = nullptr;                  ///< Active tiler, assigned to the NanoEngineObject
+    NanoEngineObject<T> *m_next = nullptr; ///< Next NanoEngineObject in the list
 
     /**
      * Bind NanoEngineObject to specific NanoEngine
      *
      * @param tiler pointer to NanoEngine object
      */
-    void setTiler(T *tiler) { m_tiler = tiler; }
+    void setTiler(T *tiler)
+    {
+        m_tiler = tiler;
+    }
 
 private:
     bool m_focused = false;
@@ -172,16 +177,15 @@ private:
  * If you need to have single big buffer, holding the whole content for monochrome display,
  * you can specify something like this NanoEngineTiler<NanoCanvas1,128,64,7>.
  */
-template<class C, class D>
-class NanoEngineTiler
+template <class C, class D> class NanoEngineTiler
 {
 protected:
     /** Only child classes can initialize the engine */
-    explicit NanoEngineTiler(D &display):
-        m_display( display ),
-        m_onDraw(nullptr),
-        offset{0, 0},
-        m_first( nullptr )
+    explicit NanoEngineTiler(D &display)
+        : m_display(display)
+        , m_onDraw(nullptr)
+        , offset{0, 0}
+        , m_first(nullptr)
     {
         refresh();
     };
@@ -190,13 +194,13 @@ public:
     /**
      * This type is template argument for all Nano Objects.
      */
-    typedef NanoEngineTiler<C,D> TilerT;
+    typedef NanoEngineTiler<C, D> TilerT;
     /**
      * Marks all tiles for update. Actual update will take place in display() method.
      */
     void refresh()
     {
-        memset(m_refreshFlags,0xFF,sizeof(m_refreshFlags));
+        memset(m_refreshFlags, 0xFF, sizeof(m_refreshFlags));
     }
 
     /**
@@ -213,28 +217,32 @@ public:
      * Mark specified area in pixels for redrawing by NanoEngine.
      * Actual update will take place in display() method.
      */
-    void refresh(const NanoPoint &point) __attribute__ ((noinline))
+    void refresh(const NanoPoint &point) __attribute__((noinline))
     {
-        if ((point.x<0)||(point.y<0) || ((point.y/canvas.height())>=NE_MAX_TILE_ROWS)) return;
-        m_refreshFlags[(point.y/canvas.height())] |= (1<<(point.x/canvas.width()));
+        if ( (point.x < 0) || (point.y < 0) || ((point.y / canvas.height()) >= NE_MAX_TILE_ROWS) )
+            return;
+        m_refreshFlags[(point.y / canvas.height())] |= (1 << (point.x / canvas.width()));
     }
 
     /**
      * Mark specified area in pixels for redrawing by NanoEngine.
      * Actual update will take place in display() method.
      */
-    void refresh(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__ ((noinline))
+    void refresh(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__((noinline))
     {
-        if (y2 < 0 || x2 < 0) return;
-        if (y1 < 0) y1 = 0;
-        if (x1 < 0) x1 = 0;
-        y1 = y1/canvas.height();
-        y2 = min((y2/canvas.height()), NE_MAX_TILE_ROWS - 1);
-        for(uint8_t x=x1/canvas.width(); x<=(x2/canvas.width()); x++)
+        if ( y2 < 0 || x2 < 0 )
+            return;
+        if ( y1 < 0 )
+            y1 = 0;
+        if ( x1 < 0 )
+            x1 = 0;
+        y1 = y1 / canvas.height();
+        y2 = min((y2 / canvas.height()), NE_MAX_TILE_ROWS - 1);
+        for ( uint8_t x = x1 / canvas.width(); x <= (x2 / canvas.width()); x++ )
         {
-            for (uint8_t y=y1; y<=y2; y++)
+            for ( uint8_t y = y1; y <= y2; y++ )
             {
-                m_refreshFlags[y] |= (1<<x);
+                m_refreshFlags[y] |= (1 << x);
             }
         }
     }
@@ -254,7 +262,7 @@ public:
      * global (World) coordinates. If engine offset is (0,0), then this function
      * refreshes the same area as refresh().
      */
-    void refreshWorld(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__ ((noinline))
+    void refreshWorld(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__((noinline))
     {
         refresh(x1 - offset.x, y1 - offset.y, x2 - offset.x, y2 - offset.y);
     }
@@ -265,7 +273,7 @@ public:
      */
     void refreshWorld(const NanoPoint &point)
     {
-        refresh( point - offset );
+        refresh(point - offset);
     }
 
     /**
@@ -291,7 +299,7 @@ public:
     /**
      * Moves engine coordinate to new position (this sets World coordinates offset).
      */
-    void moveTo(const NanoPoint & position)
+    void moveTo(const NanoPoint &position)
     {
         offset = position;
     }
@@ -300,7 +308,7 @@ public:
      * Moves engine coordinate to new position and mark whole display for refresh
      * (this sets World coordinates offset).
      */
-    void moveToAndRefresh(const NanoPoint & position)
+    void moveToAndRefresh(const NanoPoint &position)
     {
         moveTo(position);
         refresh();
@@ -309,7 +317,7 @@ public:
     /**
      * Returns current World offset
      */
-    const NanoPoint & getPosition() const
+    const NanoPoint &getPosition() const
     {
         return offset;
     }
@@ -342,7 +350,10 @@ public:
      * @param rect - rectangle, describing the region to check with the point
      * @returns true if point is inside the rectangle area.
      */
-    bool collision(const NanoPoint &p, const NanoRect &rect) { return rect.collision( p ); }
+    bool collision(const NanoPoint &p, const NanoRect &rect)
+    {
+        return rect.collision(p);
+    }
 
     /**
      * Inserts new NanoEngineObject. This object will be displayed during next call
@@ -350,10 +361,10 @@ public:
      *
      * @param object reference to object to place to NanoEngine
      */
-    void insert(NanoEngineObject<TilerT> &object) __attribute__ ((noinline))
+    void insert(NanoEngineObject<TilerT> &object) __attribute__((noinline))
     {
         object.m_next = this->m_first;
-        object.setTiler( this );
+        object.setTiler(this);
         m_first = &object;
         object.refresh();
     }
@@ -365,7 +376,7 @@ public:
      *
      * @param object object to remove from NanoEngine
      */
-    void remove(NanoEngineObject<TilerT> &object) __attribute__ ((noinline))
+    void remove(NanoEngineObject<TilerT> &object) __attribute__((noinline))
     {
         if ( this->m_first == nullptr )
         {
@@ -398,10 +409,10 @@ public:
     /**
      * Updates all objects. This method doesn't refresh screen content
      */
-    void update() __attribute__ ((noinline))
+    void update() __attribute__((noinline))
     {
         NanoEngineObject<TilerT> *p = m_first;
-        while (p)
+        while ( p )
         {
             p->update();
             p = p->m_next;
@@ -411,18 +422,24 @@ public:
     /**
      * Returns canvas, used by the NanoEngine.
      */
-    C& getCanvas() { return canvas; }
+    C &getCanvas()
+    {
+        return canvas;
+    }
 
     /**
      * Returns reference to display object.
      */
-    D& getDisplay() { return m_display; }
+    D &getDisplay()
+    {
+        return m_display;
+    }
 
 protected:
     /**
      * Reference to display object, used by NanoEngine
      */
-    D& m_display;
+    D &m_display;
 
     /** Callback to call if specific tile needs to be updated */
     TNanoEngineOnDraw m_onDraw;
@@ -431,7 +448,7 @@ protected:
      * Contains information on tiles to be updated.
      * Elements of array are rows and bits are columns.
      */
-    uint16_t   m_refreshFlags[NE_MAX_TILE_ROWS];
+    uint16_t m_refreshFlags[NE_MAX_TILE_ROWS];
 
     /**
      * @brief refreshes content on oled display.
@@ -439,7 +456,7 @@ protected:
      * Engine will update only those areas, which are marked by refresh()
      * methods.
      */
-    void displayBuffer() __attribute__ ((noinline));
+    void displayBuffer() __attribute__((noinline));
 
     /**
      * @brief prints popup message over display content
@@ -454,12 +471,12 @@ private:
 
     NanoPoint offset;
 
-    NanoEngineObject<TilerT>  *m_first = nullptr;
+    NanoEngineObject<TilerT> *m_first = nullptr;
 
-    void draw() __attribute__ ((noinline))
+    void draw() __attribute__((noinline))
     {
         NanoEngineObject<TilerT> *p = m_first;
-        while (p)
+        while ( p )
         {
             p->draw();
             p = p->m_next;
@@ -467,75 +484,75 @@ private:
     }
 };
 
-template<class C, class D>
-void NanoEngineTiler<C,D>::displayBuffer()
+template <class C, class D> void NanoEngineTiler<C, D>::displayBuffer()
 {
-//    printf("--------------\n");
-    for (lcduint_t y = 0; y < m_display.height(); y = y + canvas.height())
+    //    printf("--------------\n");
+    for ( lcduint_t y = 0; y < m_display.height(); y = y + canvas.height() )
     {
-        uint16_t flag = m_refreshFlags[y/canvas.height()];
-        m_refreshFlags[y/canvas.height()] = 0;
-//        printf("|%d%d%d%d%d%d%d%d|\n", flag & 1, (flag >> 1) & 1, (flag >> 2) & 1, (flag >> 3) & 1, (flag >> 4) & 1, (flag >> 5) & 1,(flag >> 6) & 1,(flag >> 7) & 1 );
-        for (lcduint_t x = 0; x < m_display.width(); x = x + canvas.width())
+        uint16_t flag = m_refreshFlags[y / canvas.height()];
+        m_refreshFlags[y / canvas.height()] = 0;
+        //        printf("|%d%d%d%d%d%d%d%d|\n", flag & 1, (flag >> 1) & 1, (flag >> 2) & 1, (flag >> 3) & 1, (flag >>
+        //        4) & 1, (flag >> 5) & 1,(flag >> 6) & 1,(flag >> 7) & 1 );
+        for ( lcduint_t x = 0; x < m_display.width(); x = x + canvas.width() )
         {
-            if (flag & 0x01)
+            if ( flag & 0x01 )
             {
                 canvas.setOffset(x + offset.x, y + offset.y);
                 if ( m_onDraw == nullptr )
                 {
                     canvas.clear();
                     draw();
-                    this->m_display.drawCanvas(x,y,canvas);
+                    this->m_display.drawCanvas(x, y, canvas);
                 }
                 else if ( m_onDraw() )
                 {
                     draw();
-                    this->m_display.drawCanvas(x,y,canvas);
+                    this->m_display.drawCanvas(x, y, canvas);
                 }
             }
-            flag >>=1;
+            flag >>= 1;
         }
     }
 }
 
-template<class C, class D>
-void NanoEngineTiler<C,D>::displayPopup(const char *msg)
+template <class C, class D> void NanoEngineTiler<C, D>::displayPopup(const char *msg)
 {
     lcduint_t height = 0;
-    lcduint_t width = m_display.getFont().getTextSize( msg, &height );
-    NanoRect rect = { {((m_display.width() - (lcdint_t)width) >> 1) - 8, ((m_display.height() - (lcdint_t)height) >> 1) - 4 },
-                      {((m_display.width() + (lcdint_t)width) >> 1) + 8, ((m_display.height() + (lcdint_t)height) >> 1) + 4} };
+    lcduint_t width = m_display.getFont().getTextSize(msg, &height);
+    NanoRect rect = {
+        {((m_display.width() - (lcdint_t)width) >> 1) - 8, ((m_display.height() - (lcdint_t)height) >> 1) - 4},
+        {((m_display.width() + (lcdint_t)width) >> 1) + 8, ((m_display.height() + (lcdint_t)height) >> 1) + 4}};
     // TODO: It would be nice to calculate message height
-    NanoPoint textPos = { (m_display.width() - (lcdint_t)width) >> 1, (m_display.height() - height) >> 1 };
+    NanoPoint textPos = {(m_display.width() - (lcdint_t)width) >> 1, (m_display.height() - height) >> 1};
     refresh(rect);
-    for (lcduint_t y = 0; y < m_display.height(); y = y + canvas.height())
+    for ( lcduint_t y = 0; y < m_display.height(); y = y + canvas.height() )
     {
-        uint16_t flag = m_refreshFlags[y/canvas.height()];
-        m_refreshFlags[y/canvas.height()] = 0;
-        for (lcduint_t x = 0; x < m_display.width(); x = x + canvas.width())
+        uint16_t flag = m_refreshFlags[y / canvas.height()];
+        m_refreshFlags[y / canvas.height()] = 0;
+        for ( lcduint_t x = 0; x < m_display.width(); x = x + canvas.width() )
         {
-            if (flag & 0x01)
+            if ( flag & 0x01 )
             {
                 canvas.setOffset(x + offset.x, y + offset.y);
-                if (!m_onDraw)
+                if ( !m_onDraw )
                 {
                     canvas.clear();
                     draw();
                 }
-                else if (m_onDraw())
+                else if ( m_onDraw() )
                 {
                     draw();
                 }
                 canvas.setOffset(x, y);
-                canvas.setColor(RGB_COLOR8(0,0,0));
+                canvas.setColor(RGB_COLOR8(0, 0, 0));
                 canvas.fillRect(rect);
-                canvas.setColor(RGB_COLOR8(192,192,192));
+                canvas.setColor(RGB_COLOR8(192, 192, 192));
                 canvas.drawRect(rect);
-                canvas.printFixed( textPos.x, textPos.y, msg);
+                canvas.printFixed(textPos.x, textPos.y, msg);
 
-                m_display.drawCanvas(x,y,canvas);
+                m_display.drawCanvas(x, y, canvas);
             }
-            flag >>=1;
+            flag >>= 1;
         }
     }
 }
@@ -545,4 +562,3 @@ void NanoEngineTiler<C,D>::displayPopup(const char *msg)
  */
 
 #endif
-

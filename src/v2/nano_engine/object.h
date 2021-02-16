@@ -41,17 +41,15 @@
 /**
  * Template class for NanoEngine objects lists
  */
-template<class T>
-class NanoObjectList;
+template <class T> class NanoObjectList;
 
 /**
  * This is base class for all NanoObjects.
  */
-template<class T>
-class NanoObject: public NanoEngineObject<T>
+template <class T> class NanoObject: public NanoEngineObject<T>
 {
 public:
-    template<class N> friend class NanoObjectList;
+    template <class N> friend class NanoObjectList;
     /**
      * Creates basic object with the size [1,1]
      *
@@ -69,30 +67,32 @@ public:
      * @param size desirable size of NanoObject being created
      */
     NanoObject(const NanoPoint &pos, const NanoPoint &size)
-        : m_rect{pos, pos + size - (NanoPoint){1,1}}
+        : m_rect{pos, pos + size - (NanoPoint){1, 1}}
     {
     }
 
     /**
      * Draws nano object Engine canvas
      */
-    void draw() override { };
+    void draw() override{};
 
     /**
      * Marks nano object location for refreshing on the new frame
      */
     void refresh() override
     {
-        if (this->hasTiler())
+        if ( this->hasTiler() )
         {
-             this->getTiler().refreshWorld( m_rect );
+            this->getTiler().refreshWorld(m_rect);
         }
     }
 
     /**
      * Updates NanoObject
      */
-    void update() override { }
+    void update() override
+    {
+    }
 
     /**
      * Returns width of NanoObject
@@ -116,7 +116,7 @@ public:
     void moveTo(const NanoPoint &p)
     {
         refresh();
-        setPos( p );
+        setPos(p);
         refresh();
     }
 
@@ -126,7 +126,7 @@ public:
     void moveBy(const NanoPoint &p)
     {
         refresh();
-        setPos( m_rect.p1 + p );
+        setPos(m_rect.p1 + p);
         refresh();
     }
 
@@ -138,7 +138,7 @@ public:
     void resize(const NanoPoint &size)
     {
         refresh();
-        setSize( size );
+        setSize(size);
         refresh();
     }
 
@@ -158,9 +158,8 @@ public:
      */
     void setPos(const NanoPoint &p)
     {
-        m_rect = (NanoRect){ p,
-                   (NanoPoint){ (lcdint_t)(p.x + m_rect.p2.x - m_rect.p1.x),
-                                (lcdint_t)(p.y + m_rect.p2.y - m_rect.p1.y) } };
+        m_rect = (NanoRect){
+            p, (NanoPoint){(lcdint_t)(p.x + m_rect.p2.x - m_rect.p1.x), (lcdint_t)(p.y + m_rect.p2.y - m_rect.p1.y)}};
     }
 
     /**
@@ -168,7 +167,7 @@ public:
      */
     const NanoPoint bottom() const
     {
-        return { (lcdint_t)((m_rect.p1.x + m_rect.p2.x) >> 1), m_rect.p2.y  };
+        return {(lcdint_t)((m_rect.p1.x + m_rect.p2.x) >> 1), m_rect.p2.y};
     }
 
     /**
@@ -176,7 +175,7 @@ public:
      */
     const NanoPoint top() const
     {
-        return { (lcdint_t)((m_rect.p1.x + m_rect.p2.x) >> 1), m_rect.p1.y  };
+        return {(lcdint_t)((m_rect.p1.x + m_rect.p2.x) >> 1), m_rect.p1.y};
     }
 
     /**
@@ -184,7 +183,7 @@ public:
      */
     const NanoPoint left() const
     {
-        return { m_rect.p1.x, (lcdint_t)((m_rect.p1.y + m_rect.p2.y) >> 1)  };
+        return {m_rect.p1.x, (lcdint_t)((m_rect.p1.y + m_rect.p2.y) >> 1)};
     }
 
     /**
@@ -192,7 +191,7 @@ public:
      */
     const NanoPoint right() const
     {
-        return { m_rect.p2.x, (lcdint_t)((m_rect.p1.y + m_rect.p2.y) >> 1)  };
+        return {m_rect.p2.x, (lcdint_t)((m_rect.p1.y + m_rect.p2.y) >> 1)};
     }
 
     /**
@@ -200,37 +199,47 @@ public:
      */
     const NanoPoint center() const
     {
-        return { (lcdint_t)((m_rect.p1.x + m_rect.p2.x) >> 1),
-                 (lcdint_t)((m_rect.p1.y + m_rect.p2.y) >> 1) };
+        return {(lcdint_t)((m_rect.p1.x + m_rect.p2.x) >> 1), (lcdint_t)((m_rect.p1.y + m_rect.p2.y) >> 1)};
     }
 
     /**
      * Returns sprite x position
      */
-    lcdint_t x( ) const { return m_rect.p1.x; }
+    lcdint_t x() const
+    {
+        return m_rect.p1.x;
+    }
 
     /**
      * Returns sprite y position
      */
-    lcdint_t y( ) const { return m_rect.p1.y; }
+    lcdint_t y() const
+    {
+        return m_rect.p1.y;
+    }
 
     /**
      * Returns current sprite position (top-left corner)
      */
-    const NanoPoint & getPosition() const { return m_rect.p1; }
+    const NanoPoint &getPosition() const
+    {
+        return m_rect.p1;
+    }
 
     /**
      * Returns rectangle area, occupied by the NanoObject
      */
-    const NanoRect & getRect() const { return m_rect; }
+    const NanoRect &getRect() const
+    {
+        return m_rect;
+    }
 
 protected:
     /** Rectangle area occupied by the object */
-    NanoRect       m_rect;
+    NanoRect m_rect;
 };
 
-template<class T>
-class NanoObjectList: public NanoObject<T>
+template <class T> class NanoObjectList: public NanoObject<T>
 {
 public:
     using NanoObject<T>::NanoObject;
@@ -243,7 +252,7 @@ public:
      */
     NanoObject<T> *getNext(NanoObject<T> *prev = nullptr)
     {
-        return static_cast<NanoObject<T>*>(prev ? prev->m_next : m_first);
+        return static_cast<NanoObject<T> *>(prev ? prev->m_next : m_first);
     }
 
     /**
@@ -255,13 +264,13 @@ public:
     NanoObject<T> *getPrev(NanoObject<T> *curr = nullptr)
     {
         NanoObject<T> *p = m_first;
-        while (p)
+        while ( p )
         {
-            if (p->m_next == curr)
+            if ( p->m_next == curr )
             {
                 break;
             }
-            p = static_cast<NanoObject<T>*>(p->m_next);
+            p = static_cast<NanoObject<T> *>(p->m_next);
         }
         return p;
     }
@@ -272,10 +281,10 @@ public:
     void update() override
     {
         NanoObject<T> *p = getNext();
-        while (p)
+        while ( p )
         {
             p->update();
-            p = getNext( p );
+            p = getNext(p);
         }
     }
 
@@ -285,11 +294,11 @@ public:
     void refresh() override
     {
         NanoObject<T> *p = getNext();
-        while (p)
+        while ( p )
         {
-            p->setTiler( this->m_tiler );
+            p->setTiler(this->m_tiler);
             p->refresh();
-            p = getNext( p );
+            p = getNext(p);
         }
     }
 
@@ -299,7 +308,7 @@ public:
     void draw() override
     {
         NanoObject<T> *p = getNext();
-        while (p)
+        while ( p )
         {
             p->draw();
             p = getNext(p);
@@ -314,7 +323,7 @@ public:
     bool has(NanoObject<T> &object)
     {
         NanoObject<T> *p = getNext();
-        while (p && p != &object)
+        while ( p && p != &object )
         {
             p = getNext(p);
         }
@@ -328,12 +337,12 @@ public:
      */
     void add(NanoObject<T> &object)
     {
-        if ( has( object ) )
+        if ( has(object) )
         {
             return;
         }
         object.m_next = nullptr;
-        object.setTiler( this->m_tiler );
+        object.setTiler(this->m_tiler);
         if ( !m_first )
         {
             m_first = &object;
@@ -352,7 +361,7 @@ public:
      */
     void insert(NanoObject<T> &object)
     {
-        if ( has( object ) )
+        if ( has(object) )
         {
             return;
         }
@@ -406,4 +415,3 @@ private:
  */
 
 #endif
-

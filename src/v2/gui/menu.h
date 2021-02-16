@@ -35,12 +35,12 @@
 
 #ifndef min
 /** Custom min function */
-#define min(x,y) ((x)<(y)?(x):(y))
+#define min(x, y) ((x) < (y) ? (x) : (y))
 #endif
 
 #ifndef max
 /** Custom max function */
-#define max(x,y) ((x)>(y)?(x):(y))
+#define max(x, y) ((x) > (y) ? (x) : (y))
 #endif
 
 /**
@@ -71,13 +71,12 @@ public:
      *
      * @param d display object
      */
-    template<typename D>
-    void show(D &d)
+    template <typename D> void show(D &d)
     {
         updateSize(d);
         d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
-        menu.scrollPosition = calculateScrollPosition(d, menu.selection );
-        for (uint8_t i = menu.scrollPosition; i < min(menu.count, (menu.scrollPosition + getMaxScreenItems(d))); i++)
+        menu.scrollPosition = calculateScrollPosition(d, menu.selection);
+        for ( uint8_t i = menu.scrollPosition; i < min(menu.count, (menu.scrollPosition + getMaxScreenItems(d))); i++ )
         {
             drawMenuItem(d, i);
         }
@@ -112,8 +111,7 @@ public:
     /**
      * Updates size of the object, if it was not set previously
      */
-    template <typename D>
-    void updateSize(D &d)
+    template <typename D> void updateSize(D &d)
     {
         if ( !menu.width )
         {
@@ -128,51 +126,46 @@ public:
 private:
     SAppMenu menu;
 
-    template <typename D>
-    uint8_t getMaxScreenItems(D &d)
+    template <typename D> uint8_t getMaxScreenItems(D &d)
     {
         return (menu.height - 16) / d.getFont().getHeader().height;
     }
 
-    template <typename D>
-    uint8_t calculateScrollPosition(D &d, uint8_t selection)
+    template <typename D> uint8_t calculateScrollPosition(D &d, uint8_t selection)
     {
         if ( selection < menu.scrollPosition )
         {
             return selection;
         }
-        else if ( selection - menu.scrollPosition > getMaxScreenItems(d) - 1)
+        else if ( selection - menu.scrollPosition > getMaxScreenItems(d) - 1 )
         {
             return selection - getMaxScreenItems(d) + 1;
         }
         return menu.scrollPosition;
     }
 
-    template <typename D>
-    void drawMenuItem(D &d, uint8_t index)
+    template <typename D> void drawMenuItem(D &d, uint8_t index)
     {
-        if (index == menu.selection)
+        if ( index == menu.selection )
         {
             d.invertColors();
         }
-        lcdint_t item_top = 8 + menu.top + (index - menu.scrollPosition)*d.getFont().getHeader().height;
+        lcdint_t item_top = 8 + menu.top + (index - menu.scrollPosition) * d.getFont().getHeader().height;
         uint16_t color = d.getColor();
-        d.setColor( 0x0000 );
-        d.fillRect( menu.left + 8 + d.getFont().getTextSize(menu.items[index]), item_top,
-                    menu.width + menu.left - 9, item_top + d.getFont().getHeader().height - 1 );
-        d.setColor( color );
-        d.printFixed(menu.left + 8, item_top, menu.items[index], STYLE_NORMAL );
-        if (index == menu.selection)
+        d.setColor(0x0000);
+        d.fillRect(menu.left + 8 + d.getFont().getTextSize(menu.items[index]), item_top, menu.width + menu.left - 9,
+                   item_top + d.getFont().getHeader().height - 1);
+        d.setColor(color);
+        d.printFixed(menu.left + 8, item_top, menu.items[index], STYLE_NORMAL);
+        if ( index == menu.selection )
         {
             d.invertColors();
         }
     }
 };
 
-
 /**
  * @}
  */
 
 #endif
-

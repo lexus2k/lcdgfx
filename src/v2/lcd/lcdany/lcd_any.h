@@ -61,7 +61,9 @@ public:
      * Switches to the start of next RAM page for the block, specified by
      * startBlock().
      */
-    virtual void nextBlock() {}
+    virtual void nextBlock()
+    {
+    }
 
     /**
      * Closes data send operation to lcd display.
@@ -74,7 +76,6 @@ public:
      */
     virtual void send(uint8_t data) = 0;
 };
-
 
 /**
  * Class implements custom interface functions for custom displays
@@ -107,7 +108,7 @@ public:
      */
     void startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
     {
-        m_intf.startBlock(x,y,w);
+        m_intf.startBlock(x, y, w);
     }
 
     /**
@@ -140,11 +141,10 @@ private:
     DisplayInterface &m_intf; ///< basic display communication interface
 };
 
-
 /**
  * Class implements basic functionality for custom 1-bit lcd display
  */
-class DisplayAny1: public NanoDisplayOps<NanoDisplayOps1<InterfaceAny>,InterfaceAny>, DisplayInterface
+class DisplayAny1: public NanoDisplayOps<NanoDisplayOps1<InterfaceAny>, InterfaceAny>, DisplayInterface
 {
 public:
     /**
@@ -175,7 +175,7 @@ private:
 /**
  * Class implements basic functionality for custom 4-bit lcd display
  */
-class DisplayAny4: public NanoDisplayOps<NanoDisplayOps4<InterfaceAny>,InterfaceAny>, DisplayInterface
+class DisplayAny4: public NanoDisplayOps<NanoDisplayOps4<InterfaceAny>, InterfaceAny>, DisplayInterface
 {
 public:
     /**
@@ -206,7 +206,7 @@ private:
 /**
  * Class implements basic functionality for custom 8-bit lcd display
  */
-class DisplayAny8: public NanoDisplayOps<NanoDisplayOps8<InterfaceAny>,InterfaceAny>, DisplayInterface
+class DisplayAny8: public NanoDisplayOps<NanoDisplayOps8<InterfaceAny>, InterfaceAny>, DisplayInterface
 {
 public:
     /**
@@ -237,7 +237,7 @@ private:
 /**
  * Class implements basic functionality for custom 16-bit lcd display
  */
-class DisplayAny16: public NanoDisplayOps<NanoDisplayOps16<InterfaceAny>,InterfaceAny>, DisplayInterface
+class DisplayAny16: public NanoDisplayOps<NanoDisplayOps16<InterfaceAny>, InterfaceAny>, DisplayInterface
 {
 public:
     /**
@@ -268,4 +268,3 @@ private:
 /**
  * @}
  */
-

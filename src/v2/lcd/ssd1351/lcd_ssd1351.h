@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to SSD1351 displays
  */
-template <class I>
-class InterfaceSSD1351: public I
+template <class I> class InterfaceSSD1351: public I
 {
 public:
     /**
@@ -52,9 +51,9 @@ public:
      * @param data variable argument list, accepted by platform interface (PlatformI2c, PlatformSpi)
      */
     template <typename... Args>
-    InterfaceSSD1351(NanoDisplayBase<InterfaceSSD1351<I>> &base, int8_t dc, Args&&... data)
+    InterfaceSSD1351(NanoDisplayBase<InterfaceSSD1351<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -110,18 +109,15 @@ public:
     void setRotation(uint8_t rotation);
 
 private:
-    const int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                       ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSSD1351<I>> &m_base; ///< basic lcd display support interface
-
-    uint8_t m_rotation = 0x00;  ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
+    uint8_t m_rotation = 0x00;                    ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
 };
-
 
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
  */
-template <class I>
-class DisplaySSD1351x16: public NanoDisplayOps<NanoDisplayOps16<I>,I>
+template <class I> class DisplaySSD1351x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**
@@ -132,7 +128,9 @@ public:
      */
     DisplaySSD1351x16(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps16<I>, I>(intf)
-        , m_rstPin( rstPin ) { }
+        , m_rstPin(rstPin)
+    {
+    }
 
 protected:
     int8_t m_rstPin; ///< indicates hardware reset pin used, -1 if it is not required
@@ -151,8 +149,7 @@ protected:
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
  */
-template <class I>
-class DisplaySSD1351_128x128x16: public DisplaySSD1351x16<I>
+template <class I> class DisplaySSD1351_128x128x16: public DisplaySSD1351x16<I>
 {
 public:
     /**
@@ -162,10 +159,11 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplaySSD1351_128x128x16(I &intf, int8_t rstPin)
-        : DisplaySSD1351x16<I>(intf, rstPin) { }
+        : DisplaySSD1351x16<I>(intf, rstPin)
+    {
+    }
 
 protected:
-
     /**
      * Basic SSD1351 128x128x16 initialization
      */
@@ -190,15 +188,13 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplaySSD1351_128x128x16_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplaySSD1351_128x128x16_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplaySSD1351_128x128x16(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 4400000,
-                                     config.scl,
-                                     config.sda } ) {}
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{
+                    config.busId, {config.cs}, config.dc, config.frequency ?: 4400000, config.scl, config.sda})
+    {
+    }
 
     /**
      * Initializes SSD1351 lcd in 16-bit mode
@@ -218,8 +214,7 @@ private:
  * Template class implements SSD1351 128x128x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplaySSD1351_128x128x16_CustomSPI: public DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>
+template <class I> class DisplaySSD1351_128x128x16_CustomSPI: public DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>
 {
 public:
     /**
@@ -231,10 +226,11 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1351_128x128x16_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplaySSD1351_128x128x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes SSD1351 lcd in 16-bit mode
@@ -262,4 +258,3 @@ private:
 /**
  * @}
  */
-

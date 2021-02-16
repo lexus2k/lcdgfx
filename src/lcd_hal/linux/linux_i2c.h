@@ -29,8 +29,7 @@
 #ifndef _SSD1306V2_LINUX_LINUX_I2C_H_
 #define _SSD1306V2_LINUX_LINUX_I2C_H_
 
-#if defined(CONFIG_LINUX_I2C_AVAILABLE) && defined(CONFIG_LINUX_I2C_ENABLE) && \
-    !defined(SDL_EMULATION)
+#if defined(CONFIG_LINUX_I2C_AVAILABLE) && defined(CONFIG_LINUX_I2C_ENABLE) && !defined(SDL_EMULATION)
 
 /**
  * Class implements i2c interface for Linux via i2c-dev
@@ -91,7 +90,10 @@ public:
      *
      * @param addr i2c address to set (7 bits)
      */
-    void setAddr(uint8_t addr) { m_sa = addr; }
+    void setAddr(uint8_t addr)
+    {
+        m_sa = addr;
+    }
 
 private:
     int8_t m_busId;
@@ -104,4 +106,3 @@ private:
 #endif
 
 #endif
-

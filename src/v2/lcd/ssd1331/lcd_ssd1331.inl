@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -147,13 +147,11 @@ void InterfaceSSD1331<I>::copyBlock(uint8_t left, uint8_t top, uint8_t right, ui
 //             SSD1331 basic 8-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplaySSD1331x8<I>::begin()
+template <class I> void DisplaySSD1331x8<I>::begin()
 {
 }
 
-template <class I>
-void DisplaySSD1331x8<I>::end()
+template <class I> void DisplaySSD1331x8<I>::end()
 {
 }
 
@@ -210,13 +208,11 @@ void DisplaySSD1331_96x64x8<I>::end()
 //             SSD1331 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplaySSD1331x16<I>::begin()
+template <class I> void DisplaySSD1331x16<I>::begin()
 {
 }
 
-template <class I>
-void DisplaySSD1331x16<I>::end()
+template <class I> void DisplaySSD1331x16<I>::end()
 {
 }
 

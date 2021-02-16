@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to SSD1327 displays
  */
-template <class I>
-class InterfaceSSD1327: public I
+template <class I> class InterfaceSSD1327: public I
 {
 public:
     /**
@@ -52,9 +51,9 @@ public:
      * @param data variable argument list, accepted by platform interface (PlatformI2c, PlatformSpi)
      */
     template <typename... Args>
-    InterfaceSSD1327(NanoDisplayBase<InterfaceSSD1327<I>> &base, int8_t dc, Args&&... data)
+    InterfaceSSD1327(NanoDisplayBase<InterfaceSSD1327<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -102,16 +101,14 @@ public:
     void commandStart();
 
 private:
-    const int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                       ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSSD1327<I>> &m_base; ///< basic lcd display support interface
 };
-
 
 /**
  * Class implements basic functions for 4-bit mode of SSD1327-based displays
  */
-template <class I>
-class DisplaySSD1327: public NanoDisplayOps<NanoDisplayOps4<I>,I>
+template <class I> class DisplaySSD1327: public NanoDisplayOps<NanoDisplayOps4<I>, I>
 {
 public:
     /**
@@ -122,7 +119,9 @@ public:
      */
     DisplaySSD1327(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps4<I>, I>(intf)
-        , m_rstPin( rstPin ) { }
+        , m_rstPin(rstPin)
+    {
+    }
 
 protected:
     int8_t m_rstPin; ///< indicates hardware reset pin used, -1 if it is not required
@@ -141,8 +140,7 @@ protected:
 /**
  * Class implements basic functions for 4-bit mode of SSD1327-based displays
  */
-template <class I>
-class DisplaySSD1327_128x128: public DisplaySSD1327<I>
+template <class I> class DisplaySSD1327_128x128: public DisplaySSD1327<I>
 {
 public:
     /**
@@ -152,10 +150,11 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplaySSD1327_128x128(I &intf, int8_t rstPin)
-        : DisplaySSD1327<I>(intf, rstPin) { }
+        : DisplaySSD1327<I>(intf, rstPin)
+    {
+    }
 
 protected:
-
     /**
      * Basic SSD1327 128x128 initialization
      */
@@ -180,15 +179,13 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplaySSD1327_128x128_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplaySSD1327_128x128_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplaySSD1327_128x128(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 10000000,
-                                     config.scl,
-                                     config.sda } ) {}
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{
+                    config.busId, {config.cs}, config.dc, config.frequency ?: 10000000, config.scl, config.sda})
+    {
+    }
 
     /**
      * Initializes SSD1327 lcd in 4-bit mode
@@ -208,8 +205,7 @@ private:
  * Template class implements SSD1327 128x128 lcd display in 4 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplaySSD1327_128x128_CustomSPI: public DisplaySSD1327_128x128<InterfaceSSD1327<I>>
+template <class I> class DisplaySSD1327_128x128_CustomSPI: public DisplaySSD1327_128x128<InterfaceSSD1327<I>>
 {
 public:
     /**
@@ -221,10 +217,11 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplaySSD1327_128x128_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplaySSD1327_128x128_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplaySSD1327_128x128<InterfaceSSD1327<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes SSD1327 lcd in 4-bit mode
@@ -260,14 +257,13 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform i2c configuration. Please refer to SPlatformI2cConfig.
      */
-    explicit DisplaySSD1327_128x128_I2C( int8_t rstPin, const SPlatformI2cConfig &config = { -1, 0x3C, -1, -1, 0 } )
+    explicit DisplaySSD1327_128x128_I2C(int8_t rstPin, const SPlatformI2cConfig &config = {-1, 0x3C, -1, -1, 0})
         : DisplaySSD1327_128x128(m_i2c, rstPin)
-        , m_i2c( *this, -1,
-                 SPlatformI2cConfig{ config.busId,
-                                     static_cast<uint8_t>(config.addr ?: 0x3C),
-                                     config.scl,
-                                     config.sda,
-                                     config.frequency ?: 400000 } ) {}
+        , m_i2c(*this, -1,
+                SPlatformI2cConfig{config.busId, static_cast<uint8_t>(config.addr ?: 0x3C), config.scl, config.sda,
+                                   config.frequency ?: 400000})
+    {
+    }
 
     /**
      * Initializes SSD1327 lcd in 4-bit mode
@@ -287,8 +283,7 @@ private:
  * Template class implements SSD1327 128x128 lcd display in 4 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I>
-class DisplaySSD1327_128x128_CustomI2C: public DisplaySSD1327_128x128<InterfaceSSD1327<I>>
+template <class I> class DisplaySSD1327_128x128_CustomI2C: public DisplaySSD1327_128x128<InterfaceSSD1327<I>>
 {
 public:
     /**
@@ -299,10 +294,11 @@ public:
      * @param data variable argument list for custom user i2c interface.
      */
     template <typename... Args>
-    DisplaySSD1327_128x128_CustomI2C( int8_t rstPin, Args&&... data )
+    DisplaySSD1327_128x128_CustomI2C(int8_t rstPin, Args &&... data)
         : DisplaySSD1327_128x128<InterfaceSSD1327<I>>(m_i2c, rstPin)
-        , m_i2c( *this, -1,
-                 data... ) {}
+        , m_i2c(*this, -1, data...)
+    {
+    }
 
     /**
      * Initializes SSD1327 lcd in 4-bit mode
@@ -326,10 +322,8 @@ private:
     InterfaceSSD1327<I> m_i2c;
 };
 
-
 #include "lcd_ssd1327.inl"
 
 /**
  * @}
  */
-

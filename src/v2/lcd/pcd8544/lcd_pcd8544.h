@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -40,8 +40,7 @@
 /**
  * Class implements interface functions to PCD8544 displays
  */
-template <class I>
-class InterfacePCD8544: public I
+template <class I> class InterfacePCD8544: public I
 {
 public:
     /**
@@ -52,9 +51,9 @@ public:
      * @param data variable argument list, accepted by platform interface (PlatformI2c, PlatformSpi)
      */
     template <typename... Args>
-    InterfacePCD8544(NanoDisplayBase<InterfacePCD8544<I>> &base, int8_t dc, Args&&... data)
+    InterfacePCD8544(NanoDisplayBase<InterfacePCD8544<I>> &base, int8_t dc, Args &&... data)
         : I(data...)
-        , m_dc( dc )
+        , m_dc(dc)
         , m_base(base)
     {
     }
@@ -102,20 +101,17 @@ public:
     void commandStart();
 
 private:
-    const int8_t m_dc = -1; ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                       ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfacePCD8544<I>> &m_base; ///< basic lcd display support interface
-
     uint8_t m_width = 0;
     uint8_t m_column = 0;
     uint8_t m_page = 0;
 };
 
-
 /**
  * Class implements basic functions for 1-bit mode of PCD8544-based displays
  */
-template <class I>
-class DisplayPCD8544: public NanoDisplayOps<NanoDisplayOps1<I>,I>
+template <class I> class DisplayPCD8544: public NanoDisplayOps<NanoDisplayOps1<I>, I>
 {
 public:
     /**
@@ -126,7 +122,9 @@ public:
      */
     DisplayPCD8544(I &intf, int8_t rstPin)
         : NanoDisplayOps<NanoDisplayOps1<I>, I>(intf)
-        , m_rstPin( rstPin ) { }
+        , m_rstPin(rstPin)
+    {
+    }
 
 protected:
     int8_t m_rstPin; ///< indicates hardware reset pin used, -1 if it is not required
@@ -145,8 +143,7 @@ protected:
 /**
  * Class implements basic functions for 1-bit mode of PCD8544-based displays
  */
-template <class I>
-class DisplayPCD8544_84x48: public DisplayPCD8544<I>
+template <class I> class DisplayPCD8544_84x48: public DisplayPCD8544<I>
 {
 public:
     /**
@@ -156,10 +153,11 @@ public:
      * @param rstPin pin to use as HW reset pin for LCD display
      */
     DisplayPCD8544_84x48(I &intf, int8_t rstPin)
-        : DisplayPCD8544<I>(intf, rstPin) { }
+        : DisplayPCD8544<I>(intf, rstPin)
+    {
+    }
 
 protected:
-
     /**
      * Basic PCD8544 84x48 initialization
      */
@@ -184,15 +182,13 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit DisplayPCD8544_84x48_SPI( int8_t rstPin, const SPlatformSpiConfig &config = { -1, { -1 }, -1, 0, -1, -1 } )
+    explicit DisplayPCD8544_84x48_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
         : DisplayPCD8544_84x48(m_spi, rstPin)
-        , m_spi( *this, config.dc,
-                 SPlatformSpiConfig{ config.busId,
-                                     { config.cs },
-                                     config.dc,
-                                     config.frequency ?: 4000000,
-                                     config.scl,
-                                     config.sda } ) {}
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{
+                    config.busId, {config.cs}, config.dc, config.frequency ?: 4000000, config.scl, config.sda})
+    {
+    }
 
     /**
      * Initializes PCD8544 lcd in 1-bit mode
@@ -212,8 +208,7 @@ private:
  * Template class implements PCD8544 84x48 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I>
-class DisplayPCD8544_84x48_CustomSPI: public DisplayPCD8544_84x48<InterfacePCD8544<I>>
+template <class I> class DisplayPCD8544_84x48_CustomSPI: public DisplayPCD8544_84x48<InterfacePCD8544<I>>
 {
 public:
     /**
@@ -225,10 +220,11 @@ public:
      * @param data variable argument list for custom user spi interface.
      */
     template <typename... Args>
-    DisplayPCD8544_84x48_CustomSPI( int8_t rstPin, int8_t dcPin, Args&&... data )
+    DisplayPCD8544_84x48_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
         : DisplayPCD8544_84x48<InterfacePCD8544<I>>(m_spi, rstPin)
-        , m_spi( *this, dcPin,
-                 data... ) {}
+        , m_spi(*this, dcPin, data...)
+    {
+    }
 
     /**
      * Initializes PCD8544 lcd in 1-bit mode
@@ -256,4 +252,3 @@ private:
 /**
  * @}
  */
-

@@ -22,7 +22,7 @@
     SOFTWARE.
 */
 
-#if (defined(__linux__) || defined(__APPLE__)) && !defined(ARDUINO)
+#if ( defined(__linux__) || defined(__APPLE__) ) && !defined(ARDUINO)
 
 #include "../io.h"
 
@@ -43,17 +43,16 @@
 
 #include <map>
 
-#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) \
-    && !defined(SDL_EMULATION)
+#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && !defined(SDL_EMULATION)
 #define LINUX_SPI_AVAILABLE
 #endif
 
-#define MAX_GPIO_COUNT   256
+#define MAX_GPIO_COUNT 256
 
 #ifdef IN
 #undef IN
 #endif
-#define IN  0
+#define IN 0
 
 #ifdef OUT
 #undef OUT
@@ -69,29 +68,29 @@ int gpio_export(int pin)
 
     snprintf(path, sizeof(path), "/sys/class/gpio/gpio%d", pin);
 
-    if (access(path, F_OK) == 0)
+    if ( access(path, F_OK) == 0 )
     {
         return 0;
     }
 
     fd = open("/sys/class/gpio/export", O_WRONLY);
-    if (-1 == fd)
+    if ( -1 == fd )
     {
-        fprintf(stderr, "Failed to allocate gpio pin[%d]: %s%s!\n",
-                pin, strerror (errno), getuid() == 0 ? "" : ", need to be root");
-        return(-1);
+        fprintf(stderr, "Failed to allocate gpio pin[%d]: %s%s!\n", pin, strerror(errno),
+                getuid() == 0 ? "" : ", need to be root");
+        return (-1);
     }
 
     bytes_written = snprintf(buffer, sizeof(buffer), "%d", pin);
-    if (write(fd, buffer, bytes_written) < 0)
+    if ( write(fd, buffer, bytes_written) < 0 )
     {
-        fprintf(stderr, "Failed to allocate gpio pin[%d]: %s%s!\n",
-                pin, strerror (errno), getuid() == 0 ? "" : ", need to be root");
+        fprintf(stderr, "Failed to allocate gpio pin[%d]: %s%s!\n", pin, strerror(errno),
+                getuid() == 0 ? "" : ", need to be root");
         close(fd);
         return -1;
     }
     close(fd);
-    return(0);
+    return (0);
 }
 
 int gpio_unexport(int pin)
@@ -101,46 +100,44 @@ int gpio_unexport(int pin)
     int fd;
 
     fd = open("/sys/class/gpio/unexport", O_WRONLY);
-    if (-1 == fd)
+    if ( -1 == fd )
     {
         fprintf(stderr, "Failed to free gpio pin resources!\n");
-        return(-1);
+        return (-1);
     }
 
     bytes_written = snprintf(buffer, sizeof(buffer), "%d", pin);
-    if (write(fd, buffer, bytes_written) < 0)
+    if ( write(fd, buffer, bytes_written) < 0 )
     {
         fprintf(stderr, "Failed to free gpio pin resources!\n");
     }
     close(fd);
-    return(0);
+    return (0);
 }
 
 int gpio_direction(int pin, int dir)
 {
-    static const char s_directions_str[]  = "in\0out";
+    static const char s_directions_str[] = "in\0out";
 
     char path[64];
     int fd;
 
     snprintf(path, sizeof(path), "/sys/class/gpio/gpio%d/direction", pin);
     fd = open(path, O_WRONLY);
-    if (-1 == fd)
+    if ( -1 == fd )
     {
-        fprintf(stderr, "Failed to set gpio pin direction1[%d]: %s!\n",
-                pin, strerror(errno));
-        return(-1);
+        fprintf(stderr, "Failed to set gpio pin direction1[%d]: %s!\n", pin, strerror(errno));
+        return (-1);
     }
 
-    if (-1 == write(fd, &s_directions_str[IN == dir ? 0 : 3], IN == dir ? 2 : 3))
+    if ( -1 == write(fd, &s_directions_str[IN == dir ? 0 : 3], IN == dir ? 2 : 3) )
     {
-        fprintf(stderr, "Failed to set gpio pin direction2[%d]: %s!\n",
-                pin, strerror(errno));
-        return(-1);
+        fprintf(stderr, "Failed to set gpio pin direction2[%d]: %s!\n", pin, strerror(errno));
+        return (-1);
     }
 
     close(fd);
-    return(0);
+    return (0);
 }
 
 int gpio_read(int pin)
@@ -151,21 +148,21 @@ int gpio_read(int pin)
 
     snprintf(path, sizeof(path), "/sys/class/gpio/gpio%d/value", pin);
     fd = open(path, O_RDONLY);
-    if (-1 == fd)
+    if ( -1 == fd )
     {
         fprintf(stderr, "Failed to read gpio pin value!\n");
-        return(-1);
+        return (-1);
     }
 
-    if (-1 == read(fd, value_str, 3))
+    if ( -1 == read(fd, value_str, 3) )
     {
         fprintf(stderr, "Failed to read gpio pin value!\n");
-        return(-1);
+        return (-1);
     }
 
     close(fd);
 
-    return(atoi(value_str));
+    return (atoi(value_str));
 }
 
 int gpio_write(int pin, int value)
@@ -177,27 +174,27 @@ int gpio_write(int pin, int value)
 
     snprintf(path, sizeof(path), "/sys/class/gpio/gpio%d/value", pin);
     fd = open(path, O_WRONLY);
-    if (-1 == fd)
+    if ( -1 == fd )
     {
-        fprintf(stderr, "Failed to set gpio pin value[%d]: %s%s!\n",
-                pin, strerror (errno), getuid() == 0 ? "" : ", need to be root");
-        return(-1);
+        fprintf(stderr, "Failed to set gpio pin value[%d]: %s%s!\n", pin, strerror(errno),
+                getuid() == 0 ? "" : ", need to be root");
+        return (-1);
     }
 
-    if (1 != write(fd, &s_values_str[LOW == value ? 0 : 1], 1))
+    if ( 1 != write(fd, &s_values_str[LOW == value ? 0 : 1], 1) )
     {
-        fprintf(stderr, "Failed to set gpio pin value[%d]: %s%s!\n",
-                pin, strerror (errno), getuid() == 0 ? "" : ", need to be root");
-        return(-1);
+        fprintf(stderr, "Failed to set gpio pin value[%d]: %s%s!\n", pin, strerror(errno),
+                getuid() == 0 ? "" : ", need to be root");
+        return (-1);
     }
 
     close(fd);
-    return(0);
+    return (0);
 }
 
-#if defined(__KERNEL__)      // ============== KERNEL
+#if defined(__KERNEL__) // ============== KERNEL
 
-int  lcd_gpioRead(int pin)
+int lcd_gpioRead(int pin)
 {
     // TODO: Not implemented
     return LCD_LOW;
@@ -218,7 +215,7 @@ void lcd_delayUs(unsigned long us)
     // TODO: Not implemented
 }
 
-int  lcd_adcRead(int pin)
+int lcd_adcRead(int pin)
 {
     // TODO: Not implemented
     return 0;
@@ -255,20 +252,20 @@ std::map<int, SPinEvent> s_events;
 
 void lcd_gpioMode(int pin, int mode)
 {
-    if (!s_exported_pin[pin])
+    if ( !s_exported_pin[pin] )
     {
-        if ( gpio_export(pin)<0 )
+        if ( gpio_export(pin) < 0 )
         {
             return;
         }
         s_exported_pin[pin] = 1;
     }
-    if (mode == LCD_GPIO_OUTPUT)
+    if ( mode == LCD_GPIO_OUTPUT )
     {
         gpio_direction(pin, OUT);
         s_pin_mode[pin] = 1;
     }
-    if (mode == LCD_GPIO_INPUT)
+    if ( mode == LCD_GPIO_INPUT )
     {
         gpio_direction(pin, IN);
         s_pin_mode[pin] = 0;
@@ -278,28 +275,28 @@ void lcd_gpioMode(int pin, int mode)
 void lcd_gpioWrite(int pin, int level)
 {
 #ifdef LINUX_SPI_AVAILABLE
-    if (s_events.find(pin) != s_events.end())
+    if ( s_events.find(pin) != s_events.end() )
     {
-        s_events[pin].on_pin_change( s_events[pin].arg );
+        s_events[pin].on_pin_change(s_events[pin].arg);
     }
 #endif
 
-    if (!s_exported_pin[pin])
+    if ( !s_exported_pin[pin] )
     {
-        if ( gpio_export(pin)<0 )
+        if ( gpio_export(pin) < 0 )
         {
             return;
         }
         s_exported_pin[pin] = 1;
     }
-    if (!s_pin_mode[pin])
+    if ( !s_pin_mode[pin] )
     {
         pinMode(pin, OUTPUT);
     }
-    gpio_write( pin, level );
+    gpio_write(pin, level);
 }
 
-void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void * arg)
+void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void *arg)
 {
     s_events[pin].arg = arg;
     s_events[pin].on_pin_change = on_pin_change;
@@ -307,15 +304,15 @@ void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void * arg)
 
 void lcd_unregisterGpioEvent(int pin)
 {
-    s_events.erase( pin );
+    s_events.erase(pin);
 }
 
-int  lcd_gpioRead(int pin)
+int lcd_gpioRead(int pin)
 {
     return LCD_LOW;
 }
 
-int  lcd_adcRead(int pin)
+int lcd_adcRead(int pin)
 {
     // NOT IMPLEMENTED
     return 0;
@@ -323,7 +320,7 @@ int  lcd_adcRead(int pin)
 
 void lcd_delay(unsigned long ms)
 {
-    usleep(ms*1000);
+    usleep(ms * 1000);
 }
 
 void lcd_delayUs(unsigned long us)
@@ -333,29 +330,35 @@ void lcd_delayUs(unsigned long us)
 
 uint32_t lcd_millis(void)
 {
-   struct timespec ts;
-   clock_gettime(CLOCK_MONOTONIC, &ts);
-   return ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
 }
 
 uint32_t lcd_micros(void)
 {
-   struct timespec ts;
-   clock_gettime(CLOCK_MONOTONIC, &ts);
-   return ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
 }
 
-int min(int a, int b) { return a<b?a:b; }
-int max(int a, int b) { return a>b?a:b; }
+int min(int a, int b)
+{
+    return a < b ? a : b;
+}
+int max(int a, int b)
+{
+    return a > b ? a : b;
+}
 
 #else // SDL_EMULATION
 
-int  lcd_gpioRead(int pin)
+int lcd_gpioRead(int pin)
 {
     return sdl_read_digital(pin);
 }
 
-int  lcd_adcRead(int pin)
+int lcd_adcRead(int pin)
 {
     return sdl_read_analog(pin);
 }
@@ -367,12 +370,12 @@ void lcd_gpioWrite(int pin, int level)
 
 void lcd_gpioMode(int pin, int mode)
 {
-   // TODO: Not implemented
+    // TODO: Not implemented
 }
 
 void lcd_delay(unsigned long ms)
 {
-    usleep(ms*1000);
+    usleep(ms * 1000);
 }
 
 void lcd_delayUs(unsigned long us)
@@ -382,20 +385,26 @@ void lcd_delayUs(unsigned long us)
 
 uint32_t lcd_millis(void)
 {
-   struct timespec ts;
-   clock_gettime(CLOCK_MONOTONIC, &ts);
-   return ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
 }
 
 uint32_t lcd_micros(void)
 {
-   struct timespec ts;
-   clock_gettime(CLOCK_MONOTONIC, &ts);
-   return ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
 };
 
-int min(int a, int b) { return a<b?a:b; }
-int max(int a, int b) { return a>b?a:b; }
+int min(int a, int b)
+{
+    return a < b ? a : b;
+}
+int max(int a, int b)
+{
+    return a > b ? a : b;
+}
 
 #endif // SDL_EMULATION
 

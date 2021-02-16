@@ -35,56 +35,55 @@
  */
 
 #ifndef SSD1306_SA
-    #define SSD1306_SA    0x3C  // Slave address
+#define SSD1306_SA 0x3C // Slave address
 #endif
 
 #if defined(__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
-    #ifndef SSD1306_SCL
-        #define SSD1306_SCL   3 ///< SCL, Pin 3 on SSD1306 Board
-    #endif
-    #ifndef SSD1306_SDA
-        #define SSD1306_SDA   4 ///< SDA, Pin 4 on SSD1306 Board
-    #endif
+#ifndef SSD1306_SCL
+#define SSD1306_SCL 3 ///< SCL, Pin 3 on SSD1306 Board
+#endif
+#ifndef SSD1306_SDA
+#define SSD1306_SDA 4 ///< SDA, Pin 4 on SSD1306 Board
+#endif
 #elif defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)
-    #ifndef SSD1306_SCL
-        #define SSD1306_SCL   4 ///< SCL, Pin 4 - physical pin 9 of Attiny84
-    #endif
-    #ifndef SSD1306_SDA
-        #define SSD1306_SDA   6 ///< SDA, Pin 6 - physical pin 7 of Attiny84
-    #endif
+#ifndef SSD1306_SCL
+#define SSD1306_SCL 4 ///< SCL, Pin 4 - physical pin 9 of Attiny84
+#endif
+#ifndef SSD1306_SDA
+#define SSD1306_SDA 6 ///< SDA, Pin 6 - physical pin 7 of Attiny84
+#endif
 #else
-    #ifndef SSD1306_SCL
-        #define SSD1306_SCL   5 // SCL, Pin A5 on SSD1306 Board
-    #endif
-    #ifndef SSD1306_SDA
-        #define SSD1306_SDA   4 // SDA, Pin A4 on SSD1306 Board
-    #endif
+#ifndef SSD1306_SCL
+#define SSD1306_SCL 5 // SCL, Pin A5 on SSD1306 Board
+#endif
+#ifndef SSD1306_SDA
+#define SSD1306_SDA 4 // SDA, Pin A4 on SSD1306 Board
+#endif
 #endif
 
 #if defined(__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
-    // at 8Mhz each command takes ~ 0.125us
-    #define DDR_REG      DDRB
-    #define PORT_REG     PORTB
-    #define PIN_REG      PINB
+// at 8Mhz each command takes ~ 0.125us
+#define DDR_REG DDRB
+#define PORT_REG PORTB
+#define PIN_REG PINB
 #elif defined(__AVR_ATtiny24__) || defined(__AVR_ATtiny44__) || defined(__AVR_ATtiny84__)
-    // For AttinyX4 controllers
-    // at 8Mhz each command takes ~ 0.125us
-    #define DDR_REG      DDRA
-    #define PORT_REG     PORTA
-    #define PIN_REG      PINA
+// For AttinyX4 controllers
+// at 8Mhz each command takes ~ 0.125us
+#define DDR_REG DDRA
+#define PORT_REG PORTA
+#define PIN_REG PINA
 #else // For Atmega
-    // at 16Mhz each command takes ~ 0.0625us
-    #define DDR_REG      DDRC
-    #define PORT_REG     PORTC
-    #define PIN_REG      PINC
+// at 16Mhz each command takes ~ 0.0625us
+#define DDR_REG DDRC
+#define PORT_REG PORTC
+#define PIN_REG PINC
 #endif
-
 
 #ifndef F_CPU
-    #warning "F_CPU is not defined, there can be I2C issues"
-    #define F_CPU 8000000
+#warning "F_CPU is not defined, there can be I2C issues"
+#define F_CPU 8000000
 #endif
-#define CPU_CYCLE_NS   (1000000000/F_CPU)
+#define CPU_CYCLE_NS (1000000000 / F_CPU)
 
 #define DELAY_LOOP_CYCLES 4
 #define ssd1306_delay(x) _delay_loop_2(x)
@@ -93,30 +92,38 @@
  * Section, which defines I2C timings for SSD1306 display from datasheet
  */
 #define SSD1306_I2C_START_STOP_DELAY 600
-#define SSD1306_I2C_RISE_TIME        300
-#define SSD1306_I2C_FALL_TIME        300
-#define SSD1306_I2C_DATA_HOLD_TIME   300
-#define SSD1306_I2C_IDLE_TIME        1300
-#define SSD1306_I2C_CLOCK            2500
+#define SSD1306_I2C_RISE_TIME 300
+#define SSD1306_I2C_FALL_TIME 300
+#define SSD1306_I2C_DATA_HOLD_TIME 300
+#define SSD1306_I2C_IDLE_TIME 1300
+#define SSD1306_I2C_CLOCK 2500
 
+#define I2C_START_STOP_DELAY ((SSD1306_I2C_START_STOP_DELAY / CPU_CYCLE_NS + DELAY_LOOP_CYCLES / 2) / DELAY_LOOP_CYCLES)
 
-#define I2C_START_STOP_DELAY ((SSD1306_I2C_START_STOP_DELAY/CPU_CYCLE_NS + DELAY_LOOP_CYCLES/2)/DELAY_LOOP_CYCLES)
+#define I2C_RISE_TIME ((SSD1306_I2C_RISE_TIME / CPU_CYCLE_NS) / DELAY_LOOP_CYCLES)
 
-#define I2C_RISE_TIME ((SSD1306_I2C_RISE_TIME/CPU_CYCLE_NS)/DELAY_LOOP_CYCLES)
+#define I2C_DATA_HOLD_TIME ((SSD1306_I2C_DATA_HOLD_TIME / CPU_CYCLE_NS + DELAY_LOOP_CYCLES / 2) / DELAY_LOOP_CYCLES)
 
-#define I2C_DATA_HOLD_TIME ((SSD1306_I2C_DATA_HOLD_TIME/CPU_CYCLE_NS + DELAY_LOOP_CYCLES/2)/DELAY_LOOP_CYCLES)
+#define I2C_IDLE_TIME (((SSD1306_I2C_IDLE_TIME / CPU_CYCLE_NS) + DELAY_LOOP_CYCLES / 2) / DELAY_LOOP_CYCLES)
 
-#define I2C_IDLE_TIME   (((SSD1306_I2C_IDLE_TIME/CPU_CYCLE_NS) + DELAY_LOOP_CYCLES/2)/DELAY_LOOP_CYCLES)
-
-#define I2C_HALF_CLOCK (((SSD1306_I2C_CLOCK - SSD1306_I2C_FALL_TIME - SSD1306_I2C_RISE_TIME - SSD1306_I2C_FALL_TIME)/CPU_CYCLE_NS/2 \
-                         )/DELAY_LOOP_CYCLES)
-
+#define I2C_HALF_CLOCK                                                                                                 \
+    (((SSD1306_I2C_CLOCK - SSD1306_I2C_FALL_TIME - SSD1306_I2C_RISE_TIME - SSD1306_I2C_FALL_TIME) / CPU_CYCLE_NS /     \
+      2) /                                                                                                             \
+     DELAY_LOOP_CYCLES)
 
 /* I2C HIGH = PORT as INPUT(0) and PULL-UP ENABLE (1) */
-#define DIGITAL_WRITE_HIGH(DREG, PREG, BIT) { DREG &= ~BIT; PREG |= BIT; }
+#define DIGITAL_WRITE_HIGH(DREG, PREG, BIT)                                                                            \
+    {                                                                                                                  \
+        DREG &= ~BIT;                                                                                                  \
+        PREG |= BIT;                                                                                                   \
+    }
 
 /* I2C LOW  = PORT as OUTPUT(1) and OUTPUT LOW (0) */
-#define DIGITAL_WRITE_LOW(DREG, PREG, BIT)  { DREG |= BIT; PREG &= ~BIT; }
+#define DIGITAL_WRITE_LOW(DREG, PREG, BIT)                                                                             \
+    {                                                                                                                  \
+        DREG |= BIT;                                                                                                   \
+        PREG &= ~BIT;                                                                                                  \
+    }
 
 #define DIGITAL_READ(DREG, IREG, BIT) (IREG & BIT)
 
@@ -125,9 +132,9 @@ static uint8_t interruptsOff = 0;
 
 SoftwareI2c::SoftwareI2c(int8_t scl, int8_t sda, uint8_t sa)
     // m_scl and m_sda here mean bit mask, but not bit number
-    : m_scl( scl >= 0 ? (1<<scl) : (1<<SSD1306_SCL) )
-    , m_sda( sda >= 0 ? (1<<sda) : (1<<SSD1306_SDA) )
-    , m_sa ( sa ? : SSD1306_SA )
+    : m_scl(scl >= 0 ? (1 << scl) : (1 << SSD1306_SCL))
+    , m_sda(sda >= 0 ? (1 << sda) : (1 << SSD1306_SDA))
+    , m_sa(sa ?: SSD1306_SA)
 {
 }
 
@@ -148,11 +155,11 @@ void SoftwareI2c::start()
     oldSREG = SREG;
     cli();
     interruptsOff = 1;
-    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda);     // Set to LOW
+    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda); // Set to LOW
     ssd1306_delay(I2C_START_STOP_DELAY);
-    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);     // Set to LOW
+    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl); // Set to LOW
     ssd1306_delay(I2C_HALF_CLOCK);
-    send( (m_sa << 1) | 0x00 );
+    send((m_sa << 1) | 0x00);
 }
 
 void SoftwareI2c::start(uint8_t sa, bool read_op)
@@ -160,23 +167,23 @@ void SoftwareI2c::start(uint8_t sa, bool read_op)
     oldSREG = SREG;
     cli();
     interruptsOff = 1;
-    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda);     // Set to LOW
+    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda); // Set to LOW
     ssd1306_delay(I2C_START_STOP_DELAY);
-    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl);     // Set to LOW
+    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl); // Set to LOW
     ssd1306_delay(I2C_HALF_CLOCK);
     uint8_t read_bit = read_op ? 0x01 : 0x00;
-    send( (sa << 1) | read_bit );
+    send((sa << 1) | read_bit);
 }
 
 void SoftwareI2c::stop()
 {
-    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda);		// Set to LOW
-    ssd1306_delay(I2C_RISE_TIME); // Fall time is the same as rise time
-    DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_scl);	// Set to HIGH
+    DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda);  // Set to LOW
+    ssd1306_delay(I2C_RISE_TIME);                 // Fall time is the same as rise time
+    DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_scl); // Set to HIGH
     ssd1306_delay(I2C_START_STOP_DELAY);
-    DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_sda);	// Set to HIGH
+    DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_sda); // Set to HIGH
     ssd1306_delay(I2C_IDLE_TIME);
-    if (interruptsOff)
+    if ( interruptsOff )
     {
         SREG = oldSREG;
         interruptsOff = 0;
@@ -186,13 +193,13 @@ void SoftwareI2c::stop()
 void SoftwareI2c::send(uint8_t data)
 {
     uint8_t i;
-    for(i=8; i>0; i--)
+    for ( i = 8; i > 0; i-- )
     {
-        if(data & 0x80)
-          DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_sda)
+        if ( data & 0x80 )
+            DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_sda)
         else
-          DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda);
-        data<<=1;
+            DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_sda);
+        data <<= 1;
         ssd1306_delay(I2C_RISE_TIME); // Fall time is the same as rise time
 
         DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_scl);
@@ -217,13 +224,13 @@ uint8_t SoftwareI2c::receive(bool last)
 {
     uint8_t data = 0x00;
     uint8_t i;
-    for(i=8; i>0; i--)
+    for ( i = 8; i > 0; i-- )
     {
 
         DIGITAL_WRITE_HIGH(DDR_REG, PORT_REG, m_scl);
         ssd1306_delay(I2C_HALF_CLOCK);
-        data<<=1;
-        if ( DIGITAL_READ( DDR_REG, PIN_REG, m_sda ))
+        data <<= 1;
+        if ( DIGITAL_READ(DDR_REG, PIN_REG, m_sda) )
             data |= 0x1;
         else
             data |= 0x00;
@@ -247,7 +254,7 @@ uint8_t SoftwareI2c::receive(bool last)
 
 void SoftwareI2c::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
-    while (size--)
+    while ( size-- )
     {
         send(*buffer);
         buffer++;

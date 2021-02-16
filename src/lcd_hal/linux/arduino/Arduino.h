@@ -11,8 +11,7 @@
 #endif
 
 #ifndef boolean
-    typedef uint8_t boolean;
+typedef uint8_t boolean;
 #endif
 
 #endif
-

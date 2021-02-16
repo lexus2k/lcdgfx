@@ -43,7 +43,7 @@
 class DisplayWioTerminal_320x240x16: public DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi>
 {
 public:
-     DisplayWioTerminal_320x240x16();
+    DisplayWioTerminal_320x240x16();
 
     /**
      * Initializes Wio Terminal display in 16-bit mode
@@ -63,4 +63,3 @@ private:
 /**
  * @}
  */
-

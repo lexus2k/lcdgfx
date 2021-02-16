@@ -25,7 +25,6 @@
  * @file canvas.h Drawing in memory buffer
  */
 
-
 #ifndef _NANO_CANVAS_H_
 #define _NANO_CANVAS_H_
 
@@ -43,8 +42,7 @@
  * NanoCanvasOps provides operations for drawing in memory buffer.
  * Depending on BPP argument, this class can work with 1,8,16-bit canvas areas.
  */
-template <uint8_t BPP>
-class NanoCanvasOps
+template <uint8_t BPP> class NanoCanvasOps
 {
 public:
     /** Base type for canvas class specific operations */
@@ -97,7 +95,11 @@ public:
      * @param ox - X offset in pixels
      * @param oy - Y offset in pixels
      */
-    void setOffset(lcdint_t ox, lcdint_t oy) { offset.x = ox; offset.y = oy; };
+    void setOffset(lcdint_t ox, lcdint_t oy)
+    {
+        offset.x = ox;
+        offset.y = oy;
+    };
 
     /**
      * Returns right-bottom point of the canvas in offset terms.
@@ -105,7 +107,7 @@ public:
      */
     const NanoPoint offsetEnd() const
     {
-        return offset + (NanoPoint){ (lcdint_t)(m_w-1), (lcdint_t)(m_h-1) };
+        return offset + (NanoPoint){(lcdint_t)(m_w - 1), (lcdint_t)(m_h - 1)};
     }
 
     /**
@@ -114,7 +116,7 @@ public:
      */
     const NanoRect rect() const
     {
-        return { offset, offsetEnd() };
+        return {offset, offsetEnd()};
     }
 
     /**
@@ -175,7 +177,7 @@ public:
      * @param y2 - position Y
      * @note color can be set via setColor()
      */
-    void drawRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__ ((noinline));
+    void drawRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__((noinline));
 
     /**
      * Draws rectangle
@@ -192,7 +194,7 @@ public:
      * @param y2 - position Y
      * @note color can be set via setColor()
      */
-    void fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__ ((noinline));
+    void fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__((noinline));
 
     /**
      * Fills rectangle area
@@ -207,7 +209,7 @@ public:
      * @param y vertical position of circle center in pixels
      * @param r circle radius in pixels
      */
-    void drawCircle(lcdint_t x, lcdint_t y, lcdint_t r) __attribute__ ((noinline));
+    void drawCircle(lcdint_t x, lcdint_t y, lcdint_t r) __attribute__((noinline));
 
     /**
      * @brief Draws monochrome bitmap in color buffer using color, specified via setColor() method
@@ -223,7 +225,7 @@ public:
      *       In transparent mode, those pixels of source monochrome image, which are black, do not overwrite pixels
      *       in the screen buffer.
      */
-    void drawBitmap1(lcdint_t x, lcdint_t y, lcduint_t w, lcduint_t h, const uint8_t *bitmap) __attribute__ ((noinline));
+    void drawBitmap1(lcdint_t x, lcdint_t y, lcduint_t w, lcduint_t h, const uint8_t *bitmap) __attribute__((noinline));
 
     /**
      * @brief Draws 8-bit color bitmap in color buffer.
@@ -234,12 +236,12 @@ public:
      * @param h - height in pixels
      * @param bitmap - 8-bit color bitmap data, located in flash
      */
-    void drawBitmap8(lcdint_t x, lcdint_t y, lcduint_t w, lcduint_t h, const uint8_t *bitmap) __attribute__ ((noinline));
+    void drawBitmap8(lcdint_t x, lcdint_t y, lcduint_t w, lcduint_t h, const uint8_t *bitmap) __attribute__((noinline));
 
     /**
      * Clears canvas
      */
-    void clear() __attribute__ ((noinline));
+    void clear() __attribute__((noinline));
 
     /**
      * Writes single character to canvas
@@ -264,7 +266,8 @@ public:
      *
      * @note Supports only STYLE_NORMAL and STYLE_BOLD
      */
-    void printFixed(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style = STYLE_NORMAL) __attribute__ ((noinline));
+    void printFixed(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style = STYLE_NORMAL)
+        __attribute__((noinline));
 
     /**
      * Print text at specified position to canvas
@@ -283,30 +286,47 @@ public:
      * Sets canvas drawing mode. The set flags define transparency of output images
      * @param modeFlags - combination of flags: CANVAS_TEXT_WRAP, CANVAS_MODE_TRANSPARENT
      */
-    void setMode(uint8_t modeFlags) { m_textMode = modeFlags; };
+    void setMode(uint8_t modeFlags)
+    {
+        m_textMode = modeFlags;
+    };
 
     /**
      * Sets color for monochrome operations
      * @param color - color to set (refer to RGB_COLOR8 definition)
      */
-    void setColor(uint16_t color) { m_color = color; }
+    void setColor(uint16_t color)
+    {
+        m_color = color;
+    }
 
     /**
      * Returns currently set color.
      */
-    uint16_t getColor() { return m_color; }
+    uint16_t getColor()
+    {
+        return m_color;
+    }
 
     /**
      * Changes foreground and background colors
      */
-    void invertColors() { uint16_t color = m_color; m_color = m_bgColor; m_bgColor = color; }
+    void invertColors()
+    {
+        uint16_t color = m_color;
+        m_color = m_bgColor;
+        m_bgColor = color;
+    }
 
     /**
      * Sets background color
      *
      * @param color Background color
      */
-    void setBackground(uint16_t color) { m_bgColor = color; }
+    void setBackground(uint16_t color)
+    {
+        m_bgColor = color;
+    }
 
     /**
      * Sets new font to use with print functions.
@@ -316,12 +336,18 @@ public:
      *
      * @param font reference to font object (NanoFont)
      */
-    void setFont( NanoFont &font ) { m_font = &font; };
+    void setFont(NanoFont &font)
+    {
+        m_font = &font;
+    };
 
     /**
      * Returns reference to NanoFont object, currently used by Display
      */
-    NanoFont &getFont() { return *m_font; }
+    NanoFont &getFont()
+    {
+        return *m_font;
+    }
 
     /**
      * Sets font spacing for currently active font
@@ -329,7 +355,8 @@ public:
      */
     void setFontSpacing(uint8_t spacing)
     {
-        if (m_font) m_font->setSpacing(spacing);
+        if ( m_font )
+            m_font->setSpacing(spacing);
     }
 
     /**
@@ -341,10 +368,10 @@ public:
      *
      * @param progmemFont pointer to font data in flash (refer to NanoFont::loadFixedFont)
      */
-    void setFixedFont( const uint8_t *progmemFont )
+    void setFixedFont(const uint8_t *progmemFont)
     {
-        g_canvas_font.loadFixedFont( progmemFont );
-        setFont( g_canvas_font );
+        g_canvas_font.loadFixedFont(progmemFont);
+        setFont(g_canvas_font);
     }
 
     /**
@@ -357,40 +384,48 @@ public:
      * @param progmemFont pointer to font data in flash (refer to NanoFont::loadFreeFont)
      * @param secondaryFont pointer to font data in flash (refer to NanoFont::loadSecondaryFont)
      */
-    void setFreeFont( const uint8_t *progmemFont, const uint8_t *secondaryFont = nullptr )
+    void setFreeFont(const uint8_t *progmemFont, const uint8_t *secondaryFont = nullptr)
     {
         (void)(secondaryFont);
-        g_canvas_font.loadFreeFont( progmemFont );
-        setFont( g_canvas_font );
+        g_canvas_font.loadFreeFont(progmemFont);
+        setFont(g_canvas_font);
     }
 
     /** Return pointer to canvas pixels data */
-    uint8_t * getData() { return m_buf; }
+    uint8_t *getData()
+    {
+        return m_buf;
+    }
 
     /** Returns canvas width in pixels */
-    lcduint_t width() { return m_w; }
+    lcduint_t width()
+    {
+        return m_w;
+    }
 
     /** Returns canvas height in pixels */
-    lcduint_t height() { return m_h; }
+    lcduint_t height()
+    {
+        return m_h;
+    }
 
 protected:
-    lcduint_t m_w;    ///< width of NanoCanvas area in pixels
-    lcduint_t m_h;    ///< height of NanoCanvas area in pixels
-    lcdint_t  m_cursorX;  ///< current X cursor position for text output
-    lcdint_t  m_cursorY;  ///< current Y cursor position for text output
-    uint8_t   m_textMode; ///< Flags for current NanoCanvas mode
-    EFontStyle   m_fontStyle; ///< currently active font style
-    uint8_t * m_buf;      ///< Canvas data
-    uint16_t  m_color;    ///< current color
-    uint16_t  m_bgColor;  ///< current background color
+    lcduint_t m_w;              ///< width of NanoCanvas area in pixels
+    lcduint_t m_h;              ///< height of NanoCanvas area in pixels
+    lcdint_t m_cursorX;         ///< current X cursor position for text output
+    lcdint_t m_cursorY;         ///< current Y cursor position for text output
+    uint8_t m_textMode;         ///< Flags for current NanoCanvas mode
+    EFontStyle m_fontStyle;     ///< currently active font style
+    uint8_t *m_buf;             ///< Canvas data
+    uint16_t m_color;           ///< current color
+    uint16_t m_bgColor;         ///< current background color
     NanoFont *m_font = nullptr; ///< current set font to use with NanoCanvas
 };
 
 /**
  * Base class for all NanoCanvas childs
  */
-template <uint8_t BPP>
-class NanoCanvasBase: public NanoCanvasOps<BPP>
+template <uint8_t BPP> class NanoCanvasBase: public NanoCanvasOps<BPP>
 {
 public:
     using NanoCanvasOps<BPP>::NanoCanvasOps;
@@ -401,11 +436,11 @@ public:
  * template parameters are: width, height and bits per pixels.
  * If object is defined locally, the pixels buffer is located in stack
  */
-template <lcduint_t W, lcduint_t H, uint8_t BPP>
-class NanoCanvas: public NanoCanvasBase<BPP>
+template <lcduint_t W, lcduint_t H, uint8_t BPP> class NanoCanvas: public NanoCanvasBase<BPP>
 {
 public:
-    NanoCanvas(): NanoCanvasBase<BPP>( W, H, m_buffer )
+    NanoCanvas()
+        : NanoCanvasBase<BPP>(W, H, m_buffer)
     {
     }
 
@@ -421,8 +456,8 @@ private:
 
 enum
 {
-    BLACK = 0x00,  ///< Black color
-    WHITE = 0xFF,  ///< White color
+    BLACK = 0x00, ///< Black color
+    WHITE = 0xFF, ///< White color
 };
 
 /**
@@ -510,4 +545,3 @@ public:
  */
 
 #endif
-

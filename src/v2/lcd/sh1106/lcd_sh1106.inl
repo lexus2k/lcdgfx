@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -162,13 +162,11 @@ void InterfaceSH1106<I>::flipVertical(uint8_t mode)
 //             SH1106 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplaySH1106<I>::begin()
+template <class I> void DisplaySH1106<I>::begin()
 {
 }
 
-template <class I>
-void DisplaySH1106<I>::end()
+template <class I> void DisplaySH1106<I>::end()
 {
 }
 

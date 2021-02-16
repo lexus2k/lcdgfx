@@ -38,12 +38,11 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-template<class T>
-class NanoTestMenuItem: public NanoMenuItem<T>
+template <class T> class NanoTestMenuItem: public NanoMenuItem<T>
 {
 public:
     NanoTestMenuItem()
-       : NanoMenuItem<T>( {0, 0}, {48, 8} )
+        : NanoMenuItem<T>({0, 0}, {48, 8})
     {
     }
 
@@ -51,15 +50,15 @@ public:
     {
         if ( this->isFocused() )
         {
-            this->getTiler().getCanvas().setColor( 0xFFFF );
-            this->getTiler().getCanvas().fillRect( this->m_rect );
+            this->getTiler().getCanvas().setColor(0xFFFF);
+            this->getTiler().getCanvas().fillRect(this->m_rect);
         }
         else
         {
-            this->getTiler().getCanvas().setColor( 0 );
-            this->getTiler().getCanvas().fillRect( this->m_rect );
-            this->getTiler().getCanvas().setColor( 0xFFFF );
-            this->getTiler().getCanvas().drawRect( this->m_rect );
+            this->getTiler().getCanvas().setColor(0);
+            this->getTiler().getCanvas().fillRect(this->m_rect);
+            this->getTiler().getCanvas().setColor(0xFFFF);
+            this->getTiler().getCanvas().drawRect(this->m_rect);
         }
     }
 };
@@ -69,8 +68,7 @@ public:
 /**
  * Template class for font menu item with user-defined font
  */
-template<class T>
-class NanoTextMenuItem: public NanoMenuItem<T>
+template <class T> class NanoTextMenuItem: public NanoMenuItem<T>
 {
 public:
     /**
@@ -79,8 +77,8 @@ public:
      * @param name text of the item to display
      */
     explicit NanoTextMenuItem(const char *name)
-       : NanoMenuItem<T>( {0, 0} )
-       , m_name( name )
+        : NanoMenuItem<T>({0, 0})
+        , m_name(name)
     {
     }
 
@@ -96,12 +94,12 @@ public:
             {
                 lcduint_t height;
                 lcduint_t width = this->getTiler().getDisplay().getFont().getTextSize(m_name, &height);
-                this->setSize( {width, height} );
+                this->setSize({width, height});
             }
             else
             {
                 // At this point we don't know font to be used by a user
-                this->setSize( { this->width(), (lcduint_t)8 } );
+                this->setSize({this->width(), (lcduint_t)8});
             }
         }
     }
@@ -113,30 +111,27 @@ public:
     {
         if ( this->isFocused() )
         {
-            this->getTiler().getCanvas().setMode( CANVAS_MODE_TRANSPARENT );
-            this->getTiler().getCanvas().setColor( 0xFFFF );
-            this->getTiler().getCanvas().fillRect( this->m_rect );
-            this->getTiler().getCanvas().setColor( 0x0000 );
-            this->getTiler().getCanvas().printFixed( this->m_rect.p1.x, this->m_rect.p1.y, m_name );
+            this->getTiler().getCanvas().setMode(CANVAS_MODE_TRANSPARENT);
+            this->getTiler().getCanvas().setColor(0xFFFF);
+            this->getTiler().getCanvas().fillRect(this->m_rect);
+            this->getTiler().getCanvas().setColor(0x0000);
+            this->getTiler().getCanvas().printFixed(this->m_rect.p1.x, this->m_rect.p1.y, m_name);
         }
         else
         {
-            this->getTiler().getCanvas().setMode( CANVAS_MODE_BASIC );
-            this->getTiler().getCanvas().setColor( 0xFFFF );
-            this->getTiler().getCanvas().printFixed( this->m_rect.p1.x, this->m_rect.p1.y, m_name );
+            this->getTiler().getCanvas().setMode(CANVAS_MODE_BASIC);
+            this->getTiler().getCanvas().setColor(0xFFFF);
+            this->getTiler().getCanvas().printFixed(this->m_rect.p1.x, this->m_rect.p1.y, m_name);
         }
     }
 
 protected:
     /** Menu item text */
     const char *m_name;
-
 };
-
 
 /**
  * @}
  */
 
 #endif
-

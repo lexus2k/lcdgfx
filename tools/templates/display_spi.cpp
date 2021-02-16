@@ -1,4 +1,3 @@
-
 void Display~CONTROLLER~_~RESOLUTION~_SPI::begin()
 {
     m_spi.begin();

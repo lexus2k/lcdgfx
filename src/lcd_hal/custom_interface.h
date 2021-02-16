@@ -35,18 +35,18 @@
  * This is basic class for custom user-defined interfaces
  * This is template, which accepts maximum number of bytes in interface buffer as template argument
  */
-template <int N>
-class _ICustom
+template <int N> class _ICustom
 {
 public:
     /**
      * Creates instance of custom basic interface
      */
-    explicit _ICustom(int8_t dc = -1): m_dc( dc )
+    explicit _ICustom(int8_t dc = -1)
+        : m_dc(dc)
     {
         if ( getDc() >= 0 )
         {
-            lcd_registerGpioEvent( getDc(), onDcChange, this );
+            lcd_registerGpioEvent(getDc(), onDcChange, this);
         }
     }
 
@@ -57,29 +57,37 @@ public:
     {
         if ( getDc() >= 0 )
         {
-            lcd_unregisterGpioEvent( getDc() );
+            lcd_unregisterGpioEvent(getDc());
         }
     }
 
     /**
      * Initializes basic class for custom interface
      */
-    virtual void begin() {}
+    virtual void begin()
+    {
+    }
 
     /**
      * Deinitializes basic class for custom interface
      */
-    virtual void end() {}
+    virtual void end()
+    {
+    }
 
     /**
      * Starts communication with the display over custom interface.
      */
-    virtual void start() {}
+    virtual void start()
+    {
+    }
 
     /**
      * Ends communication with the display over custom interface..
      */
-    virtual void stop() {}
+    virtual void stop()
+    {
+    }
 
     /**
      * Sends byte to custom interface
@@ -105,7 +113,7 @@ public:
      */
     void sendBuffer(const uint8_t *buffer, uint16_t size)
     {
-        while (size)
+        while ( size )
         {
             send(*buffer);
             size--;
@@ -142,9 +150,9 @@ private:
     uint16_t m_data_size = 0;
     int8_t m_dc = -1;
 
-    static void onDcChange( void *arg )
+    static void onDcChange(void *arg)
     {
-        _ICustom *obj = reinterpret_cast<_ICustom*>(arg);
+        _ICustom *obj = reinterpret_cast<_ICustom *>(arg);
         obj->forceTransfer();
     }
 };
