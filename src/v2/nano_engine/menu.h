@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019,2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,7 @@
  * @{
  */
 
-template<class T>
-class NanoMenuItem: public NanoObject<T>
+template <class T> class NanoMenuItem: public NanoObject<T>
 {
 public:
     using NanoObject<T>::NanoObject;
@@ -49,8 +48,7 @@ public:
  * This is base class for user menu implementations.
  * NanoMenu can work only as part of NanoEngine.
  */
-template<class T>
-class NanoMenu: public NanoObjectList<T>
+template <class T> class NanoMenu: public NanoObjectList<T>
 {
 public:
     /**
@@ -58,15 +56,16 @@ public:
      *
      * @param pos position of the sprite in global coordinates
      */
-    explicit NanoMenu(const NanoPoint &pos )
-         : NanoObjectList<T>( pos )
+    explicit NanoMenu(const NanoPoint &pos)
+        : NanoObjectList<T>(pos)
     {
     }
 
     /**
      * Creates instance of NanoMenu at 0,0 position
      */
-    NanoMenu(): NanoObjectList<T>( {0,0} )
+    NanoMenu()
+        : NanoObjectList<T>({0, 0})
     {
     }
 
@@ -75,9 +74,9 @@ public:
      *
      * @param item menu item to add
      */
-    void add( NanoObject<T> &item )
+    void add(NanoObject<T> &item)
     {
-        NanoObjectList<T>::add( item );
+        NanoObjectList<T>::add(item);
         item.update(); // update item to init all params
         updateMenuItemsPosition();
         if ( !m_selected )
@@ -92,9 +91,9 @@ public:
      *
      * @param item menu item to insert
      */
-    void insert( NanoObject<T> &item )
+    void insert(NanoObject<T> &item)
     {
-        NanoObjectList<T>::insert( item );
+        NanoObjectList<T>::insert(item);
         item.update(); // update item to init all params
         updateMenuItemsPosition();
         if ( !m_selected )
@@ -120,13 +119,19 @@ public:
      */
     void down()
     {
-        m_selected->defocus();
-        m_selected = this->getNext( m_selected );
+        if ( m_selected )
+        {
+            m_selected->defocus();
+        }
+        m_selected = this->getNext(m_selected);
         if ( !m_selected )
         {
             m_selected = this->getNext();
         }
-        m_selected->focus();
+        if ( m_selected )
+        {
+            m_selected->focus();
+        }
     }
 
     /**
@@ -136,13 +141,19 @@ public:
      */
     void up()
     {
-        m_selected->defocus();
-        m_selected = getPrev( m_selected );
+        if ( m_selected )
+        {
+            m_selected->defocus();
+        }
+        m_selected = getPrev(m_selected);
         if ( !m_selected )
         {
             m_selected = this->getPrev();
         }
-        m_selected->focus();
+        if ( m_selected )
+        {
+            m_selected->focus();
+        }
     }
 
 protected:
@@ -160,8 +171,7 @@ private:
  * Class implements menu, organized as the list.
  * Each item may have different width
  */
-template<class T>
-class NanoListMenu: public NanoMenu<T>
+template <class T> class NanoListMenu: public NanoMenu<T>
 {
 public:
     using NanoMenu<T>::NanoMenu;
@@ -171,9 +181,9 @@ public:
      */
     void draw() override
     {
-        this->getTiler().getCanvas().setColor( 0xFFFF );
-        this->getTiler().getCanvas().drawRect( { this->m_rect.p1 + (NanoPoint){2, 2},
-                                                this->m_rect.p2 - (NanoPoint){2, 2} } );
+        this->getTiler().getCanvas().setColor(0xFFFF);
+        this->getTiler().getCanvas().drawRect(
+            {this->m_rect.p1 + (NanoPoint){2, 2}, this->m_rect.p2 - (NanoPoint){2, 2}});
         NanoMenu<T>::draw();
     }
 
@@ -182,11 +192,11 @@ private:
     {
         NanoObject<T> *p = this->getNext();
         lcdint_t y_pos = this->m_rect.p1.y + 4;
-        while (p)
+        while ( p )
         {
-            p->setPos( { (lcdint_t)(this->m_rect.p1.x + 4), y_pos } );
+            p->setPos({(lcdint_t)(this->m_rect.p1.x + 4), y_pos});
             y_pos += p->height() + 1;
-            p = this->getNext( p );
+            p = this->getNext(p);
         }
         this->m_rect.p2.y = y_pos + 7;
         this->m_rect.p2.x = this->getDisplay().width();
@@ -198,8 +208,7 @@ private:
  * Each item has the same some fixed width common
  * for the whole menu.
  */
-template<class T>
-class NanoFixedWidthMenu: public NanoMenu<T>
+template <class T> class NanoFixedWidthMenu: public NanoMenu<T>
 {
 public:
     /**
@@ -209,9 +218,9 @@ public:
      * @param size width and height of the menu
      */
     NanoFixedWidthMenu(const NanoPoint &pos, const NanoPoint &size)
-        : NanoMenu<T>( pos )
+        : NanoMenu<T>(pos)
     {
-        this->setSize( size );
+        this->setSize(size);
     }
 
     /**
@@ -219,9 +228,9 @@ public:
      */
     void draw() override
     {
-        this->getTiler().getCanvas().setColor( 0xFFFF );
-        this->getTiler().getCanvas().drawRect( { this->m_rect.p1 + (NanoPoint){2, 2},
-                                                this->m_rect.p2 - (NanoPoint){2, 2} } );
+        this->getTiler().getCanvas().setColor(0xFFFF);
+        this->getTiler().getCanvas().drawRect(
+            {this->m_rect.p1 + (NanoPoint){2, 2}, this->m_rect.p2 - (NanoPoint){2, 2}});
         NanoMenu<T>::draw();
     }
 
@@ -230,12 +239,12 @@ private:
     {
         NanoObject<T> *p = this->getNext();
         lcdint_t y_pos = this->m_rect.p1.y + 4;
-        while (p)
+        while ( p )
         {
-            p->setPos( { (lcdint_t)(this->m_rect.p1.x + 4), y_pos } );
-            p->setSize( { (lcdint_t)(this->m_rect.width() - 8), p->height() } );
+            p->setPos({(lcdint_t)(this->m_rect.p1.x + 4), y_pos});
+            p->setSize({(lcdint_t)(this->m_rect.width() - 8), p->height()});
             y_pos += p->height() + 1;
-            p = this->getNext( p );
+            p = this->getNext(p);
         }
     }
 };
@@ -245,4 +254,3 @@ private:
  */
 
 #endif
-

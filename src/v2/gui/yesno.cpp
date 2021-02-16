@@ -25,24 +25,24 @@
 #include "yesno.h"
 
 LcdGfxYesNo::LcdGfxYesNo(const char *text, const NanoRect &rect)
-    : m_text( text )
-    , m_rect( rect )
-    , m_yes( "yes", {} )
-    , m_no( "no", {} )
+    : m_text(text)
+    , m_rect(rect)
+    , m_yes("yes", {})
+    , m_no("no", {})
 {
     swapToYes();
 }
 
 void LcdGfxYesNo::swapToYes()
 {
-    m_no.setFocus( false );
-    m_yes.setFocus( true );
+    m_no.setFocus(false);
+    m_yes.setFocus(true);
 }
 
 void LcdGfxYesNo::swapToNo()
 {
-    m_no.setFocus( true );
-    m_yes.setFocus( false );
+    m_no.setFocus(true);
+    m_yes.setFocus(false);
 }
 
 bool LcdGfxYesNo::isYes()

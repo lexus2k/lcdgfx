@@ -58,17 +58,14 @@ public:
      *
      * @param d display object
      */
-    template<typename D>
-    void show(D &d)
+    template <typename D> void show(D &d)
     {
         updateSize(d);
         d.invertColors();
-        d.fillRect( m_rect );
+        d.fillRect(m_rect);
         d.invertColors();
-        d.drawRect( m_rect );
-        d.printFixed( m_rect.p1.x + 4,
-                      m_rect.p1.y + 8,
-                      m_text );
+        d.drawRect(m_rect);
+        d.printFixed(m_rect.p1.x + 4, m_rect.p1.y + 8, m_text);
         m_yes.show(d);
         m_no.show(d);
     }
@@ -93,10 +90,9 @@ public:
     /**
      * Calculates size for GUI component if it was not set before
      */
-    template <typename D>
-    void updateSize(D &d)
+    template <typename D> void updateSize(D &d)
     {
-        if (!m_rect.p2.x)
+        if ( !m_rect.p2.x )
         {
             m_rect.p2.x = d.width() - m_rect.p1.x - 1;
             m_rect.p2.y = d.height() - m_rect.p1.y - 1;
@@ -110,22 +106,18 @@ private:
     LcdGfxButton m_yes;
     LcdGfxButton m_no;
 
-    template <typename D>
-    void locateButtons(D &d)
+    template <typename D> void locateButtons(D &d)
     {
         m_yes.updateSize(d);
         m_no.updateSize(d);
         NanoPoint size = m_yes.getSize();
-        m_yes.setRect( { {m_rect.center().x - size.x - 4, m_rect.p2.y - size.y - 8}, {0, 0} } );
-        m_no.setRect( { {m_rect.center().x + 4, m_rect.p2.y - size.y - 8}, {0, 0} } );
+        m_yes.setRect({{m_rect.center().x - size.x - 4, m_rect.p2.y - size.y - 8}, {0, 0}});
+        m_no.setRect({{m_rect.center().x + 4, m_rect.p2.y - size.y - 8}, {0, 0}});
     }
-
 };
-
 
 /**
  * @}
  */
 
 #endif
-

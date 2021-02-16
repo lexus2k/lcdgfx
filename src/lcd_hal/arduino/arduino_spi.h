@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2020, Alexey Dynda
+    Copyright (c) 2018-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,9 @@
 #pragma once
 
 #if defined(CONFIG_ARDUINO_SPI_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
+
+#include <SPI.h>
+
 /**
  * Class implements SPI support for Arduino platforms
  */
@@ -41,7 +44,7 @@ public:
      * @param dcPin data command pin to use
      * @param freq frequency in HZ to run spi bus at
      */
-    ArduinoSpi(int8_t csPin = -1, int8_t dcPin = -1, uint32_t freq = 0);
+    ArduinoSpi(int8_t csPin = -1, int8_t dcPin = -1, uint32_t freq = 0, SPIClass *spi = &SPI);
     ~ArduinoSpi();
 
     /**
@@ -85,6 +88,7 @@ private:
     int8_t m_cs;
     int8_t m_dc;
     uint32_t m_frequency;
+    SPIClass *m_spi;
 };
 
 #endif
@@ -104,8 +108,7 @@ public:
      * @param mosiPin MOSI pin to use, -1 by default
      * @param freq frequency in HZ to run spi bus at
      */
-    ArduinoSpi2(int8_t csPin = -1, int8_t dcPin = -1, int8_t clkPin = -1, int8_t mosiPin = -1,
-                uint32_t freq = 8000000);
+    ArduinoSpi2(int8_t csPin = -1, int8_t dcPin = -1, int8_t clkPin = -1, int8_t mosiPin = -1, uint32_t freq = 8000000);
     ~ArduinoSpi2();
 
     /**

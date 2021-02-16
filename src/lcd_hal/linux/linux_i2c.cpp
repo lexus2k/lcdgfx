@@ -22,7 +22,7 @@
     SOFTWARE.
 */
 
-#if (defined(__linux__) || defined(__APPLE__)) && !defined(ARDUINO)
+#if ( defined(__linux__) || defined(__APPLE__) ) && !defined(ARDUINO)
 
 #include "../io.h"
 
@@ -42,18 +42,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 //                        LINUX I2C IMPLEMENTATION
 //////////////////////////////////////////////////////////////////////////////////
-#if defined(CONFIG_LINUX_I2C_AVAILABLE) && defined(CONFIG_LINUX_I2C_ENABLE) && \
-    !defined(SDL_EMULATION)
+#if defined(CONFIG_LINUX_I2C_AVAILABLE) && defined(CONFIG_LINUX_I2C_ENABLE) && !defined(SDL_EMULATION)
 
 LinuxI2c::LinuxI2c(int8_t busId, uint8_t sa)
-    : m_busId( busId )
-    , m_sa( sa )
+    : m_busId(busId)
+    , m_sa(sa)
 {
 }
 
 LinuxI2c::~LinuxI2c()
 {
-    if (m_fd >= 0)
+    if ( m_fd >= 0 )
     {
         close(m_fd);
         m_fd = -1;
@@ -63,18 +62,17 @@ LinuxI2c::~LinuxI2c()
 void LinuxI2c::begin()
 {
     char filename[20];
-    if (m_busId < 0)
+    if ( m_busId < 0 )
     {
         m_busId = 1;
     }
     snprintf(filename, 19, "/dev/i2c-%d", m_busId);
-    if ((m_fd = open(filename, O_RDWR)) < 0)
+    if ( (m_fd = open(filename, O_RDWR)) < 0 )
     {
-        fprintf(stderr, "Failed to open the i2c bus %s\n",
-                getuid() == 0 ? "": ": need to be root");
+        fprintf(stderr, "Failed to open the i2c bus %s\n", getuid() == 0 ? "" : ": need to be root");
         return;
     }
-    if (ioctl(m_fd, I2C_SLAVE, m_sa) < 0)
+    if ( ioctl(m_fd, I2C_SLAVE, m_sa) < 0 )
     {
         fprintf(stderr, "Failed to acquire bus access and/or talk to slave.\n");
         return;
@@ -83,7 +81,7 @@ void LinuxI2c::begin()
 
 void LinuxI2c::end()
 {
-    if (m_fd >= 0)
+    if ( m_fd >= 0 )
     {
         close(m_fd);
         m_fd = -1;
@@ -97,7 +95,7 @@ void LinuxI2c::start()
 
 void LinuxI2c::stop()
 {
-    if (write(m_fd, m_buffer, m_dataSize) != m_dataSize)
+    if ( write(m_fd, m_buffer, m_dataSize) != m_dataSize )
     {
         fprintf(stderr, "Failed to write to the i2c bus: %s.\n", strerror(errno));
     }
@@ -108,7 +106,7 @@ void LinuxI2c::send(uint8_t data)
 {
     m_buffer[m_dataSize] = data;
     m_dataSize++;
-    if (m_dataSize == sizeof(m_buffer))
+    if ( m_dataSize == sizeof(m_buffer) )
     {
         /* Send function puts all data to internal buffer.  *
          * Restart transmission if internal buffer is full. */
@@ -120,7 +118,7 @@ void LinuxI2c::send(uint8_t data)
 
 void LinuxI2c::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
-    while (size--)
+    while ( size-- )
     {
         send(*buffer);
         buffer++;

@@ -29,8 +29,7 @@
 #ifndef _SSD1306V2_LINUX_SDL_SPI_H_
 #define _SSD1306V2_LINUX_SDL_SPI_H_
 
-#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && \
-    defined(SDL_EMULATION)
+#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && defined(SDL_EMULATION)
 
 class SdlSpi
 {
@@ -80,6 +79,7 @@ public:
      * @param size - number of bytes to send
      */
     void sendBuffer(const uint8_t *buffer, uint16_t size);
+
 private:
     int8_t m_dc;
 };
@@ -87,4 +87,3 @@ private:
 #endif
 
 #endif
-

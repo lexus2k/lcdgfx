@@ -320,7 +320,7 @@ def generate_controller_data(jsonfile, ctl):
                 g_voc["custom_serial_interface_args"] = get_val_by_path("bits/" + _bits + "/" + res + "/custom_serial_interface_args",\
                                           "*this, -1" if intf == "i2c" else "*this, dcPin")
                 g_voc["custom_interface_args"] = get_val_by_path("bits/" + _bits + "/" + res + "/custom_interface_args",\
-                                          "*this, dcPin, frequency= frequency ? : ~FREQUENCY~")
+                                          "*this, dcPin, frequency = frequency ? frequency : ~FREQUENCY~")
                 g_voc["_frequency"] = str(get_val_by_path( "interfaces/" + intf + "/frequency", 4400000 ))
                 header.write( get_file_data('display_' + intf + '.h') )
                 cpp.write( get_file_data('display_' + intf + '.cpp') )

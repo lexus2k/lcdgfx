@@ -32,14 +32,12 @@
 #include <stdio.h>
 #include "driver/i2c.h"
 
-EspI2c::EspI2c(int8_t busId, uint8_t sa,
-               int8_t scl, int8_t sda,
-               uint32_t frequency)
-    : m_busId( busId )
-    , m_sa( sa )
-    , m_scl( scl )
-    , m_sda( sda )
-    , m_frequency( frequency )
+EspI2c::EspI2c(int8_t busId, uint8_t sa, int8_t scl, int8_t sda, uint32_t frequency)
+    : m_busId(busId)
+    , m_sa(sa)
+    , m_scl(scl)
+    , m_sda(sda)
+    , m_frequency(frequency)
 {
 }
 
@@ -49,36 +47,39 @@ EspI2c::~EspI2c()
 
 void EspI2c::begin()
 {
-    if ( m_busId < 0) m_busId = I2C_NUM_0;
-    if ( m_sda < 0 ) m_sda = 4;
-    if ( m_scl < 0 ) m_scl = 5;
+    if ( m_busId < 0 )
+        m_busId = I2C_NUM_0;
+    if ( m_sda < 0 )
+        m_sda = 4;
+    if ( m_scl < 0 )
+        m_scl = 5;
     i2c_config_t conf{};
     conf.mode = I2C_MODE_MASTER;
     conf.sda_io_num = static_cast<gpio_num_t>(m_sda);
     conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
     conf.scl_io_num = static_cast<gpio_num_t>(m_scl);
     conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-//    conf.master.clk_speed = m_frequency;
-    i2c_driver_install( static_cast<i2c_port_t>(m_busId), conf.mode );
-    i2c_param_config( static_cast<i2c_port_t>(m_busId), &conf );
+    //    conf.master.clk_speed = m_frequency;
+    i2c_driver_install(static_cast<i2c_port_t>(m_busId), conf.mode);
+    i2c_param_config(static_cast<i2c_port_t>(m_busId), &conf);
 }
 
 void EspI2c::end()
 {
-    i2c_driver_delete( static_cast<i2c_port_t>(m_busId) );
+    i2c_driver_delete(static_cast<i2c_port_t>(m_busId));
 }
 
 void EspI2c::start()
 {
     m_cmd_handle = i2c_cmd_link_create();
     i2c_master_start(m_cmd_handle);
-    i2c_master_write_byte(m_cmd_handle, ( m_sa << 1 ) | I2C_MASTER_WRITE, 0x1);
+    i2c_master_write_byte(m_cmd_handle, (m_sa << 1) | I2C_MASTER_WRITE, 0x1);
 }
 
 void EspI2c::stop()
 {
-    i2c_master_stop( m_cmd_handle );
-    i2c_master_cmd_begin( static_cast<i2c_port_t>(m_busId), m_cmd_handle, 1000 / portTICK_RATE_MS );
+    i2c_master_stop(m_cmd_handle);
+    i2c_master_cmd_begin(static_cast<i2c_port_t>(m_busId), m_cmd_handle, 1000 / portTICK_RATE_MS);
     i2c_cmd_link_delete(m_cmd_handle);
 }
 
@@ -89,7 +90,7 @@ void EspI2c::send(uint8_t data)
 
 void EspI2c::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
-    while (size--)
+    while ( size-- )
     {
         send(*buffer);
         buffer++;
@@ -97,4 +98,3 @@ void EspI2c::sendBuffer(const uint8_t *buffer, uint16_t size)
 }
 
 #endif
-

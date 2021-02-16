@@ -32,37 +32,35 @@
 #include "lcd_common.inl"
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-/**
- * @defgroup LCD_INTERFACE_API_V2 OLEDs: initialization and service functions
- * @{
- * @brief LCD initialization classes and service functions for 2.0.0 and higher
- *
- * @details This group contains API functions for OLED displays initialization and
- *          direct programming of GDRAM. This API can be used to create your own
- *          graphics functions.
- */
+    /**
+     * @defgroup LCD_INTERFACE_API_V2 OLEDs: initialization and service functions
+     * @{
+     * @brief LCD initialization classes and service functions for 2.0.0 and higher
+     *
+     * @details This group contains API functions for OLED displays initialization and
+     *          direct programming of GDRAM. This API can be used to create your own
+     *          graphics functions.
+     */
 
-/**
- * @brief Does hardware reset for oled controller.
- *
- * Does hardware reset for oled controller. The function pulls up rstPin
- * for 10 milliseconds, then pulls down rstPin for delayMs milliseconds
- * and then finally pulls rstPin up.
- *
- * @param rstPin reset pin number. If -1, then reset will not be performed
- * @param delayMs delay in milliseconds to hold rstPin in low state
- */
-void ssd1306_resetController2(int8_t rstPin, uint8_t delayMs);
+    /**
+     * @brief Does hardware reset for oled controller.
+     *
+     * Does hardware reset for oled controller. The function pulls up rstPin
+     * for 10 milliseconds, then pulls down rstPin for delayMs milliseconds
+     * and then finally pulls rstPin up.
+     *
+     * @param rstPin reset pin number. If -1, then reset will not be performed
+     * @param delayMs delay in milliseconds to hold rstPin in low state
+     */
+    void ssd1306_resetController2(int8_t rstPin, uint8_t delayMs);
 
-
-
-
-/**
- * @}
- */
+    /**
+     * @}
+     */
 
 #ifdef __cplusplus
 }

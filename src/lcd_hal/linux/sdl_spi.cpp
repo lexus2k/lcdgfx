@@ -22,7 +22,7 @@
     SOFTWARE.
 */
 
-#if (defined(__linux__) || defined(__APPLE__)) && !defined(ARDUINO)
+#if ( defined(__linux__) || defined(__APPLE__) ) && !defined(ARDUINO)
 
 #include "../io.h"
 
@@ -44,13 +44,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 //                        LINUX SPI IMPLEMENTATION
 //////////////////////////////////////////////////////////////////////////////////
-#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && \
-    defined(SDL_EMULATION)
+#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && defined(SDL_EMULATION)
 
 #include "sdl_core.h"
 
 SdlSpi::SdlSpi(int8_t dcPin)
-   : m_dc( dcPin )
+    : m_dc(dcPin)
 {
 }
 
@@ -62,7 +61,7 @@ SdlSpi::~SdlSpi()
 void SdlSpi::begin()
 {
     sdl_core_init();
-    sdl_set_dc_pin( m_dc );
+    sdl_set_dc_pin(m_dc);
 }
 
 void SdlSpi::end()
@@ -87,7 +86,7 @@ void SdlSpi::send(uint8_t data)
 
 void SdlSpi::sendBuffer(const uint8_t *buffer, uint16_t size)
 {
-    while (size--)
+    while ( size-- )
     {
         send(*buffer);
         buffer++;

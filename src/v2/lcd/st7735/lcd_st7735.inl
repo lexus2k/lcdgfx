@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -153,13 +153,11 @@ void InterfaceST7735<I>::setOffset(lcdint_t ox, lcdint_t oy)
 //             ST7735 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void DisplayST7735x16<I>::begin()
+template <class I> void DisplayST7735x16<I>::begin()
 {
 }
 
-template <class I>
-void DisplayST7735x16<I>::end()
+template <class I> void DisplayST7735x16<I>::end()
 {
 }
 

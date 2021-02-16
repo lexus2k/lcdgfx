@@ -25,7 +25,6 @@
  * @file point.h Point class
  */
 
-
 #ifndef _NANO_POINT_H_
 #define _NANO_POINT_H_
 
@@ -44,24 +43,28 @@ typedef struct _NanoPoint
     /** y position in pixels */
     lcdint_t y;
 
-//    _NanoPoint(lcdint_t px, lcdint_t py)
-//    {
-//        x = px;
-//        y = py;
-//    }
+    //    _NanoPoint(lcdint_t px, lcdint_t py)
+    //    {
+    //        x = px;
+    //        y = py;
+    //    }
 
     /**
      * Initializes NanoPoint with specified values
      * @param px - x position
      * @param py - y position
      */
-    void setPoint(lcdint_t px, lcdint_t py) { x=px; y=py; };
+    void setPoint(lcdint_t px, lcdint_t py)
+    {
+        x = px;
+        y = py;
+    };
 
     /**
      * Shifts right x,y value of the point by bits value.
      * @param bits - number of bits to shift
      */
-    _NanoPoint& operator>>=(const uint8_t bits)
+    _NanoPoint &operator>>=(const uint8_t bits)
     {
         x >>= bits;
         y >>= bits;
@@ -72,7 +75,7 @@ typedef struct _NanoPoint
      * Shifts left x,y value of the point by bits value.
      * @param bits - number of bits to shift
      */
-    _NanoPoint& operator<<=(const uint8_t bits)
+    _NanoPoint &operator<<=(const uint8_t bits)
     {
         x <<= bits;
         y <<= bits;
@@ -83,7 +86,7 @@ typedef struct _NanoPoint
      * Adds point.
      * @param p - point values to add to the point.
      */
-    _NanoPoint& operator+=(const _NanoPoint &p)
+    _NanoPoint &operator+=(const _NanoPoint &p)
     {
         x += p.x;
         y += p.y;
@@ -94,7 +97,7 @@ typedef struct _NanoPoint
      * Subtracts point.
      * @param p - point values to subtract from the point.
      */
-    _NanoPoint& operator-=(const _NanoPoint &p)
+    _NanoPoint &operator-=(const _NanoPoint &p)
     {
         x -= p.x;
         y -= p.y;
@@ -107,8 +110,7 @@ typedef struct _NanoPoint
      */
     _NanoPoint operator-(const _NanoPoint &p)
     {
-        return { static_cast<lcdint_t>(x - p.x),
-                 static_cast<lcdint_t>(y - p.y) };
+        return {static_cast<lcdint_t>(x - p.x), static_cast<lcdint_t>(y - p.y)};
     };
 
     /**
@@ -117,8 +119,7 @@ typedef struct _NanoPoint
      */
     _NanoPoint operator+(const _NanoPoint &p)
     {
-        return { static_cast<lcdint_t>(x + p.x),
-                 static_cast<lcdint_t>(y + p.y) };
+        return {static_cast<lcdint_t>(x + p.x), static_cast<lcdint_t>(y + p.y)};
     };
 
     /**
@@ -127,8 +128,7 @@ typedef struct _NanoPoint
      */
     _NanoPoint operator>>(const uint8_t bits) const
     {
-        return { static_cast<lcdint_t>(x >> bits),
-                 static_cast<lcdint_t>(y >> bits) };
+        return {static_cast<lcdint_t>(x >> bits), static_cast<lcdint_t>(y >> bits)};
     };
 
     /**
@@ -137,8 +137,7 @@ typedef struct _NanoPoint
      */
     _NanoPoint operator<<(const uint8_t bits) const
     {
-        return { static_cast<lcdint_t>(x << bits),
-                 static_cast<lcdint_t>(y << bits) };
+        return {static_cast<lcdint_t>(x << bits), static_cast<lcdint_t>(y << bits)};
     };
 
     /**
@@ -147,29 +146,28 @@ typedef struct _NanoPoint
      */
     _NanoPoint operator/(const int16_t d) const
     {
-        return { static_cast<lcdint_t>(x / d),
-                 static_cast<lcdint_t>(y / d) };
+        return {static_cast<lcdint_t>(x / d), static_cast<lcdint_t>(y / d)};
     };
 
 } NanoPoint;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-inline NanoPoint operator+(const NanoPoint& p1, const NanoPoint& p2)
+inline NanoPoint operator+(const NanoPoint &p1, const NanoPoint &p2)
 {
-    return { (lcdint_t)(p1.x + p2.x), (lcdint_t)(p1.y + p2.y) };
+    return {(lcdint_t)(p1.x + p2.x), (lcdint_t)(p1.y + p2.y)};
 }
 
-inline NanoPoint operator-(const NanoPoint& p1, const NanoPoint& p2)
+inline NanoPoint operator-(const NanoPoint &p1, const NanoPoint &p2)
 {
-    return { (lcdint_t)(p1.x - p2.x), (lcdint_t)(p1.y - p2.y) };
+    return {(lcdint_t)(p1.x - p2.x), (lcdint_t)(p1.y - p2.y)};
 }
 
-inline bool operator==(const NanoPoint& p1, const NanoPoint& p2)
+inline bool operator==(const NanoPoint &p1, const NanoPoint &p2)
 {
     return (p1.x == p2.x) && (p1.y == p2.y);
 }
 
-inline bool operator!=(const NanoPoint& p1, const NanoPoint& p2)
+inline bool operator!=(const NanoPoint &p1, const NanoPoint &p2)
 {
     return !(p1 == p2);
 }
@@ -180,4 +178,3 @@ inline bool operator!=(const NanoPoint& p1, const NanoPoint& p2)
  */
 
 #endif
-

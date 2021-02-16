@@ -1,6 +1,6 @@
 #    MIT License
 #
-#    Copyright (c) 2018-2019, Alexey Dynda
+#    Copyright (c) 2018-2019,2021, Alexey Dynda
 #
 #    Permission is hereby granted, free of charge, to any person obtaining a copy
 #    of this software and associated documentation files (the "Software"), to deal
@@ -95,7 +95,8 @@ endif
 
 SRCS += main.cpp \
        $(wildcard $(PROJECT)/*.cpp) \
-       $(wildcard $(PROJECT)/*.ino)
+       $(wildcard $(PROJECT)/*.ino) \
+       $(wildcard $(PROJECT)/src/*.cpp)
 
 OBJS = $(addprefix $(BLD)/, $(addsuffix .o, $(basename $(SRCS))))
 

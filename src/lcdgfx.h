@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2020, Alexey Dynda
+    Copyright (c) 2016-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -35,6 +35,7 @@
 #include "nano_engine_v2.h"
 
 #include "v2/lcd/lcdany/lcd_any.h"
+#include "v2/lcd/lcdwio/lcd_wio.h"
 #include "v2/lcd/pcd8544/lcd_pcd8544.h"
 #include "v2/lcd/sh1106/lcd_sh1106.h"
 #include "v2/lcd/sh1107/lcd_sh1107.h"
@@ -47,27 +48,28 @@
 #include "v2/lcd/il9163/lcd_il9163.h"
 #include "v2/lcd/ili9341/lcd_ili9341.h"
 
-extern "C" {
+extern "C"
+{
 #endif
 
-/**
- * @defgroup LCD_GENERIC_API Generic API functions, common for all displays and all display modes.
- * @{
- * @brief Generic API functions, common for all displays and all display modes.
- *
- * @details Generic API functions, common for all displays and all display modes.
- */
+    /**
+     * @defgroup LCD_GENERIC_API Generic API functions, common for all displays and all display modes.
+     * @{
+     * @brief Generic API functions, common for all displays and all display modes.
+     *
+     * @details Generic API functions, common for all displays and all display modes.
+     */
 
-/**
- * Enables utf8 support for all text-functions.
- * @note Unicode-16 only supported in text decoding functions.
- */
-void ssd1306_enableUtf8Mode2(void);
+    /**
+     * Enables utf8 support for all text-functions.
+     * @note Unicode-16 only supported in text decoding functions.
+     */
+    void ssd1306_enableUtf8Mode2(void);
 
-/**
- * Enables ascii mode for all text-functions. No any decoding will be performed
- */
-void ssd1306_enableAsciiMode2(void);
+    /**
+     * Enables ascii mode for all text-functions. No any decoding will be performed
+     */
+    void ssd1306_enableAsciiMode2(void);
 
 #ifdef __cplusplus
 }

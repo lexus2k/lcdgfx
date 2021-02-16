@@ -1,2 +1,2 @@
 template <typename... Args>
-NanoDisplayBase<Interface~CONTROLLER~<I>> &base, int8_t dc, Args&&... data
+NanoDisplayBase<Interface~CONTROLLER~<I>> &base, int8_t dc, Args &&... data

@@ -57,25 +57,23 @@ public:
      *
      * @param d display object
      */
-    template<typename D>
-    void show(D &d)
+    template <typename D> void show(D &d)
     {
         updateSize(d);
         d.invertColors();
-        d.fillRect( m_rect );
+        d.fillRect(m_rect);
         d.invertColors();
         if ( m_focus )
         {
-            d.fillRect( m_rect );
+            d.fillRect(m_rect);
             d.invertColors();
         }
         else
         {
-            d.drawRect( m_rect );
+            d.drawRect(m_rect);
         }
-        d.printFixed( m_rect.p1.x + (m_rect.width() - d.getFont().getTextSize(m_text)) / 2,
-                      m_rect.p1.y + (m_rect.height() - d.getFont().getHeader().height) / 2,
-                      m_text );
+        d.printFixed(m_rect.p1.x + (m_rect.width() - d.getFont().getTextSize(m_text)) / 2,
+                     m_rect.p1.y + (m_rect.height() - d.getFont().getHeader().height) / 2, m_text);
         if ( m_focus )
         {
             d.invertColors();
@@ -100,7 +98,7 @@ public:
      *
      * @param rect new button area
      */
-    void setRect( const NanoRect &rect );
+    void setRect(const NanoRect &rect);
 
     /**
      * Returns size of button in pixels
@@ -110,13 +108,15 @@ public:
     /**
      * Recturns rectangle area of the button
      */
-    const NanoRect &getRect() const { return m_rect; }
+    const NanoRect &getRect() const
+    {
+        return m_rect;
+    }
 
     /**
      * Auto updates buttons size if it is not set
      */
-    template <typename D>
-    void updateSize(D &d)
+    template <typename D> void updateSize(D &d)
     {
         if ( !m_rect.p2.x )
         {
@@ -133,10 +133,8 @@ private:
     NanoRect m_rect;
 };
 
-
 /**
  * @}
  */
 
 #endif
-

@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2020, Alexey Dynda
+    Copyright (c) 2018-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,6 @@
  * @file core.h Small graphics engine, based on SSD1331 functions
  */
 
-
 #ifndef _NANO_ENGINE_CORE_H_
 #define _NANO_ENGINE_CORE_H_
 
@@ -38,7 +37,7 @@
  */
 
 /** Defaut frame rate for all engines */
-#define ENGINE_DEFAULT_FPS  (15)
+#define ENGINE_DEFAULT_FPS (15)
 
 /** Type of user-specified keyboard callback */
 typedef uint8_t (*TNanoEngineGetButtons)(void);
@@ -52,13 +51,15 @@ typedef void (*TLoopCallback)(void);
 
 enum
 {
-    BUTTON_NONE   = 0B00000000,
-    BUTTON_DOWN   = 0B00000001,
-    BUTTON_LEFT   = 0B00000010,
-    BUTTON_RIGHT  = 0B00000100,
-    BUTTON_UP     = 0B00001000,
-    BUTTON_A      = 0B00010000,
-    BUTTON_B      = 0B00100000,
+    BUTTON_NONE = 0B00000000,
+    BUTTON_DOWN = 0B00000001,
+    BUTTON_LEFT = 0B00000010,
+    BUTTON_RIGHT = 0B00000100,
+    BUTTON_UP = 0B00001000,
+    BUTTON_A = 0B00010000,
+    BUTTON_B = 0B00100000,
+    BUTTON_C = 0B01000000,
+    BUTTON_CENTER = 0B10000000,
 };
 
 /**
@@ -70,7 +71,8 @@ protected:
     /**
      * Initializes Nano Engine Inputs object.
      */
-    NanoEngineInputs() {};
+    NanoEngineInputs(){};
+
 public:
     /**
      * @brief Returns true if button or specific combination of buttons is pressed.
@@ -153,6 +155,13 @@ public:
      */
     static void connectGpioKeypad(const uint8_t *gpioKeys);
 
+    /**
+     * @brief Connects Wio keys to NanoEngine
+     *
+     * Enable engine to use Wio keys
+     */
+    static void connectWioKeypad();
+
 protected:
     /** Callback to call if buttons state needs to be updated */
     static TNanoEngineGetButtons m_onButtons;
@@ -168,16 +177,18 @@ protected:
 
 private:
     static uint8_t s_zkeypadPin;
-    static const uint8_t * s_gpioKeypadPins;
+    static const uint8_t *s_gpioKeypadPins;
     static uint8_t s_ky40_clk;
     static uint8_t s_ky40_dt;
     static uint8_t s_ky40_sw;
     static uint8_t zkeypadButtons();
     static uint8_t arduboyButtons();
     static uint8_t gpioButtons();
+#ifndef SDL_EMULATION
+    static uint8_t wioButtons();
+#endif
     static uint8_t ky40Buttons();
 };
-
 
 ///////////////////////////////////////////////////////////////////////////////
 ////// NANO ENGINE CORE CLASS /////////////////////////////////////////////////
@@ -189,7 +200,8 @@ private:
 class NanoEngineCore: public NanoEngineInputs
 {
 protected:
-    NanoEngineCore(): NanoEngineInputs() {};
+    NanoEngineCore()
+        : NanoEngineInputs(){};
 
 public:
     /**
@@ -202,11 +214,14 @@ public:
      * @param fps - frame rate to set between [1-255]
      */
     void setFrameRate(uint8_t fps);
- 
+
     /**
      * Returns current frame rate
      */
-    uint8_t getFrameRate() { return m_fps; };
+    uint8_t getFrameRate()
+    {
+        return m_fps;
+    };
 
     /**
      * Returns cpu load in percents [0-255].
@@ -214,7 +229,10 @@ public:
      * 0 means, CPU has nothing to do.
      * >100 means that CPU is not enough to perform all operations
      */
-    uint8_t getCpuLoad() { return m_cpuLoad; };
+    uint8_t getCpuLoad()
+    {
+        return m_cpuLoad;
+    };
 
     /**
      * Returns true if it is time to render next frame
@@ -225,18 +243,20 @@ public:
      * Sets user-defined loop callback. This callback will be called once every time
      * new frame needs to be refreshed on oled display.
      */
-    void loopCallback(TLoopCallback callback) { m_loop = callback; };
+    void loopCallback(TLoopCallback callback)
+    {
+        m_loop = callback;
+    };
 
 protected:
-
     /** Duration between frames in milliseconds */
-    uint8_t   m_frameDurationMs = 1000/ENGINE_DEFAULT_FPS;
+    uint8_t m_frameDurationMs = 1000 / ENGINE_DEFAULT_FPS;
     /** Current fps */
-    uint8_t   m_fps = ENGINE_DEFAULT_FPS;
+    uint8_t m_fps = ENGINE_DEFAULT_FPS;
     /** Current cpu load in percents */
-    uint8_t   m_cpuLoad = 0;
+    uint8_t m_cpuLoad = 0;
     /** Last timestamp in milliseconds the frame was updated on oled display */
-    uint32_t  m_lastFrameTs = 0;
+    uint32_t m_lastFrameTs = 0;
     /** Callback to call before starting oled update */
     TLoopCallback m_loop = nullptr;
 };
@@ -244,9 +264,7 @@ protected:
 /**
  * Base class for NanoEngine.
  */
-template<class C, class D>
-class NanoEngine: public NanoEngineCore,
-                  public NanoEngineTiler<C,D>
+template <class C, class D> class NanoEngine: public NanoEngineCore, public NanoEngineTiler<C, D>
 {
 public:
     /**
@@ -278,34 +296,32 @@ public:
 protected:
 };
 
-template<class C, class D>
-NanoEngine<C,D>::NanoEngine( D & display)
-    : NanoEngineCore(), NanoEngineTiler<C,D>(display)
+template <class C, class D>
+NanoEngine<C, D>::NanoEngine(D &display)
+    : NanoEngineCore()
+    , NanoEngineTiler<C, D>(display)
 {
 }
 
-template<class C, class D>
-void NanoEngine<C,D>::display()
+template <class C, class D> void NanoEngine<C, D>::display()
 {
     resetButtonsCache();
     m_lastFrameTs = lcd_millis();
-    NanoEngineTiler<C,D>::displayBuffer();
-    m_cpuLoad = ((lcd_millis() - m_lastFrameTs)*100)/m_frameDurationMs;
+    NanoEngineTiler<C, D>::displayBuffer();
+    m_cpuLoad = ((lcd_millis() - m_lastFrameTs) * 100) / m_frameDurationMs;
 }
 
-template<class C, class D>
-void NanoEngine<C,D>::begin()
+template <class C, class D> void NanoEngine<C, D>::begin()
 {
     NanoEngineCore::begin();
 }
 
-template<class C, class D>
-void NanoEngine<C,D>::notify(const char *str)
+template <class C, class D> void NanoEngine<C, D>::notify(const char *str)
 {
-    NanoEngineTiler<C,D>::displayPopup(str);
+    NanoEngineTiler<C, D>::displayPopup(str);
     lcd_delay(1000);
     m_lastFrameTs = lcd_millis();
-    NanoEngineTiler<C,D>::refresh();
+    NanoEngineTiler<C, D>::refresh();
 }
 
 /**
@@ -313,4 +329,3 @@ void NanoEngine<C,D>::notify(const char *str)
  */
 
 #endif
-

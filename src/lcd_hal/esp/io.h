@@ -37,9 +37,8 @@
 
 #include <sdkconfig.h>
 
-#if !defined(CONFIG_TARGET_PLATFORM_ESP8266) && \
-    !defined(CONFIG_IDF_TARGET_ESP8266) && \
-    !defined(ESP8266) && !defined( __ESP8266__)
+#if !defined(CONFIG_TARGET_PLATFORM_ESP8266) && !defined(CONFIG_IDF_TARGET_ESP8266) && !defined(ESP8266) &&            \
+    !defined(__ESP8266__)
 
 /** The macro is defined when ESP32 i2c implementation is available */
 #define CONFIG_ESP32_I2C_AVAILABLE
@@ -54,4 +53,3 @@
 #define CONFIG_ESP8266_SPI_AVAILABLE
 
 #endif
-

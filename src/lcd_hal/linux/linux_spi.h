@@ -29,8 +29,7 @@
 #ifndef _SSD1306V2_LINUX_LINUX_SPI_H_
 #define _SSD1306V2_LINUX_LINUX_SPI_H_
 
-#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && \
-    !defined(SDL_EMULATION)
+#if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && !defined(SDL_EMULATION)
 
 /**
  * Class implements spi bus for linux via spidev interface
@@ -103,4 +102,3 @@ private:
 #endif
 
 #endif
-

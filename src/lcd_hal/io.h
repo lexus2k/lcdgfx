@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2020, Alexey Dynda
+    Copyright (c) 2018-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -105,7 +105,12 @@ typedef unsigned int lcduint_t;
 #endif
 
 /** swaps content of a and b variables of type type */
-#define ssd1306_swap_data(a, b, type)  { type t = a; a = b; b = t; }
+#define ssd1306_swap_data(a, b, type)                                                                                  \
+    {                                                                                                                  \
+        type t = a;                                                                                                    \
+        a = b;                                                                                                         \
+        b = t;                                                                                                         \
+    }
 
 ////////////////////////////////////////////////////////////////////////////////
 //                   HAL Layer functions
@@ -121,6 +126,8 @@ typedef unsigned int lcduint_t;
 #define LCD_HIGH HIGH
 #define LCD_GPIO_INPUT INPUT
 #define LCD_GPIO_OUTPUT OUTPUT
+#define LCD_GPIO_INPUT_PULLUP INPUT_PULLUP
+#define LCD_GPIO_INPUT_PULLDOWN INPUT_PULLDOWN
 #define LCD_PROGMEM PROGMEM
 
 #define lcd_gpioRead digitalRead
@@ -128,20 +135,20 @@ typedef unsigned int lcduint_t;
 #define lcd_adcRead analogRead
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void *arg);
-void lcd_unregisterGpioEvent(int pin);
+    void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void *arg);
+    void lcd_unregisterGpioEvent(int pin);
 #endif
 
-void lcd_gpioWrite(int pin, int level);
+    void lcd_gpioWrite(int pin, int level);
 
 #ifdef __cplusplus
 }
 #endif
-
 
 #define lcd_pgmReadByte pgm_read_byte
 #define lcd_eepromReadWord eeprom_read_word
@@ -163,8 +170,12 @@ void lcd_gpioWrite(int pin, int level);
 #define LCD_HIGH 1
 /** Constant corresponds to input mode of gpio */
 #define LCD_GPIO_INPUT 0
-/** Consrant corresponds to output mode of gpio */
+/** Constant corresponds to output mode of gpio */
 #define LCD_GPIO_OUTPUT 1
+/** Constant corresponds to input mode of gpio with pullup resistor enabled */
+#define LCD_GPIO_INPUT_PULLUP 2
+/** Constant corresponds to output mode of gpio with pulldown resistor enabled */
+#define LCD_GPIO_INPUT_PULLDOWN 3
 // LCD_PROMEM is platform specific definition
 #ifndef LCD_PROGMEM
 /** LCD_PROGMEM constant is used to specify data stored in flash, platform specific */
@@ -172,100 +183,101 @@ void lcd_gpioWrite(int pin, int level);
 #endif
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
-/**
- * Sets gpio pin mode
- * @param pin pin number to change mode of
- * @param mode new gpio mode: LCD_GPIO_INPUT or LCD_GPIO_OUTPUT
- */
-void lcd_gpioMode(int pin, int mode);
+    /**
+     * Sets gpio pin mode
+     * @param pin pin number to change mode of
+     * @param mode new gpio mode: LCD_GPIO_INPUT or LCD_GPIO_OUTPUT
+     */
+    void lcd_gpioMode(int pin, int mode);
 
-/**
- * Reads gpio pin value
- * @param pin gpio pin number to read
- * @return LCD_HIGH or LCD_LOW
- */
-int  lcd_gpioRead(int pin);
+    /**
+     * Reads gpio pin value
+     * @param pin gpio pin number to read
+     * @return LCD_HIGH or LCD_LOW
+     */
+    int lcd_gpioRead(int pin);
 
-/**
- * Writes value to gpio
- * @param pin gpio pin number to change
- * @param level LCD_HIGH or LCD_LOW
- */
-void lcd_gpioWrite(int pin, int level);
+    /**
+     * Writes value to gpio
+     * @param pin gpio pin number to change
+     * @param level LCD_HIGH or LCD_LOW
+     */
+    void lcd_gpioWrite(int pin, int level);
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void *arg);
-void lcd_unregisterGpioEvent(int pin);
+    void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void *arg);
+    void lcd_unregisterGpioEvent(int pin);
 #endif
 
-/**
- * Read ADC data
- * @param pin adc pin to read (platform-specific)
- * @return integer value corresponding to provided gpio pin.
- *         actual value range depends on platform and ADC mode.
- */
-int lcd_adcRead(int pin);
+    /**
+     * Read ADC data
+     * @param pin adc pin to read (platform-specific)
+     * @return integer value corresponding to provided gpio pin.
+     *         actual value range depends on platform and ADC mode.
+     */
+    int lcd_adcRead(int pin);
 
-/**
- * returns 32-bit timestamp from system power-up in milliseconds
- */
-uint32_t lcd_millis(void);
+    /**
+     * returns 32-bit timestamp from system power-up in milliseconds
+     */
+    uint32_t lcd_millis(void);
 
-/**
- * returns 32-bit timestamp from system power-up in microseconds
- */
-uint32_t lcd_micros(void);
+    /**
+     * returns 32-bit timestamp from system power-up in microseconds
+     */
+    uint32_t lcd_micros(void);
 
-/**
- * Initializes RND device
- * @param seed unique number to use for initialization
- */
-void lcd_randomSeed(int seed);
+    /**
+     * Initializes RND device
+     * @param seed unique number to use for initialization
+     */
+    void lcd_randomSeed(int seed);
 
-/**
- * Attaches interrupt handler to pin. Not implemented on many platforms
- * @param pin gpio pin number to attach interrupt handler to
- * @param interrupt interrupt handler
- * @param level gpio state to aim interrupt
- */
-void attachInterrupt(int pin, void (*interrupt)(), int level);
+    /**
+     * Attaches interrupt handler to pin. Not implemented on many platforms
+     * @param pin gpio pin number to attach interrupt handler to
+     * @param interrupt interrupt handler
+     * @param level gpio state to aim interrupt
+     */
+    void attachInterrupt(int pin, void (*interrupt)(), int level);
 
-/**
- * Forces current thread to sleeps for specified number of milliseconds
- * @param ms time in milliseconds
- */
-void lcd_delay(unsigned long ms);
+    /**
+     * Forces current thread to sleeps for specified number of milliseconds
+     * @param ms time in milliseconds
+     */
+    void lcd_delay(unsigned long ms);
 
-/**
- * Forces current thread to sleeps for specified number of microseconds
- * @param us time in microseconds
- */
-void lcd_delayUs(unsigned long us);
+    /**
+     * Forces current thread to sleeps for specified number of microseconds
+     * @param us time in microseconds
+     */
+    void lcd_delayUs(unsigned long us);
 
-/**
- * Read single data byte directly from flash. This function is valid only
- * for AVR platform. For other platforms, it reads byte, pointed by ptr.
- * @param ptr pointer to data in flash
- * @return returns single byte read.
- */
-uint8_t lcd_pgmReadByte(const void *ptr);
+    /**
+     * Read single data byte directly from flash. This function is valid only
+     * for AVR platform. For other platforms, it reads byte, pointed by ptr.
+     * @param ptr pointer to data in flash
+     * @return returns single byte read.
+     */
+    uint8_t lcd_pgmReadByte(const void *ptr);
 
-/**
- * Reads 16-bit from eeprom
- * @param ptr pointer to eeprom memory to read
- * @return 16-bit number from eeprom
- */
-uint16_t lcd_eepromReadWord(const void *ptr);
+    /**
+     * Reads 16-bit from eeprom
+     * @param ptr pointer to eeprom memory to read
+     * @return 16-bit number from eeprom
+     */
+    uint16_t lcd_eepromReadWord(const void *ptr);
 
-/**
- * Writes 16-bit to eeprom
- * @param ptr pointer to eeprom memory to write data to
- * @param val 16-bit value to write
- */
-void lcd_eepromWriteWord(const void *ptr, uint16_t val);
+    /**
+     * Writes 16-bit to eeprom
+     * @param ptr pointer to eeprom memory to write data to
+     * @param val 16-bit value to write
+     */
+    void lcd_eepromWriteWord(const void *ptr, uint16_t val);
 
 #ifdef __cplusplus
 }
@@ -296,6 +308,10 @@ int lcd_random(int min, int max);
 #define INPUT LCD_GPIO_INPUT
 /** @copydoc LCD_GPIO_OUTPUT */
 #define OUTPUT LCD_GPIO_OUTPUT
+/** @copydoc LCD_GPIO_INPUT_PULLUP */
+#define INPUT_PULLUP LCD_GPIO_INPUT_PULLUP
+/** @copydoc LCD_GPIO_INPUT_PULLDOWN */
+#define INPUT_PULLDOWN LCD_GPIO_INPUT_PULLDOWN
 #ifndef PROGMEM
 /** @copydoc LCD_PROGMEM */
 #define PROGMEM LCD_PROGMEM
@@ -337,8 +353,6 @@ int lcd_random(int min, int max);
 
 #endif
 
-
-
 #ifdef __cplusplus
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -356,8 +370,10 @@ public:
      * Creates instance of i2c implementation for current platform.
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
-     explicit PlatformI2c(const SPlatformI2cConfig &config)
-         : ArduinoI2c(config.scl, config.sda, config.addr) {}
+    explicit PlatformI2c(const SPlatformI2cConfig &config)
+        : ArduinoI2c(config.scl, config.sda, config.addr)
+    {
+    }
 };
 
 #elif defined(CONFIG_TWI_I2C_AVAILABLE) && defined(CONFIG_TWI_I2C_ENABLE)
@@ -373,7 +389,9 @@ public:
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
     explicit PlatformI2c(const SPlatformI2cConfig &config)
-        : TwiI2c(config.addr) {}
+        : TwiI2c(config.addr)
+    {
+    }
 };
 
 #elif defined(CONFIG_LINUX_I2C_AVAILABLE) && defined(CONFIG_LINUX_I2C_ENABLE)
@@ -390,7 +408,9 @@ public:
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
     explicit PlatformI2c(const SPlatformI2cConfig &config)
-        : SdlI2c(config.scl, config.sda, config.addr) {}
+        : SdlI2c(config.scl, config.sda, config.addr)
+    {
+    }
 };
 #else
 /**
@@ -404,7 +424,9 @@ public:
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
     explicit PlatformI2c(const SPlatformI2cConfig &config)
-        : LinuxI2c( config.busId, config.addr ) {}
+        : LinuxI2c(config.busId, config.addr)
+    {
+    }
 };
 #endif
 
@@ -421,7 +443,9 @@ public:
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
     explicit PlatformI2c(const SPlatformI2cConfig &config)
-        : EspI2c( config.busId, config.addr, config.scl, config.sda, 400000) {}
+        : EspI2c(config.busId, config.addr, config.scl, config.sda, 400000)
+    {
+    }
 };
 
 #elif defined(CONFIG_ESP8266_I2C_AVAILABLE) && defined(CONFIG_ESP8266_I2C_ENABLE)
@@ -437,7 +461,9 @@ public:
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
     explicit PlatformI2c(const SPlatformI2cConfig &config)
-        : EspI2c( config.busId, config.addr, config.scl, config.sda, 400000) {}
+        : EspI2c(config.busId, config.addr, config.scl, config.sda, 400000)
+    {
+    }
 };
 
 #elif defined(CONFIG_SOFTWARE_I2C_AVAILABLE) && defined(CONFIG_SOFTWARE_I2C_ENABLE)
@@ -452,8 +478,10 @@ public:
      * Creates instance of i2c implementation for current platform.
      * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
      */
-     explicit PlatformI2c(const SPlatformI2cConfig &config)
-         : SoftwareI2c(config.scl, config.sda, config.addr) {}
+    explicit PlatformI2c(const SPlatformI2cConfig &config)
+        : SoftwareI2c(config.scl, config.sda, config.addr)
+    {
+    }
 };
 
 #else
@@ -479,7 +507,9 @@ public:
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
     explicit PlatformSpi(const SPlatformSpiConfig &config)
-        : AvrSpi( config.cs, config.dc, config.frequency ) {}
+        : AvrSpi(config.cs, config.dc, config.frequency)
+    {
+    }
 };
 
 #elif defined(CONFIG_ARDUINO_SPI_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
@@ -495,7 +525,9 @@ public:
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
     explicit PlatformSpi(const SPlatformSpiConfig &config)
-        : ArduinoSpi(config.cs, config.dc, config.frequency) {}
+        : ArduinoSpi(config.cs, config.dc, config.frequency)
+    {
+    }
 };
 
 #elif defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE)
@@ -512,7 +544,9 @@ public:
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
     explicit PlatformSpi(const SPlatformSpiConfig &config)
-        : SdlSpi(config.dc) {}
+        : SdlSpi(config.dc)
+    {
+    }
 };
 #else
 /**
@@ -526,7 +560,9 @@ public:
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
     explicit PlatformSpi(const SPlatformSpiConfig &config)
-        : LinuxSpi( config.busId, config.devId, config.dc, config.frequency ) {}
+        : LinuxSpi(config.busId, config.devId, config.dc, config.frequency)
+    {
+    }
 };
 #endif
 
@@ -542,7 +578,9 @@ public:
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
     explicit PlatformSpi(const SPlatformSpiConfig &config)
-        : EspSpi( config.busId, config.cs, config.dc, config.scl, config.sda, config.frequency ) {}
+        : EspSpi(config.busId, config.cs, config.dc, config.scl, config.sda, config.frequency)
+    {
+    }
 };
 
 #elif defined(CONFIG_ESP8266_SPI_AVAILABLE) && defined(CONFIG_ESP8266_SPI_ENABLE)
@@ -557,7 +595,9 @@ public:
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
     explicit PlatformSpi(const SPlatformSpiConfig &config)
-        : EspSpi( config.busId, config.cs, config.dc, config.scl, config.sda, config.frequency ) {}
+        : EspSpi(config.busId, config.cs, config.dc, config.scl, config.sda, config.frequency)
+    {
+    }
 };
 
 #elif defined(CONFIG_USI_SPI_AVAILABLE) && defined(CONFIG_USI_SPI_ENABLE)
@@ -573,7 +613,9 @@ public:
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
     explicit PlatformSpi(const SPlatformSpiConfig &config)
-        : UsiSpi( config.cs, config.dc ) {}
+        : UsiSpi(config.cs, config.dc)
+    {
+    }
 };
 
 #else
@@ -591,5 +633,3 @@ public:
  */
 
 #endif
-
-

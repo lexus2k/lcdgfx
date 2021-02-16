@@ -1,4 +1,3 @@
-
 void Display~CONTROLLER~_~RESOLUTION~_I2C::begin()
 {
     m_i2c.begin();

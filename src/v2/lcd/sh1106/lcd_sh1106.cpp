@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,6 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
-
-
 void DisplaySH1106_128x64_SPI::begin()
 {
     m_spi.begin();
@@ -40,7 +38,6 @@ void DisplaySH1106_128x64_SPI::end()
     DisplaySH1106_128x64::end();
     m_spi.end();
 }
-
 void DisplaySH1106_128x64_I2C::begin()
 {
     m_i2c.begin();

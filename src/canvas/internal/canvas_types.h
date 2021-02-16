@@ -33,30 +33,38 @@
 #elif defined(__AVR__)
 #else
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-static inline uint8_t pgm_read_byte(const void *ptr) { return *((const uint8_t *)ptr); }
+static inline uint8_t pgm_read_byte(const void *ptr)
+{
+    return *((const uint8_t *)ptr);
+}
 #endif
 #endif
 
 #ifndef min
 /** Macros returning minimum of 2 numbers */
-#define min(a,b) ((a)<(b)?(a):(b))
+#define min(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
 #ifndef max
 /** Macros returning maximum of 2 numbers */
-#define max(a,b) ((a)>(b)?(a):(b))
+#define max(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
 #ifndef canvas_swap_data
 /** swaps content of a and b variables of type type */
-#define canvas_swap_data(a, b, type)  { type t = a; a = b; b = t; }
+#define canvas_swap_data(a, b, type)                                                                                   \
+    {                                                                                                                  \
+        type t = a;                                                                                                    \
+        a = b;                                                                                                         \
+        b = t;                                                                                                         \
+    }
 #endif
 
 #pragma pack(push, 1)
 /** Structure describes unicode block in font data */
 typedef struct
 {
-    uint16_t start_code;  ///< unicode start code
-    uint8_t count;        ///< count of unicode chars in block
+    uint16_t start_code; ///< unicode start code
+    uint8_t count;       ///< count of unicode chars in block
 } SUnicodeBlockRecord;
 #pragma pack(pop)

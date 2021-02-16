@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 #    MIT License
 #
-#    Copyright (c) 2018-2019, Alexey Dynda
+#    Copyright (c) 2018-2019,2021, Alexey Dynda
 #
 #    Permission is hereby granted, free of charge, to any person obtaining a copy
 #    of this software and associated documentation files (the "Software"), to deal
@@ -88,7 +88,8 @@ class FontContainer:
         for row in data['bitmap']:
             print("".join('-' if x == 0 else '@' for x in row))
 
-    def printString(self, s):
+    def getString(self, s):
+        full_array = []
         for y in range(self.height):
             row = ""
             for ch in s:
@@ -101,7 +102,12 @@ class FontContainer:
                    continue
                row += "".join('-' if x == 0 else '@' for x in data['bitmap'][index])
                row += "-"
-            print("// {0}".format(row))
+            full_array.append(row)
+        return(full_array)
+
+    def printString(self, s):
+        for i in self.getString(s):
+            print("// {0}".format(i))
 
     def charBitmap(self, ch):
         data = self._find_char_data(ch)

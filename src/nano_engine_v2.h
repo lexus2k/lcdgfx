@@ -61,8 +61,7 @@
  *
  * @warning Works only in SSD1306 compatible mode
  */
-template <class D>
-using NanoEngine1 = NanoEngine<TILE_16x16_MONO,D>;
+template <class D> using NanoEngine1 = NanoEngine<TILE_16x16_MONO, D>;
 
 /**
  * NanoEngine4 is simple graphics engine, that implements double buffering work
@@ -80,8 +79,7 @@ using NanoEngine1 = NanoEngine<TILE_16x16_MONO,D>;
  * In your application you can choose, if you want to refresh whole screen (refresh()), or you
  * need to refresh only part of oled display.
  */
-template <class D>
-using NanoEngine4 = NanoEngine<TILE_16x16_GRAY4,D>;
+template <class D> using NanoEngine4 = NanoEngine<TILE_16x16_GRAY4, D>;
 
 /**
  * NanoEngine8 is simple graphics engine, that implements double buffering work
@@ -97,8 +95,7 @@ using NanoEngine4 = NanoEngine<TILE_16x16_GRAY4,D>;
  * In your application you can choose, if you want to refresh whole screen (refresh()), or you
  * need to refresh only part of oled display.
  */
-template <class D>
-using NanoEngine8 = NanoEngine<TILE_16x16_RGB8,D>;
+template <class D> using NanoEngine8 = NanoEngine<TILE_16x16_RGB8, D>;
 
 /**
  * NanoEngine1 is simple graphics engine, that implements double buffering work
@@ -116,14 +113,13 @@ using NanoEngine8 = NanoEngine<TILE_16x16_RGB8,D>;
  *
  * @warning Works only in RGB 8-bit color mode
  */
-template <class D>
-class NanoEngine1_8: public NanoEngine<TILE_16x16_MONO_8,D>
+template <class D> class NanoEngine1_8: public NanoEngine<TILE_16x16_MONO_8, D>
 {
 public:
     /**
      * Creates new Graphics Engine object.
      */
-    using NanoEngine<TILE_16x16_MONO_8,D>::NanoEngine;
+    using NanoEngine<TILE_16x16_MONO_8, D>::NanoEngine;
 };
 
 /**
@@ -141,10 +137,8 @@ public:
  * In your application you can choose, if you want to refresh whole screen (refresh()), or you
  * need to refresh only part of oled display.
  */
-template <class D>
-using NanoEngine16 = NanoEngine<TILE_16x16_RGB16,D>;
+template <class D> using NanoEngine16 = NanoEngine<TILE_16x16_RGB16, D>;
 
 /**
  * @}
  */
-

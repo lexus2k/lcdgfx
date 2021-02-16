@@ -96,6 +96,8 @@ void loop()
 | sh1107 64x128 | X | X |   |   |
 | ssd1306 128x64 | X | X |   |   |
 | ssd1306 128x32 | X | X |   |   |
+| ssd1306 64x48 | X | X |   |   |
+| ssd1306 64x32 | X | X |   |   |
 | ssd1325 128x64 | X | X |   |   |
 | ssd1327 128x128 | X | X |   |   |
 | ssd1331 96x64 |   | X | X |   |
@@ -113,6 +115,7 @@ Compilers: gcc, clang
 | **Platforms** | **I2C** | **SPI** | **Comments** |
 | :-------- |:---:|:---:|:---------|
 | **Arduino** |     |     |          |
+| **Wio Terminal** |  X  |  X  | by SeeedStudio     |
 | Attiny85, Attiny45  |  X  |  X  | Refer to [Damellis attiny package](https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json) |
 | Attiny84, Attiny44  |  X  |  X  | Refer to [Damellis attiny package](https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json) |
 | Atmega328p, Atmega168  |  X  |  X  |    |
@@ -125,6 +128,7 @@ Compilers: gcc, clang
 | Arduino Zero | X  | X  |    |
 | Nordic nRF5 (nRF51, nRF52) | X | X | via Standard Arduino nRF52 boards. nRF users, enable c++11 in platform.txt `-std=gnu++11` |
 | Nordic nRF5 (nRF51, nRF52) | X | X | via [Sandeep Mistry arduino-nRF5](https://github.com/sandeepmistry/arduino-nRF5) package |
+| Wio Terminal |  X |  X  | [Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html)  |
 | **Plain AVR** |   |     |          |
 | Attiny85, Attiny45 |  X  |  X  |         |
 | Atmega328p, Atmega168 |  X  |  X  |         |
