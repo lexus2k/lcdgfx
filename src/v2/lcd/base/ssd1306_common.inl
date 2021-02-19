@@ -517,14 +517,12 @@ void ssd1306_setFont6x8(const uint8_t * progmemFont)
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::putPixel(const NanoPoint &p)
+template <class O, class I> void NanoDisplayOps<O, I>::putPixel(const NanoPoint &p)
 {
     this->putPixel(p.x, p.y);
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2)
+template <class O, class I> void NanoDisplayOps<O, I>::drawRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2)
 {
     this->drawHLine(x1, y1, x2);
     this->drawHLine(x1, y2, x2);
@@ -532,70 +530,68 @@ void NanoDisplayOps<O,I>::drawRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint
     this->drawVLine(x2, y1, y2);
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawRect(const NanoRect &rect)
+template <class O, class I> void NanoDisplayOps<O, I>::drawRect(const NanoRect &rect)
 {
     this->drawRect(rect.p1.x, rect.p1.y, rect.p2.x, rect.p2.y);
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawLine(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2)
+template <class O, class I> void NanoDisplayOps<O, I>::drawLine(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2)
 {
-    lcduint_t  dx = x1 > x2 ? (x1 - x2): (x2 - x1);
-    lcduint_t  dy = y1 > y2 ? (y1 - y2): (y2 - y1);
-    lcduint_t  err = 0;
-    if (dy > dx)
+    lcduint_t dx = x1 > x2 ? (x1 - x2) : (x2 - x1);
+    lcduint_t dy = y1 > y2 ? (y1 - y2) : (y2 - y1);
+    lcduint_t err = 0;
+    if ( dy > dx )
     {
-        if (y1 > y2)
+        if ( y1 > y2 )
         {
             ssd1306_swap_data(x1, x2, lcdint_t);
             ssd1306_swap_data(y1, y2, lcdint_t);
         }
-        for(; y1<=y2; y1++)
+        for ( ; y1 <= y2; y1++ )
         {
             err += dx;
-            if (err >= dy)
+            if ( err >= dy )
             {
-                 err -= dy;
-                 x1 < x2 ? x1++: x1--;
+                err -= dy;
+                x1 < x2 ? x1++ : x1--;
             }
-            this->putPixel( x1, y1 );
+            this->putPixel(x1, y1);
         }
     }
     else
     {
-        if (x1 > x2)
+        if ( x1 > x2 )
         {
             ssd1306_swap_data(x1, x2, lcdint_t);
             ssd1306_swap_data(y1, y2, lcdint_t);
         }
-        for(; x1<=x2; x1++)
+        for ( ; x1 <= x2; x1++ )
         {
             err += dy;
-            if (err >= dx)
+            if ( err >= dx )
             {
-                 err -= dx;
-                 if (y1 < y2) y1++; else y1--;
+                err -= dx;
+                if ( y1 < y2 )
+                    y1++;
+                else
+                    y1--;
             }
-            this->putPixel( x1, y1 );
+            this->putPixel(x1, y1);
         }
     }
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawLine(const NanoRect &rect)
+template <class O, class I> void NanoDisplayOps<O, I>::drawLine(const NanoRect &rect)
 {
     this->drawLine(rect.p1.x, rect.p1.y, rect.p2.x, rect.p2.y);
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::fillRect(const NanoRect &rect)
+template <class O, class I> void NanoDisplayOps<O, I>::fillRect(const NanoRect &rect)
 {
     this->fillRect(rect.p1.x, rect.p1.y, rect.p2.x, rect.p2.y);
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r)
+template <class O, class I> void NanoDisplayOps<O, I>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r)
 {
     lcdint_t d = 3 - 2 * r;
     lcdint_t x = 0;
@@ -604,133 +600,132 @@ void NanoDisplayOps<O,I>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r)
     putPixel(xc, yc - r);
     putPixel(xc + r, yc);
     putPixel(xc - r, yc);
-    while (y >= x)
+    while ( y >= x )
     {
         x++;
-        if (d > 0)
+        if ( d > 0 )
         {
             y--;
-            d += - 4 * y + 4;
+            d += -4 * y + 4;
         }
         d += 4 * x + 6;
-        putPixel(xc+x, yc+y);
-        putPixel(xc-x, yc+y);
-        putPixel(xc+x, yc-y);
-        putPixel(xc-x, yc-y);
-        putPixel(xc+y, yc+x);
-        putPixel(xc-y, yc+x);
-        putPixel(xc+y, yc-x);
-        putPixel(xc-y, yc-x);
+        putPixel(xc + x, yc + y);
+        putPixel(xc - x, yc + y);
+        putPixel(xc + x, yc - y);
+        putPixel(xc - x, yc - y);
+        putPixel(xc + y, yc + x);
+        putPixel(xc - y, yc + x);
+        putPixel(xc + y, yc - x);
+        putPixel(xc - y, yc - x);
     }
 }
 
 template <class O, class I>
-void NanoDisplayOps<O,I>::printFixedPgm(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style)
+void NanoDisplayOps<O, I>::printFixedPgm(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style)
 {
     this->m_fontStyle = style;
     this->m_cursorX = xpos;
     this->m_cursorY = y;
-    for (;;)
+    for ( ;; )
     {
         char c = pgm_read_byte(ch);
-        if (!c) break;
+        if ( !c )
+            break;
         this->write(c);
         ch++;
     }
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::write( const char *str )
+template <class O, class I> void NanoDisplayOps<O, I>::write(const char *str)
 {
-    while (*str)
+    while ( *str )
     {
         this->write(*str);
         str++;
     }
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::print( int number )
+template <class O, class I> void NanoDisplayOps<O, I>::print(int number)
 {
     char intStr[12];
-    snprintf(intStr, sizeof(intStr), "%i", number );
-    this->write( intStr );
+    snprintf(intStr, sizeof(intStr), "%i", number);
+    this->write(intStr);
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::print( float number )
+template <class O, class I> void NanoDisplayOps<O, I>::print(float number)
 {
     char intStr[16];
-    snprintf(intStr, sizeof(intStr), "%f", number );
-    this->write( intStr );
+    snprintf(intStr, sizeof(intStr), "%f", number);
+    this->write(intStr);
+}
+
+template <class O, class I> void NanoDisplayOps<O, I>::print(char c)
+{
+    char intStr[2] = {c, '\0'};
+    this->write(intStr);
 }
 
 #ifndef min
-#define min(x,y) ((x)<(y)?(x):(y))
+#define min(x, y) ((x) < (y) ? (x) : (y))
 #endif
 
 #ifndef max
-#define max(x,y) ((x)>(y)?(x):(y))
+#define max(x, y) ((x) > (y) ? (x) : (y))
 #endif
 
-template <class O, class I>
-static uint8_t getMaxScreenItems(NanoDisplayOps<O,I> &display, SAppMenu *menu)
+template <class O, class I> static uint8_t getMaxScreenItems(NanoDisplayOps<O, I> &display, SAppMenu *menu)
 {
     return (menu->height - 16) / display.getFont().getHeader().height;
 }
 
 template <class O, class I>
-static uint8_t calculateScrollPosition(NanoDisplayOps<O,I> &display, SAppMenu *menu, uint8_t selection)
+static uint8_t calculateScrollPosition(NanoDisplayOps<O, I> &display, SAppMenu *menu, uint8_t selection)
 {
     if ( selection < menu->scrollPosition )
     {
         return selection;
     }
-    else if ( selection - menu->scrollPosition > getMaxScreenItems<O,I>(display, menu) - 1)
+    else if ( selection - menu->scrollPosition > getMaxScreenItems<O, I>(display, menu) - 1 )
     {
-        return selection - getMaxScreenItems<O,I>(display, menu) + 1;
+        return selection - getMaxScreenItems<O, I>(display, menu) + 1;
     }
     return menu->scrollPosition;
 }
 
-template <class O, class I>
-static void drawMenuItem(NanoDisplayOps<O,I> &display, SAppMenu *menu, uint8_t index)
+template <class O, class I> static void drawMenuItem(NanoDisplayOps<O, I> &display, SAppMenu *menu, uint8_t index)
 {
-    if (index == menu->selection)
+    if ( index == menu->selection )
     {
         display.invertColors();
     }
-    lcdint_t item_top = 8 + menu->top + (index - menu->scrollPosition)*display.getFont().getHeader().height;
-    display.printFixed(menu->left + 8, item_top,
-                       menu->items[index], STYLE_NORMAL );
-    if (index == menu->selection)
+    lcdint_t item_top = 8 + menu->top + (index - menu->scrollPosition) * display.getFont().getHeader().height;
+    display.printFixed(menu->left + 8, item_top, menu->items[index], STYLE_NORMAL);
+    if ( index == menu->selection )
+    {
+        display.invertColors();
+    }
+}
+
+template <class O, class I> static void drawMenuItemSmooth(NanoDisplayOps<O, I> &display, SAppMenu *menu, uint8_t index)
+{
+    if ( index == menu->selection )
+    {
+        display.invertColors();
+    }
+    lcdint_t item_top = 8 + menu->top + (index - menu->scrollPosition) * display.getFont().getHeader().height;
+    display.setColor(0x0000);
+    display.fillRect(menu->left + 8 + display.getFont().getTextSize(menu->items[index]), item_top,
+                     menu->width + menu->left - 9, item_top + display.getFont().getHeader().height - 1);
+    display.setColor(0xFFFF);
+    display.printFixed(menu->left + 8, item_top, menu->items[index], STYLE_NORMAL);
+    if ( index == menu->selection )
     {
         display.invertColors();
     }
 }
 
 template <class O, class I>
-static void drawMenuItemSmooth(NanoDisplayOps<O,I> &display, SAppMenu *menu, uint8_t index)
-{
-    if (index == menu->selection)
-    {
-        display.invertColors();
-    }
-    lcdint_t item_top = 8 + menu->top + (index - menu->scrollPosition)*display.getFont().getHeader().height;
-    display.setColor( 0x0000 );
-    display.fillRect( menu->left + 8 + display.getFont().getTextSize(menu->items[index]), item_top,
-                      menu->width + menu->left - 9, item_top + display.getFont().getHeader().height - 1 );
-    display.setColor( 0xFFFF );
-    display.printFixed(menu->left + 8, item_top,
-                       menu->items[index], STYLE_NORMAL );
-    if (index == menu->selection)
-    {
-        display.invertColors();
-    }
-}
-
-template <class O, class I>
-void NanoDisplayOps<O,I>::createMenu(SAppMenu *menu, const char **items, uint8_t count, const NanoRect &rect)
+void NanoDisplayOps<O, I>::createMenu(SAppMenu *menu, const char **items, uint8_t count, const NanoRect &rect)
 {
     menu->items = items;
     menu->count = count;
@@ -739,40 +734,39 @@ void NanoDisplayOps<O,I>::createMenu(SAppMenu *menu, const char **items, uint8_t
     menu->scrollPosition = 0;
     menu->top = rect.p1.y;
     menu->left = rect.p1.x;
-    menu->width = rect.p2.x ? rect.width() : ( this->width() - menu->left );
-    menu->height = rect.p2.y ? rect.height() : ( this->height() - menu->top );
+    menu->width = rect.p2.x ? rect.width() : (this->width() - menu->left);
+    menu->height = rect.p2.y ? rect.height() : (this->height() - menu->top);
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::showMenu( SAppMenu *menu )
+template <class O, class I> void NanoDisplayOps<O, I>::showMenu(SAppMenu *menu)
 {
     drawRect(4 + menu->left, 4 + menu->top, menu->width + menu->left - 5, menu->height + menu->top - 5);
-    menu->scrollPosition = calculateScrollPosition<O,I>(*this, menu, menu->selection );
-    for (uint8_t i = menu->scrollPosition; i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O,I>( *this, menu ))); i++)
+    menu->scrollPosition = calculateScrollPosition<O, I>(*this, menu, menu->selection);
+    for ( uint8_t i = menu->scrollPosition;
+          i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O, I>(*this, menu))); i++ )
     {
-        drawMenuItem<O,I>(*this, menu, i);
+        drawMenuItem<O, I>(*this, menu, i);
     }
     menu->oldSelection = menu->selection;
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::showMenuSmooth( SAppMenu *menu )
+template <class O, class I> void NanoDisplayOps<O, I>::showMenuSmooth(SAppMenu *menu)
 {
     drawRect(4 + menu->left, 4 + menu->top, menu->width + menu->left - 5, menu->height + menu->top - 5);
-    menu->scrollPosition = calculateScrollPosition<O,I>(*this, menu, menu->selection );
-    for (uint8_t i = menu->scrollPosition; i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O,I>( *this, menu ))); i++)
+    menu->scrollPosition = calculateScrollPosition<O, I>(*this, menu, menu->selection);
+    for ( uint8_t i = menu->scrollPosition;
+          i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O, I>(*this, menu))); i++ )
     {
-        drawMenuItemSmooth<O,I>(*this, menu, i);
+        drawMenuItemSmooth<O, I>(*this, menu, i);
     }
     menu->oldSelection = menu->selection;
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::updateMenu(SAppMenu *menu)
+template <class O, class I> void NanoDisplayOps<O, I>::updateMenu(SAppMenu *menu)
 {
-    if (menu->selection != menu->oldSelection)
+    if ( menu->selection != menu->oldSelection )
     {
-        uint8_t scrollPosition = calculateScrollPosition<O,I>( *this, menu, menu->selection );
+        uint8_t scrollPosition = calculateScrollPosition<O, I>(*this, menu, menu->selection);
         if ( scrollPosition != menu->scrollPosition )
         {
             this->clear();
@@ -780,42 +774,39 @@ void NanoDisplayOps<O,I>::updateMenu(SAppMenu *menu)
         }
         else
         {
-            drawMenuItem<O,I>( *this, menu, menu->oldSelection);
-            drawMenuItem<O,I>( *this, menu, menu->selection);
+            drawMenuItem<O, I>(*this, menu, menu->oldSelection);
+            drawMenuItem<O, I>(*this, menu, menu->selection);
             menu->oldSelection = menu->selection;
         }
     }
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::updateMenuSmooth(SAppMenu *menu)
+template <class O, class I> void NanoDisplayOps<O, I>::updateMenuSmooth(SAppMenu *menu)
 {
-    if (menu->selection != menu->oldSelection)
+    if ( menu->selection != menu->oldSelection )
     {
-        uint8_t scrollPosition = calculateScrollPosition<O,I>( *this, menu, menu->selection );
+        uint8_t scrollPosition = calculateScrollPosition<O, I>(*this, menu, menu->selection);
         if ( scrollPosition != menu->scrollPosition )
         {
             showMenuSmooth(menu);
         }
         else
         {
-            drawMenuItemSmooth<O,I>( *this, menu, menu->oldSelection);
-            drawMenuItemSmooth<O,I>( *this, menu, menu->selection);
+            drawMenuItemSmooth<O, I>(*this, menu, menu->oldSelection);
+            drawMenuItemSmooth<O, I>(*this, menu, menu->selection);
             menu->oldSelection = menu->selection;
         }
     }
 }
 
-template <class O, class I>
-uint8_t NanoDisplayOps<O,I>::menuSelection(SAppMenu *menu)
+template <class O, class I> uint8_t NanoDisplayOps<O, I>::menuSelection(SAppMenu *menu)
 {
     return menu->selection;
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::menuDown(SAppMenu *menu)
+template <class O, class I> void NanoDisplayOps<O, I>::menuDown(SAppMenu *menu)
 {
-    if (menu->selection < menu->count - 1)
+    if ( menu->selection < menu->count - 1 )
     {
         menu->selection++;
     }
@@ -825,10 +816,9 @@ void NanoDisplayOps<O,I>::menuDown(SAppMenu *menu)
     }
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::menuUp(SAppMenu *menu)
+template <class O, class I> void NanoDisplayOps<O, I>::menuUp(SAppMenu *menu)
 {
-    if (menu->selection > 0)
+    if ( menu->selection > 0 )
     {
         menu->selection--;
     }
@@ -838,32 +828,27 @@ void NanoDisplayOps<O,I>::menuUp(SAppMenu *menu)
     }
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawCanvas(lcdint_t x, lcdint_t y, NanoCanvasOps<1> &canvas)
+template <class O, class I> void NanoDisplayOps<O, I>::drawCanvas(lcdint_t x, lcdint_t y, NanoCanvasOps<1> &canvas)
 {
-    this->drawBuffer1Fast( x, y, canvas.width(), canvas.height(), canvas.getData() );
+    this->drawBuffer1Fast(x, y, canvas.width(), canvas.height(), canvas.getData());
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawCanvas(lcdint_t x, lcdint_t y, NanoCanvasOps<4> &canvas)
+template <class O, class I> void NanoDisplayOps<O, I>::drawCanvas(lcdint_t x, lcdint_t y, NanoCanvasOps<4> &canvas)
 {
-    this->drawBuffer4( x, y, canvas.width(), canvas.height(), canvas.getData() );
+    this->drawBuffer4(x, y, canvas.width(), canvas.height(), canvas.getData());
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawCanvas(lcdint_t x, lcdint_t y, NanoCanvasOps<8> &canvas)
+template <class O, class I> void NanoDisplayOps<O, I>::drawCanvas(lcdint_t x, lcdint_t y, NanoCanvasOps<8> &canvas)
 {
-    this->drawBuffer8( x, y, canvas.width(), canvas.height(), canvas.getData() );
+    this->drawBuffer8(x, y, canvas.width(), canvas.height(), canvas.getData());
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawCanvas(lcdint_t x, lcdint_t y, NanoCanvasOps<16> &canvas)
+template <class O, class I> void NanoDisplayOps<O, I>::drawCanvas(lcdint_t x, lcdint_t y, NanoCanvasOps<16> &canvas)
 {
-    this->drawBuffer16( x, y, canvas.width(), canvas.height(), canvas.getData() );
+    this->drawBuffer16(x, y, canvas.width(), canvas.height(), canvas.getData());
 }
 
-template <class O, class I>
-void NanoDisplayOps<O,I>::drawProgressBar(int8_t progress)
+template <class O, class I> void NanoDisplayOps<O, I>::drawProgressBar(int8_t progress)
 {
     lcduint_t height = 8;
     lcduint_t width = 8;
@@ -877,34 +862,41 @@ void NanoDisplayOps<O,I>::drawProgressBar(int8_t progress)
     }
     if ( this->m_font != nullptr )
     {
-        width = this->getFont().getTextSize( str, &height );
+        width = this->getFont().getTextSize(str, &height);
     }
     lcdint_t middle = this->height() / 2;
     lcdint_t progress_pos = 8 + (int16_t)(this->width() - 16) * progress / 100;
     uint16_t color = this->m_color;
     this->m_color = 0x0000;
-    this->fillRect( progress_pos, middle, this->width() - 8, middle + height );
+    this->fillRect(progress_pos, middle, this->width() - 8, middle + height);
     this->m_color = color;
-    this->drawRect( progress_pos, middle, this->width() - 8, middle + height );
-    this->fillRect( 8, middle, progress_pos, middle + height );
+    this->drawRect(progress_pos, middle, this->width() - 8, middle + height);
+    this->fillRect(8, middle, progress_pos, middle + height);
     if ( this->m_font != nullptr )
     {
-        this->printFixed( this->width() / 2 - width / 2, middle - height, str );
+        this->printFixed(this->width() / 2 - width / 2, middle - height, str);
     }
 }
 
 template <class O, class I>
-void NanoDisplayOps<O,I>::drawWindow(lcdint_t x, lcdint_t y,
-                                     lcduint_t width, lcduint_t height,
-                                     const char *caption, bool blank)
+void NanoDisplayOps<O, I>::drawWindow(lcdint_t x, lcdint_t y, lcduint_t width, lcduint_t height, const char *caption,
+                                      bool blank)
 {
-    if ( width == 0 ) { width = this->width() - 8; x = 4; }
-    if ( height == 0 ) { height = this->height() - 4; y = 0; }
+    if ( width == 0 )
+    {
+        width = this->width() - 8;
+        x = 4;
+    }
+    if ( height == 0 )
+    {
+        height = this->height() - 4;
+        y = 0;
+    }
     if ( blank )
     {
         uint16_t color = this->m_color;
         this->m_color = 0x0000;
-        this->fillRect( x, y, x + width - 1, y + height - 1 );
+        this->fillRect(x, y, x + width - 1, y + height - 1);
         this->m_color = color;
     }
     if ( caption )
@@ -912,12 +904,11 @@ void NanoDisplayOps<O,I>::drawWindow(lcdint_t x, lcdint_t y,
         y += this->getFont().getHeader().height / 2;
         height -= this->getFont().getHeader().height / 2;
     }
-    this->drawRect( x, y, x + width - 1, y + height - 1 );
+    this->drawRect(x, y, x + width - 1, y + height - 1);
     if ( caption )
     {
         lcduint_t theight;
-        lcduint_t twidth = this->getFont().getTextSize( caption, &theight );
-        this->printFixed( x + (width - twidth)/2, y - theight/2, caption );
+        lcduint_t twidth = this->getFont().getTextSize(caption, &theight);
+        this->printFixed(x + (width - twidth) / 2, y - theight / 2, caption);
     }
 }
-

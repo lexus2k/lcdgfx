@@ -165,79 +165,73 @@ uint8_t ssd1306_printFixed16(lcdint_t x, lcdint_t y, const char *ch, EFontStyle 
 //
 /////////////////////////////////////////////////////////////////////////////////
 
-template <class I>
-void NanoDisplayOps16<I>::putPixel(lcdint_t x, lcdint_t y)
+template <class I> void NanoDisplayOps16<I>::putPixel(lcdint_t x, lcdint_t y)
 {
     this->m_intf.startBlock(x, y, 0);
-    this->m_intf.send( this->m_color >> 8 );
-    this->m_intf.send( this->m_color & 0xFF );
+    this->m_intf.send(this->m_color >> 8);
+    this->m_intf.send(this->m_color & 0xFF);
     this->m_intf.endBlock();
 }
 
-template <class I>
-void NanoDisplayOps16<I>::drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t x2)
+template <class I> void NanoDisplayOps16<I>::drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t x2)
 {
     this->m_intf.startBlock(x1, y1, 0);
-    while (x1 < x2)
+    while ( x1 < x2 )
     {
-        this->m_intf.send( this->m_color >> 8 );
-        this->m_intf.send( this->m_color & 0xFF );
+        this->m_intf.send(this->m_color >> 8);
+        this->m_intf.send(this->m_color & 0xFF);
         x1++;
     }
     this->m_intf.endBlock();
 }
 
-template <class I>
-void NanoDisplayOps16<I>::drawVLine(lcdint_t x1, lcdint_t y1, lcdint_t y2)
+template <class I> void NanoDisplayOps16<I>::drawVLine(lcdint_t x1, lcdint_t y1, lcdint_t y2)
 {
     this->m_intf.startBlock(x1, y1, 1);
-    while (y1<=y2)
+    while ( y1 <= y2 )
     {
-        this->m_intf.send( this->m_color >> 8 );
-        this->m_intf.send( this->m_color & 0xFF );
+        this->m_intf.send(this->m_color >> 8);
+        this->m_intf.send(this->m_color & 0xFF);
         y1++;
     }
     this->m_intf.endBlock();
 }
 
-template <class I>
-void NanoDisplayOps16<I>::fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2)
+template <class I> void NanoDisplayOps16<I>::fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2)
 {
-    if (y1 > y2)
+    if ( y1 > y2 )
     {
         ssd1306_swap_data(y1, y2, lcdint_t);
     }
-    if (x1 > x2)
+    if ( x1 > x2 )
     {
         ssd1306_swap_data(x1, x2, lcdint_t);
     }
     this->m_intf.startBlock(x1, y1, x2 - x1 + 1);
     uint16_t count = (x2 - x1 + 1) * (y2 - y1 + 1);
-    while (count--)
+    while ( count-- )
     {
-        this->m_intf.send( this->m_color >> 8 );
-        this->m_intf.send( this->m_color & 0xFF );
+        this->m_intf.send(this->m_color >> 8);
+        this->m_intf.send(this->m_color & 0xFF);
     }
     this->m_intf.endBlock();
 }
 
-template <class I>
-void NanoDisplayOps16<I>::fill(uint16_t color)
+template <class I> void NanoDisplayOps16<I>::fill(uint16_t color)
 {
     this->m_intf.startBlock(0, 0, 0);
     uint32_t count = (uint32_t)this->m_w * (uint32_t)this->m_h;
-    while (count--)
+    while ( count-- )
     {
-        this->m_intf.send( color >> 8 );
-        this->m_intf.send( color & 0xFF );
+        this->m_intf.send(color >> 8);
+        this->m_intf.send(color & 0xFF);
     }
     this->m_intf.endBlock();
 }
 
-template <class I>
-void NanoDisplayOps16<I>::clear()
+template <class I> void NanoDisplayOps16<I>::clear()
 {
-    fill( 0x00 );
+    fill(0x00);
 }
 
 template <class I>
@@ -253,21 +247,21 @@ void NanoDisplayOps16<I>::drawBitmap1(lcdint_t xpos, lcdint_t ypos, lcduint_t w,
     uint16_t blackColor = this->m_bgColor;
     uint16_t color = this->m_color;
     this->m_intf.startBlock(xpos, ypos, w);
-    while (h--)
+    while ( h-- )
     {
         lcduint_t wx = w;
         while ( wx-- )
         {
-            uint8_t data = pgm_read_byte( bitmap );
+            uint8_t data = pgm_read_byte(bitmap);
             if ( data & bit )
             {
-                this->m_intf.send( color >> 8 );
-                this->m_intf.send( color & 0xFF );
+                this->m_intf.send(color >> 8);
+                this->m_intf.send(color & 0xFF);
             }
             else
             {
-                this->m_intf.send( blackColor >> 8 );
-                this->m_intf.send( blackColor & 0xFF );
+                this->m_intf.send(blackColor >> 8);
+                this->m_intf.send(blackColor & 0xFF);
             }
             bitmap++;
         }
@@ -295,11 +289,11 @@ void NanoDisplayOps16<I>::drawBitmap8(lcdint_t x, lcdint_t y, lcduint_t w, lcdui
 {
     this->m_intf.startBlock(x, y, w);
     uint32_t count = (w) * (h);
-    while (count--)
+    while ( count-- )
     {
         uint16_t color = RGB8_TO_RGB16(pgm_read_byte(bitmap));
-        this->m_intf.send( color >> 8 );
-        this->m_intf.send( color & 0xFF );
+        this->m_intf.send(color >> 8);
+        this->m_intf.send(color & 0xFF);
         bitmap++;
     }
     this->m_intf.endBlock();
@@ -310,10 +304,10 @@ void NanoDisplayOps16<I>::drawBitmap16(lcdint_t x, lcdint_t y, lcduint_t w, lcdu
 {
     this->m_intf.startBlock(x, y, w);
     uint32_t count = (w) * (h);
-    while (count--)
+    while ( count-- )
     {
-        this->m_intf.send( pgm_read_byte( &bitmap[0] ) );
-        this->m_intf.send( pgm_read_byte( &bitmap[1] ) );
+        this->m_intf.send(pgm_read_byte(&bitmap[0]));
+        this->m_intf.send(pgm_read_byte(&bitmap[1]));
         bitmap += 2;
     }
     this->m_intf.endBlock();
@@ -326,7 +320,7 @@ void NanoDisplayOps16<I>::drawBuffer1(lcdint_t xpos, lcdint_t ypos, lcduint_t w,
     uint16_t blackColor = this->m_bgColor;
     uint16_t color = this->m_color;
     this->m_intf.startBlock(xpos, ypos, w);
-    while (h--)
+    while ( h-- )
     {
         lcduint_t wx = w;
         while ( wx-- )
@@ -334,13 +328,13 @@ void NanoDisplayOps16<I>::drawBuffer1(lcdint_t xpos, lcdint_t ypos, lcduint_t w,
             uint8_t data = *buffer;
             if ( data & bit )
             {
-                this->m_intf.send( color >> 8 );
-                this->m_intf.send( color & 0xFF );
+                this->m_intf.send(color >> 8);
+                this->m_intf.send(color & 0xFF);
             }
             else
             {
-                this->m_intf.send( blackColor >> 8 );
-                this->m_intf.send( blackColor & 0xFF );
+                this->m_intf.send(blackColor >> 8);
+                this->m_intf.send(blackColor & 0xFF);
             }
             buffer++;
         }
@@ -360,7 +354,7 @@ void NanoDisplayOps16<I>::drawBuffer1(lcdint_t xpos, lcdint_t ypos, lcduint_t w,
 template <class I>
 void NanoDisplayOps16<I>::drawBuffer1Fast(lcdint_t x, lcdint_t y, lcduint_t w, lcduint_t h, const uint8_t *buf)
 {
-    this->drawBuffer1( x, y, w, h, buf );
+    this->drawBuffer1(x, y, w, h, buf);
 }
 
 template <class I>
@@ -374,11 +368,11 @@ void NanoDisplayOps16<I>::drawBuffer8(lcdint_t x, lcdint_t y, lcduint_t w, lcdui
 {
     this->m_intf.startBlock(x, y, w);
     uint32_t count = (w) * (h);
-    while (count--)
+    while ( count-- )
     {
         uint16_t color = RGB8_TO_RGB16((*buffer));
-        this->m_intf.send( color >> 8 );
-        this->m_intf.send( color & 0xFF );
+        this->m_intf.send(color >> 8);
+        this->m_intf.send(color & 0xFF);
         buffer++;
     }
     this->m_intf.endBlock();
@@ -389,38 +383,34 @@ void NanoDisplayOps16<I>::drawBuffer16(lcdint_t x, lcdint_t y, lcduint_t w, lcdu
 {
     this->m_intf.startBlock(x, y, w);
     uint32_t count = (w) * (h);
-    while (count--)
+    while ( count-- )
     {
-        this->m_intf.send( buffer[0] );
-        this->m_intf.send( buffer[1] );
+        this->m_intf.send(buffer[0]);
+        this->m_intf.send(buffer[1]);
         buffer += 2;
     }
     this->m_intf.endBlock();
 }
 
-template <class I>
-uint8_t NanoDisplayOps16<I>::printChar(uint8_t c)
+template <class I> uint8_t NanoDisplayOps16<I>::printChar(uint8_t c)
 {
     uint16_t unicode = this->m_font->unicode16FromUtf8(c);
-    if (unicode == SSD1306_MORE_CHARS_REQUIRED) return 0;
+    if ( unicode == SSD1306_MORE_CHARS_REQUIRED )
+        return 0;
     SCharInfo char_info;
     this->m_font->getCharBitmap(unicode, &char_info);
     uint8_t mode = this->m_textMode;
-    for (uint8_t i = 0; i<(this->m_fontStyle == STYLE_BOLD ? 2: 1); i++)
+    for ( uint8_t i = 0; i < (this->m_fontStyle == STYLE_BOLD ? 2 : 1); i++ )
     {
-        this->drawBitmap1(this->m_cursorX + i,
-                    this->m_cursorY,
-                    char_info.width,
-                    char_info.height,
-                    char_info.glyph );
+        this->drawBitmap1(this->m_cursorX + i, this->m_cursorY, char_info.width, char_info.height, char_info.glyph);
         this->m_textMode |= CANVAS_MODE_TRANSPARENT;
     }
     this->m_textMode = mode;
     this->m_cursorX += (lcdint_t)(char_info.width + char_info.spacing);
-    if ( ( (this->m_textMode & CANVAS_TEXT_WRAP_LOCAL) &&
-           (this->m_cursorX > ((lcdint_t)this->m_w - (lcdint_t)this->m_font->getHeader().width) ) )
-       || ( (this->m_textMode & CANVAS_TEXT_WRAP) &&
-           (this->m_cursorX > ((lcdint_t)this->m_w - (lcdint_t)this->m_font->getHeader().width)) ) )
+    if ( ((this->m_textMode & CANVAS_TEXT_WRAP_LOCAL) &&
+          (this->m_cursorX > ((lcdint_t)this->m_w - (lcdint_t)this->m_font->getHeader().width))) ||
+         ((this->m_textMode & CANVAS_TEXT_WRAP) &&
+          (this->m_cursorX > ((lcdint_t)this->m_w - (lcdint_t)this->m_font->getHeader().width))) )
     {
         this->m_cursorY += (lcdint_t)this->m_font->getHeader().height;
         this->m_cursorX = 0;
@@ -433,37 +423,33 @@ uint8_t NanoDisplayOps16<I>::printChar(uint8_t c)
     return 1;
 }
 
-template <class I>
-size_t NanoDisplayOps16<I>::write(uint8_t c)
+template <class I> size_t NanoDisplayOps16<I>::write(uint8_t c)
 {
-    if (c == '\n')
+    if ( c == '\n' )
     {
         this->m_cursorY += (lcdint_t)this->m_font->getHeader().height;
         this->m_cursorX = 0;
     }
-    else if (c == '\r')
+    else if ( c == '\r' )
     {
         // skip non-printed char
     }
     else
     {
-        return printChar( c );
+        return printChar(c);
     }
     return 1;
 }
 
-template <class I>
-void NanoDisplayOps16<I>::printFixed(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style)
+template <class I> void NanoDisplayOps16<I>::printFixed(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style)
 {
     // TODO: fontstyle not supported
     // m_fontStyle = style;
     this->m_cursorX = xpos;
     this->m_cursorY = y;
-    while (*ch)
+    while ( *ch )
     {
         this->write(*ch);
         ch++;
     }
 }
-
-

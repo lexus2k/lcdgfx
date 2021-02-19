@@ -1099,6 +1099,14 @@ public:
     void print(float number);
 
     /**
+     * Prints single character at current cursor position
+     * To specify cursor position using setTextCursor() method.
+     *
+     * @param c character to print
+     */
+    void print(char c);
+
+    /**
      * Creates menu object with the provided list of menu items.
      * List of menu items (strings) must exist all until menu object is no longer needed.
      * Selection is set to the first item by default.

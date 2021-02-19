@@ -173,7 +173,7 @@ public:
 private:
     SFixedFontInfo m_fixedFont{};
 
-    void (*m_getCharBitmap)(const SFixedFontInfo &font,uint16_t unicode, SCharInfo *info) = nullptr;
+    void (*m_getCharBitmap)(const SFixedFontInfo &font, uint16_t unicode, SCharInfo *info) = nullptr;
 };
 
 extern NanoFont g_canvas_font;

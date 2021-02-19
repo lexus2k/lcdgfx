@@ -24,13 +24,12 @@
 
 #define CMD_DELAY 0xFF
 
-template <class I>
-void _configureSpiDisplay(I& intf, const uint8_t *config, uint8_t configSize)
+template <class I> void _configureSpiDisplay(I &intf, const uint8_t *config, uint8_t configSize)
 {
     uint8_t command = 1;
     int8_t args = -1;
     intf.commandStart();
-    for( uint8_t i=0; i<configSize; i++)
+    for ( uint8_t i = 0; i < configSize; i++ )
     {
         uint8_t data = pgm_read_byte(&config[i]);
         if ( command )
@@ -38,7 +37,7 @@ void _configureSpiDisplay(I& intf, const uint8_t *config, uint8_t configSize)
             if ( command == CMD_DELAY )
             {
                 command = 1;
-                lcd_delay( data == 0xFF ? 500: data );
+                lcd_delay(data == 0xFF ? 500 : data);
             }
             else
             {
@@ -49,7 +48,7 @@ void _configureSpiDisplay(I& intf, const uint8_t *config, uint8_t configSize)
         }
         else
         {
-            if (args < 0)
+            if ( args < 0 )
             {
                 if ( data >= 128 )
                 {
@@ -80,14 +79,12 @@ void _configureSpiDisplay(I& intf, const uint8_t *config, uint8_t configSize)
     intf.stop();
 }
 
-
-template <class I>
-void _configureSpiDisplayCmdModeOnly(I& intf, const uint8_t *config, uint8_t configSize)
+template <class I> void _configureSpiDisplayCmdModeOnly(I &intf, const uint8_t *config, uint8_t configSize)
 {
     uint8_t command = 1;
     int8_t args = -1;
     intf.commandStart();
-    for( uint8_t i=0; i<configSize; i++)
+    for ( uint8_t i = 0; i < configSize; i++ )
     {
         uint8_t data = pgm_read_byte(&config[i]);
         if ( command )
@@ -95,7 +92,7 @@ void _configureSpiDisplayCmdModeOnly(I& intf, const uint8_t *config, uint8_t con
             if ( command == CMD_DELAY )
             {
                 command = 1;
-                lcd_delay( data == 0xFF ? 500: data );
+                lcd_delay(data == 0xFF ? 500 : data);
             }
             else
             {
@@ -106,7 +103,7 @@ void _configureSpiDisplayCmdModeOnly(I& intf, const uint8_t *config, uint8_t con
         }
         else
         {
-            if (args < 0)
+            if ( args < 0 )
             {
                 if ( data >= 128 )
                 {
@@ -134,4 +131,3 @@ void _configureSpiDisplayCmdModeOnly(I& intf, const uint8_t *config, uint8_t con
     }
     intf.stop();
 }
-
