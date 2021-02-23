@@ -176,6 +176,10 @@ void setup()
 
     display.begin();
 
+    /* Uncomment 2 lines below to rotate your ssd1306 display by 180 degrees. */
+    // display.getInterface().flipVertical();
+    // display.getInterface().flipHorizontal();
+
     display.clear();
     menu.show( display );
 }
