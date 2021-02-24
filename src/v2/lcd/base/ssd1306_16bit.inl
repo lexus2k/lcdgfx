@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2020, Alexey Dynda
+    Copyright (c) 2018-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -451,5 +451,119 @@ template <class I> void NanoDisplayOps16<I>::printFixed(lcdint_t xpos, lcdint_t 
     {
         this->write(*ch);
         ch++;
+    }
+}
+
+template <class I>
+void NanoDisplayOps16<I>::printFixedN(lcdint_t xpos, lcdint_t y, const char *ch, EFontStyle style, uint8_t factor)
+{
+    uint8_t i, j = 0;
+    uint8_t text_index = 0;
+    uint8_t page_offset = 0;
+    uint8_t x = xpos;
+    for ( ;; )
+    {
+        uint8_t ldata;
+        if ( (x > this->m_w - (this->m_font->getHeader().width << factor)) || (ch[j] == '\0') )
+        {
+            x = xpos;
+            y += 8;
+            if ( y >= this->m_h )
+            {
+                break;
+            }
+            page_offset++;
+            if ( page_offset == (this->m_font->getPages() << factor) )
+            {
+                text_index = j;
+                page_offset = 0;
+                if ( ch[j] == '\0' )
+                {
+                    break;
+                }
+            }
+            else
+            {
+                j = text_index;
+            }
+        }
+        uint16_t unicode;
+        do
+        {
+            unicode = this->m_font->unicode16FromUtf8(ch[j]);
+            j++;
+        } while ( unicode == SSD1306_MORE_CHARS_REQUIRED );
+        SCharInfo char_info;
+        this->m_font->getCharBitmap(unicode, &char_info);
+        ldata = 0;
+        if ( char_info.height > (page_offset >> factor) * 8 )
+        {
+            char_info.glyph += (page_offset >> factor) * char_info.width;
+            for ( i = char_info.width; i > 0; i-- )
+            {
+                uint8_t data;
+                if ( style == STYLE_NORMAL )
+                {
+                    data = pgm_read_byte(char_info.glyph);
+                }
+                else if ( style == STYLE_BOLD )
+                {
+                    uint8_t temp = pgm_read_byte(char_info.glyph);
+                    data = temp | ldata;
+                    ldata = temp;
+                }
+                else
+                {
+                    uint8_t temp = pgm_read_byte(char_info.glyph + 1);
+                    data = (temp & 0xF0) | ldata;
+                    ldata = (temp & 0x0F);
+                }
+                if ( factor > 0 )
+                {
+                    uint8_t accum = 0;
+                    uint8_t mask = ~((0xFF) << (1 << factor));
+                    // N=0  ->   right shift is always 0
+                    // N=1  ->   right shift goes through 0, 4
+                    // N=2  ->   right shift goes through 0, 2, 4, 6
+                    // N=3  ->   right shift goes through 0, 1, 2, 3, 4, 5, 6, 7
+                    data >>= ((page_offset & ((1 << factor) - 1)) << (3 - factor));
+                    for ( uint8_t idx = 0; idx < 1 << (3 - factor); idx++ )
+                    {
+                        accum |= (((data >> idx) & 0x01) ? (mask << (idx << factor)) : 0);
+                    }
+                    data = accum;
+                }
+                this->m_intf.startBlock(x, y, (1 << factor));
+                for ( uint8_t b = 0; b < 8; b++ )
+                {
+                    uint16_t color = (data & (1 << b)) ? this->m_color : this->m_bgColor;
+                    for ( uint8_t z = (1 << factor); z > 0; z-- )
+                    {
+                        this->m_intf.send(color >> 8);
+                        this->m_intf.send(color & 0xFF);
+                    }
+                }
+                this->m_intf.endBlock();
+                x += (1 << factor);
+                char_info.glyph++;
+            }
+        }
+        else
+        {
+            char_info.spacing += char_info.width;
+            x += (char_info.width << factor);
+        }
+        this->m_intf.startBlock(x, y, (char_info.spacing << factor));
+        for ( uint8_t b = 0; b < 8; b++ )
+        {
+            uint16_t color = this->m_bgColor;
+            for ( i = 0; i < (char_info.spacing << factor); i++ )
+            {
+                this->m_intf.send(color >> 8);
+                this->m_intf.send(color & 0xFF);
+            }
+        }
+        x += (char_info.spacing << factor);
+        this->m_intf.endBlock();
     }
 }
