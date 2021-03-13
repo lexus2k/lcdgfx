@@ -34,6 +34,7 @@
 #include "owl.h"
 
 DisplayST7735_128x160x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
+//DisplayST7735_80x160x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
 //DisplayST7735_128x160x16_SPI display(3,{-1, -1, 4, 0, -1, -1}); // FOR ATTINY
 //DisplayST7735_128x160x16_SPI display(-1,{-1, 0, 1, 0, -1, -1); // Use this line for nano pi (RST not used, 0=CE, gpio1=D/C)
 //DisplayST7735_128x160x16_SPI display(24,{-1, 0, 23, 0,-1,-1}); // Use this line for Raspberry  (gpio24=RST, 0=CE, gpio23=D/C)
@@ -101,6 +102,7 @@ static void bitmapDemo()
  */
 NanoPoint sprite;
 NanoEngine16<DisplayST7735_128x160x16_SPI> engine( display );
+//NanoEngine16<DisplayST7735_80x160x16_SPI> engine( display );
 static void spriteDemo()
 {
     // We not need to clear screen, engine will do it for us

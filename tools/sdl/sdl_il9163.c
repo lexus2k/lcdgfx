@@ -36,6 +36,12 @@ static int s_pageEnd = 7;
 static uint8_t detected = 0;
 static uint8_t s_lcd_type;
 
+// TODO: Not tested
+static int s_colConnection = 0;
+static int s_rowConnection = 0;
+static const int TOTAL_COLUMNS = 132;
+static const int TOTAL_ROWS = 160;
+
 static void sdl_il9163_reset(void)
 {
     detected = 0;
@@ -50,11 +56,17 @@ static int sdl_il9163_detect(uint8_t data)
             case 0b00000000:
                 sdl_il9163.width = 128;
                 sdl_il9163.height = 128;
+                s_colConnection = 0;
                 break;
             case 0b00000011:
                 sdl_il9163.width = 128;
                 sdl_il9163.height = 160;
+                s_colConnection = 0;
                 break;
+            case 0b00000100:
+                sdl_il9163.width = 80;
+                sdl_il9163.height = 160;
+                s_colConnection = 26;
             default:
                 break;
         }
@@ -217,7 +229,10 @@ void sdl_il9163_data(uint8_t data)
         rx = (s_verticalMode & 0b10000000) ? (sdl_il9163.width - 1 - x) : x;
         ry = (s_verticalMode & 0b01000000) ? (sdl_il9163.height - 1 - y) : y;
     }
-    sdl_put_pixel(rx, ry, (dataFirst<<8) | data);
+    if ( rx >= s_colConnection && ry >= s_rowConnection && rx < TOTAL_COLUMNS && ry < TOTAL_ROWS )
+    {
+        sdl_put_pixel(rx - s_colConnection, ry - s_rowConnection, (dataFirst<<8) | data);
+    }
 
     if (s_verticalMode & 0b00100000)
     {

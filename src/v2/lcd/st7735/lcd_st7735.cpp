@@ -38,6 +38,17 @@ void DisplayST7735_128x128x16_SPI::end()
     DisplayST7735_128x128x16::end();
     m_spi.end();
 }
+void DisplayST7735_80x160x16_SPI::begin()
+{
+    m_spi.begin();
+    DisplayST7735_80x160x16::begin();
+}
+
+void DisplayST7735_80x160x16_SPI::end()
+{
+    DisplayST7735_80x160x16::end();
+    m_spi.end();
+}
 void DisplayST7735_128x160x16_SPI::begin()
 {
     m_spi.begin();
