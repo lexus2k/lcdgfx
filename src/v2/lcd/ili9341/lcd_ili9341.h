@@ -120,7 +120,7 @@ public:
     void rotateOutput(uint8_t rotate);
 
 private:
-    const int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                       ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceILI9341<I>> &m_base; ///< basic lcd display support interface
     uint8_t m_rotation = 0x00;
     uint8_t m_rotate_output = 0x00;
@@ -378,4 +378,3 @@ private:
 /**
  * @}
  */
-
