@@ -221,13 +221,13 @@ void sdl_il9163_data(uint8_t data)
     int rx, ry;
     if (s_verticalMode & 0b00100000)
     {
-        rx = (s_verticalMode & 0b01000000) ? (sdl_il9163.width - 1 - x) : x;
-        ry = (s_verticalMode & 0b10000000) ? (sdl_il9163.height - 1 - y) : y;
+        rx = (s_verticalMode & 0b01000000) ? (sdl_il9163.width + 2 * s_colConnection - 1 - x) : x;
+        ry = (s_verticalMode & 0b10000000) ? (sdl_il9163.height + 2 * s_rowConnection - 1 - y) : y;
     }
     else
     {
-        rx = (s_verticalMode & 0b10000000) ? (sdl_il9163.width - 1 - x) : x;
-        ry = (s_verticalMode & 0b01000000) ? (sdl_il9163.height - 1 - y) : y;
+        rx = (s_verticalMode & 0b10000000) ? (sdl_il9163.width + 2 * s_colConnection - 1 - x) : x;
+        ry = (s_verticalMode & 0b01000000) ? (sdl_il9163.height + 2 * s_rowConnection - 1 - y) : y;
     }
     if ( rx >= s_colConnection && ry >= s_rowConnection && rx < TOTAL_COLUMNS && ry < TOTAL_ROWS )
     {

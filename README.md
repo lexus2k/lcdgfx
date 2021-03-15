@@ -123,10 +123,7 @@ If you found any problem or have any idea, please, report to Issues section.
 | sh1106 128x64 | X | X |   |   |
 | sh1107 128x64 | X | X |   |   |
 | sh1107 64x128 | X | X |   |   |
-| ssd1306 128x64 | X | X |   |   |
-| ssd1306 128x32 | X | X |   |   |
-| ssd1306 64x48 | X | X |   |   |
-| ssd1306 64x32 | X | X |   |   |
+| ssd1306 64x32, 64x48, 128x64, 128x32 | X | X |   |   |
 | ssd1325 128x64 | X | X |   |   |
 | ssd1327 128x128 | X | X |   |   |
 | ssd1331 96x64 |   | X | X |   |
