@@ -140,10 +140,10 @@ class Generator:
             chars = self.source.get_group_chars(group)
             total_size += 3
             if sys.version_info < (3, 0):
-                output_string.append("// GROUP first '%s' total %d chars" % (chars[0].encode("utf-8"), len(chars)))
+                output_string.append("// GROUP first '%s' total %d chars" % (valid_char(chars[0]).encode("utf-8"), len(chars)))
             else:
                 chars  = list(chars)
-                output_string.append("// GROUP first '%s' total %d chars" % (chars[0], len(chars)))
+                output_string.append("// GROUP first '%s' total %d chars" % (valid_char(chars[0]), len(chars)))
             output_string.append("//  unicode(LSB,MSB)|count")
             output_string.append("    0x%02X, 0x%02X, 0x%02X, // unicode record" % \
                  ((ord(chars[0]) >> 8) & 0xFF, ord(chars[0]) & 0xFF, len(chars) & 0xFF))
