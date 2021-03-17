@@ -91,7 +91,7 @@ class FontContainer:
     def getString(self, s):
         full_array = []
         for y in range(self.height):
-            row = ""
+            row = "//"
             for ch in s:
                data = self._find_char_data(ch)
                if data is None:
