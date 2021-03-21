@@ -201,7 +201,7 @@ def generate_custom_def(name, type=["void",""], code=[]):
     if init is not None:
         return None
     delc = get_val_by_path("functions/" + name + "/decl", type)
-    lines = [ "template <class I>", delc[0] + \
+    lines = [ "template <class I> " + delc[0] + \
               " Interface~CONTROLLER~<I>::" + name + "(" + \
               ', '.join(delc[1:]) +")", "{" ]
     code = get_val_by_path("functions/" + name + "/code",code)

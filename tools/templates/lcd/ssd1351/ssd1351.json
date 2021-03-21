@@ -15,8 +15,9 @@
         },
         "functions":
         {
-            "interface_list": ["setRotation"],
-            "setRotation": {}
+            "interface_list": ["setRotation", "setRgbMode"],
+            "setRotation": {},
+            "setRgbMode": {}
         },
         "interfaces":
         {

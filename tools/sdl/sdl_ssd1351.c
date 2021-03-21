@@ -37,6 +37,7 @@ static uint8_t s_incrementMode = 0;
 static uint8_t s_topToBottom = 0;
 static uint8_t s_leftToRight = 0;
 static uint8_t detected = 0;
+static uint8_t s_rgbMode = 0;
 
 
 static int sdl_ssd1351_detect(uint8_t data)
@@ -58,6 +59,7 @@ static void sdl_ssd1351_process_data(uint8_t data)
             {
                 s_incrementMode = data & 0x01;
                 s_leftToRight = data & 0x02;
+                s_rgbMode = data & 0x04;
                 s_topToBottom = data & 0x10;
 
                 s_commandId = SSD_COMMAND_NONE;
@@ -130,7 +132,7 @@ void sdl_ssd1351_data(uint8_t data)
         return;
     }
     firstByte = 1;
-    sdl_put_pixel(x, y, (dataFirst<<8) | data);
+    sdl_put_pixel(x, y, s_rgbMode ? ((dataFirst<<8) | data) : ((data<<8) | dataFirst));
 
     if (s_incrementMode)
     {
