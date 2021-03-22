@@ -1,5 +1,5 @@
     uint8_t ram_mode;
-    if ((rotation^m_rotation) & 0x01)
+    if ( (rotation ^ m_rotation) & 0x01 )
     {
         m_base.swapDimensions();
     }
@@ -7,24 +7,24 @@
     this->start();
     setDataMode(0);
     this->send( 0xA0 );
-    switch (m_rotation)
+    switch ( m_rotation )
     {
-    // NORMAL FULL COLOR MODE
-    case 0:
-        ram_mode = 0b00110000;
-        break;
-    case 1: // 90 degree CW
-        ram_mode = 0b00110011;
-        break;
-    case 2: // 180 degree CW
-        ram_mode = 0B00100010;
-        break;
-    case 3: // 270 degree CW
-    default:
-        ram_mode = 0b00100001;
-        break;
+        // NORMAL FULL COLOR MODE
+        case 0:
+            ram_mode = 0b00110000;
+            break;
+        case 1: // 90 degree CW
+            ram_mode = 0b00110011;
+            break;
+        case 2: // 180 degree CW
+            ram_mode = 0B00100010;
+            break;
+        case 3: // 270 degree CW
+        default:
+            ram_mode = 0b00100001;
+            break;
     }
-    setDataMode(1);  // According to datasheet all args must be passed in data mode
+    setDataMode(1); // According to datasheet all args must be passed in data mode
     this->send( ram_mode | m_rgbMode );
     this->stop();
 

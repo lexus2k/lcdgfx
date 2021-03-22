@@ -1,6 +1,5 @@
 
-static const PROGMEM uint8_t s_~CONTROLLER~_lcd~RESOLUTION~_initData[] =
-{
+static const PROGMEM uint8_t s_~CONTROLLER~_lcd~RESOLUTION~_initData[] = {
 ~INIT~
 };
 

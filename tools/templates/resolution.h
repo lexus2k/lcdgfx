@@ -26,4 +26,3 @@ protected:
      */
     void end() override;
 };
-

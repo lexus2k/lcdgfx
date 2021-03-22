@@ -1,5 +1,5 @@
     uint8_t ram_mode;
-    if ((rotation^m_rotation) & 0x01)
+    if ( (rotation ^ m_rotation) & 0x01 )
     {
         m_base.swapDimensions();
     }
@@ -9,22 +9,22 @@
     this->send(0x28);
     this->send(0x36);
     setDataMode(1);
-    switch (m_rotation)
+    switch ( m_rotation )
     {
-    case 0:
-        ram_mode = m_rotate_output ? 0b11100100: 0b10000100;
-        break;
-    case 1: // 90 degree CW
-        ram_mode = 0b11100000;
-        break;
-    case 2: // 180 degree CW
-        ram_mode = 0b01010100;
-        break;
-    default: // 270 degree CW
-        ram_mode = 0b00100000;
-        break;
+        case 0:
+            ram_mode = m_rotate_output ? 0b11100100: 0b10000100;
+            break;
+        case 1: // 90 degree CW
+            ram_mode = 0b11100000;
+            break;
+        case 2: // 180 degree CW
+            ram_mode = 0b01010100;
+            break;
+        default: // 270 degree CW
+            ram_mode = 0b00100000;
+            break;
     }
-    this->send( ram_mode | m_rgb_bit );
+    this->send(ram_mode | m_rgb_bit);
     setDataMode(0);
     this->send(0x29);
     this->stop();

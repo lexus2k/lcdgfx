@@ -217,7 +217,7 @@ def generate_set_block_content():
              "    commandStart();" ]
     lines.append("    this->send({0});".format(get_val_by_path("options/col_cmd", "0x22")))
     if not get_val_by_path("options/args_in_cmd_mode", False):
-        lines.append("    setDataMode(1);  // According to datasheet all args must be passed in data mode")
+        lines.append("    setDataMode(1); // According to datasheet all args must be passed in data mode")
     if get_val_by_path("options/rowcol_bits",8) != 8:
         lines.append("    this->send(0);")
     if get_val_by_path("options/column_div", 1) > 1:
@@ -236,7 +236,7 @@ def generate_set_block_content():
         lines.append("    setDataMode(0);")
     lines.append("    this->send({0});".format(get_val_by_path("options/row_cmd", "0x72")))
     if not get_val_by_path("options/args_in_cmd_mode", False):
-        lines.append("    setDataMode(1);  // According to datasheet all args must be passed in data mode")
+        lines.append("    setDataMode(1); // According to datasheet all args must be passed in data mode")
     if get_val_by_path("options/rowcol_bits",8) != 8:
         lines.append("    this->send(0);")
     lines.append("    this->send(y);")
@@ -247,7 +247,7 @@ def generate_set_block_content():
         lines.append("    setDataMode(0);")
     if get_val_by_path("options/exit_cmd_mode_command", None) is not None:
         lines.append("    this->send({0});".format( get_val_by_path("options/exit_cmd_mode_command", None) ) )
-    lines.extend( [ "    if (m_dc >= 0)",
+    lines.extend( [ "    if ( m_dc >= 0 )",
                     "    {",
                     "        setDataMode(1);",
                     "    }",

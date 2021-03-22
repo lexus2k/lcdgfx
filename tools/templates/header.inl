@@ -5,7 +5,7 @@
 #include "nano_gfx_types.h"
 
 #ifndef CMD_ARG
-#define CMD_ARG     0xFF
+#define CMD_ARG 0xFF
 #endif
 
 ~FUNCS_DEF~

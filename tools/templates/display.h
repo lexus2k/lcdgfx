@@ -29,4 +29,3 @@ protected:
      */
     void end() override;
 };
-

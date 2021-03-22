@@ -3,14 +3,14 @@
     this->start();
     setDataMode(0);
     this->send(0x2A);
-    setDataMode(1);  // According to datasheet all args must be passed in data mode
+    setDataMode(1); // According to datasheet all args must be passed in data mode
     this->send(x >> 8);
     this->send(x & 0xFF);
     this->send(rx >> 8);
     this->send(rx & 0xFF);
     setDataMode(0);
     this->send(0x2B);
-    setDataMode(1);  // According to datasheet all args must be passed in data mode
+    setDataMode(1); // According to datasheet all args must be passed in data mode
     this->send(y >> 8);
     this->send(y & 0xFF);
     this->send((m_base.height() - 1) >> 8);
