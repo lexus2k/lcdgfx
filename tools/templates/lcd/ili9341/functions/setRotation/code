@@ -11,7 +11,7 @@
     setDataMode(1);
     switch ( m_rotation )
     {
-        case 0:
+        case 0: // 0 degree CW
             ram_mode = m_rotate_output ? 0b11100100: 0b10000100;
             break;
         case 1: // 90 degree CW

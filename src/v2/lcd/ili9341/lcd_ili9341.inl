@@ -97,7 +97,9 @@ template <class I> void InterfaceILI9341<I>::setRotation(uint8_t rotation)
     setDataMode(1);
     switch ( m_rotation )
     {
-        case 0: ram_mode = m_rotate_output ? 0b11100100 : 0b10000100; break;
+        case 0: // 0 degree CW
+            ram_mode = m_rotate_output ? 0b11100100 : 0b10000100;
+            break;
         case 1: // 90 degree CW
             ram_mode = 0b11100000;
             break;

@@ -126,7 +126,6 @@ private:
     uint8_t m_rotate_output = 0x00;
     static const uint8_t m_rgb_bit = 0b00001000;
 };
-
 /**
  * Class implements basic functions for 16-bit mode of ILI9341-based displays
  */

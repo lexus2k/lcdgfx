@@ -122,7 +122,6 @@ private:
     uint8_t m_rotation = 0x00;                    ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
     uint8_t m_rgbMode = 0x04;                     ///< RGB mode display
 };
-
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
  */

@@ -99,7 +99,9 @@ template <class I> void InterfaceSSD1351<I>::setRotation(uint8_t rotation)
     switch ( m_rotation )
     {
         // NORMAL FULL COLOR MODE
-        case 0: ram_mode = 0b00110000; break;
+        case 0: // 0 degree CW
+            ram_mode = 0b00110000;
+            break;
         case 1: // 90 degree CW
             ram_mode = 0b00110011;
             break;

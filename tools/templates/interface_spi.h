@@ -7,4 +7,3 @@ template <class I> class Interface~CONTROLLER~: public I
 public:
 ~FUNCS_DECL~~FIELDS_DECL~
 };
-

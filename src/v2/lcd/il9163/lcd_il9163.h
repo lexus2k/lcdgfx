@@ -114,7 +114,6 @@ private:
     uint8_t m_rotation = 0x00;
     static const uint8_t m_rgb_bit = 0b00000000;
 };
-
 /**
  * Class implements basic functions for 16-bit mode of IL9163-based displays
  */

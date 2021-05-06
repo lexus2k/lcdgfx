@@ -107,7 +107,6 @@ private:
     uint8_t m_column = 0;
     uint8_t m_page = 0;
 };
-
 /**
  * Class implements basic functions for 1-bit mode of PCD8544-based displays
  */

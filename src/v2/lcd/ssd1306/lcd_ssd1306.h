@@ -167,7 +167,6 @@ private:
     NanoDisplayBase<InterfaceSSD1306<I>> &m_base; ///< basic lcd display support interface
     uint8_t m_startLine = 0;
 };
-
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */

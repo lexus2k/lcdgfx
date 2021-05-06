@@ -107,7 +107,9 @@ template <class I> void InterfaceST7735<I>::setRotation(uint8_t rotation)
     setDataMode(1);
     switch ( m_rotation )
     {
-        case 0: ram_mode = 0b00000000; break;
+        case 0: // 0 degree CW
+            ram_mode = 0b00000000;
+            break;
         case 1: // 90 degree CW
             ram_mode = 0b01100000;
             break;
