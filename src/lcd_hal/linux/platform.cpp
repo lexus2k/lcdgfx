@@ -309,7 +309,7 @@ void lcd_unregisterGpioEvent(int pin)
 
 int lcd_gpioRead(int pin)
 {
-    return LCD_LOW;
+    return gpio_read(pin) ? LCD_HIGH : LCD_LOW;
 }
 
 int lcd_adcRead(int pin)
