@@ -99,20 +99,25 @@ template <class I> void InterfaceSSD1351<I>::setRotation(uint8_t rotation)
     switch ( m_rotation )
     {
         // NORMAL FULL COLOR MODE
-        case 0: ram_mode = 0b00110100; break;
+        case 0: ram_mode = 0b00110000; break;
         case 1: // 90 degree CW
-            ram_mode = 0b00110111;
+            ram_mode = 0b00110011;
             break;
         case 2: // 180 degree CW
-            ram_mode = 0B00100110;
+            ram_mode = 0B00100010;
             break;
         case 3: // 270 degree CW
-        default: ram_mode = 0b00100101; break;
+        default: ram_mode = 0b00100001; break;
     }
     setDataMode(1); // According to datasheet all args must be passed in data mode
-    this->send(ram_mode);
-    //    this->send( ram_mode | m_rgb_bit );
+    this->send(ram_mode | m_rgbMode);
     this->stop();
+}
+
+template <class I> void InterfaceSSD1351<I>::setRgbMode(uint8_t mode)
+{
+    this->m_rgbMode = mode ? 0x04 : 0x00;
+    this->setRotation(m_rotation);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

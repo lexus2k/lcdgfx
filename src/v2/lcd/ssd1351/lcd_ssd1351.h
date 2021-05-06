@@ -108,10 +108,19 @@ public:
      */
     void setRotation(uint8_t rotation);
 
+    /**
+     * @brief Sets RGB mode used by dispay controller.
+     *
+     * Sets RGB mode used by display controller. 0 - for BGR, 1 - for RGB
+     * @param mode rgb mode for SSD1351 controller: 0 - BGR, 1 - RGB
+     */
+    void setRgbMode(uint8_t mode);
+
 private:
     const int8_t m_dc = -1;                       ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSSD1351<I>> &m_base; ///< basic lcd display support interface
     uint8_t m_rotation = 0x00;                    ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
+    uint8_t m_rgbMode = 0x04;                     ///< RGB mode display
 };
 
 /**
@@ -174,7 +183,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SSD1351 128x128x16 lcd display in 16 bit mode over SPI
  */
