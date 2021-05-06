@@ -187,7 +187,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements ILI9341 240x320x16 lcd display in 16 bit mode over SPI
  */
@@ -294,7 +293,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements ILI9341 128x160x16 lcd display in 16 bit mode over SPI
  */

@@ -175,7 +175,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements IL9163 128x128x16 lcd display in 16 bit mode over SPI
  */
@@ -282,7 +281,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements IL9163 128x160x16 lcd display in 16 bit mode over SPI
  */

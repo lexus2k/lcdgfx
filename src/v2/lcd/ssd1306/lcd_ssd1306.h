@@ -228,7 +228,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SSD1306 64x32 lcd display in 1 bit mode over SPI
  */
@@ -384,7 +383,6 @@ public:
 private:
     InterfaceSSD1306<I> m_i2c;
 };
-
 /**
  * Template class implements SSD1306 64x32 lcd display in 1 bit mode over custom interface implementation
  * (user-defined interface implementation). I - user custom interface class.
@@ -461,7 +459,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SSD1306 64x48 lcd display in 1 bit mode over SPI
  */
@@ -617,7 +614,6 @@ public:
 private:
     InterfaceSSD1306<I> m_i2c;
 };
-
 /**
  * Template class implements SSD1306 64x48 lcd display in 1 bit mode over custom interface implementation
  * (user-defined interface implementation). I - user custom interface class.
@@ -694,7 +690,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SSD1306 128x32 lcd display in 1 bit mode over SPI
  */
@@ -850,7 +845,6 @@ public:
 private:
     InterfaceSSD1306<I> m_i2c;
 };
-
 /**
  * Template class implements SSD1306 128x32 lcd display in 1 bit mode over custom interface implementation
  * (user-defined interface implementation). I - user custom interface class.
@@ -927,7 +921,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SSD1306 128x64 lcd display in 1 bit mode over SPI
  */
@@ -1083,7 +1076,6 @@ public:
 private:
     InterfaceSSD1306<I> m_i2c;
 };
-
 /**
  * Template class implements SSD1306 128x64 lcd display in 1 bit mode over custom interface implementation
  * (user-defined interface implementation). I - user custom interface class.

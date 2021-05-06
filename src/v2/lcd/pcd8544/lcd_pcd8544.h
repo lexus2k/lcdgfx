@@ -168,7 +168,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements PCD8544 84x48 lcd display in 1 bit mode over SPI
  */

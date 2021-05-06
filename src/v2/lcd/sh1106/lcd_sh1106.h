@@ -231,7 +231,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SH1106 128x64 lcd display in 1 bit mode over SPI
  */
@@ -387,7 +386,6 @@ public:
 private:
     InterfaceSH1106<I> m_i2c;
 };
-
 #include "lcd_sh1106.inl"
 
 /**

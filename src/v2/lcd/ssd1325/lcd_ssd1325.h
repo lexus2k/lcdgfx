@@ -165,7 +165,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SSD1325 128x64 lcd display in 4 bit mode over SPI
  */
@@ -321,7 +320,6 @@ public:
 private:
     InterfaceSSD1325<I> m_i2c;
 };
-
 #include "lcd_ssd1325.inl"
 
 /**

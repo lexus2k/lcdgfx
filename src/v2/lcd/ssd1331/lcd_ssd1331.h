@@ -207,7 +207,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SSD1331 96x64x8 lcd display in 8 bit mode over SPI
  */
@@ -346,7 +345,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SSD1331 96x64x16 lcd display in 16 bit mode over SPI
  */

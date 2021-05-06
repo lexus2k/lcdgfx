@@ -9,7 +9,7 @@ static const PROGMEM uint8_t s_~CONTROLLER~_lcd~RESOLUTION~_initData[] = {
 
 template <class I> void Display~CONTROLLER~_~RESOLUTION~<I>::begin()
 {
-    ssd1306_resetController2( this->m_rstPin, ~RESET_DURATION~ );
+    ssd1306_resetController2(this->m_rstPin, ~RESET_DURATION~);
     this->m_w = ~WIDTH~;
     this->m_h = ~HEIGHT~;
     // Give LCD some time to initialize. Refer to ~CONTROLLER~ datasheet

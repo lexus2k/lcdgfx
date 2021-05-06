@@ -250,7 +250,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SH1107 128x64 lcd display in 1 bit mode over SPI
  */
@@ -406,7 +405,6 @@ public:
 private:
     InterfaceSH1107<I> m_i2c;
 };
-
 /**
  * Class implements basic functions for 1-bit mode of SH1107-based displays
  */
@@ -435,7 +433,6 @@ protected:
      */
     void end() override;
 };
-
 /**
  * Class implements SH1107 64x128 lcd display in 1 bit mode over SPI
  */
@@ -591,7 +588,6 @@ public:
 private:
     InterfaceSH1107<I> m_i2c;
 };
-
 #include "lcd_sh1107.inl"
 
 /**
