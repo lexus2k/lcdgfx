@@ -406,7 +406,21 @@ template <class I> uint8_t NanoDisplayOps16<I>::printChar(uint8_t c)
         this->m_textMode |= CANVAS_MODE_TRANSPARENT;
     }
     this->m_textMode = mode;
+    if ( char_info.height < (lcdint_t)this->m_font->getHeader().height )
+    {
+        this->invertColors();
+        this->fillRect(this->m_cursorX, this->m_cursorY + char_info.height, this->m_cursorX + char_info.width - 1,
+                       this->m_cursorY + (lcdint_t)this->m_font->getHeader().height - 1);
+        this->invertColors();
+    }
     this->m_cursorX += (lcdint_t)(char_info.width + char_info.spacing);
+    if ( char_info.spacing > 0 )
+    {
+        this->invertColors();
+        this->fillRect(this->m_cursorX - char_info.spacing, this->m_cursorY, this->m_cursorX - 1,
+                       this->m_cursorY + (lcdint_t)this->m_font->getHeader().height - 1);
+        this->invertColors();
+    }
     if ( ((this->m_textMode & CANVAS_TEXT_WRAP_LOCAL) &&
           (this->m_cursorX > ((lcdint_t)this->m_w - (lcdint_t)this->m_font->getHeader().width))) ||
          ((this->m_textMode & CANVAS_TEXT_WRAP) &&
