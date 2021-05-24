@@ -167,7 +167,7 @@ void lcd_randomSeed(int seed)
 {
 }
 
-void attachInterrupt(int pin, void (*interrupt)(), int level)
+void lcd_attachInterrupt(int pin, void (*interrupt)(), int level)
 {
 }
 

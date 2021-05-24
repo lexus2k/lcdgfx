@@ -63,7 +63,7 @@ void lcd_gpioMode(int pin, int mode){};
 #endif
 
 void lcd_randomSeed(int seed){};
-void attachInterrupt(int pin, void (*interrupt)(void), int level){};
+void lcd_attachInterrupt(int pin, void (*interrupt)(void), int level){};
 uint8_t lcd_pgmReadByte(const void *ptr)
 {
     return *((const uint8_t *)ptr);

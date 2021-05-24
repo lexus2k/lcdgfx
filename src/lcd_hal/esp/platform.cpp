@@ -104,7 +104,7 @@ void lcd_randomSeed(int seed)
     // TODO: Not implemented
 }
 
-void attachInterrupt(int pin, void (*interrupt)(), int level)
+void lcd_attachInterrupt(int pin, void (*interrupt)(), int level)
 {
     // TODO: Not implemented
 }

@@ -158,6 +158,7 @@ extern "C"
 #define lcd_micros micros
 #define lcd_delay delay
 #define lcd_delayUs delayMicroseconds
+#define lcd_attachInterrupt attachInterrupt
 
 #define lcd_random random
 #define lcd_randomSeed randomSeed
@@ -243,7 +244,7 @@ extern "C"
      * @param interrupt interrupt handler
      * @param level gpio state to aim interrupt
      */
-    void attachInterrupt(int pin, void (*interrupt)(), int level);
+    void lcd_attachInterrupt(int pin, void (*interrupt)(), int level);
 
     /**
      * Forces current thread to sleeps for specified number of milliseconds

@@ -148,7 +148,7 @@ uint32_t lcd_millis()
     return 0;
 }
 
-void attachInterrupt(int pin, void (*interrupt)(), int level)
+void lcd_attachInterrupt(int pin, void (*interrupt)(), int level)
 {
     // TODO: Not implemented
 }
