@@ -14,10 +14,11 @@
   * [Setting up](#setting-up)
   * [Supported displays](#supported-displays)
   * [Supported platforms](#supported-platforms)
+  * [Useful tools](#useful-tools)
   * [Projects using lcdgfx](#projects-using-lcdgfx)
   * [The goals of lcdgfx library](#the-goals-of-ldcgfx-library)
   * [License](#license)
-
+  
 [tocend]: # (toc end)
 
 
@@ -175,11 +176,20 @@ Digispark users, please check compilation options in your Arduino prior to using
 lcdgfx library requires at least c++11 and c99 (by default Digispark package misses the options
 -std=gnu11, -std=gnu++11).
 
+## Useful tools
+
+[Tim's Image Pixel Editor](https://tims-pc-applications.blogspot.com/2020/05/tims-image-pixel-editor.html)
+This is a little application made by Tim Jackson to edit and create Images and fonts for the small monochrome displays.
+
+[Built-in font generator](https://github.com/lexus2k/lcdgfx/wiki/How-to-create-new-font-for-the-library)
+Lcdgfx library has built-in Python script to generate lcd fonts from ttf files.
+
 ## Projects using lcdgfx
 
  * [GUIslice](https://github.com/ImpulseAdventure/GUIslice) - nice platform independent GUI library for embedded systems
  * [Tension Meter](https://www.hackster.io/tangielsky/tension-meter-for-saw-blades-on-band-saws-with-arduino-3d3298)
  * [ESP32-CAM with Capacitive Touch Buttons and OLED](https://robotzero.one/esp32-cam-oled-capacitive-touch-buttons)
+
 
 ## The goals of lcdgfx library
 
@@ -194,7 +204,7 @@ The library is free. If this project helps you, you can give me a cup of coffee.
 
 MIT License
 
-Copyright (c) 2016-2020, Alexey Dynda
+Copyright (c) 2016-2021, Alexey Dynda
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
