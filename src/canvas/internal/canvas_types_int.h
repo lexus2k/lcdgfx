@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2017-2019, Alexey Dynda
+    Copyright (c) 2017-2019, 2021 Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,7 @@
     SOFTWARE.
 */
 /**
- * @file canvas/internal/canvas_types.h Internal structures of canvas gfx library
+ * @file canvas/internal/canvas_types_int.h Internal structures of canvas gfx library
  */
 
 #pragma once
@@ -40,14 +40,14 @@ static inline uint8_t pgm_read_byte(const void *ptr)
 #endif
 #endif
 
-#ifndef min
+#ifndef __min
 /** Macros returning minimum of 2 numbers */
-#define min(a, b) ((a) < (b) ? (a) : (b))
+#define __min(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
-#ifndef max
+#ifndef __max
 /** Macros returning maximum of 2 numbers */
-#define max(a, b) ((a) > (b) ? (a) : (b))
+#define __max(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
 #ifndef canvas_swap_data

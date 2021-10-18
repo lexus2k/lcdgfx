@@ -260,8 +260,8 @@ template <> void NanoCanvasOps<1>::drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t 
         return;
     if ( (x2 < 0) || (x1 >= (lcdint_t)m_w) )
         return;
-    x1 = max(0, x1);
-    x2 = min(x2, (lcdint_t)(m_w - 1));
+    x1 = __max(0, x1);
+    x2 = __min(x2, (lcdint_t)(m_w - 1));
     uint16_t addr = YADDR1(y1) + x1;
     uint8_t mask = (1 << (y1 & 0x7));
     if ( m_color )
@@ -291,8 +291,8 @@ template <> void NanoCanvasOps<1>::drawVLine(lcdint_t x1, lcdint_t y1, lcdint_t 
         return;
     if ( (y2 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    y1 = max(0, y1);
-    y2 = min(y2, (lcdint_t)(m_h - 1));
+    y1 = __max(0, y1);
+    y2 = __min(y2, (lcdint_t)(m_h - 1));
 
     uint16_t addr = YADDR1(y1) + x1;
     if ( (y1 & 0xFFF8) == (y2 & 0xFFF8) )
@@ -342,10 +342,10 @@ template <> void NanoCanvasOps<1>::fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x
         return;
     if ( (y2 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    x1 = max(0, x1);
-    x2 = min(x2, (lcdint_t)(m_w - 1));
-    y1 = max(0, y1);
-    y2 = min(y2, (lcdint_t)(m_h - 1));
+    x1 = __max(0, x1);
+    x2 = __min(x2, (lcdint_t)(m_w - 1));
+    y1 = __max(0, y1);
+    y2 = __min(y2, (lcdint_t)(m_h - 1));
     uint8_t bank1 = (y1 >> 3);
     uint8_t bank2 = (y2 >> 3);
     for ( uint8_t bank = bank1; bank <= bank2; bank++ )
@@ -514,8 +514,8 @@ template <> void NanoCanvasOps<4>::drawVLine(lcdint_t x1, lcdint_t y1, lcdint_t 
         return;
     if ( (y2 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    y1 = max(y1, 0);
-    y2 = min(y2, (lcdint_t)m_h - 1) - y1;
+    y1 = __max(y1, 0);
+    y2 = __min(y2, (lcdint_t)m_h - 1) - y1;
     uint8_t *buf = m_buf + YADDR4(y1) + x1 / 2;
     do
     {
@@ -538,8 +538,8 @@ template <> void NanoCanvasOps<4>::drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t 
         return;
     if ( (y1 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    x1 = max(x1, 0);
-    x2 = min(x2, (lcdint_t)m_w - 1);
+    x1 = __max(x1, 0);
+    x2 = __min(x2, (lcdint_t)m_w - 1);
     uint8_t *buf = m_buf + YADDR4(y1) + x1 / 2;
     for ( lcdint_t x = x1; x <= x2; x++ )
     {
@@ -570,10 +570,10 @@ template <> void NanoCanvasOps<4>::fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x
         return;
     if ( (y2 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    x1 = max(x1, 0);
-    x2 = min(x2, (lcdint_t)m_w - 1);
-    y1 = max(y1, 0);
-    y2 = min(y2, (lcdint_t)m_h - 1);
+    x1 = __max(x1, 0);
+    x2 = __min(x2, (lcdint_t)m_w - 1);
+    y1 = __max(y1, 0);
+    y2 = __min(y2, (lcdint_t)m_h - 1);
     uint8_t *buf = m_buf + YADDR4(y1) + x1 / 2;
     for ( lcdint_t y = y1; y <= y2; y++ )
     {
@@ -760,9 +760,9 @@ template <> void NanoCanvasOps<8>::drawVLine(lcdint_t x1, lcdint_t y1, lcdint_t 
         return;
     if ( (y2 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    y1 = max(y1, 0);
+    y1 = __max(y1, 0);
     uint8_t *buf = m_buf + YADDR8(y1) + x1;
-    y2 = min(y2, (lcdint_t)m_h - 1) - y1;
+    y2 = __min(y2, (lcdint_t)m_h - 1) - y1;
     do
     {
         *buf = m_color;
@@ -783,8 +783,8 @@ template <> void NanoCanvasOps<8>::drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t 
         return;
     if ( (y1 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    x1 = max(x1, 0);
-    x2 = min(x2, (lcdint_t)m_w - 1);
+    x1 = __max(x1, 0);
+    x2 = __min(x2, (lcdint_t)m_w - 1);
     uint8_t *buf = m_buf + YADDR8(y1) + x1;
     for ( lcdint_t x = 0; x <= x2 - x1; x++ )
     {
@@ -811,10 +811,10 @@ template <> void NanoCanvasOps<8>::fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x
         return;
     if ( (y2 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    x1 = max(x1, 0);
-    x2 = min(x2, (lcdint_t)m_w - 1);
-    y1 = max(y1, 0);
-    y2 = min(y2, (lcdint_t)m_h - 1);
+    x1 = __max(x1, 0);
+    x2 = __min(x2, (lcdint_t)m_w - 1);
+    y1 = __max(y1, 0);
+    y2 = __min(y2, (lcdint_t)m_h - 1);
     uint8_t *buf = m_buf + YADDR8(y1) + x1;
     for ( lcdint_t y = y1; y <= y2; y++ )
     {
@@ -869,7 +869,7 @@ void NanoCanvasOps<8>::drawBitmap1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, lc
         {
             uint8_t data = pgm_read_byte(bitmap);
             uint16_t addr = YADDR8(y) + x;
-            for ( uint8_t n = 0; n < min(y2 - y + 1, 8); n++ )
+            for ( uint8_t n = 0; n < __min(y2 - y + 1, 8); n++ )
             {
                 if ( data & (1 << (n + offs)) )
                     m_buf[addr] = m_color;
@@ -990,9 +990,9 @@ template <> void NanoCanvasOps<16>::drawVLine(lcdint_t x1, lcdint_t y1, lcdint_t
         return;
     if ( (y2 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    y1 = max(y1, 0);
+    y1 = __max(y1, 0);
     uint8_t *buf = m_buf + YADDR16(y1) + (x1 << 1);
-    y2 = min(y2, (lcdint_t)m_h - 1) - y1;
+    y2 = __min(y2, (lcdint_t)m_h - 1) - y1;
     do
     {
         buf[0] = m_color >> 8;
@@ -1014,8 +1014,8 @@ template <> void NanoCanvasOps<16>::drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t
         return;
     if ( (y1 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    x1 = max(x1, 0);
-    x2 = min(x2, (lcdint_t)m_w - 1);
+    x1 = __max(x1, 0);
+    x2 = __min(x2, (lcdint_t)m_w - 1);
     uint8_t *buf = m_buf + YADDR16(y1) + (x1 << 1);
     for ( lcdint_t x = 0; x <= x2 - x1; x++ )
     {
@@ -1043,10 +1043,10 @@ template <> void NanoCanvasOps<16>::fillRect(lcdint_t x1, lcdint_t y1, lcdint_t 
         return;
     if ( (y2 < 0) || (y1 >= (lcdint_t)m_h) )
         return;
-    x1 = max(x1, 0);
-    x2 = min(x2, (lcdint_t)m_w - 1);
-    y1 = max(y1, 0);
-    y2 = min(y2, (lcdint_t)m_h - 1);
+    x1 = __max(x1, 0);
+    x2 = __min(x2, (lcdint_t)m_w - 1);
+    y1 = __max(y1, 0);
+    y2 = __min(y2, (lcdint_t)m_h - 1);
     uint8_t *buf = m_buf + YADDR16(y1) + (x1 << 1);
     for ( lcdint_t y = y1; y <= y2; y++ )
     {
@@ -1102,7 +1102,7 @@ void NanoCanvasOps<16>::drawBitmap1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, l
         {
             uint8_t data = pgm_read_byte(bitmap);
             uint16_t addr = YADDR16(y) + (x << 1);
-            for ( uint8_t n = 0; n < min(y2 - y + 1, 8); n++ )
+            for ( uint8_t n = 0; n < __min(y2 - y + 1, 8); n++ )
             {
                 if ( data & (1 << (n + offs)) )
                 {
