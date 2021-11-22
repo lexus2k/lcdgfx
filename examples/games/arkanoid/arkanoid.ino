@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2019, Alexey Dynda
+    Copyright (c) 2016-2019, 2021 Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -73,9 +73,9 @@
 #ifdef ARKANOID_SSD1331
 DisplaySSD1331_96x64_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
 #elif defined(__AVR_ATtiny85__)
-DisplaySSD1306_128x64_I2C display(-1);
+DisplaySSD1306_128x64_I2C display(-1); // or (-1,{busId, addr, scl, sda, frequency})
 #else
-DisplaySSD1306_128x64_I2C display(-1);
+DisplaySSD1306_128x64_I2C display(-1); // or (-1,{busId, addr, scl, sda, frequency})
 #endif
 
 typedef struct

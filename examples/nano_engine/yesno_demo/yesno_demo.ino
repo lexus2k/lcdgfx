@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2020, Alexey Dynda
+    Copyright (c) 2020-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@
 #endif
 #define BUTTON_PIN     A0
 
-DisplaySSD1306_128x64_I2C display(-1);
+DisplaySSD1306_128x64_I2C display(-1); // or (-1,{busId, addr, scl, sda, frequency})
 NanoEngine1<DisplaySSD1306_128x64_I2C> engine(display);
 //DisplaySSD1306_128x64_SPI display(-1,{-1, 0, 1, 0, -1, -1); // Use this line for nano pi (RST not used, 0=CE, gpio1=D/C)
 //DisplaySSD1306_128x64_SPI display(3,{-1, 4, 5, 0,-1,-1});   // Use this line for Atmega328p (3=RST, 4=CE, 5=D/C)

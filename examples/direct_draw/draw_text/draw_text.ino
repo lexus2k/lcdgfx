@@ -34,7 +34,7 @@
 
 #include "lcdgfx.h"
 
-DisplaySSD1306_128x64_I2C display(-1);
+DisplaySSD1306_128x64_I2C display(-1); // or (-1,{busId, addr, scl, sda, frequency})
 //DisplaySSD1306_128x64_SPI display(-1,{-1, 0, 1, 0, -1, -1}); // Use this line for nano pi (RST not used, 0=CE, gpio1=D/C)
 //DisplaySSD1306_128x64_SPI display(3,{-1, 4, 5, 0,-1,-1});   // Use this line for Atmega328p (3=RST, 4=CE, 5=D/C)
 //DisplayST7735_128x160x16_SPI display(3,{-1, 4, 5, 0,-1,-1});

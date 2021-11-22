@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2019, Alexey Dynda
+    Copyright (c) 2018-2019, 2021 Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -38,7 +38,7 @@
 
 #include "lcdgfx.h"
 
-DisplaySSD1306_128x64_I2C display(-1);
+DisplaySSD1306_128x64_I2C display(-1); // or (-1,{busId, addr, scl, sda, frequency})
 
 /*
  * Define snowflake images directly in flash memory.
