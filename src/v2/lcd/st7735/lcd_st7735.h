@@ -128,7 +128,6 @@ private:
     lcdint_t m_offset_x = 0x00;
     lcdint_t m_offset_y = 0x00;
 };
-
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */

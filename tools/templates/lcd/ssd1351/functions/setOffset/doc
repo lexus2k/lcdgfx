@@ -1,0 +1,10 @@
+    /**
+     * @brief Sets display offset in GDRAM memory
+     *
+     * Some lcd displays do not use COM0, ROW0 lines. It depends on display manufacturer.
+     * So, in this case you need to use setOffset() method to tell the library about this
+     * hardware specific.
+     * This method sets GDRAM display offset in pixels
+     * @param ox x-axis offset in pixels
+     * @param oy y-axis offset in pixels
+     */

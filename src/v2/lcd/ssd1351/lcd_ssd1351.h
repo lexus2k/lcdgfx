@@ -109,6 +109,18 @@ public:
     void setRotation(uint8_t rotation);
 
     /**
+     * @brief Sets display offset in GDRAM memory
+     *
+     * Some lcd displays do not use COM0, ROW0 lines. It depends on display manufacturer.
+     * So, in this case you need to use setOffset() method to tell the library about this
+     * hardware specific.
+     * This method sets GDRAM display offset in pixels
+     * @param ox x-axis offset in pixels
+     * @param oy y-axis offset in pixels
+     */
+    void setOffset(lcdint_t ox, lcdint_t oy);
+
+    /**
      * @brief Sets RGB mode used by dispay controller.
      *
      * Sets RGB mode used by display controller. 0 - for BGR, 1 - for RGB
@@ -121,6 +133,8 @@ private:
     NanoDisplayBase<InterfaceSSD1351<I>> &m_base; ///< basic lcd display support interface
     uint8_t m_rotation = 0x00;                    ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
     uint8_t m_rgbMode = 0x04;                     ///< RGB mode display
+    lcdint_t m_offset_x = 0x00;                   ///< Display interconnection offset on x-axis
+    lcdint_t m_offset_y = 0x00;                   ///< Display interconnection offset on y-axis
 };
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
@@ -254,6 +268,112 @@ public:
     void end() override
     {
         DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceSSD1351<I> m_spi;
+};
+/**
+ * Class implements basic functions for 16-bit mode of SSD1351-based displays
+ */
+template <class I> class DisplaySSD1351_96x96x16: public DisplaySSD1351x16<I>
+{
+public:
+    /**
+     * Creates instance of SSD1351 96x96x16 controller class for 16-bit mode
+     *
+     * @param intf interface to use
+     * @param rstPin pin to use as HW reset pin for LCD display
+     */
+    DisplaySSD1351_96x96x16(I &intf, int8_t rstPin)
+        : DisplaySSD1351x16<I>(intf, rstPin)
+    {
+    }
+
+protected:
+    /**
+     * Basic SSD1351 96x96x16 initialization
+     */
+    void begin() override;
+
+    /**
+     * Basic SSD1351 deinitialization
+     */
+    void end() override;
+};
+/**
+ * Class implements SSD1351 96x96x16 lcd display in 16 bit mode over SPI
+ */
+class DisplaySSD1351_96x96x16_SPI: public DisplaySSD1351_96x96x16<InterfaceSSD1351<PlatformSpi>>
+{
+public:
+    /**
+     * @brief Inits 96x96x16 lcd display over spi (based on SSD1351 controller): 16-bit mode.
+     *
+     * Inits 96x96x16 lcd display over spi (based on SSD1351 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
+     */
+    explicit DisplaySSD1351_96x96x16_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
+        : DisplaySSD1351_96x96x16(m_spi, rstPin)
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{
+                    config.busId, {config.cs}, config.dc, config.frequency ?: 4400000, config.scl, config.sda})
+    {
+    }
+
+    /**
+     * Initializes SSD1351 lcd in 16-bit mode
+     */
+    void begin() override;
+
+    /**
+     * Closes connection to display
+     */
+    void end() override;
+
+private:
+    InterfaceSSD1351<PlatformSpi> m_spi;
+};
+
+/**
+ * Template class implements SSD1351 96x96x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I> class DisplaySSD1351_96x96x16_CustomSPI: public DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>
+{
+public:
+    /**
+     * @brief Inits 96x96x16 lcd display over spi (based on SSD1351 controller): 16-bit mode.
+     *
+     * Inits 96x96x16 lcd display over spi (based on SSD1351 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplaySSD1351_96x96x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
+        : DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>(m_spi, rstPin)
+        , m_spi(*this, dcPin, data...)
+    {
+    }
+
+    /**
+     * Initializes SSD1351 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>::end();
         m_spi.end();
     }
 

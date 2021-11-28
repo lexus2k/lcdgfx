@@ -38,3 +38,14 @@ void DisplaySSD1351_128x128x16_SPI::end()
     DisplaySSD1351_128x128x16::end();
     m_spi.end();
 }
+void DisplaySSD1351_96x96x16_SPI::begin()
+{
+    m_spi.begin();
+    DisplaySSD1351_96x96x16::begin();
+}
+
+void DisplaySSD1351_96x96x16_SPI::end()
+{
+    DisplaySSD1351_96x96x16::end();
+    m_spi.end();
+}
