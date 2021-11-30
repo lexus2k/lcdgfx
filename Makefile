@@ -42,6 +42,7 @@ help:
 	@echo "make library       build library"
 	@echo "make ssd1306_sdl   build SDL emulation library"
 	@echo "make cppcheck      run cppcheck tests"
+	@echo "make check SDL_EMULATION=y       run unit tests"
 	@echo ""
 	@echo "to build examples use scripts in tools subdir"
 	@echo "ARCH=<arch>        specify architecture: avr, linux, esp32"
