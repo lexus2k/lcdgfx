@@ -189,6 +189,7 @@ Lcdgfx library has built-in Python script to generate lcd fonts from ttf files.
  * [GUIslice](https://github.com/ImpulseAdventure/GUIslice) - nice platform independent GUI library for embedded systems
  * [Tension Meter](https://www.hackster.io/tangielsky/tension-meter-for-saw-blades-on-band-saws-with-arduino-3d3298)
  * [ESP32-CAM with Capacitive Touch Buttons and OLED](https://robotzero.one/esp32-cam-oled-capacitive-touch-buttons)
+ * [nice TinyTrackGPS](https://rafaelreyescarmona.github.io/TinyTrackGPS) by Rafael Reyes
 
 
 ## The goals of lcdgfx library
