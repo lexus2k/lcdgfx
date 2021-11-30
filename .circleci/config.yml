@@ -76,8 +76,8 @@ jobs:
       - save_cache:
           key: ESP32_SDK
           paths:
-            - /home/travis/esp
-            - /home/travis/.espressif
+            - ~/esp
+            - ~/.espressif
       - run:
           name: Building ESP32 code
           command: |
