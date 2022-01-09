@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2021, Alexey Dynda
+    Copyright (c) 2018-2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -510,6 +510,11 @@ public:
         __attribute__((noinline));
 
 protected:
+
+private:
+    lcdint_t m_lastRow = 0;
+    lcdint_t m_lastColumn = 0;
+    uint8_t m_lastByte = 0;
 };
 
 /**
