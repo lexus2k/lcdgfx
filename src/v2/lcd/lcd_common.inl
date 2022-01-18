@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019, Alexey Dynda
+    Copyright (c) 2019, 2021 Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,9 @@ template <class I> void _configureSpiDisplay(I &intf, const uint8_t *config, uin
             if ( command == CMD_DELAY )
             {
                 command = 1;
+                intf.stop(); // Force communication layer to send the data to LCD display - stop prevents buffering
                 lcd_delay(data == 0xFF ? 500 : data);
+                intf.commandStart();
             }
             else
             {
