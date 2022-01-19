@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2020,2022, Alexey Dynda
+    Copyright (c) 2016-2018, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -22,59 +22,12 @@
     SOFTWARE.
 */
 
-#include "menu.h"
+#ifndef _OWL_H_
+#define _OWL_H_
 
-LcdGfxMenu::LcdGfxMenu(const char **items, uint8_t count, const NanoRect &rect)
-{
-    menu.items = items;
-    menu.count = count;
-    menu.selection = 0;
-    menu.oldSelection = 0;
-    menu.scrollPosition = 0;
-    menu.top = rect.p1.y;
-    menu.left = rect.p1.x;
-    menu.width = rect.p2.x ? rect.width() : 0;
-    menu.height = rect.p2.y ? rect.height() : 0;
-}
+// ----------------------------------------------------------------------------
+#include "lcdgfx.h"
 
-void LcdGfxMenu::down()
-{
-    if ( menu.selection < menu.count - 1 )
-    {
-        menu.selection++;
-    }
-    else
-    {
-        menu.selection = 0;
-    }
-}
+extern const uint8_t Owl [] PROGMEM;
 
-void LcdGfxMenu::up()
-{
-    if ( menu.selection > 0 )
-    {
-        menu.selection--;
-    }
-    else
-    {
-        menu.selection = menu.count - 1;
-    }
-}
-
-uint8_t LcdGfxMenu::selection()
-{
-    return menu.selection;
-}
-
-void LcdGfxMenu::setRect(const NanoRect &rect)
-{
-    menu.top = rect.p1.y;
-    menu.left = rect.p1.x;
-    menu.width = rect.p2.x ? rect.width() : 0;
-    menu.height = rect.p2.y ? rect.height() : 0;
-}
-
-uint8_t LcdGfxMenu::size()
-{
-    return menu.count;
-}
+#endif

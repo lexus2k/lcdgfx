@@ -1,0 +1,33 @@
+    uint8_t ram_mode;
+    if ( (rotation ^ m_rotation) & 0x01 )
+    {
+        m_base.swapDimensions();
+        lcduint_t temp = m_offset_x;
+        m_offset_x = m_offset_y;
+        m_offset_y = temp;
+    }
+    m_rotation = (rotation & 0x03);
+    this->start();
+    setDataMode(0);
+    this->send(0x28);
+    this->send(0x36);
+    setDataMode(1);
+    switch ( m_rotation )
+    {
+        case 0: // 0 degree CW
+            ram_mode = 0b00000000;
+            break;
+        case 1: // 90 degree CW
+            ram_mode = 0b01100000;
+            break;
+        case 2: // 180 degree CW
+            ram_mode = 0b11000000;
+            break;
+        default: // 270 degree CW
+            ram_mode = 0b10100000;
+            break;
+    }
+    this->send(ram_mode | m_rgb_bit);
+    setDataMode(0);
+    this->send(0x29);
+    this->stop();

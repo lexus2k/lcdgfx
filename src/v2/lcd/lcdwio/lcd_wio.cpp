@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2021, Alexey Dynda
+    Copyright (c) 2021,2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@
 #include "SPI.h"
 
 DisplayWioTerminal_320x240x16::DisplayWioTerminal_320x240x16()
-    : DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi>(71Ul, 70Ul, PIN_SPI3_SS, 70Ul, 20000000, &SPI3)
+    : DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi>(71Ul, 70Ul, PIN_SPI3_SS, 70Ul, -1, -1, 20000000, &SPI3)
 {
 }
 

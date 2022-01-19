@@ -1,6 +1,6 @@
 #    MIT License
 #
-#    Copyright (c) 2019-2020, Alexey Dynda
+#    Copyright (c) 2019-2022, Alexey Dynda
 #
 #    Permission is hereby granted, free of charge, to any person obtaining a copy
 #    of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 
 default: library
 
-.PHONY: docs library help check cppcheck
+.PHONY: docs library help check cppcheck format autogenerate
 
 ARCH ?= linux
 SDL_EMULATION ?= n
@@ -43,6 +43,7 @@ help:
 	@echo "make ssd1306_sdl   build SDL emulation library"
 	@echo "make cppcheck      run cppcheck tests"
 	@echo "make check SDL_EMULATION=y       run unit tests"
+	@echo "make format        perform style formatting"
 	@echo ""
 	@echo "to build examples use scripts in tools subdir"
 	@echo "ARCH=<arch>        specify architecture: avr, linux, esp32"
@@ -75,3 +76,12 @@ clean:
 	make -C ./src/ -f Makefile.$(ARCH) clean
 	make -C ./tools/sdl -f Makefile.$(ARCH) clean
 	rm -rf gmon.out
+
+format:
+	@tools/style_format.sh
+	@echo "[DONE] Code style formatting"
+
+autogenerate:
+	@cd tools && ./lcd_code_generator.py -c all
+	@tools/style_format.sh
+	@echo "[DONE] Code generation"

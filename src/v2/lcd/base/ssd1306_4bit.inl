@@ -50,14 +50,14 @@
 template <class I> void NanoDisplayOps4<I>::putPixel(lcdint_t x, lcdint_t y)
 {
     lcdint_t newColumn = x >> 1;
-    if ( m_lastRow != y || newColumn != m_lastColumn)
+    if ( m_lastRow != y || newColumn != m_lastColumn )
     {
         m_lastRow = y;
         m_lastColumn = newColumn;
         m_lastByte = this->m_bgColor | (this->m_bgColor << 4); // Fill with BG color
     }
     // Clear 4-bits for the new pixel
-    m_lastByte &= 0xF0 >>  (4 * (x & 1));
+    m_lastByte &= 0xF0 >> (4 * (x & 1));
     // Add 4-bits for of the new pixel
     m_lastByte |= (this->m_color & 0x0F) << (4 * (x & 1));
     this->m_intf.startBlock(x, y, 0);

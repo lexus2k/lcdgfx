@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2021, Alexey Dynda
+    Copyright (c) 2018-2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,9 @@
 #include "../UserSettings.h"
 #include "../interface.h"
 
-#if defined(ARDUINO_ARCH_STM32) // stm32duino support
+#if defined(PARTICLE_USER_MODULE)
+#include <Arduino.h>
+#elif defined(ARDUINO_ARCH_STM32) // stm32duino support
 #include <Arduino.h>
 #include <avr/pgmspace.h>
 #elif defined(ESP8266) || defined(ESP32) || defined(ESP31B) // esp arduino support
@@ -123,6 +125,8 @@ typedef uint8_t lcduint_t;
 #define SSD1306_WIRE_CLOCK_CONFIGURABLE
 /** The macro is defined when SPI library is available */
 #define CONFIG_ARDUINO_SPI_AVAILABLE
+
+#define CONFIG_ESP32_SPI_AVAILABLE
 
 #if defined(ESP32)
 /** The macro is defined when ESP32 spi implementation is available */

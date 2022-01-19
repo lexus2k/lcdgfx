@@ -1,0 +1,6 @@
+    /**
+     * @brief Sets screen orientation (rotation)
+     *
+     * Sets screen orientation (rotation): 0 - normal, 1 - 90 CW, 2 - 180 CW, 3 - 270 CW
+     * @param rotation - screen rotation 0 - normal, 1 - 90 CW, 2 - 180 CW, 3 - 270 CW
+     */

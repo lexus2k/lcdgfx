@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2021, Alexey Dynda
+    Copyright (c) 2018-2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -42,9 +42,12 @@ public:
      * Creates instance of spi implementation for Arduino platform.
      * @param csPin chip select pin to use, -1 if not required
      * @param dcPin data command pin to use
+     * @param clkPin clk pin to use, -1 to use default. Doesn't work on all controllers
+     * @param mosiPin mosi pin to use, -1 to use default. Doesn't work on all controllers
      * @param freq frequency in HZ to run spi bus at
      */
-    ArduinoSpi(int8_t csPin = -1, int8_t dcPin = -1, uint32_t freq = 0, SPIClass *spi = &SPI);
+    ArduinoSpi(int8_t csPin = -1, int8_t dcPin = -1, int8_t clkPin = -1, int8_t mosiPin = -1, uint32_t freq = 0,
+               SPIClass *spi = &SPI);
     ~ArduinoSpi();
 
     /**
@@ -87,6 +90,8 @@ public:
 private:
     int8_t m_cs;
     int8_t m_dc;
+    int8_t m_clk;
+    int8_t m_mosi;
     uint32_t m_frequency;
     SPIClass *m_spi;
 };

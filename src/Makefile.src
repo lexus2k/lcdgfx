@@ -53,6 +53,7 @@ OBJS += v2/utf8.o \
 	v2/lcd/ssd1331/lcd_ssd1331.o \
 	v2/lcd/ssd1351/lcd_ssd1351.o \
 	v2/lcd/st7735/lcd_st7735.o \
+	v2/lcd/st7789/lcd_st7789.o \
 	v2/lcd/il9163/lcd_il9163.o \
 	v2/lcd/ili9341/lcd_ili9341.o \
 	v2/nano_engine/core.o \

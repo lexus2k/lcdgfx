@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2020,2022, Alexey Dynda
+    Copyright (c) 2019-2021, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -21,60 +21,20 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 */
-
-#include "menu.h"
-
-LcdGfxMenu::LcdGfxMenu(const char **items, uint8_t count, const NanoRect &rect)
+/* !!! THIS FILE IS AUTO GENERATED !!! */
+#include "lcd_st7789.h"
+#include "lcd_hal/io.h"
+#ifdef SDL_EMULATION
+#include "sdl_core.h"
+#endif
+void DisplayST7789_135x240x16_SPI::begin()
 {
-    menu.items = items;
-    menu.count = count;
-    menu.selection = 0;
-    menu.oldSelection = 0;
-    menu.scrollPosition = 0;
-    menu.top = rect.p1.y;
-    menu.left = rect.p1.x;
-    menu.width = rect.p2.x ? rect.width() : 0;
-    menu.height = rect.p2.y ? rect.height() : 0;
+    m_spi.begin();
+    DisplayST7789_135x240x16::begin();
 }
 
-void LcdGfxMenu::down()
+void DisplayST7789_135x240x16_SPI::end()
 {
-    if ( menu.selection < menu.count - 1 )
-    {
-        menu.selection++;
-    }
-    else
-    {
-        menu.selection = 0;
-    }
-}
-
-void LcdGfxMenu::up()
-{
-    if ( menu.selection > 0 )
-    {
-        menu.selection--;
-    }
-    else
-    {
-        menu.selection = menu.count - 1;
-    }
-}
-
-uint8_t LcdGfxMenu::selection()
-{
-    return menu.selection;
-}
-
-void LcdGfxMenu::setRect(const NanoRect &rect)
-{
-    menu.top = rect.p1.y;
-    menu.left = rect.p1.x;
-    menu.width = rect.p2.x ? rect.width() : 0;
-    menu.height = rect.p2.y ? rect.height() : 0;
-}
-
-uint8_t LcdGfxMenu::size()
-{
-    return menu.count;
+    DisplayST7789_135x240x16::end();
+    m_spi.end();
 }

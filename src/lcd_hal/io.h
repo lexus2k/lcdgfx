@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2021, Alexey Dynda
+    Copyright (c) 2018-2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@
 #include "UserSettings.h"
 #include "interface.h"
 
-#if defined(ARDUINO)
+#if defined(ARDUINO) || defined(PARTICLE_USER_MODULE)
 #include "arduino/io.h"
 
 #ifdef __cplusplus
@@ -526,7 +526,7 @@ public:
      * @param config spi platform configuration. Refer to SPlatformSpiConfig.
      */
     explicit PlatformSpi(const SPlatformSpiConfig &config)
-        : ArduinoSpi(config.cs, config.dc, config.frequency)
+        : ArduinoSpi(config.cs, config.dc, config.scl, config.sda, config.frequency)
     {
     }
 };

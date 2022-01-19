@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2021, Alexey Dynda
+    Copyright (c) 2016-2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -45,6 +45,7 @@
 #include "v2/lcd/ssd1331/lcd_ssd1331.h"
 #include "v2/lcd/ssd1351/lcd_ssd1351.h"
 #include "v2/lcd/st7735/lcd_st7735.h"
+#include "v2/lcd/st7789/lcd_st7789.h"
 #include "v2/lcd/il9163/lcd_il9163.h"
 #include "v2/lcd/ili9341/lcd_ili9341.h"
 

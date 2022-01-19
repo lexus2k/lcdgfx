@@ -1,0 +1,10 @@
+    if (m_rotation & 0x01)
+    {
+        m_offset_x = oy;
+        m_offset_y = ox;
+    }
+    else
+    {
+        m_offset_x = ox;
+        m_offset_y = oy;
+    }
