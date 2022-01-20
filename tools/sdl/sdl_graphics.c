@@ -155,9 +155,15 @@ void sdl_graphics_refresh(void)
         {
             if (pitch != s_width * (s_bpp/8))
             {
-                fprintf(stderr, "Warning, pitch %d is not expected\n", pitch);
+                //fprintf(stderr, "Warning, pitch %d is not expected\n", pitch);
             }
-            memcpy(l_pixels, g_pixels, s_width * s_height * (s_bpp/8));
+            uint8_t *src = (uint8_t *)g_pixels;
+            for(int y=0; y<s_height;y++)
+            {
+                 memcpy(l_pixels, src, s_width * (s_bpp/8));
+                 l_pixels = (void*)((uint8_t *)l_pixels + pitch);
+                 src += s_width * (s_bpp/8);
+            }
             SDL_UnlockTexture(g_texture);
         }
         else

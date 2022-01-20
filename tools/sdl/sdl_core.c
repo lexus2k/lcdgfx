@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018-2020, Alexey Dynda
+    Copyright (c) 2018-2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -43,6 +43,13 @@
 
 enum
 {
+    DC_MODE_NONE,
+    DC_MODE_COMMAND,
+    DC_MODE_DATA,
+};
+
+enum
+{
     SDL_AUTODETECT,
     SDL_DETECTED,
 };
@@ -57,7 +64,7 @@ static sdl_oled_info *p_active_driver = NULL;
 
 int s_commandId = SSD_COMMAND_NONE;
 int s_cmdArgIndex;
-static int s_ssdMode = SSD_MODE_NONE;
+static int s_dcMode = DC_MODE_NONE;
 static sdl_data_mode s_active_data_mode = SDM_COMMAND_ARG;
 
 static int s_oled = SDL_AUTODETECT;
@@ -83,7 +90,7 @@ static void unregister_oleds(void)
 void sdl_core_init(void)
 {
     s_commandId = SSD_COMMAND_NONE;
-    s_ssdMode = SSD_MODE_NONE;
+    s_dcMode = DC_MODE_NONE;
     s_active_data_mode = SDM_COMMAND_ARG;
     s_oled = SDL_AUTODETECT;
     s_dcPin = -1;
@@ -178,8 +185,8 @@ void sdl_core_close(void)
 
 void sdl_send_init()
 {
-    s_active_data_mode = SDM_COMMAND_ARG;
-    s_ssdMode = SSD_MODE_NONE;
+    // s_active_data_mode = SDM_COMMAND_ARG;
+    s_dcMode = DC_MODE_NONE;
 }
 
 
@@ -210,18 +217,22 @@ static void sdl_write_data(uint8_t data)
 
 void sdl_send_byte(uint8_t data)
 {
+    // Detect DC mode
     if (s_dcPin>=0)
     {
         // for spi
-        s_ssdMode = s_digitalPins[s_dcPin] ? SSD_MODE_DATA : SSD_MODE_COMMAND;
+        s_dcMode = s_digitalPins[s_dcPin] ? DC_MODE_DATA : DC_MODE_COMMAND;
+        if ( s_dcMode == DC_MODE_COMMAND )
+            s_active_data_mode = SDM_COMMAND_ARG;
     }
-    else if (s_ssdMode == SSD_MODE_NONE)
+    else if (s_dcMode == DC_MODE_NONE)
     {
         // for i2c
-        s_ssdMode = data == 0x00 ? SSD_MODE_COMMAND : SSD_MODE_DATA;
+        s_active_data_mode = SDM_COMMAND_ARG;
+        s_dcMode = data == 0x00 ? DC_MODE_COMMAND : DC_MODE_DATA;
         return;
     }
-    if (s_ssdMode == SSD_MODE_COMMAND)
+    if (s_dcMode == DC_MODE_COMMAND)
     {
         if (s_oled == SDL_AUTODETECT)
         {
@@ -275,7 +286,6 @@ void sdl_send_stop()
 {
     sdl_poll_event();
     sdl_graphics_refresh();
-    s_ssdMode = -1;
 }
 
 void sdl_set_data_mode(sdl_data_mode mode)

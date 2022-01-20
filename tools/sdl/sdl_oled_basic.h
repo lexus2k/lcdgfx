@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2018, Alexey Dynda
+    Copyright (c) 2018,2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -33,13 +33,6 @@ extern "C" {
 #endif
 
 #define SSD_COMMAND_NONE   -1
-
-enum
-{
-    SSD_MODE_NONE,
-    SSD_MODE_COMMAND,
-    SSD_MODE_DATA,
-};
 
 typedef enum
 {

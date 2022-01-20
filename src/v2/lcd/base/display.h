@@ -510,7 +510,6 @@ public:
         __attribute__((noinline));
 
 protected:
-
 private:
     lcdint_t m_lastRow = 0;
     lcdint_t m_lastColumn = 0;

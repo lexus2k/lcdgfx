@@ -154,7 +154,7 @@ template <class I> void DisplayST7789x16<I>::end()
 
 static const PROGMEM uint8_t s_ST7789_lcd135x240x16_initData[] = {
 #ifdef SDL_EMULATION
-    SDL_LCD_ST7735, 0x00, 0b00000000, 0x00,
+    SDL_LCD_ST7789, 0x00, 0b00010000, 0x00,
 #endif
     0x01, CMD_DELAY, 150,                     // SWRESET sw reset. not needed, we do hardware reset
     0x11, CMD_DELAY, 20,                      // SLPOUT exit sleep mode

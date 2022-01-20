@@ -205,10 +205,6 @@ void setup()
     display.setFixedFont(ssd1306xled_font6x8);
 
     display.fill( 0x0000 );
-    display.getInterface().setRotation((1) & 0x03);
-    display.setColor(RGB_COLOR16(255,255,255));
-    display.drawRect(0,0,display.width() -1, display.height() - 1);
-    lcd_delay( 5000 );
     menu.show( display );
 }
 
