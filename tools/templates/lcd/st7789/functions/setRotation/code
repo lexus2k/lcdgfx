@@ -6,6 +6,30 @@
         m_offset_x = m_offset_y;
         m_offset_y = temp;
     }
+    if ( (rotation ^ m_rotation) == 0x01 || (rotation ^ m_rotation) == 0x11 )
+    {
+        // if one of the dimensions is odd
+        if ( (m_base.width() & 0x01) || (m_base.height() & 0x01) )
+        {
+            switch (rotation)
+            {
+                case 0:
+                    m_offset_x--;
+                    break;
+                case 1:
+                    m_offset_y++;
+                    break;
+                case 2:
+                    m_offset_x++;
+                    break;
+                case 3:
+                    m_offset_y--;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
     m_rotation = (rotation & 0x03);
     this->start();
     setDataMode(0);

@@ -34,21 +34,25 @@
 
 template <class I> void InterfaceST7789<I>::startBlock(lcduint_t x, lcduint_t y, lcduint_t w)
 {
-    lcduint_t rx = w ? (x + w - 1) : (m_base.width() - 1);
+    lcduint_t rx = x + (w ? w : m_base.width()) - 1;
     commandStart();
     this->send(0x2A);
     setDataMode(1); // According to datasheet all args must be passed in data mode
-    this->send((x + m_offset_x) >> 8);
-    this->send((x + m_offset_x) & 0xFF);
-    this->send(((rx < m_base.width() ? rx : (m_base.width() - 1)) + m_offset_x) >> 8);
-    this->send(((rx < m_base.width() ? rx : (m_base.width() - 1)) + m_offset_x) & 0xFF);
+    lcduint_t pos = x + m_offset_x;
+    this->send(pos >> 8);
+    this->send(pos & 0xFF);
+    pos = rx + m_offset_x;
+    this->send(pos >> 8);
+    this->send(pos & 0xFF);
     setDataMode(0);
     this->send(0x2B);
     setDataMode(1); // According to datasheet all args must be passed in data mode
-    this->send((y + m_offset_y) >> 8);
-    this->send((y + m_offset_y) & 0xFF);
-    this->send((m_base.height() - 1 + m_offset_y) >> 8);
-    this->send((m_base.height() - 1 + m_offset_y) & 0xFF);
+    pos = y + m_offset_y;
+    this->send(pos >> 8);
+    this->send(pos & 0xFF);
+    pos = m_base.height() - 1 + m_offset_y;
+    this->send(pos >> 8);
+    this->send(pos & 0xFF);
     setDataMode(0);
     this->send(0x2C);
     if ( m_dc >= 0 )
@@ -98,6 +102,21 @@ template <class I> void InterfaceST7789<I>::setRotation(uint8_t rotation)
         lcduint_t temp = m_offset_x;
         m_offset_x = m_offset_y;
         m_offset_y = temp;
+    }
+    if ( (rotation ^ m_rotation) == 0x01 || (rotation ^ m_rotation) == 0x11 )
+    {
+        // if one of the dimensions is odd
+        if ( (m_base.width() & 0x01) || (m_base.height() & 0x01) )
+        {
+            switch ( rotation )
+            {
+                case 0: m_offset_x--; break;
+                case 1: m_offset_y++; break;
+                case 2: m_offset_x++; break;
+                case 3: m_offset_y--; break;
+                default: break;
+            }
+        }
     }
     m_rotation = (rotation & 0x03);
     this->start();

@@ -73,8 +73,6 @@ public:
      */
     template <typename D> void show(D &d);
 
-    void setRect(const NanoRect &rect = {});
-
     /**
      * Moves selection pointer down by 1 item. If there are no items below,
      * it will set selection pointer to the first item.
@@ -94,6 +92,13 @@ public:
      * First item has zero-index.
      */
     uint8_t selection();
+
+    /**
+     * Sets rect area for the menu.
+     *
+     * @param rect rect area to use for menu
+     */
+    void setRect(const NanoRect &rect = {});
 
     /**
      * Returns total count of menu items in menu.
