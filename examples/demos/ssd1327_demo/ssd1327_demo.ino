@@ -33,6 +33,7 @@
 #include "lcdgfx_gui.h"
 #include "sova.h"
 
+// The parameters are  RST pin, BUS number, CS pin, DC pin, FREQ (0 means default), CLK pin, MOSI pin
 DisplaySSD1327_128x128_SPI display(3,{-1, 4, 5, 0,-1,-1});   // Use this line for Atmega328p (3=RST, 4=CE, 5=D/C)
 //DisplaySSD1327_128x128_I2C display(-1);                    // or (-1,{busId, addr, scl, sda, frequency}). This line is suitable for most platforms by default
 //DisplaySSD1327_128x128_SPI display(-1,{-1, 0, 1, 0, -1, -1); // Use this line for nano pi (RST not used, 0=CE, gpio1=D/C)

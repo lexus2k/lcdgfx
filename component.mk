@@ -9,6 +9,8 @@ COMPONENT_SRCDIRS := ./src \
                      ./src/v2/gui \
                      ./src/v2/lcd \
                      ./src/v2/lcd/lcdany \
+                     ./src/v2/lcd/lcdwio \
+                     ./src/v2/lcd/lcdttgo \
                      ./src/v2/lcd/pcd8544 \
                      ./src/v2/lcd/ssd1306 \
                      ./src/v2/lcd/sh1107 \
@@ -18,6 +20,7 @@ COMPONENT_SRCDIRS := ./src \
                      ./src/v2/lcd/ssd1331 \
                      ./src/v2/lcd/ssd1351 \
                      ./src/v2/lcd/st7735 \
+                     ./src/v2/lcd/st7789 \
                      ./src/v2/lcd/il9163 \
                      ./src/v2/lcd/ili9341 \
                      ./src/canvas \

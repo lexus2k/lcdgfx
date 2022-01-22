@@ -33,6 +33,7 @@
 #include "lcdgfx_gui.h"
 #include "owl.h"
 
+// The parameters are  RST pin, BUS number, CS pin, DC pin, FREQ (0 means default), CLK pin, MOSI pin
 DisplayILI9341_240x320x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
 //DisplayILI9341_240x320x16_SPI display(3,{-1, -1, 4, 0, -1, -1}); // FOR ATTINY
 //DisplayILI9341_240x320x16_SPI display(-1,{-1, 0, 1, 0, -1, -1); // Use this line for nano pi (RST not used, 0=CE, gpio1=D/C)

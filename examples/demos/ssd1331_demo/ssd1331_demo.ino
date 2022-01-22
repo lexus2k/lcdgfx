@@ -33,6 +33,7 @@
 #include "lcdgfx_gui.h"
 #include "sova.h"
 
+// The parameters are  RST pin, BUS number, CS pin, DC pin, FREQ (0 means default), CLK pin, MOSI pin
 DisplaySSD1331_96x64x8_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
 //DisplaySSD1331_96x64x8_SPI display(4,{-1, -1, 5, 0,-1,-1});  // Use this line for ESP8266 Arduino style rst=4, CS=-1, DC=5
                                                              // And ESP8266 RTOS IDF. GPIO4 is D2, GPIO5 is D1 on NodeMCU boards

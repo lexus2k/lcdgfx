@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2020, Alexey Dynda
+    Copyright (c) 2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -35,10 +35,10 @@
 
 #define TFT_BL  4
 
-
-DisplayST7789_135x240x16_SPI display(23,{-1, 5, 16, 0, 18, 19}); // Use this line for ESP32 (VSPI)  (gpio23=RST, gpio5=CE for VSPI, gpio16=D/C)
-//DisplayST7789_135x240x16_CustomSPI<EspSpi> display(23, 16, -1, 5, 16, 18, 19, 32000000); // RST, DC, BUS, CS, DC, CLK, MOSI, FREQ
-
+DisplayTTGO_135x240x16 display;
+// Use the constructor below, if the one above doesn't work for you
+// ESP32 HAL SPI implemented in this library can handle only 32MHz
+//DisplayST7789_135x240x16_CustomSPI<EspSpi> display(23, 16, -1, 5, 16, 18, 19, 32000000); // ESP32 TTGO RST, DC, BUS, CS, DC, CLK, MOSI, FREQ
 
 /*
  * Heart image below is defined directly in flash memory.
@@ -99,8 +99,8 @@ static void bitmapDemo()
  * Refer to C++ documentation.
  */
 NanoPoint sprite;
-NanoEngine16<DisplayST7789_135x240x16_SPI> engine( display );
-//NanoEngine16<DisplayST7789_135x240x16_CustomSPI<EspSpi>> engine( display );
+NanoEngine16<DisplayTTGO_135x240x16> engine( display );
+// NanoEngine16<DisplayST7789_135x240x16_CustomSPI<EspSpi>> engine( display );
 static void spriteDemo()
 {
     // We not need to clear screen, engine will do it for us

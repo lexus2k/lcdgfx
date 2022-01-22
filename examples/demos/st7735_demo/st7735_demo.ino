@@ -33,6 +33,7 @@
 #include "lcdgfx_gui.h"
 #include "owl.h"
 
+// The parameters are  RST pin, BUS number, CS pin, DC pin, FREQ (0 means default), CLK pin, MOSI pin
 DisplayST7735_128x160x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
 //DisplayST7735_80x160x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
 //DisplayST7735_128x160x16_SPI display(3,{-1, -1, 4, 0, -1, -1}); // FOR ATTINY
