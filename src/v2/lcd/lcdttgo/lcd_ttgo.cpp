@@ -27,7 +27,7 @@
 #include "lcd_ttgo.h"
 
 DisplayTTGO_135x240x16::DisplayTTGO_135x240x16()
-    : DisplayST7789_135x240x16_SPI(23, {-1, 5, 16, 0, 18, 19})
+    : DisplayST7789_135x240x16_SPI(23, {-1, {5}, 16, 0, 18, 19})
 {
 }
 
