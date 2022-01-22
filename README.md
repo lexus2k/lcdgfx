@@ -129,7 +129,7 @@ If you found any problem or have any idea, please, report to Issues section.
 | ssd1325 128x64 | X | X |   |   |
 | ssd1327 128x128 | X | X |   |   |
 | ssd1331 96x64 |   | X | X |   |
-| ssd1351 128x128 |   | X | X |   |
+| ssd1351 128x128, 96x96 |   | X | X |   |
 | il9163 128x128 |   | X | X | please, don't forget to connect backlight |
 | st7735 128x160, 80x160, 128x128 |   | X | X | please, don't forget to connect backlight |
 | st7789 135x240 |   | X | X | please, don't forget to connect backlight |
