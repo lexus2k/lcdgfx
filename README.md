@@ -158,7 +158,7 @@ Compilers: gcc, clang
 | Nordic nRF5 (nRF51, nRF52) | X | X | via Standard Arduino nRF52 boards. nRF users, enable c++11 in platform.txt `-std=gnu++11` |
 | Nordic nRF5 (nRF51, nRF52) | X | X | via [Sandeep Mistry arduino-nRF5](https://github.com/sandeepmistry/arduino-nRF5) package |
 | Wio Terminal |  X |  X  | [Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html)  |
-| TTGO T-Display |   | X  |    |
+| TTGO T-Display |   | X  |  [LilyGo TTGO](http://www.lilygo.cn/prod_view.aspx?Id=1126)  |
 | **Plain AVR** |   |     |          |
 | Attiny85, Attiny45 |  X  |  X  |         |
 | Atmega328p, Atmega168 |  X  |  X  |         |
