@@ -129,7 +129,7 @@ If you found any problem or have any idea, please, report to Issues section.
 | ssd1325 128x64 | X | X |   |   |
 | ssd1327 128x128 | X | X |   |   |
 | ssd1331 96x64 |   | X | X |   |
-| ssd1351 128x128 |   | X | X |   |
+| ssd1351 128x128, 96x96 |   | X | X |   |
 | il9163 128x128 |   | X | X | please, don't forget to connect backlight |
 | st7735 128x160, 80x160, 128x128 |   | X | X | please, don't forget to connect backlight |
 | st7789 135x240 |   | X | X | please, don't forget to connect backlight |
@@ -158,7 +158,7 @@ Compilers: gcc, clang
 | Nordic nRF5 (nRF51, nRF52) | X | X | via Standard Arduino nRF52 boards. nRF users, enable c++11 in platform.txt `-std=gnu++11` |
 | Nordic nRF5 (nRF51, nRF52) | X | X | via [Sandeep Mistry arduino-nRF5](https://github.com/sandeepmistry/arduino-nRF5) package |
 | Wio Terminal |  X |  X  | [Wio Terminal](https://www.seeedstudio.com/Wio-Terminal-p-4509.html)  |
-| TTGO T-Display |   | X  |    |
+| TTGO T-Display |   | X  |  [LilyGo TTGO](http://www.lilygo.cn/prod_view.aspx?Id=1126)  |
 | **Plain AVR** |   |     |          |
 | Attiny85, Attiny45 |  X  |  X  |         |
 | Atmega328p, Atmega168 |  X  |  X  |         |

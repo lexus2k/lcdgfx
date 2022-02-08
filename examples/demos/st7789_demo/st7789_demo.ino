@@ -35,17 +35,16 @@
 
 #define TFT_BL  4
 
-
-DisplayST7789_135x240x16_SPI display(23,{-1, 5, 16, 0, 18, 19}); // Use this line for ESP32 (VSPI) TTGO  (gpio23=RST, gpio5=CE for VSPI, gpio16=D/C)
-//DisplayST7789_135x240x16_CustomSPI<EspSpi> display(23, 16, -1, 5, 16, 18, 19, 32000000); // ESP32 TTGO RST, DC, BUS, CS, DC, CLK, MOSI, FREQ
-//DisplayST7789_135x240x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
-//DisplayST7789_135x240x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
+// The parameters are  RST pin, BUS number, CS pin, DC pin, FREQ (0 means default), CLK pin, MOSI pin
+DisplayST7789_135x240x16_SPI display(3,{-1, 4, 5, 0,-1,-1}); // Use this line for Atmega328p
+//DisplayST7789_135x240x16_SPI display(22,{-1, 5, 21, 0, -1, -1}); // Use this line for ESP32 (VSPI) TTGO  (gpio23=RST, gpio5=CE for VSPI, gpio16=D/C)
 //DisplayST7789_135x240x16_SPI display(3,{-1, -1, 4, 0, -1, -1}); // FOR ATTINY
 //DisplayST7789_135x240x16_SPI display(-1,{-1, 0, 1, 0, -1, -1); // Use this line for nano pi (RST not used, 0=CE, gpio1=D/C)
 //DisplayST7789_135x240x16_SPI display(24,{-1, 0, 23, 0,-1,-1}); // Use this line for Raspberry  (gpio24=RST, 0=CE, gpio23=D/C)
 //DisplayST7789_135x240x16_SPI display(22,{-1, 5, 21, 0,-1,-1}); // Use this line for ESP32 (VSPI)  (gpio22=RST, gpio5=CE for VSPI, gpio21=D/C)
 //DisplayST7789_135x240x16_SPI display(4,{-1, -1, 5, 0,-1,-1});  // Use this line for ESP8266 Arduino style rst=4, CS=-1, DC=5
                                                                // And ESP8266 RTOS IDF. GPIO4 is D2, GPIO5 is D1 on NodeMCU boards
+//DisplayST7789_135x240x16_CustomSPI<EspSpi> display(23, 16, -1, 5, 16, 18, 19, 32000000); // ESP32 TTGO RST, DC, BUS, CS, DC, CLK, MOSI, FREQ
 
 
 /*

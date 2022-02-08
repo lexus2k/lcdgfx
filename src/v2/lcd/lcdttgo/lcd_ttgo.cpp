@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright ,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (C) Alexey Dynda
+    Copyright (c) 2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +22,7 @@
     SOFTWARE.
 */
 
+<<<<<<< HEAD
 #if defined(CONFIG_ARDUINO_SPI_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
 
 #include "lcd_wio.h"
@@ -43,6 +44,17 @@ void DisplayWioTerminal_320x240x16::end()
     DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi>::end();
 }
 
+=======
+#if defined(__XTENSA__) || defined(__linux__)
+
+#include "lcd_ttgo.h"
+
+DisplayTTGO_135x240x16::DisplayTTGO_135x240x16()
+    : DisplayST7789_135x240x16_SPI(23, {-1, {5}, 16, 0, 18, 19})
+{
+}
+
+>>>>>>> 6861f88623bd05e6b024d7601253d5c1cbad735d
 #endif
 
 /**

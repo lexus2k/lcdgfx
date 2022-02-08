@@ -36,6 +36,7 @@
 
 #include "v2/lcd/lcdany/lcd_any.h"
 #include "v2/lcd/lcdwio/lcd_wio.h"
+#include "v2/lcd/lcdttgo/lcd_ttgo.h"
 #include "v2/lcd/pcd8544/lcd_pcd8544.h"
 #include "v2/lcd/sh1106/lcd_sh1106.h"
 #include "v2/lcd/sh1107/lcd_sh1107.h"

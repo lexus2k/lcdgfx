@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright ,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (C) Alexey Dynda
+    Copyright (c) 2022, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,11 @@
 
 #pragma once
 
+<<<<<<< HEAD
 #if defined(CONFIG_ARDUINO_SPI_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
+=======
+#if defined(__XTENSA__) || defined(__linux__)
+>>>>>>> 6861f88623bd05e6b024d7601253d5c1cbad735d
 
 #include "lcd_hal/io.h"
 #include "v2/lcd/st7789/lcd_st7789.h"
@@ -38,6 +42,7 @@
  */
 
 /**
+<<<<<<< HEAD
  * Class implements Wio Terminal 320x240x16 lcd display in 16 bit mode over SPI
  */
 class DisplayTTGO_135x240x16: public DisplayST7789_135x240x16_CustomSPI<ArduinoSpi>
@@ -56,6 +61,14 @@ public:
     void end() override;
 
 private:
+=======
+ * Class implements TTGO T-Display 135x240x16 lcd display in 16 bit mode over SPI
+ */
+class DisplayTTGO_135x240x16: public DisplayST7789_135x240x16_SPI
+{
+public:
+    DisplayTTGO_135x240x16();
+>>>>>>> 6861f88623bd05e6b024d7601253d5c1cbad735d
 };
 
 #endif
