@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright 2019-2022 (C) Alexey Dynda
+    Copyright ,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (C) Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -21,4 +21,30 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 */
-/* !!! THIS FILE IS AUTO GENERATED !!! */
+
+#if defined(CONFIG_ARDUINO_SPI_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
+
+#include "lcd_wio.h"
+#include "SPI.h"
+
+DisplayTTGO_135x240x16::DisplayTTGO_135x240x16()
+    : DisplayST7789_135x240x16_CustomSPI<ArduinoSpi>(71Ul, 70Ul, PIN_SPI3_SS, 70Ul, 20000000, &SPI3)
+{
+}
+
+void DisplayWioTerminal_320x240x16::begin()
+{
+    DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi>::begin();
+    this->getInterface().setRotation(1);
+}
+
+void DisplayWioTerminal_320x240x16::end()
+{
+    DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi>::end();
+}
+
+#endif
+
+/**
+ * @}
+ */

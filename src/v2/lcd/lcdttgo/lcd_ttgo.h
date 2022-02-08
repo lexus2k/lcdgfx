@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright 2019-2022 (C) Alexey Dynda
+    Copyright ,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (,2022 (C) Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -21,4 +21,45 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 */
-/* !!! THIS FILE IS AUTO GENERATED !!! */
+/**
+ * @file lcd_wio.h support for LCD ILI9341 display installed in wio terminal console
+ */
+
+#pragma once
+
+#if defined(CONFIG_ARDUINO_SPI_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
+
+#include "lcd_hal/io.h"
+#include "v2/lcd/st7789/lcd_st7789.h"
+
+/**
+ * @ingroup LCD_INTERFACE_API_V2
+ * @{
+ */
+
+/**
+ * Class implements Wio Terminal 320x240x16 lcd display in 16 bit mode over SPI
+ */
+class DisplayTTGO_135x240x16: public DisplayST7789_135x240x16_CustomSPI<ArduinoSpi>
+{
+public:
+    DisplayTTGO_135x240x16();
+
+    /**
+     * Initializes Wio Terminal display in 16-bit mode
+     */
+    void begin() override;
+
+    /**
+     * Closes connection to display
+     */
+    void end() override;
+
+private:
+};
+
+#endif
+
+/**
+ * @}
+ */
