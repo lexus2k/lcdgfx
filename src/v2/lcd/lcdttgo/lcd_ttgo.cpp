@@ -22,29 +22,6 @@
     SOFTWARE.
 */
 
-<<<<<<< HEAD
-#if defined(CONFIG_ARDUINO_SPI_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
-
-#include "lcd_wio.h"
-#include "SPI.h"
-
-DisplayTTGO_135x240x16::DisplayTTGO_135x240x16()
-    : DisplayST7789_135x240x16_CustomSPI<ArduinoSpi>(71Ul, 70Ul, PIN_SPI3_SS, 70Ul, 20000000, &SPI3)
-{
-}
-
-void DisplayWioTerminal_320x240x16::begin()
-{
-    DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi>::begin();
-    this->getInterface().setRotation(1);
-}
-
-void DisplayWioTerminal_320x240x16::end()
-{
-    DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi>::end();
-}
-
-=======
 #if defined(__XTENSA__) || defined(__linux__)
 
 #include "lcd_ttgo.h"
@@ -54,7 +31,6 @@ DisplayTTGO_135x240x16::DisplayTTGO_135x240x16()
 {
 }
 
->>>>>>> 6861f88623bd05e6b024d7601253d5c1cbad735d
 #endif
 
 /**
