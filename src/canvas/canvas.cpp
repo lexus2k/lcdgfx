@@ -1176,6 +1176,58 @@ void NanoCanvasOps<16>::drawBitmap8(lcdint_t xpos, lcdint_t ypos, lcduint_t w, l
     }
 }
 
+template <>
+void NanoCanvasOps<16>::drawBitmap16(lcdint_t xpos, lcdint_t ypos, lcduint_t w, lcduint_t h, const uint8_t *bitmap)
+{
+    /* calculate char rectangle */
+    lcdint_t x1 = xpos - offset.x;
+    lcdint_t y1 = ypos - offset.y;
+    lcdint_t x2 = x1 + (lcdint_t)w - 1;
+    lcdint_t y2 = y1 + (lcdint_t)h - 1;
+    /* clip bitmap */
+    if ( (x2 < 0) || (x1 >= (lcdint_t)m_w) )
+        return;
+    if ( (y2 < 0) || (y1 >= (lcdint_t)m_h) )
+        return;
+
+    if ( x1 < 0 )
+    {
+        bitmap -= (x1 * 2);
+        x1 = 0;
+    }
+    if ( y1 < 0 )
+    {
+        bitmap += (lcduint_t)(-y1) * w * 2;
+        y1 = 0;
+    }
+    if ( y2 >= (lcdint_t)m_h )
+    {
+        y2 = (lcdint_t)m_h - 1;
+    }
+    if ( x2 >= (lcdint_t)m_w )
+    {
+        x2 = (lcdint_t)m_w - 1;
+    }
+    lcdint_t y = y1;
+    while ( y <= y2 )
+    {
+        for ( lcdint_t x = x1; x <= x2; x++ )
+        {
+            uint8_t data1 = pgm_read_byte(bitmap);
+            uint8_t data2 = pgm_read_byte(bitmap + 1);
+            if ( (data1 || data2) || (!(m_textMode & CANVAS_MODE_TRANSPARENT)) )
+            {
+                m_buf[YADDR16(y) + (x << 1)] = data1;
+                m_buf[YADDR16(y) + (x << 1) + 1] = data2;
+            }
+            bitmap+= 2;
+        }
+        bitmap += (w - (x2 - x1 + 1)) * 2;
+        y++;
+    }
+}
+
+
 template <> void NanoCanvasOps<16>::clear()
 {
     memset(m_buf, 0, YADDR16(m_h));

@@ -239,6 +239,17 @@ public:
     void drawBitmap8(lcdint_t x, lcdint_t y, lcduint_t w, lcduint_t h, const uint8_t *bitmap) __attribute__((noinline));
 
     /**
+     * @brief Draws 16-bit color bitmap in color buffer.
+     * Draws 16-bit color bitmap in color buffer.
+     * @param x - position X in pixels
+     * @param y - position Y in pixels
+     * @param w - width in pixels
+     * @param h - height in pixels
+     * @param bitmap - 16-bit color bitmap data, located in flash
+     */
+    void drawBitmap16(lcdint_t x, lcdint_t y, lcduint_t w, lcduint_t h, const uint8_t *bitmap) __attribute__((noinline));
+
+    /**
      * Clears canvas
      */
     void clear() __attribute__((noinline));
