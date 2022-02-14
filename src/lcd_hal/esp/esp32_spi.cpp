@@ -87,7 +87,7 @@ void EspSpi::begin()
     buscfg.quadwp_io_num = -1;
     buscfg.quadhd_io_num = -1;
     buscfg.max_transfer_sz = 32;
-    spi_bus_initialize(m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, SPI_DMA_DISABLED); // 0 -no dma
+    spi_bus_initialize(m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, 0); // 0 -no dma
 #endif
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
     if ( m_dc >= 0 )
