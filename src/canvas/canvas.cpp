@@ -479,6 +479,28 @@ template <> void NanoCanvasOps<1>::begin(lcdint_t w, lcdint_t h, uint8_t *bytes)
     clear();
 }
 
+template <> void NanoCanvasOps<1>::rotateCW(NanoCanvasOps<1> &out)
+{
+    for ( lcduint_t x = 0; x < m_w; x++ )
+    {
+        for ( lcduint_t y = 0; y < m_h; y++ )
+        {
+            uint16_t src_addr = x + (y / 8) * m_w;
+            uint8_t src_bit = y & 0x07;
+            uint16_t dst_addr = m_h - 1 - y + (x / 8) * m_h;
+            uint8_t dst_bit = x & 0x07;
+
+            uint8_t src_pixel = (m_buf[src_addr] >> src_bit) & 0x01;
+            out.m_buf[dst_addr] &= ~(1 << dst_bit);
+            out.m_buf[dst_addr] |= (src_pixel << dst_bit);
+        }
+    }
+    {
+        out.m_w = m_h;
+        out.m_h = m_w;
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 //
 //                           4-BIT GRAY GRAPHICS
@@ -727,6 +749,11 @@ template <> void NanoCanvasOps<4>::begin(lcdint_t w, lcdint_t h, uint8_t *bytes)
     clear();
 }
 
+template <> void NanoCanvasOps<4>::rotateCW(NanoCanvasOps<4> &out)
+{
+    // Not implemented
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 //
 //                             8-BIT GRAPHICS
@@ -954,6 +981,11 @@ template <> void NanoCanvasOps<8>::begin(lcdint_t w, lcdint_t h, uint8_t *bytes)
     m_textMode = 0;
     m_buf = bytes;
     clear();
+}
+
+template <> void NanoCanvasOps<8>::rotateCW(NanoCanvasOps<8> &out)
+{
+    // Not implemented
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -1245,6 +1277,11 @@ template <> void NanoCanvasOps<16>::begin(lcdint_t w, lcdint_t h, uint8_t *bytes
     m_textMode = 0;
     m_buf = bytes;
     clear();
+}
+
+template <> void NanoCanvasOps<16>::rotateCW(NanoCanvasOps<16> &out)
+{
+    // Not implemented
 }
 
 /////////////////////////////////////////////////////////////////////////////////
