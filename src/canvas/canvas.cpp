@@ -1252,13 +1252,12 @@ void NanoCanvasOps<16>::drawBitmap16(lcdint_t xpos, lcdint_t ypos, lcduint_t w, 
                 m_buf[YADDR16(y) + (x << 1)] = data1;
                 m_buf[YADDR16(y) + (x << 1) + 1] = data2;
             }
-            bitmap+= 2;
+            bitmap += 2;
         }
         bitmap += (w - (x2 - x1 + 1)) * 2;
         y++;
     }
 }
-
 
 template <> void NanoCanvasOps<16>::clear()
 {

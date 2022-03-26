@@ -247,7 +247,8 @@ public:
      * @param h - height in pixels
      * @param bitmap - 16-bit color bitmap data, located in flash
      */
-    void drawBitmap16(lcdint_t x, lcdint_t y, lcduint_t w, lcduint_t h, const uint8_t *bitmap) __attribute__((noinline));
+    void drawBitmap16(lcdint_t x, lcdint_t y, lcduint_t w, lcduint_t h, const uint8_t *bitmap)
+        __attribute__((noinline));
 
     /**
      * Clears canvas

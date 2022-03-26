@@ -1,0 +1,2 @@
+    this->m_rgb_bit = mode ? 0b00001000: 0b00000000;
+    this->setRotation( m_rotation );

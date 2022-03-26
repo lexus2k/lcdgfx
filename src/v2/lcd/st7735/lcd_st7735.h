@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2021, Alexey Dynda
+    Copyright 2019-2022 (C) Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -120,11 +120,19 @@ public:
      */
     void setOffset(lcdint_t ox, lcdint_t oy);
 
+    /**
+     * @brief Sets RGB mode used by dispay controller.
+     *
+     * Sets RGB mode used by display controller. 0 - for BGR, 1 - for RGB
+     * @param mode rgb mode for SSD1351 controller: 0 - BGR, 1 - RGB
+     */
+    void setRgbMode(uint8_t mode);
+
 private:
     const int8_t m_dc = -1;                      ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceST7735<I>> &m_base; ///< basic lcd display support interface
     uint8_t m_rotation = 0x00;
-    static const uint8_t m_rgb_bit = 0b00000000;
+    uint8_t m_rgb_bit = 0b00000000;
     lcdint_t m_offset_x = 0x00;
     lcdint_t m_offset_y = 0x00;
 };

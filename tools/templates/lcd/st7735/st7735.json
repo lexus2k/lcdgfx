@@ -15,7 +15,7 @@
         },
         "functions":
         {
-            "interface_list": ["setRotation", "setOffset"],
+            "interface_list": ["setRotation", "setOffset", "setRgbMode"],
             "setRotation": {},
             "setOffset": {}
         },

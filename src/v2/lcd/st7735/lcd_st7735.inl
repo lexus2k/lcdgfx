@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2019-2021, Alexey Dynda
+    Copyright 2019-2022 (C) Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -138,6 +138,12 @@ template <class I> void InterfaceST7735<I>::setOffset(lcdint_t ox, lcdint_t oy)
         m_offset_x = ox;
         m_offset_y = oy;
     }
+}
+
+template <class I> void InterfaceST7735<I>::setRgbMode(uint8_t mode)
+{
+    this->m_rgb_bit = mode ? 0b00001000 : 0b00000000;
+    this->setRotation(m_rotation);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
