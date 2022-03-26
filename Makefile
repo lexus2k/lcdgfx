@@ -85,3 +85,14 @@ autogenerate:
 	@cd tools && ./lcd_code_generator.py -c all
 	@tools/style_format.sh
 	@echo "[DONE] Code generation"
+
+coverage:
+	$(MAKE) ARCH=linux SDL_EMULATION=y EXTRA_CPPFLAGS="--coverage" check
+	# COVERALLS_REPO_TOKEN=4Ia7t9YDo22zQcFEnMYLh1tiWCRlBJlhk coveralls -b . \
+	#    --exclude docs --exclude extra --exclude unittest --exclude bld --exclude tools --exclude examples \
+	#    --gcov-options '\-lp' --dryrun
+	lcov --base-directory src --directory src -c -o lcov.info
+	lcov --remove lcov.info "*unittest*" -o lcov.info # remove output for external libraries
+	lcov --remove lcov.info "/usr/include*" -o lcov.info # remove output for external libraries
+	# -rm -rf test_coverage
+	# genhtml -o test_coverage -t "tinyproto test coverage" --num-spaces 4 lcov.info
