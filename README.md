@@ -72,7 +72,7 @@ void loop()
    * i2c (software implementation, Wire library, AVR Twi, Linux i2c-dev)
    * spi (4-wire spi via Arduino SPI library, AVR Spi, AVR USI module)
  * Primitive graphics functions (lines, rectangles, pixels, bitmaps, drawing canvas)
- * Printing text to display (using fonts of different size, [How to add new fonts](https://github.com/lexus2k/lcdgfx/wiki/How-to-create-new-font-for-the-library))
+ * Printing text to display (using fonts of different size, [How to add new fonts](https://github.com/lexus2k/lcdgfx/wiki/How-to-create-new-font-for-the-library), [Useful tools](#useful-tools))
  * Includes [graphics engine](https://github.com/lexus2k/lcdgfx/wiki/Using-NanoEngine-for-systems-with-low-resources2) to support
    double buffering on tiny microcontrollers.
  * Can be used for game development (bonus examples):
@@ -188,6 +188,9 @@ This is a little application made by Tim Jackson to edit and create Images and f
 
 [Built-in font generator](https://github.com/lexus2k/lcdgfx/wiki/How-to-create-new-font-for-the-library)
 Lcdgfx library has built-in Python script to generate lcd fonts from ttf files.
+
+[Font format converter from bdf fonts by mayopan](https://github.com/mayopan/bdf2lcdgfx)
+Font format converter that converts bdf font to lcdgfx c style free
 
 ## Projects using lcdgfx
 
