@@ -4,6 +4,7 @@ import hashlib
 
 exclude_paths = [
     './.git',
+    './.github',
     './.travis',
     './tools/templates',
 ]
@@ -75,7 +76,9 @@ def check_and_update_license(name, new_license = False):
     for i in range(min(10,len(lines))):
         if "Copyright" in lines[i]:
             now = datetime.datetime.now()
-            ccc = "C"
+
+            # Copyright 2022 (C) Alexey Dynda
+            ccc = "(C)"
             if "(c)" in lines[i]:
                 ccc = "(c)"
             if "Copyright {}".format(ccc) in lines[i]:

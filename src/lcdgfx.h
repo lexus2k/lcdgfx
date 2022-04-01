@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2016-2022, Alexey Dynda
+    Copyright 2016-2022 (C) Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
