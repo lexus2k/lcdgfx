@@ -266,6 +266,112 @@ public:
 private:
     InterfaceST7789<I> m_spi;
 };
+/**
+ * Class implements basic functions for 16-bit mode of ST7789-based displays
+ */
+template <class I> class DisplayST7789_240x240x16: public DisplayST7789x16<I>
+{
+public:
+    /**
+     * Creates instance of ST7789 240x240x16 controller class for 16-bit mode
+     *
+     * @param intf interface to use
+     * @param rstPin pin to use as HW reset pin for LCD display
+     */
+    DisplayST7789_240x240x16(I &intf, int8_t rstPin)
+        : DisplayST7789x16<I>(intf, rstPin)
+    {
+    }
+
+protected:
+    /**
+     * Basic ST7789 240x240x16 initialization
+     */
+    void begin() override;
+
+    /**
+     * Basic ST7789 deinitialization
+     */
+    void end() override;
+};
+/**
+ * Class implements ST7789 240x240x16 lcd display in 16 bit mode over SPI
+ */
+class DisplayST7789_240x240x16_SPI: public DisplayST7789_240x240x16<InterfaceST7789<PlatformSpi>>
+{
+public:
+    /**
+     * @brief Inits 240x240x16 lcd display over spi (based on ST7789 controller): 16-bit mode.
+     *
+     * Inits 240x240x16 lcd display over spi (based on ST7789 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
+     */
+    explicit DisplayST7789_240x240x16_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
+        : DisplayST7789_240x240x16(m_spi, rstPin)
+        , m_spi(*this, config.dc,
+                SPlatformSpiConfig{
+                    config.busId, {config.cs}, config.dc, config.frequency ?: 40000000, config.scl, config.sda})
+    {
+    }
+
+    /**
+     * Initializes ST7789 lcd in 16-bit mode
+     */
+    void begin() override;
+
+    /**
+     * Closes connection to display
+     */
+    void end() override;
+
+private:
+    InterfaceST7789<PlatformSpi> m_spi;
+};
+
+/**
+ * Template class implements ST7789 240x240x16 lcd display in 16 bit mode over custom SPI implementation
+ * (user-defined spi implementation). I - user custom spi class
+ */
+template <class I> class DisplayST7789_240x240x16_CustomSPI: public DisplayST7789_240x240x16<InterfaceST7789<I>>
+{
+public:
+    /**
+     * @brief Inits 240x240x16 lcd display over spi (based on ST7789 controller): 16-bit mode.
+     *
+     * Inits 240x240x16 lcd display over spi (based on ST7789 controller): 16-bit mode
+     * @param rstPin pin controlling LCD reset (-1 if not used)
+     * @param dcPin pin to use as data/command control pin
+     * @param data variable argument list for custom user spi interface.
+     */
+    template <typename... Args>
+    DisplayST7789_240x240x16_CustomSPI(int8_t rstPin, int8_t dcPin, Args &&... data)
+        : DisplayST7789_240x240x16<InterfaceST7789<I>>(m_spi, rstPin)
+        , m_spi(*this, dcPin, data...)
+    {
+    }
+
+    /**
+     * Initializes ST7789 lcd in 16-bit mode
+     */
+    void begin() override
+    {
+        m_spi.begin();
+        DisplayST7789_240x240x16<InterfaceST7789<I>>::begin();
+    }
+
+    /**
+     * Closes connection to display
+     */
+    void end() override
+    {
+        DisplayST7789_240x240x16<InterfaceST7789<I>>::end();
+        m_spi.end();
+    }
+
+private:
+    InterfaceST7789<I> m_spi;
+};
 #include "lcd_st7789.inl"
 
 /**
