@@ -1,0 +1,79 @@
+name: lcdgfx CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Install apt dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y gcc g++ clang clang-format libsdl2-dev lcov
+          sudo apt install -y cppcheck cpputest doxygen avr-libc gcc-avr graphviz
+          sudo pip3 install cpp-coveralls
+          pip3 install --user cpp-coveralls
+          
+      # Runs a set of commands using the runners shell
+      - name: Building documentation
+        run: |
+          make docs 1> /dev/null
+          
+      #
+      - name: Building via gcc and running unit tests
+        run: |
+          make ARCH=linux EXTRA_CPPFLAGS="--coverage" SDL_EMULATION=y check
+          make clean
+          make ARCH=linux EXTRA_CPPFLAGS="--coverage" coverage
+          
+      - name: Upload coverage statistics
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./lcov.info
+        #run: |
+        #  sudo find / -name coveralls
+        #  echo -e "service_name: circle-ci\n" > .coveralls.yml \
+        #  && TRAVIS_JOB_ID="#${GITHUB_RUN_NUMBER}" COVERALLS_REPO_TOKEN=4Ia7t9YDo22zQcFEnMYLh1tiWCRlBJlhk coveralls -b . \
+        #  --exclude docs --exclude extra --exclude unittest --exclude bld --exclude tools --exclude examples --gcov-options '\-lp'
+        
+      - name: Building via clang
+        run: |
+          make clean
+          CPPFLAGS="-I/usr/include/SDL2" CC=clang CXX=clang++ LD=clang++ make ARCH=linux SDL_EMULATION=y check
+          make cppcheck
+          
+      - name: Building for AVR
+        run: |
+          make clean
+          make ARCH=avr SDL_EMULATION=n
+      - name: Cache ESP32 build system modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-esp32-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: |
+             ~/esp
+             ~/.espressif
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+
+      - name: Install ESP32 SDK
+        run: |
+          ./.travis/setup_esp_build_env.sh travis
+      - name: Building ESP32 code
+        run: |
+          . ~/esp/esp-idf/export.sh
+          make -C examples -f Makefile.esp32 PROJECT=demos/ssd1306_demo
