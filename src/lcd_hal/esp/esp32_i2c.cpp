@@ -76,6 +76,10 @@ void EspI2c::start()
     i2c_master_write_byte(m_cmd_handle, (m_sa << 1) | I2C_MASTER_WRITE, 0x1);
 }
 
+#if !defined(portTICK_RATE_MS)
+#define portTICK_RATE_MS portTICK_PERIOD_MS
+#endif
+
 void EspI2c::stop()
 {
     i2c_master_stop(m_cmd_handle);
