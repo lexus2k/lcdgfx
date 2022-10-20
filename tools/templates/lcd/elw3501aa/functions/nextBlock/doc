@@ -1,0 +1,5 @@
+    /**
+     * Switches to the start of next RAM page for the block, specified by
+     * startBlock().
+     */
+

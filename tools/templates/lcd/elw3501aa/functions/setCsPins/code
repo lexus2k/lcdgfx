@@ -1,0 +1,6 @@
+    this->m_cs1 = cs1;
+    this->m_cs2 = cs2;
+    lcd_gpioMode(this->m_cs1, LCD_GPIO_OUTPUT);
+    lcd_gpioMode(this->m_cs2, LCD_GPIO_OUTPUT);
+    lcd_gpioWrite(this->m_cs1, LCD_HIGH);
+    lcd_gpioWrite(this->m_cs2, LCD_HIGH);

@@ -1,0 +1,3 @@
+void
+lcdint_t cs1
+lcdint_t cs2

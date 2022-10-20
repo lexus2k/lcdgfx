@@ -47,6 +47,7 @@ enum
     SDL_LCD_ST7735,
     SDL_LCD_ST7789,
     SDL_LCD_ILI9341,
+    SDL_LCD_ELW3501AA,
 };
 
 /** ssd1325 / ssd1327 types */

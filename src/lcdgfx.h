@@ -49,6 +49,7 @@
 #include "v2/lcd/st7789/lcd_st7789.h"
 #include "v2/lcd/il9163/lcd_il9163.h"
 #include "v2/lcd/ili9341/lcd_ili9341.h"
+#include "v2/lcd/elw3501aa/lcd_elw3501aa.h"
 
 extern "C"
 {

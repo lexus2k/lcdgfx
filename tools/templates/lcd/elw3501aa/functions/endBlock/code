@@ -1,0 +1,11 @@
+    this->stop();
+    if (m_page < 84)
+    {
+        if (m_cs1 >= 0)
+            lcd_gpioWrite(this->m_cs1, LCD_HIGH);
+    }
+    else
+    {
+        if (m_cs2 >= 0)
+            lcd_gpioWrite(this->m_cs2, LCD_HIGH);
+    }

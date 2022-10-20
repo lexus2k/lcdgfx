@@ -1,0 +1,24 @@
+    m_column = x;
+    m_page = y;
+    if (y < 84)
+    {
+        if (m_cs1 >= 0)
+            lcd_gpioWrite(this->m_cs1, LCD_LOW);
+    }
+    else
+    {
+        if (m_cs2 >= 0)
+            lcd_gpioWrite(this->m_cs2, LCD_LOW);
+    }
+
+    commandStart();
+    this->send(0x81);
+    setDataMode(1); // According to datasheet all args must be passed in data mode
+    this->send(x);
+    setDataMode(0);
+    this->send(0x80);
+    setDataMode(1); // According to datasheet all args must be passed in data mode
+    this->send(y / 84);
+    setDataMode(0);
+    this->send(0x83); // Read/write display data
+    setDataMode(1);

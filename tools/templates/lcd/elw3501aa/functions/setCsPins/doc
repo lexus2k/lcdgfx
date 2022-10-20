@@ -1,0 +1,9 @@
+    /**
+     * @brief Sets chip select pins for elw3501aa controller
+     *
+     * ELW3501aa-based display has 2 controller inside. Each controller controls half of OLED matrix.
+     * To switch between them, the driver uses cs1 and cs2 pins.
+     *
+     * @param cs1 chip select pin number for first controller
+     * @param cs2 chip select pin number for second controller
+     */
