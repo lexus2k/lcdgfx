@@ -35,14 +35,16 @@
 // #define USE_SW_SPI
 
 EspSpi::EspSpi(int8_t busId, int8_t csPin, int8_t dcPin, int8_t clk, int8_t mosi, uint32_t frequency)
-    : m_busId(busId)
-    , m_cs(csPin)
+    : m_cs(csPin)
     , m_dc(dcPin)
     , m_clk(clk)
     , m_mosi(mosi)
     , m_first_spi_session(true)
     , m_frequency(frequency)
 {
+    // SPI2_HOST and SPI3_HOST were named HSPI_HOST and VSPI_HOST on earlier IDF
+    // use SPI3 (VSPI) by default when busId = -1
+    m_busId = (busId==0) ? SPI2_HOST : SPI3_HOST;
 }
 
 EspSpi::~EspSpi()
@@ -51,10 +53,6 @@ EspSpi::~EspSpi()
 
 void EspSpi::begin()
 {
-    // Use VSPI by default
-    if ( m_busId < 0 )
-        m_busId = 1;
-
     if ( m_mosi < 0 )
         m_mosi = m_busId ? 23 : 13;
     if ( m_clk < 0 )
@@ -87,7 +85,7 @@ void EspSpi::begin()
     buscfg.quadwp_io_num = -1;
     buscfg.quadhd_io_num = -1;
     buscfg.max_transfer_sz = 32;
-    spi_bus_initialize(m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, 0); // 0 -no dma
+    spi_bus_initialize(m_busId, &buscfg, 0); // 0 -no dma
 #endif
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
     if ( m_dc >= 0 )
@@ -104,7 +102,7 @@ void EspSpi::end()
         spi_bus_remove_device(m_spi);
         m_first_spi_session = true;
     }
-    spi_bus_free(m_busId ? VSPI_HOST : HSPI_HOST);
+    spi_bus_free(m_busId);
 #endif
     if ( m_dc >= 0 )
         lcd_unregisterGpioEvent(m_dc);
@@ -130,7 +128,7 @@ void EspSpi::start()
         devcfg.mode = 0;
         devcfg.spics_io_num = m_cs;
         devcfg.queue_size = 7;
-        spi_bus_add_device(m_busId ? VSPI_HOST : HSPI_HOST, &devcfg, &m_spi);
+        spi_bus_add_device(m_busId, &devcfg, &m_spi);
         m_first_spi_session = false;
     }
 #endif

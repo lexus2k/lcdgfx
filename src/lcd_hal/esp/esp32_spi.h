@@ -41,7 +41,7 @@ class EspSpi
 public:
     /**
      * Creates instance of spi implementation for ESP platform
-     * @param busId number of SPI bus to use: HSPI_HOST, VSPI_HOST
+     * @param busId number of SPI bus to use: SPI2_HOST, SPI3_HOST (formerly HSPI_HOST, VSPI_HOST)
      * @param csPin pin number to use as chip select, can be -1
      * @param dcPin pin to use as data command control pin
      * @param clk pin to use as clock spi pin
@@ -89,7 +89,7 @@ public:
     void sendBuffer(const uint8_t *buffer, uint16_t size);
 
 private:
-    int8_t m_busId;
+    spi_host_device_t m_busId;
     int8_t m_cs;
     int8_t m_dc;
     int8_t m_clk;
