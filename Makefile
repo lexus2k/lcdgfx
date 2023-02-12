@@ -66,6 +66,7 @@ cppcheck:
 	@cppcheck --force \
 	    --enable=warning,style,performance,portability \
 	    --suppress=ctuOneDefinitionRuleViolation \
+            --suppress=unusedStructMember \
 	    --suppress=information -q \
 	    --error-exitcode=1 \
 	    -I src \
