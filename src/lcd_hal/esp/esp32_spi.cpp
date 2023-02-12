@@ -31,6 +31,19 @@
 #include "driver/gpio.h"
 #include "driver/spi_master.h"
 
+#if !defined(HSPI_HOST) || !defined(VSPI_HOST)
+  #if defined(CONFIG_IDF_TARGET_ESP32) || defined(CONFIG_IDF_TARGET_ESP32C3)
+    #define HSPI_HOST   SPI2_HOST
+    #define VSPI_HOST   SPI3_HOST
+  #elif defined(CONFIG_IDF_TARGET_ESP32S2) || defined(CONFIG_IDF_TARGET_ESP32S3)
+    // SPI_HOST (SPI1_HOST) is not supported by the SPI Master and SPI Slave driver on ESP32-S2 and later
+    // #define SPI_HOST    SPI1_HOST
+    // #define FSPI_HOST   SPI2_HOST
+    #define HSPI_HOST   SPI3_HOST
+    #define VSPI_HOST   SPI3_HOST
+  #endif
+#endif
+
 // Uncomment to use software SPI (for debugging)
 // #define USE_SW_SPI
 
