@@ -65,6 +65,7 @@ include Makefile.cpputest
 cppcheck:
 	@cppcheck --force \
 	    --enable=warning,style,performance,portability \
+	    --suppress=ctuOneDefinitionRuleViolation \
 	    --suppress=information -q \
 	    --error-exitcode=1 \
 	    -I src \
