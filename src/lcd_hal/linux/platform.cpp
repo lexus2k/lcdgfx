@@ -240,15 +240,19 @@ void lcd_gpioMode(int pin, int mode)
 
 #elif !defined(SDL_EMULATION)
 
+#ifdef LINUX_SPI_AVAILABLE
 typedef struct
 {
     void (*on_pin_change)(void *);
     void *arg;
 } SPinEvent;
+#endif
 
 static uint8_t s_exported_pin[MAX_GPIO_COUNT] = {0};
 static uint8_t s_pin_mode[MAX_GPIO_COUNT] = {0};
+#ifdef LINUX_SPI_AVAILABLE
 std::map<int, SPinEvent> s_events;
+#endif
 
 void lcd_gpioMode(int pin, int mode)
 {
@@ -298,8 +302,10 @@ void lcd_gpioWrite(int pin, int level)
 
 void lcd_registerGpioEvent(int pin, void (*on_pin_change)(void *), void *arg)
 {
+#ifdef LINUX_SPI_AVAILABLE
     s_events[pin].arg = arg;
     s_events[pin].on_pin_change = on_pin_change;
+#endif
 }
 
 void lcd_unregisterGpioEvent(int pin)
