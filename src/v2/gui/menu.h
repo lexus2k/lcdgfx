@@ -93,6 +93,8 @@ public:
      */
     uint8_t selection();
 
+    void setSelection(uint8_t s);
+
     /**
      * Sets rect area for the menu.
      *
