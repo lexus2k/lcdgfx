@@ -66,6 +66,17 @@ uint8_t LcdGfxMenu::selection()
     return menu.selection;
 }
 
+void LcdGfxMenu::setSelection(uint8_t s)
+{
+    if ( s >= menu.count )
+    {
+        menu.selection = menu.count - 1;
+    }
+    else {
+        menu.selection = s;
+    }
+}
+
 void LcdGfxMenu::setRect(const NanoRect &rect)
 {
     menu.top = rect.p1.y;
