@@ -1040,8 +1040,9 @@ public:
      * @param xc horizontal position of circle center in pixels
      * @param yc vertical position of circle center in pixels
      * @param r radius of circle in pixels
+     * @param options draw specific sections: each bit corresponds to 90 degree section
      */
-    void drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r);
+    void drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r, uint8_t options = 0x0F);
 
     /**
      * Draws 1-bit canvas on lcd display

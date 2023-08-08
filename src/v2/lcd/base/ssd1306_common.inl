@@ -591,15 +591,15 @@ template <class O, class I> void NanoDisplayOps<O, I>::fillRect(const NanoRect &
     this->fillRect(rect.p1.x, rect.p1.y, rect.p2.x, rect.p2.y);
 }
 
-template <class O, class I> void NanoDisplayOps<O, I>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r)
+template <class O, class I> void NanoDisplayOps<O, I>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r, uint8_t options)
 {
     lcdint_t d = 3 - 2 * r;
     lcdint_t x = 0;
     lcdint_t y = r;
-    putPixel(xc, yc + r);
-    putPixel(xc, yc - r);
-    putPixel(xc + r, yc);
-    putPixel(xc - r, yc);
+    if (options & (2 + 4)) putPixel(xc, yc + r);
+    if (options & (1 + 8)) putPixel(xc, yc - r);
+    if (options & (1 + 2)) putPixel(xc + r, yc);
+    if (options & (4 + 8)) putPixel(xc - r, yc);
     while ( y >= x )
     {
         x++;
@@ -609,14 +609,14 @@ template <class O, class I> void NanoDisplayOps<O, I>::drawCircle(lcdint_t xc, l
             d += -4 * y + 4;
         }
         d += 4 * x + 6;
-        putPixel(xc + x, yc + y);
-        putPixel(xc - x, yc + y);
-        putPixel(xc + x, yc - y);
-        putPixel(xc - x, yc - y);
-        putPixel(xc + y, yc + x);
-        putPixel(xc - y, yc + x);
-        putPixel(xc + y, yc - x);
-        putPixel(xc - y, yc - x);
+        if (options & (2)) putPixel(xc + x, yc + y);
+        if (options & (4)) putPixel(xc - x, yc + y);
+        if (options & (1)) putPixel(xc + x, yc - y);
+        if (options & (8)) putPixel(xc - x, yc - y);
+        if (options & (2)) putPixel(xc + y, yc + x);
+        if (options & (4)) putPixel(xc - y, yc + x);
+        if (options & (1)) putPixel(xc + y, yc - x);
+        if (options & (8)) putPixel(xc - y, yc - x);
     }
 }
 

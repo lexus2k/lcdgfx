@@ -106,7 +106,7 @@ template <uint8_t BPP> void NanoCanvasOps<BPP>::fillRect(const NanoRect &rect)
     fillRect(rect.p1.x, rect.p1.y, rect.p2.x, rect.p2.y);
 }
 
-template <uint8_t BPP> void NanoCanvasOps<BPP>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r)
+template <uint8_t BPP> void NanoCanvasOps<BPP>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r, uint8_t options)
 {
     if ( (xc + r < offset.x) || (yc + r < offset.y) || (xc - r >= (lcdint_t)m_w + offset.x) ||
          (yc - r >= (lcdint_t)m_h - offset.y) )
@@ -117,10 +117,10 @@ template <uint8_t BPP> void NanoCanvasOps<BPP>::drawCircle(lcdint_t xc, lcdint_t
     lcdint_t x = 0;
     lcdint_t y = r;
 
-    putPixel(xc, yc + r);
-    putPixel(xc, yc - r);
-    putPixel(xc + r, yc);
-    putPixel(xc - r, yc);
+    if (options & (2+4)) putPixel(xc, yc + r);
+    if (options & (1+8)) putPixel(xc, yc - r);
+    if (options & (1+2)) putPixel(xc + r, yc);
+    if (options & (4+8)) putPixel(xc - r, yc);
     while ( y >= x )
     {
         x++;
@@ -131,14 +131,14 @@ template <uint8_t BPP> void NanoCanvasOps<BPP>::drawCircle(lcdint_t xc, lcdint_t
         }
         d += 4 * x + 6;
 
-        putPixel(xc + x, yc + y);
-        putPixel(xc - x, yc + y);
-        putPixel(xc + x, yc - y);
-        putPixel(xc - x, yc - y);
-        putPixel(xc + y, yc + x);
-        putPixel(xc - y, yc + x);
-        putPixel(xc + y, yc - x);
-        putPixel(xc - y, yc - x);
+        if (options & (2)) putPixel(xc + x, yc + y);
+        if (options & (4)) putPixel(xc - x, yc + y);
+        if (options & (1)) putPixel(xc + x, yc - y);
+        if (options & (8)) putPixel(xc - x, yc - y);
+        if (options & (2)) putPixel(xc + y, yc + x);
+        if (options & (4)) putPixel(xc - y, yc + x);
+        if (options & (1)) putPixel(xc + y, yc - x);
+        if (options & (8)) putPixel(xc - y, yc - x);
     }
 }
 

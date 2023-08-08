@@ -208,8 +208,9 @@ public:
      * @param x horizontal position of circle center in pixels
      * @param y vertical position of circle center in pixels
      * @param r circle radius in pixels
+     * @param options - lower bits correspond to 4 setions, where 1 means to draw, 0 - no
      */
-    void drawCircle(lcdint_t x, lcdint_t y, lcdint_t r) __attribute__((noinline));
+    void drawCircle(lcdint_t x, lcdint_t y, lcdint_t r, uint8_t options = 0x0F) __attribute__((noinline));
 
     /**
      * @brief Draws monochrome bitmap in color buffer using color, specified via setColor() method
