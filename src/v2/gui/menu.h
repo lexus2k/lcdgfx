@@ -33,14 +33,14 @@
 #include "canvas/rect.h"
 #include "canvas/font.h"
 
-#ifndef min
+#ifndef lcd_gfx_min
 /** Custom min function */
-#define min(x, y) ((x) < (y) ? (x) : (y))
+#define lcd_gfx_min(x, y) ((x) < (y) ? (x) : (y))
 #endif
 
-#ifndef max
+#ifndef lcd_gfx_max
 /** Custom max function */
-#define max(x, y) ((x) > (y) ? (x) : (y))
+#define lcd_gfx_max(x, y) ((x) > (y) ? (x) : (y))
 #endif
 
 /**
@@ -168,7 +168,7 @@ template <typename D> void LcdGfxMenu::show(D &d)
     updateSize(d);
     d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
     menu.scrollPosition = this->calculateScrollPosition(d, menu.selection);
-    for ( uint8_t i = menu.scrollPosition; i < min(menu.count, (menu.scrollPosition + getMaxScreenItems(d))); i++ )
+    for ( uint8_t i = menu.scrollPosition; i < lcd_gfx_min(menu.count, (menu.scrollPosition + getMaxScreenItems(d))); i++ )
     {
         this->drawMenuItem(d, i);
     }

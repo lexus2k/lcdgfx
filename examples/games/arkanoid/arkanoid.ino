@@ -178,7 +178,7 @@ void drawIntro()
 void drawStatusPanel()
 {
     display.setColor(RGB_COLOR8(255,0,0));
-    for(uint8_t i=0; i<min(hearts,3); i++)
+    for(uint8_t i=0; i<lcd_gfx_min(hearts,3); i++)
     {
         display.drawBitmap1( RIGHT_EDGE + 4, 16 + (i<<3), 8, 8, heartSprite );
     }
@@ -570,11 +570,11 @@ void movePlatform()
     Key buttonCode = getPressedButton(0);
     if (buttonCode == Key::BT_RIGHT)
     {
-        platformPos = min(RIGHT_EDGE - LEFT_EDGE - 1 - platformWidth, platformPos + PLATFORM_SPEED);
+        platformPos = lcd_gfx_min(RIGHT_EDGE - LEFT_EDGE - 1 - platformWidth, platformPos + PLATFORM_SPEED);
     }
     if (buttonCode == Key::BT_LEFT)
     {
-        platformPos = max(0, platformPos - PLATFORM_SPEED);
+        platformPos = lcd_gfx_max(0, platformPos - PLATFORM_SPEED);
     }
     if (platformPower  != 0)
     {
@@ -692,7 +692,7 @@ bool moveBall()
   {
      int middle = platformPos + (platformWidth >> 1);
      hSpeed = (nextx - middle) / (platformWidth >> (SPEED_SHIFT + 1));
-     vSpeed = -max(4 - abs(hSpeed), 2);
+     vSpeed = -lcd_gfx_max(4 - abs(hSpeed), 2);
      beep(20,600);
   }
   /* Check screen hit */

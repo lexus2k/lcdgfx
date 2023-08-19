@@ -348,11 +348,11 @@ uint32_t lcd_micros(void)
     return ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
 }
 
-int min(int a, int b)
+int lcd_gfx_min(int a, int b)
 {
     return a < b ? a : b;
 }
-int max(int a, int b)
+int lcd_gfx_max(int a, int b)
 {
     return a > b ? a : b;
 }
@@ -403,11 +403,11 @@ uint32_t lcd_micros(void)
     return ts.tv_sec * 1000000 + ts.tv_nsec / 1000;
 };
 
-int min(int a, int b)
+int lcd_gfx_min(int a, int b)
 {
     return a < b ? a : b;
 }
-int max(int a, int b)
+int lcd_gfx_max(int a, int b)
 {
     return a > b ? a : b;
 }

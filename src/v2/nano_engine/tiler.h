@@ -237,7 +237,7 @@ public:
         if ( x1 < 0 )
             x1 = 0;
         y1 = y1 / canvas.height();
-        y2 = min((y2 / canvas.height()), NE_MAX_TILE_ROWS - 1);
+        y2 = lcd_gfx_min((y2 / canvas.height()), NE_MAX_TILE_ROWS - 1);
         for ( uint8_t x = x1 / canvas.width(); x <= (x2 / canvas.width()); x++ )
         {
             for ( uint8_t y = y1; y <= y2; y++ )

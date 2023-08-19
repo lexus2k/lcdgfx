@@ -665,12 +665,12 @@ template <class O, class I> void NanoDisplayOps<O, I>::print(char c)
     this->write(intStr);
 }
 
-#ifndef min
-#define min(x, y) ((x) < (y) ? (x) : (y))
+#ifndef lcd_gfx_min
+#define lcd_gfx_min(x, y) ((x) < (y) ? (x) : (y))
 #endif
 
-#ifndef max
-#define max(x, y) ((x) > (y) ? (x) : (y))
+#ifndef lcd_gfx_max
+#define lcd_gfx_max(x, y) ((x) > (y) ? (x) : (y))
 #endif
 
 template <class O, class I> static uint8_t getMaxScreenItems(NanoDisplayOps<O, I> &display, SAppMenu *menu)
@@ -743,7 +743,7 @@ template <class O, class I> void NanoDisplayOps<O, I>::showMenu(SAppMenu *menu)
     drawRect(4 + menu->left, 4 + menu->top, menu->width + menu->left - 5, menu->height + menu->top - 5);
     menu->scrollPosition = calculateScrollPosition<O, I>(*this, menu, menu->selection);
     for ( uint8_t i = menu->scrollPosition;
-          i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O, I>(*this, menu))); i++ )
+          i < lcd_gfx_min(menu->count, (menu->scrollPosition + getMaxScreenItems<O, I>(*this, menu))); i++ )
     {
         drawMenuItem<O, I>(*this, menu, i);
     }
@@ -755,7 +755,7 @@ template <class O, class I> void NanoDisplayOps<O, I>::showMenuSmooth(SAppMenu *
     drawRect(4 + menu->left, 4 + menu->top, menu->width + menu->left - 5, menu->height + menu->top - 5);
     menu->scrollPosition = calculateScrollPosition<O, I>(*this, menu, menu->selection);
     for ( uint8_t i = menu->scrollPosition;
-          i < min(menu->count, (menu->scrollPosition + getMaxScreenItems<O, I>(*this, menu))); i++ )
+          i < lcd_gfx_min(menu->count, (menu->scrollPosition + getMaxScreenItems<O, I>(*this, menu))); i++ )
     {
         drawMenuItemSmooth<O, I>(*this, menu, i);
     }

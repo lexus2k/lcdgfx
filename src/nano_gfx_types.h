@@ -31,14 +31,14 @@
 #include "lcd_hal/io.h"
 #include "canvas/canvas_types.h"
 
-#ifndef min
+#ifndef lcd_gfx_min
 /** Macros returning minimum of 2 numbers */
-#define min(a, b) ((a) < (b) ? (a) : (b))
+#define lcd_gfx_min(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
-#ifndef max
+#ifndef lcd_gfx_max
 /** Macros returning maximum of 2 numbers */
-#define max(a, b) ((a) > (b) ? (a) : (b))
+#define lcd_gfx_max(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
 /**
@@ -155,14 +155,14 @@ typedef struct SPRITE
      */
     inline SSD1306_RECT getUpdateRect() const
     {
-        uint8_t left = min(x, lx);
-        uint8_t top = min(y, ly);
-        uint8_t right = max((uint8_t)(x + w - 1), (uint8_t)(lx + w - 1));
+        uint8_t left = lcd_gfx_min(x, lx);
+        uint8_t top = lcd_gfx_min(y, ly);
+        uint8_t right = lcd_gfx_max((uint8_t)(x + w - 1), (uint8_t)(lx + w - 1));
         if ( ((uint8_t)(lx + w - 1) < w) && (right > 2 * w) )
         {
             right = (uint8_t)(lx + w - 1);
         }
-        uint8_t bottom = max((uint8_t)(y + 7), (uint8_t)(ly + 7));
+        uint8_t bottom = lcd_gfx_max((uint8_t)(y + 7), (uint8_t)(ly + 7));
         if ( ((uint8_t)(ly + 7) < 8) && (bottom > 16) )
         {
             bottom = (uint8_t)(ly + 7);

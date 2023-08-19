@@ -52,8 +52,8 @@ extern "C"
 {
 #endif
 
-    int min(int a, int b);
-    int max(int a, int b);
+    int lcd_gfx_min(int a, int b);
+    int lcd_gfx_max(int a, int b);
 
     static inline char *utoa(unsigned int num, char *str, int radix)
     {

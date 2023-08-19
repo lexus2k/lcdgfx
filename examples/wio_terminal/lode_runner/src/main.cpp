@@ -102,11 +102,11 @@ static bool onDraw()
     {
         engine.worldCoordinates();
         NanoRect blocks = rect_to_blocks( engine.getCanvas().rect() );
-        for (uint8_t row = max(0,blocks.p1.y);
-                     row <= min(13,blocks.p2.y); row++)
+        for (uint8_t row = lcd_gfx_max(0,blocks.p1.y);
+                     row <= lcd_gfx_min(13,blocks.p2.y); row++)
         {
-            for (uint8_t col = max(0,blocks.p1.x);
-                         col <= min((B_WIDTH-1),blocks.p2.x); col++)
+            for (uint8_t col = lcd_gfx_max(0,blocks.p1.x);
+                         col <= lcd_gfx_min((B_WIDTH-1),blocks.p2.x); col++)
             {
                 uint8_t blockType = block_value({col,row});
                 if (blockType != 0)
@@ -131,19 +131,19 @@ static NanoPoint calc_new_screen_position()
     NanoPoint position = engine.getPosition() + game_window.p1;
     if (player.x() - position.x >= game_window.width() - 48)
     {
-        position.x = min(player.x() - (game_window.width() - 96), 128);
+        position.x = lcd_gfx_min(player.x() - (game_window.width() - 96), 128);
     }
     else if (player.x() - position.x < 48)
     {
-        position.x = max(0, player.x() - 96);
+        position.x = lcd_gfx_max(0, player.x() - 96);
     }
     if (player.y() - position.y >= game_window.height() - 48)
     {
-        position.y = min(player.y() - (game_window.height() - 96), 64);
+        position.y = lcd_gfx_min(player.y() - (game_window.height() - 96), 64);
     }
     else if (player.y() - position.y < 48)
     {
-        position.y = max(0, player.y() - 96);
+        position.y = lcd_gfx_max(0, player.y() - 96);
     }
     return position - game_window.p1;
 }
