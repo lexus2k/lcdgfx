@@ -1,0 +1,10 @@
+{
+    "name": "lcdgfx",
+    "description": "VGA, SSD1306, SSD1331, SSD1325/SSD1327, SSD1351, IL9163/ST7735, ST7789, ILI9341, PCD8544, SH1106/SH1107 spi/i2c OLED/LED Display driver.",
+    "version": "1.1.5",
+    "repository":
+    {
+       "type": "git",
+       "url": "https://github.com/lexus2k/lcdgfx"
+    }
+ }
