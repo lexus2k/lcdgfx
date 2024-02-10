@@ -514,7 +514,6 @@ void NanoDisplayOps1<I>::drawBitmap1(lcdint_t x, lcdint_t y, lcduint_t w, lcduin
     }
     pages = ((y + h - 1) >> 3) - (y >> 3) + 1;
 
-    uint8_t color = this->m_color ? 0xFF : 0x00;
     this->m_intf.startBlock(x, y >> 3, w);
     for ( j = 0; j < pages; j++ )
     {
@@ -524,9 +523,13 @@ void NanoDisplayOps1<I>::drawBitmap1(lcdint_t x, lcdint_t y, lcduint_t w, lcduin
         {
             uint8_t data = 0;
             if ( mainFlag )
-                data |= ((pgm_read_byte(bitmap) << offset) & color);
+                data |= (pgm_read_byte(bitmap) << offset);
             if ( complexFlag )
-                data |= ((pgm_read_byte(bitmap - origin_width) >> (8 - offset)) & color);
+                data |= (pgm_read_byte(bitmap - origin_width) >> (8 - offset));
+            if (!this->m_color)
+            {
+                data ^= 0x00;
+            }
             bitmap++;
             this->m_intf.send(this->m_bgColor ^ data);
         }
