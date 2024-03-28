@@ -250,7 +250,7 @@ public:
 
 protected:
     /** Duration between frames in milliseconds */
-    uint8_t m_frameDurationMs = 1000 / ENGINE_DEFAULT_FPS;
+    uint16_t m_frameDurationMs = 1000 / ENGINE_DEFAULT_FPS;
     /** Current fps */
     uint8_t m_fps = ENGINE_DEFAULT_FPS;
     /** Current cpu load in percents */
