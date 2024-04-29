@@ -89,6 +89,12 @@
 #include "linux/sdl_i2c.h"
 #include "linux/sdl_spi.h"
 #endif
+#elif defined(PICO_BOARD)
+#include "pico/io.h"
+#ifdef __cplusplus
+#include "pico/pico_spi.h"
+#include "pico/pico_i2c.h"
+#endif
 #else
 #warning "Platform is not supported. Use template to add support"
 #endif
@@ -485,6 +491,24 @@ public:
     }
 };
 
+#elif defined(PICO_BOARD)
+
+/**
+ * PlatformI2c implementation for current platform.
+ */
+class PlatformI2c: public PicoI2c
+{
+public:
+    /**
+     * Creates instance of i2c implementation for current platform.
+     * @param config i2c platform configuration. Refer to SPlatformI2cConfig.
+     */
+    explicit PlatformI2c(const SPlatformI2cConfig &config)
+        : PicoI2c(config.scl, config.sda, config.addr)
+    {
+    }
+};
+
 #else
 
 #error "Platform not supported"
@@ -615,6 +639,24 @@ public:
      */
     explicit PlatformSpi(const SPlatformSpiConfig &config)
         : UsiSpi(config.cs, config.dc)
+    {
+    }
+};
+
+#elif defined(PICO_BOARD)
+
+/**
+ * PlatformSpi implementation for current platform
+ */
+class PlatformSpi: public PicoSpi
+{
+public:
+    /**
+     * Creates instance of PlatformSpi implementation for current platform
+     * @param config spi platform configuration. Refer to SPlatformSpiConfig.
+     */
+    explicit PlatformSpi(const SPlatformSpiConfig &config)
+        : PicoSpi(config.cs, config.dc, config.scl, config.sda, config.frequency)
     {
     }
 };
