@@ -25,54 +25,46 @@
 #include "../io.h"
 
 #if defined(PICO_BOARD)
-#include "pico_i2c.h"
 
-// !!!!! WARNING !!!!!!
-// This is a dummy implementation that does not work !!!
-#warning "I2C is not implemented for Pico board - this is a dummy"
-
-
-//////////////////////////////////////////////////////////////////////////////////
-//                        ARDUINO I2C IMPLEMENTATION
-//////////////////////////////////////////////////////////////////////////////////
-
-static uint8_t s_bytesWritten = 0;
-
-PicoI2c::PicoI2c(int8_t scl, int8_t sda, uint8_t sa)
-    : m_scl(scl)
-    , m_sda(sda)
-    , m_sa(sa)
-    , m_mode(0)
+void lcd_gpioMode(int pin, int mode)
 {
+    if(pin < 0)
+        return;
+    
+    gpio_init(pin);
+    switch(mode){
+        case LCD_GPIO_OUTPUT:
+            gpio_set_dir(pin, GPIO_OUT);
+            break;
+        case LCD_GPIO_INPUT:
+            gpio_set_dir(pin, GPIO_IN);
+            break;
+        case LCD_GPIO_INPUT_PULLUP:
+            gpio_set_dir(pin, GPIO_IN);
+            gpio_pull_up(pin);
+            break;
+        case LCD_GPIO_INPUT_PULLDOWN:
+            gpio_set_dir(pin, GPIO_IN);
+            gpio_pull_down(pin);;
+            break;
+    }
 }
 
-PicoI2c::~PicoI2c()
+void lcd_gpioWrite(int pin, int level)
 {
+    if (pin < 0)
+        return;
+    gpio_put(pin, level==LCD_HIGH);
 }
 
-void PicoI2c::begin()
+void lcd_delay(unsigned long ms)
 {
+    sleep_ms(ms);
 }
 
-void PicoI2c::end()
+uint8_t lcd_pgmReadByte(const void *ptr)
 {
+    return *(static_cast<const uint8_t *>(ptr));
 }
 
-void PicoI2c::start()
-{
-}
-
-void PicoI2c::stop()
-{
-}
-
-void PicoI2c::send(uint8_t data)
-{
-}
-
-void PicoI2c::sendBuffer(const uint8_t *buffer, uint16_t size)
-{
-}
-
-
-#endif // PICO_BOARD
+#endif

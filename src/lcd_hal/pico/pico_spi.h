@@ -30,7 +30,15 @@
 #pragma once
 
 #if defined(PICO_BOARD)
+#include "pico/stdlib.h"
+#include "hardware/spi.h"
 
+
+#if defined(PICO_USE_SPI1)
+#define PICO_SPI spi1
+#else
+#define PICO_SPI spi0
+#endif
 
 /**
  * Class implements SPI support for Arduino platforms
