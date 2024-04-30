@@ -12,13 +12,17 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 
-// Pin definitions for OLED
+// Pin definitions for OLED display
+// NOTE: SCK & MOSI pins must be one of the hardware peripheral SPI pins
 #define OLED_RST 3
 #define OLED_DC 2
 #define OLED_CS 5
 #define OLED_SCK 18
 #define OLED_MOSI 19
 #define SPI_FREQ 0 // 0 means default frequency
+
+// spi0 is used by default, to use spi1 uncomment the following line:
+//#define PICO_USE_SPI1
 
 // Include lcdgfx and use like for Arduino
 #include "lcdgfx.h"
