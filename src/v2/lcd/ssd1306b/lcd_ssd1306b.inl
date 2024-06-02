@@ -161,7 +161,7 @@ static const PROGMEM uint8_t s_SSD1306B_lcd64x32_initData[] = {
     SDL_LCD_SSD1306B, 0x00,
     0x00, 0x00,
 #endif
-    0xAE,                // display off
+    0xAE, 0x00,          // display off
     0x20, 0x00,          // Page horizontal Addressing mode
     0xC8,                // Scan from 127 to 0 (Reverse scan)
     0x40| 0x00,          // First line to start scanning from
@@ -206,7 +206,7 @@ static const PROGMEM uint8_t s_SSD1306B_lcd64x48_initData[] = {
     SDL_LCD_SSD1306B, 0x00,
     0x00, 0x00,
 #endif
-    0xAE,                // display off
+    0xAE, 0x00,          // display off
     0x20, 0x00,          // Page horizontal Addressing mode
     0xC8,                // Scan from 127 to 0 (Reverse scan)
     0x40| 0x00,          // First line to start scanning from
@@ -251,7 +251,7 @@ static const PROGMEM uint8_t s_SSD1306B_lcd128x32_initData[] = {
     SDL_LCD_SSD1306B, 0x00,
     0x00, 0x00,
 #endif
-    0xAE,                // display off
+    0xAE, 0x00,          // display off
     0x20, 0x00,          // Page horizontal Addressing mode
     0xC8,                // Scan from 127 to 0 (Reverse scan)
     0x40| 0x00,          // First line to start scanning from
@@ -296,7 +296,7 @@ static const PROGMEM uint8_t s_SSD1306B_lcd128x64_initData[] = {
     SDL_LCD_SSD1306B, 0x00,
     0x00, 0x00,
 #endif
-    0xAE,                // display off
+    0xAE, 0x00,          // display off
     0x20, 0x00,          // Page horizontal Addressing mode
     0xC8,                // Scan from 127 to 0 (Reverse scan)
     0x40| 0x00,          // First line to start scanning from
