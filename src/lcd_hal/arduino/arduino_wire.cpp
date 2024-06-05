@@ -50,13 +50,18 @@ ArduinoI2c::~ArduinoI2c()
 
 void ArduinoI2c::begin()
 {
-#if defined(ESP8266) || defined(ESP32) || defined(ESP31B)
     if ( (m_scl >= 0) && (m_sda >= 0) )
     {
+#if defined(ESP8266) || defined(ESP32) || defined(ESP31B)
         Wire.begin(m_sda, m_scl);
+#elif defined(ARDUINO_ARCH_STM32)
+        // Wire.begin(m_sda, m_scl) does not work for stm32duino core
+        Wire.setSCL(m_scl);
+        Wire.setSDA(m_sda);
+        Wire.begin();
+#endif
     }
     else
-#endif
     {
         Wire.begin();
     }
