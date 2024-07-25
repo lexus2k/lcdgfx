@@ -125,8 +125,8 @@ private:
     NanoDisplayBase<InterfaceST7789<I>> &m_base; ///< basic lcd display support interface
     uint8_t m_rotation = 0x00;
     static const uint8_t m_rgb_bit = 0b00001000;
-    lcdint_t m_offset_x = 0x34;
-    lcdint_t m_offset_y = 0x28;
+    lcdint_t m_offset_x = 0x00;
+    lcdint_t m_offset_y = 0x00;
 };
 /**
  * Class implements basic functions for 16-bit mode of ST7789-based displays
@@ -207,6 +207,7 @@ public:
                 SPlatformSpiConfig{
                     config.busId, {config.cs}, config.dc, config.frequency ?: 40000000, config.scl, config.sda})
     {
+        this->getInterface().setOffset(0x34,0x28); //necessary?
     }
 
     /**
@@ -243,6 +244,7 @@ public:
         : DisplayST7789_135x240x16<InterfaceST7789<I>>(m_spi, rstPin)
         , m_spi(*this, dcPin, data...)
     {
+        this->getInterface().setOffset(0x34,0x28); //necessary?
     }
 
     /**
