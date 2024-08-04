@@ -331,19 +331,24 @@ uint16_t NanoFont::unicode16FromUtf8(uint8_t ch)
 {
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
     static uint16_t unicode = 0;
-    ch &= 0x00FF;
-    if ( !unicode )
+    static uint8_t rest = 0;
+    if(ch & 0x80)
     {
-        if ( ch >= 0xc0 )
+        if(ch & 0x40)
         {
-            unicode = ch;
+            uint8_t mask = 0x1f;
+            rest = 1;
+            while( ((~mask) & ch) == ((~mask) & 0xff) ) mask >>= 1, ++rest;
+            unicode = ch & mask;
             return SSD1306_MORE_CHARS_REQUIRED;
         }
-        return ch;
+        else
+        {
+            unicode = (unicode << 6) | (ch & 0x3f);
+            return (--rest) ? SSD1306_MORE_CHARS_REQUIRED : unicode;
+        }
     }
-    uint16_t code = ((unicode & 0x1f) << 6) | (ch & 0x3f);
-    unicode = 0;
-    return code;
+    return ch;
 #else
     return ch;
 #endif
