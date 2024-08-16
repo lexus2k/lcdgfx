@@ -51,6 +51,8 @@ public:
      * @param rect screen area to use for button
      */
     LcdGfxButton(const char *text, const NanoRect &rect);
+    LcdGfxButton(const NanoRect &rect);
+    //~LcdGfxButton(){ }
 
     /**
      * Shows button on the display.
@@ -111,6 +113,11 @@ public:
     const NanoRect &getRect() const
     {
         return m_rect;
+    }
+
+    void setTitle(const char *text)
+    {
+        m_text = text;
     }
 
     /**
