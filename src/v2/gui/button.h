@@ -38,6 +38,15 @@
  * @{
  */
 
+/** Supported font styles */
+typedef enum
+{
+    
+    TEXT_ALIGN_LEFT = -1,
+    TEXT_ALIGN_CENTER = 0,
+    TEXT_ALIGN_RIGHT = 1,
+} LcdGfxButtonFontAlignment;
+
 /**
  * Class implements button object for lcdgfx library
  */
@@ -74,8 +83,25 @@ public:
         {
             d.drawRect(m_rect);
         }
-        d.printFixed(m_rect.p1.x + (m_rect.width() - d.getFont().getTextSize(m_text)) / 2,
-                     m_rect.p1.y + (m_rect.height() - d.getFont().getHeader().height) / 2, m_text);
+
+        switch ( m_alignment_h )
+        {
+            case TEXT_ALIGN_LEFT:
+                d.printFixed(m_rect.p1.x + 2,
+                             m_rect.p1.y + (m_rect.height() - d.getFont().getHeader().height) / 2, m_text);
+                break;
+            case TEXT_ALIGN_RIGHT:
+                d.printFixed(m_rect.p1.x + (m_rect.width() - d.getFont().getTextSize(m_text) - 2),
+                             m_rect.p1.y + (m_rect.height() - d.getFont().getHeader().height) / 2, m_text);
+                break;
+
+            case TEXT_ALIGN_CENTER:
+            default:
+                d.printFixed(m_rect.p1.x + (m_rect.width() - d.getFont().getTextSize(m_text)) / 2,
+                             m_rect.p1.y + (m_rect.height() - d.getFont().getHeader().height) / 2, m_text);
+                break;
+        }
+
         if ( m_focus )
         {
             d.invertColors();
@@ -120,6 +146,12 @@ public:
         m_text = text;
     }
 
+    /// @brief alinha o texto na horizontal
+    void setTextAlignment_H(LcdGfxButtonFontAlignment Alin = TEXT_ALIGN_CENTER)
+    {
+        m_alignment_h = Alin;
+    }
+
     /**
      * Auto updates buttons size if it is not set
      */
@@ -138,6 +170,7 @@ private:
     bool m_focus = false;
     const char *m_text;
     NanoRect m_rect;
+    LcdGfxButtonFontAlignment m_alignment_h = TEXT_ALIGN_CENTER;
 };
 
 /**
