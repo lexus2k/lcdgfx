@@ -173,7 +173,7 @@ public:
 
     template <typename D>
     uint_fast8_t getLineHeight(D &d){
-        return pixelsToLine = (menu.height - menu_offset) / getMaxScreenItems(d); 
+        return pixelsToLine = (menu.height - menu_offset- item_top) / getMaxScreenItems(d); 
     }
 
     /**
@@ -196,8 +196,8 @@ protected:
     /// @brief ponteiro pro array de botoes
     LcdGfxButton **m_buttons;
     /// @brief tamanho do array de botoes
-    uint_fast8_t m_buttonCount;
-    int_fast8_t m_buttonsSelection;
+    lcdint_t m_buttonCount;
+    lcdint_t m_buttonsSelection;
 
 protected:
     SAppMenu menu;
@@ -210,7 +210,7 @@ protected:
     uint_fast8_t menu_offset = 0;
     /// @brief espaço em pixels entre os itens do menu.
     uint_fast8_t text_space = 0;
-    /// @brief fixa o inicio dos itens em uma posiçao especifica. use -1 para centralizar os itens 
+    /// @brief fixa o inicio dos itens em uma posiçao especifica. use -1 para desativar isso
     lcdint_t item_top = -1;
 
 private:
@@ -232,7 +232,7 @@ private:
     uint8_t getMaxScreenItems(D &d)
     {
         if (m_CustomMaxScreenItems < 1)
-            m_MaxScreenItems = lcd_gfx_min(menu.count, (menu.height - menu_offset) / (d.getFont().getHeader().height));
+            m_MaxScreenItems = lcd_gfx_min(menu.count, (menu.height - menu_offset - item_top) / (d.getFont().getHeader().height));
         else
             m_MaxScreenItems = m_CustomMaxScreenItems;
         return m_MaxScreenItems;
@@ -255,7 +255,7 @@ private:
     template <typename D>
     void drawMenuItem(D &d, uint8_t index)
     {
-        uint_fast8_t Top_offset = ((menu.height - menu_offset) - pixelsToLine * m_MaxScreenItems) >> 1;         //pexels sobressalentes da tela, usado para centralizar o menu 
+        uint_fast8_t Top_offset = ((menu.height - menu_offset- item_top) - pixelsToLine * m_MaxScreenItems) >> 1;         //pexels sobressalentes da tela, usado para centralizar o menu 
         
         if(item_top < 0){
              Top_offset += menu_offset >> 1;
