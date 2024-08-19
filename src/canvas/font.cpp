@@ -330,10 +330,10 @@ lcduint_t NanoFont::getTextSize(const char *text, lcduint_t *height)
 uint16_t NanoFont::unicode16FromUtf8(uint8_t ch)
 {
 #ifdef CONFIG_SSD1306_UNICODE_ENABLE
-    static uint16_t unicode = 0;
-    static uint8_t rest = 0;
     if(ch & 0x80)
     {
+        static uint16_t unicode = 0;
+        static uint8_t rest = 0;
         if(ch & 0x40)
         {
             uint8_t mask = 0x1f;
