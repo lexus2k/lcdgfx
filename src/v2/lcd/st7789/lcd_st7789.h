@@ -120,6 +120,20 @@ public:
      */
     void setOffset(lcdint_t ox, lcdint_t oy);
 
+    /**
+     * @brief Set invert mode off
+     * 
+     * Switches display to normal the colors of the display
+     */
+    void normalMode();
+
+    /**
+     * @brief Set invert mode on
+     * 
+     * Invert the colors of the display
+     */
+    void invertMode();
+
 private:
     const int8_t m_dc = -1;                      ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceST7789<I>> &m_base; ///< basic lcd display support interface
