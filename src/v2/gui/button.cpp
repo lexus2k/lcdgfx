@@ -29,6 +29,10 @@ LcdGfxButton::LcdGfxButton(const char *text, const NanoRect &rect)
     , m_rect(rect)
 {
 }
+LcdGfxButton::LcdGfxButton(const NanoRect &rect)
+    : m_rect(rect)
+{
+}
 
 void LcdGfxButton::setFocus(bool focus)
 {
