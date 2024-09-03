@@ -1,0 +1,3 @@
+    commandStart();
+    this->send(0xAF); // display on
+    this->stop();

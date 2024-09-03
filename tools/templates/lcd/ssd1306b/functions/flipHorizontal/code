@@ -1,0 +1,3 @@
+    commandStart();
+    this->send( 0xA0 | (mode ? 0x00: 0x01 ) ); // seg remap
+    this->stop();
