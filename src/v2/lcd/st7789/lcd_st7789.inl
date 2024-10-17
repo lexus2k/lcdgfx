@@ -159,6 +159,20 @@ template <class I> void InterfaceST7789<I>::setOffset(lcdint_t ox, lcdint_t oy)
     }
 }
 
+template <class I> void InterfaceST7789<I>::normalMode()
+{
+    commandStart();
+    this->send(0x20); // Normal display
+    this->stop();
+}
+
+template <class I> void InterfaceST7789<I>::invertMode()
+{
+    commandStart();
+    this->send(0x21); // Invert display
+    this->stop();
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 //             ST7789 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
