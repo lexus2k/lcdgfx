@@ -126,12 +126,13 @@ typedef uint8_t lcduint_t;
 /** The macro is defined when SPI library is available */
 #define CONFIG_ARDUINO_SPI_AVAILABLE
 
-#define CONFIG_ESP32_SPI_AVAILABLE
 
 #if defined(ESP32)
 /** The macro is defined when ESP32 spi implementation is available */
+#define CONFIG_ESP32_SPI_AVAILABLE
+/** The macro is defined when ESP32 spi2 implementation is available */
 #define CONFIG_ARDUINO_SPI2_AVAILABLE
-/** The macro is defined when composite audio support is available */
+/** The macro is defined when VGA monitor control is available directly from controller */
 #define CONFIG_VGA_AVAILABLE
 #endif
 
