@@ -60,7 +60,7 @@ jobs:
           make clean
           make ARCH=avr SDL_EMULATION=n
       - name: Cache ESP32 build system modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-esp32-modules
         with:
@@ -68,7 +68,7 @@ jobs:
           path: |
              ~/esp
              ~/.espressif
-          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          key: ${{ runner.os }}-lcd_gfx
 
       - name: Install ESP32 SDK
         run: |
