@@ -666,7 +666,6 @@ void NanoCanvasOps<4>::drawBitmap1(lcdint_t xpos, lcdint_t ypos, lcduint_t w, lc
             }
             else if ( !(m_textMode & CANVAS_MODE_TRANSPARENT) )
             {
-                data = 0x00;
                 m_buf[addr] &= ~(0x0F << BITS_SHIFT4(x));
             }
         }

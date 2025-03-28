@@ -43,7 +43,7 @@
                         "    0xA2, 0x01, 0x00,  // Display offset",
                         "    0xA1, 0x01, 0x00,  // Start line",
                         "    0xAD, 0x01, 0x02,  // VCOMH",
-                        "    0xA0, 0x01, 0x40 | 0x10 | 0x00 | (0x02 | 0x01),   // REMAP: horizontal increment mode",
+                        "    0xA0, 0x01, 0x40 | 0x10 | (0x02 | 0x01),   // REMAP: horizontal increment mode",
                         "    0x86, 0x00,        // CURRENT",
                         "    0x81, 0x01, 0x70,  // CONTRAST",
                         "    0xB2, 0x01, 0x51,  // FREQ",

@@ -113,7 +113,7 @@ public:
      * @param mosiPin MOSI pin to use, -1 by default
      * @param freq frequency in HZ to run spi bus at
      */
-    ArduinoSpi2(int8_t csPin = -1, int8_t dcPin = -1, int8_t clkPin = -1, int8_t mosiPin = -1, uint32_t freq = 8000000);
+    explicit ArduinoSpi2(int8_t csPin = -1, int8_t dcPin = -1, int8_t clkPin = -1, int8_t mosiPin = -1, uint32_t freq = 8000000);
     ~ArduinoSpi2();
 
     /**

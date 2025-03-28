@@ -54,7 +54,7 @@ public:
      * @param mosiPin mosi pin to use, -1 to use default. Doesn't work on all controllers
      * @param freq frequency in HZ to run spi bus at
      */
-    PicoSpi(int8_t csPin = -1, int8_t dcPin = -1, int8_t clkPin = -1, int8_t mosiPin = -1, uint32_t freq = 0);
+    explicit PicoSpi(int8_t csPin = -1, int8_t dcPin = -1, int8_t clkPin = -1, int8_t mosiPin = -1, uint32_t freq = 0);
     ~PicoSpi();
 
     /**

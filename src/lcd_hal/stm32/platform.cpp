@@ -173,7 +173,7 @@ void lcd_attachInterrupt(int pin, void (*interrupt)(), int level)
 
 uint8_t lcd_pgmReadByte(const void *ptr)
 {
-    return *((const uint8_t *)ptr);
+    return *reinterpret_cast<const uint8_t *>(ptr);
 }
 
 uint16_t lcd_eepromReadWord(const void *ptr)

@@ -38,7 +38,7 @@ template <class I> void InterfaceSSD1325<I>::startBlock(lcduint_t x, lcduint_t y
     commandStart();
     this->send(0x15);
     this->send(x / 2);
-    this->send((rx < m_base.width() ? rx : (m_base.width() - 1)) / 2);
+    this->send( (rx < m_base.width() ? rx : (m_base.width() - 1)) / 2 );
     this->send(0x75);
     this->send(y);
     this->send(m_base.height() - 1);
@@ -56,6 +56,7 @@ template <class I> void InterfaceSSD1325<I>::startBlock(lcduint_t x, lcduint_t y
 
 template <class I> void InterfaceSSD1325<I>::nextBlock()
 {
+
 }
 
 template <class I> void InterfaceSSD1325<I>::endBlock()
@@ -80,6 +81,7 @@ template <class I> void InterfaceSSD1325<I>::commandStart()
         this->send(0x00);
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 //             SSD1325 basic 4-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
@@ -94,50 +96,23 @@ template <class I> void DisplaySSD1325<I>::end()
 
 static const PROGMEM uint8_t s_SSD1325_lcd128x64_initData[] = {
 #ifdef SDL_EMULATION
-    SDL_LCD_SSD1325,
-    0x00,
-    SDL_LCD_SSD1325_GENERIC,
-    0x00,
+    SDL_LCD_SSD1325, 0x00, 
+    SDL_LCD_SSD1325_GENERIC, 0x00, 
 #endif
-    0xAE,
-    0x00, // OFF                         /* display off */
-    0xB3,
-    0x01,
-    0x91, // CLK
-    0xA8,
-    0x01,
-    0x3F, // multiplex 64
-    0xA2,
-    0x01,
-    0x00, // Display offset
-    0xA1,
-    0x01,
-    0x00, // Start line
-    0xAD,
-    0x01,
-    0x02, // VCOMH
-    0xA0,
-    0x01,
-    0x40 | 0x10 | 0x00 | (0x02 | 0x01), // REMAP: horizontal increment mode
-    0x86,
-    0x00, // CURRENT
-    0x81,
-    0x01,
-    0x70, // CONTRAST
-    0xB2,
-    0x01,
-    0x51, // FREQ
-    0xB1,
-    0x01,
-    0x55, // PHASE
-    0xBC,
-    0x01,
-    0x10, // PRECHARGE
-    0xBE,
-    0x01,
-    0x1C, // VCOMH voltage
-    0xA4,
-    0x00, // NORMAL
+    0xAE, 0x00,        // OFF                         /* display off */
+    0xB3, 0x01, 0x91,  // CLK
+    0xA8, 0x01, 0x3F,  // multiplex 64
+    0xA2, 0x01, 0x00,  // Display offset
+    0xA1, 0x01, 0x00,  // Start line
+    0xAD, 0x01, 0x02,  // VCOMH
+    0xA0, 0x01, 0x40 | 0x10 | (0x02 | 0x01),   // REMAP: horizontal increment mode
+    0x86, 0x00,        // CURRENT
+    0x81, 0x01, 0x70,  // CONTRAST
+    0xB2, 0x01, 0x51,  // FREQ
+    0xB1, 0x01, 0x55,  // PHASE
+    0xBC, 0x01, 0x10,  // PRECHARGE
+    0xBE, 0x01, 0x1C,  // VCOMH voltage
+    0xA4, 0x00,        // NORMAL
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -151,8 +126,10 @@ template <class I> void DisplaySSD1325_128x64<I>::begin()
     this->m_h = 64;
     // Give LCD some time to initialize. Refer to SSD1325 datasheet
     lcd_delay(0);
-    _configureSpiDisplayCmdModeOnly<I>(this->m_intf, s_SSD1325_lcd128x64_initData,
-                                       sizeof(s_SSD1325_lcd128x64_initData));
+    _configureSpiDisplayCmdModeOnly<I>(this->m_intf,
+                            s_SSD1325_lcd128x64_initData,
+                            sizeof(s_SSD1325_lcd128x64_initData));
+
 }
 
 template <class I> void DisplaySSD1325_128x64<I>::end()

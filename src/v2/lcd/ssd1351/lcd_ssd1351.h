@@ -129,12 +129,12 @@ public:
     void setRgbMode(uint8_t mode);
 
 private:
-    const int8_t m_dc = -1;                       ///< data/command pin for SPI, -1 for i2c
+    const int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSSD1351<I>> &m_base; ///< basic lcd display support interface
-    uint8_t m_rotation = 0x00;                    ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
-    uint8_t m_rgbMode = 0x04;                     ///< RGB mode display
-    lcdint_t m_offset_x = 0x00;                   ///< Display interconnection offset on x-axis
-    lcdint_t m_offset_y = 0x00;                   ///< Display interconnection offset on y-axis
+    uint8_t m_rotation = 0x00;                         ///< Indicates display orientation: 0, 1, 2, 3. refer to setRotation
+    uint8_t m_rgbMode = 0x04;                          ///< RGB mode display
+    lcdint_t m_offset_x = 0x00;                        ///< Display interconnection offset on x-axis
+    lcdint_t m_offset_y = 0x00;                        ///< Display interconnection offset on y-axis
 };
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays

@@ -159,7 +159,7 @@ void SoftwareI2c::start()
     ssd1306_delay(I2C_START_STOP_DELAY);
     DIGITAL_WRITE_LOW(DDR_REG, PORT_REG, m_scl); // Set to LOW
     ssd1306_delay(I2C_HALF_CLOCK);
-    send((m_sa << 1) | 0x00);
+    send(m_sa << 1);
 }
 
 void SoftwareI2c::start(uint8_t sa, bool read_op)

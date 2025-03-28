@@ -43,7 +43,7 @@ public:
      * @param busId i2c bus number, if -1 defaults to 1
      * @param sa i2c address of the display (7 bits)
      */
-    LinuxI2c(int8_t busId = -1, uint8_t sa = 0x00);
+    explicit LinuxI2c(int8_t busId = -1, uint8_t sa = 0x00);
     ~LinuxI2c();
 
     /**

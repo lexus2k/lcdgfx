@@ -673,7 +673,7 @@ template <class O, class I> void NanoDisplayOps<O, I>::print(char c)
 #define lcd_gfx_max(x, y) ((x) > (y) ? (x) : (y))
 #endif
 
-template <class O, class I> static uint8_t getMaxScreenItems(NanoDisplayOps<O, I> &display, SAppMenu *menu)
+template <class O, class I> static uint8_t getMaxScreenItems(NanoDisplayOps<O, I> &display, const SAppMenu *menu)
 {
     return (menu->height - 16) / display.getFont().getHeader().height;
 }
@@ -799,7 +799,7 @@ template <class O, class I> void NanoDisplayOps<O, I>::updateMenuSmooth(SAppMenu
     }
 }
 
-template <class O, class I> uint8_t NanoDisplayOps<O, I>::menuSelection(SAppMenu *menu)
+template <class O, class I> uint8_t NanoDisplayOps<O, I>::menuSelection(const SAppMenu *menu)
 {
     return menu->selection;
 }

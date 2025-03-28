@@ -42,7 +42,7 @@
                         "    0xA8, 0x01, 0x7F,  // multiplex 128",
                         "    0xA1, 0x01, 0x00,  // Start line",
                         "    0xA2, 0x01, 0x00,  // Display offset",
-                        "    0xA0, 0x01, 0x40 | 0x10 | 0x00 | (0x02 | 0x01),   // REMAP: horizontal increment mode",
+                        "    0xA0, 0x01, 0x40 | 0x10 | (0x02 | 0x01),   // REMAP: horizontal increment mode",
                         "    0xAB, 0x01, 0x01,  // VDD internal",
                         "    0x81, 0x01, 0x70,  // CONTRAST",
                         "    0xB1, 0x01, 0x55,  // PHASE 0x51",

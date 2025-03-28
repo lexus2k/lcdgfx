@@ -35,7 +35,7 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 static inline uint8_t pgm_read_byte(const void *ptr)
 {
-    return *((const uint8_t *)ptr);
+    return *reinterpret_cast<const uint8_t*>(ptr);
 }
 #endif
 #endif
