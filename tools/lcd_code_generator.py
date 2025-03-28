@@ -41,7 +41,7 @@ def print_help_and_exit():
     print("      -j json   Use json data from file")
     print("      -t template path source templates, templates by default")
     print("")
-    print("exammples:")
+    print("examples:")
     print("      ./lcd_code_generator.py -c all")
     exit(1)
 
