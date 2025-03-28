@@ -94,7 +94,7 @@ coverage:
 	#    --exclude docs --exclude extra --exclude unittest --exclude bld --exclude tools --exclude examples \
 	#    --gcov-options '\-lp' --dryrun
 	lcov --base-directory src --directory src -c -o lcov.info
-	lcov --remove lcov.info "*unittest*" -o lcov.info # remove output for external libraries
-	lcov --remove lcov.info "/usr/include*" -o lcov.info # remove output for external libraries
+	lcov --ignore-errors unused --remove lcov.info "*unittest*" -o lcov.info # remove output for external libraries
+	lcov --ignore-errors unused --remove lcov.info "/usr/include*" -o lcov.info # remove output for external libraries
 	# -rm -rf test_coverage
 	# genhtml -o test_coverage -t "tinyproto test coverage" --num-spaces 4 lcov.info
