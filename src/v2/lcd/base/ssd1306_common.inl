@@ -679,7 +679,7 @@ template <class O, class I> static uint8_t getMaxScreenItems(NanoDisplayOps<O, I
 }
 
 template <class O, class I>
-static uint8_t calculateScrollPosition(NanoDisplayOps<O, I> &display, SAppMenu *menu, uint8_t selection)
+static uint8_t calculateScrollPosition(NanoDisplayOps<O, I> &display, const SAppMenu *menu, uint8_t selection)
 {
     if ( selection < menu->scrollPosition )
     {

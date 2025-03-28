@@ -38,7 +38,7 @@ template <class I> void InterfaceSH1107<I>::startBlock(lcduint_t x, lcduint_t y,
     m_page = y;
     commandStart();
     this->send(0xB0 | y); // set page
-    this->send( ((x + m_seg_offset)       & 0x0f ) | 0x00); // low column
+    this->send( ((x + m_seg_offset)       & 0x0f )       ); // low column
     this->send((((x + m_seg_offset) >> 4) & 0x07 ) | 0x10); // high column
     if ( m_dc >= 0 )
     {

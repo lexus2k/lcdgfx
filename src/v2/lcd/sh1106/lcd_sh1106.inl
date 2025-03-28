@@ -39,7 +39,7 @@ template <class I> void InterfaceSH1106<I>::startBlock(lcduint_t x, lcduint_t y,
     commandStart();
     this->send(0xB0 | y); // set page
     this->send(((x+2)>>4) | 0x10); // high column
-    this->send(((x+2) & 0x0f) | 0x00); // low column
+    this->send(((x+2) & 0x0f)); // low column
     if ( m_dc >= 0 )
     {
         setDataMode(1);
