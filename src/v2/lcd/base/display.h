@@ -1181,7 +1181,7 @@ public:
      * @param menu pointer to SAppMenu structure
      *
      */
-    uint8_t menuSelection(SAppMenu *menu);
+    uint8_t menuSelection(const SAppMenu *menu);
 
     /**
      * Moves selection pointer down by 1 item. If there are no items below,
