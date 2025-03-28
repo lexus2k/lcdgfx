@@ -49,7 +49,7 @@ public:
      * @param csPin pin to enable chip select signal, or -1 if cs pin is not required.
      * @param dcPin pin to control data/command mode.
      */
-    UsiSpi(int8_t csPin, int8_t dcPin);
+    explicit UsiSpi(int8_t csPin, int8_t dcPin);
 
     ~UsiSpi();
 

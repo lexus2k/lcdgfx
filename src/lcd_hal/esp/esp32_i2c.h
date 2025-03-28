@@ -48,7 +48,7 @@ public:
      * @param sda pin number to use as SDA pin, or -1 if default is used
      * @param frequency frequency in HZ to run i2c bus on, defaults to 400kHz
      */
-    EspI2c(int8_t busId = -1, uint8_t sa = 0x00, int8_t scl = -1, int8_t sda = -1, uint32_t frequency = 400000);
+    explicit EspI2c(int8_t busId = -1, uint8_t sa = 0x00, int8_t scl = -1, int8_t sda = -1, uint32_t frequency = 400000);
     ~EspI2c();
 
     /**

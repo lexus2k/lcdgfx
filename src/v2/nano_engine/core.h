@@ -30,6 +30,7 @@
 
 #include "tiler.h"
 #include "canvas/canvas.h"
+#include <stdint.h>
 
 /**
  * @ingroup NANO_ENGINE_API_V2
@@ -203,12 +204,12 @@ protected:
     NanoEngineCore()
         : NanoEngineInputs(){};
 
-public:
     /**
      * Initializes internal timestamps.
      */
     void begin();
 
+public:
     /**
      * Sets working frame-rate for the engine
      * @param fps - frame rate to set between [1-255]
@@ -221,7 +222,7 @@ public:
     uint8_t getFrameRate()
     {
         return m_fps;
-    };
+    }
 
     /**
      * Returns cpu load in percents [0-255].
@@ -232,7 +233,7 @@ public:
     uint8_t getCpuLoad()
     {
         return m_cpuLoad;
-    };
+    }
 
     /**
      * Returns true if it is time to render next frame
@@ -246,7 +247,7 @@ public:
     void loopCallback(TLoopCallback callback)
     {
         m_loop = callback;
-    };
+    }
 
 protected:
     /** Duration between frames in milliseconds */
@@ -258,7 +259,7 @@ protected:
     /** Last timestamp in milliseconds the frame was updated on oled display */
     uint32_t m_lastFrameTs = 0;
     /** Callback to call before starting oled update */
-    TLoopCallback m_loop = nullptr;
+    TLoopCallback m_loop = {nullptr};
 };
 
 /**

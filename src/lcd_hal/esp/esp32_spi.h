@@ -48,7 +48,7 @@ public:
      * @param mosi pin to use as master output spi pin
      * @param frequency frequency in HZ to run spi bus on
      */
-    EspSpi(int8_t busId = -1, int8_t csPin = -1, int8_t dcPin = -1, int8_t clk = -1, int8_t mosi = -1,
+    explicit EspSpi(int8_t busId = -1, int8_t csPin = -1, int8_t dcPin = -1, int8_t clk = -1, int8_t mosi = -1,
            uint32_t frequency = 8000000);
     ~EspSpi();
 

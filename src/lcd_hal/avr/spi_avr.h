@@ -44,7 +44,7 @@ public:
      * @param dcPin pin to control data/command mode.
      * @param frequency frequency in HZ to run SPI bus.
      */
-    AvrSpi(int8_t csPin, int8_t dcPin, uint32_t frequency);
+    explicit AvrSpi(int8_t csPin, int8_t dcPin, uint32_t frequency);
 
     ~AvrSpi();
 

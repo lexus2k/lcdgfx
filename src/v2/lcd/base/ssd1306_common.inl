@@ -661,7 +661,7 @@ template <class O, class I> void NanoDisplayOps<O, I>::print(float number)
 
 template <class O, class I> void NanoDisplayOps<O, I>::print(char c)
 {
-    char intStr[2] = {c, '\0'};
+    const char intStr[2] = {c, '\0'};
     this->write(intStr);
 }
 

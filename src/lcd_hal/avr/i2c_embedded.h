@@ -45,7 +45,7 @@ public:
      * @param sda pin number to use as data line
      * @param sa i2c address of the display (7 bits)
      */
-    SoftwareI2c(int8_t scl = -1, int8_t sda = -1, uint8_t sa = 0x00);
+    explicit SoftwareI2c(int8_t scl = -1, int8_t sda = -1, uint8_t sa = 0x00);
 
     ~SoftwareI2c();
 

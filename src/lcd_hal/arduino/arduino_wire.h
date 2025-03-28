@@ -41,7 +41,7 @@ public:
      * @param sda data pin to use for i2c
      * @param sa i2c address of the device to control over i2c
      */
-    ArduinoI2c(int8_t scl = -1, int8_t sda = -1, uint8_t sa = 0x00);
+    explicit ArduinoI2c(int8_t scl = -1, int8_t sda = -1, uint8_t sa = 0x00);
     ~ArduinoI2c();
 
     /**
