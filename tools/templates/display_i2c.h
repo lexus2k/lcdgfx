@@ -37,7 +37,7 @@ private:
  * Template class implements ~CONTROLLER~ ~RESOLUTION~ lcd display in ~BITS~ bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I> class Display~CONTROLLER~_~RESOLUTION~_CustomI2C: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
+template <typename I> class Display~CONTROLLER~_~RESOLUTION~_CustomI2C: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
 {
 public:
     /**
@@ -60,7 +60,7 @@ public:
     void begin() override
     {
         m_i2c.begin();
-        Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>::begin();
+        Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>::beginController();
     }
 
     /**
@@ -68,7 +68,7 @@ public:
      */
     void end() override
     {
-        Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>::end();
+        Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>::endController();
         m_i2c.end();
     }
 

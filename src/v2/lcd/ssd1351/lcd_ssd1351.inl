@@ -148,11 +148,11 @@ template <class I> void InterfaceSSD1351<I>::setRgbMode(uint8_t mode)
 //             SSD1351 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1351x16<I>::begin()
+template <class I> void DisplaySSD1351x16<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplaySSD1351x16<I>::end()
+template <class I> void DisplaySSD1351x16<I>::endDisplay()
 {
 }
 
@@ -187,7 +187,7 @@ static const PROGMEM uint8_t s_SSD1351_lcd128x128x16_initData[] = {
 //             SSD1351 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1351_128x128x16<I>::begin()
+template <class I> void DisplaySSD1351_128x128x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 20);
     this->m_w = 128;
@@ -200,7 +200,7 @@ template <class I> void DisplaySSD1351_128x128x16<I>::begin()
 
 }
 
-template <class I> void DisplaySSD1351_128x128x16<I>::end()
+template <class I> void DisplaySSD1351_128x128x16<I>::endController()
 {
 }
 
@@ -235,7 +235,7 @@ static const PROGMEM uint8_t s_SSD1351_lcd96x96x16_initData[] = {
 //             SSD1351 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1351_96x96x16<I>::begin()
+template <class I> void DisplaySSD1351_96x96x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 20);
     this->m_w = 96;
@@ -248,6 +248,6 @@ template <class I> void DisplaySSD1351_96x96x16<I>::begin()
 
 }
 
-template <class I> void DisplaySSD1351_96x96x16<I>::end()
+template <class I> void DisplaySSD1351_96x96x16<I>::endController()
 {
 }

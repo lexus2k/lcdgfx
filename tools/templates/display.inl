@@ -2,10 +2,10 @@
 //             ~CONTROLLER~ basic ~BITS~-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void Display~CONTROLLER~~EXBITS~<I>::begin()
+template <class I> void Display~CONTROLLER~~EXBITS~<I>::beginDisplay()
 {
 }
 
-template <class I> void Display~CONTROLLER~~EXBITS~<I>::end()
+template <class I> void Display~CONTROLLER~~EXBITS~<I>::endDisplay()
 {
 }

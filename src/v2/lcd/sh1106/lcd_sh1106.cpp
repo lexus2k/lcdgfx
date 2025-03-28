@@ -30,22 +30,22 @@
 void DisplaySH1106_128x64_SPI::begin()
 {
     m_spi.begin();
-    DisplaySH1106_128x64::begin();
+    DisplaySH1106_128x64::beginController();
 }
 
 void DisplaySH1106_128x64_SPI::end()
 {
-    DisplaySH1106_128x64::end();
+    DisplaySH1106_128x64::endController();
     m_spi.end();
 }
 void DisplaySH1106_128x64_I2C::begin()
 {
     m_i2c.begin();
-    DisplaySH1106_128x64::begin();
+    DisplaySH1106_128x64::beginController();
 }
 
 void DisplaySH1106_128x64_I2C::end()
 {
-    DisplaySH1106_128x64::end();
+    DisplaySH1106_128x64::endController();
     m_i2c.end();
 }

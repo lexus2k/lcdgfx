@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to ST7789 displays
  */
-template <class I> class InterfaceST7789: public I
+template <typename I> class InterfaceST7789: public I
 {
 public:
     /**
@@ -131,7 +131,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ST7789-based displays
  */
-template <class I> class DisplayST7789x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
+template <typename I> class DisplayST7789x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**
@@ -152,18 +152,18 @@ protected:
     /**
      * Basic ST7789 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic ST7789 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 16-bit mode of ST7789-based displays
  */
-template <class I> class DisplayST7789_135x240x16: public DisplayST7789x16<I>
+template <typename I> class DisplayST7789_135x240x16: public DisplayST7789x16<I>
 {
 public:
     /**
@@ -181,12 +181,12 @@ protected:
     /**
      * Basic ST7789 135x240x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic ST7789 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements ST7789 135x240x16 lcd display in 16 bit mode over SPI
@@ -227,7 +227,7 @@ private:
  * Template class implements ST7789 135x240x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayST7789_135x240x16_CustomSPI: public DisplayST7789_135x240x16<InterfaceST7789<I>>
+template <typename I> class DisplayST7789_135x240x16_CustomSPI: public DisplayST7789_135x240x16<InterfaceST7789<I>>
 {
 public:
     /**
@@ -251,7 +251,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayST7789_135x240x16<InterfaceST7789<I>>::begin();
+        DisplayST7789_135x240x16<InterfaceST7789<I>>::beginController();
     }
 
     /**
@@ -259,7 +259,7 @@ public:
      */
     void end() override
     {
-        DisplayST7789_135x240x16<InterfaceST7789<I>>::end();
+        DisplayST7789_135x240x16<InterfaceST7789<I>>::endController();
         m_spi.end();
     }
 
@@ -269,7 +269,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ST7789-based displays
  */
-template <class I> class DisplayST7789_240x240x16: public DisplayST7789x16<I>
+template <typename I> class DisplayST7789_240x240x16: public DisplayST7789x16<I>
 {
 public:
     /**
@@ -287,12 +287,12 @@ protected:
     /**
      * Basic ST7789 240x240x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic ST7789 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements ST7789 240x240x16 lcd display in 16 bit mode over SPI
@@ -333,7 +333,7 @@ private:
  * Template class implements ST7789 240x240x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayST7789_240x240x16_CustomSPI: public DisplayST7789_240x240x16<InterfaceST7789<I>>
+template <typename I> class DisplayST7789_240x240x16_CustomSPI: public DisplayST7789_240x240x16<InterfaceST7789<I>>
 {
 public:
     /**
@@ -357,7 +357,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayST7789_240x240x16<InterfaceST7789<I>>::begin();
+        DisplayST7789_240x240x16<InterfaceST7789<I>>::beginController();
     }
 
     /**
@@ -365,7 +365,7 @@ public:
      */
     void end() override
     {
-        DisplayST7789_240x240x16<InterfaceST7789<I>>::end();
+        DisplayST7789_240x240x16<InterfaceST7789<I>>::endController();
         m_spi.end();
     }
 

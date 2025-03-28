@@ -207,7 +207,7 @@ protected:
     /**
      * Initializes internal timestamps.
      */
-    void begin();
+    void beginCore();
 
 public:
     /**
@@ -314,7 +314,7 @@ template <class C, class D> void NanoEngine<C, D>::display()
 
 template <class C, class D> void NanoEngine<C, D>::begin()
 {
-    NanoEngineCore::begin();
+    NanoEngineCore::beginCore();
 }
 
 template <class C, class D> void NanoEngine<C, D>::notify(const char *str)

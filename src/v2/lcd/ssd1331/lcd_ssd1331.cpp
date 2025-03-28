@@ -30,22 +30,22 @@
 void DisplaySSD1331_96x64x8_SPI::begin()
 {
     m_spi.begin();
-    DisplaySSD1331_96x64x8::begin();
+    DisplaySSD1331_96x64x8::beginController();
 }
 
 void DisplaySSD1331_96x64x8_SPI::end()
 {
-    DisplaySSD1331_96x64x8::end();
+    DisplaySSD1331_96x64x8::endController();
     m_spi.end();
 }
 void DisplaySSD1331_96x64x16_SPI::begin()
 {
     m_spi.begin();
-    DisplaySSD1331_96x64x16::begin();
+    DisplaySSD1331_96x64x16::beginController();
 }
 
 void DisplaySSD1331_96x64x16_SPI::end()
 {
-    DisplaySSD1331_96x64x16::end();
+    DisplaySSD1331_96x64x16::endController();
     m_spi.end();
 }

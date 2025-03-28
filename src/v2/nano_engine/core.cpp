@@ -223,7 +223,7 @@ void NanoEngineInputs::connectKY40encoder(uint8_t pina_clk, uint8_t pinb_dt, int
 ////// NANO ENGINE CORE CLASS /////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-void NanoEngineCore::begin()
+void NanoEngineCore::beginCore()
 {
     m_lastFrameTs = lcd_millis();
 }

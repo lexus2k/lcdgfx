@@ -30,33 +30,33 @@
 void DisplayST7735_128x128x16_SPI::begin()
 {
     m_spi.begin();
-    DisplayST7735_128x128x16::begin();
+    DisplayST7735_128x128x16::beginController();
 }
 
 void DisplayST7735_128x128x16_SPI::end()
 {
-    DisplayST7735_128x128x16::end();
+    DisplayST7735_128x128x16::endController();
     m_spi.end();
 }
 void DisplayST7735_80x160x16_SPI::begin()
 {
     m_spi.begin();
-    DisplayST7735_80x160x16::begin();
+    DisplayST7735_80x160x16::beginController();
 }
 
 void DisplayST7735_80x160x16_SPI::end()
 {
-    DisplayST7735_80x160x16::end();
+    DisplayST7735_80x160x16::endController();
     m_spi.end();
 }
 void DisplayST7735_128x160x16_SPI::begin()
 {
     m_spi.begin();
-    DisplayST7735_128x160x16::begin();
+    DisplayST7735_128x160x16::beginController();
 }
 
 void DisplayST7735_128x160x16_SPI::end()
 {
-    DisplayST7735_128x160x16::end();
+    DisplayST7735_128x160x16::endController();
     m_spi.end();
 }

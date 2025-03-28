@@ -30,11 +30,11 @@
 void DisplayPCD8544_84x48_SPI::begin()
 {
     m_spi.begin();
-    DisplayPCD8544_84x48::begin();
+    DisplayPCD8544_84x48::beginController();
 }
 
 void DisplayPCD8544_84x48_SPI::end()
 {
-    DisplayPCD8544_84x48::end();
+    DisplayPCD8544_84x48::endController();
     m_spi.end();
 }

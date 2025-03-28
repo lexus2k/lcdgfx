@@ -975,7 +975,7 @@ protected:
  * NanoCanvasOps provides operations for drawing in memory buffer.
  * Depending on BPP argument, this class can work with 1,8,16-bit canvas areas.
  */
-template <class O, class I> class NanoDisplayOps: public O
+template <typename O, typename I> class NanoDisplayOps: public O
 {
 public:
     using O::O;

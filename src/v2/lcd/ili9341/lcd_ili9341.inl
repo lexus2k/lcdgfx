@@ -128,11 +128,11 @@ template <class I> void InterfaceILI9341<I>::rotateOutput(uint8_t rotate)
 //             ILI9341 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayILI9341x16<I>::begin()
+template <class I> void DisplayILI9341x16<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplayILI9341x16<I>::end()
+template <class I> void DisplayILI9341x16<I>::endDisplay()
 {
 }
 
@@ -170,7 +170,7 @@ static const PROGMEM uint8_t s_ILI9341_lcd240x320x16_initData[] = {
 //             ILI9341 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayILI9341_240x320x16<I>::begin()
+template <class I> void DisplayILI9341_240x320x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 100);
     this->m_w = 240;
@@ -183,7 +183,7 @@ template <class I> void DisplayILI9341_240x320x16<I>::begin()
 
 }
 
-template <class I> void DisplayILI9341_240x320x16<I>::end()
+template <class I> void DisplayILI9341_240x320x16<I>::endController()
 {
 }
 
@@ -234,7 +234,7 @@ static const PROGMEM uint8_t s_ILI9341_lcd128x160x16_initData[] = {
 //             ILI9341 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayILI9341_128x160x16<I>::begin()
+template <class I> void DisplayILI9341_128x160x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 100);
     this->m_w = 128;
@@ -247,6 +247,6 @@ template <class I> void DisplayILI9341_128x160x16<I>::begin()
 
 }
 
-template <class I> void DisplayILI9341_128x160x16<I>::end()
+template <class I> void DisplayILI9341_128x160x16<I>::endController()
 {
 }

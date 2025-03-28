@@ -152,11 +152,11 @@ template <class I> void InterfaceST7735<I>::setRgbMode(uint8_t mode)
 //             ST7735 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayST7735x16<I>::begin()
+template <class I> void DisplayST7735x16<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplayST7735x16<I>::end()
+template <class I> void DisplayST7735x16<I>::endDisplay()
 {
 }
 
@@ -207,7 +207,7 @@ static const PROGMEM uint8_t s_ST7735_lcd128x128x16_initData[] = {
 //             ST7735 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayST7735_128x128x16<I>::begin()
+template <class I> void DisplayST7735_128x128x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 20);
     this->m_w = 128;
@@ -220,7 +220,7 @@ template <class I> void DisplayST7735_128x128x16<I>::begin()
 
 }
 
-template <class I> void DisplayST7735_128x128x16<I>::end()
+template <class I> void DisplayST7735_128x128x16<I>::endController()
 {
 }
 
@@ -271,7 +271,7 @@ static const PROGMEM uint8_t s_ST7735_lcd80x160x16_initData[] = {
 //             ST7735 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayST7735_80x160x16<I>::begin()
+template <class I> void DisplayST7735_80x160x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 20);
     this->m_w = 80;
@@ -284,7 +284,7 @@ template <class I> void DisplayST7735_80x160x16<I>::begin()
     this->m_intf.setOffset( 26, 0 );
 }
 
-template <class I> void DisplayST7735_80x160x16<I>::end()
+template <class I> void DisplayST7735_80x160x16<I>::endController()
 {
 }
 
@@ -335,7 +335,7 @@ static const PROGMEM uint8_t s_ST7735_lcd128x160x16_initData[] = {
 //             ST7735 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayST7735_128x160x16<I>::begin()
+template <class I> void DisplayST7735_128x160x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 20);
     this->m_w = 128;
@@ -348,6 +348,6 @@ template <class I> void DisplayST7735_128x160x16<I>::begin()
 
 }
 
-template <class I> void DisplayST7735_128x160x16<I>::end()
+template <class I> void DisplayST7735_128x160x16<I>::endController()
 {
 }

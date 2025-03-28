@@ -30,22 +30,22 @@
 void DisplaySSD1325_128x64_SPI::begin()
 {
     m_spi.begin();
-    DisplaySSD1325_128x64::begin();
+    DisplaySSD1325_128x64::beginController();
 }
 
 void DisplaySSD1325_128x64_SPI::end()
 {
-    DisplaySSD1325_128x64::end();
+    DisplaySSD1325_128x64::endController();
     m_spi.end();
 }
 void DisplaySSD1325_128x64_I2C::begin()
 {
     m_i2c.begin();
-    DisplaySSD1325_128x64::begin();
+    DisplaySSD1325_128x64::beginController();
 }
 
 void DisplaySSD1325_128x64_I2C::end()
 {
-    DisplaySSD1325_128x64::end();
+    DisplaySSD1325_128x64::endController();
     m_i2c.end();
 }

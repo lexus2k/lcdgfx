@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to IL9163 displays
  */
-template <class I> class InterfaceIL9163: public I
+template <typename I> class InterfaceIL9163: public I
 {
 public:
     /**
@@ -117,7 +117,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of IL9163-based displays
  */
-template <class I> class DisplayIL9163x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
+template <typename I> class DisplayIL9163x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**
@@ -138,18 +138,18 @@ protected:
     /**
      * Basic IL9163 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic IL9163 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 16-bit mode of IL9163-based displays
  */
-template <class I> class DisplayIL9163_128x128x16: public DisplayIL9163x16<I>
+template <typename I> class DisplayIL9163_128x128x16: public DisplayIL9163x16<I>
 {
 public:
     /**
@@ -167,12 +167,12 @@ protected:
     /**
      * Basic IL9163 128x128x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic IL9163 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements IL9163 128x128x16 lcd display in 16 bit mode over SPI
@@ -213,7 +213,7 @@ private:
  * Template class implements IL9163 128x128x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayIL9163_128x128x16_CustomSPI: public DisplayIL9163_128x128x16<InterfaceIL9163<I>>
+template <typename I> class DisplayIL9163_128x128x16_CustomSPI: public DisplayIL9163_128x128x16<InterfaceIL9163<I>>
 {
 public:
     /**
@@ -237,7 +237,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayIL9163_128x128x16<InterfaceIL9163<I>>::begin();
+        DisplayIL9163_128x128x16<InterfaceIL9163<I>>::beginController();
     }
 
     /**
@@ -245,7 +245,7 @@ public:
      */
     void end() override
     {
-        DisplayIL9163_128x128x16<InterfaceIL9163<I>>::end();
+        DisplayIL9163_128x128x16<InterfaceIL9163<I>>::endController();
         m_spi.end();
     }
 
@@ -255,7 +255,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of IL9163-based displays
  */
-template <class I> class DisplayIL9163_128x160x16: public DisplayIL9163x16<I>
+template <typename I> class DisplayIL9163_128x160x16: public DisplayIL9163x16<I>
 {
 public:
     /**
@@ -273,12 +273,12 @@ protected:
     /**
      * Basic IL9163 128x160x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic IL9163 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements IL9163 128x160x16 lcd display in 16 bit mode over SPI
@@ -319,7 +319,7 @@ private:
  * Template class implements IL9163 128x160x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayIL9163_128x160x16_CustomSPI: public DisplayIL9163_128x160x16<InterfaceIL9163<I>>
+template <typename I> class DisplayIL9163_128x160x16_CustomSPI: public DisplayIL9163_128x160x16<InterfaceIL9163<I>>
 {
 public:
     /**
@@ -343,7 +343,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayIL9163_128x160x16<InterfaceIL9163<I>>::begin();
+        DisplayIL9163_128x160x16<InterfaceIL9163<I>>::beginController();
     }
 
     /**
@@ -351,7 +351,7 @@ public:
      */
     void end() override
     {
-        DisplayIL9163_128x160x16<InterfaceIL9163<I>>::end();
+        DisplayIL9163_128x160x16<InterfaceIL9163<I>>::endController();
         m_spi.end();
     }
 

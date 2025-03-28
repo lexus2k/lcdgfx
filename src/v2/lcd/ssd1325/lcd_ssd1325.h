@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to SSD1325 displays
  */
-template <class I> class InterfaceSSD1325: public I
+template <typename I> class InterfaceSSD1325: public I
 {
 public:
     /**
@@ -107,7 +107,7 @@ private:
 /**
  * Class implements basic functions for 4-bit mode of SSD1325-based displays
  */
-template <class I> class DisplaySSD1325: public NanoDisplayOps<NanoDisplayOps4<I>, I>
+template <typename I> class DisplaySSD1325: public NanoDisplayOps<NanoDisplayOps4<I>, I>
 {
 public:
     /**
@@ -128,18 +128,18 @@ protected:
     /**
      * Basic SSD1325 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic SSD1325 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 4-bit mode of SSD1325-based displays
  */
-template <class I> class DisplaySSD1325_128x64: public DisplaySSD1325<I>
+template <typename I> class DisplaySSD1325_128x64: public DisplaySSD1325<I>
 {
 public:
     /**
@@ -157,12 +157,12 @@ protected:
     /**
      * Basic SSD1325 128x64 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SSD1325 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SSD1325 128x64 lcd display in 4 bit mode over SPI
@@ -203,7 +203,7 @@ private:
  * Template class implements SSD1325 128x64 lcd display in 4 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySSD1325_128x64_CustomSPI: public DisplaySSD1325_128x64<InterfaceSSD1325<I>>
+template <typename I> class DisplaySSD1325_128x64_CustomSPI: public DisplaySSD1325_128x64<InterfaceSSD1325<I>>
 {
 public:
     /**
@@ -227,7 +227,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySSD1325_128x64<InterfaceSSD1325<I>>::begin();
+        DisplaySSD1325_128x64<InterfaceSSD1325<I>>::beginController();
     }
 
     /**
@@ -235,7 +235,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1325_128x64<InterfaceSSD1325<I>>::end();
+        DisplaySSD1325_128x64<InterfaceSSD1325<I>>::endController();
         m_spi.end();
     }
 
@@ -281,7 +281,7 @@ private:
  * Template class implements SSD1325 128x64 lcd display in 4 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I> class DisplaySSD1325_128x64_CustomI2C: public DisplaySSD1325_128x64<InterfaceSSD1325<I>>
+template <typename I> class DisplaySSD1325_128x64_CustomI2C: public DisplaySSD1325_128x64<InterfaceSSD1325<I>>
 {
 public:
     /**
@@ -304,7 +304,7 @@ public:
     void begin() override
     {
         m_i2c.begin();
-        DisplaySSD1325_128x64<InterfaceSSD1325<I>>::begin();
+        DisplaySSD1325_128x64<InterfaceSSD1325<I>>::beginController();
     }
 
     /**
@@ -312,7 +312,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1325_128x64<InterfaceSSD1325<I>>::end();
+        DisplaySSD1325_128x64<InterfaceSSD1325<I>>::endController();
         m_i2c.end();
     }
 

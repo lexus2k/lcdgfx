@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to PCD8544 displays
  */
-template <class I> class InterfacePCD8544: public I
+template <typename I> class InterfacePCD8544: public I
 {
 public:
     /**
@@ -110,7 +110,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of PCD8544-based displays
  */
-template <class I> class DisplayPCD8544: public NanoDisplayOps<NanoDisplayOps1<I>, I>
+template <typename I> class DisplayPCD8544: public NanoDisplayOps<NanoDisplayOps1<I>, I>
 {
 public:
     /**
@@ -131,18 +131,18 @@ protected:
     /**
      * Basic PCD8544 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic PCD8544 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 1-bit mode of PCD8544-based displays
  */
-template <class I> class DisplayPCD8544_84x48: public DisplayPCD8544<I>
+template <typename I> class DisplayPCD8544_84x48: public DisplayPCD8544<I>
 {
 public:
     /**
@@ -160,12 +160,12 @@ protected:
     /**
      * Basic PCD8544 84x48 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic PCD8544 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements PCD8544 84x48 lcd display in 1 bit mode over SPI
@@ -206,7 +206,7 @@ private:
  * Template class implements PCD8544 84x48 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayPCD8544_84x48_CustomSPI: public DisplayPCD8544_84x48<InterfacePCD8544<I>>
+template <typename I> class DisplayPCD8544_84x48_CustomSPI: public DisplayPCD8544_84x48<InterfacePCD8544<I>>
 {
 public:
     /**
@@ -230,7 +230,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayPCD8544_84x48<InterfacePCD8544<I>>::begin();
+        DisplayPCD8544_84x48<InterfacePCD8544<I>>::beginController();
     }
 
     /**
@@ -238,7 +238,7 @@ public:
      */
     void end() override
     {
-        DisplayPCD8544_84x48<InterfacePCD8544<I>>::end();
+        DisplayPCD8544_84x48<InterfacePCD8544<I>>::endController();
         m_spi.end();
     }
 

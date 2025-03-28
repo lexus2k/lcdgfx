@@ -174,11 +174,11 @@ template <class I> void InterfaceST7789<I>::setOffset(lcdint_t ox, lcdint_t oy)
 //             ST7789 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayST7789x16<I>::begin()
+template <class I> void DisplayST7789x16<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplayST7789x16<I>::end()
+template <class I> void DisplayST7789x16<I>::endDisplay()
 {
 }
 
@@ -222,7 +222,7 @@ static const PROGMEM uint8_t s_ST7789_lcd135x240x16_initData[] = {
 //             ST7789 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayST7789_135x240x16<I>::begin()
+template <class I> void DisplayST7789_135x240x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 20);
     this->m_w = 135;
@@ -235,7 +235,7 @@ template <class I> void DisplayST7789_135x240x16<I>::begin()
 
 }
 
-template <class I> void DisplayST7789_135x240x16<I>::end()
+template <class I> void DisplayST7789_135x240x16<I>::endController()
 {
 }
 
@@ -279,7 +279,7 @@ static const PROGMEM uint8_t s_ST7789_lcd240x240x16_initData[] = {
 //             ST7789 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayST7789_240x240x16<I>::begin()
+template <class I> void DisplayST7789_240x240x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 20);
     this->m_w = 240;
@@ -292,6 +292,6 @@ template <class I> void DisplayST7789_240x240x16<I>::begin()
 
 }
 
-template <class I> void DisplayST7789_240x240x16<I>::end()
+template <class I> void DisplayST7789_240x240x16<I>::endController()
 {
 }

@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to SSD1331 displays
  */
-template <class I> class InterfaceSSD1331: public I
+template <typename I> class InterfaceSSD1331: public I
 {
 public:
     /**
@@ -149,7 +149,7 @@ private:
 /**
  * Class implements basic functions for 8-bit mode of SSD1331-based displays
  */
-template <class I> class DisplaySSD1331x8: public NanoDisplayOps<NanoDisplayOps8<I>, I>
+template <typename I> class DisplaySSD1331x8: public NanoDisplayOps<NanoDisplayOps8<I>, I>
 {
 public:
     /**
@@ -170,18 +170,18 @@ protected:
     /**
      * Basic SSD1331 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic SSD1331 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 8-bit mode of SSD1331-based displays
  */
-template <class I> class DisplaySSD1331_96x64x8: public DisplaySSD1331x8<I>
+template <typename I> class DisplaySSD1331_96x64x8: public DisplaySSD1331x8<I>
 {
 public:
     /**
@@ -199,12 +199,12 @@ protected:
     /**
      * Basic SSD1331 96x64x8 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SSD1331 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SSD1331 96x64x8 lcd display in 8 bit mode over SPI
@@ -245,7 +245,7 @@ private:
  * Template class implements SSD1331 96x64x8 lcd display in 8 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySSD1331_96x64x8_CustomSPI: public DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>
+template <typename I> class DisplaySSD1331_96x64x8_CustomSPI: public DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>
 {
 public:
     /**
@@ -269,7 +269,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>::begin();
+        DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>::beginController();
     }
 
     /**
@@ -277,7 +277,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>::end();
+        DisplaySSD1331_96x64x8<InterfaceSSD1331<I>>::endController();
         m_spi.end();
     }
 
@@ -287,7 +287,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of SSD1331-based displays
  */
-template <class I> class DisplaySSD1331x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
+template <typename I> class DisplaySSD1331x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**
@@ -308,18 +308,18 @@ protected:
     /**
      * Basic SSD1331 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic SSD1331 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 16-bit mode of SSD1331-based displays
  */
-template <class I> class DisplaySSD1331_96x64x16: public DisplaySSD1331x16<I>
+template <typename I> class DisplaySSD1331_96x64x16: public DisplaySSD1331x16<I>
 {
 public:
     /**
@@ -337,12 +337,12 @@ protected:
     /**
      * Basic SSD1331 96x64x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SSD1331 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SSD1331 96x64x16 lcd display in 16 bit mode over SPI
@@ -383,7 +383,7 @@ private:
  * Template class implements SSD1331 96x64x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySSD1331_96x64x16_CustomSPI: public DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>
+template <typename I> class DisplaySSD1331_96x64x16_CustomSPI: public DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>
 {
 public:
     /**
@@ -407,7 +407,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>::begin();
+        DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>::beginController();
     }
 
     /**
@@ -415,7 +415,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>::end();
+        DisplaySSD1331_96x64x16<InterfaceSSD1331<I>>::endController();
         m_spi.end();
     }
 

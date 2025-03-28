@@ -139,11 +139,11 @@ template <class I> void InterfaceSSD1331<I>::copyBlock(uint8_t left, uint8_t top
 //             SSD1331 basic 8-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1331x8<I>::begin()
+template <class I> void DisplaySSD1331x8<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplaySSD1331x8<I>::end()
+template <class I> void DisplaySSD1331x8<I>::endDisplay()
 {
 }
 
@@ -153,7 +153,7 @@ static const PROGMEM uint8_t s_SSD1331_lcd96x64x8_initData[] = {
     0x00, 0x00,
 #endif
     0xAE, 0x00,          // display off
-    0xA0, 0x01, 0x00 | 0x20 | 0x10 | 0x02 | 0x00, /* 8-bit rgb color mode */
+    0xA0, 0x01, 0x20 | 0x10 | 0x02, /* 8-bit rgb color mode */
     0xA1, 0x01, 0x00,    // First line to start scanning from
     0xA2, 0x01, 0x00,    // Set display offset
     0xA4, 0x00,          // Normal display
@@ -177,7 +177,7 @@ static const PROGMEM uint8_t s_SSD1331_lcd96x64x8_initData[] = {
 //             SSD1331 basic 8-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1331_96x64x8<I>::begin()
+template <class I> void DisplaySSD1331_96x64x8<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 10);
     this->m_w = 96;
@@ -190,18 +190,18 @@ template <class I> void DisplaySSD1331_96x64x8<I>::begin()
 
 }
 
-template <class I> void DisplaySSD1331_96x64x8<I>::end()
+template <class I> void DisplaySSD1331_96x64x8<I>::endController()
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
 //             SSD1331 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1331x16<I>::begin()
+template <class I> void DisplaySSD1331x16<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplaySSD1331x16<I>::end()
+template <class I> void DisplaySSD1331x16<I>::endDisplay()
 {
 }
 
@@ -211,7 +211,7 @@ static const PROGMEM uint8_t s_SSD1331_lcd96x64x16_initData[] = {
     0x00, 0x00,
 #endif
     0xAE, 0x00,          // display off
-    0xA0, 0x01, 0x40 | 0x20 | 0x10 | 0x02 | 0x00, /* 16-bit rgb color mode */
+    0xA0, 0x01, 0x40 | 0x20 | 0x10 | 0x02, /* 16-bit rgb color mode */
     0xA1, 0x01, 0x00,    // First line to start scanning from
     0xA2, 0x01, 0x00,    // Set display offset
     0xA4, 0x00,          // Normal display
@@ -235,7 +235,7 @@ static const PROGMEM uint8_t s_SSD1331_lcd96x64x16_initData[] = {
 //             SSD1331 basic 16-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1331_96x64x16<I>::begin()
+template <class I> void DisplaySSD1331_96x64x16<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 10);
     this->m_w = 96;
@@ -248,6 +248,6 @@ template <class I> void DisplaySSD1331_96x64x16<I>::begin()
 
 }
 
-template <class I> void DisplaySSD1331_96x64x16<I>::end()
+template <class I> void DisplaySSD1331_96x64x16<I>::endController()
 {
 }

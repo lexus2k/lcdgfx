@@ -86,11 +86,11 @@ template <class I> void InterfaceSSD1327<I>::commandStart()
 //             SSD1327 basic 4-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1327<I>::begin()
+template <class I> void DisplaySSD1327<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplaySSD1327<I>::end()
+template <class I> void DisplaySSD1327<I>::endDisplay()
 {
 }
 
@@ -122,7 +122,7 @@ static const PROGMEM uint8_t s_SSD1327_lcd128x128_initData[] = {
 //             SSD1327 basic 4-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1327_128x128<I>::begin()
+template <class I> void DisplaySSD1327_128x128<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 10);
     this->m_w = 128;
@@ -135,6 +135,6 @@ template <class I> void DisplaySSD1327_128x128<I>::begin()
 
 }
 
-template <class I> void DisplaySSD1327_128x128<I>::end()
+template <class I> void DisplaySSD1327_128x128<I>::endController()
 {
 }

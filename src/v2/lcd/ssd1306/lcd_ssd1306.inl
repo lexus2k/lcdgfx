@@ -148,11 +148,11 @@ template <class I> void InterfaceSSD1306<I>::flipVertical(uint8_t mode)
 //             SSD1306 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1306<I>::begin()
+template <class I> void DisplaySSD1306<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplaySSD1306<I>::end()
+template <class I> void DisplaySSD1306<I>::endDisplay()
 {
 }
 
@@ -183,7 +183,7 @@ static const PROGMEM uint8_t s_SSD1306_lcd64x32_initData[] = {
 //             SSD1306 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1306_64x32<I>::begin()
+template <class I> void DisplaySSD1306_64x32<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 10);
     this->m_w = 64;
@@ -196,7 +196,7 @@ template <class I> void DisplaySSD1306_64x32<I>::begin()
 
 }
 
-template <class I> void DisplaySSD1306_64x32<I>::end()
+template <class I> void DisplaySSD1306_64x32<I>::endController()
 {
 }
 
@@ -227,7 +227,7 @@ static const PROGMEM uint8_t s_SSD1306_lcd64x48_initData[] = {
 //             SSD1306 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1306_64x48<I>::begin()
+template <class I> void DisplaySSD1306_64x48<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 10);
     this->m_w = 64;
@@ -240,7 +240,7 @@ template <class I> void DisplaySSD1306_64x48<I>::begin()
 
 }
 
-template <class I> void DisplaySSD1306_64x48<I>::end()
+template <class I> void DisplaySSD1306_64x48<I>::endController()
 {
 }
 
@@ -271,7 +271,7 @@ static const PROGMEM uint8_t s_SSD1306_lcd128x32_initData[] = {
 //             SSD1306 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1306_128x32<I>::begin()
+template <class I> void DisplaySSD1306_128x32<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 10);
     this->m_w = 128;
@@ -284,7 +284,7 @@ template <class I> void DisplaySSD1306_128x32<I>::begin()
 
 }
 
-template <class I> void DisplaySSD1306_128x32<I>::end()
+template <class I> void DisplaySSD1306_128x32<I>::endController()
 {
 }
 
@@ -296,7 +296,7 @@ static const PROGMEM uint8_t s_SSD1306_lcd128x64_initData[] = {
     0xAE, 0x00,          // display off
     0x20, 0x01, 0x00,    // Page horizontal Addressing mode
     0xC8, 0x00,          // Scan from 127 to 0 (Reverse scan)
-    0x40| 0x00, 0x00,    // First line to start scanning from
+    0x40, 0x00,          // First line to start scanning from
     0x81, 0x01, 0x7F,    // contast value to 0x7F according to datasheet
     0xA0| 0x01, 0x00,    // Use reverse mapping. 0x00 - is normal mapping
     0xA6, 0x00,          // Normal display
@@ -315,7 +315,7 @@ static const PROGMEM uint8_t s_SSD1306_lcd128x64_initData[] = {
 //             SSD1306 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySSD1306_128x64<I>::begin()
+template <class I> void DisplaySSD1306_128x64<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 10);
     this->m_w = 128;
@@ -328,6 +328,6 @@ template <class I> void DisplaySSD1306_128x64<I>::begin()
 
 }
 
-template <class I> void DisplaySSD1306_128x64<I>::end()
+template <class I> void DisplaySSD1306_128x64<I>::endController()
 {
 }

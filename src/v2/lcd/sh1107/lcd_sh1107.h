@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to SH1107 displays
  */
-template <class I> class InterfaceSH1107: public I
+template <typename I> class InterfaceSH1107: public I
 {
 public:
     /**
@@ -192,7 +192,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SH1107-based displays
  */
-template <class I> class DisplaySH1107: public NanoDisplayOps<NanoDisplayOps1<I>, I>
+template <typename I> class DisplaySH1107: public NanoDisplayOps<NanoDisplayOps1<I>, I>
 {
 public:
     /**
@@ -213,18 +213,18 @@ protected:
     /**
      * Basic SH1107 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic SH1107 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 1-bit mode of SH1107-based displays
  */
-template <class I> class DisplaySH1107_128x64: public DisplaySH1107<I>
+template <typename I> class DisplaySH1107_128x64: public DisplaySH1107<I>
 {
 public:
     /**
@@ -242,12 +242,12 @@ protected:
     /**
      * Basic SH1107 128x64 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SH1107 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SH1107 128x64 lcd display in 1 bit mode over SPI
@@ -288,7 +288,7 @@ private:
  * Template class implements SH1107 128x64 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySH1107_128x64_CustomSPI: public DisplaySH1107_128x64<InterfaceSH1107<I>>
+template <typename I> class DisplaySH1107_128x64_CustomSPI: public DisplaySH1107_128x64<InterfaceSH1107<I>>
 {
 public:
     /**
@@ -312,7 +312,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySH1107_128x64<InterfaceSH1107<I>>::begin();
+        DisplaySH1107_128x64<InterfaceSH1107<I>>::beginController();
     }
 
     /**
@@ -320,7 +320,7 @@ public:
      */
     void end() override
     {
-        DisplaySH1107_128x64<InterfaceSH1107<I>>::end();
+        DisplaySH1107_128x64<InterfaceSH1107<I>>::endController();
         m_spi.end();
     }
 
@@ -366,7 +366,7 @@ private:
  * Template class implements SH1107 128x64 lcd display in 1 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I> class DisplaySH1107_128x64_CustomI2C: public DisplaySH1107_128x64<InterfaceSH1107<I>>
+template <typename I> class DisplaySH1107_128x64_CustomI2C: public DisplaySH1107_128x64<InterfaceSH1107<I>>
 {
 public:
     /**
@@ -389,7 +389,7 @@ public:
     void begin() override
     {
         m_i2c.begin();
-        DisplaySH1107_128x64<InterfaceSH1107<I>>::begin();
+        DisplaySH1107_128x64<InterfaceSH1107<I>>::beginController();
     }
 
     /**
@@ -397,7 +397,7 @@ public:
      */
     void end() override
     {
-        DisplaySH1107_128x64<InterfaceSH1107<I>>::end();
+        DisplaySH1107_128x64<InterfaceSH1107<I>>::endController();
         m_i2c.end();
     }
 
@@ -407,7 +407,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SH1107-based displays
  */
-template <class I> class DisplaySH1107_64x128: public DisplaySH1107<I>
+template <typename I> class DisplaySH1107_64x128: public DisplaySH1107<I>
 {
 public:
     /**
@@ -425,12 +425,12 @@ protected:
     /**
      * Basic SH1107 64x128 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SH1107 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SH1107 64x128 lcd display in 1 bit mode over SPI
@@ -471,7 +471,7 @@ private:
  * Template class implements SH1107 64x128 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySH1107_64x128_CustomSPI: public DisplaySH1107_64x128<InterfaceSH1107<I>>
+template <typename I> class DisplaySH1107_64x128_CustomSPI: public DisplaySH1107_64x128<InterfaceSH1107<I>>
 {
 public:
     /**
@@ -495,7 +495,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySH1107_64x128<InterfaceSH1107<I>>::begin();
+        DisplaySH1107_64x128<InterfaceSH1107<I>>::beginController();
     }
 
     /**
@@ -503,7 +503,7 @@ public:
      */
     void end() override
     {
-        DisplaySH1107_64x128<InterfaceSH1107<I>>::end();
+        DisplaySH1107_64x128<InterfaceSH1107<I>>::endController();
         m_spi.end();
     }
 
@@ -549,7 +549,7 @@ private:
  * Template class implements SH1107 64x128 lcd display in 1 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I> class DisplaySH1107_64x128_CustomI2C: public DisplaySH1107_64x128<InterfaceSH1107<I>>
+template <typename I> class DisplaySH1107_64x128_CustomI2C: public DisplaySH1107_64x128<InterfaceSH1107<I>>
 {
 public:
     /**
@@ -572,7 +572,7 @@ public:
     void begin() override
     {
         m_i2c.begin();
-        DisplaySH1107_64x128<InterfaceSH1107<I>>::begin();
+        DisplaySH1107_64x128<InterfaceSH1107<I>>::beginController();
     }
 
     /**
@@ -580,7 +580,7 @@ public:
      */
     void end() override
     {
-        DisplaySH1107_64x128<InterfaceSH1107<I>>::end();
+        DisplaySH1107_64x128<InterfaceSH1107<I>>::endController();
         m_i2c.end();
     }
 

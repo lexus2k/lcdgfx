@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to SSD1306 displays
  */
-template <class I> class InterfaceSSD1306: public I
+template <typename I> class InterfaceSSD1306: public I
 {
 public:
     /**
@@ -170,7 +170,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I> class DisplaySSD1306: public NanoDisplayOps<NanoDisplayOps1<I>, I>
+template <typename I> class DisplaySSD1306: public NanoDisplayOps<NanoDisplayOps1<I>, I>
 {
 public:
     /**
@@ -191,18 +191,18 @@ protected:
     /**
      * Basic SSD1306 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic SSD1306 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I> class DisplaySSD1306_64x32: public DisplaySSD1306<I>
+template <typename I> class DisplaySSD1306_64x32: public DisplaySSD1306<I>
 {
 public:
     /**
@@ -220,12 +220,12 @@ protected:
     /**
      * Basic SSD1306 64x32 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SSD1306 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SSD1306 64x32 lcd display in 1 bit mode over SPI
@@ -266,7 +266,7 @@ private:
  * Template class implements SSD1306 64x32 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySSD1306_64x32_CustomSPI: public DisplaySSD1306_64x32<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_64x32_CustomSPI: public DisplaySSD1306_64x32<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -290,7 +290,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -298,7 +298,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::endController();
         m_spi.end();
     }
 
@@ -344,7 +344,7 @@ private:
  * Template class implements SSD1306 64x32 lcd display in 1 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I> class DisplaySSD1306_64x32_CustomI2C: public DisplaySSD1306_64x32<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_64x32_CustomI2C: public DisplaySSD1306_64x32<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -367,7 +367,7 @@ public:
     void begin() override
     {
         m_i2c.begin();
-        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -375,7 +375,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::endController();
         m_i2c.end();
     }
 
@@ -387,7 +387,7 @@ private:
  * (user-defined interface implementation). I - user custom interface class.
  * This class allows to use display over 6800 and 8080 parallel interfaces
  */
-template <class I> class DisplaySSD1306_64x32_Custom: public DisplaySSD1306_64x32<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_64x32_Custom: public DisplaySSD1306_64x32<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -415,7 +415,7 @@ public:
     void begin() override
     {
         m_custom.begin();
-        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -423,7 +423,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_64x32<InterfaceSSD1306<I>>::endController();
         m_custom.end();
     }
 
@@ -433,7 +433,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I> class DisplaySSD1306_64x48: public DisplaySSD1306<I>
+template <typename I> class DisplaySSD1306_64x48: public DisplaySSD1306<I>
 {
 public:
     /**
@@ -451,12 +451,12 @@ protected:
     /**
      * Basic SSD1306 64x48 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SSD1306 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SSD1306 64x48 lcd display in 1 bit mode over SPI
@@ -497,7 +497,7 @@ private:
  * Template class implements SSD1306 64x48 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySSD1306_64x48_CustomSPI: public DisplaySSD1306_64x48<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_64x48_CustomSPI: public DisplaySSD1306_64x48<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -521,7 +521,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -529,7 +529,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::endController();
         m_spi.end();
     }
 
@@ -575,7 +575,7 @@ private:
  * Template class implements SSD1306 64x48 lcd display in 1 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I> class DisplaySSD1306_64x48_CustomI2C: public DisplaySSD1306_64x48<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_64x48_CustomI2C: public DisplaySSD1306_64x48<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -598,7 +598,7 @@ public:
     void begin() override
     {
         m_i2c.begin();
-        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -606,7 +606,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::endController();
         m_i2c.end();
     }
 
@@ -618,7 +618,7 @@ private:
  * (user-defined interface implementation). I - user custom interface class.
  * This class allows to use display over 6800 and 8080 parallel interfaces
  */
-template <class I> class DisplaySSD1306_64x48_Custom: public DisplaySSD1306_64x48<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_64x48_Custom: public DisplaySSD1306_64x48<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -646,7 +646,7 @@ public:
     void begin() override
     {
         m_custom.begin();
-        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -654,7 +654,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_64x48<InterfaceSSD1306<I>>::endController();
         m_custom.end();
     }
 
@@ -664,7 +664,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I> class DisplaySSD1306_128x32: public DisplaySSD1306<I>
+template <typename I> class DisplaySSD1306_128x32: public DisplaySSD1306<I>
 {
 public:
     /**
@@ -682,12 +682,12 @@ protected:
     /**
      * Basic SSD1306 128x32 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SSD1306 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SSD1306 128x32 lcd display in 1 bit mode over SPI
@@ -728,7 +728,7 @@ private:
  * Template class implements SSD1306 128x32 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySSD1306_128x32_CustomSPI: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_128x32_CustomSPI: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -752,7 +752,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -760,7 +760,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::endController();
         m_spi.end();
     }
 
@@ -806,7 +806,7 @@ private:
  * Template class implements SSD1306 128x32 lcd display in 1 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I> class DisplaySSD1306_128x32_CustomI2C: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_128x32_CustomI2C: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -829,7 +829,7 @@ public:
     void begin() override
     {
         m_i2c.begin();
-        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -837,7 +837,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::endController();
         m_i2c.end();
     }
 
@@ -849,7 +849,7 @@ private:
  * (user-defined interface implementation). I - user custom interface class.
  * This class allows to use display over 6800 and 8080 parallel interfaces
  */
-template <class I> class DisplaySSD1306_128x32_Custom: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_128x32_Custom: public DisplaySSD1306_128x32<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -877,7 +877,7 @@ public:
     void begin() override
     {
         m_custom.begin();
-        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -885,7 +885,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_128x32<InterfaceSSD1306<I>>::endController();
         m_custom.end();
     }
 
@@ -895,7 +895,7 @@ private:
 /**
  * Class implements basic functions for 1-bit mode of SSD1306-based displays
  */
-template <class I> class DisplaySSD1306_128x64: public DisplaySSD1306<I>
+template <typename I> class DisplaySSD1306_128x64: public DisplaySSD1306<I>
 {
 public:
     /**
@@ -913,12 +913,12 @@ protected:
     /**
      * Basic SSD1306 128x64 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SSD1306 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SSD1306 128x64 lcd display in 1 bit mode over SPI
@@ -959,7 +959,7 @@ private:
  * Template class implements SSD1306 128x64 lcd display in 1 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySSD1306_128x64_CustomSPI: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_128x64_CustomSPI: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -983,7 +983,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -991,7 +991,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::endController();
         m_spi.end();
     }
 
@@ -1037,7 +1037,7 @@ private:
  * Template class implements SSD1306 128x64 lcd display in 1 bit mode over custom I2C implementation
  * (user-defined i2c implementation). I - user custom i2c class
  */
-template <class I> class DisplaySSD1306_128x64_CustomI2C: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_128x64_CustomI2C: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -1060,7 +1060,7 @@ public:
     void begin() override
     {
         m_i2c.begin();
-        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -1068,7 +1068,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::endController();
         m_i2c.end();
     }
 
@@ -1080,7 +1080,7 @@ private:
  * (user-defined interface implementation). I - user custom interface class.
  * This class allows to use display over 6800 and 8080 parallel interfaces
  */
-template <class I> class DisplaySSD1306_128x64_Custom: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
+template <typename I> class DisplaySSD1306_128x64_Custom: public DisplaySSD1306_128x64<InterfaceSSD1306<I>>
 {
 public:
     /**
@@ -1108,7 +1108,7 @@ public:
     void begin() override
     {
         m_custom.begin();
-        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::begin();
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::beginController();
     }
 
     /**
@@ -1116,7 +1116,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::end();
+        DisplaySSD1306_128x64<InterfaceSSD1306<I>>::endController();
         m_custom.end();
     }
 

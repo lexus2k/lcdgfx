@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to ILI9341 displays
  */
-template <class I> class InterfaceILI9341: public I
+template <typename I> class InterfaceILI9341: public I
 {
 public:
     /**
@@ -129,7 +129,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ILI9341-based displays
  */
-template <class I> class DisplayILI9341x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
+template <typename I> class DisplayILI9341x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**
@@ -150,18 +150,18 @@ protected:
     /**
      * Basic ILI9341 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic ILI9341 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 16-bit mode of ILI9341-based displays
  */
-template <class I> class DisplayILI9341_240x320x16: public DisplayILI9341x16<I>
+template <typename I> class DisplayILI9341_240x320x16: public DisplayILI9341x16<I>
 {
 public:
     /**
@@ -179,12 +179,12 @@ protected:
     /**
      * Basic ILI9341 240x320x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic ILI9341 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements ILI9341 240x320x16 lcd display in 16 bit mode over SPI
@@ -225,7 +225,7 @@ private:
  * Template class implements ILI9341 240x320x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayILI9341_240x320x16_CustomSPI: public DisplayILI9341_240x320x16<InterfaceILI9341<I>>
+template <typename I> class DisplayILI9341_240x320x16_CustomSPI: public DisplayILI9341_240x320x16<InterfaceILI9341<I>>
 {
 public:
     /**
@@ -249,7 +249,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayILI9341_240x320x16<InterfaceILI9341<I>>::begin();
+        DisplayILI9341_240x320x16<InterfaceILI9341<I>>::beginController();
     }
 
     /**
@@ -257,7 +257,7 @@ public:
      */
     void end() override
     {
-        DisplayILI9341_240x320x16<InterfaceILI9341<I>>::end();
+        DisplayILI9341_240x320x16<InterfaceILI9341<I>>::endController();
         m_spi.end();
     }
 
@@ -267,7 +267,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ILI9341-based displays
  */
-template <class I> class DisplayILI9341_128x160x16: public DisplayILI9341x16<I>
+template <typename I> class DisplayILI9341_128x160x16: public DisplayILI9341x16<I>
 {
 public:
     /**
@@ -285,12 +285,12 @@ protected:
     /**
      * Basic ILI9341 128x160x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic ILI9341 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements ILI9341 128x160x16 lcd display in 16 bit mode over SPI
@@ -331,7 +331,7 @@ private:
  * Template class implements ILI9341 128x160x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayILI9341_128x160x16_CustomSPI: public DisplayILI9341_128x160x16<InterfaceILI9341<I>>
+template <typename I> class DisplayILI9341_128x160x16_CustomSPI: public DisplayILI9341_128x160x16<InterfaceILI9341<I>>
 {
 public:
     /**
@@ -355,7 +355,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayILI9341_128x160x16<InterfaceILI9341<I>>::begin();
+        DisplayILI9341_128x160x16<InterfaceILI9341<I>>::beginController();
     }
 
     /**
@@ -363,7 +363,7 @@ public:
      */
     void end() override
     {
-        DisplayILI9341_128x160x16<InterfaceILI9341<I>>::end();
+        DisplayILI9341_128x160x16<InterfaceILI9341<I>>::endController();
         m_spi.end();
     }
 

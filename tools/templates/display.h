@@ -1,7 +1,7 @@
 /**
  * Class implements basic functions for ~BITS~-bit mode of ~CONTROLLER~-based displays
  */
-template <class I> class Display~CONTROLLER~~EXBITS~: public NanoDisplayOps<NanoDisplayOps~BITS~<I>, I>
+template <typename I> class Display~CONTROLLER~~EXBITS~: public NanoDisplayOps<NanoDisplayOps~BITS~<I>, I>
 {
 public:
     /**
@@ -22,11 +22,11 @@ protected:
     /**
      * Basic ~CONTROLLER~ initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic ~CONTROLLER~ deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 

@@ -30,22 +30,22 @@
 void DisplayIL9163_128x128x16_SPI::begin()
 {
     m_spi.begin();
-    DisplayIL9163_128x128x16::begin();
+    DisplayIL9163_128x128x16::beginController();
 }
 
 void DisplayIL9163_128x128x16_SPI::end()
 {
-    DisplayIL9163_128x128x16::end();
+    DisplayIL9163_128x128x16::endController();
     m_spi.end();
 }
 void DisplayIL9163_128x160x16_SPI::begin()
 {
     m_spi.begin();
-    DisplayIL9163_128x160x16::begin();
+    DisplayIL9163_128x160x16::beginController();
 }
 
 void DisplayIL9163_128x160x16_SPI::end()
 {
-    DisplayIL9163_128x160x16::end();
+    DisplayIL9163_128x160x16::endController();
     m_spi.end();
 }

@@ -37,7 +37,7 @@ private:
  * Template class implements ~CONTROLLER~ ~RESOLUTION~ lcd display in ~BITS~ bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class Display~CONTROLLER~_~RESOLUTION~_CustomSPI: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
+template <typename I> class Display~CONTROLLER~_~RESOLUTION~_CustomSPI: public Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>
 {
 public:
     /**
@@ -61,7 +61,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>::begin();
+        Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>::beginController();
     }
 
     /**
@@ -69,7 +69,7 @@ public:
      */
     void end() override
     {
-        Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>::end();
+        Display~CONTROLLER~_~RESOLUTION~<Interface~CONTROLLER~<I>>::endController();
         m_spi.end();
     }
 

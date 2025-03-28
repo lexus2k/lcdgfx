@@ -84,11 +84,11 @@ template <class I> void InterfacePCD8544<I>::commandStart()
 //             PCD8544 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayPCD8544<I>::begin()
+template <class I> void DisplayPCD8544<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplayPCD8544<I>::end()
+template <class I> void DisplayPCD8544<I>::endDisplay()
 {
 }
 
@@ -109,7 +109,7 @@ static const PROGMEM uint8_t s_PCD8544_lcd84x48_initData[] = {
 //             PCD8544 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplayPCD8544_84x48<I>::begin()
+template <class I> void DisplayPCD8544_84x48<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 20);
     this->m_w = 84;
@@ -122,6 +122,6 @@ template <class I> void DisplayPCD8544_84x48<I>::begin()
 
 }
 
-template <class I> void DisplayPCD8544_84x48<I>::end()
+template <class I> void DisplayPCD8544_84x48<I>::endController()
 {
 }

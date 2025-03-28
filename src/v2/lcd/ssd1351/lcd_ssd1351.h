@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to SSD1351 displays
  */
-template <class I> class InterfaceSSD1351: public I
+template <typename I> class InterfaceSSD1351: public I
 {
 public:
     /**
@@ -139,7 +139,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
  */
-template <class I> class DisplaySSD1351x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
+template <typename I> class DisplaySSD1351x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**
@@ -160,18 +160,18 @@ protected:
     /**
      * Basic SSD1351 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic SSD1351 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
  */
-template <class I> class DisplaySSD1351_128x128x16: public DisplaySSD1351x16<I>
+template <typename I> class DisplaySSD1351_128x128x16: public DisplaySSD1351x16<I>
 {
 public:
     /**
@@ -189,12 +189,12 @@ protected:
     /**
      * Basic SSD1351 128x128x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SSD1351 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SSD1351 128x128x16 lcd display in 16 bit mode over SPI
@@ -235,7 +235,7 @@ private:
  * Template class implements SSD1351 128x128x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySSD1351_128x128x16_CustomSPI: public DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>
+template <typename I> class DisplaySSD1351_128x128x16_CustomSPI: public DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>
 {
 public:
     /**
@@ -259,7 +259,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>::begin();
+        DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>::beginController();
     }
 
     /**
@@ -267,7 +267,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>::end();
+        DisplaySSD1351_128x128x16<InterfaceSSD1351<I>>::endController();
         m_spi.end();
     }
 
@@ -277,7 +277,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of SSD1351-based displays
  */
-template <class I> class DisplaySSD1351_96x96x16: public DisplaySSD1351x16<I>
+template <typename I> class DisplaySSD1351_96x96x16: public DisplaySSD1351x16<I>
 {
 public:
     /**
@@ -295,12 +295,12 @@ protected:
     /**
      * Basic SSD1351 96x96x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic SSD1351 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements SSD1351 96x96x16 lcd display in 16 bit mode over SPI
@@ -341,7 +341,7 @@ private:
  * Template class implements SSD1351 96x96x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplaySSD1351_96x96x16_CustomSPI: public DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>
+template <typename I> class DisplaySSD1351_96x96x16_CustomSPI: public DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>
 {
 public:
     /**
@@ -365,7 +365,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>::begin();
+        DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>::beginController();
     }
 
     /**
@@ -373,7 +373,7 @@ public:
      */
     void end() override
     {
-        DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>::end();
+        DisplaySSD1351_96x96x16<InterfaceSSD1351<I>>::endController();
         m_spi.end();
     }
 

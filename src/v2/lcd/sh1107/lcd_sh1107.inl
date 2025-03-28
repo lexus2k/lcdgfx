@@ -162,11 +162,11 @@ template <class I> void InterfaceSH1107<I>::setDisplayOffset(uint8_t offset)
 //             SH1107 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySH1107<I>::begin()
+template <class I> void DisplaySH1107<I>::beginDisplay()
 {
 }
 
-template <class I> void DisplaySH1107<I>::end()
+template <class I> void DisplaySH1107<I>::endDisplay()
 {
 }
 
@@ -197,7 +197,7 @@ static const PROGMEM uint8_t s_SH1107_lcd128x64_initData[] = {
 //             SH1107 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySH1107_128x64<I>::begin()
+template <class I> void DisplaySH1107_128x64<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 10);
     this->m_w = 128;
@@ -210,7 +210,7 @@ template <class I> void DisplaySH1107_128x64<I>::begin()
 
 }
 
-template <class I> void DisplaySH1107_128x64<I>::end()
+template <class I> void DisplaySH1107_128x64<I>::endController()
 {
 }
 
@@ -240,7 +240,7 @@ static const PROGMEM uint8_t s_SH1107_lcd64x128_initData[] = {
 //             SH1107 basic 1-bit implementation
 ////////////////////////////////////////////////////////////////////////////////
 
-template <class I> void DisplaySH1107_64x128<I>::begin()
+template <class I> void DisplaySH1107_64x128<I>::beginController()
 {
     ssd1306_resetController2(this->m_rstPin, 10);
     this->m_w = 64;
@@ -253,6 +253,6 @@ template <class I> void DisplaySH1107_64x128<I>::begin()
     this->m_intf.setSegOffset( 0 );
 }
 
-template <class I> void DisplaySH1107_64x128<I>::end()
+template <class I> void DisplaySH1107_64x128<I>::endController()
 {
 }

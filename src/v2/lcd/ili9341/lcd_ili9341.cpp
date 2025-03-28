@@ -30,22 +30,22 @@
 void DisplayILI9341_240x320x16_SPI::begin()
 {
     m_spi.begin();
-    DisplayILI9341_240x320x16::begin();
+    DisplayILI9341_240x320x16::beginController();
 }
 
 void DisplayILI9341_240x320x16_SPI::end()
 {
-    DisplayILI9341_240x320x16::end();
+    DisplayILI9341_240x320x16::endController();
     m_spi.end();
 }
 void DisplayILI9341_128x160x16_SPI::begin()
 {
     m_spi.begin();
-    DisplayILI9341_128x160x16::begin();
+    DisplayILI9341_128x160x16::beginController();
 }
 
 void DisplayILI9341_128x160x16_SPI::end()
 {
-    DisplayILI9341_128x160x16::end();
+    DisplayILI9341_128x160x16::endController();
     m_spi.end();
 }

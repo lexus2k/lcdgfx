@@ -40,7 +40,7 @@
 /**
  * Class implements interface functions to ST7735 displays
  */
-template <class I> class InterfaceST7735: public I
+template <typename I> class InterfaceST7735: public I
 {
 public:
     /**
@@ -139,7 +139,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */
-template <class I> class DisplayST7735x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
+template <typename I> class DisplayST7735x16: public NanoDisplayOps<NanoDisplayOps16<I>, I>
 {
 public:
     /**
@@ -160,18 +160,18 @@ protected:
     /**
      * Basic ST7735 initialization
      */
-    void begin() override;
+    void beginDisplay();
 
     /**
      * Basic ST7735 deinitialization
      */
-    void end() override;
+    void endDisplay();
 };
 
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */
-template <class I> class DisplayST7735_128x128x16: public DisplayST7735x16<I>
+template <typename I> class DisplayST7735_128x128x16: public DisplayST7735x16<I>
 {
 public:
     /**
@@ -189,12 +189,12 @@ protected:
     /**
      * Basic ST7735 128x128x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic ST7735 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements ST7735 128x128x16 lcd display in 16 bit mode over SPI
@@ -235,7 +235,7 @@ private:
  * Template class implements ST7735 128x128x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayST7735_128x128x16_CustomSPI: public DisplayST7735_128x128x16<InterfaceST7735<I>>
+template <typename I> class DisplayST7735_128x128x16_CustomSPI: public DisplayST7735_128x128x16<InterfaceST7735<I>>
 {
 public:
     /**
@@ -259,7 +259,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayST7735_128x128x16<InterfaceST7735<I>>::begin();
+        DisplayST7735_128x128x16<InterfaceST7735<I>>::beginController();
     }
 
     /**
@@ -267,7 +267,7 @@ public:
      */
     void end() override
     {
-        DisplayST7735_128x128x16<InterfaceST7735<I>>::end();
+        DisplayST7735_128x128x16<InterfaceST7735<I>>::endController();
         m_spi.end();
     }
 
@@ -277,7 +277,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */
-template <class I> class DisplayST7735_80x160x16: public DisplayST7735x16<I>
+template <typename I> class DisplayST7735_80x160x16: public DisplayST7735x16<I>
 {
 public:
     /**
@@ -295,12 +295,12 @@ protected:
     /**
      * Basic ST7735 80x160x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic ST7735 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements ST7735 80x160x16 lcd display in 16 bit mode over SPI
@@ -341,7 +341,7 @@ private:
  * Template class implements ST7735 80x160x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayST7735_80x160x16_CustomSPI: public DisplayST7735_80x160x16<InterfaceST7735<I>>
+template <typename I> class DisplayST7735_80x160x16_CustomSPI: public DisplayST7735_80x160x16<InterfaceST7735<I>>
 {
 public:
     /**
@@ -365,7 +365,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayST7735_80x160x16<InterfaceST7735<I>>::begin();
+        DisplayST7735_80x160x16<InterfaceST7735<I>>::beginController();
     }
 
     /**
@@ -373,7 +373,7 @@ public:
      */
     void end() override
     {
-        DisplayST7735_80x160x16<InterfaceST7735<I>>::end();
+        DisplayST7735_80x160x16<InterfaceST7735<I>>::endController();
         m_spi.end();
     }
 
@@ -383,7 +383,7 @@ private:
 /**
  * Class implements basic functions for 16-bit mode of ST7735-based displays
  */
-template <class I> class DisplayST7735_128x160x16: public DisplayST7735x16<I>
+template <typename I> class DisplayST7735_128x160x16: public DisplayST7735x16<I>
 {
 public:
     /**
@@ -401,12 +401,12 @@ protected:
     /**
      * Basic ST7735 128x160x16 initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic ST7735 deinitialization
      */
-    void end() override;
+    void endController();
 };
 /**
  * Class implements ST7735 128x160x16 lcd display in 16 bit mode over SPI
@@ -447,7 +447,7 @@ private:
  * Template class implements ST7735 128x160x16 lcd display in 16 bit mode over custom SPI implementation
  * (user-defined spi implementation). I - user custom spi class
  */
-template <class I> class DisplayST7735_128x160x16_CustomSPI: public DisplayST7735_128x160x16<InterfaceST7735<I>>
+template <typename I> class DisplayST7735_128x160x16_CustomSPI: public DisplayST7735_128x160x16<InterfaceST7735<I>>
 {
 public:
     /**
@@ -471,7 +471,7 @@ public:
     void begin() override
     {
         m_spi.begin();
-        DisplayST7735_128x160x16<InterfaceST7735<I>>::begin();
+        DisplayST7735_128x160x16<InterfaceST7735<I>>::beginController();
     }
 
     /**
@@ -479,7 +479,7 @@ public:
      */
     void end() override
     {
-        DisplayST7735_128x160x16<InterfaceST7735<I>>::end();
+        DisplayST7735_128x160x16<InterfaceST7735<I>>::endController();
         m_spi.end();
     }
 

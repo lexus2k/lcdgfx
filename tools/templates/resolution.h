@@ -1,7 +1,7 @@
 /**
  * Class implements basic functions for ~BITS~-bit mode of ~CONTROLLER~-based displays
  */
-template <class I> class Display~CONTROLLER~_~RESOLUTION~: public Display~CONTROLLER~~EXBITS~<I>
+template <typename I> class Display~CONTROLLER~_~RESOLUTION~: public Display~CONTROLLER~~EXBITS~<I>
 {
 public:
     /**
@@ -19,10 +19,10 @@ protected:
     /**
      * Basic ~CONTROLLER~ ~RESOLUTION~ initialization
      */
-    void begin() override;
+    void beginController();
 
     /**
      * Basic ~CONTROLLER~ deinitialization
      */
-    void end() override;
+    void endController();
 };
