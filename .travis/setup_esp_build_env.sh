@@ -8,7 +8,7 @@ else
     #
     mkdir -p ~/esp
     # Switching to 4.3 version, since v5.0-dev doesn't support Makefiles anymore
-    git clone -b v4.4.7 --recursive https://github.com/espressif/esp-idf.git ~/esp/esp-idf
+    git clone -b v5.4.1 --recursive https://github.com/espressif/esp-idf.git ~/esp/esp-idf
     # git clone --recursive https://github.com/espressif/esp-idf.git ~/esp/esp-idf
 fi
 
