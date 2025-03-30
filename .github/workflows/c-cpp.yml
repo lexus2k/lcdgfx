@@ -34,7 +34,7 @@ jobs:
       #
       - name: Building via gcc and running unit tests
         run: |
-          make ARCH=linux EXTRA_CPPFLAGS="--coverage" SDL_EMULATION=y check
+          ./.travis/run_unit_tests.sh gcc
           make clean
           make ARCH=linux EXTRA_CPPFLAGS="--coverage" coverage
 
@@ -43,16 +43,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./lcov.info
-        #run: |
-        #  sudo find / -name coveralls
-        #  echo -e "service_name: circle-ci\n" > .coveralls.yml \
-        #  && TRAVIS_JOB_ID="#${GITHUB_RUN_NUMBER}" COVERALLS_REPO_TOKEN=4Ia7t9YDo22zQcFEnMYLh1tiWCRlBJlhk coveralls -b . \
-        #  --exclude docs --exclude extra --exclude unittest --exclude bld --exclude tools --exclude examples --gcov-options '\-lp'
 
       - name: Building via clang
         run: |
           make clean
-          CPPFLAGS="-I/usr/include/SDL2" CC=clang CXX=clang++ LD=clang++ make ARCH=linux SDL_EMULATION=y check
+          ./.travis/run_unit_tests.sh clang
           make cppcheck
 
       - name: Building for AVR
