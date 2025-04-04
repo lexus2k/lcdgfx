@@ -13,6 +13,7 @@ COMPONENT_SRCDIRS := ./src \
                      ./src/v2/lcd/lcdttgo \
                      ./src/v2/lcd/pcd8544 \
                      ./src/v2/lcd/ssd1306 \
+                     ./src/v2/lcd/ssd1306b \
                      ./src/v2/lcd/sh1107 \
                      ./src/v2/lcd/sh1106 \
                      ./src/v2/lcd/ssd1325 \
