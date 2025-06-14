@@ -174,7 +174,7 @@ void EspSpi::forceSpiTransfer()
         spi_trans_t t{};
         t.bits.mosi = 8 * sz; // 8 bits
         t.mosi = reinterpret_cast<uint32_t *>(buffer);
-        spi_trans(m_spi, t);
+        spi_trans(m_spi, &t);
         buffer += sz;
         m_data_size -= sz;
     }
