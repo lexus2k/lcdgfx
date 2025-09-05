@@ -33,10 +33,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
 #include <sys/ioctl.h>
 #if defined(__linux__)
 #include <linux/i2c-dev.h>
 #include <linux/spi/spidev.h>
+#endif
+
+#if __has_include(<gpiod.h>)
+#define LCDGFX_USE_LIBGPIOD 1
+#include <gpiod.h>
+#else
+#define LCDGFX_USE_LIBGPIOD 0
 #endif
 
 //#include <cstdlib>
@@ -46,6 +54,7 @@
 #if defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE) && !defined(SDL_EMULATION)
 #define LINUX_SPI_AVAILABLE
 #endif
+
 
 #define MAX_GPIO_COUNT 256
 
@@ -59,8 +68,28 @@
 #endif
 #define OUT 1
 
+
+#if LCDGFX_USE_LIBGPIOD
+// libgpiod context
+static struct gpiod_chip *lcdgfx_gpiod_chip = NULL;
+static int lcdgfx_gpiod_init_chip(void) {
+    if (!lcdgfx_gpiod_chip) {
+        lcdgfx_gpiod_chip = gpiod_chip_open_by_number(0); // default to gpiochip0
+        if (!lcdgfx_gpiod_chip) {
+            fprintf(stderr, "Failed to open gpiochip0 via libgpiod!\n");
+            return -1;
+        }
+    }
+    return 0;
+}
+#endif
+
 int gpio_export(int pin)
 {
+#if LCDGFX_USE_LIBGPIOD
+    // No export needed for libgpiod
+    return lcdgfx_gpiod_init_chip();
+#else
     char buffer[4];
     ssize_t bytes_written;
     int fd;
@@ -91,10 +120,15 @@ int gpio_export(int pin)
     }
     close(fd);
     return (0);
+#endif
 }
 
 int gpio_unexport(int pin)
 {
+#if LCDGFX_USE_LIBGPIOD
+    // No unexport needed for libgpiod
+    return 0;
+#else
     char buffer[4];
     ssize_t bytes_written;
     int fd;
@@ -113,10 +147,30 @@ int gpio_unexport(int pin)
     }
     close(fd);
     return (0);
+#endif
 }
 
 int gpio_direction(int pin, int dir)
 {
+#if LCDGFX_USE_LIBGPIOD
+    if (lcdgfx_gpiod_init_chip() < 0) return -1;
+    struct gpiod_line *line = gpiod_chip_get_line(lcdgfx_gpiod_chip, pin);
+    if (!line) {
+        fprintf(stderr, "libgpiod: Failed to get line for pin %d\n", pin);
+        return -1;
+    }
+    int ret = 0;
+    if (dir == OUT) {
+        ret = gpiod_line_request_output(line, "lcdgfx", 0);
+    } else {
+        ret = gpiod_line_request_input(line, "lcdgfx");
+    }
+    if (ret < 0) {
+        fprintf(stderr, "libgpiod: Failed to set direction for pin %d\n", pin);
+        return -1;
+    }
+    return 0;
+#else
     static const char s_directions_str[] = "in\0out";
 
     char path[64];
@@ -138,10 +192,27 @@ int gpio_direction(int pin, int dir)
 
     close(fd);
     return (0);
+#endif
 }
 
 int gpio_read(int pin)
 {
+#if LCDGFX_USE_LIBGPIOD
+    if (lcdgfx_gpiod_init_chip() < 0) return -1;
+    struct gpiod_line *line = gpiod_chip_get_line(lcdgfx_gpiod_chip, pin);
+    if (!line) {
+        fprintf(stderr, "libgpiod: Failed to get line for pin %d\n", pin);
+        return -1;
+    }
+    int ret = gpiod_line_request_input(line, "lcdgfx");
+    if (ret < 0) {
+        fprintf(stderr, "libgpiod: Failed to request input for pin %d\n", pin);
+        return -1;
+    }
+    int value = gpiod_line_get_value(line);
+    gpiod_line_release(line);
+    return value;
+#else
     char path[32];
     char value_str[3];
     int fd;
@@ -163,10 +234,27 @@ int gpio_read(int pin)
     close(fd);
 
     return (atoi(value_str));
+#endif
 }
 
 int gpio_write(int pin, int value)
 {
+#if LCDGFX_USE_LIBGPIOD
+    if (lcdgfx_gpiod_init_chip() < 0) return -1;
+    struct gpiod_line *line = gpiod_chip_get_line(lcdgfx_gpiod_chip, pin);
+    if (!line) {
+        fprintf(stderr, "libgpiod: Failed to get line for pin %d\n", pin);
+        return -1;
+    }
+    int ret = gpiod_line_request_output(line, "lcdgfx", value);
+    if (ret < 0) {
+        fprintf(stderr, "libgpiod: Failed to request output for pin %d\n", pin);
+        return -1;
+    }
+    ret = gpiod_line_set_value(line, value);
+    gpiod_line_release(line);
+    return ret;
+#else
     static const char s_values_str[] = "01";
 
     char path[64];
@@ -190,6 +278,7 @@ int gpio_write(int pin, int value)
 
     close(fd);
     return (0);
+#endif
 }
 
 #if defined(__KERNEL__) // ============== KERNEL
