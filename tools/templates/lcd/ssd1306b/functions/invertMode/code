@@ -1,0 +1,3 @@
+    commandStart();
+    this->send(0xA7); // Invert display
+    this->stop();

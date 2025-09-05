@@ -41,6 +41,7 @@
 #include "v2/lcd/sh1106/lcd_sh1106.h"
 #include "v2/lcd/sh1107/lcd_sh1107.h"
 #include "v2/lcd/ssd1306/lcd_ssd1306.h"
+#include "v2/lcd/ssd1306b/lcd_ssd1306b.h"
 #include "v2/lcd/ssd1325/lcd_ssd1325.h"
 #include "v2/lcd/ssd1327/lcd_ssd1327.h"
 #include "v2/lcd/ssd1331/lcd_ssd1331.h"

@@ -67,4 +67,8 @@ uint8_t lcd_pgmReadByte(const void *ptr)
     return *(static_cast<const uint8_t *>(ptr));
 }
 
+uint32_t lcd_millis(void)
+{
+    return to_ms_since_boot(get_absolute_time());
+}
 #endif
