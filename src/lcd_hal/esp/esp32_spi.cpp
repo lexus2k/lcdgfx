@@ -83,7 +83,7 @@ void EspSpi::begin()
     if ( m_cs >= 0 )
     {
         lcd_gpioMode(m_cs, LCD_GPIO_OUTPUT);
-        lcd_gpioWrite(m_clk, LCD_HIGH);
+        lcd_gpioWrite(m_cs, LCD_HIGH);
     }
     if ( m_dc >= 0 )
         lcd_gpioMode(m_dc, LCD_GPIO_OUTPUT);
