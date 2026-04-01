@@ -1,8 +1,6 @@
 {
-    "ssd1331":
-    {
-        "options":
-        {
+    "ssd1331": {
+        "options": {
             "no_bits_in_name": false,
             "config_func": "_configureSpiDisplayCmdModeOnly",
             "rowcol_bits": 8,
@@ -13,30 +11,28 @@
             "reset_duration": 10,
             "reset_delay": 0
         },
-        "functions":
-        {
-            "interface_list": ["setRotation", "drawLine", "copyBlock"],
+        "functions": {
+            "interface_list": [
+                "setRotation",
+                "drawLine",
+                "copyBlock",
+                "setContrast"
+            ],
             "setRotation": {},
             "drawLine": {},
             "copyBlock": {}
         },
-        "interfaces":
-        {
-            "spi":
-            {
+        "interfaces": {
+            "spi": {
                 "frequency": 6000000
             }
         },
-        "bits":
-        {
-            "8":
-            {
-                "96x64":
-                {
+        "bits": {
+            "8": {
+                "96x64": {
                     "serial_interface_args": "8, *this, config.dc",
                     "custom_serial_interface_args": "8, *this, dcPin",
-                    "init":
-                    [
+                    "init": [
                         "#ifdef SDL_EMULATION",
                         "    SDL_LCD_SSD1331_X8, 0x00,",
                         "    0x00, 0x00,",
@@ -63,14 +59,11 @@
                     ]
                 }
             },
-            "16":
-            {
-                "96x64":
-                {
+            "16": {
+                "96x64": {
                     "serial_interface_args": "16, *this, config.dc",
                     "custom_serial_interface_args": "16, *this, dcPin",
-                    "init":
-                    [
+                    "init": [
                         "#ifdef SDL_EMULATION",
                         "    SDL_LCD_SSD1331_X16, 0x00,",
                         "    0x00, 0x00,",
@@ -100,4 +93,3 @@
         }
     }
 }
-

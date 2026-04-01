@@ -1,0 +1,4 @@
+    commandStart();
+    this->send(0x81); // set contrast
+    this->send(contrast);
+    this->stop();

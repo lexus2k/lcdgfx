@@ -1,8 +1,6 @@
 {
-    "ssd1327":
-    {
-        "options":
-        {
+    "ssd1327": {
+        "options": {
             "no_bits_in_name": true,
             "config_func": "_configureSpiDisplayCmdModeOnly",
             "rowcol_bits": 8,
@@ -13,26 +11,19 @@
             "reset_duration": 10,
             "reset_delay": 0
         },
-        "interfaces":
-        {
-            "spi":
-            {
+        "interfaces": {
+            "spi": {
                 "frequency": 10000000
             },
-            "i2c":
-            {
+            "i2c": {
                 "addr": "0x3C",
                 "frequency": 400000
             }
         },
-        "bits":
-        {
-            "4":
-            {
-                "128x128":
-                {
-                    "init":
-                    [
+        "bits": {
+            "4": {
+                "128x128": {
+                    "init": [
                         "#ifdef SDL_EMULATION",
                         "    SDL_LCD_SSD1327, 0x00,",
                         "    SDL_LCD_SSD1327_GENERIC, 0x00,",
@@ -57,7 +48,11 @@
                     ]
                 }
             }
+        },
+        "functions": {
+            "interface_list": [
+                "setContrast"
+            ]
         }
     }
 }
-

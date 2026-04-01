@@ -1,0 +1,6 @@
+    commandStart();
+    this->send(0xC1); // set contrast for RGB
+    this->send(contrast);
+    this->send(contrast);
+    this->send(contrast);
+    this->stop();

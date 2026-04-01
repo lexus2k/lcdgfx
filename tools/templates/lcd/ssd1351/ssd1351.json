@@ -1,8 +1,6 @@
 {
-    "ssd1351":
-    {
-        "options":
-        {
+    "ssd1351": {
+        "options": {
             "no_bits_in_name": false,
             "rowcol_bits": 8,
             "args_in_cmd_mode": false,
@@ -13,27 +11,25 @@
             "reset_delay": 0,
             "exit_cmd_mode_command": "0x5C"
         },
-        "functions":
-        {
-            "interface_list": ["setRotation", "setOffset", "setRgbMode"],
+        "functions": {
+            "interface_list": [
+                "setRotation",
+                "setOffset",
+                "setRgbMode",
+                "setContrast"
+            ],
             "setRotation": {},
             "setRgbMode": {}
         },
-        "interfaces":
-        {
-            "spi":
-            {
+        "interfaces": {
+            "spi": {
                 "frequency": 4400000
             }
         },
-        "bits":
-        {
-            "16":
-            {
-                "128x128":
-                {
-                    "init":
-                    [
+        "bits": {
+            "16": {
+                "128x128": {
+                    "init": [
                         "#ifdef SDL_EMULATION",
                         "    SDL_LCD_SSD1351, 0x00,",
                         "    0x00, 0x00,",
@@ -60,10 +56,8 @@
                         "    0xA6, 0x00,           // Normal display"
                     ]
                 },
-                "96x96":
-                {
-                    "init":
-                    [
+                "96x96": {
+                    "init": [
                         "#ifdef SDL_EMULATION",
                         "    SDL_LCD_SSD1351, 0x00,",
                         "    0x00, 0x00,",
@@ -94,4 +88,3 @@
         }
     }
 }
-

@@ -134,6 +134,18 @@ template <class I> void InterfaceSSD1331<I>::copyBlock(uint8_t left, uint8_t top
     this->stop();
 }
 
+template <class I> void InterfaceSSD1331<I>::setContrast(uint8_t contrast)
+{
+    commandStart();
+    this->send(0x81); // set contrast for Color A (Red)
+    this->send(contrast);
+    this->send(0x82); // set contrast for Color B (Green)
+    this->send(contrast);
+    this->send(0x83); // set contrast for Color C (Blue)
+    this->send(contrast);
+    this->stop();
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //             SSD1331 basic 8-bit implementation

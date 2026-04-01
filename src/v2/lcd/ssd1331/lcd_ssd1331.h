@@ -140,6 +140,13 @@ public:
      */
     void copyBlock(uint8_t left, uint8_t top, uint8_t right, uint8_t bottom, uint8_t newLeft, uint8_t newTop);
 
+    /**
+     * Set display contrast for all RGB channels uniformly.
+     * Sets the same contrast value for Red, Green and Blue channels.
+     * @param contrast - contrast value to set, refer to SSD1331 datasheet
+     */
+    void setContrast(uint8_t contrast);
+
 private:
     const uint8_t m_bits;
     const int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c

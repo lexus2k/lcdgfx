@@ -100,6 +100,12 @@ public:
      */
     void commandStart();
 
+    /**
+     * Set display contrast, ie light intensity
+     * @param contrast - contrast value to set, refer to SSD1327 datasheet
+     */
+    void setContrast(uint8_t contrast);
+
 private:
     const int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceSSD1327<I>> &m_base; ///< basic lcd display support interface

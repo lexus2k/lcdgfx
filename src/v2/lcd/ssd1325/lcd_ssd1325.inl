@@ -81,6 +81,14 @@ template <class I> void InterfaceSSD1325<I>::commandStart()
         this->send(0x00);
 }
 
+template <class I> void InterfaceSSD1325<I>::setContrast(uint8_t contrast)
+{
+    commandStart();
+    this->send(0x81); // set contrast
+    this->send(contrast);
+    this->stop();
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //             SSD1325 basic 4-bit implementation

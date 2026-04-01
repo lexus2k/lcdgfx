@@ -1,0 +1,4 @@
+    /**
+     * Set display contrast, ie light intensity
+     * @param contrast - contrast value to set, refer to SSD1327 datasheet
+     */

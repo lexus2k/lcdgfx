@@ -143,6 +143,16 @@ template <class I> void InterfaceSSD1351<I>::setRgbMode(uint8_t mode)
     this->setRotation( m_rotation );
 }
 
+template <class I> void InterfaceSSD1351<I>::setContrast(uint8_t contrast)
+{
+    commandStart();
+    this->send(0xC1); // set contrast for RGB
+    this->send(contrast);
+    this->send(contrast);
+    this->send(contrast);
+    this->stop();
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //             SSD1351 basic 16-bit implementation

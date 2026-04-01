@@ -1,0 +1,5 @@
+    /**
+     * Set display contrast for all RGB channels uniformly.
+     * Sets the same contrast value for Red, Green and Blue channels.
+     * @param contrast - contrast value to set, refer to SSD1351 datasheet
+     */
