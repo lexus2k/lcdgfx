@@ -12,11 +12,11 @@ public:
      * @param rstPin pin controlling LCD reset (-1 if not used)
      * @param config platform spi configuration. Please refer to SPlatformSpiConfig.
      */
-    explicit Display~CONTROLLER~_~RESOLUTION~_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0, -1, -1})
+    explicit Display~CONTROLLER~_~RESOLUTION~_SPI(int8_t rstPin, const SPlatformSpiConfig &config = {-1, {-1}, -1, 0U, -1, -1})
         : Display~CONTROLLER~_~RESOLUTION~(m_spi, rstPin)
         , m_spi(~SERIAL_INTERFACE_ARGS~,
                 SPlatformSpiConfig{
-                    config.busId, {config.cs}, config.dc, config.frequency ?: ~FREQUENCY~, config.scl, config.sda})
+                    config.busId, {config.cs}, config.dc, config.frequency ?: static_cast<uint32_t>(~FREQUENCY~), config.scl, config.sda})
     {
     }
 
