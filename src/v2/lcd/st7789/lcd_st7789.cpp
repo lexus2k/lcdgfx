@@ -53,3 +53,16 @@ void DisplayST7789_240x240x16_SPI::end()
     m_spi.end();
 }
 #endif
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
+void DisplayST7789_170x320x16_SPI::begin()
+{
+    m_spi.begin();
+    DisplayST7789_170x320x16::beginController();
+}
+
+void DisplayST7789_170x320x16_SPI::end()
+{
+    DisplayST7789_170x320x16::endController();
+    m_spi.end();
+}
+#endif
