@@ -1036,6 +1036,23 @@ public:
     void fillRect(const NanoRect &rect);
 
     /**
+     * Clears rectangle area (fills with black/zero color).
+     * Saves and restores the current drawing color.
+     * @param x1 - position X
+     * @param y1 - position Y
+     * @param x2 - position X
+     * @param y2 - position Y
+     */
+    void clearRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2);
+
+    /**
+     * Clears rectangle area (fills with black/zero color).
+     * Saves and restores the current drawing color.
+     * @param rect - structure, describing rectangle area
+     */
+    void clearRect(const NanoRect &rect);
+
+    /**
      * Draws circle
      * @param xc horizontal position of circle center in pixels
      * @param yc vertical position of circle center in pixels

@@ -591,6 +591,19 @@ template <class O, class I> void NanoDisplayOps<O, I>::fillRect(const NanoRect &
     this->fillRect(rect.p1.x, rect.p1.y, rect.p2.x, rect.p2.y);
 }
 
+template <class O, class I> void NanoDisplayOps<O, I>::clearRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2)
+{
+    uint16_t old_color = this->getColor();
+    this->setColor(0x0000);
+    this->fillRect(x1, y1, x2, y2);
+    this->setColor(old_color);
+}
+
+template <class O, class I> void NanoDisplayOps<O, I>::clearRect(const NanoRect &rect)
+{
+    this->clearRect(rect.p1.x, rect.p1.y, rect.p2.x, rect.p2.y);
+}
+
 template <class O, class I> void NanoDisplayOps<O, I>::drawCircle(lcdint_t xc, lcdint_t yc, lcdint_t r, uint8_t options)
 {
     lcdint_t d = 3 - 2 * r;
