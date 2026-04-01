@@ -27,6 +27,7 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 void DisplayST7789_135x240x16_SPI::begin()
 {
     m_spi.begin();
@@ -38,6 +39,8 @@ void DisplayST7789_135x240x16_SPI::end()
     DisplayST7789_135x240x16::endController();
     m_spi.end();
 }
+#endif
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 void DisplayST7789_240x240x16_SPI::begin()
 {
     m_spi.begin();
@@ -49,3 +52,4 @@ void DisplayST7789_240x240x16_SPI::end()
     DisplayST7789_240x240x16::endController();
     m_spi.end();
 }
+#endif

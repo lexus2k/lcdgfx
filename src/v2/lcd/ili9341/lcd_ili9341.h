@@ -186,6 +186,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements ILI9341 240x320x16 lcd display in 16 bit mode over SPI
  */
@@ -220,6 +221,7 @@ public:
 private:
     InterfaceILI9341<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements ILI9341 240x320x16 lcd display in 16 bit mode over custom SPI implementation
@@ -292,6 +294,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements ILI9341 128x160x16 lcd display in 16 bit mode over SPI
  */
@@ -326,6 +329,7 @@ public:
 private:
     InterfaceILI9341<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements ILI9341 128x160x16 lcd display in 16 bit mode over custom SPI implementation

@@ -27,6 +27,7 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 void DisplaySSD1351_128x128x16_SPI::begin()
 {
     m_spi.begin();
@@ -38,6 +39,8 @@ void DisplaySSD1351_128x128x16_SPI::end()
     DisplaySSD1351_128x128x16::endController();
     m_spi.end();
 }
+#endif
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 void DisplaySSD1351_96x96x16_SPI::begin()
 {
     m_spi.begin();
@@ -49,3 +52,4 @@ void DisplaySSD1351_96x96x16_SPI::end()
     DisplaySSD1351_96x96x16::endController();
     m_spi.end();
 }
+#endif

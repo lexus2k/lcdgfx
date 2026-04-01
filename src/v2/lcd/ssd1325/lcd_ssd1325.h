@@ -164,6 +164,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements SSD1325 128x64 lcd display in 4 bit mode over SPI
  */
@@ -198,6 +199,7 @@ public:
 private:
     InterfaceSSD1325<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements SSD1325 128x64 lcd display in 4 bit mode over custom SPI implementation
@@ -242,6 +244,7 @@ public:
 private:
     InterfaceSSD1325<I> m_spi;
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 /**
  * Class implements SSD1325 128x64 lcd display in 4 bit mode over I2C
  */
@@ -276,6 +279,7 @@ public:
 private:
     InterfaceSSD1325<PlatformI2c> m_i2c;
 };
+#endif
 
 /**
  * Template class implements SSD1325 128x64 lcd display in 4 bit mode over custom I2C implementation

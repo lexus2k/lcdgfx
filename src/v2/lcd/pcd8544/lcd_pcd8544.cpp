@@ -27,6 +27,7 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 void DisplayPCD8544_84x48_SPI::begin()
 {
     m_spi.begin();
@@ -38,3 +39,4 @@ void DisplayPCD8544_84x48_SPI::end()
     DisplayPCD8544_84x48::endController();
     m_spi.end();
 }
+#endif

@@ -167,6 +167,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements PCD8544 84x48 lcd display in 1 bit mode over SPI
  */
@@ -201,6 +202,7 @@ public:
 private:
     InterfacePCD8544<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements PCD8544 84x48 lcd display in 1 bit mode over custom SPI implementation

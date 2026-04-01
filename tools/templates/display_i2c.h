@@ -1,3 +1,4 @@
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 /**
  * Class implements ~CONTROLLER~ ~RESOLUTION~ lcd display in ~BITS~ bit mode over I2C
  */
@@ -32,6 +33,7 @@ public:
 private:
     Interface~CONTROLLER~<PlatformI2c> m_i2c;
 };
+#endif
 
 /**
  * Template class implements ~CONTROLLER~ ~RESOLUTION~ lcd display in ~BITS~ bit mode over custom I2C implementation

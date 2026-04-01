@@ -227,6 +227,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements SSD1306 64x32 lcd display in 1 bit mode over SPI
  */
@@ -261,6 +262,7 @@ public:
 private:
     InterfaceSSD1306<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements SSD1306 64x32 lcd display in 1 bit mode over custom SPI implementation
@@ -305,6 +307,7 @@ public:
 private:
     InterfaceSSD1306<I> m_spi;
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 /**
  * Class implements SSD1306 64x32 lcd display in 1 bit mode over I2C
  */
@@ -339,6 +342,7 @@ public:
 private:
     InterfaceSSD1306<PlatformI2c> m_i2c;
 };
+#endif
 
 /**
  * Template class implements SSD1306 64x32 lcd display in 1 bit mode over custom I2C implementation
@@ -458,6 +462,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements SSD1306 64x48 lcd display in 1 bit mode over SPI
  */
@@ -492,6 +497,7 @@ public:
 private:
     InterfaceSSD1306<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements SSD1306 64x48 lcd display in 1 bit mode over custom SPI implementation
@@ -536,6 +542,7 @@ public:
 private:
     InterfaceSSD1306<I> m_spi;
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 /**
  * Class implements SSD1306 64x48 lcd display in 1 bit mode over I2C
  */
@@ -570,6 +577,7 @@ public:
 private:
     InterfaceSSD1306<PlatformI2c> m_i2c;
 };
+#endif
 
 /**
  * Template class implements SSD1306 64x48 lcd display in 1 bit mode over custom I2C implementation
@@ -689,6 +697,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements SSD1306 128x32 lcd display in 1 bit mode over SPI
  */
@@ -723,6 +732,7 @@ public:
 private:
     InterfaceSSD1306<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements SSD1306 128x32 lcd display in 1 bit mode over custom SPI implementation
@@ -767,6 +777,7 @@ public:
 private:
     InterfaceSSD1306<I> m_spi;
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 /**
  * Class implements SSD1306 128x32 lcd display in 1 bit mode over I2C
  */
@@ -801,6 +812,7 @@ public:
 private:
     InterfaceSSD1306<PlatformI2c> m_i2c;
 };
+#endif
 
 /**
  * Template class implements SSD1306 128x32 lcd display in 1 bit mode over custom I2C implementation
@@ -920,6 +932,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements SSD1306 128x64 lcd display in 1 bit mode over SPI
  */
@@ -954,6 +967,7 @@ public:
 private:
     InterfaceSSD1306<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements SSD1306 128x64 lcd display in 1 bit mode over custom SPI implementation
@@ -998,6 +1012,7 @@ public:
 private:
     InterfaceSSD1306<I> m_spi;
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 /**
  * Class implements SSD1306 128x64 lcd display in 1 bit mode over I2C
  */
@@ -1032,6 +1047,7 @@ public:
 private:
     InterfaceSSD1306<PlatformI2c> m_i2c;
 };
+#endif
 
 /**
  * Template class implements SSD1306 128x64 lcd display in 1 bit mode over custom I2C implementation

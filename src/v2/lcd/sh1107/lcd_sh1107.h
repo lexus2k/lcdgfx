@@ -249,6 +249,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements SH1107 128x64 lcd display in 1 bit mode over SPI
  */
@@ -283,6 +284,7 @@ public:
 private:
     InterfaceSH1107<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements SH1107 128x64 lcd display in 1 bit mode over custom SPI implementation
@@ -327,6 +329,7 @@ public:
 private:
     InterfaceSH1107<I> m_spi;
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 /**
  * Class implements SH1107 128x64 lcd display in 1 bit mode over I2C
  */
@@ -361,6 +364,7 @@ public:
 private:
     InterfaceSH1107<PlatformI2c> m_i2c;
 };
+#endif
 
 /**
  * Template class implements SH1107 128x64 lcd display in 1 bit mode over custom I2C implementation
@@ -432,6 +436,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements SH1107 64x128 lcd display in 1 bit mode over SPI
  */
@@ -466,6 +471,7 @@ public:
 private:
     InterfaceSH1107<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements SH1107 64x128 lcd display in 1 bit mode over custom SPI implementation
@@ -510,6 +516,7 @@ public:
 private:
     InterfaceSH1107<I> m_spi;
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 /**
  * Class implements SH1107 64x128 lcd display in 1 bit mode over I2C
  */
@@ -544,6 +551,7 @@ public:
 private:
     InterfaceSH1107<PlatformI2c> m_i2c;
 };
+#endif
 
 /**
  * Template class implements SH1107 64x128 lcd display in 1 bit mode over custom I2C implementation

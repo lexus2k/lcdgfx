@@ -367,6 +367,7 @@ int lcd_random(int min, int max);
 ////////////////////////////////////////////////////////////////////////////////
 
 #if defined(CONFIG_ARDUINO_I2C_AVAILABLE) && defined(CONFIG_ARDUINO_I2C_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_I2C
 /**
  * PlatformI2c implementation for current platform.
  */
@@ -384,6 +385,7 @@ public:
 };
 
 #elif defined(CONFIG_TWI_I2C_AVAILABLE) && defined(CONFIG_TWI_I2C_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_I2C
 
 /**
  * PlatformI2c implementation for current platform.
@@ -402,6 +404,7 @@ public:
 };
 
 #elif defined(CONFIG_LINUX_I2C_AVAILABLE) && defined(CONFIG_LINUX_I2C_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_I2C
 
 #if defined(SDL_EMULATION)
 /**
@@ -438,6 +441,7 @@ public:
 #endif
 
 #elif defined(CONFIG_ESP32_I2C_AVAILABLE) && defined(CONFIG_ESP32_I2C_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_I2C
 
 /**
  * PlatformI2c implementation for current platform.
@@ -456,6 +460,7 @@ public:
 };
 
 #elif defined(CONFIG_ESP8266_I2C_AVAILABLE) && defined(CONFIG_ESP8266_I2C_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_I2C
 
 /**
  * PlatformI2c implementation for current platform.
@@ -474,6 +479,7 @@ public:
 };
 
 #elif defined(CONFIG_SOFTWARE_I2C_AVAILABLE) && defined(CONFIG_SOFTWARE_I2C_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_I2C
 
 /**
  * PlatformI2c implementation for current platform.
@@ -492,6 +498,7 @@ public:
 };
 
 #elif defined(PICO_BOARD)
+#define CONFIG_LCDGFX_PLATFORM_I2C
 
 /**
  * PlatformI2c implementation for current platform.
@@ -509,10 +516,6 @@ public:
     }
 };
 
-#else
-
-#error "Platform not supported"
-
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -520,6 +523,7 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 
 #if defined(CONFIG_AVR_SPI_AVAILABLE) && defined(CONFIG_AVR_SPI_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_SPI
 
 /**
  * PlatformSpi implementation for current platform
@@ -538,6 +542,7 @@ public:
 };
 
 #elif defined(CONFIG_ARDUINO_SPI_AVAILABLE) && defined(CONFIG_ARDUINO_SPI_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_SPI
 
 /**
  * PlatformSpi implementation for current platform
@@ -556,6 +561,7 @@ public:
 };
 
 #elif defined(CONFIG_LINUX_SPI_AVAILABLE) && defined(CONFIG_LINUX_SPI_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_SPI
 
 #if defined(SDL_EMULATION)
 /**
@@ -592,6 +598,7 @@ public:
 #endif
 
 #elif defined(CONFIG_ESP32_SPI_AVAILABLE) && defined(CONFIG_ESP32_SPI_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * PlatformSpi implementation for current platform
  */
@@ -609,6 +616,7 @@ public:
 };
 
 #elif defined(CONFIG_ESP8266_SPI_AVAILABLE) && defined(CONFIG_ESP8266_SPI_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * PlatformSpi implementation for current platform
  */
@@ -626,6 +634,7 @@ public:
 };
 
 #elif defined(CONFIG_USI_SPI_AVAILABLE) && defined(CONFIG_USI_SPI_ENABLE)
+#define CONFIG_LCDGFX_PLATFORM_SPI
 
 /**
  * PlatformSpi implementation for current platform
@@ -644,6 +653,7 @@ public:
 };
 
 #elif defined(PICO_BOARD)
+#define CONFIG_LCDGFX_PLATFORM_SPI
 
 /**
  * PlatformSpi implementation for current platform
@@ -660,10 +670,6 @@ public:
     {
     }
 };
-
-#else
-
-#error "Platform not supported"
 
 #endif
 

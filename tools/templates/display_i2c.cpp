@@ -1,3 +1,4 @@
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 void Display~CONTROLLER~_~RESOLUTION~_I2C::begin()
 {
     m_i2c.begin();
@@ -9,3 +10,4 @@ void Display~CONTROLLER~_~RESOLUTION~_I2C::end()
     Display~CONTROLLER~_~RESOLUTION~::endController();
     m_i2c.end();
 }
+#endif

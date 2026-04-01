@@ -196,6 +196,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements ST7735 128x128x16 lcd display in 16 bit mode over SPI
  */
@@ -230,6 +231,7 @@ public:
 private:
     InterfaceST7735<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements ST7735 128x128x16 lcd display in 16 bit mode over custom SPI implementation
@@ -302,6 +304,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements ST7735 80x160x16 lcd display in 16 bit mode over SPI
  */
@@ -336,6 +339,7 @@ public:
 private:
     InterfaceST7735<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements ST7735 80x160x16 lcd display in 16 bit mode over custom SPI implementation
@@ -408,6 +412,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements ST7735 128x160x16 lcd display in 16 bit mode over SPI
  */
@@ -442,6 +447,7 @@ public:
 private:
     InterfaceST7735<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements ST7735 128x160x16 lcd display in 16 bit mode over custom SPI implementation

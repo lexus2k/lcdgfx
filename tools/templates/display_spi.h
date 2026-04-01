@@ -1,3 +1,4 @@
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements ~CONTROLLER~ ~RESOLUTION~ lcd display in ~BITS~ bit mode over SPI
  */
@@ -32,6 +33,7 @@ public:
 private:
     Interface~CONTROLLER~<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements ~CONTROLLER~ ~RESOLUTION~ lcd display in ~BITS~ bit mode over custom SPI implementation

@@ -1,3 +1,4 @@
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 void Display~CONTROLLER~_~RESOLUTION~_SPI::begin()
 {
     m_spi.begin();
@@ -9,3 +10,4 @@ void Display~CONTROLLER~_~RESOLUTION~_SPI::end()
     Display~CONTROLLER~_~RESOLUTION~::endController();
     m_spi.end();
 }
+#endif

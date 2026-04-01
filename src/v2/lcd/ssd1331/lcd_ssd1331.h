@@ -206,6 +206,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements SSD1331 96x64x8 lcd display in 8 bit mode over SPI
  */
@@ -240,6 +241,7 @@ public:
 private:
     InterfaceSSD1331<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements SSD1331 96x64x8 lcd display in 8 bit mode over custom SPI implementation
@@ -344,6 +346,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements SSD1331 96x64x16 lcd display in 16 bit mode over SPI
  */
@@ -378,6 +381,7 @@ public:
 private:
     InterfaceSSD1331<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements SSD1331 96x64x16 lcd display in 16 bit mode over custom SPI implementation

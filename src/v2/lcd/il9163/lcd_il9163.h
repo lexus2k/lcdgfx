@@ -174,6 +174,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements IL9163 128x128x16 lcd display in 16 bit mode over SPI
  */
@@ -208,6 +209,7 @@ public:
 private:
     InterfaceIL9163<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements IL9163 128x128x16 lcd display in 16 bit mode over custom SPI implementation
@@ -280,6 +282,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements IL9163 128x160x16 lcd display in 16 bit mode over SPI
  */
@@ -314,6 +317,7 @@ public:
 private:
     InterfaceIL9163<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements IL9163 128x160x16 lcd display in 16 bit mode over custom SPI implementation

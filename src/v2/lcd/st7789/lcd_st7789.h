@@ -188,6 +188,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements ST7789 135x240x16 lcd display in 16 bit mode over SPI
  */
@@ -222,6 +223,7 @@ public:
 private:
     InterfaceST7789<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements ST7789 135x240x16 lcd display in 16 bit mode over custom SPI implementation
@@ -294,6 +296,7 @@ protected:
      */
     void endController();
 };
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 /**
  * Class implements ST7789 240x240x16 lcd display in 16 bit mode over SPI
  */
@@ -328,6 +331,7 @@ public:
 private:
     InterfaceST7789<PlatformSpi> m_spi;
 };
+#endif
 
 /**
  * Template class implements ST7789 240x240x16 lcd display in 16 bit mode over custom SPI implementation

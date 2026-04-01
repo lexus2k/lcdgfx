@@ -27,6 +27,7 @@
 #ifdef SDL_EMULATION
 #include "sdl_core.h"
 #endif
+#ifdef CONFIG_LCDGFX_PLATFORM_SPI
 void DisplaySSD1327_128x128_SPI::begin()
 {
     m_spi.begin();
@@ -38,6 +39,8 @@ void DisplaySSD1327_128x128_SPI::end()
     DisplaySSD1327_128x128::endController();
     m_spi.end();
 }
+#endif
+#ifdef CONFIG_LCDGFX_PLATFORM_I2C
 void DisplaySSD1327_128x128_I2C::begin()
 {
     m_i2c.begin();
@@ -49,3 +52,4 @@ void DisplaySSD1327_128x128_I2C::end()
     DisplaySSD1327_128x128::endController();
     m_i2c.end();
 }
+#endif
