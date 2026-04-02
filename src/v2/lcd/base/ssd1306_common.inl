@@ -549,13 +549,13 @@ template <class O, class I> void NanoDisplayOps<O, I>::drawLine(lcdint_t x1, lcd
         }
         for ( ; y1 <= y2; y1++ )
         {
+            this->putPixel(x1, y1);
             err += dx;
             if ( err >= dy )
             {
                 err -= dy;
                 x1 < x2 ? x1++ : x1--;
             }
-            this->putPixel(x1, y1);
         }
     }
     else
@@ -567,6 +567,7 @@ template <class O, class I> void NanoDisplayOps<O, I>::drawLine(lcdint_t x1, lcd
         }
         for ( ; x1 <= x2; x1++ )
         {
+            this->putPixel(x1, y1);
             err += dy;
             if ( err >= dx )
             {
@@ -576,7 +577,6 @@ template <class O, class I> void NanoDisplayOps<O, I>::drawLine(lcdint_t x1, lcd
                 else
                     y1--;
             }
-            this->putPixel(x1, y1);
         }
     }
 }

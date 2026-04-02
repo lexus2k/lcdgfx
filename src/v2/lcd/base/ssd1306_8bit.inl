@@ -103,7 +103,7 @@ template <class I> void NanoDisplayOps8<I>::putPixel(lcdint_t x, lcdint_t y)
 template <class I> void NanoDisplayOps8<I>::drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t x2)
 {
     this->m_intf.startBlock(x1, y1, 0);
-    while ( x1 < x2 )
+    while ( x1 <= x2 )
     {
         this->m_intf.send(this->m_color);
         x1++;

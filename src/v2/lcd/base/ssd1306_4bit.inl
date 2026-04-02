@@ -69,7 +69,7 @@ template <class I> void NanoDisplayOps4<I>::drawHLine(lcdint_t x1, lcdint_t y1, 
 {
     uint8_t data = 0;
     this->m_intf.startBlock(x1, y1, 0);
-    while ( x1 < x2 )
+    while ( x1 <= x2 )
     {
         data |= (this->m_color & 0x0F) << (4 * (x1 & 1));
         if ( x1 & 1 )
