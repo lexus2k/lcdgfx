@@ -50,11 +50,6 @@ public:
      */
     void begin() override;
 
-    /**
-     * Closes connection to display
-     */
-    void end() override;
-
 private:
 };
 

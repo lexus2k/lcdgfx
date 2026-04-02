@@ -38,11 +38,6 @@ void DisplayWioTerminal_320x240x16::begin()
     this->getInterface().setRotation(1);
 }
 
-void DisplayWioTerminal_320x240x16::end()
-{
-    DisplayILI9341_240x320x16_CustomSPI<ArduinoSpi>::end();
-}
-
 #endif
 
 /**

@@ -144,7 +144,7 @@ uint8_t NanoEngineInputs::gpioButtons()
 void NanoEngineInputs::connectWioKeypad()
 {
 #ifdef SDL_EMULATION
-    static uint8_t keys[] = {31ul, 32ul, 33ul, 34ul, 35ul, 36ul, 37ul, 0};
+    static const uint8_t keys[] = {31ul, 32ul, 33ul, 34ul, 35ul, 36ul, 37ul, 0};
     connectGpioKeypad(keys);
 #else
     lcd_gpioMode(31Ul, LCD_GPIO_INPUT_PULLUP);
