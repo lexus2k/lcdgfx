@@ -64,13 +64,13 @@ template <uint8_t BPP> void NanoCanvasOps<BPP>::drawLine(lcdint_t x1, lcdint_t y
         }
         for ( ; y1 <= y2; y1++ )
         {
+            putPixel(x1, y1);
             err += dx;
             if ( err >= dy )
             {
                 err -= dy;
                 x1 < x2 ? x1++ : x1--;
             }
-            putPixel(x1, y1);
         }
     }
     else
@@ -82,6 +82,7 @@ template <uint8_t BPP> void NanoCanvasOps<BPP>::drawLine(lcdint_t x1, lcdint_t y
         }
         for ( ; x1 <= x2; x1++ )
         {
+            putPixel(x1, y1);
             err += dy;
             if ( err >= dx )
             {
@@ -91,7 +92,6 @@ template <uint8_t BPP> void NanoCanvasOps<BPP>::drawLine(lcdint_t x1, lcdint_t y
                 else
                     y1--;
             }
-            putPixel(x1, y1);
         }
     }
 }

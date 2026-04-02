@@ -10,6 +10,9 @@ OBJ_UNIT_TEST = \
         unittest/ssd1306_gfx_tests.o \
         unittest/ssd1331_tests.o \
         unittest/ssd1331_gfx_tests.o \
+        unittest/canvas_tests.o \
+        unittest/font_tests.o \
+        unittest/display_lifecycle_tests.o \
         unittest/utils/utils.o \
 
 unittest: $(OBJ_UNIT_TEST) library ssd1306_sdl
