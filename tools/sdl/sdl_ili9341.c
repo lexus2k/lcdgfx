@@ -35,6 +35,14 @@ static int s_pageStart = 0;
 static int s_pageEnd = 7;
 static int s_horizontalLayout = 1;
 static uint8_t detected = 0;
+static uint8_t s_firstStart = 1;
+
+static void sdl_ili9341_reset(void)
+{
+    detected = 0;
+    s_firstStart = 1;
+    s_horizontalLayout = 1;
+}
 
 static int sdl_ili9341_detect(uint8_t data)
 {
@@ -57,7 +65,6 @@ static uint8_t s_verticalMode = 0;
 
 static void sdl_ili9341_commands(uint8_t data)
 {
-    static uint8_t s_firstStart = 1;
     if ( s_firstStart && s_horizontalLayout )
     {
         sdl_graphics_set_oled_params(sdl_ili9341.height,
@@ -192,8 +199,8 @@ void sdl_ili9341_data(uint8_t data)
 {
     int y = s_activePage;
     int x = s_activeColumn;
-    static uint8_t firstByte = 1;  /// ili9341
-    static uint8_t dataFirst = 0x00;  /// ili9341
+    static uint8_t firstByte = 1;
+    static uint8_t dataFirst = 0x00;
     if (firstByte)
     {
         dataFirst = data;
@@ -255,4 +262,5 @@ sdl_oled_info sdl_ili9341 =
     .detect = sdl_ili9341_detect,
     .run_cmd = sdl_ili9341_commands,
     .run_data = sdl_ili9341_data,
+    .reset = sdl_ili9341_reset,
 };

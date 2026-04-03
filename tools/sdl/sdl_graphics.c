@@ -191,10 +191,14 @@ void sdl_graphics_set_oled_params(int width, int height, int bpp, uint32_t pixfm
     {
         SDL_DestroyTexture( g_texture );
         g_texture = NULL;
-        free(g_pixels);
-        g_pixels = NULL;
     }
+    free(g_pixels);
+    g_pixels = NULL;
     g_pixels = malloc(s_width * s_height * (s_bpp / 8));
+    if ( g_pixels )
+    {
+        memset(g_pixels, 0, s_width * s_height * (s_bpp / 8));
+    }
     if ( s_unittest_mode )
     {
         return;

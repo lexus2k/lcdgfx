@@ -64,7 +64,7 @@ static void scan_pixel(uint8_t x, uint8_t y)
     uint8_t row = ( !displayRemap ? (multiplexRatio - seg): seg ) + displayOffset;
     uint8_t ram_row = row + displayStartLine;
     if ( row >= sdl_sh1107.height ) row -= sdl_sh1107.height;
-    if ( row >= multiplexRatio ) disable_pixel = 1; // empty
+    if ( row > multiplexRatio ) disable_pixel = 1; // empty
 
     uint8_t color = gdram[ram_col & 0x7F][ram_row & 0x7F];
     if ( disable_pixel ) color = 0;

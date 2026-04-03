@@ -96,6 +96,7 @@ void sdl_core_init(void)
     s_dcPin = -1;
     memset(s_gpioKeys, 0, sizeof(s_gpioKeys));
 
+    unregister_oleds();
     register_oled( &sdl_sh1107 );
     register_oled( &sdl_ssd1306 );
     register_oled( &sdl_ssd1325 );

@@ -36,6 +36,11 @@ const static int s_pageEnd = 5;
 static int s_verticalMode = 0;
 static uint8_t detected = 0;
 
+static void sdl_pcd8544_reset(void)
+{
+    detected = 0;
+}
+
 
 static int sdl_pcd8544_detect(uint8_t data)
 {
@@ -119,4 +124,5 @@ sdl_oled_info sdl_pcd8544 =
     .detect = sdl_pcd8544_detect,
     .run_cmd = sdl_pcd8544_commands,
     .run_data = sdl_pcd8544_data,
+    .reset = sdl_pcd8544_reset,
 };

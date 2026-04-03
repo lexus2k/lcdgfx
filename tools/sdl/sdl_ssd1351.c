@@ -39,6 +39,11 @@ static uint8_t s_leftToRight = 0;
 static uint8_t detected = 0;
 static uint8_t s_rgbMode = 0;
 
+static void sdl_ssd1351_reset(void)
+{
+    detected = 0;
+}
+
 
 static int sdl_ssd1351_detect(uint8_t data)
 {
@@ -172,4 +177,5 @@ sdl_oled_info sdl_ssd1351 =
     .detect = sdl_ssd1351_detect,
     .run_cmd = sdl_ssd1351_commands,
     .run_data = sdl_ssd1351_data,
+    .reset = sdl_ssd1351_reset,
 };

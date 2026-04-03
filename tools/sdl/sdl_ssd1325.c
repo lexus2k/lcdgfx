@@ -39,6 +39,11 @@ static uint8_t detected = 0;
 static uint8_t s_subtype = SDL_LCD_SSD1325_GENERIC;
 static uint8_t s_hwComSplit = 0;
 
+static void sdl_ssd1325_reset(void)
+{
+    detected = 0;
+}
+
 
 static void copyBlock()
 {
@@ -249,4 +254,5 @@ sdl_oled_info sdl_ssd1325 =
     .detect = sdl_ssd1325_detect,
     .run_cmd = sdl_ssd1325_commands,
     .run_data = sdl_ssd1325_data,
+    .reset = sdl_ssd1325_reset,
 };
