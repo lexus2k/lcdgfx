@@ -38,6 +38,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <signal.h>
 
 #define CANVAS_REFRESH_RATE  60
 
@@ -87,6 +88,12 @@ static void unregister_oleds(void)
     p_active_driver = NULL;
 }
 
+static void sdl_signal_handler(int sig)
+{
+    sdl_core_close();
+    _exit(0);
+}
+
 void sdl_core_init(void)
 {
     s_commandId = SSD_COMMAND_NONE;
@@ -107,6 +114,8 @@ void sdl_core_init(void)
     register_oled( &sdl_ili9341 );
     register_oled( &sdl_pcd8544 );
     sdl_graphics_init();
+    signal(SIGINT, sdl_signal_handler);
+    signal(SIGTERM, sdl_signal_handler);
 }
 
 static void sdl_poll_event(void)
@@ -114,7 +123,11 @@ static void sdl_poll_event(void)
     SDL_Event event;
     while (SDL_PollEvent(&event))
     {
-        if (event.type == SDL_QUIT) exit(0);
+        if (event.type == SDL_QUIT)
+        {
+            sdl_core_close();
+            exit(0);
+        }
         switch (event.type)
         {
             case SDL_KEYDOWN:

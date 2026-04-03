@@ -282,7 +282,23 @@ void sdl_graphics_close(void)
     {
         return;
     }
-    SDL_DestroyWindow(g_window);
+    if (g_texture)
+    {
+        SDL_DestroyTexture(g_texture);
+        g_texture = NULL;
+    }
+    if (g_renderer)
+    {
+        SDL_DestroyRenderer(g_renderer);
+        g_renderer = NULL;
+    }
+    if (g_window)
+    {
+        SDL_DestroyWindow(g_window);
+        g_window = NULL;
+    }
+    free(g_pixels);
+    g_pixels = NULL;
 }
 
 static uint32_t convert_pixel( uint32_t value, uint8_t target_bpp )
