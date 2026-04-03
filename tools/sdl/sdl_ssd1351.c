@@ -109,6 +109,30 @@ static void sdl_ssd1351_process_data(uint8_t data)
                 s_commandId = SSD_COMMAND_NONE;
             }
             break;
+        // 1-arg config commands: consume argument to avoid misinterpretation
+        case 0xA1: // Display Start Line
+        case 0xA2: // Display Offset
+        case 0xAB: // Function Selection
+        case 0xB1: // Phase Length
+        case 0xB3: // Front Clock Divider
+        case 0xB5: // Set GPIO
+        case 0xB6: // Second Pre-charge Period
+        case 0xBB: // Pre-charge Voltage
+        case 0xBE: // VCOMH Voltage
+        case 0xC7: // Master Contrast Current
+        case 0xCA: // Set MUX Ratio
+        case 0xFD: // Command Lock
+            if ( s_cmdArgIndex == 0 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0xC1: // Set Contrast (3 args)
+            if ( s_cmdArgIndex == 2 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
         default:
             s_commandId = SSD_COMMAND_NONE;
             break;

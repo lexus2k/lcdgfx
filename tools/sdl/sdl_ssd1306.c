@@ -182,6 +182,32 @@ static void sdl_ssd1306_commands(uint8_t data)
                 s_commandId = SSD_COMMAND_NONE;
             }
             break;
+        // 1-arg config commands: consume argument to avoid misinterpretation
+        case 0x20: // Memory Addressing Mode
+        case 0x8D: // Charge Pump Setting
+        case 0xD5: // Display Clock Divide Ratio
+        case 0xD9: // Pre-charge Period
+        case 0xDA: // COM Pins Hardware Config
+        case 0xDB: // VCOMH Deselect Level
+            if ( s_cmdArgIndex == 0 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0x26: // Right Horizontal Scroll Setup (6 args)
+        case 0x27: // Left Horizontal Scroll Setup (6 args)
+            if ( s_cmdArgIndex == 5 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0x29: // Vertical and Right Horizontal Scroll (5 args)
+        case 0x2A: // Vertical and Left Horizontal Scroll (5 args)
+            if ( s_cmdArgIndex == 4 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
         default:
             /* Other ssd1306 commands, many commands are combined with data */
             if ((s_commandId >= 0xb0) && (s_commandId <= 0xbf))

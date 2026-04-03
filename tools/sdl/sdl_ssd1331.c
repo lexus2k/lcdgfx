@@ -211,6 +211,44 @@ static void sdl_ssd1331_commands(uint8_t data)
                 default: break;
             }
             break;
+        // 1-arg config commands: consume argument to avoid misinterpretation
+        case 0x81: // Set Contrast for Color A
+        case 0x82: // Set Contrast for Color B
+        case 0x83: // Set Contrast for Color C
+        case 0x87: // Master Current Control
+        case 0x8A: // Second Pre-charge Speed A
+        case 0x8B: // Second Pre-charge Speed B
+        case 0x8C: // Second Pre-charge Speed C
+        case 0xB1: // Phase 1 and 2 Period
+        case 0xB3: // Display Clock Divider
+        case 0xB6: // Second Pre-charge Period
+        case 0xBB: // Pre-charge Level
+        case 0xBE: // VCOMH Voltage
+        case 0x26: // Fill Enable/Disable
+            if ( s_cmdArgIndex == 0 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0x22: // Draw Rectangle (10 args)
+            if ( s_cmdArgIndex == 9 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0x24: // Dim Window (4 args)
+        case 0x25: // Clear Window (4 args)
+            if ( s_cmdArgIndex == 3 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0x27: // Continuous Scrolling Setup (5 args)
+            if ( s_cmdArgIndex == 4 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
         default:
             s_commandId = SSD_COMMAND_NONE;
             break;

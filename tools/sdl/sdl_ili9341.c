@@ -189,6 +189,64 @@ static void sdl_ili9341_commands(uint8_t data)
             sdl_set_data_mode( SDM_WRITE_DATA );
             s_commandId = SSD_COMMAND_NONE;
             break;
+        // 1-arg config commands: consume argument to avoid misinterpretation
+        case 0x26: // Gamma Set
+        case 0x3A: // Pixel Format Set
+        case 0x51: // Write Brightness
+        case 0x53: // Write CTRL Display
+        case 0x55: // Write Content Adaptive Brightness
+        case 0xF6: // Interface Control (often 1 arg variant)
+            if ( s_cmdArgIndex == 0 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0xB1: // Frame Rate Control (2 args)
+        case 0xB5: // Blanking Porch Control (2 args)
+        case 0xB6: // Display Function Control (2 args)
+            if ( s_cmdArgIndex == 1 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0xC0: // Power Control 1 (2 args)
+        case 0xC1: // Power Control 2 (2 args)
+            if ( s_cmdArgIndex == 1 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0xC5: // VCOM Control (2 args)
+            if ( s_cmdArgIndex == 1 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0xC7: // VCOM Offset (1 arg)
+            if ( s_cmdArgIndex == 0 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0xE0: // Positive Gamma Correction (15 args)
+        case 0xE1: // Negative Gamma Correction (15 args)
+            if ( s_cmdArgIndex == 14 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0xCB: // Power Control A (5 args)
+            if ( s_cmdArgIndex == 4 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
+        case 0xCF: // Power Control B (3 args)
+            if ( s_cmdArgIndex == 2 )
+            {
+                s_commandId = SSD_COMMAND_NONE;
+            }
+            break;
         default:
             s_commandId = SSD_COMMAND_NONE;
             break;
