@@ -24,6 +24,7 @@
 
 #include "sdl_sh1107.h"
 #include "sdl_oled_basic.h"
+#include "sdl_emulator_common.h"
 #include "sdl_graphics.h"
 #include "sdl_core.h"
 
@@ -252,21 +253,9 @@ void sdl_sh1107_data(uint8_t data)
     }
     blt_content();
     if ( pageAddressingMode )
-    {
-        s_activeColumn++;
-        if (s_activeColumn > s_columnEnd)
-        {
-            s_activeColumn = s_columnStart;
-        }
-    }
+        sdl_emu_advance_single(&s_activeColumn, s_columnStart, s_columnEnd);
     else
-    {
-        s_activePage++;
-        if (s_activePage > s_pageEnd)
-        {
-            s_activePage = s_pageStart;
-        }
-    }
+        sdl_emu_advance_single(&s_activePage, s_pageStart, s_pageEnd);
 }
 
 

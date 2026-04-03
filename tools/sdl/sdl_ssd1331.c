@@ -24,6 +24,7 @@
 
 #include "sdl_ssd1331.h"
 #include "sdl_oled_basic.h"
+#include "sdl_emulator_common.h"
 #include "sdl_graphics.h"
 #include "sdl_core.h"
 
@@ -239,32 +240,9 @@ static void sdl_ssd1331_data(uint8_t data)
         sdl_put_pixel(x, y, data);
     }
 
-    if (s_verticalMode)
-    {
-        s_activePage++;
-        if (s_activePage > s_pageEnd)
-        {
-            s_activePage = s_pageStart;
-            s_activeColumn++;
-            if (s_activeColumn > s_columnEnd)
-            {
-                s_activeColumn = s_columnStart;
-            }
-        }
-    }
-    else
-    {
-        s_activeColumn++;
-        if (s_activeColumn > s_columnEnd)
-        {
-            s_activeColumn = s_columnStart;
-            s_activePage++;
-            if (s_activePage > s_pageEnd)
-            {
-                s_activePage = s_pageStart;
-            }
-        }
-    }
+    sdl_emu_advance_xy(&s_activeColumn, &s_activePage,
+                       s_columnStart, s_columnEnd, s_pageStart, s_pageEnd,
+                       s_verticalMode);
 }
 
 sdl_oled_info sdl_ssd1331x8 =

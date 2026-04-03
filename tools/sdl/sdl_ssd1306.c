@@ -24,6 +24,7 @@
 
 #include "sdl_ssd1306.h"
 #include "sdl_oled_basic.h"
+#include "sdl_emulator_common.h"
 #include "sdl_graphics.h"
 #include "sdl_core.h"
 
@@ -213,16 +214,8 @@ void sdl_ssd1306_data(uint8_t data)
     {
         blt_single_pixel( x - displayXOffset, (y<<3) + i, data & (1<<i) );
     }
-    s_activeColumn++;
-    if (s_activeColumn > s_columnEnd)
-    {
-        s_activeColumn = s_columnStart;
-        s_activePage++;
-        if (s_activePage > s_pageEnd)
-        {
-            s_activePage = s_pageStart;
-        }
-    }
+    sdl_emu_advance_xy(&s_activeColumn, &s_activePage,
+                       s_columnStart, s_columnEnd, s_pageStart, s_pageEnd, 0);
 }
 
 

@@ -24,6 +24,7 @@
 
 #include "sdl_il9163.h"
 #include "sdl_oled_basic.h"
+#include "sdl_emulator_common.h"
 #include "sdl_graphics.h"
 #include "sdl_core.h"
 
@@ -276,32 +277,9 @@ void sdl_il9163_data(uint8_t data)
         sdl_put_pixel(rx - s_colConnection, ry - s_rowConnection, (dataFirst<<8) | data);
     }
 
-    if (s_verticalMode & 0b00100000)
-    {
-        s_activePage++;
-        if (s_activePage > s_pageEnd)
-        {
-            s_activePage = s_pageStart;
-            s_activeColumn++;
-            if (s_activeColumn > s_columnEnd)
-            {
-                s_activeColumn = s_columnStart;
-            }
-        }
-    }
-    else
-    {
-        s_activeColumn++;
-        if (s_activeColumn > s_columnEnd)
-        {
-            s_activeColumn = s_columnStart;
-            s_activePage++;
-            if (s_activePage > s_pageEnd)
-            {
-                s_activePage = s_pageStart;
-            }
-        }
-    }
+    sdl_emu_advance_xy(&s_activeColumn, &s_activePage,
+                       s_columnStart, s_columnEnd, s_pageStart, s_pageEnd,
+                       s_verticalMode & 0x20);
 }
 
 sdl_oled_info sdl_il9163 =
