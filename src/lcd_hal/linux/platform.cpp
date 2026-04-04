@@ -72,6 +72,8 @@
 #if LCDGFX_USE_LIBGPIOD
 // libgpiod context
 static struct gpiod_chip *lcdgfx_gpiod_chip = NULL;
+static struct gpiod_line *lcdgfx_gpiod_lines[MAX_GPIO_COUNT] = {NULL};
+
 static int lcdgfx_gpiod_init_chip(void) {
     if (!lcdgfx_gpiod_chip) {
         lcdgfx_gpiod_chip = gpiod_chip_open_by_number(0); // default to gpiochip0
@@ -81,6 +83,15 @@ static int lcdgfx_gpiod_init_chip(void) {
         }
     }
     return 0;
+}
+
+static struct gpiod_line *lcdgfx_gpiod_get_line(int pin) {
+    if (pin < 0 || pin >= MAX_GPIO_COUNT) return NULL;
+    if (!lcdgfx_gpiod_lines[pin]) {
+        if (lcdgfx_gpiod_init_chip() < 0) return NULL;
+        lcdgfx_gpiod_lines[pin] = gpiod_chip_get_line(lcdgfx_gpiod_chip, pin);
+    }
+    return lcdgfx_gpiod_lines[pin];
 }
 #endif
 
@@ -126,7 +137,10 @@ int gpio_export(int pin)
 int gpio_unexport(int pin)
 {
 #if LCDGFX_USE_LIBGPIOD
-    // No unexport needed for libgpiod
+    if (pin >= 0 && pin < MAX_GPIO_COUNT && lcdgfx_gpiod_lines[pin]) {
+        gpiod_line_release(lcdgfx_gpiod_lines[pin]);
+        lcdgfx_gpiod_lines[pin] = NULL;
+    }
     return 0;
 #else
     char buffer[4];
@@ -153,12 +167,13 @@ int gpio_unexport(int pin)
 int gpio_direction(int pin, int dir)
 {
 #if LCDGFX_USE_LIBGPIOD
-    if (lcdgfx_gpiod_init_chip() < 0) return -1;
-    struct gpiod_line *line = gpiod_chip_get_line(lcdgfx_gpiod_chip, pin);
+    struct gpiod_line *line = lcdgfx_gpiod_get_line(pin);
     if (!line) {
         fprintf(stderr, "libgpiod: Failed to get line for pin %d\n", pin);
         return -1;
     }
+    // Release if already requested so we can re-request with new direction
+    gpiod_line_release(line);
     int ret = 0;
     if (dir == OUT) {
         ret = gpiod_line_request_output(line, "lcdgfx", 0);
@@ -198,19 +213,12 @@ int gpio_direction(int pin, int dir)
 int gpio_read(int pin)
 {
 #if LCDGFX_USE_LIBGPIOD
-    if (lcdgfx_gpiod_init_chip() < 0) return -1;
-    struct gpiod_line *line = gpiod_chip_get_line(lcdgfx_gpiod_chip, pin);
+    struct gpiod_line *line = lcdgfx_gpiod_get_line(pin);
     if (!line) {
         fprintf(stderr, "libgpiod: Failed to get line for pin %d\n", pin);
         return -1;
     }
-    int ret = gpiod_line_request_input(line, "lcdgfx");
-    if (ret < 0) {
-        fprintf(stderr, "libgpiod: Failed to request input for pin %d\n", pin);
-        return -1;
-    }
     int value = gpiod_line_get_value(line);
-    gpiod_line_release(line);
     return value;
 #else
     char path[32];
@@ -240,19 +248,12 @@ int gpio_read(int pin)
 int gpio_write(int pin, int value)
 {
 #if LCDGFX_USE_LIBGPIOD
-    if (lcdgfx_gpiod_init_chip() < 0) return -1;
-    struct gpiod_line *line = gpiod_chip_get_line(lcdgfx_gpiod_chip, pin);
+    struct gpiod_line *line = lcdgfx_gpiod_get_line(pin);
     if (!line) {
         fprintf(stderr, "libgpiod: Failed to get line for pin %d\n", pin);
         return -1;
     }
-    int ret = gpiod_line_request_output(line, "lcdgfx", value);
-    if (ret < 0) {
-        fprintf(stderr, "libgpiod: Failed to request output for pin %d\n", pin);
-        return -1;
-    }
-    ret = gpiod_line_set_value(line, value);
-    gpiod_line_release(line);
+    int ret = gpiod_line_set_value(line, value);
     return ret;
 #else
     static const char s_values_str[] = "01";
