@@ -1,4 +1,5 @@
     /**
-     * Switches display to normal mode. This feature is specific
-     * for ~CONTROLLER~ based controllers.
+     * Switches display to inverted mode. In this mode, lit pixels
+     * become dark and dark pixels become lit.
+     * @see normalMode()
      */

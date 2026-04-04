@@ -1,4 +1,6 @@
     /**
-     * Set display contrast, ie light intensity
-     * @param contrast - contrast value to see, refer to ~CONTROLLER~ datasheet
+     * Sets display contrast (brightness level).
+     * Higher values produce brighter output.
+     * @param contrast contrast value (0–255), refer to ~CONTROLLER~ datasheet
+     * @see displayOn()
      */

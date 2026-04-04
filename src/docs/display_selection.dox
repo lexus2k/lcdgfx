@@ -1,0 +1,94 @@
+/**
+@page display_selection Display Selection Guide
+
+@tableofcontents
+
+@section ds_overview Supported Displays
+
+LCDGFX supports a wide range of LCD and OLED display controllers. This guide
+helps you select the right class for your hardware.
+
+@section ds_monochrome Monochrome OLED Displays (1-bit)
+
+| Controller | Resolution | Interface | RAM | Class |
+|:-----------|:-----------|:----------|:----|:------|
+| SSD1306    | 128×64     | I2C, SPI  | ~1 KB | `DisplaySSD1306_128x64_I2C` / `_SPI` |
+| SSD1306    | 128×32     | I2C, SPI  | ~0.5 KB | `DisplaySSD1306_128x32_I2C` / `_SPI` |
+| SH1106     | 128×64     | I2C, SPI  | ~1 KB | `DisplaySH1106_128x64_I2C` / `_SPI` |
+| SH1107     | 128×64     | I2C, SPI  | ~1 KB | `DisplaySH1107_128x64_I2C` / `_SPI` |
+| SH1107     | 64×128     | I2C       | ~1 KB | `DisplaySH1107_64x128_I2C` |
+| PCD8544    | 84×48      | SPI       | ~0.5 KB | `DisplayPCD8544_84x48_SPI` |
+
+These displays use 1 bit per pixel. Draw with `setColor(0xFF)` for white,
+`setColor(0x00)` for black.
+
+@section ds_grayscale Grayscale OLED Displays (4-bit)
+
+| Controller | Resolution | Interface | RAM | Class |
+|:-----------|:-----------|:----------|:----|:------|
+| SSD1325    | 128×64     | I2C, SPI  | ~4 KB | `DisplaySSD1325_128x64_I2C` / `_SPI` |
+| SSD1327    | 128×128    | I2C, SPI  | ~8 KB | `DisplaySSD1327_128x128_I2C` / `_SPI` |
+
+These displays support 16 grayscale levels (0–15).
+
+@section ds_color_oled Color OLED Displays (8/16-bit)
+
+| Controller | Resolution | Colors | Interface | RAM | Class |
+|:-----------|:-----------|:-------|:----------|:----|:------|
+| SSD1331    | 96×64      | 64K    | SPI       | ~12 KB | `DisplaySSD1331_96x64_SPI` |
+| SSD1351    | 128×128    | 64K    | SPI       | ~32 KB | `DisplaySSD1351_128x128_SPI` |
+
+Use `RGB_COLOR16(r, g, b)` to create 16-bit colors, or `RGB_COLOR8(r, g, b)` for 8-bit mode.
+
+@section ds_tft TFT LCD Displays (16-bit color)
+
+| Controller | Resolution | Interface | RAM | Class |
+|:-----------|:-----------|:----------|:----|:------|
+| IL9163/ST7735 | 128×160 | SPI | ~40 KB | `DisplayST7735_128x160x16_SPI` |
+| IL9163/ST7735 | 128×128 | SPI | ~32 KB | `DisplayST7735_128x128x16_SPI` |
+| IL9163/ST7735 | 80×160  | SPI | ~25 KB | `DisplayST7735_80x160x16_SPI` |
+| ST7789     | 240×240    | SPI       | ~115 KB | `DisplayST7789_240x240x16_SPI` |
+| ST7789     | 135×240    | SPI       | ~64 KB | `DisplayST7789_135x240x16_SPI` |
+| ST7789     | 170×320    | SPI       | ~109 KB | `DisplayST7789_170x320x16_SPI` |
+| ILI9341    | 240×320    | SPI       | ~150 KB | `DisplayILI9341_240x320x16_SPI` |
+
+RAM values indicate the display controller's internal framebuffer, not MCU RAM usage.
+TFT displays stream pixels directly without requiring a local framebuffer.
+
+@note ST7789 panels often require inverted mode (INVON) for correct colors.
+If colors appear wrong, call `display.invertMode()` or `display.normalMode()`.
+
+@section ds_custom Custom Resolution
+
+For non-standard display sizes (e.g., ST7789 panels with unusual offsets):
+
+@code{.cpp}
+DisplayST7789_Custom_SPI<240, 135> display(RST, {busId, CS, DC, freq, SCK, MOSI});
+display.begin();
+display.getInterface().setOffset(40, 53);  // Adjust for your panel's offset
+@endcode
+
+@section ds_platform Platform Compatibility
+
+| Platform | I2C | SPI | Notes |
+|:---------|:----|:----|:------|
+| Arduino AVR (Uno, Mega, Nano) | ✓ | ✓ | Full support, limited RAM |
+| Arduino AVR (ATtiny85) | ✓ | ✓ | Minimal footprint mode |
+| ESP32 / ESP8266 | ✓ | ✓ | Full support, custom pins |
+| STM32 | ✓ | ✓ | Via STM32duino or direct HAL |
+| Raspberry Pi | ✓ | ✓ | Via linux HAL, libgpiod for GPIO |
+| Raspberry Pi Pico | ✓ | ✓ | Native Pico SDK support |
+| Linux (generic) | ✓ | ✓ | For desktop development/testing |
+
+@section ds_choosing How to Choose
+
+- **Smallest footprint** (ATtiny85, < 1KB RAM): SSD1306 128×32 I2C
+- **General purpose** (Arduino Uno, 2KB RAM): SSD1306 128×64 I2C or SPI
+- **Color graphics** (ESP32, STM32): ST7789, ILI9341, SSD1331
+- **Grayscale images**: SSD1327 128×128
+- **Games/animation**: Any display + NanoEngine (see @ref NANO_ENGINE_API_V2)
+
+@see @ref getting_started for installation and first program
+@see @ref api_overview for the API architecture
+
+*/

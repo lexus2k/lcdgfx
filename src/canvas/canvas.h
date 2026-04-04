@@ -39,8 +39,16 @@
  */
 
 /**
- * NanoCanvasOps provides operations for drawing in memory buffer.
- * Depending on BPP argument, this class can work with 1,8,16-bit canvas areas.
+ * @brief NanoCanvasOps provides operations for drawing in memory buffer.
+ *
+ * Depending on the BPP template argument, this class can work with
+ * 1-bit (monochrome), 8-bit, or 16-bit canvas areas. All drawing
+ * operations write to an off-screen buffer that can later be flushed
+ * to a display.
+ *
+ * @tparam BPP bits per pixel (1, 8, or 16)
+ *
+ * @see NanoCanvas1, NanoCanvas8, NanoCanvas16
  */
 template <uint8_t BPP> class NanoCanvasOps
 {
@@ -135,30 +143,33 @@ public:
     void putPixel(const NanoPoint &p);
 
     /**
-     * Draws horizontal or vertical line
-     * @param x1 - position X
-     * @param y1 - position Y
-     * @param y2 - position Y
+     * Draws vertical line from (x1,y1) to (x1,y2).
+     * @param x1 - X position
+     * @param y1 - start Y position
+     * @param y2 - end Y position
      * @note color can be set via setColor()
+     * @see drawHLine(), drawLine()
      */
     void drawVLine(lcdint_t x1, lcdint_t y1, lcdint_t y2);
 
     /**
-     * Draws horizontal or vertical line
-     * @param x1 - position X
-     * @param y1 - position Y
-     * @param x2 - position X
+     * Draws horizontal line from (x1,y1) to (x2,y1).
+     * @param x1 - start X position
+     * @param y1 - Y position
+     * @param x2 - end X position
      * @note color can be set via setColor()
+     * @see drawVLine(), drawLine()
      */
     void drawHLine(lcdint_t x1, lcdint_t y1, lcdint_t x2);
 
     /**
-     * Draws line
-     * @param x1 - position X
-     * @param y1 - position Y
-     * @param x2 - position X
-     * @param y2 - position Y
+     * Draws a line between two points using Bresenham's algorithm.
+     * @param x1 - start X position
+     * @param y1 - start Y position
+     * @param x2 - end X position
+     * @param y2 - end Y position
      * @note color can be set via setColor()
+     * @see drawHLine(), drawVLine()
      */
     void drawLine(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2);
 
@@ -170,45 +181,49 @@ public:
     void drawLine(const NanoRect &rect);
 
     /**
-     * Draws rectangle
-     * @param x1 - position X
-     * @param y1 - position Y
-     * @param x2 - position X
-     * @param y2 - position Y
+     * Draws rectangle outline.
+     * @param x1 - left X
+     * @param y1 - top Y
+     * @param x2 - right X
+     * @param y2 - bottom Y
      * @note color can be set via setColor()
+     * @see fillRect()
      */
     void drawRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__((noinline));
 
     /**
-     * Draws rectangle
-     * @param rect - structure, describing rectangle area
+     * Draws rectangle outline using NanoRect structure.
+     * @param rect - rectangle area to draw
      * @note color can be set via setColor()
+     * @see fillRect()
      */
     void drawRect(const NanoRect &rect);
 
     /**
-     * Fills rectangle area
-     * @param x1 - position X
-     * @param y1 - position Y
-     * @param x2 - position X
-     * @param y2 - position Y
+     * Fills a rectangular area with the current color.
+     * @param x1 - left X
+     * @param y1 - top Y
+     * @param x2 - right X
+     * @param y2 - bottom Y
      * @note color can be set via setColor()
+     * @see drawRect(), clear()
      */
     void fillRect(lcdint_t x1, lcdint_t y1, lcdint_t x2, lcdint_t y2) __attribute__((noinline));
 
     /**
-     * Fills rectangle area
-     * @param rect - structure, describing rectangle area
+     * Fills a rectangular area with the current color.
+     * @param rect - rectangle area to fill
      * @note color can be set via setColor()
+     * @see drawRect(), clear()
      */
     void fillRect(const NanoRect &rect);
 
     /**
-     * Draws circle
+     * Draws circle outline.
      * @param x horizontal position of circle center in pixels
      * @param y vertical position of circle center in pixels
      * @param r circle radius in pixels
-     * @param options - lower bits correspond to 4 setions, where 1 means to draw, 0 - no
+     * @param options bitmask for quadrants to draw (bits 0–3 for 4 quadrants, 0x0F = full circle)
      */
     void drawCircle(lcdint_t x, lcdint_t y, lcdint_t r, uint8_t options = 0x0F) __attribute__((noinline));
 
@@ -314,7 +329,9 @@ public:
     }
 
     /**
-     * Returns currently set color.
+     * Returns currently set foreground color.
+     * @return current color value
+     * @see setColor()
      */
     uint16_t getColor()
     {
@@ -322,7 +339,8 @@ public:
     }
 
     /**
-     * Changes foreground and background colors
+     * Swaps foreground and background colors.
+     * @see setColor(), setBackground()
      */
     void invertColors()
     {
@@ -355,7 +373,9 @@ public:
     };
 
     /**
-     * Returns reference to NanoFont object, currently used by Display
+     * Returns reference to NanoFont object currently in use.
+     * @return reference to current NanoFont
+     * @see setFont(), setFixedFont(), setFreeFont()
      */
     NanoFont &getFont()
     {

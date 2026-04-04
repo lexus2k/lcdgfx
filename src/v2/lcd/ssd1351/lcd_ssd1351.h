@@ -103,8 +103,13 @@ public:
     /**
      * @brief Sets screen orientation (rotation)
      *
-     * Sets screen orientation (rotation): 0 - normal, 1 - 90 CW, 2 - 180 CW, 3 - 270 CW
-     * @param rotation - screen rotation 0 - normal, 1 - 90 CW, 2 - 180 CW, 3 - 270 CW
+     * Sets screen orientation (rotation):
+     * - 0 — normal (portrait)
+     * - 1 — 90° CW (landscape)
+     * - 2 — 180° CW (portrait inverted)
+     * - 3 — 270° CW (landscape inverted)
+     *
+     * @param rotation screen rotation (0–3)
      */
     void setRotation(uint8_t rotation);
 
@@ -121,10 +126,10 @@ public:
     void setOffset(lcdint_t ox, lcdint_t oy);
 
     /**
-     * @brief Sets RGB mode used by dispay controller.
+     * @brief Sets RGB mode used by display controller.
      *
-     * Sets RGB mode used by display controller. 0 - for BGR, 1 - for RGB
-     * @param mode rgb mode for SSD1351 controller: 0 - BGR, 1 - RGB
+     * Sets RGB mode used by display controller.
+     * @param mode 0 for BGR color order, 1 for RGB color order
      */
     void setRgbMode(uint8_t mode);
 

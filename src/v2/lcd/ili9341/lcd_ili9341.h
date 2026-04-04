@@ -103,8 +103,13 @@ public:
     /**
      * @brief Sets screen orientation (rotation)
      *
-     * Sets screen orientation (rotation): 0 - normal, 1 - 90 CW, 2 - 180 CW, 3 - 270 CW
-     * @param rotation - screen rotation 0 - normal, 1 - 90 CW, 2 - 180 CW, 3 - 270 CW
+     * Sets screen orientation (rotation):
+     * - 0 — normal (portrait)
+     * - 1 — 90° CW (landscape)
+     * - 2 — 180° CW (portrait inverted)
+     * - 3 — 270° CW (landscape inverted)
+     *
+     * @param rotation screen rotation (0–3)
      */
     void setRotation(uint8_t rotation);
 
@@ -120,16 +125,15 @@ public:
     void rotateOutput(uint8_t rotate);
 
     /**
-     * Switches display to normal mode (INVOFF).
-     * Most ST7789 panels initialize with INVON for correct colors.
-     * Use this only if your specific panel shows inverted colors.
+     * Switches display to normal (non-inverted) mode (sends INVOFF command).
+     * @see invertMode()
      */
     void normalMode();
 
     /**
-     * Switches display to invert mode (INVON).
-     * Most ST7789 panels require INVON for correct colors (default).
+     * Switches display to inverted mode (sends INVON command).
      * Use this to re-enable inversion if normalMode() was called.
+     * @see normalMode()
      */
     void invertMode();
 

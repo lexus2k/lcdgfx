@@ -23,6 +23,27 @@
 */
 /**
  * @file lcdgfx.h LCDGFX main header
+ *
+ * @brief Main include file for the LCDGFX library.
+ *
+ * Include this single header to get access to all display classes,
+ * drawing operations, fonts, NanoCanvas, and NanoEngine.
+ *
+ * @code{.cpp}
+ * #include "lcdgfx.h"
+ *
+ * DisplaySSD1306_128x64_I2C display(-1);
+ *
+ * void setup() {
+ *     display.begin();
+ *     display.setFixedFont(ssd1306xled_font6x8);
+ *     display.clear();
+ *     display.printFixed(0, 0, "Hello!");
+ * }
+ * @endcode
+ *
+ * @see @ref getting_started for a complete tutorial
+ * @see @ref display_selection for choosing the right display class
  */
 
 #pragma once
@@ -57,9 +78,11 @@ extern "C"
     /**
      * @defgroup LCD_GENERIC_API Generic API functions, common for all displays and all display modes.
      * @{
-     * @brief Generic API functions, common for all displays and all display modes.
+     * @brief Generic API functions common to all displays and display modes.
      *
-     * @details Generic API functions, common for all displays and all display modes.
+     * @details These functions control library-wide settings such as text encoding mode.
+     * For display-specific APIs, see the individual display class documentation
+     * or @ref LCD_INTERFACE_API_V2.
      */
 
     /**

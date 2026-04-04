@@ -1,5 +1,6 @@
     /**
-     * Sets start line in gdram to start display content with
-     *
-     * @param line start line in range 0 - 63
+     * Sets start line in GDRAM to begin display content with.
+     * Used for hardware scrolling effects.
+     * @param line start line in range 0–63
+     * @see getStartLine()
      */

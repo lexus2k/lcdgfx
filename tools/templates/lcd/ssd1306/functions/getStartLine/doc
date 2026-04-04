@@ -1,3 +1,5 @@
     /**
-     * returns start line in gdram.
+     * Returns the current start line offset in GDRAM.
+     * @return current start line value
+     * @see setStartLine()
      */

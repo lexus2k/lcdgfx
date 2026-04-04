@@ -1,5 +1,4 @@
     /**
-     * Switches display to normal mode (INVOFF).
-     * Most ST7789 panels initialize with INVON for correct colors.
-     * Use this only if your specific panel shows inverted colors.
+     * Switches display to normal (non-inverted) mode (sends INVOFF command).
+     * @see invertMode()
      */

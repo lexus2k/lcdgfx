@@ -101,64 +101,73 @@ public:
     void commandStart();
 
     /**
-     * Sets start line in gdram to start display content with
-     *
-     * @param line start line in range 0 - 63
+     * Sets start line in GDRAM to begin display content with.
+     * Used for hardware scrolling effects.
+     * @param line start line in range 0–63
+     * @see getStartLine()
      */
     void setStartLine(uint8_t line);
 
     /**
-     * returns start line in gdram.
+     * Returns the current start line offset in GDRAM.
+     * @return current start line value
+     * @see setStartLine()
      */
     uint8_t getStartLine();
 
     /**
-     * Switches display to normal mode. This feature is specific
-     * for SSD1306 based controllers.
+     * Switches display back to normal (non-inverted) mode.
+     * @see invertMode()
      */
     void normalMode();
 
     /**
-     * Switches display to normal mode. This feature is specific
-     * for SSD1306 based controllers.
+     * Switches display to inverted mode. In this mode, lit pixels
+     * become dark and dark pixels become lit.
+     * @see normalMode()
      */
     void invertMode();
 
     /**
-     * Set display contrast, ie light intensity
-     * @param contrast - contrast value to see, refer to SSD1306 datasheet
+     * Sets display contrast (brightness level).
+     * Higher values produce brighter output.
+     * @param contrast contrast value (0–255), refer to SSD1306 datasheet
+     * @see displayOn()
      */
     void setContrast(uint8_t contrast);
 
     /**
-     * Turns off display
+     * Turns off the display (enters sleep mode). Contents of
+     * display RAM are preserved.
+     * @see displayOn()
      */
     void displayOff();
 
     /**
-     * Turns on display
+     * Turns on the display, resuming normal output.
+     * @see displayOff()
      */
     void displayOn();
 
     /**
-     * @brief performs horizontal flip
+     * @brief Performs horizontal flip
      *
-     * Performs horizontal flip. If you need to turn display by 180 degree,
-     * please use both flipHorizontal() and flipVertical().
+     * Performs horizontal flip. To rotate the display by 180°,
+     * use both flipHorizontal() and flipVertical().
      *
-     * @param mode - 0 to disable horizontal flip
-     *               1 to enable horizontal flip
+     * @param mode 0 to disable horizontal flip, 1 to enable
+     * @see flipVertical()
      */
     void flipHorizontal(uint8_t mode);
 
     /**
-     * @brief performs vertical flip
+     * @brief Performs vertical flip
      *
-     * Performs vertical flip. If you need to turn display by 180 degree,
-     * please use both flipHorizontal() and flipVertical().
+     * Performs vertical flip. To rotate the display by 180°,
+     * use both flipHorizontal() and flipVertical().
      *
-     * @param mode - 0 to disable vertical flip
-     *               1 to enable vertical flip
+     * @param mode 0 to disable vertical flip, 1 to enable
+     * @see flipHorizontal()
      */
     void flipVertical(uint8_t mode);
 

@@ -1,0 +1,153 @@
+/**
+@page getting_started Getting Started
+
+@tableofcontents
+
+@section gs_overview Overview
+
+LCDGFX is a lightweight C++ graphics library for LCD and OLED displays, designed to
+run on resource-constrained microcontrollers (as small as ATtiny85 with 512 bytes of RAM)
+as well as powerful platforms like ESP32 and Raspberry Pi.
+
+The library provides:
+- Direct hardware control via I2C/SPI
+- Drawing primitives (lines, rectangles, circles, bitmaps)
+- Text rendering with multiple font sizes
+- NanoEngine for double-buffered animation and game development
+- SDL emulation mode for desktop testing without real hardware
+
+@section gs_install Installation
+
+@subsection gs_arduino Arduino IDE
+
+Install via the Arduino Library Manager:
+1. Open Arduino IDE → Sketch → Include Library → Manage Libraries
+2. Search for "lcdgfx"
+3. Click Install
+
+Or manually:
+1. Download from https://github.com/lexus2k/lcdgfx
+2. Copy to your Arduino/libraries/lcdgfx folder
+
+@subsection gs_platformio PlatformIO
+
+Add to your `platformio.ini`:
+@code
+lib_deps = lexus2k/lcdgfx
+@endcode
+
+@subsection gs_linux Linux / Raspberry Pi
+
+@code{.sh}
+git clone https://github.com/lexus2k/lcdgfx
+cd lcdgfx/src
+make -f Makefile.linux
+@endcode
+
+For Raspberry Pi GPIO support (kernel 6.6+), install libgpiod:
+@code{.sh}
+sudo apt install libgpiod-dev
+@endcode
+
+@section gs_first_program Your First Program
+
+Here is a minimal example that draws text on an SSD1306 OLED display over I2C:
+
+@code{.cpp}
+#include "lcdgfx.h"
+
+DisplaySSD1306_128x64_I2C display(-1); // Use default I2C pins
+
+void setup()
+{
+    display.begin();
+    display.setFixedFont(ssd1306xled_font6x8);
+    display.clear();
+    display.printFixed(0, 0, "Hello, World!");
+}
+
+void loop()
+{
+}
+@endcode
+
+@section gs_spi_example SPI Display Example
+
+For SPI-connected displays like the ST7735:
+
+@code{.cpp}
+#include "lcdgfx.h"
+
+// Parameters: RST pin, {busId, CS, DC, freq, SCK, MOSI}
+DisplayST7735_128x160x16_SPI display(3, {-1, 4, 5, 0, -1, -1});
+
+void setup()
+{
+    display.begin();
+    display.clear();
+    display.setColor(RGB_COLOR16(255, 255, 0));
+    display.drawLine(10, 30, 56, 96);
+}
+
+void loop()
+{
+}
+@endcode
+
+@section gs_choosing_display Choosing a Display Class
+
+Each supported display has pre-defined classes following the naming pattern:
+
+@code
+Display<CONTROLLER>_<WIDTH>x<HEIGHT>x<BPP>_<BUS>
+@endcode
+
+Examples:
+- `DisplaySSD1306_128x64_I2C` — SSD1306 128×64 monochrome over I2C
+- `DisplaySSD1306_128x64_SPI` — SSD1306 128×64 monochrome over SPI
+- `DisplayST7789_240x240x16_SPI` — ST7789 240×240 16-bit color over SPI
+- `DisplayILI9341_240x320x16_SPI` — ILI9341 240×320 16-bit color over SPI
+
+For a full list, see @ref display_selection.
+
+@section gs_drawing Drawing Primitives
+
+All display objects inherit common drawing functions:
+
+@code{.cpp}
+display.clear();                              // Clear screen
+display.setColor(RGB_COLOR16(255, 0, 0));     // Set red color (16-bit)
+display.putPixel(10, 20);                     // Single pixel
+display.drawLine(0, 0, 127, 63);             // Line
+display.drawRect(10, 10, 50, 40);            // Rectangle outline
+display.fillRect(60, 10, 100, 40);           // Filled rectangle
+display.drawCircle(64, 32, 20);              // Circle
+@endcode
+
+For monochrome displays, use `display.setColor(0xFF)` for white
+and `display.setColor(0x00)` for black.
+
+@section gs_text Text and Fonts
+
+@code{.cpp}
+#include "lcdgfx.h"
+#include "lcdgfx_gui.h"  // For additional GUI elements
+
+display.setFixedFont(ssd1306xled_font6x8);   // Small 6x8 font
+display.printFixed(0, 0, "Line 1");
+display.printFixed(0, 8, "Line 2");
+
+display.setFreeFont(free_calibri11x12);       // Proportional font
+display.printFixed(0, 24, "Smooth text");
+@endcode
+
+Available built-in fonts are listed in @ref LCD_FONTS.
+
+@section gs_next_steps Next Steps
+
+- @ref display_selection — Complete display compatibility table
+- @ref api_overview — Architecture and API reference guide
+- @ref NANO_ENGINE_API_V2 — NanoEngine for animations and games
+- @ref LCD_GENERIC_API — Generic drawing API reference
+
+*/

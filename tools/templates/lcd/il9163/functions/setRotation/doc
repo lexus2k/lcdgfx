@@ -1,6 +1,11 @@
     /**
      * @brief Sets screen orientation (rotation)
      *
-     * Sets screen orientation (rotation): 0 - normal, 1 - 90 CW, 2 - 180 CW, 3 - 270 CW
-     * @param rotation - screen rotation 0 - normal, 1 - 90 CW, 2 - 180 CW, 3 - 270 CW
+     * Sets screen orientation (rotation):
+     * - 0 — normal (portrait)
+     * - 1 — 90° CW (landscape)
+     * - 2 — 180° CW (portrait inverted)
+     * - 3 — 270° CW (landscape inverted)
+     *
+     * @param rotation screen rotation (0–3)
      */

@@ -1,0 +1,142 @@
+/**
+@page api_overview API Architecture Overview
+
+@tableofcontents
+
+@section ao_layers Library Architecture
+
+LCDGFX is organized in layers, each building on the one below:
+
+@verbatim
+┌──────────────────────────────────────────┐
+│  Application Code                        │
+├──────────────────────────────────────────┤
+│  NanoEngine (game/animation engine)      │  ← Double-buffered sprite engine
+├──────────────────────────────────────────┤
+│  NanoCanvas / Display Drawing API        │  ← drawLine, fillRect, print, etc.
+├──────────────────────────────────────────┤
+│  Display Interface (per-controller)      │  ← startBlock/endBlock, setRotation
+├──────────────────────────────────────────┤
+│  Hardware Abstraction Layer (HAL)        │  ← I2C/SPI platform drivers
+├──────────────────────────────────────────┤
+│  Hardware (I2C/SPI bus, GPIO pins)       │
+└──────────────────────────────────────────┘
+@endverbatim
+
+@section ao_display Display API
+
+Every display object (e.g., `DisplaySSD1306_128x64_I2C`) inherits from
+`NanoDisplayOps`, which provides the full set of drawing operations:
+
+- **Pixels**: putPixel()
+- **Lines**: drawLine(), drawHLine(), drawVLine()
+- **Rectangles**: drawRect(), fillRect(), clearRect()
+- **Circles**: drawCircle()
+- **Text**: printFixed(), printFixedPgm(), write()
+- **Bitmaps**: drawBitmap1(), drawBitmap8(), drawBitmap16(), drawXBitmap()
+- **Buffer ops**: clear(), fill()
+
+@code{.cpp}
+DisplaySSD1306_128x64_I2C display(-1);
+display.begin();
+display.clear();
+display.setFixedFont(ssd1306xled_font6x8);
+display.printFixed(0, 0, "Hello");
+display.drawRect(10, 16, 50, 40);
+display.fillRect(60, 16, 100, 40);
+@endcode
+
+@section ao_interface Display Interface
+
+Each display controller has an interface class (e.g., `InterfaceSSD1306`)
+that handles low-level communication:
+
+- `startBlock(x, y, w)` — Set the RAM write window
+- `endBlock()` — Close the RAM write session
+- `setRotation(r)` — Set screen orientation (0–3)
+- `setContrast(c)` — Adjust brightness
+- `displayOn()` / `displayOff()` — Power control
+
+@see @ref LCD_INTERFACE_API_V2 for the full interface reference.
+
+@section ao_canvas NanoCanvas
+
+NanoCanvas provides an off-screen drawing buffer. Draw operations go to the
+canvas first, then the canvas is flushed to the display. This is useful for
+flicker-free rendering:
+
+@code{.cpp}
+NanoCanvas<128, 64, 1> canvas;
+canvas.clear();
+canvas.setFixedFont(ssd1306xled_font6x8);
+canvas.printFixed(0, 0, "Buffered text");
+display.drawCanvas(0, 0, canvas);
+@endcode
+
+Canvas types match display bit depth:
+- `NanoCanvas1` — 1-bit (monochrome)
+- `NanoCanvas8` — 8-bit (256 colors)
+- `NanoCanvas16` — 16-bit (64K colors)
+
+@section ao_nano_engine NanoEngine
+
+NanoEngine is a lightweight game/animation engine with:
+- Double-buffered tile-based rendering
+- Sprite support with collision detection
+- Automatic refresh of only changed screen regions
+- Input handling (buttons/joystick)
+
+@code{.cpp}
+NanoEngine<DisplayST7789_240x240x16_SPI, TILE_32x32_RGB16> engine(display);
+engine.begin();
+engine.drawCallback(myDrawFunction);
+engine.connectAnyButton(onButtonPress);
+while (engine.nextFrame())
+{
+    engine.update();
+    engine.display();
+}
+@endcode
+
+For full NanoEngine documentation, see @ref NANO_ENGINE_API_V2.
+
+@section ao_hal Hardware Abstraction Layer
+
+The HAL layer abstracts platform differences. The library auto-detects
+the platform at compile time:
+
+| HAL | Platform | Header |
+|:----|:---------|:-------|
+| Arduino HAL | Arduino AVR, ESP32, STM32 | `lcd_hal/arduino/` |
+| Linux HAL | Raspberry Pi, generic Linux | `lcd_hal/linux/` |
+| Pico HAL | Raspberry Pi Pico | `lcd_hal/pico/` |
+| SDL HAL | Desktop emulation | `lcd_hal/sdl/` |
+
+For porting to new platforms, see @ref SSD1306_HAL_API.
+
+@section ao_color Color Handling
+
+Color representation depends on the display bit depth:
+
+| Bit Depth | Type | Range | Macro |
+|:----------|:-----|:------|:------|
+| 1-bit  | `uint8_t` | 0 or 0xFF | — |
+| 4-bit  | `uint8_t` | 0–15 | — |
+| 8-bit  | `uint8_t` | RGB332 | `RGB_COLOR8(r, g, b)` |
+| 16-bit | `uint16_t` | RGB565 | `RGB_COLOR16(r, g, b)` |
+
+@section ao_memory Memory Usage
+
+LCDGFX is designed for minimal memory footprint:
+
+- **Flash**: ~4–7 KB for basic I2C SSD1306 on AVR
+- **RAM**: As low as ~100 bytes (no local framebuffer for direct draw)
+- **With NanoEngine**: Additional ~1–4 KB for tile buffers
+
+For ATtiny85 (8 KB flash, 512 B RAM), use direct draw mode without NanoEngine.
+
+@see @ref getting_started for installation and first program
+@see @ref display_selection for choosing the right display
+@see @ref LCD_GENERIC_API for the complete drawing API reference
+
+*/

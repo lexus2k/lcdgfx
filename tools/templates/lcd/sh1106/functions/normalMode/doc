@@ -1,4 +1,4 @@
     /**
-     * Switches display to normal mode. This feature is specific
-     * for ~CONTROLLER~ based controllers.
+     * Switches display back to normal (non-inverted) mode.
+     * @see invertMode()
      */

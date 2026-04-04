@@ -1,3 +1,4 @@
     /**
-     * Turns on display
+     * Turns on the display, resuming normal output.
+     * @see displayOff()
      */

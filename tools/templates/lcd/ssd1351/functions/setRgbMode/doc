@@ -1,6 +1,6 @@
     /**
-     * @brief Sets RGB mode used by dispay controller.
+     * @brief Sets RGB mode used by display controller.
      *
-     * Sets RGB mode used by display controller. 0 - for BGR, 1 - for RGB
-     * @param mode rgb mode for SSD1351 controller: 0 - BGR, 1 - RGB
+     * Sets RGB mode used by display controller.
+     * @param mode 0 for BGR color order, 1 for RGB color order
      */

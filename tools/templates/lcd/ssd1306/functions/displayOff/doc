@@ -1,3 +1,5 @@
     /**
-     * Turns off display
+     * Turns off the display (enters sleep mode). Contents of
+     * display RAM are preserved.
+     * @see displayOn()
      */
