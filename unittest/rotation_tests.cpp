@@ -643,3 +643,15 @@ TEST(ST7789_TESTS, all_rotations)
         CHECK_TRUE( c > 0 );
     }
 }
+
+TEST(ST7789_TESTS, invertMode_normalMode)
+{
+    display->getInterface().invertMode();
+    display->getInterface().normalMode();
+    display->fill(0xFF);
+    capture();
+    int c = 0;
+    for ( size_t i = 0; i < pixels->size(); i++ )
+        if ( (*pixels)[i] != 0 ) c++;
+    CHECK_TRUE( c > 0 );
+}

@@ -1,8 +1,6 @@
 {
-    "il9163":
-    {
-        "options":
-        {
+    "il9163": {
+        "options": {
             "no_bits_in_name": false,
             "rowcol_bits": 16,
             "args_in_cmd_mode": false,
@@ -13,26 +11,25 @@
             "reset_delay": 120,
             "exit_cmd_mode_command": "0x2C"
         },
-        "functions":
-        {
-            "interface_list": ["setRotation"],
-            "setRotation": {}
+        "functions": {
+            "interface_list": [
+                "setRotation",
+                "normalMode",
+                "invertMode"
+            ],
+            "setRotation": {},
+            "normalMode": {},
+            "invertMode": {}
         },
-        "interfaces":
-        {
-            "spi":
-            {
+        "interfaces": {
+            "spi": {
                 "frequency": 8000000
             }
         },
-        "bits":
-        {
-            "16":
-            {
-                "128x128":
-                {
-                    "init":
-                    [
+        "bits": {
+            "16": {
+                "128x128": {
+                    "init": [
                         "#ifdef SDL_EMULATION",
                         "    SDL_LCD_IL9163, 0x00,",
                         "    0x00, 0x00,",
@@ -64,10 +61,8 @@
                         "    0x29, 0x00,"
                     ]
                 },
-                "128x160":
-                {
-                    "init":
-                    [
+                "128x160": {
+                    "init": [
                         "#ifdef SDL_EMULATION",
                         "    SDL_LCD_IL9163, 0x00,",
                         "    0b00000011, 0x00,",
@@ -88,4 +83,3 @@
         }
     }
 }
-

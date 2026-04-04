@@ -360,3 +360,28 @@ TEST(ILI9341_CMDS, fill_clear_partial)
     CHECK_TRUE( count > 0 );
     CHECK_TRUE( count < total );
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// invertMode / normalMode tests for TFT controllers
+///////////////////////////////////////////////////////////////////////////////
+
+TEST(IL9163_CMDS, invertMode_normalMode)
+{
+    display->getInterface().invertMode();
+    display->getInterface().normalMode();
+    display->fill(0xFF);
+    capture();
+    int count = 0;
+    for ( size_t i = 0; i < pixels->size(); i++ )
+        if ( (*pixels)[i] != 0 ) count++;
+    CHECK_TRUE( count > 0 );
+}
+
+TEST(ILI9341_CMDS, invertMode_normalMode)
+{
+    display->getInterface().invertMode();
+    display->getInterface().normalMode();
+    display->fill(0xFF);
+    capture();
+    CHECK_TRUE( countAll() > 0 );
+}

@@ -1,0 +1,4 @@
+    this->start();
+    setDataMode(0);
+    this->send(0x20);
+    this->stop();

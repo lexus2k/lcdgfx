@@ -118,6 +118,22 @@ template <class I> void InterfaceIL9163<I>::setRotation(uint8_t rotation)
     this->stop();
 }
 
+template <class I> void InterfaceIL9163<I>::normalMode()
+{
+    this->start();
+    setDataMode(0);
+    this->send(0x20);
+    this->stop();
+}
+
+template <class I> void InterfaceIL9163<I>::invertMode()
+{
+    this->start();
+    setDataMode(0);
+    this->send(0x21);
+    this->stop();
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //             IL9163 basic 16-bit implementation

@@ -1,8 +1,6 @@
 {
-    "ili9341":
-    {
-        "options":
-        {
+    "ili9341": {
+        "options": {
             "no_bits_in_name": false,
             "rowcol_bits": 16,
             "args_in_cmd_mode": false,
@@ -13,25 +11,25 @@
             "reset_delay": 100,
             "exit_cmd_mode_command": "0x2C"
         },
-        "functions":
-        {
-            "interface_list": ["setRotation", "rotateOutput"]
+        "functions": {
+            "interface_list": [
+                "setRotation",
+                "rotateOutput",
+                "normalMode",
+                "invertMode"
+            ],
+            "normalMode": {},
+            "invertMode": {}
         },
-        "interfaces":
-        {
-            "spi":
-            {
+        "interfaces": {
+            "spi": {
                 "frequency": 10000000
             }
         },
-        "bits":
-        {
-            "16":
-            {
-                "240x320":
-                {
-                    "init":
-                    [
+        "bits": {
+            "16": {
+                "240x320": {
+                    "init": [
                         "#ifdef SDL_EMULATION",
                         "    SDL_LCD_ILI9341, 0x00,",
                         "    0x00, 0x00,",
@@ -61,10 +59,8 @@
                         "    0x29, 0x00,                 // display on"
                     ]
                 },
-                "128x160":
-                {
-                    "init":
-                    [
+                "128x160": {
+                    "init": [
                         "#ifdef SDL_EMULATION",
                         "    SDL_LCD_ST7735, 0x00,",
                         "    0b00000011, 0x00,",
@@ -111,4 +107,3 @@
         }
     }
 }
-

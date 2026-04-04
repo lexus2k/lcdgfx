@@ -123,6 +123,22 @@ template <class I> void InterfaceILI9341<I>::rotateOutput(uint8_t rotate)
     this->setRotation( m_rotation );
 }
 
+template <class I> void InterfaceILI9341<I>::normalMode()
+{
+    this->start();
+    setDataMode(0);
+    this->send(0x20);
+    this->stop();
+}
+
+template <class I> void InterfaceILI9341<I>::invertMode()
+{
+    this->start();
+    setDataMode(0);
+    this->send(0x21);
+    this->stop();
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 //             ILI9341 basic 16-bit implementation

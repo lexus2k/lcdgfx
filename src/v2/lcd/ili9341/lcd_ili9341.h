@@ -119,6 +119,20 @@ public:
      */
     void rotateOutput(uint8_t rotate);
 
+    /**
+     * Switches display to normal mode (INVOFF).
+     * Most ST7789 panels initialize with INVON for correct colors.
+     * Use this only if your specific panel shows inverted colors.
+     */
+    void normalMode();
+
+    /**
+     * Switches display to invert mode (INVON).
+     * Most ST7789 panels require INVON for correct colors (default).
+     * Use this to re-enable inversion if normalMode() was called.
+     */
+    void invertMode();
+
 private:
     const int8_t m_dc = -1;                            ///< data/command pin for SPI, -1 for i2c
     NanoDisplayBase<InterfaceILI9341<I>> &m_base; ///< basic lcd display support interface

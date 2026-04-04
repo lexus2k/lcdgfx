@@ -14,10 +14,14 @@
         "functions": {
             "interface_list": [
                 "setRotation",
-                "setOffset"
+                "setOffset",
+                "normalMode",
+                "invertMode"
             ],
             "setRotation": {},
-            "setOffset": {}
+            "setOffset": {},
+            "normalMode": {},
+            "invertMode": {}
         },
         "interfaces": {
             "spi": {
