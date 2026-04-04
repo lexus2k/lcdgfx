@@ -27,6 +27,7 @@ OBJ_UNIT_TEST = \
         unittest/ssd1325_advanced_tests.o \
         unittest/sh1107_advanced_tests.o \
         unittest/sdl_core_tests.o \
+        unittest/menu_tests.o \
         unittest/utils/utils.o \
 
 unittest: $(OBJ_UNIT_TEST) library ssd1306_sdl

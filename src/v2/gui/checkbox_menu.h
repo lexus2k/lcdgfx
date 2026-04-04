@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2020,2022, Alexey Dynda
+    Copyright (c) 2020,2022,2025 Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -22,11 +22,11 @@
     SOFTWARE.
 */
 /**
- * @file v2/gui/menu.h Menu object definition
+ * @file v2/gui/checkbox_menu.h Checkbox menu definition
  */
 
-#ifndef _LCDGFX_MENU_H_
-#define _LCDGFX_MENU_H_
+#ifndef _LCDGFX_CHECKBOX_MENU_H_
+#define _LCDGFX_CHECKBOX_MENU_H_
 
 #include "nano_gfx_types.h"
 #include "canvas/point.h"
@@ -34,12 +34,10 @@
 #include "canvas/font.h"
 
 #ifndef lcd_gfx_min
-/** Custom min function */
 #define lcd_gfx_min(x, y) ((x) < (y) ? (x) : (y))
 #endif
 
 #ifndef lcd_gfx_max
-/** Custom max function */
 #define lcd_gfx_max(x, y) ((x) > (y) ? (x) : (y))
 #endif
 
@@ -49,66 +47,105 @@
  */
 
 /**
- * Class implements menu objects for lcdgfx library
+ * @brief Checkbox menu widget for lcdgfx.
+ *
+ * Each menu item is displayed with a checkbox indicator (filled box = checked,
+ * empty box = unchecked). Navigate with up()/down() and toggle the current
+ * item's checkbox with toggle(). Supports up to 16 items.
+ *
+ * Includes scroll indicators (arrows and scrollbar) when items overflow.
+ *
+ * @code{.cpp}
+ * const char *items[] = {"WiFi", "Bluetooth", "LED"};
+ * LcdGfxCheckboxMenu menu(items, 3);
+ * menu.setChecked(0, true);  // WiFi starts checked
+ * menu.show(display);
+ *
+ * // On select button:
+ * menu.toggle();
+ * menu.show(display);
+ * @endcode
  */
-class LcdGfxMenu
+class LcdGfxCheckboxMenu
 {
 public:
     /**
-     * Creates menu object with the provided list of menu items.
-     * List of menu items (strings) must exist all until menu object is no longer needed.
-     * Selection is set to the first item by default.
+     * Creates checkbox menu object.
      *
-     * @param items array of null-termintated strings (located in SRAM)
-     * @param count count of menu items in the array
-     * @param rect screen area to use for menu
+     * @param items array of null-terminated strings (in SRAM)
+     * @param count count of menu items (max 16)
+     * @param rect screen area for the menu (0,0 = auto-size to display)
      */
-    LcdGfxMenu(const char **items, uint8_t count, const NanoRect &rect = {});
+    LcdGfxCheckboxMenu(const char **items, uint8_t count, const NanoRect &rect = {});
 
     /**
-     * Shows menu items on the display. If menu items cannot fit the display,
-     * the function provides scrolling.
+     * Shows the checkbox menu on the display. Includes scroll
+     * indicators when items overflow the visible area.
      *
      * @param d display object
      */
     template <typename D> void show(D &d);
 
     /**
-     * Moves selection pointer down by 1 item. If there are no items below,
-     * it will set selection pointer to the first item.
-     * Use show() to refresh menu state on the display.
+     * Moves selection down by one item. Wraps to first item.
      */
     void down();
 
     /**
-     * Moves selection pointer up by 1 item. If selected item is the first one,
-     * then selection pointer will set to the last item in menu list.
-     * Use show() to refresh menu state on the display.
+     * Moves selection up by one item. Wraps to last item.
      */
     void up();
 
     /**
-     * Returns currently selected menu item.
-     * First item has zero-index.
+     * Toggles the checkbox state of the currently selected item.
+     */
+    void toggle();
+
+    /**
+     * Returns true if the item at the given index is checked.
+     * @param index item index (0-based)
+     * @return true if checked
+     */
+    bool isChecked(uint8_t index);
+
+    /**
+     * Sets the checkbox state of a specific item.
+     * @param index item index (0-based)
+     * @param checked true to check, false to uncheck
+     */
+    void setChecked(uint8_t index, bool checked);
+
+    /**
+     * Returns the full checkbox state as a bitmask.
+     * Bit 0 = item 0, bit 1 = item 1, etc.
+     * @return bitmask of checked items
+     */
+    uint16_t checkedMask();
+
+    /**
+     * Returns currently selected menu item index.
      */
     uint8_t selection();
 
+    /**
+     * Sets the current selection index.
+     * @param s item index
+     */
     void setSelection(uint8_t s);
 
     /**
      * Sets rect area for the menu.
-     *
-     * @param rect rect area to use for menu
+     * @param rect rect area to use
      */
     void setRect(const NanoRect &rect = {});
 
     /**
-     * Returns total count of menu items in menu.
+     * Returns total count of menu items.
      */
     uint8_t size();
 
     /**
-     * Updates size of the object, if it was not set previously
+     * Updates size of the object if not set previously.
      */
     template <typename D> void updateSize(D &d)
     {
@@ -124,6 +161,7 @@ public:
 
 private:
     SAppMenu menu;
+    uint16_t m_checked;
 
     template <typename D> uint8_t getMaxScreenItems(D &d)
     {
@@ -150,12 +188,36 @@ private:
             d.invertColors();
         }
         lcdint_t item_top = 8 + menu.top + (index - menu.scrollPosition) * d.getFont().getHeader().height;
+        lcduint_t fh = d.getFont().getHeader().height;
         uint16_t color = d.getColor();
+
+        // Checkbox box size scales with font
+        lcduint_t boxSize = (fh >= 12) ? 7 : 5;
+        lcdint_t boxX = menu.left + 6;
+        lcdint_t boxY = item_top + (fh - boxSize) / 2;
+        lcdint_t textX = boxX + boxSize + 3;
+
+        // Clear background to the right of text
         d.setColor(0x0000);
-        d.fillRect(menu.left + 8 + d.getFont().getTextSize(menu.items[index]), item_top, menu.width + menu.left - 9,
-                   item_top + d.getFont().getHeader().height - 1);
+        d.fillRect(textX + d.getFont().getTextSize(menu.items[index]), item_top,
+                   menu.width + menu.left - 9, item_top + fh - 1);
+        // Clear checkbox area background
+        d.fillRect(menu.left + 5, item_top, textX - 1, item_top + fh - 1);
         d.setColor(color);
-        d.printFixed(menu.left + 8, item_top, menu.items[index], STYLE_NORMAL);
+
+        // Draw checkbox
+        if ( m_checked & (1u << index) )
+        {
+            d.fillRect(boxX, boxY, boxX + boxSize - 1, boxY + boxSize - 1);
+        }
+        else
+        {
+            d.drawRect(boxX, boxY, boxX + boxSize - 1, boxY + boxSize - 1);
+        }
+
+        // Draw item text
+        d.printFixed(textX, item_top, menu.items[index], STYLE_NORMAL);
+
         if ( index == menu.selection )
         {
             d.invertColors();
@@ -171,7 +233,6 @@ private:
         lcdint_t itemsBot = itemsTop + maxItems * d.getFont().getHeader().height;
         lcdint_t cx = menu.left + menu.width / 2;
 
-        // Clear and draw up arrow area
         d.setColor(0x0000);
         d.fillRect(5 + menu.left, borderTop + 1, menu.width + menu.left - 6, itemsTop - 1);
         if ( menu.scrollPosition > 0 )
@@ -182,7 +243,6 @@ private:
             d.drawHLine(cx - 2, borderTop + 3, cx + 2);
         }
 
-        // Clear and draw down arrow area
         d.setColor(0x0000);
         d.fillRect(5 + menu.left, itemsBot, menu.width + menu.left - 6, borderBot - 1);
         if ( menu.scrollPosition + maxItems < menu.count )
@@ -193,7 +253,6 @@ private:
             d.drawHLine(cx, borderBot - 1, cx);
         }
 
-        // Scrollbar track on right edge
         lcdint_t sbX = menu.width + menu.left - 8;
         lcdint_t sbH = itemsBot - itemsTop - 1;
         if ( sbH > 4 )
@@ -205,7 +264,6 @@ private:
             {
                 thumbY = itemsTop + (lcdint_t)((long)(sbH - thumbH) * menu.scrollPosition / maxScroll);
             }
-            // Clear track area then draw thumb
             d.setColor(0x0000);
             d.fillRect(sbX, itemsTop, sbX + 1, itemsTop + sbH);
             d.setColor(color);
@@ -215,7 +273,7 @@ private:
     }
 };
 
-template <typename D> void LcdGfxMenu::show(D &d)
+template <typename D> void LcdGfxCheckboxMenu::show(D &d)
 {
     updateSize(d);
     d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
