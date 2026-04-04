@@ -34,28 +34,17 @@ static int s_columnStart = 0;
 static int s_columnEnd = 127;
 static int s_pageStart = 0;
 static int s_pageEnd = 7;
-static int s_horizontalLayout = 1;
 static uint8_t detected = 0;
-static uint8_t s_firstStart = 1;
 
 static void sdl_ili9341_reset(void)
 {
     detected = 0;
-    s_firstStart = 1;
-    s_horizontalLayout = 1;
 }
 
 static int sdl_ili9341_detect(uint8_t data)
 {
     if (detected)
     {
-        switch (data)
-        {
-            case 0x01:
-                s_horizontalLayout=1;
-                break;
-            default: break;
-        }
         return 1;
     }
     detected = (data == SDL_LCD_ILI9341);
@@ -66,14 +55,6 @@ static uint8_t s_verticalMode = 0;
 
 static void sdl_ili9341_commands(uint8_t data)
 {
-    if ( s_firstStart && s_horizontalLayout )
-    {
-        sdl_graphics_set_oled_params(sdl_ili9341.height,
-                                     sdl_ili9341.width,
-                                     sdl_ili9341.bpp,
-                                     sdl_ili9341.pixfmt);
-        s_firstStart = 0;
-    }
     switch (s_commandId)
     {
         case 0x36:
@@ -278,10 +259,10 @@ void sdl_ili9341_data(uint8_t data)
         rx = (s_verticalMode & 0b10000000) ? x: (sdl_ili9341.width - 1 - x);
         ry = (s_verticalMode & 0b01000000) ? (sdl_ili9341.height - 1 - y) : y;
     }
-    if ( s_horizontalLayout )
-        sdl_put_pixel(sdl_ili9341.height - ry - 1, rx, (dataFirst<<8) | data);
-    else
+    if ( rx >= 0 && ry >= 0 && rx < sdl_ili9341.width && ry < sdl_ili9341.height )
+    {
         sdl_put_pixel(rx, ry, (dataFirst<<8) | data);
+    }
 
     sdl_emu_advance_xy(&s_activeColumn, &s_activePage,
                        s_columnStart, s_columnEnd, s_pageStart, s_pageEnd,
