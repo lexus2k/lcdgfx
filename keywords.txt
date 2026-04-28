@@ -7,13 +7,48 @@
 #######################################
 
 Object1	KEYWORD1
+LcdGfxMenu	KEYWORD1
+LcdGfxCheckboxMenu	KEYWORD1
+LcdGfxButton	KEYWORD1
+LcdGfxSlider	KEYWORD1
+LcdGfxSpinbox	KEYWORD1
+LcdGfxTextEntry	KEYWORD1
+LcdGfxYesNo	KEYWORD1
+LcdGfxXpt2046	KEYWORD1
+TouchCalibration	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
 begin	KEYWORD2
+show	KEYWORD2
+up	KEYWORD2
+down	KEYWORD2
+left	KEYWORD2
+right	KEYWORD2
+selection	KEYWORD2
+toggle	KEYWORD2
+setValue	KEYWORD2
+getValue	KEYWORD2
+setRange	KEYWORD2
+setStep	KEYWORD2
+setCursor	KEYWORD2
+getCursor	KEYWORD2
+getText	KEYWORD2
+onTouch	KEYWORD2
+itemAtPoint	KEYWORD2
+read	KEYWORD2
+isPressed	KEYWORD2
+calibrate	KEYWORD2
+to_rgb565	KEYWORD2
+to_rgb332	KEYWORD2
+from_rgb	KEYWORD2
+gray	KEYWORD2
+nano_utf8_decode	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
 #######################################
+
+ssd1306xled_font6x8_Cyrillic	LITERAL1
