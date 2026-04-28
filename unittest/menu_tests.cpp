@@ -122,6 +122,90 @@ TEST(MenuTests, MenuShowWithRect)
     CHECK_EQUAL(1, menu.selection());
 }
 
+// ----- Touch integration (PR F3) -----
+
+TEST(MenuTests, OnTouchOutsideRectReturnsFalse)
+{
+    LcdGfxMenu menu(menuItems, 4, (NanoRect){{8, 16}, {120, 56}});
+    menu.show(*display);
+    CHECK_FALSE(menu.onTouch(*display, 0, 0));
+    CHECK_FALSE(menu.onTouch(*display, 200, 200));
+    CHECK_EQUAL(0, menu.selection());
+}
+
+TEST(MenuTests, OnTouchOnFirstItemSelectsIt)
+{
+    LcdGfxMenu menu(menuItems, 4, (NanoRect){{0, 0}, {120, 56}});
+    menu.show(*display);
+    // Items area starts at y = 8 + top = 8. With 8px font, first item row is y=[8,16).
+    bool handled = menu.onTouch(*display, 30, 10);
+    CHECK_TRUE(handled);
+    CHECK_EQUAL(0, menu.selection());
+}
+
+TEST(MenuTests, OnTouchOnThirdItemSelectsIt)
+{
+    LcdGfxMenu menu(menuItems, 4, (NanoRect){{0, 0}, {120, 56}});
+    menu.show(*display);
+    // Third item row (index 2) is y in [24, 32) for 8px font and top=0.
+    bool handled = menu.onTouch(*display, 30, 25);
+    CHECK_TRUE(handled);
+    CHECK_EQUAL(2, menu.selection());
+}
+
+TEST(MenuTests, OnTouchOnDownArrowScrolls)
+{
+    LcdGfxMenu menu(menuItems, 8, (NanoRect){{0, 0}, {120, 56}});
+    menu.show(*display);
+    uint8_t initial = menu.selection();
+    // Bottom arrow is between itemsBot and borderBot; for default 56-tall menu
+    // and 8px font, maxItems=5 -> itemsBot=48, borderBot=51. Touch at y=49.
+    bool handled = menu.onTouch(*display, 60, 49);
+    CHECK_TRUE(handled);
+    // down() advances selection by 1
+    CHECK_EQUAL(initial + 1, menu.selection());
+}
+
+TEST(MenuTests, OnTouchOnUpArrowScrollsBack)
+{
+    LcdGfxMenu menu(menuItems, 8, (NanoRect){{0, 0}, {120, 56}});
+    menu.show(*display);
+    // First scroll down so the up arrow becomes active.
+    for (int i = 0; i < 5; i++) { menu.down(); menu.show(*display); }
+    uint8_t before = menu.selection();
+    // Top arrow is between borderTop=4 and itemsTop=8. Touch at y=5.
+    bool handled = menu.onTouch(*display, 60, 5);
+    CHECK_TRUE(handled);
+    CHECK(menu.selection() != before);
+}
+
+TEST(MenuTests, OnTouchOnInactiveArrowReturnsFalse)
+{
+    LcdGfxMenu menu(menuItems, 4, (NanoRect){{0, 0}, {120, 56}});
+    menu.show(*display);
+    // No scrolling possible (4 items fit). Up-arrow region y in [4, 8).
+    CHECK_FALSE(menu.onTouch(*display, 60, 5));
+    // Down-arrow region y in [itemsBot, borderBot)
+    CHECK_FALSE(menu.onTouch(*display, 60, 49));
+}
+
+TEST(MenuTests, ItemAtPointReturnsCorrectIndex)
+{
+    LcdGfxMenu menu(menuItems, 4, (NanoRect){{0, 0}, {120, 56}});
+    menu.show(*display);
+    CHECK_EQUAL(0, menu.itemAtPoint(*display, 30, 10));
+    CHECK_EQUAL(1, menu.itemAtPoint(*display, 30, 18));
+    CHECK_EQUAL(2, menu.itemAtPoint(*display, 30, 26));
+}
+
+TEST(MenuTests, ItemAtPointReturnsSentinelOutsideArea)
+{
+    LcdGfxMenu menu(menuItems, 4, (NanoRect){{0, 0}, {120, 56}});
+    menu.show(*display);
+    CHECK_EQUAL(0xFF, menu.itemAtPoint(*display, 30, 0));
+    CHECK_EQUAL(0xFF, menu.itemAtPoint(*display, 200, 20));
+}
+
 // ============================================================
 // Test group for LcdGfxCheckboxMenu
 // ============================================================

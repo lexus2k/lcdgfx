@@ -122,6 +122,86 @@ public:
         }
     }
 
+    /**
+     * Returns the menu item index at the given screen coordinate, or 0xFF
+     * if the point lies outside any item row (e.g. on the border or scroll
+     * indicators).
+     *
+     * @param d display object (needed for font metrics)
+     * @param x screen x coordinate
+     * @param y screen y coordinate
+     */
+    template <typename D> uint8_t itemAtPoint(D &d, lcdint_t x, lcdint_t y)
+    {
+        updateSize(d);
+        if ( x < menu.left || x >= (lcdint_t)(menu.left + menu.width) ) return 0xFF;
+        if ( y < menu.top || y >= (lcdint_t)(menu.top + menu.height) ) return 0xFF;
+        lcdint_t itemsTop = 8 + menu.top;
+        lcduint_t itemH = d.getFont().getHeader().height;
+        if ( itemH == 0 ) return 0xFF;
+        uint8_t maxItems = getMaxScreenItems(d);
+        lcdint_t itemsBot = itemsTop + maxItems * (lcdint_t)itemH;
+        if ( y < itemsTop || y >= itemsBot ) return 0xFF;
+        uint8_t row = (uint8_t)((y - itemsTop) / itemH);
+        uint8_t index = menu.scrollPosition + row;
+        if ( index >= menu.count ) return 0xFF;
+        return index;
+    }
+
+    /**
+     * Handles a touch event at the given screen coordinates. Touches on the
+     * up/down scroll arrows scroll the menu by one item; touches on an item
+     * row select that item. Returns true if the touch was handled.
+     *
+     * Call show() afterwards to refresh the display.
+     *
+     * @param d display object
+     * @param x screen x coordinate of the touch
+     * @param y screen y coordinate of the touch
+     */
+    template <typename D> bool onTouch(D &d, lcdint_t x, lcdint_t y)
+    {
+        updateSize(d);
+        if ( x < menu.left || x >= (lcdint_t)(menu.left + menu.width) ) return false;
+        if ( y < menu.top || y >= (lcdint_t)(menu.top + menu.height) ) return false;
+        lcdint_t borderTop = 4 + menu.top;
+        lcdint_t borderBot = menu.height + menu.top - 5;
+        lcdint_t itemsTop = 8 + menu.top;
+        lcduint_t itemH = d.getFont().getHeader().height;
+        if ( itemH == 0 ) return false;
+        uint8_t maxItems = getMaxScreenItems(d);
+        lcdint_t itemsBot = itemsTop + maxItems * (lcdint_t)itemH;
+        if ( y >= borderTop && y < itemsTop )
+        {
+            if ( menu.scrollPosition > 0 )
+            {
+                up();
+                return true;
+            }
+            return false;
+        }
+        if ( y >= itemsBot && y < borderBot )
+        {
+            if ( menu.scrollPosition + maxItems < menu.count )
+            {
+                down();
+                return true;
+            }
+            return false;
+        }
+        if ( y >= itemsTop && y < itemsBot )
+        {
+            uint8_t row = (uint8_t)((y - itemsTop) / itemH);
+            uint8_t index = menu.scrollPosition + row;
+            if ( index < menu.count )
+            {
+                setSelection(index);
+                return true;
+            }
+        }
+        return false;
+    }
+
 private:
     SAppMenu menu;
 
