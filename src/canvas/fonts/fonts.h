@@ -48,6 +48,11 @@ extern "C"
     /** German chars for standard ASCII 6x8 font */
     extern const PROGMEM uint8_t ssd1306xled_font6x8_German[];
 
+    /** Cyrillic uppercase chars (U+0410..U+042F) for standard ASCII 6x8 font.
+     *  Covers А..Я. Intended as a secondary font (loadSecondaryFont) so that
+     *  printFixed() can render mixed Latin + Cyrillic UTF-8 strings. */
+    extern const PROGMEM uint8_t ssd1306xled_font6x8_Cyrillic[];
+
     /** Standard ASCII 6x8 AB font with only capital letters */
     extern const PROGMEM uint8_t ssd1306xled_font6x8_AB[];
 
