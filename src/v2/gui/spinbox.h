@@ -68,6 +68,13 @@ public:
      */
     template <typename D> void show(D &d)
     {
+        // Clear the previous contents so a shorter number (e.g. "9"
+        // replacing "12") doesn't leave digits behind, and redraw the
+        // border.
+        uint16_t color = d.getColor();
+        d.setColor(0x0000);
+        d.fillRect(m_rect);
+        d.setColor(color);
         d.drawRect(m_rect);
         char buf[8];
         snprintf(buf, sizeof(buf), "%d", (int)m_value);

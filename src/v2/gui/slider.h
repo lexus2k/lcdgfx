@@ -76,6 +76,12 @@ public:
      */
     template <typename D> void show(D &d)
     {
+        // Clear the previous frame so the old knob position doesn't
+        // linger when the value changes.
+        uint16_t color = d.getColor();
+        d.setColor(0x0000);
+        d.fillRect(m_rect);
+        d.setColor(color);
         d.drawRect(m_rect);
         if ( m_orientation == LcdGfxSliderOrientation::Horizontal )
         {

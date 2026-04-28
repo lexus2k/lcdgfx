@@ -69,9 +69,31 @@ public:
      * Shows menu items on the display. If menu items cannot fit the display,
      * the function provides scrolling.
      *
+     * The first call after construction (or after invalidate() / setRect())
+     * performs a full redraw (border, every visible item, scroll indicators).
+     * Subsequent calls are flicker-free: when the selection moved within the
+     * already-visible window only the previously- and newly-selected item
+     * rows are redrawn; the border and untouched items are left alone. When
+     * the visible window changes (selection scrolls off-screen) a full
+     * redraw is performed automatically.
+     *
      * @param d display object
      */
     template <typename D> void show(D &d);
+
+    /**
+     * Equivalent to show(). Provided for backward compatibility and code
+     * that wants to make the incremental-refresh intent explicit.
+     */
+    template <typename D> void update(D &d) { show(d); }
+
+    /**
+     * Forces the next show() to perform a full redraw (border + all visible
+     * items + scroll indicators). Use this when the surrounding screen has
+     * been cleared / repainted by other code and the menu needs to repaint
+     * its border too.
+     */
+    void invalidate() { m_initialized = false; }
 
     /**
      * Moves selection pointer down by 1 item. If there are no items below,
@@ -149,9 +171,11 @@ public:
     }
 
     /**
-     * Handles a touch event at the given screen coordinates. Touches on the
-     * up/down scroll arrows scroll the menu by one item; touches on an item
-     * row select that item. Returns true if the touch was handled.
+     * Handles a touch event at the given screen coordinates. Touches in the
+     * empty band between the border and the first/last item scroll the menu
+     * by one item (when more items are available in that direction).
+     * Touches on an item row select that item. Returns true if the touch
+     * was handled.
      *
      * Call show() afterwards to refresh the display.
      *
@@ -204,6 +228,8 @@ public:
 
 private:
     SAppMenu menu;
+    uint8_t m_oldScrollPosition = 0;
+    bool m_initialized = false;
 
     template <typename D> uint8_t getMaxScreenItems(D &d)
     {
@@ -232,7 +258,10 @@ private:
         lcdint_t item_top = 8 + menu.top + (index - menu.scrollPosition) * d.getFont().getHeader().height;
         uint16_t color = d.getColor();
         d.setColor(0x0000);
-        d.fillRect(menu.left + 8 + d.getFont().getTextSize(menu.items[index]), item_top, menu.width + menu.left - 9,
+        // Clear the full text row (interior, excluding border and scrollbar)
+        // so leftover characters from a longer label at the same screen row
+        // (e.g. after scrolling) don't bleed through under a shorter one.
+        d.fillRect(menu.left + 8, item_top, menu.width + menu.left - 9,
                    item_top + d.getFont().getHeader().height - 1);
         d.setColor(color);
         d.printFixed(menu.left + 8, item_top, menu.items[index], STYLE_NORMAL);
@@ -244,36 +273,13 @@ private:
 
     template <typename D> void drawScrollIndicators(D &d, uint8_t maxItems)
     {
+        // Scrollbar on the right edge conveys the visible-window position;
+        // it lives entirely in the item-area pages (page-aligned) so a
+        // partial fillRect for the thumb is safe even on SSD1306-style
+        // 1bpp drivers that stream whole 8-pixel page bytes.
         uint16_t color = d.getColor();
-        lcdint_t borderTop = 4 + menu.top;
-        lcdint_t borderBot = menu.height + menu.top - 5;
         lcdint_t itemsTop = 8 + menu.top;
         lcdint_t itemsBot = itemsTop + maxItems * d.getFont().getHeader().height;
-        lcdint_t cx = menu.left + menu.width / 2;
-
-        // Clear and draw up arrow area
-        d.setColor(0x0000);
-        d.fillRect(5 + menu.left, borderTop + 1, menu.width + menu.left - 6, itemsTop - 1);
-        if ( menu.scrollPosition > 0 )
-        {
-            d.setColor(color);
-            d.drawHLine(cx, borderTop + 1, cx);
-            d.drawHLine(cx - 1, borderTop + 2, cx + 1);
-            d.drawHLine(cx - 2, borderTop + 3, cx + 2);
-        }
-
-        // Clear and draw down arrow area
-        d.setColor(0x0000);
-        d.fillRect(5 + menu.left, itemsBot, menu.width + menu.left - 6, borderBot - 1);
-        if ( menu.scrollPosition + maxItems < menu.count )
-        {
-            d.setColor(color);
-            d.drawHLine(cx - 2, borderBot - 3, cx + 2);
-            d.drawHLine(cx - 1, borderBot - 2, cx + 1);
-            d.drawHLine(cx, borderBot - 1, cx);
-        }
-
-        // Scrollbar track on right edge
         lcdint_t sbX = menu.width + menu.left - 8;
         lcdint_t sbH = itemsBot - itemsTop - 1;
         if ( sbH > 4 )
@@ -285,7 +291,6 @@ private:
             {
                 thumbY = itemsTop + (lcdint_t)((long)(sbH - thumbH) * menu.scrollPosition / maxScroll);
             }
-            // Clear track area then draw thumb
             d.setColor(0x0000);
             d.fillRect(sbX, itemsTop, sbX + 1, itemsTop + sbH);
             d.setColor(color);
@@ -298,14 +303,39 @@ private:
 template <typename D> void LcdGfxMenu::show(D &d)
 {
     updateSize(d);
-    d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
-    menu.scrollPosition = this->calculateScrollPosition(d, menu.selection);
     uint8_t maxItems = getMaxScreenItems(d);
+    uint8_t newScroll = this->calculateScrollPosition(d, menu.selection);
+
+    // Incremental fast path: nothing about the visible window changed,
+    // only the selection moved within it. Repaint just the two affected
+    // item rows. They live on page-aligned y offsets so redrawing them
+    // does not disturb the border or neighbouring items even on
+    // SSD1306-style 1bpp drivers that stream whole 8-pixel page bytes.
+    if ( m_initialized && newScroll == m_oldScrollPosition )
+    {
+        if ( menu.selection != menu.oldSelection )
+        {
+            menu.scrollPosition = newScroll;
+            uint8_t prev = menu.oldSelection;
+            this->drawMenuItem(d, prev);
+            this->drawMenuItem(d, menu.selection);
+            menu.oldSelection = menu.selection;
+        }
+        return;
+    }
+
+    // Full redraw: first call, or visible window scrolled. Each
+    // drawMenuItem clears its own row, so no full-interior fillRect is
+    // needed here — the border stays painted without flicker.
+    menu.scrollPosition = newScroll;
+    d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
     for ( uint8_t i = menu.scrollPosition; i < lcd_gfx_min(menu.count, (menu.scrollPosition + maxItems)); i++ )
     {
         this->drawMenuItem(d, i);
     }
     menu.oldSelection = menu.selection;
+    m_oldScrollPosition = menu.scrollPosition;
+    m_initialized = true;
     if ( menu.count > maxItems )
     {
         this->drawScrollIndicators(d, maxItems);

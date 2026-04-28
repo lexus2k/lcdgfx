@@ -42,9 +42,8 @@ static Key btn;
 
 static void redraw()
 {
-    display.clear();
     char buf[16];
-    snprintf(buf, sizeof(buf), "Value: %d", (int)slider.value());
+    snprintf(buf, sizeof(buf), "Value: %3d ", (int)slider.value());
     display.printFixed(8, 8, buf);
     slider.show(display);
 }
@@ -53,6 +52,7 @@ void setup()
 {
     display.begin();
     display.setFixedFont(ssd1306xled_font6x8);
+    display.clear();
     redraw();
     btn = getPressedButton(BUTTON_PIN);
 }

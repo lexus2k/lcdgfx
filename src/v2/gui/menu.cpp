@@ -83,6 +83,8 @@ void LcdGfxMenu::setRect(const NanoRect &rect)
     menu.left = rect.p1.x;
     menu.width = rect.p2.x ? rect.width() : 0;
     menu.height = rect.p2.y ? rect.height() : 0;
+    // Geometry changed: next show() must do a full redraw of the border.
+    invalidate();
 }
 
 uint8_t LcdGfxMenu::size()

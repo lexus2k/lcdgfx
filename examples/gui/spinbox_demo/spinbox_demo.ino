@@ -60,13 +60,11 @@ void loop()
         case Key::BT_UP:
         case Key::BT_RIGHT:
             spinbox.up();
-            display.clear();
             spinbox.show(display);
             break;
         case Key::BT_DOWN:
         case Key::BT_LEFT:
             spinbox.down();
-            display.clear();
             spinbox.show(display);
             break;
         case Key::BT_SELECT:

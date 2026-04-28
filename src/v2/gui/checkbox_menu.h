@@ -79,12 +79,30 @@ public:
     LcdGfxCheckboxMenu(const char **items, uint8_t count, const NanoRect &rect = {});
 
     /**
-     * Shows the checkbox menu on the display. Includes scroll
-     * indicators when items overflow the visible area.
+     * Shows the checkbox menu on the display. Includes scroll indicators
+     * when items overflow the visible area.
+     *
+     * The first call after construction (or after invalidate() / setRect())
+     * performs a full redraw. Subsequent calls are flicker-free: only the
+     * previously- and newly-selected rows (and any items whose checked bit
+     * flipped) are repainted; the border and other items are left
+     * untouched. When the visible window changes a full redraw is performed
+     * automatically.
      *
      * @param d display object
      */
     template <typename D> void show(D &d);
+
+    /**
+     * Equivalent to show(). Provided for backward compatibility.
+     */
+    template <typename D> void update(D &d) { show(d); }
+
+    /**
+     * Forces the next show() to perform a full redraw (border + all visible
+     * items + scroll indicators).
+     */
+    void invalidate() { m_initialized = false; }
 
     /**
      * Moves selection down by one item. Wraps to first item.
@@ -162,6 +180,9 @@ public:
 private:
     SAppMenu menu;
     uint16_t m_checked;
+    uint16_t m_oldChecked = 0;
+    uint8_t m_oldScrollPosition = 0;
+    bool m_initialized = false;
 
     template <typename D> uint8_t getMaxScreenItems(D &d)
     {
@@ -183,13 +204,8 @@ private:
 
     template <typename D> void drawMenuItem(D &d, uint8_t index)
     {
-        if ( index == menu.selection )
-        {
-            d.invertColors();
-        }
-        lcdint_t item_top = 8 + menu.top + (index - menu.scrollPosition) * d.getFont().getHeader().height;
         lcduint_t fh = d.getFont().getHeader().height;
-        uint16_t color = d.getColor();
+        lcdint_t item_top = 8 + menu.top + (index - menu.scrollPosition) * fh;
 
         // Checkbox box size scales with font
         lcduint_t boxSize = (fh >= 12) ? 7 : 5;
@@ -197,15 +213,16 @@ private:
         lcdint_t boxY = item_top + (fh - boxSize) / 2;
         lcdint_t textX = boxX + boxSize + 3;
 
-        // Clear background to the right of text
+        // Clear this row's interior (between border and scrollbar) so
+        // leftover characters or a previous box-fill don't bleed through
+        // when a different item lands on this screen row after scrolling.
+        uint16_t fg = d.getColor();
         d.setColor(0x0000);
-        d.fillRect(textX + d.getFont().getTextSize(menu.items[index]), item_top,
-                   menu.width + menu.left - 9, item_top + fh - 1);
-        // Clear checkbox area background
-        d.fillRect(menu.left + 5, item_top, textX - 1, item_top + fh - 1);
-        d.setColor(color);
+        d.fillRect(menu.left + 5, item_top, menu.width + menu.left - 9, item_top + fh - 1);
+        d.setColor(fg);
 
-        // Draw checkbox
+        // Checkbox box: drawn with the current (non-inverted) colors so it
+        // stays visible on the highlighted row.
         if ( m_checked & (1u << index) )
         {
             d.fillRect(boxX, boxY, boxX + boxSize - 1, boxY + boxSize - 1);
@@ -215,9 +232,13 @@ private:
             d.drawRect(boxX, boxY, boxX + boxSize - 1, boxY + boxSize - 1);
         }
 
-        // Draw item text
+        // Text strip: invert only here so the highlight bar covers just
+        // the label, not the checkbox.
+        if ( index == menu.selection )
+        {
+            d.invertColors();
+        }
         d.printFixed(textX, item_top, menu.items[index], STYLE_NORMAL);
-
         if ( index == menu.selection )
         {
             d.invertColors();
@@ -226,33 +247,12 @@ private:
 
     template <typename D> void drawScrollIndicators(D &d, uint8_t maxItems)
     {
+        // Scrollbar on the right edge is the sole overflow indicator. It
+        // lives entirely in page-aligned item rows so partial fillRect for
+        // the thumb is safe even on SSD1306-style 1bpp drivers.
         uint16_t color = d.getColor();
-        lcdint_t borderTop = 4 + menu.top;
-        lcdint_t borderBot = menu.height + menu.top - 5;
         lcdint_t itemsTop = 8 + menu.top;
         lcdint_t itemsBot = itemsTop + maxItems * d.getFont().getHeader().height;
-        lcdint_t cx = menu.left + menu.width / 2;
-
-        d.setColor(0x0000);
-        d.fillRect(5 + menu.left, borderTop + 1, menu.width + menu.left - 6, itemsTop - 1);
-        if ( menu.scrollPosition > 0 )
-        {
-            d.setColor(color);
-            d.drawHLine(cx, borderTop + 1, cx);
-            d.drawHLine(cx - 1, borderTop + 2, cx + 1);
-            d.drawHLine(cx - 2, borderTop + 3, cx + 2);
-        }
-
-        d.setColor(0x0000);
-        d.fillRect(5 + menu.left, itemsBot, menu.width + menu.left - 6, borderBot - 1);
-        if ( menu.scrollPosition + maxItems < menu.count )
-        {
-            d.setColor(color);
-            d.drawHLine(cx - 2, borderBot - 3, cx + 2);
-            d.drawHLine(cx - 1, borderBot - 2, cx + 1);
-            d.drawHLine(cx, borderBot - 1, cx);
-        }
-
         lcdint_t sbX = menu.width + menu.left - 8;
         lcdint_t sbH = itemsBot - itemsTop - 1;
         if ( sbH > 4 )
@@ -276,14 +276,57 @@ private:
 template <typename D> void LcdGfxCheckboxMenu::show(D &d)
 {
     updateSize(d);
-    d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
-    menu.scrollPosition = this->calculateScrollPosition(d, menu.selection);
     uint8_t maxItems = getMaxScreenItems(d);
+    uint8_t newScroll = this->calculateScrollPosition(d, menu.selection);
+
+    // Incremental fast path: only the selection moved within the visible
+    // window and/or some checkbox bits flipped — repaint just the affected
+    // page-aligned rows.
+    if ( m_initialized && newScroll == m_oldScrollPosition )
+    {
+        menu.scrollPosition = newScroll;
+        uint16_t changedCheck = m_checked ^ m_oldChecked;
+        if ( menu.selection == menu.oldSelection && changedCheck == 0 )
+        {
+            return;
+        }
+        if ( menu.oldSelection != menu.selection )
+        {
+            this->drawMenuItem(d, menu.oldSelection);
+            this->drawMenuItem(d, menu.selection);
+        }
+        else if ( changedCheck & (1u << menu.selection) )
+        {
+            // Selection didn't move, but its checkbox was toggled —
+            // redraw it so the user sees the change immediately.
+            this->drawMenuItem(d, menu.selection);
+        }
+        // Redraw any other on-screen item whose checked-state flipped.
+        for ( uint8_t i = menu.scrollPosition; i < lcd_gfx_min(menu.count, (menu.scrollPosition + maxItems)); i++ )
+        {
+            if ( (changedCheck & (1u << i)) && i != menu.selection && i != menu.oldSelection )
+            {
+                this->drawMenuItem(d, i);
+            }
+        }
+        menu.oldSelection = menu.selection;
+        m_oldChecked = m_checked;
+        return;
+    }
+
+    // Full redraw: first call, or visible window scrolled. Each
+    // drawMenuItem clears its own row, so no full-interior fillRect is
+    // needed here — the border stays painted without flicker.
+    menu.scrollPosition = newScroll;
+    d.drawRect(4 + menu.left, 4 + menu.top, menu.width + menu.left - 5, menu.height + menu.top - 5);
     for ( uint8_t i = menu.scrollPosition; i < lcd_gfx_min(menu.count, (menu.scrollPosition + maxItems)); i++ )
     {
         this->drawMenuItem(d, i);
     }
     menu.oldSelection = menu.selection;
+    m_oldScrollPosition = menu.scrollPosition;
+    m_oldChecked = m_checked;
+    m_initialized = true;
     if ( menu.count > maxItems )
     {
         this->drawScrollIndicators(d, maxItems);
