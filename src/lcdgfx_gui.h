@@ -30,6 +30,7 @@
 #include "v2/gui/menu.h"
 #include "v2/gui/checkbox_menu.h"
 #include "v2/gui/button.h"
+#include "v2/gui/text_entry.h"
 #include "v2/gui/yesno.h"
 
 /**
