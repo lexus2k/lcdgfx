@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2020, Alexey Dynda
+    Copyright (c) 2025, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -21,18 +21,38 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 */
-/**
- * @file lcdgfx_gui.h LCDGFX main GUI header
- */
 
-#pragma once
+#include "slider.h"
 
-#include "v2/gui/menu.h"
-#include "v2/gui/checkbox_menu.h"
-#include "v2/gui/button.h"
-#include "v2/gui/slider.h"
-#include "v2/gui/yesno.h"
+LcdGfxSlider::LcdGfxSlider(const NanoRect &rect, int16_t minValue, int16_t maxValue, int16_t value, int16_t step,
+                           LcdGfxSliderOrientation orientation)
+    : m_rect(rect)
+    , m_min(minValue <= maxValue ? minValue : maxValue)
+    , m_max(maxValue >= minValue ? maxValue : minValue)
+    , m_value(value)
+    , m_step(step >= 1 ? step : 1)
+    , m_orientation(orientation)
+{
+    setValue(value);
+}
 
-/**
- * @}
- */
+void LcdGfxSlider::up()
+{
+    int32_t v = (int32_t)m_value + m_step;
+    if ( v > m_max ) v = m_max;
+    m_value = (int16_t)v;
+}
+
+void LcdGfxSlider::down()
+{
+    int32_t v = (int32_t)m_value - m_step;
+    if ( v < m_min ) v = m_min;
+    m_value = (int16_t)v;
+}
+
+void LcdGfxSlider::setValue(int16_t value)
+{
+    if ( value < m_min ) value = m_min;
+    else if ( value > m_max ) value = m_max;
+    m_value = value;
+}
