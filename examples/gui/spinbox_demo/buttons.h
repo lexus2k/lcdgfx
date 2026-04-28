@@ -1,7 +1,7 @@
 /*
     MIT License
 
-    Copyright (c) 2020, Alexey Dynda
+    Copyright (c) 2025, Alexey Dynda
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -21,19 +21,19 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 */
-/**
- * @file lcdgfx_gui.h LCDGFX main GUI header
- */
 
 #pragma once
 
-#include "v2/gui/menu.h"
-#include "v2/gui/checkbox_menu.h"
-#include "v2/gui/button.h"
-#include "v2/gui/slider.h"
-#include "v2/gui/spinbox.h"
-#include "v2/gui/yesno.h"
+#include <stdint.h>
 
-/**
- * @}
- */
+enum class Key: uint8_t
+{
+    BT_NONE   = 0,
+    BT_RIGHT  = 1,
+    BT_UP     = 2,
+    BT_DOWN   = 3,
+    BT_LEFT   = 4,
+    BT_SELECT = 5,
+};
+
+Key getPressedButton(uint8_t analogPin);

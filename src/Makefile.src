@@ -42,6 +42,7 @@ OBJS += v2/utf8.o \
 	v2/gui/checkbox_menu.o \
 	v2/gui/button.o \
 	v2/gui/slider.o \
+	v2/gui/spinbox.o \
 	v2/gui/yesno.o \
 	v2/lcd/lcd_common.o \
 	v2/lcd/lcdany/lcd_any.o \
