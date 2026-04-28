@@ -138,6 +138,10 @@ If you found any problem or have any idea, please, report to Issues section.
 | pcd8544 84x48 |   | X  |   | Nokia 5110 |
 | any other custom |  |  |  | Refer to [custom display example](examples/interfaces/custom_display/custom_display.ino) |
 
+For a detailed per-controller capability matrix (rotation type, contrast, hardware
+scroll, invert, status of known issues, etc.), see
+[docs/controller_matrix.md](docs/controller_matrix.md).
+
 ## Supported platforms
 
 Compilers: gcc, clang
