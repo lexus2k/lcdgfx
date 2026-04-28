@@ -78,7 +78,12 @@ static int lcdgfx_gpiod_init_chip(void) {
     if (!lcdgfx_gpiod_chip) {
         lcdgfx_gpiod_chip = gpiod_chip_open_by_number(0); // default to gpiochip0
         if (!lcdgfx_gpiod_chip) {
-            fprintf(stderr, "Failed to open gpiochip0 via libgpiod!\n");
+            fprintf(stderr,
+                    "lcdgfx: failed to open gpiochip0 via libgpiod: %s%s\n"
+                    "        - is /dev/gpiochip0 present?\n"
+                    "        - does the user have access (try the gpio group, or run as root)?\n",
+                    strerror(errno),
+                    getuid() == 0 ? "" : " (running non-root)");
             return -1;
         }
     }
@@ -90,9 +95,19 @@ static struct gpiod_line *lcdgfx_gpiod_get_line(int pin) {
     if (!lcdgfx_gpiod_lines[pin]) {
         if (lcdgfx_gpiod_init_chip() < 0) return NULL;
         lcdgfx_gpiod_lines[pin] = gpiod_chip_get_line(lcdgfx_gpiod_chip, pin);
+        if (!lcdgfx_gpiod_lines[pin]) {
+            fprintf(stderr,
+                    "lcdgfx: gpiod_chip_get_line failed for pin %d: %s\n",
+                    pin, strerror(errno));
+        }
     }
     return lcdgfx_gpiod_lines[pin];
 }
+#else
+// sysfs GPIO fallback. This path is deprecated upstream and is broken on
+// Linux kernels >= 6.6 where /sys/class/gpio is absent. Build with
+// libgpiod-dev installed to get the modern path; this fallback exists only
+// for old kernels and minimal images. See src/lcd_hal/README.md.
 #endif
 
 int gpio_export(int pin)
@@ -116,8 +131,13 @@ int gpio_export(int pin)
     fd = open("/sys/class/gpio/export", O_WRONLY);
     if ( -1 == fd )
     {
-        fprintf(stderr, "Failed to allocate gpio pin[%d]: %s%s!\n", pin, strerror(errno),
-                getuid() == 0 ? "" : ", need to be root");
+        fprintf(stderr,
+                "lcdgfx: failed to allocate gpio pin %d via sysfs: %s%s\n"
+                "        sysfs GPIO is not available on Linux kernels >= 6.6.\n"
+                "        Install libgpiod-dev and rebuild — lcdgfx will then\n"
+                "        use the libgpiod path automatically.\n",
+                pin, strerror(errno),
+                getuid() == 0 ? "" : " (need to be root, or in the gpio group)");
         return (-1);
     }
 
