@@ -185,6 +185,11 @@ Digispark users, please check compilation options in your Arduino prior to using
 lcdgfx library requires at least c++11 and c99 (by default Digispark package misses the options
 -std=gnu11, -std=gnu++11).
 
+The library is C++11 by default, but builds and tests cleanly under C++14 and C++17 as well.
+When building from the Makefile you can opt in to a newer standard via
+`make ARCH=linux SDL_EMULATION=y CXXSTD=c++17 check`. CI verifies all three standards
+(C++11 / C++14 / C++17) on every push.
+
 ## Useful tools
 
 [Tim's Image Pixel Editor](https://tims-pc-applications.blogspot.com/2020/05/tims-image-pixel-editor.html)
