@@ -50,6 +50,16 @@ jobs:
           ./.travis/run_unit_tests.sh clang
           make cppcheck
 
+      - name: Building and testing under C++14
+        run: |
+          make clean
+          make ARCH=linux SDL_EMULATION=y CXXSTD=c++14 check
+
+      - name: Building and testing under C++17
+        run: |
+          make clean
+          make ARCH=linux SDL_EMULATION=y CXXSTD=c++17 check
+
       - name: Building for AVR
         run: |
           make clean
