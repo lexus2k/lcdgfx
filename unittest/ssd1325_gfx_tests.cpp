@@ -33,7 +33,7 @@
 // SSD1325: 4-bit grayscale, 128x64
 // NOTE: 4-bit displays pack 2 pixels per byte (nibble-pair).
 // drawVLine at even x overwrites adjacent odd x (no GDRAM read-modify-write).
-// fillRect has a known nibble-packing limitation.
+// fillRect now correctly handles all 16 colours and partial-edge column-pairs.
 // Tests focus on operations that work correctly through the full pipeline.
 
 static const int W = 128;
@@ -195,13 +195,122 @@ TEST(SSD1325_GFX, drawHLine_single_pixel)
 
 TEST(SSD1325_GFX, fillRect_produces_pixels)
 {
-    // fillRect has nibble-packing limitation (only every other column set)
-    // Just verify it produces some non-zero pixels
     display->setColor(0x0F);
     display->fillRect(10, 10, 30, 30);
     capture();
     int count = gray4_count_set(pixels->data(), W, 10, 10, 30, 30);
     CHECK_TRUE( count > 0 );
+}
+
+// --- Regression tests for the 4bpp fillRect nibble-packing bug ---
+// Before the fix, fillRect sent the colour byte verbatim, leaving every
+// odd column blank, and miscounted bytes for partial-column rectangles,
+// leaving the tail of the GDDRAM window unwritten.
+//
+// These tests verify the corrected behaviour for all 16 colours and for
+// every combination of {even,odd} edges.
+
+TEST(SSD1325_GFX, fillRect_aligned_full_coverage_all_colors)
+{
+    // x1 even (0), x2 odd (W-1): no partial column-pairs. Both nibbles
+    // of every byte must equal the requested colour.
+    for ( uint8_t c = 0; c <= 0x0F; c++ )
+    {
+        display->clear();
+        display->setColor(c);
+        display->fillRect(0, 0, W - 1, 7);
+        capture();
+        CHECK_TRUE( gray4_region_equals(pixels->data(), W, 0, 0, W - 1, 7, c) );
+    }
+}
+
+TEST(SSD1325_GFX, fillRect_odd_columns_set_with_color_0x0F)
+{
+    // Direct regression for the original bug: setColor(0x0F) used to
+    // leave every odd column at 0 because the colour was packed only
+    // into the low nibble of each byte.
+    display->setColor(0x0F);
+    display->fillRect(10, 10, 30, 30);
+    capture();
+    for ( int y = 10; y <= 30; y++ )
+    {
+        for ( int x = 10; x <= 30; x++ )
+        {
+            CHECK_EQUAL( 0x0F, px(x, y) );
+        }
+    }
+}
+
+TEST(SSD1325_GFX, fillRect_left_edge_partial_pair)
+{
+    // x1 odd (3): the column-pair containing x1 spans columns 2..3.
+    // Column 2 is outside the rect and must be left as 0; column 3
+    // (and everything up to x2) must equal the colour.
+    display->setColor(0x0F);
+    display->fillRect(3, 5, 9, 9);
+    capture();
+    // Inside rect:
+    for ( int y = 5; y <= 9; y++ )
+    {
+        for ( int x = 3; x <= 9; x++ )
+            CHECK_EQUAL( 0x0F, px(x, y) );
+        // Outside rect, in same column-pair:
+        CHECK_EQUAL( 0, px(2, y) );
+    }
+}
+
+TEST(SSD1325_GFX, fillRect_right_edge_partial_pair)
+{
+    // x2 even (8): column-pair contains 8..9. Column 9 is outside
+    // and must be 0; columns x1..8 must equal the colour.
+    display->setColor(0x0F);
+    display->fillRect(2, 5, 8, 9);
+    capture();
+    for ( int y = 5; y <= 9; y++ )
+    {
+        for ( int x = 2; x <= 8; x++ )
+            CHECK_EQUAL( 0x0F, px(x, y) );
+        CHECK_EQUAL( 0, px(9, y) );
+    }
+}
+
+TEST(SSD1325_GFX, fillRect_single_column_pair_partial_both_edges)
+{
+    // x1=3 (odd), x2=4 (even): single column-pair (cols 2..5 → pair
+    // 1=2..3, pair 2=4..5). Cols 3 and 4 inside, cols 2 and 5 outside.
+    display->setColor(0x0A);
+    display->fillRect(3, 1, 4, 2);
+    capture();
+    for ( int y = 1; y <= 2; y++ )
+    {
+        CHECK_EQUAL( 0,    px(2, y) );  // outside (left)
+        CHECK_EQUAL( 0x0A, px(3, y) );  // inside
+        CHECK_EQUAL( 0x0A, px(4, y) );  // inside
+        CHECK_EQUAL( 0,    px(5, y) );  // outside (right)
+    }
+}
+
+TEST(SSD1325_GFX, fillRect_single_pixel_via_fillRect)
+{
+    // fillRect(x, y, x, y) — pair_start == pair_end, edge masks combine.
+    display->setColor(0x0C);
+    display->fillRect(7, 7, 7, 7);
+    capture();
+    CHECK_EQUAL( 0x0C, px(7, 7) );
+    CHECK_EQUAL( 0,    px(6, 7) );
+    CHECK_EQUAL( 0,    px(8, 7) );
+}
+
+TEST(SSD1325_GFX, fillRect_does_not_clobber_outside)
+{
+    // Verify that the corrected byte-count math no longer leaves a
+    // tail of unwritten pixels and does not run off the end of the
+    // GDDRAM window into the next row.
+    display->setColor(0x0F);
+    display->fillRect(0, 0, W - 1, H - 1);
+    capture();
+    // Every pixel of the panel must be 0x0F.
+    CHECK_TRUE( gray4_region_equals(pixels->data(), W, 0, 0, W - 1, H - 1, 0x0F) );
 }
 
 TEST(SSD1325_GFX, clear_after_draw)

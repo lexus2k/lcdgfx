@@ -107,12 +107,40 @@ template <class I> void NanoDisplayOps4<I>::fillRect(lcdint_t x1, lcdint_t y1, l
     {
         ssd1306_swap_data(x1, x2, lcdint_t);
     }
+    // 4bpp displays pack 2 horizontally adjacent pixels into one byte
+    // (low nibble = even column, high nibble = odd column). The GDDRAM
+    // window opened by startBlock spans column-pairs [x1/2 .. x2/2],
+    // so we must emit exactly (x2/2 - x1/2 + 1) bytes per row.
+    //
+    // When x1 is odd or x2 is even, the rectangle's left/right edges
+    // sit inside a column-pair whose other pixel falls outside the
+    // requested rect. With no GDDRAM read-modify-write available we
+    // mask the outside pixel to zero — this is a documented hardware
+    // limitation, see docs/controller_matrix.md.
+    const uint8_t c = this->m_color & 0x0F;
+    const uint8_t full = (uint8_t)((c << 4) | c);
+    const uint8_t left_byte = (x1 & 1) ? (uint8_t)(c << 4) : full;   // odd x1 → only high nibble
+    const uint8_t right_byte = ((x2 & 1) == 0) ? c : full;            // even x2 → only low nibble
+    const lcdint_t pair_start = x1 >> 1;
+    const lcdint_t pair_end = x2 >> 1;
     this->m_intf.startBlock(x1, y1, x2 - x1 + 1);
-    uint32_t count = (x2 - x1 + 1) * (y2 - y1 + 1);
-    while ( count > 1 )
+    for ( lcdint_t row = y1; row <= y2; row++ )
     {
-        this->m_intf.send(this->m_color);
-        count -= 2;
+        if ( pair_start == pair_end )
+        {
+            // Single column-pair: combine left and right masks.
+            uint8_t both = full;
+            if ( x1 & 1 )         both &= 0xF0;       // suppress low nibble (col x1-1)
+            if ( (x2 & 1) == 0 )  both &= 0x0F;       // suppress high nibble (col x2+1)
+            this->m_intf.send(both);
+            continue;
+        }
+        this->m_intf.send(left_byte);
+        for ( lcdint_t k = pair_start + 1; k < pair_end; k++ )
+        {
+            this->m_intf.send(full);
+        }
+        this->m_intf.send(right_byte);
     }
     this->m_intf.endBlock();
 }
