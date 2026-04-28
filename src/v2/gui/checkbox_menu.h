@@ -213,16 +213,16 @@ private:
         lcdint_t boxY = item_top + (fh - boxSize) / 2;
         lcdint_t textX = boxX + boxSize + 3;
 
-        // Clear this row's interior (between border and scrollbar) so
-        // leftover characters or a previous box-fill don't bleed through
-        // when a different item lands on this screen row after scrolling.
+        // Clear the small checkbox area (so a previous filled box gets
+        // wiped on toggle / scroll) and the trailing area beyond the
+        // label. printFixed repaints the cells under the new text itself.
         uint16_t fg = d.getColor();
         d.setColor(0x0000);
-        d.fillRect(menu.left + 5, item_top, menu.width + menu.left - 9, item_top + fh - 1);
-        d.setColor(fg);
+        d.fillRect(menu.left + 5, item_top, textX - 1, item_top + fh - 1);
 
-        // Checkbox box: drawn with the current (non-inverted) colors so it
-        // stays visible on the highlighted row.
+        // Checkbox box: drawn with the current (non-inverted) colors so
+        // it stays visible on the highlighted row.
+        d.setColor(fg);
         if ( m_checked & (1u << index) )
         {
             d.fillRect(boxX, boxY, boxX + boxSize - 1, boxY + boxSize - 1);
@@ -233,11 +233,17 @@ private:
         }
 
         // Text strip: invert only here so the highlight bar covers just
-        // the label, not the checkbox.
+        // the label, not the checkbox. printFixed + trailing fillRect
+        // handles leftover characters from a longer previous label.
         if ( index == menu.selection )
         {
             d.invertColors();
         }
+        uint16_t textColor = d.getColor();
+        d.setColor(0x0000);
+        d.fillRect(textX + d.getFont().getTextSize(menu.items[index]), item_top,
+                   menu.width + menu.left - 9, item_top + fh - 1);
+        d.setColor(textColor);
         d.printFixed(textX, item_top, menu.items[index], STYLE_NORMAL);
         if ( index == menu.selection )
         {

@@ -68,23 +68,26 @@ public:
      */
     template <typename D> void show(D &d)
     {
-        // Clear the previous contents so a shorter number (e.g. "9"
-        // replacing "12") doesn't leave digits behind, and redraw the
-        // border.
-        uint16_t color = d.getColor();
-        d.setColor(0x0000);
-        d.fillRect(m_rect);
-        d.setColor(color);
-        d.drawRect(m_rect);
         char buf[8];
         snprintf(buf, sizeof(buf), "%d", (int)m_value);
-        lcduint_t textW = d.getFont().getTextSize(buf);
         lcduint_t fontH = d.getFont().getHeader().height;
-        lcdint_t cx = m_rect.p1.x + (m_rect.width() - (lcdint_t)textW) / 2;
+        lcduint_t arrowW = d.getFont().getTextSize("<");
+        lcduint_t textW = d.getFont().getTextSize(buf);
+        lcdint_t innerLeft = m_rect.p1.x + 2 + (lcdint_t)arrowW + 2;
+        lcdint_t innerRight = m_rect.p2.x - 2 - (lcdint_t)arrowW - 2;
         lcdint_t cy = m_rect.p1.y + (m_rect.height() - (lcdint_t)fontH) / 2;
-        d.printFixed(cx, cy, buf);
+        lcdint_t cx = innerLeft + ((innerRight - innerLeft) - (lcdint_t)textW) / 2;
+
+        // Clear only the central text band so a shorter number doesn't
+        // leave digits behind. Then redraw border + arrows + value.
+        uint16_t color = d.getColor();
+        d.setColor(0x0000);
+        d.fillRect(innerLeft, m_rect.p1.y + 1, innerRight, m_rect.p2.y - 1);
+        d.setColor(color);
+        d.drawRect(m_rect);
         d.printFixed(m_rect.p1.x + 2, cy, "<");
         d.printFixed(m_rect.p2.x - 2 - (lcdint_t)d.getFont().getTextSize(">"), cy, ">");
+        d.printFixed(cx, cy, buf);
     }
 
     /**

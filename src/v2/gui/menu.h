@@ -258,11 +258,13 @@ private:
         lcdint_t item_top = 8 + menu.top + (index - menu.scrollPosition) * d.getFont().getHeader().height;
         uint16_t color = d.getColor();
         d.setColor(0x0000);
-        // Clear the full text row (interior, excluding border and scrollbar)
-        // so leftover characters from a longer label at the same screen row
-        // (e.g. after scrolling) don't bleed through under a shorter one.
-        d.fillRect(menu.left + 8, item_top, menu.width + menu.left - 9,
-                   item_top + d.getFont().getHeader().height - 1);
+        // Clear only the trailing portion (from the end of the new label
+        // to just inside the right border / scrollbar). printFixed paints
+        // the cell backgrounds under the new text itself, so this single
+        // trailing fillRect is enough — even after scrolling, when a
+        // shorter label replaces a longer one at the same screen row.
+        d.fillRect(menu.left + 8 + d.getFont().getTextSize(menu.items[index]), item_top,
+                   menu.width + menu.left - 9, item_top + d.getFont().getHeader().height - 1);
         d.setColor(color);
         d.printFixed(menu.left + 8, item_top, menu.items[index], STYLE_NORMAL);
         if ( index == menu.selection )

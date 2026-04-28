@@ -5,6 +5,20 @@ All notable changes to **lcdgfx** are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-04-29
+
+### Fixed
+- **GUI widgets**
+  - `LcdGfxMenu` / `LcdGfxCheckboxMenu` — eliminate flicker and scroll
+    artifacts; do not invert checkbox mark itself when row is highlighted
+    (only label text is inverted); checkbox toggle now reflects on screen
+    immediately without needing to move selection.
+  - `LcdGfxSlider` — page-aligned 3-fillRect rendering on SSD1306: knob
+    band lives in full pages strictly between the top/bottom border rows,
+    so border lines are never disturbed and the slider does not flicker.
+  - `LcdGfxSpinbox` — central text band cleared explicitly each frame so
+    value updates do not leave artifacts; border + arrows redrawn cleanly.
+
 ## [1.3.0] - 2026-04-28
 
 ### Added

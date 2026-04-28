@@ -76,33 +76,76 @@ public:
      */
     template <typename D> void show(D &d)
     {
-        // Clear the previous frame so the old knob position doesn't
-        // linger when the value changes.
         uint16_t color = d.getColor();
-        d.setColor(0x0000);
-        d.fillRect(m_rect);
-        d.setColor(color);
-        d.drawRect(m_rect);
         if ( m_orientation == LcdGfxSliderOrientation::Horizontal )
         {
-            lcdint_t innerW = m_rect.width() - 4;
+            // Find a page (8-row band) strictly between the top and bottom
+            // border rows. The 3 fillRects (black-left, knob, black-right)
+            // all live in this single page — full-byte writes per column —
+            // so the border lines (in other pages) are never touched.
+            const lcdint_t kPage = 8;
+            lcdint_t bandTop = (m_rect.p1.y + kPage) & ~(kPage - 1);
+            lcdint_t bandBot = (m_rect.p2.y & ~(kPage - 1)) - 1;
+            if ( bandBot < bandTop || bandBot >= m_rect.p2.y )
+            {
+                bandTop = m_rect.p1.y + 1;
+                bandBot = m_rect.p2.y - 1;
+            }
+            lcdint_t innerLeft = m_rect.p1.x + 1;
+            lcdint_t innerRight = m_rect.p2.x - 1;
+            lcdint_t innerW = innerRight - innerLeft - 2;
             if ( innerW < 1 ) innerW = 1;
             lcdint_t span = m_max - m_min;
-            lcdint_t knobX = m_rect.p1.x + 2 + (span > 0 ? (lcdint_t)(((int32_t)(m_value - m_min) * innerW) / span) : 0);
-            lcdint_t knobW = m_rect.height() / 3;
-            if ( knobW < 2 ) knobW = 2;
-            d.fillRect(knobX - knobW / 2, m_rect.p1.y + 2, knobX + knobW / 2, m_rect.p2.y - 2);
+            lcdint_t knobX = innerLeft + 1 + (span > 0 ? (lcdint_t)(((int32_t)(m_value - m_min) * innerW) / span) : 0);
+            lcdint_t knobW = bandBot - bandTop + 1;
+            lcdint_t knobL = knobX - knobW / 2;
+            lcdint_t knobR = knobL + knobW - 1;
+            if ( knobL < innerLeft ) { knobL = innerLeft; knobR = knobL + knobW - 1; }
+            if ( knobR > innerRight ) { knobR = innerRight; knobL = knobR - knobW + 1; if ( knobL < innerLeft ) knobL = innerLeft; }
+
+            d.setColor(0x0000);
+            if ( knobL > innerLeft )
+            {
+                d.fillRect(innerLeft, bandTop, knobL - 1, bandBot);
+            }
+            if ( knobR < innerRight )
+            {
+                d.fillRect(knobR + 1, bandTop, innerRight, bandBot);
+            }
+            d.setColor(color);
+            d.fillRect(knobL, bandTop, knobR, bandBot);
         }
         else
         {
-            lcdint_t innerH = m_rect.height() - 4;
+            lcdint_t innerLeft = m_rect.p1.x + 1;
+            lcdint_t innerRight = m_rect.p2.x - 1;
+            lcdint_t innerTop = m_rect.p1.y + 1;
+            lcdint_t innerBot = m_rect.p2.y - 1;
+            lcdint_t innerH = innerBot - innerTop - 2;
             if ( innerH < 1 ) innerH = 1;
             lcdint_t span = m_max - m_min;
-            lcdint_t knobY = m_rect.p1.y + 2 + (span > 0 ? (lcdint_t)(((int32_t)(m_value - m_min) * innerH) / span) : 0);
-            lcdint_t knobH = m_rect.width() / 3;
-            if ( knobH < 2 ) knobH = 2;
-            d.fillRect(m_rect.p1.x + 2, knobY - knobH / 2, m_rect.p2.x - 2, knobY + knobH / 2);
+            lcdint_t knobY = innerTop + 1 + (span > 0 ? (lcdint_t)(((int32_t)(m_value - m_min) * innerH) / span) : 0);
+            lcdint_t knobW = innerRight - innerLeft + 1;
+            lcdint_t knobH = knobW;
+            if ( knobH < 4 ) knobH = 4;
+            lcdint_t knobT = knobY - knobH / 2;
+            lcdint_t knobB = knobT + knobH - 1;
+            if ( knobT < innerTop ) { knobT = innerTop; knobB = knobT + knobH - 1; }
+            if ( knobB > innerBot ) { knobB = innerBot; knobT = knobB - knobH + 1; if ( knobT < innerTop ) knobT = innerTop; }
+
+            d.setColor(0x0000);
+            if ( knobT > innerTop )
+            {
+                d.fillRect(innerLeft, innerTop, innerRight, knobT - 1);
+            }
+            if ( knobB < innerBot )
+            {
+                d.fillRect(innerLeft, knobB + 1, innerRight, innerBot);
+            }
+            d.setColor(color);
+            d.fillRect(innerLeft, knobT, innerRight, knobB);
         }
+        d.drawRect(m_rect);
     }
 
     /**

@@ -35,7 +35,7 @@
 DisplaySSD1306_128x64_I2C display(-1);
 
 /* Range 0..100, initial 50, step 5, horizontal track 8x40 wide. */
-LcdGfxSlider slider( {{8, 32}, {120, 48}}, 0, 100, 50, 5,
+LcdGfxSlider slider( {{8, 31}, {120, 40}}, 0, 100, 50, 5,
                      LcdGfxSliderOrientation::Horizontal );
 
 static Key btn;
