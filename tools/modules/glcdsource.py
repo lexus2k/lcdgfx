@@ -74,7 +74,7 @@ class GLCDSource(fontcontainer.FontContainer):
                 for y in range(height):
                    bitmap.append( [] )
                    for x in range(width):
-                       row = y / 8 + x * ((height + 7) / 8) + 1
+                       row = y // 8 + x * ((height + 7) // 8) + 1
                        bit = y % 8
                        bitmap[y].append( (bytes[row] >> bit) & 0x01 )
                 # Add new char
