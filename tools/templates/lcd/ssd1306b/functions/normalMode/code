@@ -1,0 +1,3 @@
+    commandStart();
+    this->send(0xA6); // Normal display
+    this->stop();

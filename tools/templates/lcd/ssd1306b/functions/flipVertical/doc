@@ -1,0 +1,9 @@
+    /**
+     * @brief performs vertical flip
+     *
+     * Performs vertical flip. If you need to turn display by 180 degree,
+     * please use both flipHorizontal() and flipVertical().
+     *
+     * @param mode - 0 to disable vertical flip
+     *               1 to enable vertical flip
+     */
