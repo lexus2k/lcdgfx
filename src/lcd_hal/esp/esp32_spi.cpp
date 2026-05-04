@@ -24,7 +24,7 @@
 
 #include "../io.h"
 
-#if defined(CONFIG_ESP32_SPI_AVAILABLE) && defined(CONFIG_ESP32_SPI_ENABLE)
+#if defined(CONFIG_ESP32_SPI_AVAILABLE) && defined(CONFIG_ESP32_SPI_ENABLE) && defined(ESP32)
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"

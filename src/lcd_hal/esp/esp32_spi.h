@@ -29,7 +29,7 @@
 #ifndef _SSD1306V2_ESP_ESP32_SPI_H_
 #define _SSD1306V2_ESP_ESP32_SPI_H_
 
-#if defined(CONFIG_ESP32_SPI_AVAILABLE) && defined(CONFIG_ESP32_SPI_ENABLE)
+#if defined(CONFIG_ESP32_SPI_AVAILABLE) && defined(CONFIG_ESP32_SPI_ENABLE) && defined(ESP32)
 
 #include "driver/spi_master.h"
 
