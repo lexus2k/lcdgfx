@@ -115,7 +115,7 @@ class Generator:
                         out_str = "\n".join(output_string)
                     fOut.write(out_str)
 
-                print("The file %s was created sucesfully" % (output_file))
+                print("The file %s was created successfully" % (output_file))
             except Exception as e:
                 print("There was an error creating the output file: %r" % (e))
                 exit(1)
@@ -212,7 +212,7 @@ class Generator:
                         out_str = "\n".join(output_string)
                     fOut.write(out_str)
 
-                print("The file %s was created sucesfully" % (output_file))
+                print("The file %s was created successfully" % (output_file))
             except Exception as e:
                 print("There was an error creating the output file: %r" % (e))
                 exit(1)
