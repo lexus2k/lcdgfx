@@ -154,6 +154,7 @@ Additional documentation:
  * [GUI widgets overview](docs/gui_widgets.md) — menu, slider, spinbox, text entry, etc.
  * [Adafruit_GFX compatibility (`GfxCompat`)](docs/gfx_compat.md) — port Adafruit GFX code, custom `GFXfont` support.
  * [Touch input (XPT2046)](docs/touch.md) — wiring, calibration, code sample.
+ * [Fonts: generating & format reference](docs/font_format.md) — `fontgenerator.py` usage, per-group widths, binary layout.
  * [v1 → v2 migration guide](docs/migration_v1_v2.md).
  * [Changelog](CHANGELOG.md).
 
@@ -210,8 +211,12 @@ When building from the Makefile you can opt in to a newer standard via
 [Tim's Image Pixel Editor](https://tims-pc-applications.blogspot.com/2020/05/tims-image-pixel-editor.html)
 This is a little application made by Tim Jackson to edit and create Images and fonts for the small monochrome displays.
 
-[Built-in font generator](https://github.com/lexus2k/lcdgfx/wiki/How-to-create-new-font-for-the-library)
-Lcdgfx library has built-in Python script to generate lcd fonts from ttf files.
+[Built-in font generator](docs/font_format.md)
+Lcdgfx library has built-in Python script (`tools/fontgenerator.py`) to generate
+lcd fonts from ttf files. See [docs/font_format.md](docs/font_format.md) for
+usage, per-group widths and the binary format; the
+[wiki tutorial](https://github.com/lexus2k/lcdgfx/wiki/How-to-create-new-font-for-the-library)
+has a step-by-step walkthrough.
 
 [Font format converter from bdf fonts by mayopan](https://github.com/mayopan/bdf2lcdgfx)
 Font format converter that converts bdf font to lcdgfx c style free
