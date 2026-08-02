@@ -40,6 +40,10 @@ endif
 BLD ?= ../bld
 PROJECT ?= demos/ssd1306_demo
 BUILD_FOR_OLD_ESPIDF ?= n
+# Optional space-separated preprocessor symbols injected as global
+# add_compile_definitions(...) into the generated project, e.g.
+#   make -f Makefile.esp32 EXTRA_DEFS=CONFIG_ESP32_SPI_DMA_ENABLE
+EXTRA_DEFS ?=
 
 $(BLD)/esp32/components/lcdgfx/component.mk:
 	mkdir -p $(BLD)/esp32/components/lcdgfx
@@ -73,6 +77,7 @@ $(BLD)/esp32/main/CMakeLists.txt:
 $(BLD)/esp32/CMakeLists.txt:
 	mkdir -p $(BLD)/esp32
 	echo "cmake_minimum_required(VERSION 3.16)" > $(BLD)/esp32/CMakeLists.txt
+	$(if $(EXTRA_DEFS),echo "add_compile_definitions($(EXTRA_DEFS))" >> $(BLD)/esp32/CMakeLists.txt)
 	echo "include(\$$ENV{IDF_PATH}/tools/cmake/project.cmake)" >> $(BLD)/esp32/CMakeLists.txt
 	echo "project(ssd1306_demo)" >> $(BLD)/esp32/CMakeLists.txt
 	echo "SET(EXTRA_COMPONENT_DIRS main components)" >> $(BLD)/esp32/CMakeLists.txt
