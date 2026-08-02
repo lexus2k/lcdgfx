@@ -191,6 +191,42 @@ class FontContainer:
             for c in g:
                 self.__expand_char_h( c )
 
+    # Function forces every char in a single group to an exact pixel width by
+    # keeping the glyph centered: blank columns are added (split between left
+    # and right) when the char is narrower than target_width, or equal amounts
+    # are cropped from both sides when it is wider.
+    #
+    # This is meaningful only for the new (variable-width) format, where the
+    # per-char width is stored in the jump table. It lets narrow chars such as
+    # space/colon/period be padded (or wide chars trimmed) per group without
+    # expanding the whole font to a single fixed width. Do NOT combine it with
+    # -fw, which forces one global width for every char in the font.
+    def set_group_width(self, group_index, target_width):
+        if target_width <= 0:
+            return
+        for c in self._groups[group_index]:
+            cur = c['width']
+            if target_width > cur:
+                before = (target_width - cur) // 2
+                after = target_width - cur - before
+                for row in c['bitmap']:
+                    for _ in range(before):
+                        row.insert(0, 0)
+                    row.extend([0] * after)
+                c['left'] += before
+            elif target_width < cur:
+                crop = cur - target_width
+                left = crop // 2
+                right = crop - left
+                sys.stderr.write(
+                    "Warning: char U+%04X (width %d) cropped to %d px, ink may be clipped\n"
+                    % (ord(c['char']), cur, target_width))
+                c['bitmap'] = [ row[left:len(row) - right] for row in c['bitmap'] ]
+                c['left'] = max(c['left'] - left, 0)
+            c['width'] = target_width
+            c['used_width'] = target_width
+        self._commit_updates()
+
     # Function deflates character bitmap horizontally by left pixels
     # from left side and right pixels from right side
     def __deflate_char_h(self, data, left=0, right=0):

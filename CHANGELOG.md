@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Per-group exact font width in `fontgenerator.py`** (issue #139): the `-g`
+  option now takes an optional 3rd argument — `-g <first> <count> <width>` —
+  that forces every char in that group to an exact pixel width, keeping the
+  glyph centered (narrow chars padded, wider chars cropped). The width is
+  stored per char in the new-format jump table, so it is free at runtime and
+  works with `setSpacing()`. Ideal for widening thin chars (space, colon,
+  period) without expanding the whole font to a single fixed width (`-fw`).
 - **Adafruit_GFX-compatible facade** (`src/canvas/gfx_compat.h`): new header-only
   `GfxCompat<D>` adapter (plus `makeGfxCompat()` helper) that exposes the
   Adafruit_GFX drawing API on top of any lcdgfx display or canvas, with **no

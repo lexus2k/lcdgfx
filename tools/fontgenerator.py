@@ -48,9 +48,13 @@ def print_help_and_exit():
     sys.stderr.write("      -SB <N>        limit size in pixels to value (pixels will be cut)\n")
     sys.stderr.write("      -fh            fixed height\n")
     sys.stderr.write("      -fw            fixed width\n")
-    sys.stderr.write("      -g <S> <E>     add chars group to the font\n")
+    sys.stderr.write("      -g <S> <E> [W] add chars group to the font\n")
     sys.stderr.write("                     where <S> - first char hex or binary code, or char symbol\n")
     sys.stderr.write("                           <E> - chars count minus 1 (integer), or char symbol\n")
+    sys.stderr.write("                           <W> - optional exact width in pixels for this group\n")
+    sys.stderr.write("                                 (new format only). Narrow chars are padded and\n")
+    sys.stderr.write("                                 centered; wider chars are cropped. Do not mix\n")
+    sys.stderr.write("                                 with -fw.\n")
     sys.stderr.write("      -f old         old format 1.7.6 and below\n")
     sys.stderr.write("      -f new         new format 1.7.8 and above\n")
     sys.stderr.write("      -d             Print demo text to console\n")
@@ -144,7 +148,14 @@ while idx < len(sys.argv):
             if ord(_end_char) - ord(_start_char) + 1 > 255:
                 sys.stderr.write("Number of characters in single block cannot be more than 255\n")
                 exit(1)
-        fgroups.append( (_start_char, _end_char ) )
+        # Optional per-group exact width (new format only). It is only consumed
+        # when the next token is a bare integer, so a following "-g"/other flag
+        # is never mistaken for a width.
+        _group_width = None
+        if idx + 1 < len(sys.argv) and sys.argv[idx + 1].isdigit():
+            idx += 1
+            _group_width = int(sys.argv[idx])
+        fgroups.append( (_start_char, _end_char, _group_width) )
     elif opt == "-d":
         demo_text = True
     elif opt == "-t":
@@ -166,11 +177,13 @@ if TTF:
     source = ttfsource.TTFSource(fname, fsize)
     if len(fgroups) == 0:
         if sys.version_info < (3, 0):
-            fgroups.append((' ', unichr(127)))
+            fgroups.append((' ', unichr(127), None))
         else:
-            fgroups.append((' ', chr(127)))
+            fgroups.append((' ', chr(127), None))
     for g in fgroups:
         source.add_chars(g[0], g[1])
+        if g[2] is not None:
+            source.set_group_width(source.groups_count() - 1, g[2])
 
 if GLCD:
     source = glcdsource.GLCDSource(fname, fsize, "utf8")
