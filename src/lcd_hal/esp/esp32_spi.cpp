@@ -31,6 +31,22 @@
 #include "driver/gpio.h"
 #include "driver/spi_master.h"
 
+#if defined(CONFIG_ESP32_SPI_DMA_ENABLE)
+#include "esp_heap_caps.h"
+// Size of the DMA-capable flush buffer. Larger values let bulk pixel writes
+// (e.g. a NanoCanvas flush) go out as fewer, bigger DMA transactions, which is
+// where the throughput win comes from. Tune per available SRAM.
+#ifndef CONFIG_ESP32_SPI_DMA_BUFFER_SIZE
+#define CONFIG_ESP32_SPI_DMA_BUFFER_SIZE 512
+#endif
+// SPI_DMA_CH_AUTO exists since ESP-IDF v4.3; fall back to channel 1 on older IDF.
+#if defined(SPI_DMA_CH_AUTO)
+#define LCDGFX_ESP_DMA_CHAN SPI_DMA_CH_AUTO
+#else
+#define LCDGFX_ESP_DMA_CHAN 1
+#endif
+#endif
+
 #if !defined(HSPI_HOST) || !defined(VSPI_HOST)
   #if defined(CONFIG_IDF_TARGET_ESP32) || defined(CONFIG_IDF_TARGET_ESP32C3)
     #define HSPI_HOST   SPI2_HOST
@@ -107,8 +123,30 @@ void EspSpi::begin()
     buscfg.sclk_io_num = m_clk;
     buscfg.quadwp_io_num = -1;
     buscfg.quadhd_io_num = -1;
+#if defined(CONFIG_ESP32_SPI_DMA_ENABLE)
+    // Opt-in DMA path. Allocate a DMA-capable, word-aligned flush buffer (ESP-IDF
+    // requires DMA tx buffers to live in DMA-capable memory) and let the SPI
+    // master use a DMA channel. Transfers stay blocking, so the DC-line ordering
+    // (flush-before-DC-toggle) is preserved exactly as in the non-DMA path.
+    m_capacity = CONFIG_ESP32_SPI_DMA_BUFFER_SIZE;
+    m_txbuf = static_cast<uint8_t *>(heap_caps_malloc(m_capacity, MALLOC_CAP_DMA | MALLOC_CAP_8BIT));
+    if ( m_txbuf == nullptr )
+    {
+        // Allocation failed: fall back to the internal buffer and disable DMA.
+        m_txbuf = m_buffer;
+        m_capacity = sizeof(m_buffer);
+        buscfg.max_transfer_sz = sizeof(m_buffer);
+        spi_bus_initialize(m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, 0); // 0 - no dma
+    }
+    else
+    {
+        buscfg.max_transfer_sz = m_capacity;
+        spi_bus_initialize(m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, LCDGFX_ESP_DMA_CHAN);
+    }
+#else
     buscfg.max_transfer_sz = 32;
     spi_bus_initialize(m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, 0); // 0 -no dma
+#endif
 #endif
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
     if ( m_dc >= 0 )
@@ -126,6 +164,15 @@ void EspSpi::end()
         m_first_spi_session = true;
     }
     spi_bus_free(m_busId ? VSPI_HOST : HSPI_HOST);
+#if defined(CONFIG_ESP32_SPI_DMA_ENABLE)
+    // Release the DMA-capable flush buffer (only ever heap-allocated in begin()).
+    if ( m_txbuf != m_buffer )
+    {
+        heap_caps_free(m_txbuf);
+        m_txbuf = m_buffer;
+        m_capacity = sizeof(m_buffer);
+    }
+#endif
 #endif
     if ( m_dc >= 0 )
         lcd_unregisterGpioEvent(m_dc);
@@ -171,9 +218,9 @@ void EspSpi::stop()
 
 void EspSpi::send(uint8_t data)
 {
-    m_buffer[m_data_size] = data;
+    m_txbuf[m_data_size] = data;
     m_data_size++;
-    if ( m_data_size == sizeof(m_buffer) )
+    if ( m_data_size == m_capacity )
     {
         // ... Send byte to spi communication channel
         // We do not care here about DC line state, because
@@ -188,7 +235,7 @@ void EspSpi::forceSpiTransfer()
     {
         return;
     }
-    uint8_t *buffer = m_buffer;
+    uint8_t *buffer = m_txbuf;
 #ifdef USE_SW_SPI
     while ( m_data_size )
     {
@@ -206,7 +253,7 @@ void EspSpi::forceSpiTransfer()
 #else
     while ( m_data_size )
     {
-        size_t sz = m_data_size > 64 ? 64 : m_data_size;
+        size_t sz = m_data_size > m_capacity ? m_capacity : m_data_size;
         spi_transaction_t t;
         memset(&t, 0, sizeof(t));
         t.length = 8 * sz; // 8 bits

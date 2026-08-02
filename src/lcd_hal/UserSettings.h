@@ -100,6 +100,23 @@
 /** Define this macro if you need to enable ESP32 SPI module for compilation */
 #define CONFIG_ESP32_SPI_ENABLE
 
+/**
+ * Opt-in: route ESP32 hardware SPI through a DMA channel. Off by default, so
+ * the SPI transport is byte-for-byte the classic blocking-FIFO path unless you
+ * enable it. When enabled, begin() allocates a DMA-capable flush buffer and
+ * bulk writes (e.g. a NanoCanvas flush) go out as large DMA transactions.
+ * Transfers stay blocking, so data/command (DC) line ordering is unchanged.
+ * Enable via build flag (-DCONFIG_ESP32_SPI_DMA_ENABLE) or by uncommenting.
+ */
+// #define CONFIG_ESP32_SPI_DMA_ENABLE
+
+/**
+ * Size (bytes) of the DMA-capable SPI flush buffer when CONFIG_ESP32_SPI_DMA_ENABLE
+ * is set. Bigger => fewer, larger DMA transactions (more throughput) at the cost
+ * of SRAM. Defaults to 512 if left undefined.
+ */
+// #define CONFIG_ESP32_SPI_DMA_BUFFER_SIZE 512
+
 /** Define this macro if you need to enable ESP8266 I2C module for compilation */
 #define CONFIG_ESP8266_I2C_ENABLE
 

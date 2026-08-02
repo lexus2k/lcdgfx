@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Opt-in DMA for ESP32 hardware SPI** (`CONFIG_ESP32_SPI_DMA_ENABLE`, off by
+  default): routes the ESP32 SPI transport through a DMA channel with a
+  DMA-capable flush buffer (size via `CONFIG_ESP32_SPI_DMA_BUFFER_SIZE`, default
+  512), so bulk pixel writes go out as large DMA transactions. Transfers stay
+  blocking, so data/command (DC) line ordering is preserved; with the macro
+  undefined the SPI path is byte-for-byte identical to before. Drivers are
+  unchanged (the DMA logic lives entirely in the SPI HAL).
 - **Per-group exact font width in `fontgenerator.py`** (issue #139): the `-g`
   option now takes an optional 3rd argument — `-g <first> <count> <width>` —
   that forces every char in that group to an exact pixel width, keeping the
