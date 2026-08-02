@@ -23,7 +23,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     runtime cost); colour values pass through unchanged.
   - Docs: [docs/gfx_compat.md](docs/gfx_compat.md); example:
     `examples/direct_draw/gfx_compat`.
-- **ROADMAP.md** describing optimization and feature direction.
 
 ## [1.3.1] - 2026-04-29
 
