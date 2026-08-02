@@ -71,6 +71,8 @@
 #include "v2/lcd/il9163/lcd_il9163.h"
 #include "v2/lcd/ili9341/lcd_ili9341.h"
 
+#include "canvas/gfx_compat.h"
+
 extern "C"
 {
 #endif

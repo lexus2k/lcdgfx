@@ -5,6 +5,26 @@ All notable changes to **lcdgfx** are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- **Adafruit_GFX-compatible facade** (`src/canvas/gfx_compat.h`): new header-only
+  `GfxCompat<D>` adapter (plus `makeGfxCompat()` helper) that exposes the
+  Adafruit_GFX drawing API on top of any lcdgfx display or canvas, with **no
+  external Adafruit_GFX library required**.
+  - Geometry: `drawPixel`, `drawFast{H,V}Line`, `drawLine`, `draw`/`fillRect`,
+    `fillScreen`, `draw`/`fillCircle`, `draw`/`fillTriangle`,
+    `draw`/`fillRoundRect`, `drawBitmap`.
+  - Text: `setCursor`, `setTextColor`, `setTextSize`, `write`, `print`/`println`
+    overloads, and Adafruit `GFXfont` custom-font rendering via
+    `setFont(const GFXfont*)` (works on paged monochrome and colour displays;
+    PROGMEM fonts supported).
+  - Monochrome `0`/`1` colour is mapped to lcdgfx's mask at compile time (zero
+    runtime cost); colour values pass through unchanged.
+  - Docs: [docs/gfx_compat.md](docs/gfx_compat.md); example:
+    `examples/direct_draw/gfx_compat`.
+- **ROADMAP.md** describing optimization and feature direction.
+
 ## [1.3.1] - 2026-04-29
 
 ### Fixed

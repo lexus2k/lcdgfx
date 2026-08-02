@@ -79,6 +79,7 @@ void loop()
  * Built-in GUI widgets: `LcdGfxMenu` (key- and touch-driven), `LcdGfxCheckboxMenu`, `LcdGfxButton`, `LcdGfxSlider`, `LcdGfxSpinbox`, `LcdGfxTextEntry`, `LcdGfxYesNo`.
  * Resistive touch input via `LcdGfxXpt2046` (XPT2046 controller) with `TouchCalibration` helper.
  * `lcdgfx::color` `constexpr` helpers (`to_rgb565`, `to_rgb332`, `from_rgb`, `gray`) for compile-time colour math.
+ * Drop-in [Adafruit_GFX-compatible API](docs/gfx_compat.md) (`GfxCompat`) — run existing Adafruit GFX sketches on any lcdgfx display, including `GFXfont` custom fonts, with no external library.
  * Includes [graphics engine](https://github.com/lexus2k/lcdgfx/wiki/Using-NanoEngine-for-systems-with-low-resources2) to support
    double buffering on tiny microcontrollers.
  * Can be used for game development (bonus examples):
@@ -151,6 +152,7 @@ scroll, invert, status of known issues, etc.), see
 Additional documentation:
 
  * [GUI widgets overview](docs/gui_widgets.md) — menu, slider, spinbox, text entry, etc.
+ * [Adafruit_GFX compatibility (`GfxCompat`)](docs/gfx_compat.md) — port Adafruit GFX code, custom `GFXfont` support.
  * [Touch input (XPT2046)](docs/touch.md) — wiring, calibration, code sample.
  * [v1 → v2 migration guide](docs/migration_v1_v2.md).
  * [Changelog](CHANGELOG.md).
