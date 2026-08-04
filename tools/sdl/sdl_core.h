@@ -84,6 +84,12 @@ extern void sdl_core_get_pixels_data( uint8_t *pixels, uint8_t target_bpp );
 /** Returns length in bytes, required to hold the data */
 extern int sdl_core_get_pixels_len( uint8_t target_bpp );
 extern void sdl_core_set_unittest_mode(void);
+/** Resets the transmitted-byte counter (test/instrumentation helper) */
+extern void sdl_core_reset_tx_count(void);
+/** Returns number of bytes pushed to the display since the last reset.
+ *  Used by tests to measure bus traffic (fewer set-window bursts -> fewer
+ *  command bytes). */
+extern unsigned long sdl_core_get_tx_count(void);
 
 #ifdef __cplusplus
 }

@@ -65,6 +65,7 @@ static sdl_oled_info *p_active_driver = NULL;
 
 int s_commandId = SSD_COMMAND_NONE;
 int s_cmdArgIndex;
+static unsigned long s_txCount = 0;
 static int s_dcMode = DC_MODE_NONE;
 static sdl_data_mode s_active_data_mode = SDM_COMMAND_ARG;
 
@@ -229,8 +230,19 @@ static void sdl_write_data(uint8_t data)
     }
 }
 
+void sdl_core_reset_tx_count(void)
+{
+    s_txCount = 0;
+}
+
+unsigned long sdl_core_get_tx_count(void)
+{
+    return s_txCount;
+}
+
 void sdl_send_byte(uint8_t data)
 {
+    s_txCount++;
     // Detect DC mode
     if (s_dcPin>=0)
     {
