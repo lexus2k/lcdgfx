@@ -38,6 +38,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Docs: [docs/gfx_compat.md](docs/gfx_compat.md); example:
     `examples/direct_draw/gfx_compat`.
 
+### Changed
+- **`drawLine` now coalesces bus transactions.** Instead of addressing the
+  controller once per pixel, diagonal lines are emitted as runs of same-row /
+  same-column spans (a single `drawHLine`/`drawVLine` per run). Near-horizontal
+  and near-vertical lines drop from one set-window burst per pixel to a small
+  handful, cutting bus traffic several-fold at zero RAM cost. Output is
+  pixel-identical for all existing use; no driver or API changes.
+
+### Fixed
+- **Steep and vertical `drawLine` on 1-bit (page-addressed) displays.** In
+  bufferless mode each `putPixel` rewrites a whole 8-pixel page byte, so a
+  per-pixel diagonal/vertical line clobbered earlier pixels sharing a page and
+  rendered with gaps. Routing runs through `drawVLine` builds the correct page
+  bytes, so these lines are now solid. Colour displays were unaffected.
+
 ## [1.3.1] - 2026-04-29
 
 ### Fixed

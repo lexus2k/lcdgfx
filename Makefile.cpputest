@@ -35,6 +35,7 @@ OBJ_UNIT_TEST = \
         unittest/touch_tests.o \
         unittest/text_entry_tests.o \
         unittest/gfx_compat_tests.o \
+        unittest/line_batching_tests.o \
         unittest/utils/utils.o \
 
 unittest: $(OBJ_UNIT_TEST) library ssd1306_sdl
