@@ -1,0 +1,3 @@
+    commandStart();
+    this->send(0xAE); // display off
+    this->stop();

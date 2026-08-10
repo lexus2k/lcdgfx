@@ -1,0 +1,17 @@
+    commandStart();
+    this->send(0x21); // column addr
+    this->send(x);
+    this->send(w ? (x + w - 1) : (m_base.width() - 1));
+    this->send(0x22); // page addr
+    this->send(y);
+    this->send((m_base.height() >> 3) - 1);
+    if ( m_dc >= 0 )
+    {
+        setDataMode(1);
+    }
+    else
+    {
+        this->stop();
+        this->start();
+        this->send(0x40);
+    }
