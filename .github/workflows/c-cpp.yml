@@ -88,3 +88,13 @@ jobs:
           # Fresh build dir so CMake reconfigures with the injected define
           rm -rf bld/esp32
           make -C examples -f Makefile.esp32 PROJECT=demos/ssd1306_demo EXTRA_DEFS=CONFIG_ESP32_SPI_DMA_ENABLE
+      - name: Building ESP32 code for other chip families
+        run: |
+          . ~/esp/esp-idf/export.sh
+          # Only the default esp32 target used to be built here, which is why the
+          # RISC-V parts could regress unnoticed (see issue #144). Xtensa and
+          # RISC-V, dual-host and single-host chips are all covered now.
+          for target in esp32s3 esp32c3 esp32c6 esp32c5; do
+            rm -rf bld/esp32
+            make -C examples -f Makefile.esp32 PROJECT=demos/ssd1306_demo TARGET=$target
+          done

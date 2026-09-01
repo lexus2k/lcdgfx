@@ -24,7 +24,9 @@
 
 #include "../io.h"
 
-#if defined(__XTENSA__) && !defined(ARDUINO)
+// Must match the ESP HAL selection in lcd_hal/io.h - ESP_PLATFORM covers the
+// RISC-V parts (C3/C5/C6/H2, P4) that __XTENSA__ alone misses.
+#if (defined(ESP_PLATFORM) || defined(__XTENSA__)) && !defined(ARDUINO)
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"

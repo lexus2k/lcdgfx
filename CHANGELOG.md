@@ -52,6 +52,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   per-pixel diagonal/vertical line clobbered earlier pixels sharing a page and
   rendered with gaps. Routing runs through `drawVLine` builds the correct page
   bytes, so these lines are now solid. Colour displays were unaffected.
+- **Build failure on ESP32-C5/C6/H2/P4 and other newer ESP32 variants**
+  (issue #144): the ESP32 SPI HAL referenced the legacy `VSPI_HOST`/`HSPI_HOST`
+  aliases, which ESP-IDF only defines for the original ESP32 and ESP32-S2, so
+  any newer target failed to compile with "'VSPI_HOST' was not declared in this
+  scope". The bus id is now mapped onto a real SPI host through the SoC
+  capability macros (`SOC_SPI_PERIPH_NUM`), which every target provides.
+- **ESP32-S3 and ESP32-C3 selected the SPI flash bus as the display bus.** The
+  compatibility fallback tested `#if defined(SPI3_HOST)`, but `SPI3_HOST` is an
+  enumerator rather than a macro, so the test was always false and the default
+  bus resolved to `SPI1_HOST` — the flash controller. Affected boards should
+  now initialise the correct host.
+- **ESP-IDF builds for the RISC-V parts (C3/C5/C6/H2, P4) had no HAL at all.**
+  The ESP platform was selected on `__XTENSA__`, so RISC-V chips fell through to
+  the "platform is not supported" branch. Selection now keys on `ESP_PLATFORM`,
+  which every ESP-IDF build defines. (Arduino builds were unaffected.)
+- **`I2C_NUM_1` on single-port chips**: the ESP32 i2c HAL defaulted to port 1
+  unconditionally; ESP-IDF only declares it when `SOC_HP_I2C_NUM >= 2`, so
+  C3/C5/C6/H2 failed to compile. The default now follows the same condition.
+- Default SPI MOSI/SCLK pins on non-ESP32 targets were the ESP32 pin numbers
+  (23/18 and 13/14). Other chips now fall back to the SPI2 IOMUX pins that
+  ESP-IDF documents for that part; ESP32 defaults are unchanged.
 
 ## [1.3.1] - 2026-04-29
 
