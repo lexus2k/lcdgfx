@@ -47,25 +47,42 @@
 #endif
 #endif
 
-#if !defined(HSPI_HOST) || !defined(VSPI_HOST)
-  #if defined(CONFIG_IDF_TARGET_ESP32) || defined(CONFIG_IDF_TARGET_ESP32C3)
-    #define HSPI_HOST   SPI2_HOST
-    #if defined(SPI3_HOST)
-      #define VSPI_HOST   SPI3_HOST
-    #else
-      #define VSPI_HOST   SPI1_HOST
-    #endif
-  #elif defined(CONFIG_IDF_TARGET_ESP32S2) || defined(CONFIG_IDF_TARGET_ESP32S3)
-    // SPI_HOST (SPI1_HOST) is not supported by the SPI Master and SPI Slave driver on ESP32-S2 and later
-    // #define SPI_HOST    SPI1_HOST
-    // #define FSPI_HOST   SPI2_HOST
-    #define HSPI_HOST   SPI3_HOST
-    #if defined(SPI3_HOST)
-      #define VSPI_HOST   SPI3_HOST
-    #else
-      #define VSPI_HOST   SPI1_HOST
-    #endif
-  #endif
+#include "soc/soc_caps.h"
+#if defined(__has_include)
+#if __has_include("soc/spi_pins.h")
+#include "soc/spi_pins.h"
+#endif
+#endif
+
+// Do not rely on the legacy HSPI_HOST/VSPI_HOST aliases. ESP-IDF defines them only
+// for ESP32 and ESP32-S2 (see hal/spi_types.h, "deprecated for the chips after
+// esp32s2"), so every newer target - C3, C5, C6, H2, P4 - fails to compile against
+// them. Map the lcdgfx bus id onto a real host through the SoC capabilities
+// instead, which every target provides.
+//
+// Note SPI1_HOST is the flash bus and must never be handed to the SPI master
+// driver, so targets with a single usable host always resolve to SPI2_HOST.
+#if SOC_SPI_PERIPH_NUM > 2
+#define LCDGFX_SPI_HOST(busId) ((busId) ? SPI3_HOST : SPI2_HOST)
+#else
+#define LCDGFX_SPI_HOST(busId) (SPI2_HOST)
+#endif
+
+// Default bus pins. The historical ESP32 values are kept as-is to not change
+// behaviour for existing sketches; other targets fall back to the IOMUX pins
+// that ESP-IDF documents for SPI2, so no per-chip table has to be maintained here.
+#if defined(CONFIG_IDF_TARGET_ESP32)
+#define LCDGFX_SPI_DEFAULT_MOSI(busId) ((busId) ? 23 : 13)
+#define LCDGFX_SPI_DEFAULT_CLK(busId) ((busId) ? 18 : 14)
+#elif defined(SPI2_IOMUX_PIN_NUM_MOSI) && defined(SPI2_IOMUX_PIN_NUM_CLK)
+#define LCDGFX_SPI_DEFAULT_MOSI(busId) (SPI2_IOMUX_PIN_NUM_MOSI)
+#define LCDGFX_SPI_DEFAULT_CLK(busId) (SPI2_IOMUX_PIN_NUM_CLK)
+#else
+// soc/spi_pins.h is unavailable on this SDK. Keep the historical numbers so the
+// build still succeeds; pass clk/mosi explicitly to the display constructor.
+#warning "lcdgfx: no per-chip default SPI pins for this target, specify clk/mosi explicitly"
+#define LCDGFX_SPI_DEFAULT_MOSI(busId) ((busId) ? 23 : 13)
+#define LCDGFX_SPI_DEFAULT_CLK(busId) ((busId) ? 18 : 14)
 #endif
 
 // Uncomment to use software SPI (for debugging)
@@ -93,9 +110,9 @@ void EspSpi::begin()
         m_busId = 1;
 
     if ( m_mosi < 0 )
-        m_mosi = m_busId ? 23 : 13;
+        m_mosi = LCDGFX_SPI_DEFAULT_MOSI(m_busId);
     if ( m_clk < 0 )
-        m_clk = m_busId ? 18 : 14;
+        m_clk = LCDGFX_SPI_DEFAULT_CLK(m_busId);
     if ( m_cs >= 0 )
     {
         lcd_gpioMode(m_cs, LCD_GPIO_OUTPUT);
@@ -136,16 +153,16 @@ void EspSpi::begin()
         m_txbuf = m_buffer;
         m_capacity = sizeof(m_buffer);
         buscfg.max_transfer_sz = sizeof(m_buffer);
-        spi_bus_initialize(m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, 0); // 0 - no dma
+        spi_bus_initialize(LCDGFX_SPI_HOST(m_busId), &buscfg, 0); // 0 - no dma
     }
     else
     {
         buscfg.max_transfer_sz = m_capacity;
-        spi_bus_initialize(m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, LCDGFX_ESP_DMA_CHAN);
+        spi_bus_initialize(LCDGFX_SPI_HOST(m_busId), &buscfg, LCDGFX_ESP_DMA_CHAN);
     }
 #else
     buscfg.max_transfer_sz = 32;
-    spi_bus_initialize(m_busId ? VSPI_HOST : HSPI_HOST, &buscfg, 0); // 0 -no dma
+    spi_bus_initialize(LCDGFX_SPI_HOST(m_busId), &buscfg, 0); // 0 -no dma
 #endif
 #endif
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
@@ -163,7 +180,7 @@ void EspSpi::end()
         spi_bus_remove_device(m_spi);
         m_first_spi_session = true;
     }
-    spi_bus_free(m_busId ? VSPI_HOST : HSPI_HOST);
+    spi_bus_free(LCDGFX_SPI_HOST(m_busId));
 #if defined(CONFIG_ESP32_SPI_DMA_ENABLE)
     // Release the DMA-capable flush buffer (only ever heap-allocated in begin()).
     if ( m_txbuf != m_buffer )
@@ -198,7 +215,7 @@ void EspSpi::start()
         devcfg.mode = 0;
         devcfg.spics_io_num = m_cs;
         devcfg.queue_size = 7;
-        spi_bus_add_device(m_busId ? VSPI_HOST : HSPI_HOST, &devcfg, &m_spi);
+        spi_bus_add_device(LCDGFX_SPI_HOST(m_busId), &devcfg, &m_spi);
         m_first_spi_session = false;
     }
 #endif

@@ -65,7 +65,10 @@
 #include "avr/spi_usi.h"
 #include "avr/i2c_embedded.h"
 #endif
-#elif defined(__XTENSA__) && !defined(ARDUINO)
+// ESP_PLATFORM is defined by every ESP-IDF build. Selecting on __XTENSA__ alone
+// left the RISC-V parts (ESP32-C3/C5/C6/H2, P4) without any HAL at all, so they
+// fell through to the "platform is not supported" branch below.
+#elif (defined(ESP_PLATFORM) || defined(__XTENSA__)) && !defined(ARDUINO)
 #include "esp/io.h"
 #ifdef __cplusplus
 #include "esp/esp32_i2c.h"

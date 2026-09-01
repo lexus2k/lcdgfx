@@ -44,6 +44,11 @@ BUILD_FOR_OLD_ESPIDF ?= n
 # add_compile_definitions(...) into the generated project, e.g.
 #   make -f Makefile.esp32 EXTRA_DEFS=CONFIG_ESP32_SPI_DMA_ENABLE
 EXTRA_DEFS ?=
+# Chip to build for, e.g. esp32, esp32c3, esp32c6. Empty = whatever the build
+# directory is already configured for (esp32 by default). --preview is passed so
+# that targets still marked preview by the installed IDF (e.g. esp32c5 on v5.4)
+# can be selected; it is a no-op for supported targets.
+TARGET ?=
 
 $(BLD)/esp32/components/lcdgfx/component.mk:
 	mkdir -p $(BLD)/esp32/components/lcdgfx
@@ -89,7 +94,7 @@ ifeq ($(BUILD_FOR_OLD_ESPIDF),y)
 	$(MAKE) -C $(BLD)/esp32 defconfig
 	$(MAKE) -C $(BLD)/esp32
 else
-	cd $(BLD)/esp32 && idf.py build
+	cd $(BLD)/esp32 $(if $(TARGET),&& idf.py --preview set-target $(TARGET)) && idf.py build
 
 all: $(BLD)/esp32/CMakeLists.txt \
 	$(BLD)/esp32/main/CMakeLists.txt

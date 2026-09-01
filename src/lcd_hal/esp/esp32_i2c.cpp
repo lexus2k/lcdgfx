@@ -31,6 +31,16 @@
 #include "driver/gpio.h"
 #include <stdio.h>
 #include "driver/i2c.h"
+#include "soc/soc_caps.h"
+
+// I2C_NUM_1 only exists on chips with two high-power I2C peripherals - ESP-IDF
+// gates the enumerator on SOC_HP_I2C_NUM in hal/i2c_types.h, and C3/C5/C6/H2
+// have a single one. Mirror that condition instead of naming the port blindly.
+#if defined(SOC_HP_I2C_NUM) && (SOC_HP_I2C_NUM >= 2)
+#define LCDGFX_I2C_DEFAULT_PORT I2C_NUM_1
+#else
+#define LCDGFX_I2C_DEFAULT_PORT I2C_NUM_0
+#endif
 
 EspI2c::EspI2c(int8_t busId, uint8_t sa, int8_t scl, int8_t sda, uint32_t frequency)
     : m_busId(busId)
@@ -48,7 +58,12 @@ EspI2c::~EspI2c()
 void EspI2c::begin()
 {
     if ( m_busId < 0 )
-        m_busId = I2C_NUM_1;
+        m_busId = LCDGFX_I2C_DEFAULT_PORT;
+#if !defined(SOC_HP_I2C_NUM) || (SOC_HP_I2C_NUM < 2)
+    // Only one port exists on this chip, so an explicitly requested bus id
+    // cannot be honoured - fall back to the single available port.
+    m_busId = I2C_NUM_0;
+#endif
     if ( m_sda < 0 )
         m_sda = 21;
     if ( m_scl < 0 )

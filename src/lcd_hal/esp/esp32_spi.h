@@ -41,7 +41,9 @@ class EspSpi
 public:
     /**
      * Creates instance of spi implementation for ESP platform
-     * @param busId number of SPI bus to use: HSPI_HOST, VSPI_HOST
+     * @param busId index of the SPI bus to use: 0 or 1. On targets with a single
+     *        usable SPI host (ESP32-C3, C5, C6, H2) both values select that host.
+     *        Pass -1 to use the default bus.
      * @param csPin pin number to use as chip select, can be -1
      * @param dcPin pin to use as data command control pin
      * @param clk pin to use as clock spi pin
