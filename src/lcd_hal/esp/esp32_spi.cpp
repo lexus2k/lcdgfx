@@ -30,6 +30,7 @@
 #include "freertos/task.h"
 #include "driver/gpio.h"
 #include "driver/spi_master.h"
+#include "esp_log.h"
 
 #if defined(CONFIG_ESP32_SPI_DMA_ENABLE)
 #include "esp_heap_caps.h"
@@ -84,6 +85,8 @@
 #define LCDGFX_SPI_DEFAULT_MOSI(busId) ((busId) ? 23 : 13)
 #define LCDGFX_SPI_DEFAULT_CLK(busId) ((busId) ? 18 : 14)
 #endif
+
+static const char *LCDGFX_SPI_TAG = "lcdgfx.spi";
 
 // Uncomment to use software SPI (for debugging)
 // #define USE_SW_SPI
@@ -140,6 +143,7 @@ void EspSpi::begin()
     buscfg.sclk_io_num = m_clk;
     buscfg.quadwp_io_num = -1;
     buscfg.quadhd_io_num = -1;
+    esp_err_t err;
 #if defined(CONFIG_ESP32_SPI_DMA_ENABLE)
     // Opt-in DMA path. Allocate a DMA-capable, word-aligned flush buffer (ESP-IDF
     // requires DMA tx buffers to live in DMA-capable memory) and let the SPI
@@ -150,20 +154,29 @@ void EspSpi::begin()
     if ( m_txbuf == nullptr )
     {
         // Allocation failed: fall back to the internal buffer and disable DMA.
+        ESP_LOGW(LCDGFX_SPI_TAG, "DMA buffer allocation failed, falling back to non-DMA transfers");
         m_txbuf = m_buffer;
         m_capacity = sizeof(m_buffer);
         buscfg.max_transfer_sz = sizeof(m_buffer);
-        spi_bus_initialize(LCDGFX_SPI_HOST(m_busId), &buscfg, 0); // 0 - no dma
+        err = spi_bus_initialize(LCDGFX_SPI_HOST(m_busId), &buscfg, 0); // 0 - no dma
     }
     else
     {
         buscfg.max_transfer_sz = m_capacity;
-        spi_bus_initialize(LCDGFX_SPI_HOST(m_busId), &buscfg, LCDGFX_ESP_DMA_CHAN);
+        err = spi_bus_initialize(LCDGFX_SPI_HOST(m_busId), &buscfg, LCDGFX_ESP_DMA_CHAN);
     }
 #else
     buscfg.max_transfer_sz = 32;
-    spi_bus_initialize(LCDGFX_SPI_HOST(m_busId), &buscfg, 0); // 0 -no dma
+    err = spi_bus_initialize(LCDGFX_SPI_HOST(m_busId), &buscfg, 0); // 0 -no dma
 #endif
+    if ( err != ESP_OK )
+    {
+        // Without this the display simply stays blank with no explanation - the
+        // failure used to be discarded here, which made a misconfigured bus
+        // (wrong host, pins already in use) impossible to diagnose.
+        ESP_LOGE(LCDGFX_SPI_TAG, "spi_bus_initialize(host=%d, mosi=%d, clk=%d) failed: %s",
+                 static_cast<int>(LCDGFX_SPI_HOST(m_busId)), m_mosi, m_clk, esp_err_to_name(err));
+    }
 #endif
     // THIS IS HACK TO GET NOTIFICATIONS ON DC PIN CHANGE
     if ( m_dc >= 0 )
@@ -177,10 +190,19 @@ void EspSpi::end()
 #else
     if ( !m_first_spi_session )
     {
-        spi_bus_remove_device(m_spi);
+        if ( m_spi != nullptr )
+        {
+            spi_bus_remove_device(m_spi);
+            m_spi = nullptr;
+        }
         m_first_spi_session = true;
     }
-    spi_bus_free(LCDGFX_SPI_HOST(m_busId));
+    esp_err_t err = spi_bus_free(LCDGFX_SPI_HOST(m_busId));
+    if ( err != ESP_OK )
+    {
+        ESP_LOGE(LCDGFX_SPI_TAG, "spi_bus_free(host=%d) failed: %s",
+                 static_cast<int>(LCDGFX_SPI_HOST(m_busId)), esp_err_to_name(err));
+    }
 #if defined(CONFIG_ESP32_SPI_DMA_ENABLE)
     // Release the DMA-capable flush buffer (only ever heap-allocated in begin()).
     if ( m_txbuf != m_buffer )
@@ -215,7 +237,15 @@ void EspSpi::start()
         devcfg.mode = 0;
         devcfg.spics_io_num = m_cs;
         devcfg.queue_size = 7;
-        spi_bus_add_device(LCDGFX_SPI_HOST(m_busId), &devcfg, &m_spi);
+        esp_err_t err = spi_bus_add_device(LCDGFX_SPI_HOST(m_busId), &devcfg, &m_spi);
+        if ( err != ESP_OK )
+        {
+            // Leave m_spi null rather than transmitting on an uninitialised
+            // handle; forceSpiTransfer() drops data while the device is absent.
+            ESP_LOGE(LCDGFX_SPI_TAG, "spi_bus_add_device(host=%d, cs=%d) failed: %s",
+                     static_cast<int>(LCDGFX_SPI_HOST(m_busId)), m_cs, esp_err_to_name(err));
+            m_spi = nullptr;
+        }
         m_first_spi_session = false;
     }
 #endif
@@ -268,6 +298,13 @@ void EspSpi::forceSpiTransfer()
         m_data_size--;
     }
 #else
+    if ( m_spi == nullptr )
+    {
+        // Bus or device init failed earlier and was already reported. Drop the
+        // pending bytes so the buffer cannot overflow on the next send().
+        m_data_size = 0;
+        return;
+    }
     while ( m_data_size )
     {
         size_t sz = m_data_size > m_capacity ? m_capacity : m_data_size;
@@ -277,7 +314,14 @@ void EspSpi::forceSpiTransfer()
         t.tx_buffer = buffer;
         // Do not set this flag, it will break SPI communication with many LCD displays
         // t.flags = SPI_TRANS_CS_KEEP_ACTIVE;
-        spi_device_transmit(m_spi, &t);
+        esp_err_t err = spi_device_transmit(m_spi, &t);
+        if ( err != ESP_OK )
+        {
+            ESP_LOGE(LCDGFX_SPI_TAG, "spi_device_transmit(%u bytes) failed: %s", static_cast<unsigned>(sz),
+                     esp_err_to_name(err));
+            m_data_size = 0;
+            return;
+        }
         buffer += sz;
         m_data_size -= sz;
     }
