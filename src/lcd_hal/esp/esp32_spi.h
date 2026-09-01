@@ -98,7 +98,9 @@ private:
     int8_t m_mosi;
     bool m_first_spi_session;
     uint32_t m_frequency;
-    spi_device_handle_t m_spi;
+    // Null until spi_bus_add_device() has succeeded; transfers are skipped
+    // while it is null so a failed init cannot be transmitted on.
+    spi_device_handle_t m_spi = nullptr;
     uint8_t m_buffer[64]{};
     // Active tx buffer and its flush threshold. By default they point at the
     // internal m_buffer above (current behaviour). When CONFIG_ESP32_SPI_DMA_ENABLE

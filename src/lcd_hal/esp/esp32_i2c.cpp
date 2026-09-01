@@ -31,6 +31,7 @@
 #include "driver/gpio.h"
 #include <stdio.h>
 #include "driver/i2c.h"
+#include "esp_log.h"
 #include "soc/soc_caps.h"
 
 // I2C_NUM_1 only exists on chips with two high-power I2C peripherals - ESP-IDF
@@ -41,6 +42,8 @@
 #else
 #define LCDGFX_I2C_DEFAULT_PORT I2C_NUM_0
 #endif
+
+static const char *LCDGFX_I2C_TAG = "lcdgfx.i2c";
 
 EspI2c::EspI2c(int8_t busId, uint8_t sa, int8_t scl, int8_t sda, uint32_t frequency)
     : m_busId(busId)
@@ -75,8 +78,19 @@ void EspI2c::begin()
     conf.scl_io_num = static_cast<gpio_num_t>(m_scl);
     conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
     conf.master.clk_speed = m_frequency;
-    i2c_param_config(static_cast<i2c_port_t>(m_busId), &conf);
-    i2c_driver_install(static_cast<i2c_port_t>(m_busId), conf.mode, 0, 0, 0);
+    esp_err_t err = i2c_param_config(static_cast<i2c_port_t>(m_busId), &conf);
+    if ( err != ESP_OK )
+    {
+        ESP_LOGE(LCDGFX_I2C_TAG, "i2c_param_config(port=%d, sda=%d, scl=%d) failed: %s", static_cast<int>(m_busId),
+                 m_sda, m_scl, esp_err_to_name(err));
+        return;
+    }
+    err = i2c_driver_install(static_cast<i2c_port_t>(m_busId), conf.mode, 0, 0, 0);
+    if ( err != ESP_OK )
+    {
+        ESP_LOGE(LCDGFX_I2C_TAG, "i2c_driver_install(port=%d) failed: %s", static_cast<int>(m_busId),
+                 esp_err_to_name(err));
+    }
 }
 
 void EspI2c::end()
@@ -98,7 +112,13 @@ void EspI2c::start()
 void EspI2c::stop()
 {
     i2c_master_stop(m_cmd_handle);
-    i2c_master_cmd_begin(static_cast<i2c_port_t>(m_busId), m_cmd_handle, 1000 / portTICK_RATE_MS);
+    esp_err_t err = i2c_master_cmd_begin(static_cast<i2c_port_t>(m_busId), m_cmd_handle, 1000 / portTICK_RATE_MS);
+    if ( err != ESP_OK )
+    {
+        // Typically ESP_FAIL when the display does not ACK its address, or
+        // ESP_ERR_TIMEOUT when SDA/SCL are not pulled up.
+        ESP_LOGE(LCDGFX_I2C_TAG, "i2c transfer to address 0x%02X failed: %s", m_sa, esp_err_to_name(err));
+    }
     i2c_cmd_link_delete(m_cmd_handle);
 }
 
